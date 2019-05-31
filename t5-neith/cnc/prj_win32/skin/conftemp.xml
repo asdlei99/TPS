@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Window caption="0,0,0,0" size="1920,1121" mininfo="800,200" sizebox="0,0,0,0" maxinfo="1920,1121" roundcorner="0,0">
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />
+    <Font name="微软雅黑" size="22" bold="false"></Font>
+	<Default name="VScrollBar" value="mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+	
+	<HorizontalLayout name="ConfTempLayout" bkimage="res/subdlgbkg.png">	
+	<HorizontalLayout height="126" >
+	  <Edit nativebkcolor="#FF0E1620" name="EdtSearch" tiptext="请输入名称进行搜索" float="true" pos="27,30,0,0" width="523" height="60" textcolor="#FED4DEEB" font="1"  menu="true" gdiplus="true" />
+	  <Label name="" width="569" height="1" float="true" pos="27,89,0,0" bkcolor="#FF4B5764" /> 
+	  <Button name="BtnSearch" float="true" pos="550,30,0,0" width="60" height="60" align="center" normalimage="res\public\search.png" pushedimage="res\public\search_down.png"/>
+	  <Button name="BtnRefresh" float="true" pos="1700,30,0,0" width="149" height="64" text="刷 新" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+	</HorizontalLayout>
+	<Label name="labCutline" float="true" pos="27,126,0,0" width="1866" height="1" bkcolor="#FF4B5764" /> 
+	<LetterIndex name="ListIndex" float="true" pos="43,204,0,0" width="21" height="810" bkimage="res/list/letterIndex.png" font="1" textcolor="#FF379FDB" /> 
+	
+	<TouchList name="ConfTempList" float="true"  pos="88,150,0,0" width="1767" height="920" vscrollbar="true" columns="6" itemselectedimage="res\list\item_sel.png" itembkimage="res\list\item_normal.png" itemdisabledimage="res\list\item_disabled.png">
+	</TouchList>
+		
+	<ChildLayout xmlfile="notice.xml" name="PageNotice" float="true" pos="0,0,1920,1121"/>	
+		
+	</HorizontalLayout>
+</Window>

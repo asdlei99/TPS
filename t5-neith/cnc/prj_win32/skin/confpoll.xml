@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PageConfPoll>
+  <VerticalLayout name="ConfPollLayout" >
+    <Text name="LabelPollInterval" text="轮询间隔" float="true" pos="241,97,0,0" width="150" height="28" textcolor="#CCD5DEEB" font="2" gdiplus="true" />
+	<Edit name="edtPollInterval" text="" float="true" pos="382,77,0,0" height="64" width="120" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" maxchar="4" />
+	<Text name="LabelPollInterval" text="秒" float="true" pos="522,97,0,0" width="30" height="28" textcolor="#CCD5DEEB" font="2" gdiplus="true" />
+ 
+    <Button name="BtnCheckConfPoll" float="true" pos="301,328,0,0" width="374" height="374" normalimage="res/confctrl/confpoll/beginpoll.png" pushedimage="res/confctrl/confpoll/beginpoll_select.png"  />
+	<HorizontalLayout name="pauselayout"  float="true" pos="675,459,0,0" width="144" height="104" visible="false">
+	<Label float="true" pos="0,56,0,0" width="69" height="1" bkimage="res/confctrl/confpoll/HorLine.png" />
+	<Button name="BtnCheckPause" float="true" pos="40,0,0,0" width="104" height="104" normalimage="res/confctrl/confpoll/pausepoll.png" pushedimage="res/confctrl/confpoll/pausepoll_select.png"  />
+	</HorizontalLayout>
+	<Label text="创建快捷操作" float="true" pos="241,864,0,0" width="293" height="66" textcolor="#CCD5DEEB" font="0" align="left" textpadding="0,15,0,0"/>
+	<CheckBox name="CheckConfPollShortCut" float="true" pos="541,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
+	
+	<HorizontalLayout float="true" pos="980,170,0,0" width="550" height="64" bkimage="res/confctrl/confpoll/PolllistTitle.png" > 
+	 <Label text="序号" float="true" pos="0,0,0,0" width="80" height="64" textcolor="#CC92A7C2" font="2" align="center" />
+	 <Label text="会场名称" float="true" pos="81,0,0,0" width="470" height="64" textcolor="#CC92A7C2" font="2" align="center" />
+	</HorizontalLayout>
+	<VerticalLayout float="true" pos="980,234,0,0" width="550" height="654" bkimage="res/confctrl/confpoll/PolllistBody.png">
+	<List name="PollList" padding="0,0,0,20" bkcolor="" vscrollbar="true" hscrollbar="false" itemselectedbkcolor="#FF379FDB" itemhotbkcolor=""  itemtextcolor="#FED5DEEB" itemdisabledtextcolor="" itemselectedtextcolor="#FF379FDB"/>
+	</VerticalLayout>
+	<VerticalLayout float="true" pos="1560,170,0,0" width="104" height="718" >
+	<Button name="BtnAddPoll" padding="0,0,0,19" width="104" height="104" text="" normalimage="res\confctrl\confpoll\add_normal.png" pushedimage="res\confctrl\confpoll\add_select.png" disabledimage="res\confctrl\confpoll\add_disable.png"/>
+	<Button name="BtnTop" padding="0,0,0,19" width="104" height="104" text="" normalimage="res\confctrl\confpoll\top_normal.png" pushedimage="res\confctrl\confpoll\top_select.png" disabledimage="res\confctrl\confpoll\top_disable.png"/>
+	<Button name="BtnUp" padding="0,0,0,19" width="104" height="104" text="" normalimage="res\confctrl\confpoll\up_normal.png" pushedimage="res\confctrl\confpoll\up_select.png" disabledimage="res\confctrl\confpoll\up_disable.png"/>
+	<Button name="BtnDown" padding="0,0,0,19" width="104" height="104" text="" normalimage="res\confctrl\confpoll\down_normal.png" pushedimage="res\confctrl\confpoll\down_select.png" disabledimage="res\confctrl\confpoll\down_disable.png"/>
+	<Button name="BtnBottom" padding="0,0,0,19" width="104" height="104" text="" normalimage="res\confctrl\confpoll\bottom_normal.png" pushedimage="res\confctrl\confpoll\bottom_select.png" disabledimage="res\confctrl\confpoll\bottom_disable.png"/>
+	<Button name="BtnDel" padding="0,0,0,19" width="104" height="104" text="" normalimage="res\confctrl\confpoll\del_normal.png" pushedimage="res\confctrl\confpoll\del_select.png" disabledimage="res\confctrl\confpoll\del_disable.png"/>
+	</VerticalLayout>
+	
+	<VerticalLayout name="PagePollSelConfList" float="true" pos="0,0,1920,1121" visible="false" bkimage="res/public/subpopbg.png">  
+		<HorizontalLayout height="126" >		
+			<Edit nativebkcolor="#FF080C16" name="EdtPSearch" tiptext="请输入名称进行搜索" float="true" pos="27,30,0,0" width="1023" height="60" textcolor="#FED4DEEB" font="1"  menu="true" gdiplus="true" />
+			<Label name="" width="1069" height="1" float="true" pos="27,89,0,0" bkcolor="#FF4B5764" /> 
+			<Button name="BtnPSearch" float="true" pos="1050,30,0,0" width="60" height="60" align="center" normalimage="res\public\search.png" pushedimage="res\public\search_down.png"/>		
+			<Button name="BtnPSelAll" padding="1130,28,0,0" width="149" height="64" text="全 选" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			<Button name="BtnPSelOK"  padding="20,28,0,0" width="149" height="64" text="确 定" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			<Button name="BtnPSelCancel" padding="20,28,0,0" width="149" height="64" text="返 回" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>			
+		</HorizontalLayout>
+			
+		<TouchList name="PollCnsConfList" float="true"  pos="88,180,0,0" width="1767" height="800" vscrollbar="true" columns="6" itemselectedimage="res\list\item_sel.png" itembkimage="res\list\item_normal.png" itemdisabledimage="res\list\item_disabled.png">
+		</TouchList>	
+
+	</VerticalLayout>
+	
+  </VerticalLayout>
+</PageConfPoll>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<PageMatrix>
+  <VerticalLayout>
+	  <!-- 矩阵界面 -->
+	  <VerticalLayout name="MatrixLayout" visible="true">
+		<VerticalLayout name="MatrixApplyLayout" height="160">
+		  <Label name="ConfRoomName" float="true" pos="125,60,0,0" width="500" height="28" text="" textcolor="#FED5DEEB" align="left" font="1" gdiplus="true" />
+		  <Button name="BtnEditPreplan" float="true" pos="1550,50,0,0" width="149" height="64" text="预案管理" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+		  <Button name="BtnSavePreplan" float="true" pos="1730,50,0,0" width="149" height="64" text="保存预案" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+		</VerticalLayout>
+		<VerticalLayout name="MatrixManageLayout" height="200" visible="false">
+		  <Button name="BtnUIReName" float="true" pos="1200,30,0,0" width="149" height="64" text="重命名" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+		  <Button name="BtnUIApply" float="true" pos="1370,30,0,0" width="149" height="64" text="应  用" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+		  <Button name="BtnUIDelete" float="true" pos="1540,30,0,0" width="149" height="64" text="删  除" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+		  <Button name="BtnUICancel" float="true" pos="1710,30,0,0" width="149" height="64" text="取  消" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+		  <Combo name="ComboSelPreplanNo" float="true" pos="250,125,0,0" padding="10,0,0,0" text="" align="center" width="600" height="64" dropboxsize="600,350" mosimgfolfer="res/public/edit" vscrollbar="true" hscrollbar="true" itemalign="center" itemfont="1" itemheight="64" align="center" font="1" textcolor="#CCD4DEEB"   dropboxInterspace="6" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FFFFFFFF" MosPopBoxBk="res\matrix\morecombo" itemtextpadding="0,10,0,10" inset="0,20,0,20" itemhottextcolor="#FF00FFFF" itemselectedbkcolor="" itemhotbkcolor="" />
+		</VerticalLayout>
+		<!--当前矩阵配置-->
+		<VerticalLayout name="MatrixCfgLayout" >
+		  <VerticalLayout float="true" pos="250,0,0,0" width="1445" height="780">
+			<HorizontalLayout height="110">
+			    <VerticalLayout width="160" height="110" bkimage="res\matrix\tip.png">
+					<Label text="输出" float="true" pos="0,55,0,0" width="80" height="45" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true"/>
+					<Label text="输入" float="true" pos="80,0,0,0" width="80" height="55" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true"/>
+				</VerticalLayout>
+				<TouchList name="MatrixListHeadH" listdrag="false" autolayout="false" />
+			</HorizontalLayout>
+			<HorizontalLayout>
+				<TouchList name="MatrixListHeadV" width="160" listdrag="false" autolayout="false" />
+				<TouchList name="MatrixList" vscrollbar="true" hscrollbar ="true" columns="1" listheadh="MatrixListHeadH" listheadv="MatrixListHeadV" listdrag="false" autolayout="false" />
+			</HorizontalLayout>
+		  </VerticalLayout>
+		</VerticalLayout>
+		<!--矩阵预案预览-->
+		<VerticalLayout name="MatrixEditLayout" visible="false">
+		  <VerticalLayout float="true" pos="250,0,0,0" width="1445" height="780">
+			<HorizontalLayout height="110">
+			    <VerticalLayout width="160" height="110" bkimage="res\matrix\tip.png">
+					<Label text="输出" float="true" pos="0,55,0,0" width="80" height="45" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true"/>
+					<Label text="输入" float="true" pos="80,0,0,0" width="80" height="55" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true"/>
+				</VerticalLayout>
+				<TouchList name="MatrixEditListHeadH" listdrag="false" autolayout="false" />
+			</HorizontalLayout>
+			<HorizontalLayout>
+				<TouchList name="MatrixEditListHeadV" width="160" listdrag="false" autolayout="false" />
+				<TouchList name="MatrixEditList" vscrollbar="true" hscrollbar ="true" columns="1" listheadh="MatrixEditListHeadH" listheadv="MatrixEditListHeadV" listdrag="false" autolayout="false" />
+			</HorizontalLayout>
+		  </VerticalLayout>
+		</VerticalLayout>
+	  </VerticalLayout>
+	  
+	   <!-- 保存预案界面 -->
+	  <VerticalLayout name="SavePreplanLayout" visible="false">
+		  <Control />
+		  <HorizontalLayout height="93" padding="0,0,0,0" inset="500">
+			  <Label name="" text="预案编号" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+			  <Combo name="ComboSavePreplanNo" padding="10,0,0,0" text="" align="center"  width="600" height="64" dropboxsize="600,350" mosimgfolfer="res/public/edit" vscrollbar="true" hscrollbar="true" itemalign="center" itemfont="1" itemheight="64" align="center" font="1" textcolor="#CCD4DEEB"   dropboxInterspace="6" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FFFFFFFF"  MosPopBoxBk="res\matrix\morecombo" itemtextpadding="0,10,0,10" inset="0,20,0,20" itemhottextcolor="#FF00FFFF" itemselectedbkcolor="" itemhotbkcolor="" />
+		  </HorizontalLayout>
+		  
+		  <HorizontalLayout height="93" padding="0,40,0,0" inset="500">
+			  <Label name="" text="预案名称" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+			  <Edit name="EditSavePreplanName" padding="10,0,0,0" tiptext="" maxchar="31" font="1" text="" menu="true" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" gdiplus="true" textcolor="#FED5DEEB" width="600" height="64" />
+		  </HorizontalLayout>
+		  <Control />
+		  <HorizontalLayout height="93" padding="0,0,0,0">
+			  <Control />
+			  <Button name="BtnSaveUICancel" width="149" height="64" text="取消" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+			  <Button name="BtnSaveUISave" padding="20,0,0,0" width="149" height="64" text="保存" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+			  <Control />
+		  </HorizontalLayout>
+		  <Control height="100"/>
+	  </VerticalLayout>
+	  
+	   <!-- 重命名预案界面 -->
+	  <VerticalLayout name="ReNamePreplanLayout" visible="false">
+		  <Control />
+		  <HorizontalLayout height="93" padding="0,0,0,0" inset="500">
+			  <Label name="" text="预案编号" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+			  <Combo name="ComboReNamePreplanNo" padding="10,0,0,0" text="" align="center"  width="600" height="64" dropboxsize="600,350" mosimgfolfer="res/public/edit" vscrollbar="true" hscrollbar="true" itemalign="center" itemfont="1" itemheight="64" align="center" font="1" textcolor="#CCD4DEEB"   dropboxInterspace="6" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FFFFFFFF"  MosPopBoxBk="res\matrix\morecombo" itemtextpadding="0,10,0,10" inset="0,20,0,20" itemhottextcolor="#FF00FFFF" itemselectedbkcolor="" itemhotbkcolor="" />
+		  </HorizontalLayout>
+		  
+		  <HorizontalLayout height="93" padding="0,40,0,0" inset="500">
+			  <Label name="" text="预案名称" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+			  <Edit name="EditReNamePreplanName" padding="10,0,0,0" tiptext="" maxchar="31" font="1" text="" menu="true" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" gdiplus="true" textcolor="#FED5DEEB" width="600" height="64" />
+		  </HorizontalLayout>
+		  <Control />
+		  <HorizontalLayout height="93" padding="0,0,0,0">
+			  <Control />
+			  <Button name="BtnReNameUICancel" width="149" height="64" text="取消" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+			  <Button name="BtnReNameUISave" padding="20,0,0,0" width="149" height="64" text="保存" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+			  <Control />
+		  </HorizontalLayout>
+		  <Control height="100"/>
+	  </VerticalLayout>
+	  	
+	<Case name="caseShowMatrix">			
+		<MatrixLayout visible="true"/>
+		<MatrixCfgLayout visible="true"/>
+		<MatrixEditLayout visible="false"/>
+		<MatrixApplyLayout visible="true"/>
+		<MatrixManageLayout visible="false"/>
+		<SavePreplanLayout visible="false"/>
+		<ReNamePreplanLayout visible="false"/>
+	</Case> 
+	
+	<Case name="caseShowEditPreplan">			
+		<MatrixLayout  visible="true"/>
+		<MatrixCfgLayout visible="false"/>
+		<MatrixEditLayout visible="true"/>
+		<MatrixApplyLayout visible="false"/>
+		<MatrixManageLayout  visible="true"/>
+		<SavePreplanLayout  visible="false"/>
+		<ReNamePreplanLayout visible="false"/>
+	</Case> 	
+	
+	<Case name="caseShowSavePreplan">			
+		<MatrixLayout  visible="false"/>
+		<MatrixCfgLayout visible="false"/>
+		<MatrixEditLayout visible="false"/>
+		<SavePreplanLayout  visible="true"/>
+		<ReNamePreplanLayout visible="false"/>
+	</Case>
+	
+	<Case name="caseShowReNamePreplan">			
+		<MatrixLayout  visible="false"/>
+		<MatrixCfgLayout visible="false"/>
+		<MatrixEditLayout visible="false"/>
+		<SavePreplanLayout  visible="false"/>
+		<ReNamePreplanLayout visible="true"/>
+	</Case>
+	  
+  </VerticalLayout>
+</PageMatrix>

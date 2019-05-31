@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<PageSelConfList>
+	  <VerticalLayout bkimage="res/public/subpopbg.png">  
+		<HorizontalLayout height="126" >		
+			<Edit nativebkcolor="#FF080C16" name="EdtConfSearch" tiptext="请输入名称进行搜索" float="true" pos="27,30,0,0" width="1023" height="60" textcolor="#FED4DEEB" font="1"  menu="true" gdiplus="true" />
+			<Label name="" width="1069" height="1" float="true" pos="27,89,0,0" bkcolor="#FF4B5764" /> 
+			<Button name="BtnSearch" float="true" pos="1050,30,0,0" width="60" height="60" align="center" normalimage="res\public\search.png" pushedimage="res\public\search_down.png"/>	
+			<!--<Combo name="ComboAddrShowEx" padding="1130,28,0,0" text="全  部" textpadding="0,0,75,0" width="214" height="64" dropboxsize="214,600" textcolor="#CCD4DEEB" gdiplus="true" normalimage="res\public\btnchoiceclass_normal.png" pushedimage="res\public\btnchoiceclass_down.png" vscrollbar="false" hscrollbar="false" itemalign="center" itemfont="1" itemheight="64" align="center" font="1" textcolor="#CCD4DEEB"   dropboxInterspace="6" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FFFFFFFF"  itemselectedimage="res\roomctrl\combo\sel.png" MosPopBoxBk="res\public\combo" itemtextpadding="0,10,0,10" inset="0,20,0,20" itemhottextcolor="#FF00FFFF" itemselectedbkcolor="" itemhotbkcolor="" >	  
+			<ListLabelElement name="ComboItem" text="全  部" font="1" gdiplus="true" height="64" selected="true"/>
+			<ListLabelElement name="ComboItem" text="组" font="1" gdiplus="true" height="64"/>
+			<ListLabelElement name="ComboItem" text="在  线" font="1" gdiplus="true" height="64"/>
+			<ListLabelElement name="ComboItem" text="不在线" font="1" gdiplus="true" height="64"/>
+			</Combo>-->			
+			<Button name="BtnSelAll" padding="1130,28,0,0" width="149" height="64" text="全 选" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			<Button name="BtnSelOK"  padding="20,28,0,0" width="149" height="64" text="确 定" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>	
+			<Button name="BtnSelCancel" padding="20,28,0,0" width="149" height="64" text="返 回" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>			
+		</HorizontalLayout>
+			
+		<TouchList name="OnlinCnsConfList" float="true"  pos="88,180,0,0" width="1767" height="800" vscrollbar="true" columns="6" itemselectedimage="res\list\item_sel.png" itembkimage="res\list\item_normal.png" itemdisabledimage="res\list\item_disabled.png">
+		</TouchList>	
+
+	  </VerticalLayout>
+</PageSelConfList>

@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Window caption="0,0,0,0" size="1920,1121" mininfo="800,200" sizebox="0,0,0,0" maxinfo="1920,1121" roundcorner="0,0">
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />
+    <Font name="微软雅黑" size="22" bold="false"></Font>
+	<Default name="VScrollBar" value="mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+	<VerticalLayout name="ConfCallCfgLayout" bkimage="res/subdlgbkg.png">
+		<HorizontalLayout height="126">
+		<Control width="1565"/>
+		<VerticalLayout>
+		<Control />
+			<HorizontalLayout height="64">
+			<Control name="CtrlFix" width="163"/>
+			<Button name="BtnFixOrCancel" width="149" height="64" text="修 改" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			<Button name="BtnOk" padding="15,0,0,0" width="149" height="64" text="确 定" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" visible = "false"/>
+			</HorizontalLayout>
+		<Control />
+		</VerticalLayout>
+		</HorizontalLayout>
+		<HorizontalLayout bkcolor="#FE4B5764" padding="17,0,0,0" height="1" width="1866"></HorizontalLayout>
+		<HorizontalLayout bkimage="res/roomctrl/verLine.png" float="true" pos="116,173,0,1050" width="1" ></HorizontalLayout>
+		<HorizontalLayout >
+		<VerticalLayout  name="" float="true" pos="106,35,1920,922" vscrollbar="true" hscrollbar="false" slideable="true" >
+			<VerticalLayout  height="328" >
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,11,19,28"  font="1"  gdiplus="true" />
+				
+				<Label name="" text="优选会议格式" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="400" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="分辨率" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Option name="op1080" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="Resolution" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" selected="true" visible="false"/>
+				<Label name="lb1080" text="" float="true" pos="290,0,0,0"  width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Label name="lb1080Set" text="1080P" float="true" pos="363,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="op720" float="true" pos="645,0,0,0" text=""  width="45" height="45" group="Resolution" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lb720" text="720P" float="true" pos="715,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="op4CIF" float="true" pos="1000,0,0,0" text=""  width="45" height="45" group="Resolution" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lb4CIF" text="4CIF" float="true" pos="1073,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="帧率" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Option name="op60fps" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="Framerate" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" selected="true" visible="false"/>
+				<Label name="lb60fps" text="" float="true" pos="290,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Label name="lb60fpsSet" text="60fps" float="true" pos="363,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="op50fps" float="true" pos="645,0,0,0" text=""  width="45" height="45" group="Framerate" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lb50fps" text="50fps" float="true" pos="715,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true"  visible="false"/>
+				
+				<Option name="op30fps" float="true" pos="1000,0,0,0" text=""  width="45" height="45" group="Framerate" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false" />
+				<Label name="lb30fps" text="30fps" float="true" pos="1073,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="op25fps" float="true" pos="1355,0,0,0" text=""  width="45" height="45" group="Framerate" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lb25fps" text="25fps" float="true" pos="1428,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				</HorizontalLayout>
+			</VerticalLayout>
+					
+			<VerticalLayout name="VedioFormatLayout" height="328">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30"  font="1"  gdiplus="true" />
+				<Label name="" text="优选演示格式" float="true" pos="41,0,0,0"  textcolor="#FE92A7C2" font="1" width="400" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="" >
+				<Label name="" text="分辨率" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Option name="opN1080" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="Resolution2" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" selected="true" visible="false"/>
+				<Label name="lbN1080" text="" float="true" pos="290,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Label name="lbN1080Set" text="1080P" float="true" pos="363,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opN720" float="true" pos="645,0,0,0" text=""  width="45" height="45" group="Resolution2" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbN720" text="720P" float="true" pos="715,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opN4CIF" float="true" pos="1000,0,0,0" text=""  width="45" height="45" group="Resolution2" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbN4CIF" text="4CIF" float="true" pos="1073,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opUXGA" float="true" pos="1355,0,0,0" text=""  width="45" height="45" group="Resolution2" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbUXGA" text="UXGA" float="true" pos="1428,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false" />
+				</HorizontalLayout>
+				
+				<HorizontalLayout name="formatLayout1" visible="false">
+				<Option name="opWXGA" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="Resolution2" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbWXGA" text="WXGA" float="true" pos="363,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>				
+				<Option name="opSXGA" float="true" pos="645,0,0,0" text=""  width="45" height="45" group="Resolution2" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbSXGA" text="SXGA" float="true" pos="715,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>			
+				<Option name="opXGA" float="true" pos="1000,0,0,0" text=""  width="45" height="45" group="Resolution2" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbXGA" text="XGA" float="true" pos="1073,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				</HorizontalLayout>
+				
+				<HorizontalLayout name="">
+				<Label name="" text="帧率" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Option name="opN60fps" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="Framerate2" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" selected="true" visible="false"/>
+				<Label name="lbN60fps" text="" float="true" pos="290,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Label name="lbN60fpsSet" text="60fps" float="true" pos="363,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opN50fps" float="true" pos="645,0,0,0" text=""  width="45" height="45" group="Framerate2" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbN50fps" text="50fps" float="true" pos="715,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opN30fps" float="true" pos="1000,0,0,0" text=""  width="45" height="45" group="Framerate2" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbN30fps" text="30fps" float="true" pos="1073,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opN25fps" float="true" pos="1355,0,0,0" text=""  width="45" height="45" group="Framerate2" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbN25fps" text="25fps" float="true" pos="1428,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				</HorizontalLayout>
+				
+				<HorizontalLayout name="formatLayout2" visible="false">
+				<Option name="opN5fps" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="Framerate2" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbN5fps" text="5fps" float="true" pos="363,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				</HorizontalLayout>
+			</VerticalLayout>
+			<VerticalLayout name="RedioFormatLayout" height="208">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30"  font="1"  gdiplus="true" />
+				<Label name="" text="优选音频格式" float="true" pos="41,0,0,0"  textcolor="#FE92A7C2" font="1" width="400" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="音频格式" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				
+				<Option name="opMPEG4" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="AudioFormat" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" selected="true" visible="false"/>
+				<Label name="lbMPEG4" text="" float="true" pos="290,0,0,0" textcolor="#FED5DEEB" font="1" width="600" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Label name="lbMPEG4Set" text="MPEG4 AAC-LD单声道" float="true" pos="363,0,0,0" textcolor="#FED5DEEB" font="1" width="260" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opG711A" float="true" pos="645,0,0,0" text=""  width="45" height="45" group="AudioFormat" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbG711A" text="G.711A" float="true" pos="715,0,0,0" width="100" height="64" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opG711U" float="true" pos="1000,0,0,0" text=""  width="45" height="45" group="AudioFormat" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbG711U" text="G.711U" float="true" pos="1073,0,0,0"  width="100" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opG719" float="true" pos="1355,0,0,0" text=""  width="45" height="45" group="AudioFormat" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbG719" text="G.719" float="true" pos="1428,0,0,0"   width="50" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				</HorizontalLayout>
+				<HorizontalLayout name="formatLayout3" visible="false">				
+				<Option name="opMP3" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="AudioFormat" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbMP3" text="MP3" float="true" pos="363,0,0,0"  width="100" height="64" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opMP4" float="true" pos="645,0,0,0" text=""  width="45" height="45" group="AudioFormat" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbMP4" text="MPEG4 AAC-LC单声道" float="true" pos="715,0,0,0" width="280" height="64" textcolor="#FED5DEEB" font="1" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opG772" float="true" pos="1000,0,0,0" text=""  width="45" height="45" group="AudioFormat" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbG772" text="G.722.1 Annex C Polycom Siren14" float="true"pos="1073,0,0,0" width="400" height="30" textcolor="#FED5DEEB" font="1" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				</HorizontalLayout>
+			</VerticalLayout>
+			
+			<VerticalLayout height="328">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30"  font="1"  gdiplus="true" />
+				<Label name="" text="码率" float="true" pos="41,0,250,36"  textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="单屏码率" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,15,0,0" align="left" gdiplus="true" />
+				<Button name="BtnSingleRateMinus" text="" float="true" pos="290,0,0,0" width="92" height="92" normalimage="res\public\minusbtn_normal.png" pushedimage="res\public\minusbtn_select.png" visible="false"/>
+				<Label name="lbSingleRate" text="00" float="true" pos="290,5,360,45" textpadding="0,15,0,0" textcolor="#FED5DEEB" font="1"  align="center" gdiplus="true" />
+				<Edit name="edtSingleRate" text="" float="true" pos="466,20,590,84" textcolor="#FED5DEEB" textpadding="34,8,34,8" font="1" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" visible="false" maxchar="4"/>
+				<Button name="BtnSingleRateAdd" text="" float="true" pos="674,0,0,0" width="92" height="92" normalimage="res\public\plusbtn_normal.png" pushedimage="res\public\plusbtn_select.png" visible="false"/>
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="演示码率" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,15,0,0" align="left" gdiplus="true" />
+				<Button name="BtnDulRateMinus" text="" float="true" pos="290,0,0,0" width="92" height="92" normalimage="res\public\minusbtn_normal.png" pushedimage="res\public\minusbtn_select.png" visible="false"/>
+				<Label name="lbDulRate" text="00" float="true" pos="290,5,360,45" textpadding="0,15,0,0" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				<Edit name="edtDulRate" text="" float="true" pos="466,20,590,84" textcolor="#FED5DEEB" textpadding="34,8,34,8" font="1" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" visible="false" maxchar="4"/>
+				<Button name="BtnDulRateAdd" text="" float="true" pos="674,0,0,0" width="92" height="92" normalimage="res\public\plusbtn_normal.png" pushedimage="res\public\plusbtn_select.png" visible="false"/>
+				</HorizontalLayout>
+			</VerticalLayout>
+			
+			<VerticalLayout name="ConfEncryptLayout" height="208">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30"  font="1"  gdiplus="true" />
+				<Label name="" text="会议加密" float="true" pos="41,0,250,36"  textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+				
+				<HorizontalLayout name="">
+				<Label name="" text="加密方式" float="true" pos="41,0,250,36" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Label name="lbEncryptType" text="" float="true" pos="290,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				
+				<Option name="opAESEncrypt" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="EncyptType" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbAESEncrypt" text="AES加密" float="true" pos="363,0,0,0" textcolor="#FED5DEEB" font="1" width="600" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opQTEncrypt" float="true" pos="645,0,0,0" text=""  width="45" height="45" group="EncyptType" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbQTEncrypt" text="量子加密" float="true" pos="715,0,0,0" width="100" height="64" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opNoEncrypt" float="true" pos="1000,0,0,0" text=""  width="45" height="45" group="EncyptType" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" selected="true" visible="false"/>
+				<Label name="lbNoEncrypt" text="不加密" float="true" pos="1073,0,0,0"  width="100" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				</HorizontalLayout>
+				
+				<HorizontalLayout name="QTlayout" visible="false">
+				<Label name="" text="加密等级" float="true" pos="41,0,250,36" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Label name="lbQTEncryptLevel" text="" float="true" pos="290,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				
+				<Option name="opQTEverySecond" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="EncyptLevel" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" selected="true" visible="false"/>
+				<Label name="lbQTEverySecond" text="一秒一密" float="true" pos="363,0,0,0" textcolor="#FED5DEEB" font="1" width="600" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opQTEveryMinute" float="true" pos="645,0,0,0" text=""  width="45" height="45" group="EncyptLevel" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbQTEveryMinute" text="一分一密" float="true" pos="715,0,0,0" width="100" height="64" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				
+				<Option name="opQTEveryConf" float="true" pos="1000,0,0,0" text=""  width="45" height="45" group="EncyptLevel" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" visible="false"/>
+				<Label name="lbQTEveryConf" text="一会一密" float="true" pos="1073,0,0,0"  width="100" height="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" visible="false"/>
+				</HorizontalLayout>
+				
+				<!--
+				<HorizontalLayout name="AESLayout" visible="false">
+				<Label name="" text="开启AES加密" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<CheckBox name="CheckIsAESPassword" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" visible="false"/>
+				<Label name="lbIsAESPassword" text="关" float="true" pos="290,0,250,36" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true"/>
+				</HorizontalLayout>-->
+				
+				<HorizontalLayout name="AESLayout" visible="false">
+				<Label name="" text="AES密码" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Edit name="edtAESPassword" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" visible="false" password="true" maxchar="16" gdiplus="true" nativebkcolor="#FF1c3655"/>
+				<Label name="lbAESPassword" text="******" float="true" pos="290,0,600,50" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+		
+				<Case name="caseAESEncrpt">
+				    <ConfEncryptLayout height="208"/> 
+					<AESLayout visible="false"/> 
+					<QTlayout visible="false"/> 
+				</Case>
+				<Case name="caseQTEncrpt">
+				    <ConfEncryptLayout height="327"/> 
+					<AESLayout visible="false"/> 
+					<QTlayout visible="true"/> 
+				</Case>
+				<Case name="caseNoEncrpt">
+				    <ConfEncryptLayout height="208"/> 
+					<AESLayout visible="false"/> 
+					<QTlayout visible="false"/> 
+				</Case>
+			</VerticalLayout>
+			
+			<VerticalLayout height="329">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30"  font="1"  gdiplus="true" />
+				<Label name="" text="会议轮询" float="true" pos="41,0,250,36"  textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="开启会议轮询" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,15,0,0" align="left" gdiplus="true" />
+				<CheckBox name="CheckIsPoll" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" visible="false"/>
+				<Label name="lbIsPoll" text="开" float="true" pos="290,0,0,0" height="66" width="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,15,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="轮询间隔时间" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,15,0,0" align="left" gdiplus="true" />
+				<Button name="BtnPollTimeMinus" text="" float="true" pos="290,0,120,36" width="92" height="92" normalimage="res\public\minusbtn_normal.png" pushedimage="res\public\minusbtn_select.png" visible="false" enabled="false"/>
+				<Label name="lbPollTime" text="00" float="true" textpadding="0,15,0,0" pos="290,5,360,71" textcolor="#FED5DEEB" font="1" align="left" gdiplus="true" />
+				<Edit name="edtPollTime" text="" float="true" pos="466,20,590,84" textcolor="#FED5DEEB" textpadding="34,8,34,8" font="1" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" visible="false" maxchar="4"/>
+				<Button name="BtnPollTimeAdd" text="" float="true" pos="674,0,0,0" width="92" height="92" normalimage="res\public\plusbtn_normal.png" pushedimage="res\public\plusbtn_select.png" visible="false" enabled="false"/>
+				</HorizontalLayout>
+			</VerticalLayout>
+			
+			<VerticalLayout height="208">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="0,22,19,41"  font="1"  gdiplus="true" />
+				<Label name="" text="会议讨论" float="true" pos="41,0,250,36"  textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="开启会议讨论" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<CheckBox name="CheckIsConfDisc" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" visible="false"/>
+				<Label name="lbIsConfDisc" text="开" float="true" pos="290,0,0,0" height="66" width="30" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+			</VerticalLayout>
+		
+		</VerticalLayout>			
+		
+		</HorizontalLayout>
+		<Case name="caseSet">
+		    <CtrlFix visible="false"/> 
+			<VedioFormatLayout height="518"/>		
+			<RedioFormatLayout height="305"/>	
+			<formatLayout1 visible="true"/>	
+			<formatLayout2 visible="true"/>				
+			<formatLayout3 visible="true"/>	
+			<op1080 visible="true"/> 
+			<op720 visible="true"/> 
+			<op4CIF visible="true"/> 
+			<op60fps visible="true"/> 
+			<op50fps visible="true"/> 
+			<op30fps visible="true"/> 
+			<op25fps visible="true"/> 
+			<opN1080 visible="true"/>
+			<opN720 visible="true"/> 
+			<opN4CIF visible="true"/> 
+			<opUXGA visible="true"/> 
+			<opWXGA visible="true"/> 
+			<opSXGA visible="true"/> 
+			<opXGA visible="true"/> 
+			<opN60fps visible="true"/> 
+			<opN50fps visible="true"/> 
+			<opN30fps visible="true"/> 
+			<opN25fps visible="true"/> 
+			<opN5fps visible="true"/> 
+			<opMFEPG4 visible="true"/> 
+			<opG711A visible="true"/> 		
+			<opG711U visible="true"/> 
+			<opG719 visible="true"/> 
+			<opMP3 visible="true"/> 
+			<opMP4 visible="true"/> 
+			<opG772 visible="true"/> 
+			<opMPEG4 visible="true"/> 
+			
+			<lb1080 visible="false"/>
+			<lb1080Set visible="true"/> 
+			
+			<lb720 visible="true"/> 
+			<lb4CIF visible="true"/> 
+			
+			<lb60fps visible="false"/>
+			<lb60fpsSet visible="true"/> 
+			
+			<lb50fps visible="true"/> 
+			<lb30fps visible="true"/> 
+			<lb25fps visible="true"/> 
+			
+			<lbN1080 visible="false"/>
+			<lbN1080Set visible="true"/> 
+			
+			<lbN720 visible="true"/> 
+			<lbN4CIF visible="true"/> 
+			<lbUXGA visible="true"/> 
+			<lbWXGA visible="true"/> 
+			<lbSXGA visible="true"/> 
+			<lbXGA visible="true"/> 
+			
+			<lbN60fps visible="false"/>
+			<lbN60fpsSet visible="true"/> 
+			
+			<lbN50fps visible="true"/> 
+			<lbN30fps visible="true"/> 
+			<lbN25fps visible="true"/> 
+			<lbN5fps visible="true"/> 
+			
+			<lbMPEG4 visible="false"/> 
+			<lbMPEG4Set visible="true"/> 
+			
+			<lbG711A visible="true"/> 		
+			<lbG711U visible="true"/> 
+			<lbG719 visible="true"/> 
+			<lbMP3 visible="true"/> 
+			<lbMP4 visible="true"/> 
+			<lbG772 visible="true"/> 
+			
+			<lbDulRate visible="false"/>  
+			<lbSingleRate visible="false"/> 
+			<edtDulRate visible="true"/>  
+			<edtSingleRate visible="true"/> 
+			<edtPollTime visible="true"/>  
+			<lbPollTime visible="false"/> 
+			
+			
+			<BtnSingleRateMinus visible="true"/> 
+			<BtnSingleRateAdd visible="true"/> 
+			<BtnDulRateMinus visible="true"/> 
+			<BtnDulRateAdd visible="true"/> 
+			<CheckIsAESPassword visible="true"/> 
+			<edtAESPassword visible="true"/> 
+			<CheckIsPoll visible="true"/>
+			<BtnPollTimeMinus visible="true"/> 
+			<BtnPollTimeAdd visible="true"/> 
+			<CheckIsConfDisc visible="true"/> 
+   
+			<lbIsAESPassword visible="false"/>
+			<lbAESPassword visible="false"/> 
+			<lbIsPoll visible="false"/> 
+			<lbIsConfDisc visible="false"/> 
+			
+			
+			<lbEncryptType visible="false"/> 
+			<opAESEncrypt visible="true"/> 
+			<lbAESEncrypt visible="true"/> 
+			<opQTEncrypt visible="true"/> 
+			<lbQTEncrypt visible="true"/> 
+			<opNoEncrypt visible="true"/> 
+			<lbNoEncrypt visible="true"/> 
+			
+			<lbQTEncryptLevel visible="false"/> 
+			<opQTEverySecond visible="true"/> 
+			<lbQTEverySecond visible="true"/> 
+			<opQTEveryMinute visible="true"/> 
+			<lbQTEveryMinute visible="true"/> 
+			<opQTEveryConf visible="true"/> 
+			<lbQTEveryConf visible="true"/> 
+		</Case>   
+		<Case name="caseSetCancel">
+		    <CtrlFix visible="true"/> 
+			<VedioFormatLayout height="328"/>
+			<RedioFormatLayout height="208"/>	
+			<formatLayout1 visible="false"/>	
+			<formatLayout2 visible="false"/>				
+			<formatLayout3 visible="false"/>	
+			<op1080 visible="false"/> 
+			<op720 visible="false"/> 
+			<op4CIF visible="false"/> 
+			<op60fps visible="false"/> 
+			<op50fps visible="false"/> 
+			<op30fps visible="false"/> 
+			<op25fps visible="false"/> 
+			<opN1080 visible="false"/>
+			<opN720 visible="false"/> 
+			<opN4CIF visible="false"/> 
+			<opUXGA visible="false"/> 
+			<opWXGA visible="false"/> 
+			<opSXGA visible="false"/> 
+			<opXGA visible="false"/> 
+			<opN60fps visible="false"/> 
+			<opN50fps visible="false"/> 
+			<opN30fps visible="false"/> 
+			<opN25fps visible="false"/> 
+			<opN5fps visible="false"/> 
+			<opMFEPG4 visible="false"/> 
+			<opG711A visible="false"/> 		
+			<opG711U visible="false"/> 
+			<opG719 visible="false"/> 
+			<opMP3 visible="false"/> 
+			<opMP4 visible="false"/> 
+			<opG772 visible="false"/> 
+			<opMPEG4 visible="false"/> 
+			
+			<lb1080 visible="true"/>
+			<lb1080Set visible="false"/> 
+			
+			<lb720 visible="false"/> 
+			<lb4CIF visible="false"/> 
+			
+			<lb60fps visible="true"/>
+			<lb60fpsSet visible="false"/> 
+			
+			<lb50fps visible="false"/> 
+			<lb30fps visible="false"/> 
+			<lb25fps visible="false"/> 
+			
+			<lbN1080 visible="true"/>
+			<lbN1080Set visible="false"/> 
+			
+			<lbN720 visible="false"/> 
+			<lbN4CIF visible="false"/> 
+			<lbUXGA visible="false"/> 
+			<lbWXGA visible="false"/> 
+			<lbSXGA visible="false"/> 
+			<lbXGA visible="false"/> 
+			
+			<lbN60fps visible="true"/>
+			<lbN60fpsSet visible="false"/> 
+			
+			<lbN50fps visible="false"/> 
+			<lbN30fps visible="false"/> 
+			<lbN25fps visible="false"/> 
+			<lbN5fps visible="false"/> 
+			
+			<lbMFEPG4 visible="true"/> 
+			<lbMFEPG4Set visible="false"/> 
+			
+			<lbMPEG4 visible="true"/> 
+			<lbMPEG4Set visible="false"/> 
+			
+			<lbG711A visible="false"/> 		
+			<lbG711U visible="false"/> 
+			<lbG719 visible="false"/> 
+			<lbMP3 visible="false"/> 
+			<lbMP4 visible="false"/> 
+			<lbG772 visible="false"/> 
+			
+			<lbDulRate visible="true"/>  
+			<lbSingleRate visible="true"/> 
+			<edtDulRate visible="false"/>  
+			<edtSingleRate visible="false"/> 
+			<edtPollTime visible="false"/>  
+			<lbPollTime visible="true"/> 
+			
+			<lbPollTime pos="290,5,330,45"/>  
+			
+			<BtnSingleRateMinus visible="false"/> 
+			<BtnSingleRateAdd visible="false"/> 
+			<BtnDulRateMinus visible="false"/> 
+			<BtnDulRateAdd visible="false"/> 
+			<CheckIsAESPassword visible="false"/> 
+			<edtAESPassword visible="false"/> 
+			<CheckIsPoll visible="false"/>
+			<BtnPollTimeMinus visible="false"/> 
+			<BtnPollTimeAdd visible="false"/> 
+			<CheckIsConfDisc visible="false"/> 
+			
+			<lbIsAESPassword visible="true"/>
+			<lbAESPassword visible="true"/> 
+			<lbIsPoll visible="true"/> 
+			<lbIsConfDisc visible="true"/> 
+			
+			<lbEncryptType visible="true"/> 
+			<opAESEncrypt visible="false"/> 
+			<lbAESEncrypt visible="false"/> 
+			<opQTEncrypt visible="false"/> 
+			<lbQTEncrypt visible="false"/> 
+			<opNoEncrypt visible="false"/> 
+			<lbNoEncrypt visible="false"/> 
+			
+			<lbQTEncryptLevel visible="true"/> 
+			<opQTEverySecond visible="false"/> 
+			<lbQTEverySecond visible="false"/> 
+			<opQTEveryMinute visible="false"/> 
+			<lbQTEveryMinute visible="false"/> 
+			<opQTEveryConf visible="false"/> 
+			<lbQTEveryConf visible="false"/> 
+		</Case>  
+		
+	</VerticalLayout>
+</Window>

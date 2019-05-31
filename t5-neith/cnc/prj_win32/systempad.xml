@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!-- 
+pcversion:是否为PC版本
+Resolution：分辨率，默认为1920*1200，修改后界面等比拉伸
+ -->
+<system skin="Skin\" pcversion="false" Resolution="1920,1200" />

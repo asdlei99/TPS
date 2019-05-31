@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<PageCnsManage>
+  <VerticalLayout name="CnsManageDlg" bkimage="res/cnsmanagebkg.png" inset="0,0,0,0" containerclick="true">
+    <HorizontalLayout name="TitleLayout" height="79" bkimage="res/title/titlebkg.png">
+	  <HorizontalLayout name="CnsManageTitleLayout">
+		<Label name="StcRoomLogo" float="true" pos="35,20,0,0" width="40" height="40" bkimage="res/title/btnRoomlogo.png" /> 
+		<Label name="StcRoomName" float="true" pos="85,22,1500,57" text="" textcolor="#FF92A7C2" font="1" align="left"/>
+	  </HorizontalLayout>
+	  <HorizontalLayout name="SubPageTitleLayout" visible="false" width="600">
+		<Button name="BtnBack" float="true" pos="0,0,105,79" normalimage="file=&apos;res/title/btnBack.png&apos; dest=&apos;27,14,77,64&apos;" pushedimage="file=&apos;res/title/btnBack_down.png&apos; dest=&apos;27,14,77,64&apos;" /> 
+		<Label name="StcCutline" float="true" pos="105,0,0,0" width="1" height="79" bkimage="res/title/titlecutline.png" />
+		<Label name="StcTitleImg" float="true" pos="128,21,0,0" width="40" height="40" bkimage="res/title/imgMessage.png"/>
+		<Label name="StcTitleName" float="true" pos="178,24,600,55" text="" textcolor="#FF92A7C2" font="1" align="left"/>
+	  </HorizontalLayout>	  
+	  <HorizontalLayout>
+	    <Option name="titleTabLeft" visible="false" float="true" pos="147,0,0,0" text="本地地址簿" width="213" height="79" textcolor="#FF92A7C2" font="1" group="titleTab" selected="true" normalimage="res/title/titleTabLeft.png" pushedimage="res/title/titleTabLeft_down.png"  selectedimage="res/title/titleTabLeft_down.png" />
+	    <Option name="titleTabRight" visible="false" float="true" pos="360,0,0,0" text="在线地址簿" width="213" height="79" textcolor="#FF92A7C2" font="1" group="titleTab" normalimage="res/title/titleTabRight.png" pushedimage="res/title/titleTabRight_down.png"  selectedimage="res/title/titleTabRight_down.png" />
+	  </HorizontalLayout>
+	  <HorizontalLayout width="235">
+		<Button name="BtnTip" float="true" pos="0,30,0,0" width="28" height="18" />
+		<Button name="BtnTipBg" float="true" pos="0,0,0,0" width="38" height="70" enabled="false"/>
+		<Label name="lbDate" text="" float="true" pos="25,0,0,0" width="150" height="79" textcolor="#FF92A7C2" font="0" align="center"/>
+		<Label name="lbTime" text="" float="true" pos="155,0,0,0" width="80" height="79" textcolor="#FF92A7C2" font="0" align="center"/>
+	  </HorizontalLayout>
+      <HorizontalLayout width="106">
+	    <Label float="true" pos="0,0,0,0" width="1" height="79" bkimage="res/title/titlecutline.png" />
+		<Button name="BtnExit" float="true" pos="1,0,105,79" normalimage="file=&apos;res/title/btnExit.png&apos; dest=&apos;29,15,79,65&apos;" pushedimage="file=&apos;res/title/btnExit_down.png&apos; dest=&apos;29,15,79,65&apos;" />
+	  </HorizontalLayout>
+    </HorizontalLayout>
+    <Case name="caseShowCnsManage">	
+		<CnsManageTitleLayout visible="true"/> 
+		<SubPageTitleLayout visible="false"/> 
+    </Case>
+    <Case name="caseShowSubPage">	
+		<CnsManageTitleLayout visible="false"/> 
+		<SubPageTitleLayout visible="true"/> 
+    </Case>
+
+    <HorizontalLayout name="ConfInfoLayout" height="159" >
+	<!--此句控制中间的Lable StcConfName内容显示始终在中间 -->
+	<HorizontalLayout name="ConfControlLayout" width="522" />
+	<HorizontalLayout name="ConfTimeInfoLayout" width="522" visible="false">
+	  <Control width="36"/>
+	  <Label name="TimeLogo" float="true" pos="36,57,0,0" width="28" height="28" bkimage="res/cnsmanage/timelogo.png" /> 
+	  <Label name="StcConfTime" float="true" pos="74,56,0,0" width="152" height="28" text="" textcolor="#FF92A7C2" font="0" align="left"/>
+	  <Label name="ConfNumLogo" float="true" pos="226,57,0,0" width="28" height="28" bkimage="res/cnsmanage/confnumlogo.png" /> 
+	  <Label name="StcConfNum" text="" float="true" pos="264,56,0,0" width="120" height="28" textcolor="#FF92A7C2" font="0" align="left"/>
+	  <Label name="EncryptLogo" float="true" pos="384,57,0,0" width="28" height="28" bkimage="res/cnsmanage/encryptlogo.png" /> 
+	  <Label name="StcEncrypt" text="加密" float="true" pos="422,56,0,0" width="100" height="28" textcolor="#FF92A7C2" font="0" align="left" />
+	</HorizontalLayout>
+	<HorizontalLayout >
+	  <Label name="StcConfName" font="1" text="无会议" textcolor="#FFD4DEEB" align="center" /> 
+	</HorizontalLayout>
+    <HorizontalLayout name="ConfIconLayout" width="522">
+	  <HorizontalLayout name="" padding="0,38,15,53" >
+	    <Control />
+	    <Label name="imgLocalMix" visible="false" padding="0,0,20,0" width="68" height="68" bkimage="res/cnsmanage/imgLocalMix.png" /> 
+		<Label name="imgLocalMute" visible="false" padding="0,0,20,0" width="68" height="68" bkimage="res/cnsmanage/imgLocalMute.png" /> 
+		<Label name="imgLocalQuite" visible="false" padding="0,0,20,0" width="68" height="68" bkimage="res/cnsmanage/imgLocalQuite.png" /> 
+	  </HorizontalLayout>
+	</HorizontalLayout>
+    </HorizontalLayout>
+
+    <HorizontalLayout name="RoomScreenLayout" height="443" >
+	<Control />
+	<TouchList name="CnsScreenList" width="1851" height="443" columns="3" vscrollbar="false">
+	</TouchList>
+	<!--
+	<VerticalLayout name="Screen1Layout" width="617" height="443" bkimage="res/cnsmanage/screenbkg_left.png">
+	   <Label float="true" pos="252,101,0,0" width="112" height="222" bkimage="res/cnsmanage/screenperson.png" />
+	</VerticalLayout>
+    <VerticalLayout name="Screen2Layout" width="617" height="443" bkimage="res/cnsmanage/screenbkg_mid.png">
+	   <Label float="true" pos="252,101,0,0" width="112" height="222" bkimage="res/cnsmanage/screenperson.png" />
+	</VerticalLayout>
+	<VerticalLayout name="Screen3Layout" width="616" height="443" bkimage="res/cnsmanage/screenbkg_right.png">
+	   <Label float="true" pos="252,101,0,0" width="112" height="222" bkimage="res/cnsmanage/screenperson.png" />
+	</VerticalLayout>
+	-->
+	<Control />
+	<Label float="true" pos="649,0,0,0" width="2" height="443" bkimage="res/cnsmanage/imgScreenCutline.png" />
+	<Label float="true" pos="1268,0,0,0" width="2" height="443" bkimage="res/cnsmanage/imgScreenCutline.png" />
+	
+	<Case name="caseIsPc">
+		<BtnScrDual pushedimage="res/cnsmanage/btnScrDual_down.png" selpushedimage="res/cnsmanage/btnScrCancelDual_down.png"/>
+		<BtnScrLocal pushedimage="res/cnsmanage/btnScrLocal_down.png" selpushedimage="res/cnsmanage/btnScrCancelLocal_down.png"/>
+		<BtnTVWall pushedimage="res/cnsmanage/btnTVWall_down.png" selpushedimage="res/cnsmanage/btnCancelTVWall_down.png"/>
+		<BtnScrSelWatch pushedimage="res/cnsmanage/btnScrSelWatch_down.png"/>
+		<BtnCancelSelWatch pushedimage="res/cnsmanage/btnScrCancelSelWatch_down.png"/>
+	</Case>
+	<Case name="caseIsPad">
+		<BtnScrDual pushedimage="" selpushedimage=""/>
+		<BtnScrLocal pushedimage="" selpushedimage=""/>
+		<BtnTVWall pushedimage="" selpushedimage=""/>
+		<BtnScrSelWatch pushedimage=""/>
+		<BtnCancelSelWatch pushedimage=""/>
+	</Case>
+    </HorizontalLayout>
+	
+	<Case name="caseCnsInConf">
+		<ConfTimeInfoLayout visible="true"/>
+		<ConfControlLayout visible="false"/>
+		<ConfIconLayout visible="true"/>
+	</Case>
+	<Case name="caseCnsNotInConf">
+		<ConfTimeInfoLayout visible="false"/>
+		<ConfControlLayout visible="true"/>
+		<ConfIconLayout visible="true"/>
+		<imgLocalMix visible="false"/>
+	</Case>
+		
+	<Case name="caseScreenNoSel">	
+		<CnsScreenListItem bkimage="res/cnsmanage/screenbkg.png"/>			
+		<imgScreenPic visible="true"/>	
+		<lbScreenText visible="true"/>	
+		<ScreenCtrlLayout visible="false"/>	
+		<lbscreentip visible="true"/>	
+	</Case>
+	<Case name="caseScreenSel">	
+	    <CnsScreenListItem bkimage="res/cnsmanage/screenbkg_down.png"/>	
+		<imgScreenPic visible="false"/>	
+		<lbScreenText visible="false"/>	
+		<ScreenCtrlLayout visible="true"/>
+		<lbscreentip visible="false"/>	
+	</Case>
+	
+	<Case name="caseScrDual">	
+	    <DualLayout visible="true"/> 
+		<BtnScrDual selected="false"/> 
+		<lbDual text="演示"/> 
+		<ControlScrDual visible="true"/> 
+    </Case>
+	<Case name="caseScrCancelDual">	
+	    <DualLayout visible="true"/> 
+		<BtnScrDual selected="true"/> 
+		<lbDual text="取消演示"/> 
+		<ControlScrDual visible="true"/> 
+    </Case>
+	<Case name="caseScrNoDual">	
+		<BtnScrDual selected="false"/> 
+		<lbDual text="演示"/> 
+		<DualLayout visible="false"/> 
+		<ControlScrDual visible="false"/>  
+    </Case>
+	
+	<Case name="caseScrLocal">	
+		<ControlScrLocal visible="true"/> 
+		<ScrLocalLayout visible="true"/> 
+		<BtnScrLocal selected="false"/> 
+		<lbScrLocal text="回显"/> 
+    </Case>
+	<Case name="caseScrCancelLocal">	
+	    <ControlScrLocal visible="true"/> 
+		<ScrLocalLayout visible="true"/> 
+		<BtnScrLocal selected="true"/> 
+		<lbScrLocal text="取消回显"/> 
+    </Case>
+	<Case name="caseScrNoLocal">	
+	    <ControlScrLocal visible="false"/> 
+		<ScrLocalLayout visible="false"/> 
+		<BtnScrLocal selected="false"/> 
+		<lbScrLocal text="回显"/> 
+    </Case>	
+	
+	<Case name="caseScrSelWatch">	
+		<ScrSelWatchLayout visible="true"/> 
+		<ControlSelWatch visible="true"/> 
+		<CancelSelWatchLayout visible="false"/> 
+		<ControlCancelSelWatch visible="false"/> 
+    </Case>
+	<Case name="caseCancelSelWatch">	
+		<ScrSelWatchLayout visible="true"/> 
+		<ControlSelWatch visible="true"/> 
+		<CancelSelWatchLayout visible="true"/> 
+		<ControlCancelSelWatch visible="true"/> 
+    </Case>
+	<Case name="caseNoSelWatch">	
+		<ScrSelWatchLayout visible="false"/> 
+		<ControlSelWatch visible="false"/> 
+		<CancelSelWatchLayout visible="false"/> 
+		<ControlCancelSelWatch visible="false"/> 
+    </Case>
+
+	
+	<Case name="caseDisabledTVWall">	
+		<TVWallLayout visible="false"/> 
+		<ControlTVWall visible="false"/> 
+    </Case>	
+
+	<Case name="caseSelTVWall">	
+		<TVWallLayout visible="true"/> 
+		<BtnTVWall selected="false"/> 
+		<lbTVWal text="电视墙"/> 
+		<ControlTVWall visible="true"/> 
+    </Case>	
+	<Case name="caseCancelSelTVWall">	
+		<TVWallLayout visible="true"/> 
+		<BtnTVWall selected="true"/> 
+		<lbTVWal text="取消电视墙"/> 
+		<ControlTVWall visible="true"/> 
+    </Case>
+	<Case name="caseNoTVWall">	
+		<TVWallLayout visible="false"/> 
+		<BtnTVWall selected="false" enabled="true"/> 
+		<ControlTVWall visible="false"/> 
+    </Case>
+
+	
+    <HorizontalLayout height="76" />
+
+    <HorizontalLayout height="140" >
+	<Control />
+	<VerticalLayout name="SpeakSeat1Layout" width="435" height="140" >
+	   <Button name="btnSpeakSeat1" width="435" height="81" normalimage="res/cnsmanage/speakseatoff.png" />
+	</VerticalLayout>
+	<Control width="182" />
+        <VerticalLayout name="SpeakSeat2Layout" width="435" height="140" >
+	   <Button  name="btnSpeakSeat2" width="435" height="81" normalimage="res/cnsmanage/speakseatoff.png" />
+	</VerticalLayout>
+	<Control width="182" />
+	<VerticalLayout name="SpeakSeat3Layout" width="435" height="140" >
+	   <Button  name="btnSpeakSeat3" width="435" height="81" normalimage="res/cnsmanage/speakseatoff.png" />
+	</VerticalLayout>
+	<Control />
+    </HorizontalLayout>
+
+	<Case name="CaseSeatAllSpk">
+	    <btnSpeakSeat1 normalimage="res/cnsmanage/speakseaton.png" enabled="false"/> 
+		<btnSpeakSeat2 normalimage="res/cnsmanage/speakseaton.png" enabled="false"/> 
+		<btnSpeakSeat3 normalimage="res/cnsmanage/speakseaton.png" enabled="false"/> 
+    </Case>
+	<Case name="caseSeatAllNotSpk">	
+	    <btnSpeakSeat1 normalimage="res/cnsmanage/speakseatoff.png" enabled="true"/> 
+		<btnSpeakSeat2 normalimage="res/cnsmanage/speakseatoff.png" enabled="true"/> 
+		<btnSpeakSeat3 normalimage="res/cnsmanage/speakseatoff.png" enabled="true"/> 
+    </Case>
+	<Case name="caseSeatNoConf">	
+	    <btnSpeakSeat1 normalimage="res/cnsmanage/speakseatoff.png" enabled="false"/> 
+		<btnSpeakSeat2 normalimage="res/cnsmanage/speakseatoff.png" enabled="false"/> 
+		<btnSpeakSeat3 normalimage="res/cnsmanage/speakseatoff.png" enabled="false"/> 
+    </Case>	
+  </VerticalLayout>
+</PageCnsManage>

@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\logic_h">
+      <UniqueIdentifier>{eaf6f68a-c2c1-4e95-a72e-1c49038cc8cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\logic_cpp">
+      <UniqueIdentifier>{a0765d85-b615-4baf-a261-11b6ca3c1f2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\interface_cpp">
+      <UniqueIdentifier>{88af1ddc-67bf-4cd7-929c-3d1f9e0be409}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\cnc.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\cnc.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cnc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cncDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\globalheader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\constdef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\loginlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mainframelogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cnccommonop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\addrbooklogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\commoninterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cncmsgmanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\conftemplogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\wndshadow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\hzpysearch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UIDataMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\regservicelogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mainmenulogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\roomctrllogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\PanCamlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\usermanager.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\userdefinedlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\confcallcfglogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\confctrllogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\audmixlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\videomixlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\confmsglogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\sysconfiglogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\localroomcfglog.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\addreditlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cnsmanagelogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\srcselwatch.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\messageboxlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\calendarlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\centercontrollogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\centermonitorlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\confpolllogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\outPrint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\dualviewlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\confrolllogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tvwalllogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\confmixlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cameracontrollogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\matrixlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\reconnectlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\contentreqlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cnc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cncDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\loginlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\mainframelogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cnccommonop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\addrbooklogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cncmsgmanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\conftemplogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cncaddrbook.cpp">
+      <Filter>Source Files\interface_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\commoninterface.cpp">
+      <Filter>Source Files\interface_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\sysconfigif.cpp">
+      <Filter>Source Files\interface_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\confctrlif.cpp">
+      <Filter>Source Files\interface_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\wndshadow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\hzpysearch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UIDataMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\regservicelogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\mainmenulogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\roomctrllogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\PanCamlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\usermanager.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\userdefinedlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\roomctrlif.cpp">
+      <Filter>Source Files\interface_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\confcallcfglogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\audmixlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\confctrllogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\videomixlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\confmsglogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\sysconfiglogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\localroomcfglog.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\addreditlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cnsmanagelogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\srcselwatch.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\messageboxlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\calendarlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\centercontrollogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\centerctrlif.cpp">
+      <Filter>Source Files\interface_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\centermonitorlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\confpolllogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\outPrint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\dualviewlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\confrolllogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\tvwalllogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\confmixlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cameracontrollogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\matrixlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\reconnectlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\contentreqlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="cnc.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

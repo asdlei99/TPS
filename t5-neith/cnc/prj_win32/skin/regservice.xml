@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Window caption="0,0,0,0" size="1920,1121" mininfo="800,200" sizebox="0,0,0,0" maxinfo="1920,1121" roundcorner="0,0">
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />
+    <Font name="微软雅黑" size="22" bold="false"></Font>
+	<Default name="VScrollBar" value="mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+	<VerticalLayout name="RegServiceLayout" bkimage="res/subdlgbkg.png">
+		<HorizontalLayout height="126">
+		<Control width="1565"/>
+		<VerticalLayout>
+		<Control />
+			<HorizontalLayout height="64">
+			<Control name="CtrlFix" width="163"/>
+			<Button name="BtnFixOrCancel" width="149" height="64" text="修 改" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			<Button name="BtnOk" padding="15,0,0,0" width="149" height="64" text="确 定" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" visible = "false"/>
+			</HorizontalLayout>
+		<Control />
+		</VerticalLayout>
+		</HorizontalLayout>
+		<HorizontalLayout bkcolor="#FE4B5764" padding="17,0,0,0" height="1" width="1866"></HorizontalLayout>
+		<HorizontalLayout bkimage="res/roomctrl/verLine.png" float="true" pos="116,173,0,1050" width="1" ></HorizontalLayout>
+		<HorizontalLayout >
+		<VerticalLayout  name="" float="true" pos="106,35,1920,922" vscrollbar="true" hscrollbar="false" slideable="true" >
+			<VerticalLayout height="212">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,11,19,28" gdiplus="true" />
+				<Label name="" text="网呈注册服务器" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="IP地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtRigIp" text="" float="true" pos="290,0,0,0" height="64" width="612"  textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" visible="false"/>
+				<Label name="lbRigIp" text="0.0.0.0" float="true" pos="290,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left"  textcolor="#FED5DEEB" font="1" gdiplus="true" />		
+				</HorizontalLayout>
+			</VerticalLayout>
+			
+			<VerticalLayout height="317">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30" gdiplus="true" />
+				<Label name="" text="GK服务器" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" float="true" pos="41,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left" text="开启GK服务器" textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				<CheckBox name="CheckIsGk" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" visible="false"/>
+				<Label name="lbsGk" text="开启" float="true" pos="290,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left"  textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="IP地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtGKIp" text="" float="true" pos="290,0,0,0" height="64" width="612"  textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" visible="false" enabled="false"/>
+				<Label name="lbGKIp" text="0.0.0.0" float="true" pos="290,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left"  textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				</HorizontalLayout>
+			</VerticalLayout>
+			
+			<VerticalLayout height="210">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30" gdiplus="true" />
+				<Label name="" text="呼叫服务器" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="IP地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtCallIp" text="" float="true" pos="290,0,0,0" height="64" width="612"  textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" visible="false"/>
+				<Label name="lbCallIp" text="0.0.0.0" float="true" pos="290,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left"  textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				</HorizontalLayout>
+			</VerticalLayout>
+			
+			<VerticalLayout height="212">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30" gdiplus="true" />
+				<Label name="" text="升级服务器" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="IP地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtUpgradeIp" text="" float="true" pos="290,0,0,0" height="64" width="612"  textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" visible="false"/>
+				<Label name="lbUpgradeIp" text="0.0.0.0" float="true" pos="290,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left"  textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				</HorizontalLayout>
+			</VerticalLayout>
+			
+			<VerticalLayout height="212">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30" gdiplus="true" />
+				<Label name="" text="数据会议服务器" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="IP地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtDCIp" text="" float="true" pos="290,0,0,0" height="64" width="612"  textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" visible="false"/>
+				<Label name="lbDCIp" text="" float="true" pos="290,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left"  textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				</HorizontalLayout>
+			</VerticalLayout>	
+
+            <VerticalLayout height="424">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30" gdiplus="true" />
+				<Label name="" text="量子加密" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" float="true" pos="41,0,0,0" width="220" height="64" textpadding="0,5,0,0" align="left" text="开启量子加密服务器" textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				<CheckBox name="CheckIsQT" text="" float="true" pos="290,0,0,0" height="66" width="124" selected="true" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" visible="false"/>
+				<Label name="lbsQT" text="开启" float="true" pos="290,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left"  textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" float="true" pos="41,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left" text="IP地址" textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				<Edit name="edtQuantumIp" text="" float="true" pos="290,0,0,0" height="64" width="612"  textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" visible="false"/>
+				<Label name="lbQuantumIp" text="" float="true" pos="290,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left"  textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="量子ID" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtQuantumID" text="" float="true" pos="290,0,0,0" height="64" width="612" numberonly="true" maxchar="10" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" maxchar="10" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" visible="false" />
+				<Label name="lbQuantumID" text="" float="true" pos="290,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left"  textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				</HorizontalLayout>
+			</VerticalLayout>			
+		</VerticalLayout>		
+		
+		</HorizontalLayout>
+		
+		<Case name="caseSet">	
+		    <CtrlFix visible="false"/> 
+			<edtRigIp visible="true"/> 
+			<CheckIsGk visible="true"/> 
+			<CheckIsQT visible="true"/> 
+			<edtGKIp visible="true"/> 
+			<edtCallIp visible="true"/> 
+			<edtUpgradeIp visible="true"/> 
+			<edtQuantumIp visible="true"/> 
+			<edtQuantumID visible="true"/> 
+			<edtDCIp visible="true"/> 
+			<lbRigIp visible="false"/> 
+			<lbsGk visible="false"/> 
+			<lbsQT visible="false"/> 
+			<lbGKIp visible="false"/> 
+			<lbCallIp visible="false"/> 
+			<lbUpgradeIp visible="false"/> 
+			<lbDCIp visible="false"/> 
+			<lbQuantumIp visible="false"/> 
+			<lbQuantumID visible="false"/> 
+		</Case>   
+		<Case name="caseSetCancel">
+		    <CtrlFix visible="true"/> 
+			<edtRigIp visible="false"/> 
+			<CheckIsGk visible="false"/> 
+			<CheckIsQT visible="false"/> 
+			<edtGKIp visible="false"/> 
+			<edtCallIp visible="false"/> 
+			<edtUpgradeIp visible="false"/> 
+			<edtDCIp visible="false"/> 
+			<edtQuantumIp visible="false"/> 
+			<edtQuantumID visible="false"/> 
+			<lbRigIp visible="true"/> 
+			<lbsGk visible="true"/> 
+			<lbsQT visible="true"/> 
+			<lbGKIp visible="true"/> 
+			<lbCallIp visible="true"/> 
+			<lbUpgradeIp visible="true"/> 
+			<lbDCIp visible="true"/> 
+			<lbQuantumIp visible="true"/> 
+			<lbQuantumID visible="true"/> 
+		</Case> 
+		
+	</VerticalLayout>
+</Window>

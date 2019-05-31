@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<UserNameModify>
+  <Font name="微软雅黑" size="24" bold="false"/>
+  <Font name="微软雅黑" size="22" bold="false"/>
+  <VerticalLayout name="NoticeDlg"  bkimage="res/public/subpopbg.png" inset="0,0,0,0">
+    <Control height="240"/>
+
+    <HorizontalLayout height="670">
+      <Control />
+      <VerticalLayout  name=""  width="1920"  align="center"  >
+        <!--bkimage="res/logindlg/loginFrame.png"-->
+        <HorizontalLayout name="" align="center"  >
+          <Control />
+          <VerticalLayout name="" width="200" >
+            <Control />
+            <Label name="lbuserName" text="用户名" tiptext="请输入用户名" textcolor="#FED5DEEB" font="3" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+            <Control />
+          </VerticalLayout>
+          <Control width="50"/>
+          <VerticalLayout name="" width="600" >
+            <Control />
+            <Edit name="edtuserName" text=""  height="64" width="600" textcolor="#FED5DEEB" font="2" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" maxchar="31"/>
+            <Control />
+          </VerticalLayout>
+          <Control />
+        </HorizontalLayout>
+        <HorizontalLayout name="" >
+          <Control />
+          <VerticalLayout width="200" >
+            <Control />
+            <Label name="lbOldUserPasswd" text="原始密码" textcolor="#FED5DEEB" font="3" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+            <Control />
+          </VerticalLayout>
+          <Control width="50"/>
+          <VerticalLayout name="" width="600" >
+            <Control />
+            <Edit name="edtOldUserPasswd" text="" tiptext="请输入原始密码" height="64" width="600" textcolor="#FED5DEEB" font="2" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" password="true" maxchar="31"/>
+            <Control />
+          </VerticalLayout>
+          <Control />
+        </HorizontalLayout>
+        <HorizontalLayout name="" height="150">
+          <Control />
+          <VerticalLayout width="200" >
+            <Control />
+            <Label name="lbNewUserPasswd" text="新密码"  textcolor="#FED5DEEB" font="3" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+            <Control />
+          </VerticalLayout>
+          <Control width="50"/>
+          <VerticalLayout name="" width="600" >
+            <Control height="34" />
+            <Edit name="edtNewUserPasswd" text="" tiptext="8~16个字符，至少包含数字和字母或 “_” “.”" height="64" width="600" textcolor="#FED5DEEB" font="2" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" password="true" maxchar="31" />
+            <VerticalLayout name="ModifyPWStrengthLayout" visible="false">
+				<Label name="ModifyRedLab"      float="true" pos="34,24,0,0"  bkcolor="#FF8A96A5" width="100" height="5"/>
+				<Label name="ModifyYellowLab"   float="true" pos="144,24,0,0" bkcolor="#FF8A96A5" width="100" height="5"/>
+				<Label name="ModifyGreenLab"    float="true" pos="254,24,0,0" bkcolor="#FF8A96A5" width="100" height="5"/>
+				<Label name=""                  float="true" pos="364,15,0,0" width="50" height="23" font="2" textcolor="#FFBAC3CF" text="强度"/>
+				<Label name="ModifyLevelTipLeb" float="true" pos="424,15,0,0" width="50" height="23" font="2" textcolor="#FFBAC3CF" text=""/>
+			</VerticalLayout>
+			<VerticalLayout name="ModifyPWStrengthTipLayout" visible="false">
+				<Label name="ModifyTipInmageLeb" float="true" pos="34,16,0,0"  width="20" height="20" bkimage="res\usermanager\TipInfo.png"/>
+				<Label name="ModifyTipTextLeb"   float="true" pos="64,15,0,0" width="50" height="23" font="2" textcolor="#FFBAC3CF" text="强度:"/>
+				<Label name="ModifyLvlTipLeb"    float="true" pos="124,15,0,0" width="50" height="23" font="2" textcolor="#FFBAC3CF" text="弱"/>
+			</VerticalLayout>
+          </VerticalLayout>
+          <Control />
+		  
+		  <VerticalLayout name="ModifyPWTipLayout" float="true" pos="1400,32,0,0" width="390" height="118" bkimage="res\usermanager\pwtip.png" visible="flase">
+			<Label name="ModifyLengthLab" float="true" pos="37,21,0,0" bkimage="res\usermanager\CheckNormal.png" width="16" height="16"/>
+			<Label name="ModifyRangeLab"  float="true" pos="37,52,0,0" bkimage="res\usermanager\CheckNormal.png" width="16" height="16"/>
+			<Label name="ModifyTypeLab"   float="true" pos="37,83,0,0" bkimage="res\usermanager\CheckNormal.png" width="16" height="16"/>
+		  </VerticalLayout>
+		  
+        </HorizontalLayout>
+        <HorizontalLayout name="" height="150">
+          <Control />
+          <VerticalLayout width="200" >
+            <Control />
+            <Label name="lbCheckUserPasswd" text="确认新密码"   textcolor="#FED5DEEB" font="3" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+            <Control />
+          </VerticalLayout>
+          <Control width="50"/>
+          <VerticalLayout name="" width="600" >
+            <Control height="30"/>
+            <Edit name="edtCheckUserPasswd" text="" tiptext="请再次输入密码" height="64" width="600" textcolor="#FED5DEEB" font="2" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" password="true" maxchar="31" />
+            <VerticalLayout name="ModifyCheckPWInfoLayout" visible="false">
+				<Label name="" float="true" pos="34,16,0,0"  width="20" height="20" bkimage="res\usermanager\TipError.png"/>
+				<Label name="" float="true" pos="64,15,0,0" width="360" height="23" font="2" textcolor="#FFD81118" text="您输入的密码与新密码不一致"/>
+			</VerticalLayout>
+          </VerticalLayout>
+          <Control />
+        </HorizontalLayout>
+        <Control />
+      </VerticalLayout>
+      <Control />
+    </HorizontalLayout>
+    <Control />
+    <HorizontalLayout  name=""  width="" height="420" >
+      <!--bkimage="res/logindlg/loginFrame.png"-->
+      <Control />
+      <Control width="60"/>
+      <Button name="BtnSaveUserPasswd" text="确 定" font="1" textcolor="#CCD4DEEB" bordersize="1,1,1,1" width="149" height="66" align="center" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"/>
+      <Control width="120"/>
+      <Button name="BtnCancelUserPasswd" text="取 消" padding="10,0,0,0" font="1" textcolor="#CCD4DEEB" bordersize="1,1,1,1" width="149" height="66" align="center" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"/>
+      <Control />
+    </HorizontalLayout>
+    <Control height="100"/>
+	
+	<Case name="ModifyInitCase">	
+		<ModifyPWTipLayout visible="false"/>
+		<ModifyPWStrengthLayout visible="false"/>
+		<ModifyPWStrengthTipLayout visible="false"/>
+		<ModifyCheckPWInfoLayout visible="false"/>
+		<ModifyRedLab    bkcolor="#FF8A96A5" />
+		<ModifyYellowLab bkcolor="#FF8A96A5" />
+		<ModifyGreenLab  bkcolor="#FF8A96A5" />
+		<ModifyLevelTipLeb text="" textcolor="#FFD81118" />
+		<ModifyLvlTipLeb text="" textcolor="#FFD81118" />
+		<ModifyLengthLab bkimage="res\usermanager\CheckNormal.png" />
+		<ModifyRangeLab bkimage="res\usermanager\CheckNormal.png" />
+		<ModifyTypeLab bkimage="res\usermanager\CheckNormal.png" />
+	</Case>
+	
+	<Case name="ModifyPwdEditSetFocus">	
+		<ModifyPWTipLayout visible="true"/>
+		<ModifyPWStrengthLayout visible="true"/>
+		<ModifyPWStrengthTipLayout visible="false"/>
+	</Case>
+	<Case name="ModifyPwdEditKillFocus">	
+		<ModifyPWTipLayout visible="false"/>
+		<ModifyPWStrengthLayout visible="false"/>
+	</Case>
+	
+	<Case name="ModifyNoLevelCase">	
+		<ModifyRedLab    bkcolor="#FF8A96A5" />
+		<ModifyYellowLab bkcolor="#FF8A96A5" />
+		<ModifyGreenLab  bkcolor="#FF8A96A5" />
+		<ModifyLevelTipLeb text="" textcolor="#FFD81118" />
+		<ModifyLvlTipLeb text="" textcolor="#FFD81118" />
+	</Case>
+	<Case name="ModifyLowerCase">	
+		<ModifyRedLab    bkcolor="#FFD81118" />
+		<ModifyYellowLab bkcolor="#FF8A96A5" />
+		<ModifyGreenLab  bkcolor="#FF8A96A5" />
+		<ModifyLevelTipLeb text="弱" textcolor="#FFD81118" />
+		<ModifyLvlTipLeb text="弱" textcolor="#FFD81118" />
+	</Case>
+	<Case name="ModifySeniorCase">	
+		<ModifyRedLab    bkcolor="#FFD81118" />
+		<ModifyYellowLab bkcolor="#FFF39417" />
+		<ModifyGreenLab  bkcolor="#FF8A96A5" />
+		<ModifyLevelTipLeb text="中" textcolor="#FFF39417" />
+		<ModifyLvlTipLeb text="中" textcolor="#FFF39417" />
+	</Case>
+	<Case name="ModifyHighCase">	
+		<ModifyRedLab    bkcolor="#FFD81118" />
+		<ModifyYellowLab bkcolor="#FFF39417" />
+		<ModifyGreenLab  bkcolor="#FF04DF08" />
+		<ModifyLevelTipLeb text="高" textcolor="#FF04DF08" />
+		<ModifyLvlTipLeb text="高" textcolor="#FF04DF08" />
+	</Case>
+	
+	<Case name="ModifyNoPwKillFocus">	
+		<ModifyPWStrengthTipLayout visible="false"/>
+	</Case>
+	<Case name="ModifyPwKillFocus">	
+		<ModifyPWStrengthTipLayout visible="true"/>
+	</Case>
+
+	<Case name="ModifyErrorPwKillFocus">	
+		<ModifyTipInmageLeb bkimage="res\usermanager\TipError.png"/>
+		<ModifyTipTextLeb text="密码设置不符合要求" textcolor="#FFD81118" width="220"/>
+		<ModifyLvlTipLeb visible="false" />
+	</Case>
+	<Case name="ModifyInfoPwKillFocus">	
+		<ModifyTipInmageLeb bkimage="res\usermanager\TipInfo.png"/>
+		<ModifyTipTextLeb text="强度:" textcolor="#FFBAC3CF" width="60" />
+		<ModifyLvlTipLeb visible="true" />
+	</Case>
+	
+	<Case name="ModifyCheckPasswordSuccess">	
+		<ModifyCheckPWInfoLayout visible="false"/>
+	</Case>
+	<Case name="ModifyCheckPasswordError">	
+		<ModifyCheckPWInfoLayout visible="true"/>
+	</Case>
+	
+	
+  </VerticalLayout>
+</UserNameModify>

@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<subcontrol>
+  <ComboItem><!--下拉框列表-->   
+    <ListLabelElement name="ComboItem" gdiplus="true" bkcolor="ff152131" height="64"></ListLabelElement>
+  </ComboItem>
+
+  <TouchListItem><!--文档摄像机预置位列表-->   
+     <TouchList name="TouchListItem" vscrollbar="" hscrollbar="" columns="3" itemselectedimage="res\roomctrl\preposbk_select.png" itembkimage="res\roomctrl\preposbk.png" itemdisabledimage="res\roomctrl\preposbk.png" />  
+  </TouchListItem>
+  
+  <DicListItem><!--会议讨论列表-->   
+     <TouchList name="DicListItem" vscrollbar="" hscrollbar="" columns="3" itemselectedimage="res\confctrl\confdiscuss\itembk_select.png" itembkimage="res\confctrl\confdiscuss\itembk_normal.png" itemdisabledimage="res\list\itembk_normal.png" />  
+  </DicListItem>
+  
+  
+  <SelWatchItem><!--会议选看列表-->    
+    <ListContainerElement name="SelWatchItem" width="282" height="337" padding="5,0,15,15"  drag="true">
+		<CheckBox name="BtnRoomSel" float="true" pos="6,9,0,0" width="64" height="64" pushedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" selectedimage="res/public/checkbox_select.png" visible="false"/> 
+		<Label name="imgAddrLabel" float="true" pos="70,81,0,0" width="142" height="142" bkimage="res/list/imgCns.png" />
+		<Text name="AddrEntryName" float="true" pos="0,258,282,321" text="" textcolor="#FFD5DEEB" font="1" align="center" gdiplus="true" />
+        <Button name="BtnShowScreenOption" float="true" pos="217,18,0,0" width="50" height="50" pushedimage="res/list/btn_screen_down.png" normalimage="res/list/btn_screen_normal.png" visible="false"/> 
+	    <Button name="BtnHideScreenOption" float="true" pos="217,18,0,0" width="50" height="50" pushedimage="res/list/btn_clear_down.png" normalimage="res/list/btn_clear_normal.png" visible="false"/> 
+		<TouchList name="ScreenSlectList" float="true" pos="15,95,0,0" width="252" height="231" bkcolor="" vscrollbar="false" hscrollbar="false" itemselectedbkcolor="#FE0013F0" itemhotbkcolor="#FE2236EA" columns="1" itemselectedimage="res/list/subitem_screen_select.png" itembkimage="res/list/subitem_screen_select_normal.png" visible="false">
+		    <ListContainerElement name="ScreenSelect1" width="252" height="68" bkimage="res/list/subitem_screen_select_normal.png" padding="0,0,0,9" drag="true">
+		        <Text name="lbScreeName1" float="true" pos="70,22,0,0" width="150" height="27" text="屏幕左" textcolor="#FFD5DEEB" font="1" align="left" gdiplus="true" />
+		    </ListContainerElement>
+			<ListContainerElement name="ScreenSelect2" width="252" height="68" bkimage="res/list/subitem_screen_select_normal.png" padding="0,0,0,9" drag="true">
+		        <Text name="lbScreeName2" float="true" pos="70,22,0,0" width="150" height="27" text="屏幕中" textcolor="#FFD5DEEB" font="1" align="left" gdiplus="true" />
+		    </ListContainerElement>
+			<ListContainerElement name="ScreenSelect3" width="252" height="68" bkimage="res/list/subitem_screen_select_normal.png" padding="0,0,0,9" drag="true">
+		        <Text name="lbScreeName3" float="true" pos="70,22,0,0" width="150" height="27" text="屏幕右" textcolor="#FFD5DEEB" font="1" align="left" gdiplus="true" />
+		    </ListContainerElement>
+		</TouchList>
+	</ListContainerElement>
+  </SelWatchItem>
+  
+  <ScreenSelWatchItem><!--电视墙会议选看列表-->   
+	<ListContainerElement name="ScreenSelWatchItem" width="282" height="337" padding="5,0,15,15" bkimage="res\list\item_normal.png">
+		<CheckBox name="BtnRoomSel" float="true" pos="6,9,0,0" width="64" height="64" groupe="TVCnfRoomSel" pushedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" selectedimage="res/public/checkbox_select.png" visible="false"/> 
+		<Label name="imgAddrLabel" float="true" pos="70,81,0,0" width="142" height="142" bkimage="res/list/imgCns.png" />
+		<Text name="AddrEntryName" float="true" pos="0,258,282,321" text="" textcolor="#FFD5DEEB" font="1" align="center" gdiplus="true" />
+        <Button name="BtnShowScreenOption" float="true" pos="217,18,0,0" width="50" height="50" pushedimage="res/list/btn_screen_down.png" normalimage="res/list/btn_screen_normal.png" visible="false"/> 
+	    <Button name="BtnHideScreenOption" float="true" pos="217,18,0,0" width="50" height="50" pushedimage="res/list/btn_clear_down.png" normalimage="res/list/btn_clear_normal.png" visible="false"/> 
+		<TouchList name="ScreenSlectList" float="true" pos="15,95,0,0" width="252" height="231" bkcolor="" vscrollbar="false" hscrollbar="false" itemselectedbkcolor="#FE0013F0" itemhotbkcolor="#FE2236EA" columns="1" itemselectedimage="res/list/subitem_screen_select.png" itembkimage="res/list/subitem_screen_select_normal.png" visible="false">
+		    <ListContainerElement name="ScreenSelect1" width="252" height="68" bkimage="res/list/subitem_screen_select_normal.png" padding="0,0,0,9" >
+		        <Text name="lbScreeName1" float="true" pos="70,22,0,0" width="150" height="27" text="屏幕左" textcolor="#FFD5DEEB" font="1" align="left" gdiplus="true" />
+				<CheckBox name="CheckSrceen1" float="true" pos="185,2,0,0" width="64" height="64" pushedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" selectedimage="res/public/checkbox_select.png" />
+			</ListContainerElement>
+			<ListContainerElement name="ScreenSelect2" width="252" height="68" bkimage="res/list/subitem_screen_select_normal.png" padding="0,0,0,9" >
+		        <Text name="lbScreeName2" float="true" pos="70,22,0,0" width="150" height="27" text="屏幕中" textcolor="#FFD5DEEB" font="1" align="left" gdiplus="true" />
+				<CheckBox name="CheckSrceen2" float="true" pos="185,2,0,0" width="64" height="64" pushedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" selectedimage="res/public/checkbox_select.png" />
+			</ListContainerElement>
+			<ListContainerElement name="ScreenSelect3" width="252" height="68" bkimage="res/list/subitem_screen_select_normal.png" padding="0,0,0,9" >
+		        <Text name="lbScreeName3" float="true" pos="70,22,0,0" width="150" height="27" text="屏幕右" textcolor="#FFD5DEEB" font="1" align="left" gdiplus="true" />
+				<CheckBox name="CheckSrceen3" float="true" pos="185,2,0,0" width="64" height="64" pushedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" selectedimage="res/public/checkbox_select.png" />
+			</ListContainerElement>
+		</TouchList>
+	</ListContainerElement>
+  </ScreenSelWatchItem>
+  
+  <MixScreenSelWatchItem><!--画面合成会议选看列表-->   
+	<ListContainerElement name="MixScreenSelWatchItem" width="282" height="337" padding="5,0,15,15" bkimage="res\list\item_normal.png">
+		<CheckBox name="BtnMixRoomSel" float="true" pos="6,9,0,0" width="64" height="64" pushedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" selectedimage="res/public/checkbox_select.png"/> 
+		<Label name="MiximgAddrLabel" float="true" pos="70,81,0,0" width="142" height="142" bkimage="res/list/imgCns.png" />
+		<Text name="MixAddrEntryName" float="true" pos="0,258,282,321" text="" textcolor="#FFD5DEEB" font="1" align="center" gdiplus="true" />
+        <Button name="BtnMixShowScreen" float="true" pos="217,18,0,0" width="50" height="50" pushedimage="res/list/btn_screen_down.png" normalimage="res/list/btn_screen_normal.png" visible="false"/> 
+	    <Button name="BtnMixHideScreen" float="true" pos="217,18,0,0" width="50" height="50" pushedimage="res/list/btn_clear_down.png" normalimage="res/list/btn_clear_normal.png" visible="false"/> 
+		<TouchList name="MixScreenSlectList" float="true" pos="15,95,0,0" width="252" height="231" bkcolor="" vscrollbar="false" hscrollbar="false" itemselectedbkcolor="#FE0013F0" itemhotbkcolor="#FE2236EA" columns="1" itemselectedimage="res/list/subitem_screen_select.png" itembkimage="res/list/subitem_screen_select_normal.png" visible="false">
+		    <ListContainerElement name="MixScreenSelect" width="252" height="68" bkimage="res/list/subitem_screen_select_normal.png" padding="0,0,0,9" >
+		        <Text name="MixlbScreeName" float="true" pos="70,22,0,0" width="150" height="27" text="屏幕左" textcolor="#FFD5DEEB" font="1" align="left" gdiplus="true" />
+				<CheckBox name="MixCheckSrceen" float="true" pos="185,2,0,0" width="64" height="64" pushedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" selectedimage="res/public/checkbox_select.png" />
+			</ListContainerElement>
+			<ListContainerElement name="MixScreenSelect" width="252" height="68" bkimage="res/list/subitem_screen_select_normal.png" padding="0,0,0,9" >
+		        <Text name="MixlbScreeName" float="true" pos="70,22,0,0" width="150" height="27" text="屏幕中" textcolor="#FFD5DEEB" font="1" align="left" gdiplus="true" />
+				<CheckBox name="MixCheckSrceen" float="true" pos="185,2,0,0" width="64" height="64" pushedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" selectedimage="res/public/checkbox_select.png" />
+			</ListContainerElement>
+			<ListContainerElement name="MixScreenSelect" width="252" height="68" bkimage="res/list/subitem_screen_select_normal.png" padding="0,0,0,9" >
+		        <Text name="MixlbScreeName" float="true" pos="70,22,0,0" width="150" height="27" text="屏幕右" textcolor="#FFD5DEEB" font="1" align="left" gdiplus="true" />
+				<CheckBox name="MixCheckSrceen" float="true" pos="185,2,0,0" width="64" height="64" pushedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" selectedimage="res/public/checkbox_select.png" />
+			</ListContainerElement>
+		</TouchList>
+	</ListContainerElement>
+  </MixScreenSelWatchItem>
+  
+ <SelectedItem> <!--已选列表-->   
+    <ListContainerElement name="SelectedItem" width="570" height="142" padding="15,7,0,0"  drop="true">
+		<Label name="lbImg" float="true" pos="21,21,0,0" width="100" height="100" bkimage="res/list/selWatch.png" />
+		<Text name="lbName" float="true" pos="140,50,470,142" text="" textcolor="#FFD5DEEB" font="1" align="left" gdiplus="true" />
+		<Button name="BtnShowSel" float="true" pos="498,43,0,0" width="54" height="54" pushedimage="res/mainmenu/ListSet.png" normalimage="res/mainmenu/ListSet.png" visible="false"/> 
+		<Button name="BtnCancelCurWatch" float="true" pos="500,46,0,0" width="50" height="50" pushedimage="res/list/btn_clear_down.png" normalimage="res/list/btn_clear_normal.png" drag="true"/> 
+    </ListContainerElement>
+  </SelectedItem>
+  
+  <AddrListItem>  <!--地址簿条目-->
+    <ListContainerElement name="AddrListItem" width="282" height="337" padding="6,0,10,15" bkimage="res/list/item_normal.png" >
+		<CheckBox name="BtnAddrSel" float="true" pos="6,9,0,0" width="64" height="64" normalimage="res/public/checkbox_normal.png" selectedimage="res/public/checkbox_select.png" /> 
+		<Button name="BtnAddrCall" float="true" pos="217,15,0,0" width="50" height="50" pushedimage="res/list/btnCall_down.png" normalimage="res/list/btnCall.png" /> 
+		<Button name="imgAddrLabel" float="true" pos="70,81,0,0" width="142" height="142" bkimage="res/list/imgCns.png" passmove="true"/>
+		<Text name="AddrShowText" float="true" pos="0,258,282,321" text="" textcolor="#FFD5DEEB" font="1" align="center" gdiplus="true" />
+		<VerticalLayout name="AddrInfoLayout" visible="false" >
+		<Text name="AddrName" float="true" pos="0,138,282,199" text="" textcolor="#FFD5DEEB" font="1" align="center" gdiplus="true" />
+		<Label name="imgCutline1" float="true" pos="15,216,0,0" width="252" height="1" bkcolor="#4D3D73AD" />
+		<Text name="AddrE164" float="true" pos="0,234,0,0" width="282" height="26" textcolor="#FFD5DEEB" font="1" align="center" gdiplus="true" />
+		<Label name="imgCutline2" float="true" pos="15,277,0,0" width="252" height="1" bkcolor="#4D3D73AD" />
+		<Text name="AddrIP" float="true" pos="0,295,0,0" width="282" height="26" textcolor="#FFD5DEEB" font="1" align="center" gdiplus="true" /> 
+		</VerticalLayout>
+    </ListContainerElement>
+  </AddrListItem>
+  
+  <ConfTempListItem> <!--会议模板-->
+	<ListContainerElement width="282" height="337" padding="5,0,15,15" bordercolor="#FE000000" bkcolor="" tooltip=""> 
+		<Button name="BtnTmpCall" float="true" pos="217,15,0,0" width="50" height="50" pushedimage="res/public/btnCall_down.png" normalimage="res/public/btnCall.png" /> 
+		<Label name="ConfTempPic" float="true" pos="70,81,0,0" width="142" height="142" bkimage="res/list/imgTemp.png" />
+		<Label name="ConfTempName" float="true" pos="0,258,282,337" text="" textcolor="#FFD5DEEB" font="1" align="center" gdiplus="true" />
+	</ListContainerElement>
+  </ConfTempListItem>
+  
+  <CnsScreenListItem> <!--模拟屏-->
+   <ListContainerElement name="CnsScreenListItem" width="617" height="443" padding="0,0,0,0" bkimage="res/cnsmanage/screenbkg.png" >
+	<Label name="imgScreenPic" float="true" pos="224,101,0,0" width="168" height="238" bkimage="res/cnsmanage/screenperson.png" />
+	<Label name="lbscreentip" float="true" pos="224,250,0,0" width="168" height="40" text="" textcolor="#FF379FDB" font="1" align="center" gdiplus="true" />
+	<Label name="lbScreenText" float="true" pos="0,343,0,0" width="617" height="100" text="" textcolor="#CCD5DEEB" font="1" align="center" gdiplus="true"  />
+	<VerticalLayout name="ScreenCtrlLayout" visible="false">
+	  <HorizontalLayout height="150" padding="0,147,0,0">
+		<Control />
+		<VerticalLayout name="DualLayout" width="100" height="150" visible="false">
+		<CheckBox name="BtnScrDual" width="100" height="100" pushedimage="res/cnsmanage/btnScrDual_down.png" normalimage="res/cnsmanage/btnScrDual.png" selectedimage="res/cnsmanage/btnScrCancelDual.png" selpushedimage="res/cnsmanage/btnScrCancelDual_down.png"/> 
+		<Label name="lbDual" width="100" height="50" text="演示" textcolor="#FF379FDB" font="1" align="center" gdiplus="true"  />
+		</VerticalLayout>
+		<!-- <Button name="BtnScrDual" width="100" height="100" hotimage="res/cnsmanage/btnScrDual_down.png" normalimage="res/cnsmanage/btnScrDual.png" /> -->
+		<Control name="ControlScrDual" visible="false"/>
+		<VerticalLayout name="ScrLocalLayout" width="100" height="150" visible="false">
+		<CheckBox name="BtnScrLocal" width="100" height="100" pushedimage="res/cnsmanage/btnScrLocal_down.png" normalimage="res/cnsmanage/btnScrLocal.png" selectedimage="res/cnsmanage/btnScrCancelLocal.png" selpushedimage="res/cnsmanage/btnScrCancelLocal_down.png"/>
+		<Label name="lbScrLocal" width="100" height="50" text="回显" textcolor="#FF379FDB" font="1" align="center" gdiplus="true" />		
+		</VerticalLayout>
+		<!-- <Button name="BtnScrLocal" width="100" height="100" hotimage="res/cnsmanage/btnScrLocal_down.png" normalimage="res/cnsmanage/btnScrLocal.png" /> -->
+		<Control name="ControlScrLocal" visible="false"/>
+		<VerticalLayout name="ScrSelWatchLayout" width="100" height="150" visible="false">
+		<Button name="BtnScrSelWatch" width="100" height="100" pushedimage="res/cnsmanage/btnScrSelWatch_down.png" normalimage="res/cnsmanage/btnScrSelWatch.png" />
+		<Label name="lbSelWatch" width="100" height="50" text="选看" textcolor="#FF379FDB" font="1" align="center" gdiplus="true"  />
+		</VerticalLayout>
+		<Control name="ControlSelWatch" visible="false"/>
+		<VerticalLayout name="TVWallLayout" width="125" height="150" visible="false" >
+		<CheckBox name="BtnTVWall" padding="12,0,13,0" width="100" height="100" pushedimage="res/cnsmanage/btnTVWall_down.png" normalimage="res/cnsmanage/btnTVWall.png" disabledimage="res/cnsmanage/btnTVWall_disable.png" selectedimage="res/cnsmanage/btnCancelTVWall.png" selpushedimage="res/confctrl/cnsmanage/btnCancelTVWall_down.png" seldisabledimage="res/cnsmanage/btnCancelTVWall_disable.png"/>
+		<Label name="lbTVWal" width="125" height="50" text="电视墙" textcolor="#FF379FDB" font="1" align="center" gdiplus="true"  />
+		</VerticalLayout>
+		<Control name="ControlTVWall" visible="false"/>
+		<VerticalLayout name="CancelSelWatchLayout" width="100" height="150" visible="false">
+		<Button name="BtnCancelSelWatch" width="100" height="100" pushedimage="res/cnsmanage/btnScrCancelSelWatch_down.png" normalimage="res/cnsmanage/btnScrCancelSelWatch.png" />
+		<Label name="lbCancelSelWatch" width="100" height="50" text="取消选看" textcolor="#FF379FDB" font="1" align="center" gdiplus="true" />
+		</VerticalLayout>
+		<Control name="ControlCancelSelWatch" visible="false"/>
+	  </HorizontalLayout>
+	</VerticalLayout>
+   </ListContainerElement>
+  </CnsScreenListItem>
+  
+  <ConfCnsListItem>  <!--会场列表-->
+    <ListContainerElement name="ConfCnsListItem" width="282" height="337" padding="5,0,15,15" bkimage="res\list\item_normal.png">
+		<CheckBox name="BtnConfCnsSel" float="true" pos="6,9,0,0" width="64" height="64" pushedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" selectedimage="res/public/checkbox_select.png" /> 	
+		<Button name="BtnConfCall" float="true" pos="217,15,0,0" width="50" height="50" pushedimage="res/list/btnCall_down.png" normalimage="res/list/btnCall.png" visible="false"/> 
+		
+		<HorizontalLayout name="confcnslabellayout" float="true" pos="153,19,0,0" width="120" height="40">
+		 <Label name="imgSpeaker" visible="false" float="true" pos="0,0,0,0" width="40" height="40" bkimage="res/list/imgSpeaker.png" />
+		 <Label name="imgMute" visible="false" float="true" pos="40,0,0,0" width="40" height="40" bkimage="res/list/imgMute.png" />
+		 <Label name="imgQuiet" visible="false" float="true" pos="80,0,0,0" width="40" height="40" bkimage="res/list/imgQuiet.png" />
+		</HorizontalLayout>		
+		<Label name="imgConfCnsLabel" float="true" pos="70,81,0,0" width="142" height="142" bkimage="res/list/imgCns.png" />
+		<Text name="ConfCnsName" float="true" pos="0,258,282,337" text="" textcolor="#FFD5DEEB" font="1" align="center" gdiplus="true" />
+		
+		<Button name="ListBtnSetCam" visible="false" float="true" pos="107,23,0,0" width="68" height="68" normalimage="res/list/btnFecc.png" pushedimage="res/list/btnFecc_down.png" />
+		<Button name="ListBtnSetDual" visible="false" float="true" pos="16,111,0,0" width="68" height="68" normalimage="res/list/btnDual.png" pushedimage="res/list/btnDual_down.png" />
+		<Button name="ListBtnSetSpeaker" visible="false" float="true" pos="107,111,0,0" width="68" height="68" normalimage="res/list/btnSetSpeaker.png" pushedimage="res/list/btnSetSpeaker_down.png" />
+		<Button name="ListBtnSelectPlay" visible="false" float="true" pos="198,111,0,0" width="68" height="68" normalimage="res/list/btnSelectPlay.png" pushedimage="res/list/btnSelectPlay_down.png" />
+		<Button name="ListBtnSetQuiet" visible="false" float="true" pos="16,199,0,0" width="68" height="68" normalimage="res/list/btnQuiet.png" pushedimage="res/list/btnQuiet_down.png" />
+		<Button name="ListBtnSetMute" visible="false" float="true" pos="107,199,0,0" width="68" height="68" normalimage="res/list/btnMute.png" pushedimage="res/list/btnMute_down.png" />
+		<Button name="ListBtnHangUp" visible="false" float="true" pos="198,199,0,0" width="68" height="68" normalimage="res/list/btnHangup.png" pushedimage="res/list/btnHangup_down.png" />
+    </ListContainerElement>
+  </ConfCnsListItem>
+  
+  <UserListItem>  <!--用户列表-->
+	<ListContainerElement width="282" height="337" padding="5,0,15,15" bordercolor="#FE000000">
+	<VerticalLayout>
+	<HorizontalLayout height="64">
+	<CheckBox name="CheckBoxItemSel" pos="6,9,0,0" width="64" height="64" selectedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" /> 
+	<Button name="BtnUserSet" float="true" pos="223,9,0,0" width="50" height="50"  pushedimage="res/list/btnCfg_down.png" normalimage="res/list/btnCfg.png" /> 
+	</HorizontalLayout>
+	<Label name="UserItemPic" float="true" pos="70,81,0,0" width="142" height="142" bkimage="res/list/imgUser.png" />
+	<Label name="UserItemName" float="true" pos="0,258,282,337" text="" textcolor="#FFD5DEEB" font="1" align="center" gdiplus="true"/>
+	</VerticalLayout>	
+	</ListContainerElement>
+  </UserListItem>
+  
+ <PresetListItem><!--全景摄像机预置位列表-->   
+	<ListContainerElement name="PresetListItem" height="332" width="532" padding="10,0,10,15" bordercolor="#FE000000" bkcolor="">
+	<VerticalLayout>
+	<Label float="true" pos="1,2,531,331" name="PresetListShotPic" alwayschangebk="true" />
+	<HorizontalLayout height="67">
+	<Button name="BtnSetPresetName" float="true" pos="465,17,0,0" width="50" height="50" pushedimage="res/roomctrl/btnset_down.png" normalimage="res/roomctrl/btnset.png" /> 
+	</HorizontalLayout>
+	<Label  float="true" pos="2,270,0,0" textpadding="18,12,0,0" name="PresetName" text="" height="60" width="529" textcolor="#CCD4DEEB" font="0" gdiplus="true" align="left" bkimage="res/roomctrl/prepossubbk.png"/>
+	</VerticalLayout>
+	</ListContainerElement>
+  </PresetListItem>
+
+  <VedioSourceTouchListItem><!--演示源列表-->   
+	<ListContainerElement width="222" height="528" bordercolor="#FE000000" bkcolor="" padding="5,0,15,5">
+	<Button name="btnSet" float="true" pos="88,0,0,0" width="45" height="45" bkimage="res/roomctrl/btnVedioSel_disable.png" />
+	<Label float="true" pos="110,45,0,0" width="3" height="80" bkcolor="#FEFFFFFF" bkimage="res\roomctrl\VedioSource_normal.png"/>
+	<VerticalLayout name="picLayout" float="true" pos="0,125,0,0" width="222" height="403" bkimage="res\roomctrl\VedioSource_normal.png" >
+	<Label name="vedioItemPic" float="true" pos="40,103,0,0"  text="" height="142" width="142" textcolor="#CCD4DEEB" font="0" gdiplus="true" bkimage="res\roomctrl\screen.png"/>
+	<Label name="vedioItemName"  float="true" pos="0,274,0,0" text="" height="30" width="222" textcolor="#CCD5DEEB" font="0"  align="center" gdiplus="true"/>
+	<Label name="lbvediosrc"  float="true" pos="0,309,0,0" text="" height="30" width="222" textcolor="#4CD5DEEB" font="0"  align="center" gdiplus="true" />
+	</VerticalLayout>
+	</ListContainerElement>
+  </VedioSourceTouchListItem>
+  
+  <VedioSourceListItem><!--演示源列表-->   
+	<ListContainerElement height="70" mouse="false">
+	<HorizontalLayout height="70">
+		<Button name="btnSet" width="45" height="45" bkimage="res/roomctrl/btnVedioSel_disable.png"/>
+		<VerticalLayout>
+			<Label name="vedioItemName" text="" textpadding="28,4,0,0" height="35" align="left" font="1" textcolor="#CCD4DEEB" />
+			<Label name="lbvediosrc" text="" gdiplus="true" textpadding="28,0,0,0" align="left" font="1" textcolor="#4CD5DEEB" />
+		</VerticalLayout>
+	</HorizontalLayout>
+	</ListContainerElement>
+  </VedioSourceListItem>
+  
+  <ShortCutListItem><!--menu项快捷方式列表-->   
+	<ListContainerElement height="197" padding="0,56,25,0" bordercolor="#FE000000">
+	<VerticalLayout>
+	<HorizontalLayout height="128" padding="20,0,0,0">
+	<!--<Label float="true" pos="0,0,0,0"  name="lbPic" text="" height="128" width="128" textcolor="#CCD4DEEB" font="2" gdiplus="true" bkimage="res\logindlg\logo.png"/>-->
+	<!--<CheckBox name="CheckShortCutState" float="true" pos="0,0,0,0" height="128" width="128" />-->
+	<Button name="BtnShortCutState" float="true" pos="0,0,0,0" height="128" width="128" />
+	<Button  name="BtnIsPause" float="true" pos="128,24,0,0"  text="" height="80" width="80" textcolor="#CCD4DEEB" font="2" gdiplus="true" visible="false" />
+	</HorizontalLayout>
+	<HorizontalLayout >
+	<Label name="lbName" text="快捷" textcolor="#CCD4DEEB" font="0" bkimage="" bkcolor="" align="center"/>
+	<Button name="BtnShortCutListSet" visible="true" width="54" height="54" padding="0,8,0,0" pushedimage="res/mainmenu/ListSet.png" normalimage="res/mainmenu/ListSet.png" align="center"/> 
+	</HorizontalLayout>
+	</VerticalLayout>
+	</ListContainerElement>
+  </ShortCutListItem>
+  
+ <ConfMsgListItem><!--通知消息列表-->   
+    <ListContainerElement height="101" bordercolor="#FE000000">
+	 <VerticalLayout>
+      <HorizontalLayout height="100">
+	  <Label name="lbPic" float="true" pos="10,25,0,0" font="0" gdiplus="true" bkimage="res\mainmenu\MsgItem.png" height="50" width="50"/>
+      <Label name="lbMsg" float="true" pos="69,33,0,0" text="" height="30" width="1266"  font="0" gdiplus="true" textcolor="#FED5DEEB"/> 
+	  <Label name="lbTime" text="123456" float="true" pos="1350,33,0,0"  height="60" width="300" font="0" gdiplus="true" textcolor="#FED5DEEB" align="left"/> 
+      </HorizontalLayout> 
+	 <HorizontalLayout height="1" bkcolor="FE3B5980" />
+	 </VerticalLayout>	  
+    </ListContainerElement>
+</ConfMsgListItem>
+ 
+<PolListItem><!--会议轮询条目-->   
+    <ListContainerElement height="63" bordercolor="#FE000000">
+	 <VerticalLayout>
+      <HorizontalLayout height="63">
+	  <Label name="lbPollNum" float="true" pos="0,0,0,0"  height="63" width="82" font="2" gdiplus="true" textcolor="#EE92A7C2" align="center"/>
+      <Label name="lbPollName" float="true" pos="90,0,0,0" height="63" width="437"  font="2" gdiplus="true" textcolor="#FED5DEEB" align="left" textpadding="18,15,0,0"/> 
+      </HorizontalLayout> 
+	 </VerticalLayout>	  
+    </ListContainerElement>
+</PolListItem>
+
+<MixListItem><!--会议混音条目-->   
+    <ListContainerElement name="MixItemContainer" height="63" bordercolor="#FE000000">
+	 <VerticalLayout>
+      <HorizontalLayout height="63">
+	  <Label name="lbMixNum" float="true" pos="0,0,0,0"  height="63" width="82" font="2" gdiplus="true" textcolor="#FED5DEEB" align="center"/>
+      <Label name="lbMixName" float="true" pos="90,0,0,0" height="63" width="437"  font="2" gdiplus="true" textcolor="#FED5DEEB" align="left" textpadding="18,15,0,0"/> 
+      </HorizontalLayout> 
+	 </VerticalLayout>	  
+    </ListContainerElement>
+</MixListItem>
+
+<RollistItem><!--会议点名条目-->   
+    <ListContainerElement height="139" bordercolor="#FE000000">
+	 <VerticalLayout height="139">
+	   <HorizontalLayout >
+	   <Label padding="20,20,0,0" width="100" height="100" name="lbicom" bkimage="res/confctrl/confroll/icon.png"/>
+	   <Label name="lbstateicon" float="true" pos="20,20,0,0" width="100" height="100" bkimage="res/confctrl/confroll/attend.png" visible="true"/>
+       <Label name="lbRollName" float="true" pos="120,0,0,0" width="300" height="139" font="1" padding="10,0,10,0" gdiplus="true" textcolor="#FED5DEEB" align="center" text="" />
+
+	   <Button name="BtnSelect" float="true" pos="420,45,0,0" padding="5,45,21,0" width="50" height="50" normalimage="res/confctrl/confroll/roll_normal.png" pushedimage="res/confctrl/confroll/roll_select.png" visible="false"/>
+		<!--Control name="ctrlpos" float="true" pos="470,0,0,0" width="71" height="139" /-->
+	   <HorizontalLayout name="RollCtrl" float="true" pos="420,0,0,0" width="141" height="139" visible="false">
+	   <Button name="BtnAttend" padding="0,45,0,0" width="50" height="50" normalimage="res/confctrl/confroll/attend_normal.png" pushedimage="res/confctrl/confroll/attend_select.png" />
+		<Button name="BtnAbsent" padding="20,45,21,0" width="50" height="50" normalimage="res/confctrl/confroll/absent_normal.png" pushedimage="res/confctrl/confroll/absent_select.png" />
+		</HorizontalLayout>
+       </HorizontalLayout> 
+	 </VerticalLayout>	  
+    </ListContainerElement>
+</RollistItem>
+
+<ConfScreenListItem><!--本会场设置模拟屏列表-->   
+   <ListContainerElement height="376" width="555" bordercolor="#FE000000" >
+	<VerticalLayout name="ScreenLayout">
+	<Label name="lbScreenBanner" bkcolor="" bkimage="res/roomctrl/prepossubbg.png" width="555" height="68" text="显示器" align="center" textcolor="#FED5DEEB" font="1" visible="false"/>
+	<!--<Label float="true" pos="252,101,0,0" width="112" height="222" bkimage="res/cnsmanage/screenperson.png" />-->
+	<CheckBox name="CheckScreen" text="" float="true" pos="410,300,0,0"  width="124" height="66" normalimage= "res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" />  
+	<Label height="40" name="lbScreenLogo" text="台标" align="center" float="true" pos="30,320,0,0" width="112" height="30" textcolor="#FED5DEEB" font="1"/>
+	</VerticalLayout> 
+   </ListContainerElement>
+</ConfScreenListItem>
+
+<CenterScreenListItem><!--中控电视机-->   
+   <ListContainerElement height="376" width="555" bordercolor="#FE000000" >
+	<VerticalLayout name="ScreenLayout">
+	<Label name="lbScreenBanner" bkcolor="" bkimage="res/roomctrl/prepossubbg.png" width="555" height="68" text="显示器" align="center" textcolor="#FED5DEEB" font="1" visible="false"/>
+	<!--<Label float="true" pos="252,101,0,0" width="112" height="222" bkimage="res/cnsmanage/screenperson.png" />-->
+	<CheckBox name="CheckScreen" text="" float="true" pos="410,300,0,0"  width="124" height="66" normalimage= "res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" />  
+	<Label height="40" name="lbScreenLogo" text="台标" align="center" float="true" pos="30,320,0,0" width="112" height="30" textcolor="#FED5DEEB" font="1"/>
+	</VerticalLayout> 
+   </ListContainerElement>
+</CenterScreenListItem>
+
+<AirConListItem><!--空调模拟屏列表-->   
+   <ListContainerElement height="376" width="555" bordercolor="#FE000000"  drag="true"  drop="true">
+	<VerticalLayout name="AirConLayout">
+	<Label name="lbWindSpeed" float="true" pos="17,25,0,0" height="50" width="50" bkimage="res/centerctrl/windspeed_off.png" gdiplus="true" font="1"/>
+	<Label name="lbAirVolum" float="true" pos="79,25,0,0" height="50" width="50" bkimage="res/centerctrl/airvolume_off.png" gdiplus="true" font="1"/>
+	<CheckBox name="CheckStart" text="" float="true" pos="417,16,0,0"  width="124" height="66" normalimage= "res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" />  
+	
+	<Label name="lbCold" text="制冷" float="true" pos="20,143,0,0" height="30" width="70" align="center" textcolor="#FF5E7591" gdiplus="true" font="1"/>
+	<Label name="lbHot" text="制热"  float="true" pos="20,192,0,0" height="30" width="70" align="center" textcolor="#FF5E7591" gdiplus="true" font="1"/>
+	<Label name="lbWind" text="送风"  float="true" pos="485,143,0,0" height="30" width="70" align="center" textcolor="#FF5E7591" gdiplus="true" font="1"/>
+	<Label name="lbWet" text="除湿"  float="true" pos="485,192,0,0" height="30" width="70" align="center" textcolor="#FF5E7591" gdiplus="true" font="1"/>
+	
+	<Label name="lbDec" float="true" pos="123,125,0,0" height="152" width="78" bkimage="res/centerctrl/0.png" gdiplus="true"/>
+	<Label name="lbNum" float="true" pos="201,125,0,0" height="152" width="78" bkimage="res/centerctrl/0.png" gdiplus="true"/>
+	<Label float="true" pos="279,125,0,0" height="152" width="152" bkimage="res/centerctrl/degree.png" gdiplus="true"/>
+	
+	<Label float="true" pos="20,312,0,0" bkcolor="#FE4B5764" width="515" height="1" align="center" textcolor="#FED5DEEB" gdiplus="true"/>
+	<Label name="lbScreenAircon" text="空调01" float="true" pos="227,333,0,0" width="100" height="30"  align="center" textcolor="#FED5DEEB" gdiplus="true" font="1"/>
+
+	</VerticalLayout> 
+   </ListContainerElement>
+</AirConListItem>
+
+<MicItem><!--麦克风显示列表-->   
+   <VerticalLayout height="256">
+		<HorizontalLayout>
+			<VerticalLayout />
+			<VerticalLayout width="150">
+				<Control />
+				<Button name="micControlBtn" width="150" height="150" normalimage="" bkimage="res/roomctrl/micYes.png" disabledimage="res/roomctrl/micDisable.png"/>
+				<Control />
+			</VerticalLayout>
+			<VerticalLayout />
+		</HorizontalLayout>
+	</VerticalLayout>
+</MicItem>
+
+<MicItemLine><!--麦克风显示列表-->   
+   <VerticalLayout width="1" bkcolor="#FF446183"/>
+</MicItemLine>
+
+  <DateItem> <!--日期-->
+	<ListContainerElement width="50" height="50" padding="0,0,34,8"> 
+		<Text name="lbdate" width="50" height="50" bkimage="" textcolor="#CCD4DEEB" font="1" align="vcenter" gdiplus="true"/>
+	</ListContainerElement>
+  </DateItem>
+  
+  <VideoMixCfgItem> <!--画面合成配置条目  bordercolor="#FEFFFFFF"--> 
+	<ListContainerElement name="VideoMixCfgItem" width="613" height="373" bordersize="0" bkimage="res/confctrl/videomix/4-4bkg.png" >	   
+		<Button name="BtnVidMixAddCns" visible="true" float="true" pos="280,160,0,0" width="52" height="52" normalimage="res/confctrl/videomix/btnAddCns.png" pushedimage="res/confctrl/videomix/btnAddCns_down.png" />
+	   <HorizontalLayout name="MixCtrlLayout" visible="false" >
+		<Button name="BtnFollowSpeaker" float="true" pos="207,87,0,0" width="50" height="50" normalimage="res/confctrl/videomix/btnFolSpk.png" pushedimage="res/confctrl/videomix/btnFolSpk_down.png" />
+		<Button name="BtnFollowDual" float="true" pos="354,87,0,0" width="50" height="50" normalimage="res/confctrl/videomix/btnFolDual.png" pushedimage="res/confctrl/videomix/btnFolDual_down.png" />
+		<Button name="BtnMixSelCns" float="true" pos="207,234,0,0" width="50" height="50" normalimage="res/confctrl/videomix/btnSelCns.png" pushedimage="res/confctrl/videomix/btnSelCns_down.png" />
+		<Button name="BtnMixDelete" float="true" pos="354,234,0,0" width="50" height="50" normalimage="res/confctrl/videomix/btnDelete.png" pushedimage="res/confctrl/videomix/btnDelete_down.png" />
+	   </HorizontalLayout>	
+	   <HorizontalLayout name="MixinfoLayout" visible="false" >
+		<Label name="labMixImg" float="true" pos="266,127,0,0" width="80" height="80" bkimage="res/confctrl/videomix/imgSelCns.png" />
+		<Label name="txtMixName" float="true" pos="56,210,0,0" width="500" height="35" align="center" endellipsis="true" font="1" textcolor="#CCD4DEEB" />
+		<Label name="txtSrceenIndex" float="true" pos="56,250,0,0" width="500" height="35" align="center" font="1" textcolor="#CCD4DEEB" />
+	   </HorizontalLayout>
+	   <Button name="BtnVideoMixCfg" visible="true" float="true" width="48" height="48" pos="7,6,0,0" normalimage="res/confctrl/cfgitem.png" pushedimage="res/confctrl/cfgitem_down.png" /> 
+	</ListContainerElement>
+  </VideoMixCfgItem>
+  
+   <VideoMixAutoItem> <!--画面合成配置-自动条目-->
+	<ListContainerElement name="VideoMixAutoItem" width="1225" height="745" bkimage="res/confctrl/videomix/1-1bkg.png" >
+		<Label visible="true" width="1225" height="745" text="自 动" textcolor="#CCD4DEEB" font="1" align="center" gdiplus="true" /> 
+	</ListContainerElement>
+  </VideoMixAutoItem>
+  
+  <VideoMixStyleItem> <!--画面合成风格条目-->
+	<ListContainerElement name="VideoMixStyleItem" width="316" height="178" padding="0,0,13,13" >
+		<Label name="MixStyleImg" padding="1,1,1,1" width="314" height="176" bkimage="" />
+	</ListContainerElement>
+  </VideoMixStyleItem>
+  
+ <DiscussListItem><!--会议讨论列表条目-->   
+	<ListContainerElement name="DiscussListItem" height="300" width="478" padding="0,0,0,0">
+	<VerticalLayout>
+	<!--
+	<Button name="BtnSet" float="true" pos="10,10,0,0" width="50" height="50" focusedimage="res/roomctrl/btnset_down.png" pushedimage="res/roomctrl/btnset_down.png" normalimage="res/roomctrl/btnset.png" /> 
+	-->
+	<HorizontalLayout name="NoSelLayout" visible="false">
+		<Button name="BtnAdd" float="true" pos="216,126,0,0" height="52" width="52" pushedimage="res/confctrl/confdiscuss/add_select.png" normalimage="res/confctrl/confdiscuss/add_normal.png"/>
+	</HorizontalLayout> 
+	
+	<HorizontalLayout name="NormalLayout" >
+		<Label name="lbImg" float="true" pos="170,50,0,0" height="142" width="142" bkimage="res/confctrl/confdiscuss/discuss.png"/>
+		<Label name="lbconfName" float="true" pos="0,220,0,0" text="" height="60" width="478" textcolor="#CCD4DEEB" font="0" gdiplus="true" align="center" />
+	</HorizontalLayout> 
+	
+	<HorizontalLayout name="SetLayout" visible="false" float="true" pos="50,100,0,0" height="100" width="378">
+		<Control />
+		<Button name="btnChange" height="100" width="100" focusedimage="res/confctrl/confdiscuss/change_select.png" pushedimage="res/confctrl/confdiscuss/change_select.png" normalimage="res/confctrl/confdiscuss/change_normal.png"/>
+		<Control name="ctlSpeaker" width="39"/>
+		<Button name="btnSpeaker" height="100" width="100" focusedimage="res/confctrl/confdiscuss/appoint_select.png" pushedimage="res/confctrl/confdiscuss/appoint_select.png" normalimage="res/confctrl/confdiscuss/appoint_normal.png"/>
+		<Control width="39"/>
+		<Button name="btnDelDisc" height="100" width="100" focusedimage="res/confctrl/confdiscuss/del_select.png" pushedimage="res/confctrl/confdiscuss/del_select.png" normalimage="res/confctrl/confdiscuss/del_normal.png"/>
+		<Control />
+    </HorizontalLayout> 
+		
+	</VerticalLayout>
+	</ListContainerElement>
+ </DiscussListItem>
+
+  <TvWallCfgItem><!--电视墙配置条目  bordercolor="#FEFFFFFF"-->
+    <ListContainerElement name="TvWallCfgItem" width="247" height="150" bordersize="0" padding="2,0,0,2" bkimage="res/confctrl/videomix/25-25bkg.png">
+      <HorizontalLayout name="SetTvWallLayout" visible="false" >
+        <Button name="BtnSetVoice" float="true" pos="140,50,0,0" width="50" height="50" normalimage="res/confctrl/tvwall/vol_normal.png" pushedimage="res/confctrl/tvwall/vol_select.png" />
+        <Button name="BtnMuteView" float="true" pos="73,50,0,0" width="50" height="50" normalimage="res/confctrl/tvwall/mute_normal.png" pushedimage="res/confctrl/tvwall/mute_select.png" />
+      </HorizontalLayout>
+      
+      <Label name="imgTvWallQuiet" visible="true" float="true" pos="190,10,0,0" width="40" height="40" bkimage="res/list/imgQuiet.png" />
+
+      <Button name="BtnDelete" visible="false" float="true" pos="73,83,0,0" width="50" height="50" normalimage="res/confctrl/videomix/btnDelete.png" pushedimage="res/confctrl/videomix/btnDelete_down.png" />
+      <HorizontalLayout name="MuteViewLayout" visible="false" >
+        <Button name="BtnDelView1" float="true" pos="63,16,0,0" width="50" height="50" normalimage="res/confctrl/videomix/btnDelete.png" pushedimage="res/confctrl/videomix/btnDelete_down.png" />
+        <Label name="LebSrceen1" float="true" pos="54,38,0,0" width="57" height="22" textcolor="DEDDEEB" text="" font="2" align ="center"/>
+		<Button name="BtnAdd1" textcolor="DEDDEEB" textpadding="52,14,11,36" align="center" text ="" font="2" endellipsis="true" float="true" pos="2,2,0,0" width="120" height="72" normalimage="res/confctrl/videomix/25-25bkg.png" pushedimage="res/confctrl/tvwall/bg.png" />
+        <Label name="TxtDesc1" float="true" pos="119,56,0,0" width="10" height="17" visible="true" align ="center" font="4" textcolor="#DEDDEEB" text="1"/>
+        
+        <Button name="BtnDelView2" float="true" pos="150,16,0,0" width="50" height="50" normalimage="res/confctrl/videomix/btnDelete.png" pushedimage="res/confctrl/videomix/btnDelete_down.png" />
+        <Label name="LebSrceen2" float="true" pos="136,38,0,0" width="98" height="22" textcolor="DEDDEEB" text="" font="2" align ="center"/>
+		<Button name="BtnAdd2" textcolor="DEDDEEB" textpadding="11,14,11,36" align="center" text ="" font="2" endellipsis="true" float="true" pos="125,2,0,0"  width="120" height="72" normalimage="res/confctrl/videomix/25-25bkg.png" pushedimage="res/confctrl/tvwall/bg.png" />
+        <Label name="TxtDesc2" float="true" pos="134,56,0,0" width="10" height="17" visible="true" align ="center" font="4" textcolor="#DEDDEEB" text="2"/>
+        
+        <Button name="BtnDelView3" float="true" pos="63,81,0,0" width="50" height="50" normalimage="res/confctrl/videomix/btnDelete.png" pushedimage="res/confctrl/videomix/btnDelete_down.png" />
+        <Label name="LebSrceen3" float="true" pos="54,113,0,0" width="57" height="22" textcolor="DEDDEEB" text="" font="2" align ="center"/>
+		<Button name="BtnAdd3" textcolor="DEDDEEB" textpadding="52,14,11,36" align="center" text ="" font="2" endellipsis="true" float="true" pos="2,77,0,0"  width="120" height="72" normalimage="res/confctrl/videomix/25-25bkg.png" pushedimage="res/confctrl/tvwall/bg.png" />
+        <Label name="TxtDesc3" float="true" pos="119,77,0,0" width="10" height="17" visible="true" align ="center" font="4" textcolor="#DEDDEEB" text="3"/>
+        
+        <Button name="BtnDelView4" float="true" pos="150,81,0,0" width="50" height="50" normalimage="res/confctrl/videomix/btnDelete.png" pushedimage="res/confctrl/videomix/btnDelete_down.png" />
+        <Label name="LebSrceen4" float="true" pos="136,113,0,0" width="98" height="22" textcolor="DEDDEEB" text="" font="2" align ="center"/>
+		<Button name="BtnAdd4" textcolor="DEDDEEB" textpadding="11,14,11,36" align="center" text ="" font="2" endellipsis="true" float="true" pos="125,77,0,0"  width="120" height="72" normalimage="res/confctrl/videomix/25-25bkg.png" pushedimage="res/confctrl/tvwall/bg.png" />
+        <Label name="TxtDesc4" float="true" pos="134,77,0,0" width="10" height="17" visible="true" align ="center" font="4" textcolor="#DEDDEEB" text="4"/>
+        
+        <Button name="BtnCancelMuteView" float="true" pos="11,55,0,0" width="50" height="50" normalimage="res/confctrl/tvwall/cancelmute_normal.png" pushedimage="res/confctrl/tvwall/cancelmute_select.png" />
+      </HorizontalLayout>
+      
+      <HorizontalLayout name="ChannelDisabledLayout" visible="false">
+        <Button name="BtnEnable" float="true" pos="61,63,0,0" enabled="false" width="24" height="24" normalimage="res/confctrl/tvwall/disible.png" />
+        <Label name="LebDescribe" float="true" pos="94,75,0,0" width="127" height="30" visible="true" font="2" textcolor="#FFD5DEEB" text="" align="center" gdiplus="true"/>
+		<Text name="TxtDescribe" float="true" pos="94,45,0,0" width="127" height="30" visible="true" font="2" textcolor="#FFD5DEEB" text="通道1" align="center|vcenter" endellipsis="true" gdiplus="true"/>
+      </HorizontalLayout>
+
+      <Button name="BtnTvWallSet" visible="true" float="true" width="48" height="48" pos="10,10,0,0" normalimage="res/confctrl/cfgitem.png" pushedimage="res/confctrl/cfgitem_down.png" />
+    </ListContainerElement>
+  </TvWallCfgItem>
+  
+  <MatrixInfoListItem><!--矩阵控制条目-->
+    <ListContainerElement name="MatrixInfoListItem" width="1280" height="110">
+		<TouchList name="MatrixInfoList" width="160" listdrag="false" autolayout="false" />
+        <!--CheckBox name="OptIsUseful" float="true" pos="48,23" width="64" height="64" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" /-->
+    </ListContainerElement>
+  </MatrixInfoListItem>
+  
+  <MatrixListItem><!--矩阵控制条目-->
+    <ListContainerElement name="MatrixListItem" width="160" height="110" bordersize="1" bordercolor="ff8baecc" bkcolor="ff0f3f78">
+        <CheckBox name="OptIsUseful" float="true" pos="48,23" width="64" height="64" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
+    </ListContainerElement>
+  </MatrixListItem>
+  
+  <MatrixListHeaderItem><!--矩阵控制条目头-->
+    <ListContainerElement width="160" height="110" bordersize="1" bordercolor="ff8baecc" bkcolor="ff35649d">
+		<Label name="MatrixListHeadItem" text="" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true"/>
+	</ListContainerElement>
+  </MatrixListHeaderItem>
+  
+</subcontrol>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PageConfMix>
+  <HorizontalLayout name="ConfMixLayout" >
+ 
+ <HorizontalLayout  name="maixctrlLayout" padding="773,297,0,0" width="537" height="374" >
+    <Button name="BtnConfMixStart" float="true" pos="0,0,0,0" width="374" height="374" normalimage="res/confctrl/confmix/start_normal.png" pushedimage="res/confctrl/confmix/start_select.png"  />
+</HorizontalLayout>	
+
+ <HorizontalLayout name="listctrlLayout" padding="59,140,0,0" width="684" height="718" visible="false" >	
+	<HorizontalLayout float="true" pos="0,0,0,0" width="550" height="64" bkimage="res/confctrl/confpoll/PolllistTitle.png" > 
+	 <Label text="序号" float="true" pos="0,0,0,0" width="80" height="64" textcolor="#CC92A7C2" font="2" align="center" />
+	 <Label text="会场名称" float="true" pos="81,0,0,0" width="470" height="64" textcolor="#CC92A7C2" font="2" align="center" />
+	</HorizontalLayout>
+	<VerticalLayout float="true" pos="0,64,0,0" width="550" height="654" bkimage="res/confctrl/confpoll/PolllistBody.png">
+	<List name="MixList" padding="0,0,0,20" bkcolor="" vscrollbar="true" hscrollbar="false" itemselectedbkcolor="#FF379FDB" itemhotbkcolor=""  itemtextcolor="#FED5DEEB" itemdisabledtextcolor="" itemselectedtextcolor="#FF379FDB"/>
+	</VerticalLayout>
+	<VerticalLayout float="true" pos="580,246,0,0" width="104" height="227" >
+	<Button name="BtnAddMix" padding="0,0,0,19" width="104" height="104" text="" normalimage="res\confctrl\confpoll\add_normal.png" pushedimage="res\confctrl\confpoll\add_select.png"/>
+	<Button name="BtnDelMix" padding="0,0,0,19" width="104" height="104" text="" normalimage="res\confctrl\confpoll\del_normal.png" pushedimage="res\confctrl\confpoll\del_select.png"enabled="false" disabledimage="res\confctrl\confpoll\del_disable.png"/>
+	</VerticalLayout>
+</HorizontalLayout>		
+
+    <Case name="caseShowListLayout">	
+		<listctrlLayout visible="true"/> 
+		<maixctrlLayout padding="383,297,0,0"/> 
+    </Case>
+	<Case name="caseShowNoListLayout">	
+		<listctrlLayout visible="false"/> 
+		<maixctrlLayout padding="773,297,0,0"/> 
+    </Case>
+	
+	<Label text="混音模式" float="true" pos="336,928,0,0" width="100" height="45" textcolor="#CCD5DEEB" font="0" align="center"/>
+	<Option name="OpAutoMix" float="true" pos="479,928,0,0" width="45" height="45" group="MixMod" padding="0,0,0,0" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png"  selected="true" />
+	<Label text="智能混音" float="true" pos="551,932,0,0" width="100" height="45" textcolor="#CCD5DEEB" font="0" align="left"/>
+	<Option name="OpManMix" float="true" pos="773,928,0,0" width="45" height="45" group="MixMod" padding="0,0,0,0" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png"  />
+	<Label text="定制混音" float="true" pos="845,932,0,0" width="100" height="45" textcolor="#CCD5DEEB" font="0" align="left" />
+	
+	<Label text="创建快捷操作" float="true" pos="1129,918,0,0" width="150" height="66" textcolor="#CCD5DEEB" font="0" align="center" />
+	<CheckBox name="CheckConfMixShortCut" float="true" pos="1429,918,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
+	
+	
+	<VerticalLayout name="PageMixSelConfList" float="true" pos="0,0,1920,1121" visible="false" bkimage="res/public/subpopbg.png">  
+		<HorizontalLayout height="126" >		
+			<Edit nativebkcolor="#FF080C16" name="EdtMixSearch" tiptext="请输入名称进行搜索" float="true" pos="27,30,0,0" width="1023" height="60" textcolor="#FED4DEEB" font="1"  menu="true" gdiplus="true" />
+			<Label name="" width="1069" height="1" float="true" pos="27,89,0,0" bkcolor="#FF4B5764" /> 
+			<Button name="BtnMixSearch" float="true" pos="1050,30,0,0" width="60" height="60" align="center" normalimage="res\public\search.png" pushedimage="res\public\search_down.png"/>		
+			<Button name="BtnMixSelAll" padding="1130,28,0,0" width="149" height="64" text="全 选" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			<Button name="BtnMixSelOK"  padding="20,28,0,0" width="149" height="64" text="确 定" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>	
+			<Button name="BtnMixSelCancel" padding="20,28,0,0" width="149" height="64" text="返 回" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+		</HorizontalLayout>
+			
+		<TouchList name="MixCnsConfList" float="true"  pos="88,180,0,0" width="1767" height="800" vscrollbar="true" columns="6" itemselectedimage="res\list\item_sel.png" itembkimage="res\list\item_normal.png" itemdisabledimage="res\list\item_disabled.png">
+		</TouchList>	
+
+	</VerticalLayout>
+	
+  </HorizontalLayout>
+</PageConfMix>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<index>
+<!--index下配置窗口索引 file-窗口对应xml文件   logic-窗口逻辑类名  parent-父窗口名  style(frame|dialog|child)风格,默认frame-->
+  <cnc file="mainframe.xml" logic="CMainFrameLogic|CLoginLogic|CCnsManageLogic" style="frame" />
+  <MainMenu file="mainmenu.xml" logic="CMainMenuLogic" parent="cnc" style="child" />
+  <AddrBookDlg file="addrbook.xml" logic="CAddrBookLogic" parent="cnc" style="child" />
+  <ConfTempDlg file="conftemp.xml" logic="CConfTempLogic" parent="cnc" style="child" />
+  <RegServiceDlg file="regservice.xml" logic="CRegServiceLogic" parent="cnc" style="child" />  
+  <RoomControlDlg file="roomcontrol.xml" logic="CRoomCtrlLogic|CPanCamLogic|CCenterCtrlLogic|CCenterMonitorLogic|CMatrixLogic" parent="cnc" style="child" />  
+  <ConfCtrlDlg file="confctrl.xml" logic="CConfCtrlLogic|CVideoMixLogic|CAudMixLogic|CConfPollLogic|CConfRollLogic|CConfMixLogic|CTvWallLogic|CCameraControlLogic" parent="cnc" style="child" /> 
+  <AddrEditDlg file="addredit.xml" logic="CAddrEditLogic" parent="cnc" style="child" />
+  <UserManagerDlg file="usermanager.xml" logic="CUserManagerLogic" parent="cnc" style="child" />  
+  <UserDefinedDlg file="userdefined.xml" logic="CUserDefinedLogic" parent="cnc" style="child" />  
+  <ConfCallCfgDlg file="confcallcfg.xml" logic="CConfCallCfgLogic" parent="cnc" style="child" /> 
+  <ConfMsgDlg file="confmsg.xml" logic="CConfMsgDlgLogic" parent="cnc" style="child" /> 
+  <SysConfigDlg file="syscfg.xml" logic="CSysConfigLogic" parent="cnc" style="child" /> 
+  <LocalRoomCfgDlg file="localroomcfg.xml" logic="CLocalRoomCfgLogic" parent="cnc" style="child" /> 
+  <SrcSelWatchDlg file="srcselwatch.xml" logic="CSrcSelWatchLogic" parent="cnc" style="child" /> 
+  <DualViewDlg file="dualview.xml" logic="CDualViewLogic" parent="cnc" style="child" /> 
+  <MessageBoxDlg file="messagebox.xml" logic="CMessageBoxLogic" parent="cnc" style="dialog" /> 
+  <CalendarDlg file="calendar.xml" logic="CCalendarLogic" parent="cnc" style="dialog" /> 
+  <ReconnectBox file="reconnectbox.xml" logic="CReconnectLogic" parent="cnc" style="dialog" />
+  <!--CenterControlDlg file="centercontrol.xml" logic="CCenterCtrlLogic|CCenterMonitorLogic" parent="cnc" style="child" /-->
+  <ContentReqDlg file="contentreq.xml" logic="CContentReqLogic" parent="cnc" style="child" />  
+</index>

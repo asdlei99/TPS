@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pageconfroll>
+  <VerticalLayout name="confrollLayout" >
+
+  	<VerticalLayout name="Rollerbg" float="true" pos="395,239,0,0" width="360" height="410" bkimage="res/list/item_disabled.png" borderround="20,20" bkcolor="">
+	<Label name="UserItemPic" float="true" pos="109,76,0,0" width="142" height="142" bkimage="res\confctrl\confroll\roller.png" />
+	<Label name="lbRollerName" float="true" pos="15,150,345,410" text="点名人" textcolor="#FFD5DEEB" font="1" align="center" gdiplus="true"/>
+	</VerticalLayout>		
+	
+	<HorizontalLayout float="true" pos="755,418,0,0" width="136" height="76" >
+	<Label float="true" pos="0,38,0,0" width="60" height="1" bkimage="res/confctrl/confpoll/HorLine.png" />	
+	<Button name="BtnAddRoller" float="true" pos="60,0,0,0" width="76" height="76" normalimage="res\confctrl\confroll\add_normal.png" pushedimage="res\confctrl\confroll\add_select.png" />		
+	</HorizontalLayout>
+	
+	
+	<HorizontalLayout float="true" pos="429,926,0,0" width="1200" height="66" >
+	<Label text="创建快捷操作" float="true" pos="0,0,0,0" width="140" height="66" textcolor="#CCD5DEEB" font="0" align="center" />
+	<CheckBox name="CheckConfrollShortCut" float="true" pos="300,0,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
+	
+	<Label text="开启会议点名" float="true" pos="760,0,0,0" width="140" height="66" textcolor="#CCD5DEEB" font="0" align="center" />
+	<CheckBox name="CheckStartConfroll" float="true" pos="1060,0,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" enabled="false"/>		
+	</HorizontalLayout>
+	
+	<VerticalLayout float="true" pos="1170,36,0,0" width="577" height="890" >
+	   <Label float="true" pos="16,0,0,0"  height="40" width="150" font="2" textcolor="#FED5DEEB" align="left" text="被点名人列表"/> 
+	  <VerticalLayout float="true" pos="0,46,0,0" width="577" height="819" bkimage="res/confctrl/confroll/rollee_bg.png">
+	  <List name="RollList" padding="2,0,0,5" header="hidden" vscrollbar="true" hscrollbar="false" itemselectedbkcolor="#FF379FDB" itemdisabledbkcolor="#FF40546C" itemhotbkcolor=""  itemtextcolor="#CCD5DEEB" itemdisabledtextcolor="" itemselectedtextcolor="#FFFFFFFF">	  
+	  </List>
+	  </VerticalLayout>
+	</VerticalLayout>
+	
+	<VerticalLayout float="true" pos="1779,87,0,0" width="76" height="819" >
+	<Button name="BtnRollAdd" padding="0,0,0,30" width="76" height="76" text="" normalimage="res\confctrl\confroll\add_normal.png" pushedimage="res\confctrl\confroll\add_select.png" disabledimage="res\confctrl\confroll\add_disable.png" />
+	<Button name="BtnRollTop" padding="0,0,0,30" width="76" height="76" text="" normalimage="res\confctrl\confroll\top_normal.png" pushedimage="res\confctrl\confroll\top_select.png"disabledimage="res\confctrl\confroll\top_disable.png" enabled="false"/>
+	<Button name="BtnRollUp" padding="0,0,0,30" width="76" height="76" text="" normalimage="res\confctrl\confroll\up_normal.png" pushedimage="res\confctrl\confroll\up_select.png" disabledimage="res\confctrl\confroll\up_disable.png" enabled="false"/>
+	<Button name="BtnRollDown" padding="0,0,0,30" width="76" height="76" text="" normalimage="res\confctrl\confroll\down_normal.png" pushedimage="res\confctrl\confroll\down_select.png" disabledimage="res\confctrl\confroll\down_disable.png" enabled="false"/>
+	<Button name="BtnRollBottom" padding="0,0,0,30" width="76" height="76" text="" normalimage="res\confctrl\confroll\bottom_normal.png" pushedimage="res\confctrl\confroll\bottom_select.png" disabledimage="res\confctrl\confroll\bottom_disable.png" enabled="false"/>
+	<Button name="BtnPreConf" padding="0,0,0,30" width="76" height="76" text="" normalimage="res\confctrl\confroll\pre_normal.png" pushedimage="res\confctrl\confroll\pre_select.png" disabledimage="res\confctrl\confroll\pre_disable.png" enabled="false"/>
+	<Button name="BtnNextConf" padding="0,0,0,30" width="76" height="76" text="" normalimage="res\confctrl\confroll\nect_normal.png" pushedimage="res\confctrl\confroll\next_select.png" disabledimage="res\confctrl\confroll\next_disable.png" enabled="false"/>
+	<Button name="BtnRollDel" width="76" height="76" text="" normalimage="res\confctrl\confroll\del_normal.png" pushedimage="res\confctrl\confroll\del_select.png" disabledimage="res\confctrl\confroll\del_disable.png" enabled="false"/>
+	</VerticalLayout>
+	
+	<VerticalLayout name="PageRollSelConfList" float="true" pos="0,0,1920,1121" visible="false" bkimage="res/public/subpopbg.png">  
+		<HorizontalLayout height="126" >		
+			<Edit nativebkcolor="#FF080C16" name="EdtRollPSearch" tiptext="请输入名称进行搜索" padding="27,30,0,0" width="1023" height="60" textcolor="#FED4DEEB" font="1"  menu="true" gdiplus="true" />
+			<Label name="" width="1069" height="1" float="true" pos="27,89,0,0" bkcolor="#FF4B5764" /> 
+			<Button name="BtnRollPSearch" float="true" pos="1050,30,0,0" width="60" height="60" align="center" normalimage="res\public\search.png" pushedimage="res\public\search_down.png"/>
+			<Control width="60"/>
+			<Button name="BtnRollPSelAll" padding="20,28,0,0" width="149" height="64" text="全 选" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			<Button name="BtnRollPSelOK"  padding="20,28,0,0" width="149" height="64" text="确 定" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>	
+			<Button name="BtnRollPSelCancel" padding="20,28,0,0" width="149" height="64" text="返 回" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>			
+		</HorizontalLayout>
+			
+		<TouchList name="RollCnsConfList" float="true"  pos="88,180,0,0" width="1767" height="800" vscrollbar="true" columns="6" itemselectedimage="res\list\item_sel.png" itembkimage="res\list\item_normal.png" itemdisabledimage="res\list\item_disabled.png">
+		</TouchList>	
+
+	</VerticalLayout>
+	
+  </VerticalLayout>
+</Pageconfroll>

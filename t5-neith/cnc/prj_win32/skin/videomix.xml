@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<PageVideoMix>
+  <VerticalLayout name="VideoMixLayout" > 
+	<Combo name="ComboSelMix" text="画面合成器" float="true" pos="40,40,0,0" align="center"  width="286" height="63" dropboxsize="285,350" gdiplus="true" normalimage="res\roomctrl\ComboCam_normal.png" itemselectedimage="res\roomctrl\combo\sel.png" pushedimage="res\roomctrl\ComboCam_down.png" vscrollbar="false" hscrollbar="false" itemalign="center" itemfont="1" itemheight="64" align="center" font="1" textcolor="#CCD4DEEB"   dropboxInterspace="6" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FFFFFFFF"  MosPopBoxBk="res\roomctrl\combo" itemtextpadding="0,10,0,10" inset="0,20,0,20" itemhottextcolor="#FF00FFFF" itemselectedbkcolor="" itemhotbkcolor="" >
+    </Combo>
+	
+	<Button name="BtnSaveVmpCfg" text="保存预案" float="true" font="1" pos="40,133,0,0" width="286" height="63" normalimage="res\roomctrl\ComboCam_normal.png" pushedimage="res\roomctrl\ComboCam_down.png" />
+	<Button name="BtnCallVmpCfg" text="调用预案" float="true" font="1" pos="40,226,0,0" width="286" height="63" normalimage="res\roomctrl\ComboCam_normal.png" pushedimage="res\roomctrl\ComboCam_down.png" />
+    
+	<VerticalLayout name="VideoMixCfgLayout" float="true" pos="442,42,0,0" width="1225" height="745" >
+	  <TouchList name="MixCfgList" width="1225" height="745" vscrollbar="false">
+	  </TouchList>
+	</VerticalLayout>
+	
+	<Button name="BtnDeleteAll" float="true" pos="242,366,0,0" width="92" height="92" normalimage="res/confctrl/videomix/btnDelAll.png" pushedimage="res/confctrl/videomix/btnDelAll_down.png" />	
+	
+	<Label text="画面合成风格" float="true" pos="241,822,0,0" width="293" height="66" textcolor="#CCD5DEEB" font="0" align="left" textpadding="0,15,0,0"/>
+	<Button name="BtnChooseMixStyle" text="自动" float="true" font="1" pos="541,822,0,0" width="297" height="64" normalimage="res/confctrl/videomix/btnChooseStyle.png" pushedimage="res/confctrl/videomix/btnChooseStyle_down.png" />	
+	<Label text="开启画面合成器" float="true" pos="1023,822,0,0" width="293" height="66" textcolor="#CCD5DEEB" font="0" align="left" textpadding="0,15,0,0"/>
+	<CheckBox name="CheckOpenVidMix" enabled="false" float="true" pos="1316,822,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
+	<Label text="画面合成广播" float="true" pos="241,920,0,0" width="293" height="66" textcolor="#CCD5DEEB" font="0" align="left" textpadding="0,15,0,0"/>
+	<CheckBox name="CheckMixBroadcast" enabled="false" float="true" pos="541,920,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
+	<Label text="创建快捷操作" float="true" pos="1023,920,0,0" width="293" height="66" textcolor="#CCD5DEEB" font="0" align="left" textpadding="0,15,0,0"/>
+	<CheckBox name="CheckVideoMixShortCut" float="true" pos="1316,920,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
+	
+	<Case name="caseVidMixSelMix">	
+		<CheckOpenVidMix enabled="true"/>
+		<CheckMixBroadcast enabled="true"/>	
+	</Case>
+	<Case name="caseVidMixNoSelMix">	
+		<CheckOpenVidMix enabled="false"/>
+		<CheckMixBroadcast enabled="false"/>
+	</Case>
+	
+	<Case name="caseVidMixOn">	
+		<MixCfgList enabled="true"/>
+	</Case>
+	<Case name="caseVidMixOff">	
+		<MixCfgList enabled="false"/>
+	</Case>
+	
+	<Case name="caseVidMixNormal">	
+		<BtnVidMixAddCns visible="true"/>
+		<MixinfoLayout visible="false"/>
+		<MixCtrlLayout visible="false"/>	
+	</Case>
+	<Case name="caseVidMixCtrl">	
+		<BtnVidMixAddCns visible="false"/>
+		<MixinfoLayout visible="false"/>	
+		<MixCtrlLayout visible="true"/>
+	</Case>
+	<Case name="caseVidMixInfo">	
+		<BtnVidMixAddCns visible="false"/>
+		<MixCtrlLayout visible="false"/>
+		<MixinfoLayout visible="true"/>		
+	</Case>
+	
+	<Case name="caseVidMixAutoStyle">	
+		<BtnVideoMixCfg visible="false"/>
+		<BtnVidMixAddCns enabled="false"/>
+	</Case>
+	
+	<Case name="caseVidMixItem1">	
+		<VideoMixCfgItem width="1225" height="745" bkimage="res/confctrl/videomix/1-1bkg.png"/>
+		<BtnVidMixAddCns pos="586,347,0,0"/>
+		<BtnFollowSpeaker pos="514,274,0,0" />
+		<BtnFollowDual pos="661,274,0,0" />
+		<BtnMixSelCns pos="514,421,0,0" />
+		<BtnMixDelete pos="661,421,0,0" />
+		<labMixImg pos="572,308,0,0" />
+		<txtMixName pos="112,393,0,0" width="1000" />
+		<txtSrceenIndex pos="112,428,0,0" width="1000" />		
+	</Case>
+	<Case name="caseVidMixItem9">	
+		<VideoMixCfgItem width="409" height="249" bkimage="res/confctrl/videomix/9-9bkg.png"/>
+		<BtnVidMixAddCns pos="178,98,0,0"/>
+		<BtnFollowSpeaker pos="126,45,0,0" />
+		<BtnFollowDual pos="233,45,0,0" />
+		<BtnMixSelCns pos="126,152,0,0" />
+		<BtnMixDelete pos="233,152,0,0" />
+		<labMixImg pos="164,68,0,0" />
+		<txtMixName pos="14,150,0,0" width="380" />
+		<txtSrceenIndex pos="14,185,0,0" width="380" />
+	</Case>
+	<Case name="caseVidMixItem16">	
+		<VideoMixCfgItem width="307" height="187" bkimage="res/confctrl/videomix/16-16bkg.png"/>
+		<BtnVidMixAddCns pos="127,67,0,0"/>
+		<BtnFollowSpeaker pos="85,25,0,0" />
+		<BtnFollowDual pos="172,25,0,0" />
+		<BtnMixSelCns pos="85,112,0,0" />
+		<BtnMixDelete pos="172,112,0,0" />
+		<labMixImg pos="113,33,0,0" />
+		<txtMixName pos="4,115,0,0" width="300" height="25"/>
+		<txtSrceenIndex pos="4,140,0,0" width="300" height="25"/>
+	</Case>
+	<Case name="caseVidMixItem25">	
+		<VideoMixCfgItem width="246" height="150" bkimage="res/confctrl/videomix/25-25bkg.png"/>
+		<BtnVidMixAddCns pos="96,48,0,0"/>
+		<BtnFollowSpeaker pos="71,14,0,0" />
+		<BtnFollowDual pos="140,14,0,0" />
+		<BtnMixSelCns pos="71,83,0,0" />
+		<BtnMixDelete pos="140,83,0,0" />
+		<labMixImg pos="83,17,0,0" />
+		<txtMixName pos="3,90,0,0" width="240" height="25"/>
+		<txtSrceenIndex pos="3,115,0,0" width="240" height="25"/>
+	</Case>
+	<Case name="caseVidMixItem2">	
+		<VideoMixCfgItem width="1225" height="745" bkimage="res/confctrl/videomix/2-2bkg.png"/>
+		<BtnVidMixAddCns pos="281,347,0,0"/>
+		<BtnFollowSpeaker pos="208,274,0,0" />
+		<BtnFollowDual pos="355,274,0,0" />
+		<BtnMixSelCns pos="208,421,0,0" />
+		<BtnMixDelete pos="355,421,0,0" />
+		<labMixImg pos="266,308,0,0" />
+		<txtMixName pos="16,393,0,0" width="580" />
+		<txtSrceenIndex pos="16,428,0,0" width="580" />
+	</Case>
+	<Case name="caseVidMixItem8">	
+		<VideoMixCfgItem width="921" height="560" bkimage="res/confctrl/videomix/8-8bkg.png"/>
+		<BtnVidMixAddCns pos="433,254,0,0"/>
+		<BtnFollowSpeaker pos="361,181,0,0" />
+		<BtnFollowDual pos="508,181,0,0" />
+		<BtnMixSelCns pos="361,328,0,0" />
+		<BtnMixDelete pos="508,328,0,0" />
+		<labMixImg pos="420,216,0,0" />
+		<txtMixName pos="10,300,0,0" width="900" />
+		<txtSrceenIndex pos="10,335,0,0" width="900" />
+	</Case>
+	
+	<Case name="caseMixShowScreenOption">	
+		<BtnMixShowScreen visible="false"/> 
+		<BtnMixHideScreen visible="true"/> 
+		<MiximgAddrLabel visible="false"/> 
+		<MixAddrEntryName pos="24,18,217,81"/> 
+		<MixScreenSlectList visible="true"/> 
+		<BtnMixRoomSel visible="false"/>
+    </Case>
+	<Case name="caseMixHideScreenOption">	
+		<BtnMixShowScreen visible="true"/> 
+		<BtnMixHideScreen visible="false"/> 
+		<MiximgAddrLabel visible="true"/> 
+		<MixAddrEntryName pos="0,258,282,321"/> 
+		<MixScreenSlectList visible="false"/> 
+		<BtnMixRoomSel visible="true"/>
+    </Case>
+	
+	<VerticalLayout name="PageVidMixSelConfList" float="true" pos="0,0,1920,1121" visible="false" bkimage="res/public/subpopbg.png">  
+		<HorizontalLayout height="126" >		
+			<Edit nativebkcolor="#FF080C16" name="EdtSearch" tiptext="请输入名称进行搜索" float="true" pos="27,30,0,0" width="1023" height="60" textcolor="#FED4DEEB" font="1"  menu="true" gdiplus="true" />
+			<Label name="" width="1069" height="1" float="true" pos="27,89,0,0" bkcolor="#FF4B5764" /> 
+			<Button name="BtnVidMixSearch" float="true" pos="1050,30,0,0" width="60" height="60" align="center" normalimage="res\public\search.png" pushedimage="res\public\search_down.png"/>				
+			<Button name="BtnVidMixSelAll" padding="1130,28,0,0" width="149" height="64" text="全 选" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			<Button name="BtnVidMixSelOK"  padding="20,28,0,0" width="149" height="64" text="确 定" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>	
+			<Button name="BtnVidMixSelCancel" padding="20,28,0,0" width="149" height="64" text="返 回" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>			
+		</HorizontalLayout>
+			
+		<LetterIndex name="VidMixListIndex" float="true" pos="43,144,0,0" width="21" height="810" bkimage="res/list/letterIndex.png" font="1" textcolor="#FF379FDB" /> 	
+		<TouchList name="VidMixCnsConfList" float="true"  pos="88,150,0,0" width="1767" height="800" vscrollbar="true" columns="6" itemselectedimage="res\list\item_sel.png" itembkimage="res\list\item_normal.png" itemdisabledimage="res\list\item_disabled.png">
+		</TouchList>	
+	</VerticalLayout>
+   
+   <VerticalLayout name="PageVidMixStyle" float="true" pos="0,0,1920,1121" visible="false"  bkimage="res/public/subpopbg.png" inset="0,0,0,0">       
+	 <TouchList name="MixStyleList" float="true" pos="144,128,0,0" width="1632" height="751" columns="5" itemselectedimage="res/confctrl/videomix/vidmixstyle/select.png" vscrollbar="false">
+	 </TouchList>
+	 <HorizontalLayout  float="true" pos="0,960,0,0" width="1920" height="66" >
+		<Control />	
+		<Button name="BtnVidMixStyleOK" text="确 定" font="1" textcolor="#CCD4DEEB" width="149" height="66" align="center" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"/>
+		<Button name="BtnVidMixStyleCancle" text="取 消" padding="15,0,0,0" font="1" textcolor="#CCD4DEEB" width="149" height="66" align="center" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"/>
+		<Control />	
+	 </HorizontalLayout>
+	</VerticalLayout>
+	
+  </VerticalLayout>    
+</PageVideoMix>

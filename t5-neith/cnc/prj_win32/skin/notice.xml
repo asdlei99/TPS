@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<PageNotice>
+  <HorizontalLayout name="NoticeDlg"  bkimage="res/public/subpopbg.png" inset="0,0,0,0">  
+	<Label name="lbStatePic" float="true" pos="848,448,0,0"  width="224" height="224" bkimage="res/public/calling.png" align="center"  />
+	<VerticalLayout float="true" pos="0,689,1932,789">
+	<Label name="LbProcess" text="0%" textcolor="#CCD4DEEB" height="30" padding="0,0,0,10" font="0" align="center" visible = "false" />
+	<Label name="LabelTip" text="正在呼叫.." height="30" textcolor="#CCD4DEEB" align="center" font="0" />
+	<Control />
+	</VerticalLayout>
+	<Button name="BtnNoticeBack" float="true" pos="885,958,0,0" width="149" height="64" font="1" text="返 回" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"   align="center"  />
+  </HorizontalLayout>
+</PageNotice>

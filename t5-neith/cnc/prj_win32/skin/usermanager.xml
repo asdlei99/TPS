@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Window caption="0,0,0,0" size="1920,1121" mininfo="800,200" sizebox="0,0,0,0" maxinfo="1920,1121" roundcorner="0,0">
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />
+    <Font name="微软雅黑" size="18" bold="false"></Font>
+	<Default name="VScrollBar" value="mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+	
+	<HorizontalLayout name="UserManagerLayout" bkimage="res/subdlgbkg.png">
+			
+		<HorizontalLayout height="126" >
+		<Edit nativebkcolor="#FF0E1721" name="EdtSearch" tiptext="请输入名称进行搜索" float="true" pos="27,30,0,0" width="650" height="60" textcolor="#FED4DEEB" font="1"  menu="true" gdiplus="true"/>
+		<Label name="" width="922" height="1" float="true" pos="27,89,0,0" bkcolor="#FF4B5764" /> 
+		<Button name="BtnSearch" float="true" pos="903,30,0,0" width="60" height="60" align="center" normalimage="res\public\search.png" pushedimage="res\public\search_down.png"/>
+		<Button name="BtnSelAll" text="全 选" float="true" pos="974,28,0,0" width="149" height="64" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>	
+		<Button name="BtnAdd" text="新 建" float="true" pos="1135,28,0,0" width="149" height="64" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+		<Button name="BtnDel" text="删 除" float="true" pos="1299,28,0,0"  width="149" height="64" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+		<Label name="" width="1" height="64" float="true" pos="1611,28,0,0" bkcolor="#FF4B5764" /> 
+		<CheckBox name="CheckShowSel" text="" float="true" pos="1624,28,0,0" width="64" height="64" selectedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" enabled="false"/>
+		<Label name="" text="已选用户" float="true"  pos="1688,28,0,0" textcolor="#FE92A7C2" font="1" width="100" height="64" align="center"  gdiplus="true" />
+		<Label name="lbSelCount" text="" float="true"  pos="1800,48,0,0" textcolor="#FE92A7C2" font="1" width="100" height="64" align="left"  gdiplus="true" />
+		</HorizontalLayout>
+		
+		<VerticalLayout float="true" pos="27,94,1920,0" height="920" >
+		<!--<TouchList name="SelUserList" bkcolor="" vscrollbar="true" height="155" hscrollbar="false" itemselectedbkcolor="#FE0013F0" itemhotbkcolor="#FE2236EA" visible="false" vscrollbar="true" columns="3" itemselectedimage="res\list\subitem_select.png" itembkimage="res\list\subitem_normal.png" itemdisabledimage="res\list\subitem_disable.png" padding="55,7,88,0" />  -->
+		<HorizontalLayout height="64">
+		<Label name="" width="1900" height="1" padding="0,32,0,0" bkcolor="#FF4B5764" /> 
+		</HorizontalLayout>
+		<HorizontalLayout>
+		<LetterIndex name="ListIndex"  width="21" height="810" bkimage="res/list/letterIndex.png" font="1" textcolor="#FF379FDB" /> 
+		<TouchList name="UserList" vscrollbar="true" padding="55,0,61,0" hscrollbar="false" itemselectedbkcolor="#FE0013F0" itemhotbkcolor="#FE2236EA"  vscrollbar="true" columns="6" itemselectedimage="res\list\item_down.png" itembkimage="res\list\item_normal.png" itemdisabledimage="res\list\item_disabled.png" itemselectedtextcolor="0xFFFF0000" /> 
+		</HorizontalLayout>
+		</VerticalLayout>
+		
+	<!--
+	<Label name="labCutline" float="true" pos="27,126,0,0" width="1866" height="1" bkcolor="#FF4B5764" /> 
+		<VerticalLayout float="true" pos="88,150,0,0" width="1767" height="800" >
+		<TouchList name="SelUserList" bkcolor="" vscrollbar="true" height="200" hscrollbar="false" itemselectedbkcolor="#FE0013F0" itemhotbkcolor="#FE2236EA" visible="false" vscrollbar="true" columns="6" itemselectedimage="res\list\item_down.png" itembkimage="res\list\item_normal.png" itemdisabledimage="res\list\item_disabled.png"/>  
+		<TouchList name="UserList" vscrollbar="true" hscrollbar="false" itemselectedbkcolor="#FE0013F0" itemhotbkcolor="#FE2236EA"  vscrollbar="true" columns="6" columns="6" itemselectedimage="res\list\item_down.png" itembkimage="res\list\item_normal.png" itemdisabledimage="res\list\item_disabled.png"/> 
+		</VerticalLayout>
+		
+		<LetterIndex name="ListIndex" float="true" pos="43,160,0,0" width="21" height="810" bkimage="res/list/letterIndex.png" font="1" textcolor="#FF379FDB" /> 
+	-->			
+		<ChildLayout xmlfile="usernameset.xml" name="UserNameSet" float="true" pos="0,0,1920,1121"/>
+    <ChildLayout xmlfile="usernamemodify.xml" name="UserNameModify" float="true" pos="0,0,1920,1121"/>
+
+  </HorizontalLayout>
+</Window>

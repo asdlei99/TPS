@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Window caption="0,0,0,0" size="1920,1121" mininfo="800,200" sizebox="0,0,0,0" maxinfo="1920,1121" roundcorner="0,0">
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />
+    <Font name="微软雅黑" size="18" bold="false"></Font>
+	<Default name="VScrollBar" value="mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+	
+	<HorizontalLayout name="SrcSelWatchLayout" bkimage="res/subdlgbkg.png">
+
+		<HorizontalLayout height="126" >
+		<Edit nativebkcolor="#FF0E1620" name="EdtSearch" tiptext="请输入名称进行搜索" float="true" pos="27,30,0,0" width="523" height="60" textcolor="#FED4DEEB" font="1"  menu="true" gdiplus="true" />
+		<Label name="" width="568" height="1" float="true" pos="27,89,0,0" bkcolor="#FF4B5764" /> 
+		<Button name="BtnSearch" float="true" pos="550,30,0,0" width="60" height="60" align="center" normalimage="res\public\search.png" pushedimage="res\public\search_down.png"/>
+
+		<Button name="BtnSetWatch1" text="设为左屏选看" float="true" pos="623,28,0,0" width="214" height="64" font="1" textcolor="#CCD4DEEB" normalimage="res\public\fourletterbtn_normal.png" pushedimage="res\public\fourletterbtn_down.png" enabled="false" visible="false"/>
+		<Button name="BtnSetWatch2" text="设为中屏选看" float="true" pos="852,28,0,0"  width="214" height="64" font="1" textcolor="#CCD4DEEB" normalimage="res\public\fourletterbtn_normal.png" pushedimage="res\public\fourletterbtn_down.png" enabled="false" visible="false"/>
+		<Button name="BtnSetWatch3" text="设为右屏选看" float="true" pos="1081,28,0,0"  width="214" height="64" font="1" textcolor="#CCD4DEEB" normalimage="res\public\fourletterbtn_normal.png" pushedimage="res\public\fourletterbtn_down.png" enabled="false" visible="false"/>
+		<!--<Button name="BtnCancel" text="取 消" float="true" pos="1310,28,0,0"  width="150" height="64" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+		<Button name="BtnOK" text="确 定" float="true" pos="1475,28,0,0"  width="150" height="64" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>-->
+        <Button name="BtnRoomWatch" text="会场选看" float="true" pos="623,28,0,0"  width="178" height="64" font="1" textcolor="#CCD4DEEB" normalimage="res\public\threeletterbtn_normal.png" pushedimage="res\public\threeletterbtn_down.png"/>
+		<Button name="BtnCancelWatch" text="取消选看" float="true" pos="816,28,0,0"  width="178" height="64" font="1" textcolor="#CCD4DEEB" normalimage="res\public\threeletterbtn_normal.png" pushedimage="res\public\threeletterbtn_down.png" visible="true"/>
+		</HorizontalLayout>
+				
+		<VerticalLayout float="true" pos="27,94,1920,0" height="920" >
+		<TouchList name="SelConfInfoList" bkcolor="" vscrollbar="true" height="155" hscrollbar="false" itemselectedbkcolor="#FE0013F0" itemhotbkcolor="#FE2236EA" visible="false" vscrollbar="true" columns="3" itemselectedimage="res\list\subitem_select.png" itembkimage="res\list\subitem_normal.png" itemdisabledimage="res\list\subitem_disable.png" padding="55,32,88,0"/>  
+		<HorizontalLayout height="64">
+		<Label name="" width="1776" height="1" padding="0,32,0,0" bkcolor="#FF4B5764" /> 
+		<CheckBox name="CheckShowSel" text="" width="64" height="64" normalimage="res\public\extend_normal.png" selectedimage="res\public\back_normal.png" pushedimage="res\public\extend_sel.png" selpushedimage="res\public\back_sel.png"/>
+		</HorizontalLayout>
+		<HorizontalLayout>
+		<LetterIndex name="ListIndex"  width="21" height="810" bkimage="res/list/letterIndex.png" font="1" textcolor="#FF379FDB" /> 
+		<TouchList name="ConfInfoList" vscrollbar="true" padding="55,0,61,0" hscrollbar="false" itemselectedbkcolor="#FE0013F0" itemhotbkcolor="#FE2236EA"  vscrollbar="true" columns="6" columns="6" itemselectedimage="res\list\item_down.png" itembkimage="res\list\item_normal.png" itemdisabledimage="res\list\item_disabled.png" itemselectedtextcolor="0xFFFF0000"/> 
+		</HorizontalLayout>
+		</VerticalLayout>
+
+		<Case name="caseShowScreeOption">	
+           <BtnShowScreenOption visible="false"/> 
+		   <BtnHideScreenOption visible="true"/> 
+		   <imgAddrLabel visible="false"/> 
+		   <AddrEntryName pos="24,18,217,81"/> 
+		   <ScreenSlectList visible="true"/> 
+		   <BtnRoomSel visible="false"/>
+        </Case>
+		<Case name="caseHideScreeOption">	
+           <BtnShowScreenOption visible="true"/> 
+		   <BtnHideScreenOption visible="false"/> 
+		   <imgAddrLabel visible="true"/> 
+		   <AddrEntryName pos="0,258,282,321"/> 
+		   <ScreenSlectList visible="false"/> 
+		   <BtnRoomSel visible="true"/>
+        </Case>
+		
+	</HorizontalLayout>
+</Window>

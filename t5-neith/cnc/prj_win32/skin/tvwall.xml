@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<PageTvWall>
+  <VerticalLayout name="tvwalllayout" >
+
+    <VerticalLayout name="TvwallCfgLayout" float="true"  pos="50,40,0,0" width="1820" height="845" >
+      <TouchList name="TvWallList" vscrollbar="true" hscrollbar ="true" autolayout="false" >
+      </TouchList>
+    </VerticalLayout>
+
+    <Label text="创建快捷操作" float="true" pos="751,919,0,0" width="293" height="66" textcolor="#CCD5DEEB" font="0" align="left" textpadding="0,15,0,0"/>
+    <CheckBox name="CheckTvWallShot" float="true" pos="1044,919,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+    
+    <Case name="caseSetTvWall">
+      <SetTvWallLayout visible="true"/>
+      <MuteViewLayout visible="false"/>
+      <!--<BtnCancelMuteView visible="false"/>-->
+      <BtnDelete visible="false"/>
+      <BtnSetVoice pos="140,50,0,0"/>
+      <BtnMuteView pos="73,50,0,0"/>
+      <BtnTvWallSet visible="true" enabled="true"/>
+      <ChannelDisabledLayout visible="false"/>
+      <TvWallCfgItem  bkimage="res/confctrl/tvwall/double_bg.png"/>
+    </Case>
+
+    <Case name="caseNormal">
+      <SetTvWallLayout visible="false"/>
+      <MuteViewLayout visible="false"/>
+      <!--<BtnCancelMuteView visible="false"/>-->
+      <BtnTvWallSet visible="true" enabled="true"/>
+      <BtnDelete visible="false"/>
+      <ChannelDisabledLayout visible="true"/>
+      <BtnEnable  pos="58,60,0,0" width="30" height="30" enabled="true" normalimage="res/confctrl/tvwall/add.png" />
+      <TvWallCfgItem bkimage="res/confctrl/videomix/25-25bkg.png"/>
+    </Case>
+
+    <Case name="caseHduExistCfg">
+      <SetTvWallLayout visible="true"/>
+      <BtnSetVoice pos="73,16,0,0"/>
+      <BtnMuteView pos="140,16,0,0"/>
+      <BtnDelete visible="true"/>
+      <MuteViewLayout visible="false"/>
+      <BtnTvWallSet visible="true" enabled="true"/>
+      <ChannelDisabledLayout visible="false"/>
+      <TvWallCfgItem  bkimage="res/confctrl/videomix/25-25selbkg.png"/>
+    </Case>
+
+    <Case name="caseMuteViewCfg">
+      <SetTvWallLayout visible="false"/>
+      <MuteViewLayout visible="true"/>
+      <BtnDelView1 visible="true"/>
+      <BtnDelView2 visible="true"/>
+      <BtnDelView3 visible="true"/>
+      <BtnDelView4 visible="true"/>
+      <BtnAdd1 visible="false"/>
+      <BtnAdd2 visible="false"/>
+      <BtnAdd3 visible="false"/>
+      <BtnAdd4 visible="false"/>
+      <BtnCancelMuteView visible="true"/>
+      <TxtDesc1 visible="true"/>
+      <TxtDesc2 visible="true" />
+      <TxtDesc3 visible="true" />
+      <TxtDesc4 visible="true" />
+      <BtnDelete visible="false"/>
+      <BtnTvWallSet visible="true" enabled="true"/>
+      <ChannelDisabledLayout visible="false"/>
+      <TvWallCfgItem bkimage="res/confctrl/videomix/25-25selbkg.png"/>
+    </Case>
+
+    <Case name="caseMuteView">
+      <SetTvWallLayout visible="false"/>
+      <MuteViewLayout visible="true"/>
+      <BtnDelView1 visible="false"/>
+      <BtnDelView2 visible="false"/>
+      <BtnDelView3 visible="false"/>
+      <BtnDelView4 visible="false"/>
+      <BtnAdd1 visible="true" />
+      <BtnAdd2 visible="true" />
+      <BtnAdd3 visible="true" />
+      <BtnAdd4 visible="true" />
+      <BtnCancelMuteView visible="false"/>
+      <TxtDesc1 visible="false"/>
+      <TxtDesc2 visible="false"/>
+      <TxtDesc3 visible="false"/>
+      <TxtDesc4 visible="false"/>
+      <BtnDelete visible="false"/>
+      <BtnTvWallSet visible="true" enabled="true"/>
+      <ChannelDisabledLayout visible="false"/>
+      <TvWallCfgItem  bkimage="res/confctrl/tvwall/muteview.png"/>
+    </Case>
+
+    <Case name="caseInvalid">
+      <SetTvWallLayout visible="false"/>
+      <BtnDelete visible="false"/>
+      <MuteViewLayout visible="false"/>
+      <BtnTvWallSet visible="false"/>
+      <BtnDelete visible="false"/>
+      <ChannelDisabledLayout visible="true"/>
+      <BtnEnable  pos="61,63,0,0" width="24" height="24" enabled="false" normalimage="res/confctrl/tvwall/disible.png" />
+      <TvWallCfgItem bkimage="res/confctrl/tvwall/bg.png"/>
+    </Case>
+    
+	<Case name="caseShowScreenOption">	
+		<BtnShowScreenOption visible="false"/> 
+		<BtnHideScreenOption visible="true"/> 
+		<imgAddrLabel visible="false"/> 
+		<AddrEntryName pos="24,18,217,81"/> 
+		<ScreenSlectList visible="true"/> 
+		<BtnRoomSel visible="false"/>
+    </Case>
+	<Case name="caseHideScreenOption">	
+		<BtnShowScreenOption visible="true"/> 
+		<BtnHideScreenOption visible="false"/> 
+		<imgAddrLabel visible="true"/> 
+		<AddrEntryName pos="0,258,282,321"/> 
+		<ScreenSlectList visible="false"/> 
+		<BtnRoomSel visible="true"/>
+    </Case>
+	
+	<Case name="caseChannelSrceenIndexShow1">	
+		<LebSrceen1 visible="true"/> 
+		<BtnAdd1 textpadding="52,14,11,36"/> 
+    </Case>
+	<Case name="caseChannelSrceenIndexHide1">	
+		<LebSrceen1 visible="false"/> 
+		<BtnAdd1 textpadding="52,25,11,25"/> 
+    </Case>
+	<Case name="caseChannelSrceenIndexShow2">	
+		<LebSrceen2 visible="true"/> 
+		<BtnAdd2 textpadding="11,14,11,36"/> 
+    </Case>
+	<Case name="caseChannelSrceenIndexHide2">	
+		<LebSrceen2 visible="false"/> 
+		<BtnAdd2 textpadding="11,25,11,25"/> 
+    </Case>
+	<Case name="caseChannelSrceenIndexShow3">	
+		<LebSrceen3 visible="true"/> 
+		<BtnAdd3 textpadding="52,14,11,36"/> 
+    </Case>
+	<Case name="caseChannelSrceenIndexHide3">	
+		<LebSrceen3 visible="false"/> 
+		<BtnAdd3 textpadding="52,25,11,25"/> 
+    </Case>
+	<Case name="caseChannelSrceenIndexShow4">	
+		<LebSrceen4 visible="true"/> 
+		<BtnAdd4 textpadding="11,14,11,36"/> 
+    </Case>
+	<Case name="caseChannelSrceenIndexHide4">	
+		<LebSrceen4 visible="false"/> 
+		<BtnAdd4 textpadding="11,25,11,25"/> 
+    </Case>
+	
+	<Case name="caseSrceenIndexShow">	
+		<LebDescribe visible="true"/> 
+		<TxtDescribe pos="94,45,0,0"/> 
+    </Case>
+	<Case name="caseSrceenIndexHide">	
+		<LebDescribe visible="false"/> 
+		<TxtDescribe pos="94,60,0,0"/> 
+    </Case>
+	
+  <VerticalLayout name="PageSelConfList" float="true" pos="0,0,1920,1121" visible="false" bkimage="res/public/subpopbg.png">
+    
+    <HorizontalLayout height="126" >
+      <Edit name="ConfListSearch" tiptext="请输入名称进行搜索" nativebkcolor="#FF0E1620" float="true" pos="27,30,0,0" width="1023" height="60" textcolor="#FEE4EEFF" font="1" bordersize="1,1,1,1" menu="true" gdiplus="true" />
+      <Label name="" width="1069" height="1" float="true" pos="27,89,0,0" bkcolor="#FF4B5764" />
+      <Button name="BtnSearch" float="true" pos="1050,30,0,0" width="60" height="60" align="center" normalimage="res\public\search.png" pushedimage="res\public\search_down.png"/>
+      <!--<Button name="BtnVidMixSelAll" padding="1130,28,0,0" width="149" height="64" text="全 选" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+      <Combo name="ComboConfCtrlShowType" padding="13,28,0,0" text="全  部" textpadding="0,0,75,0" width="214" height="64" dropboxsize="214,600" textcolor="#CCD4DEEB" gdiplus="true" normalimage="res\public\btnchoiceclass_normal.png" pushedimage="res\public\btnchoiceclass_down.png" vscrollbar="false" hscrollbar="false" itemalign="center" itemfont="1" itemheight="64" align="center" font="1" textcolor="#CCD4DEEB"   dropboxInterspace="6" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FFFFFFFF"  MosPopBoxBk="res\public\combo" itemtextpadding="0,10,0,10" inset="0,20,0,20" itemhottextcolor="#FF00FFFF" itemselectedbkcolor="" itemhotbkcolor="" >
+      </Combo>-->
+      <Button name="BtnConfirm" padding="1130,28,0,0" width="149" height="64" text="确 定" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+      <Button name="BtnCancel"  padding="20,28,0,0" width="149" height="64" text="返 回" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+    </HorizontalLayout>
+
+    <LetterIndex name="ConfIndexletter" float="true" pos="43,144,0,0" width="21" height="810" bkimage="res/list/letterIndex.png" font="1" textcolor="#FF379FDB" />
+    <TouchList name="ConfList" float="true"  pos="88,150,0,0" width="1767" height="800" vscrollbar="true" columns="6" itemselectedimage="res\list\item_sel.png" itembkimage="res\list\item_normal.png" itemdisabledimage="res\list\item_disabled.png" >
+    </TouchList>
+
+    <Case name="caseListItemNoSel">
+      <ConfCnsListItem bkimage="res\list\item_normal.png"/>
+      <BtnConfCall visible="false"/>
+      <BtnConfCnsSel visible="false"/>
+      <imgConfCnsLabel visible="true"/>
+      <confcnslabellayout visible="true"/>
+      <ConfCnsName visible="true"/>
+    </Case>
+    <Case name="caseListItemSel">
+      <ConfCnsListItem bkimage="res\list\item_down.png"/>
+      <BtnConfCall visible="false"/>
+      <BtnConfCnsSel visible="false"/>
+      <confcnslabellayout visible="true"/>
+      <imgConfCnsLabel visible="true"/>
+      <ConfCnsName visible="true"/>
+    </Case>
+    <Case name="caseListItemDisabled">
+      <ConfCnsListItem bkimage="res\list\item_disabled.png"/>
+      <BtnConfCall visible="false"/>
+      <BtnConfCnsSel visible="false"/>
+      <confcnslabellayout visible="true"/>
+      <imgConfCnsLabel visible="true"/>
+      <ConfCnsName visible="true"/>
+    </Case>
+  </VerticalLayout>
+  
+  <ChildLayout xmlfile="volctrl.xml" name="PageVolCtrl" float="true" pos="0,0,1920,1121" visible ="false"/>
+  <!--<ChildLayout xmlfile="pagenameset.xml" name="PageNameSet" float="true" pos="0,0,1920,1121" visible="false"/>-->
+  </VerticalLayout>
+</PageTvWall>

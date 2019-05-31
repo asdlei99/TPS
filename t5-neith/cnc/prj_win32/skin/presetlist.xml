@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<PagePresetList>
+  <VerticalLayout name=""  bkimage="res/public/subpopbg.png" >  
+	<HorizontalLayout height="990" >
+	<Button name="btnCamListLeft" float="true" pos="16,500,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/left.png" pushedimage="res/roomctrl/left_down.png" />
+	<SlideTabLayout name="preListSlidetab" float="true" pos="138,162,0,0" width="1640" height="690" bkcolor="" inset="10,0,10,0">
+	</SlideTabLayout>
+	<Button name="btnCamListRight" float="true" pos="1800,500,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/rignt.png" pushedimage="res/roomctrl/rignt_down.png" />
+	</HorizontalLayout>
+	<Control />
+	<HorizontalLayout name="BtnLayout" height="100" >
+		<Control />
+	    <Button name="BtnPresetAdd" text="添 加" font="1" textcolor="#CCD4DEEB" padding="15,0,0,0" width="149" height="64" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+	    <Button name="BtnPresetDel"  text="删 除" font="1" textcolor="#CCD4DEEB"  padding="15,0,0,0" width="149" height="64" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+    	 <Button name="BtnPresetOk" text="确 定" font="1" textcolor="#CCD4DEEB" padding="15,0,0,0" width="149" height="64" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+    	<Button name="BtnPresetCancel"  text="取 消" font="1" textcolor="#CCD4DEEB" padding="15,0,0,0" width="149" height="64" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />		 
+	   <Control />
+	</HorizontalLayout>
+	<Control height="100"/>
+	
+  </VerticalLayout>
+</PagePresetList>

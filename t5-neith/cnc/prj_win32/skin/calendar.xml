@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="gb2312"?>
+<Window sizebox="0,0,0,0" caption="0,0,0,537" size="666,537" mininfo="666,537"  maxinfo="666,537" bktrans="true">
+	<Font name="微软雅黑" size="25" bold="false" default="true"  />
+    <Font name="微软雅黑" size="22" bold="true"></Font>
+    <VerticalLayout name="calendarLayout" bkimage="res/calendar/bg.png">
+        <HorizontalLayout  height="65" padding="49,18,49,0">
+            <Button name="BtnLast" width="65" height="65" align="center" normalimage="res\calendar\btnlastmonth.png" hotimage="res\calendar\btnlastmonth_down.png" pushedimage="res\calendar\btnlastmonth_down.png" gdiplus="true"/>
+            <Label name="lbYandM" height="65" textcolor="#CCD4DEEB" font="0" align="center" gdiplus="true"/>
+            <Button name="BtnNext" width="65" height="65" align="center" normalimage="res\calendar\btnnextmonth.png" hotimage="res\calendar\btnnextmonth_down.png" pushedimage="res\calendar\btnnextmonth_down.png" gdiplus="true"/>
+        </HorizontalLayout>
+        <HorizontalLayout  padding="57,76,11,6" >
+		<TouchList name="DateList" width="588" height="358" columns="7" itemselectedimage="res\calendar\bkselect.png" >
+		</TouchList>
+		</HorizontalLayout>
+    </VerticalLayout>
+</Window>

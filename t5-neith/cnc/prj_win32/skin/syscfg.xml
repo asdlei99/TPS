@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Window caption="0,0,0,0" size="1920,1121" mininfo="800,200" sizebox="0,0,0,0" maxinfo="1920,1121" >
+  <Font name="微软雅黑" size="22" bold="false" default="true"  />
+  <Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+  
+  <VerticalLayout name="SysConfigLayout" bkimage="res/subdlgbkg.png" inset="0,0,0,0">
+  <!--	<HorizontalLayout float="true" pos="500,275,1420,520" >
+	  <VerticalLayout >
+	  <Button name="BtnAddrManager" text="" width="184" height="184" normalimage="res\sysconfig\addrSetting.png" pushedimage="res\sysconfig\addrSetting_down.png"/>
+	  <Label name="" text="地址簿管理" padding="0,10,0,0" textcolor="#FEFFFFFF" font="0" align="center"  />
+	  </VerticalLayout>
+	<Control />
+	   <VerticalLayout >
+	  <Button name="BtnUserManager" text="" width="184" height="184" normalimage="res\sysconfig\usermanager.png" pushedimage="res\sysconfig\usermanager_down.png"/>
+	  <Label name="lbUserManager" text="用户管理" padding="0,10,0,0" textcolor="#FEFFFFFF" font="0" align="center"  />
+	  </VerticalLayout>
+	<Control />
+	   <VerticalLayout >
+	   <Button name="BtnrConfCallCfg" text="" width="184" height="184" normalimage="res\sysconfig\confcallsetting.png" pushedimage="res\sysconfig\confcallsetting_down.png"/>
+	   <Label name="" text="会议呼叫设置" padding="0,10,0,0" textcolor="#FEFFFFFF" font="0" align="center"  />
+	   </VerticalLayout>
+	</HorizontalLayout>
+	<HorizontalLayout height="58" float="true" pos="500,599,1420,844" >
+	  <VerticalLayout >
+	  <Button name="BtnRoomControl" text="" width="184" height="184" normalimage="res\sysconfig\selfroomsetting.png" pushedimage="res\sysconfig\selfroomsetting_down.png"/>
+	  <Label name="" text="本会场设置" padding="0,10,0,0" textcolor="#FEFFFFFF" font="0" align="center"  />
+	  </VerticalLayout>
+	<Control />
+	   <VerticalLayout >
+	  <Button name="BtnRegService" text="" width="184" height="184" normalimage="res\sysconfig\serverseting.png" pushedimage="res\sysconfig\serverseting_down.png"/>
+	  <Label name="" text="服务器设置" padding="0,10,0,0" textcolor="#FEFFFFFF" font="0" align="center"  />
+	  </VerticalLayout>
+	<Control />
+	   <VerticalLayout >
+	   <Button name="BtnUserDefined" text="" width="184" height="184" normalimage="res\sysconfig\selfdefine.png" pushedimage="res\sysconfig\selfdefine_down.png"/>
+	   <Label name="" text="自定义设置" padding="0,10,0,0" textcolor="#FEFFFFFF" font="0" align="center"  />
+	   </VerticalLayout>
+	</HorizontalLayout> -->
+	<HorizontalLayout float="true" pos="500,275,1420,520" >
+	  <VerticalLayout >
+	  <Button name="BtnRoomControl" text="" width="184" height="184" normalimage="res\sysconfig\selfroomsetting.png" pushedimage="res\sysconfig\selfroomsetting_down.png"/>
+	  <Label name="" text="本会场设置" padding="0,10,0,0" textcolor="#FEFFFFFF" font="0" align="center"  />
+	  </VerticalLayout>
+	<Control />
+	   <VerticalLayout >
+	  <Button name="BtnUserManager" text="" width="184" height="184" normalimage="res\sysconfig\usermanager.png" pushedimage="res\sysconfig\usermanager_down.png"/>
+	  <Label name="lbUserManager" text="用户管理" padding="0,10,0,0" textcolor="#FEFFFFFF" font="0" align="center"  />
+	  </VerticalLayout>
+	<Control />
+	   <VerticalLayout >
+	   <Button name="BtnrConfCallCfg" text="" width="184" height="184" normalimage="res\sysconfig\confcallsetting.png" pushedimage="res\sysconfig\confcallsetting_down.png"/>
+	   <Label name="" text="会议呼叫设置" padding="0,10,0,0" textcolor="#FEFFFFFF" font="0" align="center"  />
+	   </VerticalLayout>
+	</HorizontalLayout>
+	<HorizontalLayout height="58" float="true" pos="500,599,1420,844" > 	
+	   <VerticalLayout >
+	  <Button name="BtnRegService" text="" width="184" height="184" normalimage="res\sysconfig\serverseting.png" pushedimage="res\sysconfig\serverseting_down.png"/>
+	  <Label name="" text="服务器设置" padding="0,10,0,0" textcolor="#FEFFFFFF" font="0" align="center"  />
+	  </VerticalLayout>
+	<Control />
+	   <VerticalLayout >
+	   <Button name="BtnUserDefined" text="" width="184" height="184" normalimage="res\sysconfig\selfdefine.png" pushedimage="res\sysconfig\selfdefine_down.png"/>
+	   <Label name="" text="自定义设置" padding="0,10,0,0" textcolor="#FEFFFFFF" font="0" align="center"  />
+	   </VerticalLayout>
+	   <Control />
+	   <Control />
+	</HorizontalLayout>
+  </VerticalLayout>
+  
+</Window>

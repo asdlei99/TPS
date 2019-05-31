@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Window caption="0,0,0,0" size="1920,1121" mininfo="800,200" sizebox="0,0,0,0" maxinfo="1920,1121" roundcorner="0,0">
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />
+    <Font name="微软雅黑" size="22" bold="false"></Font>
+	<Default name="VScrollBar" value="mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+	<VerticalLayout name="RegServiceLayout" bkimage="res/subdlgbkg.png">
+		<HorizontalLayout height="126">
+		<Control width="1565"/>
+		<VerticalLayout>
+		<Control />
+			<HorizontalLayout height="64">
+			<Control name="CtrlFix" width="163"/>
+			<Button name="BtnFixOrCancel" width="149" height="64" text="修 改" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			<Button name="BtnOk" padding="15,0,0,0" width="149" height="64" text="确 定" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" visible = "false"/>
+			</HorizontalLayout>
+		<Control />
+		</VerticalLayout>
+		</HorizontalLayout>
+		<HorizontalLayout bkcolor="#FE4B5764" padding="17,0,0,0" height="1" width="1866"></HorizontalLayout>
+		<HorizontalLayout bkimage="res/roomctrl/verLine.png" float="true" pos="116,173,0,1050" width="1" ></HorizontalLayout>
+		<HorizontalLayout >
+
+		<VerticalLayout  name="" float="true" pos="106,35,1920,922"   vscrollbar="true" slideable="true">
+			<!--VerticalLayout  name="UserPasswordLayout" height="212">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,11,19,28" gdiplus="true" />
+				<Label name="lbUserPassword" text="用户密码" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="lbOldPassword" text="密码" float="true"  pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Label name="lbPassword" text="******" float="true" pos="290,0,0,0" width="200" height="64" textcolor="#FED5DEEB" textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtOldPassword" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" password="true" visible = "false" maxchar="16"/>
+				</HorizontalLayout>
+				<HorizontalLayout name="newpasslayout" visible = "false">
+				<Label name="lbNewPassword" text="新密码" float="true"  pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" visible = "false"/>
+				<Edit name="edtNewPassword" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" password="true" visible = "false" maxchar="16"/>
+				</HorizontalLayout>
+				<HorizontalLayout name="cofnewpasslayout" visible = "false">
+				<Label name="lbCheckPassword" text="确认新密码" float="true"  pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" visible = "false"/>
+				<Edit name="edtCheckPassword" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" password="true" visible = "false" maxchar="16"/>
+				</HorizontalLayout>
+			</VerticalLayout-->
+			
+			<VerticalLayout name="PwSafeLayout" height="317">
+			
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30" gdiplus="true" />
+				<Label name="" text="安全设置" float="true"  pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="开启密码周期更新" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<CheckBox name="CheckIsPWEpochUpdate" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" visible = "false"/>
+				<Label name="lbIsPWEpochUpdate" text="开" float="true" pos="290,0,0,0" width="200" height="64" textcolor="#FED5DEEB" textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="密码更新周期" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />				
+				<Combo name="ComboPWEpochUpdate" text="" float="true" pos="290,0,0,0" textpadding="20,0,20,0" width="612" height="63" dropboxsize="612,300" textcolor="#CCD4DEEB" pushedtextcolor="#CCD4DEEB" gdiplus="true" normalimage="res\usermanager\normal.png" pushedimage="res\usermanager\select.png" enabled="false" visible="false" vscrollbar="false" hscrollbar="false" itemalign="left" itemfont="1" itemheight="64" align="left" font="1" textcolor="#CCD4DEEB" dropboxInterspace="6" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FFFFFFFF" MosPopBoxBk="res\usermanager\combo" itemtextpadding="20,10,20,10" inset="0,20,0,20" itemhottextcolor="#FF00FFFF" itembkcolor="" itemselectedbkcolor="" itemhotbkcolor="" />
+				<Label name="lbPWEpochUpdate" text="" float="true" pos="290,0,0,0" width="200" height="64" textcolor="#FED5DEEB" textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+				<!--SuperAdmin-->
+				<HorizontalLayout name="PwLockCountLayont" visible="false">
+				<Label name="" text="密码锁定次数" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />				
+				<Edit name="EditPWErrorCount" text="" float="true" pos="290,0,0,0" height="64" width="612" numberonly="true" maxchar="2" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" visible = "false" />
+				<Label name="lbPWErrorCount" text="0 次" float="true" pos="290,0,0,0" width="200" height="64" textcolor="#FED5DEEB" textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="PwLockTimerLayont" visible="false">
+				<Label name="" text="密码锁定时间" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />				
+				<Edit name="EditPWLockTimer" text="" float="true" pos="290,0,0,0" height="64" width="612" numberonly="true" maxchar="4" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" visible = "false" />
+				<Label name="lbPWLockTimer" text="0 分钟" float="true" pos="290,0,0,0" width="200" height="64" textcolor="#FED5DEEB" textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="UnLockPwLayont" visible="false">
+				<Label name="" text="密码解锁" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Button name="BtnUnLockAllUser" float="true" pos="290,0,0,0" padding="15,0,0,0" width="214" height="64" text="解锁已锁定用户" font="1" textcolor="#CCD4DEEB" normalimage="res\public\fourletterbtn_normal.png" pushedimage="res\public\fourletterbtn_down.png"/>
+				</HorizontalLayout>
+				
+			</VerticalLayout>
+			
+			<VerticalLayout height="317">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30" gdiplus="true" />
+				<Label name="" text="系统待机设置" float="true"  pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="开启系统待机" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<CheckBox name="CheckIsSysStandby" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" visible = "false"/>
+				<Label name="lbIsSysStandby" text="开" float="true" pos="290,0,0,0" width="200" height="64" textcolor="#FED5DEEB" textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="待机时间" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />				
+				<Edit name="edtStandbyTime" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" enabled="false" visible = "false" maxchar="4"/>
+				<Label name="lbSysStandby" text="" float="true" pos="290,0,0,0" width="200" height="64" textcolor="#FED5DEEB" textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+			</VerticalLayout>
+			
+			
+			<VerticalLayout name="UserSysTimerLayout" height="336">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30" gdiplus="true" />
+				<Label name="" text="系统时间设置" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="日期" float="true"  pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Label name="lbDate" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1"textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Edit name="edtDate" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" disabledtextcolor="#FF3A4551" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" disabledimage="res\public\edit612_disable.png" nativebkcolor="#FF1c3655" visible = "false" readonly="true" disabledtextcolor="FE3A4551"/>
+				<Button name="BtnDateSet" float="true" pos="920,0,0,0" width="149" height="64" text="设 置" font="1" textcolor="#CCD4DEEB" disabledtextcolor="#FF3A4551" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" disabledimage="res\public\twoletterbtn_disable.png" visible = "false"/>
+				<!--<DateTime name="BtnDateSet" float="true" pos="920,0,0,0" width="200" height="64" text="设 置" font="1" textcolor="#CCD4DEEB" bkimage="res\public\twoletterbtn_normal.png"  visible = "false"/>-->
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="时间" float="true"  pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,15,0,0" align="left"  gdiplus="true" />
+				
+				<Button name="BtnHMinus" text="" float="true" pos="290,0,0,0" width="92" height="92" normalimage="res\public\minusbtn_normal.png" pushedimage="res\public\minusbtn_select.png" disabledimage="res\public\minusbtn_disable.png" visible = "false"/>
+				<Label name="lbHour" text="00" float="true" pos="290,0,0,0" width="98" height="92" textcolor="#FED5DEEB" disabledtextcolor="#FF3A4551" font="1" textpadding="0,15,0,0" align="left" gdiplus="true" />
+				<Button name="BtnHAdd" text="" float="true" pos="480,0,0,0" width="92" height="92" normalimage="res\public\plusbtn_normal.png" pushedimage="res\public\plusbtn_select.png" disabledimage="res\public\plusbtn_disable.png" visible = "false"/>
+				<Label name="lbdot" text=":" float="true" pos="350,0,0,0" width="98" height="92" textcolor="#FED5DEEB" disabledtextcolor="#FF3A4551" font="1" textpadding="0,15,0,0" align="left" gdiplus="true" />
+				<Button name="BtnMMinus" text="" float="true" pos="632,0,0,0" width="92" height="92" normalimage="res\public\minusbtn_normal.png" pushedimage="res\public\minusbtn_select.png" disabledimage="res\public\minusbtn_disable.png" visible = "false"/>
+				<Label name="lbMinute" text="00" float="true" pos="401,0,0,0" width="98" height="92" textcolor="#FED5DEEB" disabledtextcolor="#FF3A4551" font="1" textpadding="0,15,0,0" align="left" gdiplus="true" />
+				<Button name="BtnMAdd" text="" float="true" pos="822,0,0,0" width="92" height="92" normalimage="res\public\plusbtn_normal.png" pushedimage="res\public\plusbtn_select.png" disabledimage="res\public\plusbtn_disable.png" visible = "false"/>
+				<Label name="lbdot2" text=":" float="true" pos="450,0,0,0" width="98" height="92" textcolor="#FED5DEEB" disabledtextcolor="#FF3A4551" font="1" textpadding="0,15,0,0" align="left" gdiplus="true" />
+				<Button name="BtnSMinus" text="" float="true" pos="974,0,0,0" width="92" height="92" normalimage="res\public\minusbtn_normal.png" pushedimage="res\public\minusbtn_select.png" disabledimage="res\public\minusbtn_disable.png" visible = "false"/>
+				<Label name="lbSecond" text="00" float="true" pos="501,0,0,0" width="98" height="92" textcolor="#FED5DEEB" disabledtextcolor="#FF3A4551" font="1" textpadding="0,15,0,0" align="left" gdiplus="true" />
+				<Button name="BtnSAdd" text="" float="true" pos="1164,0,0,0" width="92" height="92" normalimage="res\public\plusbtn_normal.png" pushedimage="res\public\plusbtn_select.png" disabledimage="res\public\plusbtn_disable.png" visible = "false"/>
+				
+				</HorizontalLayout>
+				<HorizontalLayout name="UserSysTimerSynchroLayout">
+				<Label name="" text="时间同步" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<CheckBox name="CheckTimeSynchro" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" />
+				</HorizontalLayout>
+			</VerticalLayout>
+			
+			<VerticalLayout height="212">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30" gdiplus="true" />
+				<Label name="" text="系统日志下载" float="true"  pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">		
+				<Label name="" text="日志下载" float="true"  pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Button name="BtnDownloadSysLog" text="" float="true" pos="290,0,0,0" width="149" height="64" text="下 载" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />	
+				</HorizontalLayout>
+				<Control height="20"/>
+			</VerticalLayout>
+	
+			<VerticalLayout height="212">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30" gdiplus="true" />
+				<Label name="" text="系统名称" float="true"  pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="名称" float="true"  pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Label name="lbSysName" text="网呈会场控制台" float="true" pos="290,0,0,0" width="1630" height="80" textcolor="#FED5DEEB" textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtSysName" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8"  maxchar="31" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" visible = "false"/>
+				</HorizontalLayout>
+			</VerticalLayout>
+			
+		</VerticalLayout>			
+		</HorizontalLayout>
+		<Case name="caseSet">
+			<CtrlFix visible="false"/> 
+			<!--UserPasswordLayout height="423"/-->	
+            <UserSysTimerLayout height="448"/>
+            <UserSysTimerSynchroLayout visible="true"/>			
+			<!--lbOldPassword text="原始密码"/> 
+			<lbPassword visible="false"/> 
+			<edtOldPassword visible="true"/> 
+			<lbNewPassword visible="true"/> 
+			<edtNewPassword visible="true"/> 
+			<lbCheckPassword visible="true"/> 
+			<edtCheckPassword visible="true"/-->
+			<lbLockPassword visible="false"/> 
+			<edtLockPassword visible="true"/> 
+			<CheckIsPWEpochUpdate visible="true"/> 
+			<ComboPWEpochUpdate visible="true"/> 
+			<lbIsPWEpochUpdate visible="false"/> 
+			<lbPWEpochUpdate visible="false"/> 
+			<EditPWErrorCount visible="true"/> 
+			<lbPWErrorCount visible="false"/> 
+			<EditPWLockTimer visible="true"/> 
+			<lbPWLockTimer visible="false"/> 
+			<CheckIsSysStandby visible="true"/> 
+			<edtStandbyTime visible="true"/> 
+			<lbIsSysStandby visible="false"/> 
+			<lbSysStandby visible="false"/> 
+			<edtDate visible="true"/> 
+			<BtnDateSet visible="true"/> 
+			<BtnHMinus visible="true"/> 
+			<BtnHAdd visible="true"/> 
+			<BtnMMinus visible="true"/> 
+			<BtnMAdd visible="true"/> 
+			<BtnSMinus visible="true"/> 		
+			<BtnSAdd visible="true"/> 
+			
+			<lbDate visible="false"/> 
+			
+			<lbHour pos="416,10,480,92" /> 
+			<lbdot pos="598,10,630,9292" /> 
+			<lbMinute pos="758,10,820,92" /> 
+			<lbdot2 pos="940,10,970,92" /> 
+			<lbSecond pos="1100,10,1160,92" /> 
+			
+			<!--cofnewpasslayout visible="true"/> 
+			<newpasslayout visible="true"/--> 		
+			
+			<edtSysName visible="true"/> 
+			<lbSysName visible="false"/> 
+		</Case>   
+		<Case name="caseSetCancel">
+			<CtrlFix visible="true"/> 
+			<!--UserPasswordLayout height="212"/-->	
+            <UserSysTimerLayout height="336"/>	
+            <UserSysTimerSynchroLayout visible="false"/>			
+			<!--lbOldPassword text="密码"/>
+			<lbPassword visible="true"/> 
+			<edtOldPassword visible="false"/> 
+			<lbNewPassword visible="false"/> 
+			<edtNewPassword visible="false"/> 
+			<lbCheckPassword visible="false"/> 
+			<edtCheckPassword visible="false"/-->
+			<lbLockPassword visible="true"/> 
+			<edtLockPassword visible="false"/> 
+			<CheckIsPWEpochUpdate visible="false"/> 
+			<ComboPWEpochUpdate visible="false"/> 
+			<lbIsPWEpochUpdate visible="true"/> 
+			<lbPWEpochUpdate visible="true"/> 
+			<EditPWErrorCount visible="false"/> 
+			<lbPWErrorCount visible="true"/> 
+			<EditPWLockTimer visible="false"/> 
+			<lbPWLockTimer visible="true"/> 
+			<CheckIsSysStandby visible="false"/> 
+			<edtStandbyTime visible="false"/> 
+			<lbIsSysStandby visible="true"/> 
+			<lbSysStandby visible="true"/> 
+			<edtDate visible="false"/> 
+			<BtnDateSet visible="false"/> 
+			<BtnHMinus visible="false"/> 
+			<BtnHAdd visible="false"/> 
+			<BtnMMinus visible="false"/> 
+			<BtnMAdd visible="false"/> 
+			<BtnSMinus visible="false"/> 		
+			<BtnSAdd visible="false"/> 
+			
+			<lbDate visible="true"/> 
+			
+			<lbHour pos="290,0,390,92" /> 
+			<lbdot pos="350,0,400,9292" /> 
+			<lbMinute pos="401,0,510,92" /> 
+			<lbdot2 pos="450,0,500,92" /> 
+			<lbSecond pos="501,0,601,92" /> 
+			
+			<!--cofnewpasslayout visible="false"/> 
+			<newpasslayout visible="false"/--> 
+			
+			<edtSysName visible="false"/> 
+			<lbSysName visible="true"/> 
+		</Case>  
+		
+		<Case name="caseNormalUser">
+			<PwSafeLayout height="317" />
+			<PwLockCountLayont visible="false" />
+			<PwLockTimerLayont visible="false" />
+			<UnLockPwLayont visible="false" />
+		</Case>
+		<Case name="caseSuperAdmin">
+			<PwSafeLayout height="650" />
+			<PwLockCountLayont visible="true" />
+			<PwLockTimerLayont visible="true" />
+			<UnLockPwLayont visible="true" />
+		</Case>
+		
+		<ChildLayout xmlfile="notice.xml" name="PageNotice" float="true" pos="0,0,1920,1121"  />
+	</VerticalLayout>
+</Window>

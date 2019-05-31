@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="gb2312"?>
+<Window sizebox="0,0,0,0" caption="0,0,0,0" size="1920,1121" mininfo="800,200" sizebox="0,0,0,0" maxinfo="1920,1121" roundcorner="0,0" >
+    <Font name="微软雅黑" size="25" bold="false" default="true"  />
+    <Font name="微软雅黑" size="18" bold="false"></Font>
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+  <VerticalLayout name="contentreqLayout" bkimage="res/public/subpopbg.png" inset="0,0,0,0">
+	<VerticalLayout />  
+	<HorizontalLayout height="64">
+	<Control />
+	<Label text="会议模板" textcolor="#CCD4DEEB" font="0" align="left" height="64" width="100" />
+	<Control width="20"/>
+	<Label name="LabTempName" text="智能会议室交互评审会议" height="64" width="600" textcolor="#CCD4DEEB" font="0" align="left" gdiplus="true"/>
+	<Control />
+	</HorizontalLayout>
+	<HorizontalLayout height="20"/>
+	<HorizontalLayout height="64">
+	<Control />
+	<Label text="会议密码" textcolor="#CCD4DEEB" font="0" height="64" width="100" />
+	<Control width="20"/>
+	<Edit name="EditContent" text="" tiptext="请输入会议密码" height="64" width="600" textcolor="#CCD4DEEB" font="0" textpadding="34,10,34,10" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" maxchar="16" align="left" gdiplus="true"/>
+	<Control />
+	</HorizontalLayout>
+	<VerticalLayout /> 
+	<HorizontalLayout height="64">
+	<Control />
+	<Button name="BtnOk" width="149" height="64" font="1" text="确  定" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"   align="center"  gdiplus="true"/>
+	<Control width="20"/>
+	<Button name="BtnCancel" width="149" height="64" font="1" text="取  消" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"  align="center" gdiplus="true"/>
+	<Control />
+	</HorizontalLayout>
+	<HorizontalLayout height="100"/>
+  </VerticalLayout>
+ </Window>

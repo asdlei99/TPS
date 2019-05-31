@@ -1,0 +1,937 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Window caption="0,0,0,0" size="1920,1121" mininfo="800,200" sizebox="0,0,0,0" maxinfo="1920,1121" roundcorner="0,0">
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />
+    <Font name="微软雅黑" size="22" bold="false"></Font>
+	<Font name="微软雅黑" size="12" bold="false"></Font>
+	<Font name="微软雅黑" size="25" bold="false"></Font>
+	<Default name="VScrollBar" value="width=&quot;11&quot; mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="HScrollBar" value="height=&quot;11&quot; mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+	<HorizontalLayout name="RoomCtrlLayout" bkimage="res/subdlgbkg.png">
+	
+		 <HorizontalLayout name="RoonCtrlLayout" inset="30,0,0,0"  height="93">
+			<Option name="Switch" text="开关面板" padding="0,23,0,0" width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" selected="true"/>
+			<Control />
+            <Option name="camera" padding="0,23,0,0" text="摄像机"  width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" />
+			<Control name="ctlCam"/>
+            <Option name="speaker" padding="2,23,0,0" text="扬声器" width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol"/>
+			<Control />
+            <Option name="mic" padding="2,23,0,0" text="麦克风"  width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol"/>
+			<Control />
+			<!--Option name="vediosource" padding="2,23,0,0" text="演示源"  width="264" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol"/>
+			<Control /-->
+            <Option name="mainvedio" padding="2,23,0,0" text="视频源"  width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol"/>	
+			<Control />
+            <Option name="Matrix" padding="0,23,0,0" text="矩阵控制"  width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" />
+			<Control />
+			<Option name="Screen" padding="0,23,0,0" text="升降屏控制"  width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" />
+			<Control />
+			<Option name="Monitor" text="显示器" padding="0,23,0,0" width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" />
+			<Control name="ctlMonitor"/>
+			<Option name="Aircon" text="空调" padding="0,23,0,0" width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol"/>
+			<Control name="ctlAir"/>
+            <!--Option name="Camera" text="文档摄像机" padding="0,23,0,0" width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" />
+			<Control name="ctlCam"/-->
+            <Option name="Curtain" text="窗帘" padding="2,23,0,0" width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" />
+			<Control name="ctlCur"/>
+			<Control width="592"/>
+		</HorizontalLayout>
+		<HorizontalLayout bkcolor="#FE4B5764" float="true" pos="27,92,0,0" height="1" width="1866"></HorizontalLayout>
+		    <SlideTabLayout name="slidetab" float="true" pos="0,94,1920,1121">
+        <!--开关-->
+		<VerticalLayout>
+			<VerticalLayout name="switch"  bkimage="" inset="0,0,0,0"> 
+
+			<Label name="" text="关闭系统" float="true" pos="220,80,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0" font="1"/>
+			<!--<CheckBox name="CheckSys" float="true" pos="343,80,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />-->
+			
+			<Button name="BtnShutdownSys" float="true" pos="343,80,0,0" width="149" height="64" text="关 闭" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			
+			<Label name="lbDegreeNo" text="未开启" float="true" pos="748,80,0,0" width="424" height="424" align="center"  font="3" textcolor="#FFFFFFFF"/>
+			<Label float="true" pos="748,80,0,0" width="424" height="424" bkimage="res/centerctrl/switchbg.png" />
+			<Label name="lbpicdecate" float="true" pos="806,216,0,0" width="78" height="152" bkimage="res/centerctrl/0.png" align="center" visible="false"/>
+			<Label name="lbpicdegree" float="true" pos="884,216,0,0" width="78" height="152" bkimage="res/centerctrl/0.png" align="center" visible="false"/>
+			<Label name="lbdegreeimg" float="true" pos="962,216,0,0" width="152" height="152" bkimage="res/centerctrl/degree.png" align="center" visible="false"/>
+			
+			<Label name="" text="所有灯光" float="true" pos="751,666,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0" font="1"/>
+			<CheckBox name="CheckAllLight" float="true" pos="1044,666,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+			
+			<Label name="" text="补光灯" float="true" pos="751,765,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0" font="1"/>
+			<CheckBox name="CheckBgLight" float="true" pos="1044,765,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+			
+			<!--<Label name="" text="背景墙灯" float="true" pos="751,864,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0" font="1"/>
+			<CheckBox name="CheckConfLight" float="true" pos="1044,864,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />-->
+			<!--<Button name="btnNotice" float="true" pos="1827,927,0,0" width="64" height="64" normalimage="res/public/btnnotice_normal.png" pushedimage="res/public/btnnotice_select.png" />-->
+		  </VerticalLayout>
+		</VerticalLayout>	
+        <!--摄像机-->       
+		<VerticalLayout>
+			<!--TabLayout name="Cameratab" float="true" pos="0,0,1920,1027"-->
+				<!--全景摄像机-->
+				<VerticalLayout name="FullCameraLayout"  bkimage="" inset="0,0,0,0">  
+				<HorizontalLayout  padding="29,40,0,0">			
+				<Combo name="ComboCamSel" text="全景摄像机" align="center" width="285" height="62" dropboxsize="285,350" normalimage="res\roomctrl\ComboCam_selected.png" itemselectedimage="res\roomctrl\combo\sel.png" pushedimage="res\roomctrl\ComboCam_down.png" vscrollbar="false" hscrollbar="false" itemalign="center" itemfont="1" itemheight="64" align="center" font="1" textcolor="#CCD4DEEB"   dropboxInterspace="6" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FFFFFFFF"  MosPopBoxBk="res\roomctrl\combo" itemtextpadding="0,10,0,10" inset="0,20,0,20" itemhottextcolor="#FF00FFFF" itemselectedbkcolor="" itemhotbkcolor="" enabled="false">
+				</Combo>
+				<Control />	
+				<Button name="btnPosSet" text="" width="247" height="62" align="center" normalimage="res\roomctrl\btnPosSet_normal.png" hotimage="res\roomctrl\btnPosSet_down.png" pushedimage="res\roomctrl\btnPosSet_down.png" font="1" textcolor="#CCD4DEEB" enabled="false"/>
+				<Button name="btnSaveSet" padding="15,0,0,0" text="" width="221" height="62" align="center" normalimage="res\roomctrl\btnSaveSet_normal.png" hotimage="res\roomctrl\btnSaveSet_down.png" pushedimage="res\roomctrl\btnSaveSet_down.png" font="1" textcolor="#CCD4DEEB" enabled="false"/>
+				<Control width="27"/>	
+				</HorizontalLayout>
+				
+				<Label name="" pos="274,236,0,0" float="true" width="424" height="424" bkimage="res/roomctrl/pancam.png" />
+				<Button name="btnCamUp" float="true" pos="434,192,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/up.png" pushedimage="res/roomctrl/up_down.png" enabled="false" />
+				<Button name="btnCamLeft" float="true" pos="230,396,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/left.png" pushedimage="res/roomctrl/left_down.png" enabled="false"/>
+				<Button name="btnCamRight" float="true" pos="640,396,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/rignt.png" pushedimage="res/roomctrl/rignt_down.png" enabled="false" />
+				<Button name="btnCamDown" float="true" pos="434,602,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/down.png" pushedimage="res/roomctrl/down_down.png" enabled="false"/>
+			
+			
+				<Label name="" pos="1013,295,0,0" float="true" width="39" height="39" align="center"  bkimage="res/roomctrl/lbview.png" />
+				<Label name="" text="视野" float="true" pos="1063,298,0,0" width="145" height="39" align="left" font="1" textcolor="#CCD4DEEB" />
+				<Button name="btnViewPlus" float="true" pos="1592,263,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/plus.png" pushedimage="res/roomctrl/plus_down.png" enabled="false"/>
+				<Label name="" float="true" pos="1312,314,0,0" width="281" height="1" bkimage="res/roomctrl/hordotLine.png"  />
+				<Button name="btnViewMinus" float="true" pos="1208,263,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/minus.png" pushedimage="res/roomctrl/minus_down.png" enabled="false"/>
+				<Label name="" pos="1013,428,0,0" float="true" width="39" height="39" align="center"  bkimage="res/roomctrl/lbfocus.png" />
+				<Label name=""  text="焦距" float="true" pos="1063,431,0,0" width="145" height="39" align="left" font="1" textcolor="#CCD4DEEB" />
+				<Button name="btnFocusPlus" float="true" pos="1592,396,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/plus.png" pushedimage="res/roomctrl/plus_down.png" enabled="false"/>
+				<Label name="" float="true" pos="1312,448,0,0" width="88" height="1" bkimage="res/roomctrl/hordotLine.png"  />
+				<Button name="btnFocusAuto" float="true" pos="1400,396,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/aoto.png" pushedimage="res/roomctrl/aoto_down.png" enabled="false"/>
+				<Label name="" float="true" pos="1504,448,0,0" width="88" height="1" bkimage="res/roomctrl/hordotLine.png"  />
+				<Button name="btnFocusMinus" float="true" pos="1208,396,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/minus.png" pushedimage="res/roomctrl/minus_down.png" enabled="false"/>
+				<Label name="" pos="1013,561,0,0" float="true" width="39" height="39" align="center"  bkimage="res/roomctrl/lblight.png" />
+				<Label name=""  text="亮度" float="true" pos="1063,564,0,0" width="145" height="39" align="left" font="1" textcolor="#CCD4DEEB" />
+				<Button name="btnBrightPlus" float="true" pos="1592,529,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/plus.png" pushedimage="res/roomctrl/plus_down.png" enabled="false"/>
+				<Label name="" float="true" pos="1312,580,0,0" width="281" height="1" bkimage="res/roomctrl/hordotLine.png"  />
+				<Button name="btnBrightMinus" float="true" pos="1208,529,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/minus.png" pushedimage="res/roomctrl/minus_down.png" enabled="false"/>
+		
+				<Label name=""  text="开启全景摄像机" float="true" pos="241,922,0,0" width="293" height="62" textpadding="0,20,0,0" align="left" font="1" textcolor="#CCD4DEEB" />
+				<CheckBox name="CheckStartCam" float="true" pos="534,922,0,0" width="124" height="62" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" enabled="false" />
+				<Label name=""  text="创建快捷方式" float="true" pos="1023,922,0,0" width="293" height="62" textpadding="0,20,0,0" align="left" font="1" textcolor="#CCD4DEEB" />
+				<CheckBox name="CheckCamShortCut" float="true" pos="1316,922,0,0" width="124" height="62" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png"  enabled="false"/>
+				<!--<Button name="btnNotice" float="true" pos="1827,927,0,0" width="64" height="64" normalimage="res/public/btnnotice_normal.png" pushedimage="res/public/btnnotice_select.png" enabled="false"/>-->
+				</VerticalLayout>
+				<!--文档摄像机-->
+				<VerticalLayout name="FileCameralayout" visible="false">
+				<Combo name="ComboDCamSel" float="true" pos="364,40,0,0" text="文档摄像机" align="center" width="285" height="62" dropboxsize="285,350" normalimage="res\roomctrl\ComboCam_selected.png" itemselectedimage="res\roomctrl\combo\sel.png" pushedimage="res\roomctrl\ComboCam_down.png" vscrollbar="false" hscrollbar="false" itemalign="center" itemfont="1" itemheight="64" align="center" font="1" textcolor="#CCD4DEEB"   dropboxInterspace="6" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FFFFFFFF"  MosPopBoxBk="res\roomctrl\combo" itemtextpadding="0,10,0,10" inset="0,20,0,20" itemhottextcolor="#FF00FFFF" itemselectedbkcolor="" itemhotbkcolor="" />	
+				<Label name="CamSwitchLabel" text="开启文档摄像机" float="true" pos="300,145,0,0" width="170" height="42" textcolor="#CCD5DEEB" font="0" align="center" textpadding="0,15,0,0" />
+				<CheckBox name="CheckCam" float="true" pos="590,138,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+				<!--<HorizontalLayout bkcolor="#FE4B5764" float="true" pos="27,80,0,0" padding="17,0,0,0" height="1" width="1866"></HorizontalLayout> selected="true"-->
+				<Label float="true" pos="0,342,0,0" width="1919" height="1" bkimage="res\centerctrl\cutline.png"/>
+				<Label text="A3预置位" float="true" pos="461,264,0,0" width="165" height="42" textcolor="#CCD5DEEB" font="3" align="center" textpadding="0,15,0,0" />
+				<Option name="preposeA3" float="true" pos="521,320,0,0" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="prepose" />
+				<Label text="A4预置位" float="true" pos="878,264,0,0" width="165" height="42" textcolor="#CCD5DEEB" font="3" align="center" textpadding="0,15,0,0"/>
+				<Option name="preposeA4" float="true" pos="938,320,0,0" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="prepose"/>
+				<Label text="A5预置位" float="true" pos="1295,264,0,0" width="165" height="42" textcolor="#CCD5DEEB" font="3" align="center" textpadding="0,15,0,0"/>
+				<Option name="preposeA5" float="true" pos="1355,320,0,0" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="prepose"/>
+				<Label float="true" pos="747,420,0,0" width="424" height="424" bkimage="res/centerctrl/cam.png"/>
+				<Button name="BtnCamPlus" float="true" pos="704,579,0,0" width="104" height="104" normalimage="res/centerctrl/zoomin_normal.png" pushedimage="res/centerctrl/zoomin_select.png" /> 
+				<Button name="BtnCamMinus" float="true" pos="1112,579,0,0" width="104" height="104" normalimage="res/centerctrl/zoomout_normal.png" pushedimage="res/centerctrl/zoomout_select.png" />
+				
+				<Button name="BtnSnapShot" text="快 照" float="true" pos="1592,140,0,0" width="222" height="63" normalimage="res\public\fourletterbtn_normal.png" pushedimage="res\public\fourletterbtn_down.png" textcolor="#CCD5DEEB" />
+				<Button name="BtnAutoFocus" text="自动聚焦" float="true" pos="1592,518,0,0" width="222" height="63" normalimage="res\public\fourletterbtn_normal.png" pushedimage="res\public\fourletterbtn_down.png" textcolor="#CCD5DEEB"/>
+				<Button name="BtnAutoWB" text="自动白平衡" float="true" pos="1592,611,0,0" width="222" height="63" normalimage="res\public\fourletterbtn_normal.png" pushedimage="res\public\fourletterbtn_down.png" textcolor="#CCD5DEEB"/>
+				<Button name="BtnSavePrepose" text="保 存" float="true" pos="1592,706,0,0" width="222" height="63" normalimage="res\public\fourletterbtn_normal.png" pushedimage="res\public\fourletterbtn_down.png" textcolor="#CCD5DEEB"/>
+				
+				</VerticalLayout>		
+			<!--/TabLayout-->
+		<Option name="OptionFullCam" text="全景摄像机" float="true" pos="29,40,0,0" align="vcenter" width="285" height="62" normalimage="res\roomctrl\ComboCam_normal.png" selectedimage="res\roomctrl\ComboCam_selected.png" pushedimage="res\roomctrl\ComboCam_down.png" font="1" textcolor="#CCD4DEEB" group="Cameracontrol" selected="true" visible="false"/>
+		<Option name="OptionFileCam" text="文档摄像机" float="true" pos="364,40,0,0" align="vcenter" width="285" height="62" normalimage="res\roomctrl\ComboCam_normal.png" selectedimage="res\roomctrl\ComboCam_selected.png" pushedimage="res\roomctrl\ComboCam_down.png" font="1" textcolor="#CCD4DEEB" group="Cameracontrol"/>
+		
+		<Case name="caseFullCameraSel">	
+			<FullCameraLayout  visible="true"/>
+			<FileCameralayout  visible="false"/>
+		</Case>
+		<Case name="caseFileCameraSel">	
+			<FullCameraLayout  visible="false"/>
+			<FileCameralayout  visible="true"/>
+		</Case>
+		
+		<Case name="caseNoFullCamera">	
+			<ComboDCamSel  pos="29,40,0,0"/>
+			<OptionFileCam  pos="29,40,0,0"/>
+		</Case>
+		<Case name="caseHaveFullCamera">	
+			<ComboDCamSel  pos="364,40,0,0"/>
+			<OptionFileCam  pos="364,40,0,0"/>
+		</Case>
+		
+		</VerticalLayout>
+		<!--扬声器-->
+		<VerticalLayout>
+			<VerticalLayout name="speakerLayout"  bkimage="" inset="0,0,0,0">  
+			<Label name="" text="" float="true" pos="748,170,0,0" width="424" height="424" bkimage="res/roomctrl/speaker.png"/>
+			<Label name="lbspeakervol" text="0%" float="true" pos="706,657,0,0" width="79" height="60" bkimage="" textcolor="#FFFFFFFF" align="center"/>
+			<Slider name="sldSpeaker" float="true" pos="785,657,0,0" width="429" height="60" bkimage="res/public/slider_bg.png"  align="center"  thumbsize="60,60" thumbimage="file='res/public/slider_handler.png' mask='0xffffffff'"  foreimage="res/public/slider.png" iskeepimageheight="true"/> 	<!---->
+
+			<Label name="" text="扬声器" float="true" pos="751,765,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+			<CheckBox name="CheckSlient" float="true" pos="1044,765,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_on.png" selectedimage="res/public/switchbtn_off.png" />
+			
+			<Label name="" text="创建快捷操作" float="true" pos="751,864,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+			<CheckBox name="CheckSpeakerShortCut" float="true" pos="1044,864,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+			<!--<Button name="btnNotice" float="true" pos="1827,927,0,0" width="64" height="64" normalimage="res/public/btnnotice_normal.png" pushedimage="res/public/btnnotice_select.png" />-->
+		  </VerticalLayout>
+		</VerticalLayout>
+		<!--麦克风-->
+		<VerticalLayout>
+			<VerticalLayout name="micLayout"  inset="0,0,0,0">  		
+			<HorizontalLayout height="93"/>
+			
+			<VerticalLayout name="MicRowLayout" height="600" visible="false">
+				<HorizontalLayout />
+				<HorizontalLayout name="FirstRowLayout" height="320">
+					<Control />
+					<VerticalLayout width="1200" borderstyle="1" borderround="31,31" bordersize="1" bordercolor="#FF446183" >
+						<VerticalLayout height="64">
+							<Label height="63" align="center" textcolor="#FFBAC4D2" font="1" text="第一排麦克风"/>
+							<Label height="1" bkcolor="#FF446183"/>
+						</VerticalLayout>
+						<HorizontalLayout name="FirstRowList" >
+							<!--VerticalLayout height="256">
+								<HorizontalLayout>
+									<VerticalLayout />
+									<VerticalLayout width="150">
+										<Control />
+										<Button nam="micControlBtn" width="150" height="150" normalimage="" bkimage="res/roomctrl/micYes.png"/>
+										<Control />
+									</VerticalLayout>
+									<VerticalLayout />
+								</HorizontalLayout>
+							</VerticalLayout>
+							<VerticalLayout width="1" bkcolor="#FF446183"/>
+							<VerticalLayout height="256">
+								<HorizontalLayout>
+									<VerticalLayout />
+									<VerticalLayout width="150">
+										<Control />
+										<Button nam="micControlBtn" width="150" height="150" normalimage="" bkimage="res/roomctrl/micYes.png"/>
+										<Control />
+									</VerticalLayout>
+									<VerticalLayout />
+								</HorizontalLayout>
+							</VerticalLayout>
+							<VerticalLayout width="1" bkcolor="#FF446183"/>
+							<VerticalLayout height="256">
+								<HorizontalLayout>
+									<VerticalLayout />
+									<VerticalLayout width="150">
+										<Control />
+										<Button nam="micControlBtn" width="150" height="150" normalimage="" bkimage="res/roomctrl/micYes.png"/>
+										<Control />
+									</VerticalLayout>
+									<VerticalLayout />
+								</HorizontalLayout>
+							</VerticalLayout-->
+						</HorizontalLayout>
+					</VerticalLayout>
+					<Control />
+				</HorizontalLayout>
+				<HorizontalLayout name="RowGapLayout" height="80" visible="false"/>
+				<HorizontalLayout name="SecondRowLayout" height="320" visible="false">
+					<Control />
+					<VerticalLayout name="SecondRowListLayout" width="1500" borderround="31,31" bordersize="1" bordercolor="#FF446183" >
+						<VerticalLayout height="64">
+							<Label height="63" align="center" textcolor="#FFBAC4D2" font="1" text="第二排麦克风"/>
+							<Label height="1" bkcolor="#FF446183"/>
+						</VerticalLayout>
+						<HorizontalLayout name="SecondRowList" >
+							
+						</HorizontalLayout>
+					</VerticalLayout>
+					<Control />
+				</HorizontalLayout>
+				<HorizontalLayout />
+			</VerticalLayout>
+			<VerticalLayout name="NonDeskTopMicRowLayout" height="600" >
+				<Label name="" text="" float="true" pos="748,77,0,0" width="424" height="424" bkimage="res/roomctrl/mic.png"/>
+			</VerticalLayout>
+			
+			<HorizontalLayout name="MicSetLayout" height="266" >
+				<Label name="CheckMuteLab" text="麦克风" float="true" pos="752,60,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+				<CheckBox name="CheckMute" float="true" pos="1045,60,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_on.png" selectedimage="res/public/switchbtn_off.png" />
+				<Label name="ShortCutLab" text="创建快捷操作" float="true" pos="752,160,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+				<CheckBox name="CheckMicShortCut" float="true" pos="1045,160,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />		
+			</HorizontalLayout>
+			<HorizontalLayout height="75"/>
+			
+			<Case name="NonDesktopMic">
+				<MicRowLayout visible="false"/>			
+				<NonDeskTopMicRowLayout visible="true"/> 
+				<MicSetLayout height="266" /> 
+				<CheckMuteLab pos="752,60,0,0"/> 
+				<CheckMute pos="1045,60,0,0"/> 
+				<ShortCutLab pos="752,160,0,0"/> 
+				<CheckMicShortCut pos="1045,160,0,0" /> 
+			</Case>
+			<Case name="DesktopMic">
+				<MicRowLayout visible="true"/>			
+				<NonDeskTopMicRowLayout visible="false"/> 
+				<!--MicSetLayout height="146" /> 
+				<CheckMuteLab pos="412,80,0,0"/> 
+				<CheckMute pos="705,80,0,0"/> 
+				<ShortCutLab pos="1091,80,0,0"/> 
+				<CheckMicShortCut pos="1384,80,0,0" /--> 
+			</Case>
+			
+			<Case name="caseSingleRow">		
+				<MicRowLayout height="600"/>			
+				<RowGapLayout visible="false"/> 
+				<SecondRowLayout visible="false"/> 
+				<MicSetLayout height="266" /> 
+				<CheckMuteLab pos="752,60,0,0"/> 
+				<CheckMute pos="1045,60,0,0"/> 
+				<ShortCutLab pos="752,160,0,0"/> 
+				<CheckMicShortCut pos="1045,160,0,0" /> 
+			</Case> 
+			<Case name="caseDoubleRow">		
+				<MicRowLayout height="720"/>			
+				<RowGapLayout visible="true"/> 
+				<SecondRowLayout visible="true"/> 
+				<MicSetLayout height="146" /> 
+				<CheckMuteLab pos="412,80,0,0"/> 
+				<CheckMute pos="705,80,0,0"/> 
+				<ShortCutLab pos="1091,80,0,0"/> 
+				<CheckMicShortCut pos="1384,80,0,0" /> 
+			</Case>
+			
+			<Case name="caseThreeMic">		
+				<SecondRowListLayout width="1200"/> 
+			</Case>
+			<Case name="caseSixMic">		
+				<SecondRowListLayout width="1500"/> 
+			</Case>
+			
+			<!--<Label name="lbmicvol" text="0%" float="true" pos="706,657,0,0" width="79" height="60" bkimage="" textcolor="#FFFFFFFF"  align="center"/>
+			 <Slider name="sldMic" float="true" pos="785,657,0,0" width="429" height="60" bkimage="res/public/slider_bg.png"  align="center"  thumbsize="60,60" thumbimage="file='res/public/slider_handler.png' mask='0xffffffff'"  foreimage="res/public/slider.png" iskeepimageheight="true"/> 	-->
+			<!--Label name="" text="开启哑音" float="true" pos="412,886,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+			<CheckBox name="CheckMute" float="true" pos="705,886,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+			<Label name="" text="创建快捷操作" float="true" pos="1091,886,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+			<CheckBox name="CheckMicShortCut" float="true" pos="1384,886,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" /-->		
+			<!--<Button name="btnNotice" float="true" pos="1827,927,0,0" width="64" height="64" normalimage="res/public/btnnotice_normal.png" pushedimage="res/public/btnnotice_select.png" />-->			
+		  </VerticalLayout>
+		</VerticalLayout>		
+		<!--演示源-->
+		<!--VerticalLayout>
+		<Label name="LabCutline" float="true" pos="0,151,0,0" width="1920" height="1" bkimage="res/roomctrl/vediohorLine.png" align="center" />
+			<VerticalLayout name="vediosource"  inset="0,0,0,0">  
+			<HorizontalLayout float="true" pos="490,129,0,0"  width="1033" height="45" visible="false">
+			<Option name="VedioSouceOp1" width="45" height="45" group="VedioSource" padding="0,0,0,0" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png"  />
+			<Control />
+			<Option name="VedioSouceOp2" width="45" height="45" group="VedioSource" padding="0,0,0,0" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png"  />
+			<Control />
+			<Option name="VedioSouceOp3" width="45" height="45" group="VedioSource" padding="0,0,0,0" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png"  />	
+			<Control />			
+			<Option name="VedioSouceOp4" width="45" height="45" group="VedioSource" padding="0,0,0,0" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png"  />
+			<Control />
+			<Option name="VedioSouceOp5" width="45" height="45" group="VedioSource" padding="0,0,0,0" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png"  />
+			</HorizontalLayout>
+			<!--TouchList name="VedioSourceList" float="true" pos="349,129,0,0" width="1238" height="530" bkcolor="" vscrollbar="false" hscrollbar="false" itemselectedbkcolor="#FE0013F0" itemhotbkcolor="#FE2236EA"  columns="5" />  
+			<!--<Button name="btnNotice" float="true" pos="1827,927,0,0" width="64" height="64" normalimage="res/public/btnnotice_normal.png" pushedimage="res/public/btnnotice_select.png" />-->
+		  <!--/VerticalLayout>
+		</VerticalLayout-->
+		<!--视频源-->
+		<VerticalLayout>
+		<Case name="caseNull1">			
+			<lbVedio1Op1 text=""/> 
+			<lbVedio1Op2 text=""/> 
+		</Case> 	
+		<Case name="caseNull2">	
+			<lbVedio2Op1 text=""/> 
+			<lbVedio2Op2 text=""/> 
+			<lbVedio2Op3 text=""/> 
+		</Case> 
+		<Case name="caseNull3">	
+			<lbVedio3Op1 text=""/>
+			<lbVedio3Op2 text=""/> 
+		</Case>  
+			<VerticalLayout name="mainvedio" inset="0,0,0,0">  
+			<Label name="LabCutline" float="true" pos="0,182,0,0" width="1920" height="1" bkimage="res/roomctrl/horLine.png" align="center" />
+			<HorizontalLayout name="vediosourceBtnLayout" float="true" pos="264,111,0,0" width="1393" height="142" >
+			  <Label name="" width="142" height="142" bkimage="res/roomctrl/screenset.png" />
+			<Control />
+			  <Label name="" width="142" height="142" bkimage="res/roomctrl/screenset.png" />
+			<Control />
+			 <Label name="" width="142" height="142" bkimage="res/roomctrl/screenset.png" />
+			<Control />
+			 <Label name="" width="142" height="142" bkimage="res/roomctrl/screenset.png" />
+			</HorizontalLayout>
+			
+			  <Label name="" float="true" pos="330,253,0,0"  width="1" height="90" bkcolor=""  bkimage="res/roomctrl/verLine.png"/>
+			  <Label name="" float="true" pos="750,253,0,0"  width="1" height="90" bkcolor=""  bkimage="res/roomctrl/verLine.png"/>
+			  <Label name="" float="true" pos="1170,253,0,0" width="1" height="90" bkcolor=""  bkimage="res/roomctrl/verLine.png"/>
+			  <Label name="" float="true" pos="1590,253,0,0" width="1" height="90" bkcolor=""  bkimage="res/roomctrl/verLine.png"/>
+			
+			<HorizontalLayout name="vediosourceTxtLayout" float="true"  pos="177,331,0,0" width="1567" height="500" >
+				
+			  <VerticalLayout name="mainvedio"  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="305" height="500" >  
+			  <Label name=""  text="第一路视频源" pos="0,28,0,0" width="305" height="79" align="center" font="1" textcolor="#CCD4DEEB" />
+			  <Label pos="0,108,0,0" width="305" height="1" bkimage="res/roomctrl/hordotLine.png" />
+			  	<VerticalLayout name="RoonCtrlLayout" float="true"  pos="64,110,0,0" width="200" height="140" >
+					<HorizontalLayout height="70">
+					<Option name="Vedio1Op1" width="45" height="45" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png" group="Vedio1" selected="true" />
+					<VerticalLayout>
+					<Label name="lbVSource0"  text="主视频1"  textpadding="28,4,0,0" height="35" align="left" font="1" textcolor="#CCD4DEEB" />
+					<Label name="lbVedio1Op1" text="" gdiplus="true" textpadding="28,0,0,0" align="left" font="1" textcolor="#4CD5DEEB" />
+					</VerticalLayout>
+					</HorizontalLayout>
+					<Control />
+					<HorizontalLayout height="70">
+					<Option name="Vedio1Op2" width="45" height="45" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png" group="Vedio1" />
+					<VerticalLayout>
+					<Label name="lbVSource1"  text="辅视频1"  textpadding="28,4,0,0" height="35" align="left" font="1" textcolor="#CCD4DEEB" />
+					<Label name="lbVedio1Op2" text="" gdiplus="true" textpadding="28,0,0,0" align="left" font="1" textcolor="#4CD5DEEB" />
+					</VerticalLayout>
+					</HorizontalLayout>
+				</VerticalLayout>
+			  </VerticalLayout>
+			  	<Control />
+			  <VerticalLayout name="mainvedio" inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="305" height="500"> 
+			  <Label name=""  text="第二路视频源" pos="0,28,0,0" width="305" height="79" align="center" font="1" textcolor="#CCD4DEEB" />
+			  <Label pos="0,108,0,0" width="305" height="1" bkimage="res/roomctrl/hordotLine.png" />
+			  	<VerticalLayout name="RoonCtrlLayout" float="true"  pos="64,110,0,0" width="200" height="235">
+					<HorizontalLayout height="70">
+					<Option name="Vedio2Op1" width="45" height="45" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png" group="Vedio2" selected="true" />
+					<VerticalLayout>
+					<Label name="lbVSource2"  text="主视频2"  textpadding="28,4,0,0" height="35" align="left" font="1" textcolor="#CCD4DEEB" />
+					<Label name="lbVedio2Op1" text="" gdiplus="true" textpadding="28,0,0,0" align="left" font="1" textcolor="#4CD5DEEB" />
+					</VerticalLayout>
+					</HorizontalLayout>
+					<Control />
+					<HorizontalLayout height="70">
+					<Option name="Vedio2Op2" width="45" height="45" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png" group="Vedio2" />
+					<VerticalLayout>
+					<Label name="lbVSource3"  text="辅视频2"  textpadding="28,4,0,0" height="35" align="left" font="1" textcolor="#CCD4DEEB" />
+					<Label name="lbVedio2Op2" text="" gdiplus="true" textpadding="28,0,0,0" align="left" font="1" textcolor="#4CD5DEEB" />
+					</VerticalLayout>
+					</HorizontalLayout>
+					<Control />
+					<HorizontalLayout height="70">
+					<Option name="Vedio2Op3" width="45" height="45" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png" group="Vedio2"  />
+					<VerticalLayout>
+					<Label name="lbVSource6"  text="全景摄像机"  textpadding="28,4,0,0" height="35" align="left" font="1" textcolor="#CCD4DEEB" />
+					<Label name="lbVedio2Op3" text="" gdiplus="true" textpadding="28,0,0,0" align="left" font="1" textcolor="#4CD5DEEB" />
+					</VerticalLayout>
+					</HorizontalLayout>
+				</VerticalLayout>		
+			  </VerticalLayout>
+			  	<Control />
+			  <VerticalLayout name="mainvedio"  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="305" height="500">  	  
+			  <Label name=""  text="第三路视频源" pos="0,28,0,0" width="305" height="79" align="center" font="1" textcolor="#CCD4DEEB" />
+			  <Label pos="0,108,0,0" width="305" height="1" bkimage="res/roomctrl/hordotLine.png" />
+			  	<VerticalLayout name="RoonCtrlLayout" float="true"  pos="64,110,0,0" width="200" height="140">
+					<HorizontalLayout height="70">
+					<Option name="Vedio3Op1" width="45" height="45" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png" group="Vedio3" selected="true" />
+					<VerticalLayout>
+					<Label name="lbVSource4"  text="主视频3"  textpadding="28,4,0,0" height="35" align="left" font="1" textcolor="#CCD4DEEB" />
+					<Label name="lbVedio3Op1" text="" gdiplus="true" textpadding="28,0,0,0" align="left" font="1" textcolor="#4CD5DEEB" />
+					</VerticalLayout>
+					</HorizontalLayout>
+					<Control />
+					<HorizontalLayout height="70">
+					<Option name="Vedio3Op2" width="45" height="45" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png" group="Vedio3" />
+					<VerticalLayout>
+					<Label name="lbVSource5"  text="辅视频3"  textpadding="28,4,0,0" height="35" align="left" font="1" textcolor="#CCD4DEEB" />
+					<Label name="lbVedio3Op2" text="" gdiplus="true" textpadding="28,0,0,0" align="left" font="1" textcolor="#4CD5DEEB" />
+					</VerticalLayout>
+					</HorizontalLayout>
+				</VerticalLayout>
+			   </VerticalLayout>
+			    <Control />
+			  <VerticalLayout name="mainvedio"  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="305" height="500">  	  
+			  <Label name=""  text="演示视频源" pos="0,28,0,0" width="305" height="79" align="center" font="1" textcolor="#CCD4DEEB" />
+			  <Label pos="0,108,0,0" width="305" height="1" bkimage="res/roomctrl/hordotLine.png" />
+				<HorizontalLayout name="RoonCtrlLayout" float="true"  pos="64,110,0,0" width="200" height="350">
+					<List name="VedioSourceList" header="hidden" bkcolor="" vscrollbar="false" hscrollbar="false" itemselectedbkcolor="" itemhotbkcolor="" />
+				</HorizontalLayout>
+				
+			  
+			  	<!--VerticalLayout name="RoonCtrlLayout" float="true"  pos="64,110,0,0" width="200" height="350">
+					<HorizontalLayout height="70">
+					<Option name="VedioSouceOp1" width="45" height="45" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png" group="VedioSource" />
+					<VerticalLayout>
+					<Label name="lbVSource4"  text="全景摄像机"  textpadding="28,4,0,0" height="35" align="left" font="1" textcolor="#CCD4DEEB" />
+					<Label name="lbVedio3Op1" text="" gdiplus="true" textpadding="28,0,0,0" align="left" font="1" textcolor="#4CD5DEEB" />
+					</VerticalLayout>
+					</HorizontalLayout>
+					<Control />
+					<HorizontalLayout height="70">
+					<Option name="VedioSouceOp2" width="45" height="45" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png" group="VedioSource" />
+					<VerticalLayout>
+					<Label name="lbVSource5"  text="文档摄像机"  textpadding="28,4,0,0" height="35" align="left" font="1" textcolor="#CCD4DEEB" />
+					<Label name="lbVedio3Op2" text="" gdiplus="true" textpadding="28,0,0,0" align="left" font="1" textcolor="#4CD5DEEB" />
+					</VerticalLayout>
+					</HorizontalLayout>
+					<Control />
+					<HorizontalLayout height="70">
+					<Option name="VedioSouceOp3" width="45" height="45" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png" group="VedioSource" />
+					<VerticalLayout>
+					<Label name="lbVSource5"  text="演示源1"  textpadding="28,4,0,0" height="35" align="left" font="1" textcolor="#CCD4DEEB" />
+					<Label name="lbVedio3Op2" text="" gdiplus="true" textpadding="28,0,0,0" align="left" font="1" textcolor="#4CD5DEEB" />
+					</VerticalLayout>
+					</HorizontalLayout>
+					<Control />
+					<HorizontalLayout height="70">
+					<Option name="VedioSouceOp4" width="45" height="45" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png" group="VedioSource" />
+					<VerticalLayout>
+					<Label name="lbVSource5"  text="演示源2"  textpadding="28,4,0,0" height="35" align="left" font="1" textcolor="#CCD4DEEB" />
+					<Label name="lbVedio3Op2" text="" gdiplus="true" textpadding="28,0,0,0" align="left" font="1" textcolor="#4CD5DEEB" />
+					</VerticalLayout>
+					</HorizontalLayout>
+					<Control />
+					<HorizontalLayout height="70">
+					<Option name="VedioSouceOp5" width="45" height="45" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png" group="VedioSource" />
+					<VerticalLayout>
+					<Label name="lbVSource5"  text="演示源3"  textpadding="28,4,0,0" height="35" align="left" font="1" textcolor="#CCD4DEEB" />
+					<Label name="lbVedio3Op2" text="" gdiplus="true" textpadding="28,0,0,0" align="left" font="1" textcolor="#4CD5DEEB" />
+					</VerticalLayout>
+					</HorizontalLayout>
+				</VerticalLayout-->
+			   </VerticalLayout>
+			
+			</HorizontalLayout>	
+			<!--<Button name="btnNotice" float="true" pos="1827,927,0,0" width="64" height="64" normalimage="res/public/btnnotice_normal.png" pushedimage="res/public/btnnotice_select.png" />-->
+			</VerticalLayout>
+		</VerticalLayout>		
+        <!--矩阵-->
+		<VerticalLayout>
+			<ChildLayout xmlfile="matrix.xml" name="PageMatrix"/>	
+		</VerticalLayout>
+		<!--升降屏-->
+		<VerticalLayout>
+			<VerticalLayout name="LiftSrceen" inset="0,0,0,0">  
+				<Label name="" float="true" pos="146,162,0,0" width="270" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;0,0,270,1&apos;" align="center" />
+				<Label name="" float="true" pos="448,162,0,0" width="234" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;412,0,692,1&apos;" align="center" />
+				<Label name="" float="true" pos="714,162,0,0" width="234" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;844,0,1110,1&apos;" align="center" />
+				<Label name="" float="true" pos="980,162,0,0" width="234" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;844,0,1110,1&apos;" align="center" />
+				<Label name="" float="true" pos="1246,162,0,0" width="234" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1250,0,1530,1&apos;" align="center" />
+				<Label name="" float="true" pos="1512,162,0,0" width="270" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1660,0,1920,1&apos;" align="center" />
+				<HorizontalLayout name="LiftScreenBtnLayout" float="true" pos="396,130,0,0" width="1128" height="64" >
+					<CheckBox name="OptIsControl1" width="64" height="64" tag="1" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
+					<Control />
+					<CheckBox name="OptIsControl2" width="64" height="64" tag="2" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
+					<Control />
+					<CheckBox name="OptIsControl3" width="64" height="64" tag="3" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
+					<Control />
+					<CheckBox name="OptIsControl4" width="64" height="64" tag="4" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
+					<Control />
+					<CheckBox name="OptIsControl5" width="64" height="64" tag="5" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
+				</HorizontalLayout>
+				<Label name="" float="true" pos="428,180,0,0"  width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
+				<Label name="" float="true" pos="694,180,0,0"  width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
+				<Label name="" float="true" pos="960,180,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
+				<Label name="" float="true" pos="1226,180,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
+				<Label name="" float="true" pos="1492,180,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
+			</VerticalLayout>
+			<HorizontalLayout name="SrceensourceLayout" float="true"  pos="316,260,0,0" width="1288" height="402" >
+				<VerticalLayout name=""  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
+					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
+					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组1" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+				</VerticalLayout>
+			  	<Control />
+				<VerticalLayout name=""  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
+					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
+					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组2" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+				</VerticalLayout>
+				<Control />
+				<VerticalLayout name=""  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
+					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
+					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组3" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+				</VerticalLayout>
+				<Control />
+				<VerticalLayout name=""  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" > 
+					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
+					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组4" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+				</VerticalLayout>
+				<Control />
+				<VerticalLayout name=""  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
+					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
+					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组5" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+				</VerticalLayout>
+			</HorizontalLayout>	
+			<VerticalLayout float="true"  pos="399,734,0,0" width="1122" height="204" >
+				<Label name="" float="true" pos="0,0,0,0"  width="1" height="82" bkcolor="ff8baecc" />
+				<Label name="" float="true" pos="0,122,0,0"  width="1" height="82" bkcolor="ff8baecc" />
+				<Label name="" float="true" pos="1121,0,0,0"  width="1" height="204" bkcolor="ff8baecc" />
+				<Label name="" float="true" pos="0,0,0,0"  width="1122" height="1" bkcolor="ff8baecc" />
+				<Label name="" float="true" pos="0,203,0,0"  width="1122" height="1" bkcolor="ff8baecc" />
+				
+				<Button name="BtnLiftSrceenUp" float="true" pos="70,69,0,0" width="149" height="64" text="上升" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+				<Button name="BtnLiftSrceenDown" float="true" pos="486,69,0,0" width="149" height="64" text="下降" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+				<Button name="BtnLiftSrceenStop" float="true" pos="896,69,0,0" width="149" height="64" text="停止" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+				
+				<Button name="BtnFlipSrceenOpen" float="true" pos="70,69,0,0" width="149" height="64" text="打开" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" visible="false"/>
+				<Button name="BtnFlipSrceenClose" float="true" pos="486,69,0,0" width="149" height="64" text="闭合" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" visible="false"/>
+				<Button name="BtnFlipSrceenStop" float="true" pos="896,69,0,0" width="149" height="64" text="停止" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" visible="false"/>
+			</VerticalLayout>	
+			<Label name="" float="true" pos="300,804,0,0" width="64" height="64" text="全选" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+			<CheckBox name="OptIsControlAll" float="true" pos="368,804,0,0" width="64" height="64" tag="0" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
+		
+			<Case name="caseCheckSelectAll">		
+				<OptIsControl1 selected="true"/>
+				<OptIsControl2 selected="true"/>
+				<OptIsControl3 selected="true"/>
+				<OptIsControl4 selected="true"/>	
+				<OptIsControl5 selected="true"/>
+				<OptIsControlAll selected="true"/>					
+			</Case>
+			<Case name="caseCheckSelectNone">		
+				<OptIsControl1 selected="false"/>
+				<OptIsControl2 selected="false"/>
+				<OptIsControl3 selected="false"/>
+				<OptIsControl4 selected="false"/>	
+				<OptIsControl5 selected="false"/>
+				<OptIsControlAll selected="false"/>
+			</Case>
+			
+			<Case name="caseIsLiftSrceen">		
+				<BtnLiftSrceenUp visible="true"/>
+				<BtnLiftSrceenDown visible="true"/>
+				<BtnLiftSrceenStop visible="true"/>
+				<BtnFlipSrceenOpen visible="false"/>	
+				<BtnFlipSrceenClose visible="false"/>
+				<BtnFlipSrceenStop visible="false"/>					
+			</Case>
+			<Case name="caseIsFlipSrceen">		
+				<BtnLiftSrceenUp visible="false"/>
+				<BtnLiftSrceenDown visible="false"/>
+				<BtnLiftSrceenStop visible="false"/>
+				<BtnFlipSrceenOpen visible="true"/>	
+				<BtnFlipSrceenClose visible="true"/>
+				<BtnFlipSrceenStop visible="true"/>					
+			</Case>
+			
+		</VerticalLayout>
+		<!--显示器-->       
+		<VerticalLayout>
+			<Case name="caseMonitorSetSel">	
+			<MonitorSetLayout  visible="false"/>
+			<MonitorSetSelLayout  visible="true"/>
+			<lbLeftLine pos="110,32,831,33" />
+			<lbRigntLine pos="1089,32,1810,33" />
+			</Case>
+			<Case name="caseMonitorSetUnSel">	
+			<MonitorSetLayout  visible="true"/>
+			<MonitorSetSelLayout  visible="false"/>
+			<lbLeftLine pos="110,32,838,33" />
+			<lbRigntLine pos="1082,32,1810,33" />
+			<ctrlExtendHeight visible="false"/>
+			</Case>
+				
+			<Case name="caseNormalMonitor">	
+			<KGmonitor  visible="false"/>
+			<MonitorSetSelLayout  visible="true"/>
+			<lbMonitor text="显示器 调节" />
+			</Case>	
+			<Case name="caseKGmonitor">	
+			<KGmonitor  visible="true"/>
+			<MonitorSetSelLayout  visible="false"/>
+			<lbMonitor text="信号源选择" />
+			</Case>	
+			
+			<Case name="caseKeShiMonitor">	
+			<HDMI3Layout visible="false"/>
+			<HDMI4Layout visible="false"/>
+			<VGALayout pos="454,81,0,0"/>
+			</Case>	
+			<Case name="caseNotKeShiMonitor">	
+			<HDMI3Layout visible="true"/>
+			<HDMI4Layout visible="true"/>
+			<VGALayout pos="257,161,0,0"/>
+			</Case>	
+			
+			<HorizontalLayout name="RoomScreenLayout" height="443">
+				<TouchList name="MonitorList" float="true" pos="0,0,1920,443" inset="105,40,105,0" columns="3" childpadding="10" vscrollbar="true" hscrollbar="false" itemselectedimage="res/localroomcfg/screen_select.png" itembkimage="res/localroomcfg/screen_normal.png" itemdisabledimage="" itemtextcolor="#FEFFFFFF" itemdisabledtextcolor="#FE000000" itemselectedtextcolor="#FEFFFF00" />   
+			</HorizontalLayout>				
+
+			<Control name="ctrlExtendHeight" height="100" visible="false"/>
+			<HorizontalLayout height="70" >
+			<Label name="lbLeftLine" float="true" pos="110,32,838,33" bkcolor="#FE4B5764"/>
+			<Label name="lbRigntLine" float="true" pos="1062,32,1810,33" bkcolor="#FE4B5764"/>
+			<Label name="lbMonitor" text="显示器 调节" float="true" pos="841,0,0,82" width="218" height="62"  textcolor="#FED5DEEB" font="1" align="center"/>
+			</HorizontalLayout>
+			
+			<Control />
+			<HorizontalLayout name="MonitorSetLayout" height="300" visible="false">
+			<Control width="120" />
+			<Label name="" text="显示模式" bkimage="" width="200" align="left" />
+			<Label name="lbMonitorDispay" text=":"  bkimage="" width="60" align="left"/>
+			<Control />
+			<Label name="" text=""   bkimage="res/cnsmanage/screenperson.png" width="3" height="30" align="center" />
+			<Label name="" text="视听模式"   bkimage="" width="100" align="left" />
+			<Label name="lbMonitorAudio" text=":"  bkimage="" width="60" align="left"/>
+			<Control />
+			<Label name="" text=""  bkimage="res/cnsmanage/screenperson.png" width="3" height="30" align="center" />
+			<Label name="" text="信号源选择"   bkimage="" width="60" align="left" />
+			<Label name="lbMonitoSignal" text=":"  bkimage="" width="600" align="left"/>
+			<Control />
+			</HorizontalLayout>
+			
+			
+			<HorizontalLayout name="KGmonitor" height="300" padding="300,60,300,0" visible="false">
+					<HorizontalLayout height="45" width="280" float="false" pos="30,81,0,0"> 
+					<!--<Option name="OpHDMI1"  width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Signalstyle" selected="true" />-->
+					<Button name="btnHDMI1"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="HDMI 1" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>	
+					<HorizontalLayout height="45" width="280" float="false" pos="257,81,0,0" > 
+					<!--<Option name="OpHDMI2" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Signalstyle" />-->
+					<Button name="btnHDMI2"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="HDMI 2" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout name="HDMI3Layout" height="45" width="280" float="false" pos="454,81,0,0" > 
+					<!--<Option name="OpHDMI3" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Signalstyle" />-->
+					<Button name="btnHDMI3"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="HDMI 3" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>					
+					<HorizontalLayout name="HDMI4Layout" height="45" width="280" float="false" pos="30,161,0,0" > 
+					<!--<Option name="OpYPbPr"  width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Signalstyle"  />-->
+					<Button name="btnHDMI4"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="HDMI 4" padding="27" bkimage="" font="1" textcolor="#FE92A7C2" />
+					</HorizontalLayout>
+					<HorizontalLayout name="VGALayout" height="45" width="200" float="false" pos="257,161,0,0" > 
+					<!--<Option name="OpCVBs1" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Signalstyle" />-->
+					<Button name="btnVGA"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="VGA" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+			</HorizontalLayout>		
+			
+			
+			
+			<HorizontalLayout name="MonitorSetSelLayout" height="300">
+			<VerticalLayout name="Ver1Layout" width="560" height="300"  >
+				<Label name="" float="true" pos="106,15,0,0" text="显示模式"  bkimage="" height="30" width="200" align="left" font="1" textcolor="#FE92A7C2" />
+					<HorizontalLayout height="45" width="454" float="true" pos="106,81,0,0"> 
+					<!--<Option name="OpFS"  width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Displaystyle" selected="true" />-->
+					<Button name="btnFS"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="全屏" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout height="45" width="454" float="true" pos="333,81,0,0" > 
+					<!--<Option name="OpFView" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Displaystyle" />-->
+					<Button name="btnFView"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="全景" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout height="45" width="454" float="true" pos="106,161,0,0" > 
+					<!--<Option name="OpStandard"  width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Displaystyle" />-->
+					<Button name="btnStandard"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="标准" padding="27" bkimage="" font="1" textcolor="#FE92A7C2" />
+					</HorizontalLayout>
+					<HorizontalLayout height="45" width="454" float="true" pos="333,161,0,0" > 
+					<!--<Option name="OpPTP" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Displaystyle" />-->
+					<Button name="btnPTP"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="逐点" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+			</VerticalLayout>
+			<Label width="1" height="264" padding="0,15,0,0" bkcolor="#FE4B5764"/>
+			<VerticalLayout name="Ver2Layout" width="484" height="300" >
+				<Label name="" float="true" pos="30,15,0,0" text="视听模式"  bkimage="" height="30" width="200" align="left" font="1" textcolor="#FE92A7C2" />
+					<HorizontalLayout height="45" width="454" float="true" pos="30,81,0,0"> 
+					<!--<Option name="OpVStandard"  width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="AudioVstyle" selected="true" />-->
+					<Button name="btnVStandard"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="标准" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>	
+					<HorizontalLayout height="45" width="454" float="true" pos="257,81,0,0" > 
+					<!--<Option name="OpVUser" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="AudioVstyle" />-->
+					<Button name="btnVUser"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="用户" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout height="45" width="454" float="true" pos="30,161,0,0" > 
+					<!--<Option name="OpVPC"  width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="AudioVstyle"  />-->
+					<Button name="btnVPC"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="电脑" padding="27" bkimage="" font="1" textcolor="#FE92A7C2" />
+					</HorizontalLayout>
+					<HorizontalLayout height="45" width="454" float="true" pos="257,161,0,0" > 
+					<!--<Option name="OpVTV" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="AudioVstyle" />-->
+					<Button name="btnVTV"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="电影" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+			</VerticalLayout>
+			<Label width="1" height="264" padding="0,15,0,0" bkcolor="#FE4B5764"/>
+			<VerticalLayout name="Ver3Layout" height="300" >
+				<Label name="" float="true" pos="30,15,0,0" text="信号源选择"  bkimage="" height="30" width="200" align="left" font="1" textcolor="#FE92A7C2" />
+					<HorizontalLayout height="45" width="454" float="true" pos="30,81,0,0"> 
+					<!--<Option name="OpHDMI1"  width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Signalstyle" selected="true" />-->
+					<Button name="btnHDMI1"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="HDMI 01" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>	
+					<HorizontalLayout height="45" width="454" float="true" pos="257,81,0,0" > 
+					<!--<Option name="OpHDMI2" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Signalstyle" />-->
+					<Button name="btnHDMI2"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="HDMI 02" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout height="45" width="454" float="true" pos="454,81,0,0" > 
+					<!--<Option name="OpHDMI3" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Signalstyle" />-->
+					<Button name="btnHDMI3"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="HDMI 03" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>					
+					<HorizontalLayout height="45" width="454" float="true" pos="30,161,0,0" > 
+					<!--<Option name="OpYPbPr"  width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Signalstyle"  />-->
+					<Button name="btnYPbPr"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="YPbPr" padding="27" bkimage="" font="1" textcolor="#FE92A7C2" />
+					</HorizontalLayout>
+					<HorizontalLayout height="45" width="454" float="true" pos="257,161,0,0" > 
+					<!--<Option name="OpCVBs1" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Signalstyle" />-->
+					<Button name="btnCVBs1"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="CVBs 01" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout height="45" width="454" float="true" pos="454,161,0,0" > 
+					<!--<Option name="OpCVBs2" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Signalstyle" />-->
+					<Button name="btnCVBs2"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="CVBs 02" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>	
+					<HorizontalLayout height="45" width="454" float="true" pos="30,241,0,0" > 
+					<!--<Option name="OpSPC"  width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Signalstyle"  />-->
+					<Button name="btnSPC"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="电脑" padding="27" bkimage="" font="1" textcolor="#FE92A7C2" />
+					</HorizontalLayout>
+					<HorizontalLayout height="45" width="454" float="true" pos="257,241,0,0" > 
+					<!--<Option name="OpVGA" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="Signalstyle" />-->
+					<Button name="btnVGA"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" /> 
+					<Label name="" text="VGA" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>					
+			</VerticalLayout>
+			</HorizontalLayout>
+	<Control height="520"/>	
+		</VerticalLayout>
+		<!--空调-->
+		<VerticalLayout name="airlayout">
+			<Case name="caseAirconSetSel">	
+			<AirconSetLayout  visible="false"/>
+			<AirconSetSelLayout  visible="true"/>
+			<btnAirAll visible="true"/>
+			<lbAircon visible="false"/>
+			<lbLeftA pos="110,32,831,33" />
+			<lbRigntA pos="1089,32,1810,33" />
+			</Case>
+			<Case name="caseAirconSetUnSel">	
+			<AirconSetLayout  visible="true"/>
+			<AirconSetSelLayout  visible="false"/>
+			<btnAirAll visible="false"/>
+			<lbAircon visible="true"/>
+			<lbLeftA pos="110,32,870,33" />
+			<lbRigntA pos="1050,32,1810,33" />
+			</Case>			
+			
+			<HorizontalLayout name="RoomScreenLayout" height="443" >
+			<TouchList name="AirconditionList" float="true" pos="0,0,1920,443" inset="105,40,105,0" columns="3" childpadding="10" vscrollbar="true" hscrollbar="false" itemselectedimage="res/centerctrl/airbg.png" itembkimage="res/centerctrl/airbg.png" itemdisabledimage="" itemtextcolor="#FEFFFFFF" itemdisabledtextcolor="#FE000000" itemselectedtextcolor="#FEFFFF00" /> 
+			</HorizontalLayout>			
+
+			<HorizontalLayout height="70" >
+			<Label name="lbLeftA" float="true" pos="110,32,821,33" bkcolor="#FE4B5764"/>
+			<Label name="lbRigntA" float="true" pos="1079,32,1810,33" bkcolor="#FE4B5764"/>
+			<Label name="lbAircon" text="空调 调节"  float="true" pos="910,12,0,82" width="100" align="left" font="1" textcolor="#FE92A7C2" visible="false"/>
+			<Button name="btnAirAll" text="全部应用" float="true" pos="841,8,0,82" width="218" height="62" textcolor="#FED5DEEB" font="1" normalimage="res\public\fourletterbtn_normal.png" pushedimage="res\public\fourletterbtn_down.png" />
+			</HorizontalLayout>
+			
+			<Control />
+			
+			<HorizontalLayout name="AirconSetLayout" height="300" visible="false">
+			<Control width="120" />
+			<Label name="" text="空调模式"   bkimage="" width="200" align="left" />
+			<Label name="lbAirsonMode" text=":"  bkimage="" width="60" align="left"/>
+			<Control />
+			<Label name="" text=""   bkimage="res/cnsmanage/screenperson.png" width="3" height="30" align="center" />
+			<Label name="" text="温度"   bkimage="" width="100" align="left" />
+			<Label name="lbAirsonWet" text=":"  bkimage="" width="60" align="left"/>
+			<Control />
+			<Label name="" text=""  bkimage="res/cnsmanage/screenperson.png" width="3" height="30" align="center" />
+			<Label name="" text="风量"   bkimage="" width="60" align="left" />
+			<Label name="lbAirsonWind" text=":"  bkimage="" width="600" align="left"/>
+			<Control />
+			</HorizontalLayout>
+			<HorizontalLayout name="AirconSetSelLayout" height="300">
+			<VerticalLayout name="Ver1Layout" width="560" height="300"  >
+				<Label name="" float="true" pos="106,15,0,0" text="空调模式"  bkimage="" height="30" width="200" align="left" font="1" textcolor="#FE92A7C2" />
+					<HorizontalLayout height="45" width="454" float="true" pos="106,81,0,0"> 
+					<Button name="OpCold"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="ACMode" selected="true" />
+					<Label name="" text="制冷" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout height="45" width="454" float="true" pos="333,81,0,0" > 
+					<Button name="OpHot" width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="ACMode" />
+					<Label name="" text="制热" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout height="45" width="454" float="true" pos="106,161,0,0" > 
+					<Button name="OpWind"  width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="ACMode" />
+					<Label name="" text="送风" padding="27" bkimage="" font="1" textcolor="#FE92A7C2" />
+					</HorizontalLayout>
+					<HorizontalLayout height="45" width="454" float="true" pos="333,161,0,0" > 
+					<Button name="OpWet" width="45" height="45" pushedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="ACMode" />
+					<Label name="" text="除湿" padding="27" bkimage="" font="1" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+			</VerticalLayout>
+			<Label width="1" height="264" padding="0,15,0,0" bkcolor="#FE4B5764"/>
+			<VerticalLayout name="Ver2Layout" width="484" height="300" >
+				<Label name="" float="true" pos="30,15,0,0" text="温度"  bkimage="" height="30" width="200" align="left" font="1" textcolor="#FE92A7C2" />
+				<Button name="BtnWetPlus" float="true" pos="30,91,0,0" width="104" height="104" normalimage="res/roomctrl/plus.png" pushedimage="res/roomctrl/plus_down.png" /> 
+				<Button name="BtnWetMinus" float="true" pos="222,91,0,0" width="104" height="104" normalimage="res/roomctrl/minus.png" pushedimage="res/roomctrl/minus_down.png" /> 
+			</VerticalLayout>
+			<Label width="1" height="264" padding="0,15,0,0" bkcolor="#FE4B5764"/>
+			<VerticalLayout name="Ver3Layout" height="300" >
+				<Label name="" float="true" pos="30,15,0,0" text="风量"  bkimage="" height="30" width="200" align="left" font="1" textcolor="#FE92A7C2" />
+				<Button name="BtnWindPlus" float="true" pos="30,91,0,0" width="104" height="104" normalimage="res/roomctrl/plus.png" pushedimage="res/roomctrl/plus_down.png" /> 
+				<Button name="BtnWindMinus" float="true" pos="222,91,0,0" width="104" height="104" normalimage="res/roomctrl/minus.png" pushedimage="res/roomctrl/minus_down.png" />
+				<Button name="BtnWindAuto" float="true" pos="414,91,0,0" width="104" height="104" normalimage="res/roomctrl/aoto.png" pushedimage="res/roomctrl/aoto_down.png" /> 
+			</VerticalLayout>
+			</HorizontalLayout>
+	<Control height="520"/>	
+		</VerticalLayout>
+		<!--文档摄像机-->
+		<!--VerticalLayout name="camlayout">
+		<Label name="CamSwitchLabel" text="开启文档摄像机" float="true" pos="241,45,0,0" width="170" height="42" textcolor="#CCD5DEEB" font="0" align="center" textpadding="0,15,0,0" />
+		<CheckBox name="CheckCam" float="true" pos="534,38,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+		<!--<HorizontalLayout bkcolor="#FE4B5764" float="true" pos="27,80,0,0" padding="17,0,0,0" height="1" width="1866"></HorizontalLayout> selected="true"-->
+		<!--Label float="true" pos="0,242,0,0" width="1919" height="1" bkimage="res\centerctrl\cutline.png"/>
+		<Label text="A3预置位" float="true" pos="461,164,0,0" width="165" height="42" textcolor="#CCD5DEEB" font="2" align="center" textpadding="0,15,0,0" />
+		<Option name="preposeA3" float="true" pos="521,220,0,0" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="prepose" />
+		<Label text="A4预置位" float="true" pos="878,164,0,0" width="165" height="42" textcolor="#CCD5DEEB" font="2" align="center" textpadding="0,15,0,0"/>
+		<Option name="preposeA4" float="true" pos="938,220,0,0" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="prepose"/>
+		<Label text="A5预置位" float="true" pos="1295,164,0,0" width="165" height="42" textcolor="#CCD5DEEB" font="2" align="center" textpadding="0,15,0,0"/>
+		<Option name="preposeA5" float="true" pos="1355,220,0,0" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="prepose"/>
+		<Label float="true" pos="747,320,0,0" width="424" height="424" bkimage="res/centerctrl/cam.png"/>
+		<Button name="BtnCamPlus" float="true" pos="704,479,0,0" width="104" height="104" normalimage="res/centerctrl/zoomin_normal.png" pushedimage="res/centerctrl/zoomin_select.png" /> 
+		<Button name="BtnCamMinus" float="true" pos="1112,479,0,0" width="104" height="104" normalimage="res/centerctrl/zoomout_normal.png" pushedimage="res/centerctrl/zoomout_select.png" />
+		
+		<Button name="BtnSnapShot" text="快 照" float="true" pos="1592,40,0,0" width="222" height="63" normalimage="res\public\fourletterbtn_normal.png" pushedimage="res\public\fourletterbtn_down.png" textcolor="#CCD5DEEB" />
+		<Button name="BtnAutoFocus" text="自动聚焦" float="true" pos="1592,418,0,0" width="222" height="63" normalimage="res\public\fourletterbtn_normal.png" pushedimage="res\public\fourletterbtn_down.png" textcolor="#CCD5DEEB"/>
+		<Button name="BtnAutoWB" text="自动白平衡" float="true" pos="1592,511,0,0" width="222" height="63" normalimage="res\public\fourletterbtn_normal.png" pushedimage="res\public\fourletterbtn_down.png" textcolor="#CCD5DEEB"/>
+		<Button name="BtnSavePrepose" text="保 存" float="true" pos="1592,606,0,0" width="222" height="63" normalimage="res\public\fourletterbtn_normal.png" pushedimage="res\public\fourletterbtn_down.png" textcolor="#CCD5DEEB"/>
+		
+		</VerticalLayout-->		
+		<!--窗帘-->
+		<VerticalLayout>
+		<Label float="true" pos="0,168,0,0" width="1919" height="1" bkimage="res\centerctrl\cutline.png"/>
+		<Label name="lbcurtain1" text="无" float="true" pos="435,97,0,0" width="220" height="45" textcolor="#CCD5DEEB" font="0" align="center" textpadding="0,15,0,0"/>
+		<Option name="curtain1" float="true" pos="511,136,0,0" width="64" height="64" selectedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" enabled="false" />
+		<Label name="lbcurtain2" text="无" float="true" pos="852,97,0,0" width="220" height="45" textcolor="#CCD5DEEB" font="0" align="center" textpadding="0,15,0,0"/>
+		<Option name="curtain2" float="true" pos="928,136,0,0" width="64" height="64" selectedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" enabled="false" />
+		<Label name="lbcurtain3" text="无" float="true" pos="1270,97,0,0" width="220" height="45" textcolor="#CCD5DEEB" font="0" align="center" textpadding="0,15,0,0"/>
+		<Option name="curtain3" float="true" pos="1346,136,0,0" width="64" height="64" selectedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" enabled="false" />
+		<Label float="true" pos="0,417,0,0" width="1919" height="1" bkimage="res\centerctrl\cutline.png"/>
+		
+		<Label float="true" pos="543,192,0,0" width="1" height="165" bkimage="res\centerctrl\verLine.png"/>
+		<Label float="true" pos="960,192,0,0" width="1" height="165" bkimage="res\centerctrl\verLine.png"/>
+		<Label float="true" pos="1378,192,0,0" width="1" height="165" bkimage="res\centerctrl\verLine.png"/>
+		
+		<Label float="true" pos="543,440,0,0" width="1" height="153" bkimage="res\centerctrl\verLine.png"/>
+		<Label float="true" pos="960,440,0,0" width="1" height="153" bkimage="res\centerctrl\verLine.png"/>
+		<Label float="true" pos="1378,440,0,0" width="1" height="153" bkimage="res\centerctrl\verLine.png"/>
+		
+		<Label name="lbcurtain4" text="无" float="true" pos="435,345,0,0" width="220" height="45" textcolor="#CCD5DEEB" font="0" align="center" textpadding="0,15,0,0"/>
+		<Option name="curtain4" float="true" pos="511,385,0,0" width="64" height="64" selectedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" enabled="false" />
+		<Label name="lbcurtain5" text="无" float="true" pos="852,345,0,0" width="220" height="45" textcolor="#CCD5DEEB" font="0" align="center" textpadding="0,15,0,0"/>
+		<Option name="curtain5" float="true" pos="928,385,0,0" width="64" height="64" selectedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" enabled="false" />
+		<Label name="lbcurtain6" text="无" float="true" pos="1270,345,0,0" width="220" height="45" textcolor="#CCD5DEEB" font="0" align="center" textpadding="0,15,0,0"/>
+		<Option name="curtain6" float="true" pos="1346,385,0,0" width="64" height="64" selectedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" enabled="false" />
+		
+		<Label float="true" pos="400,598,0,0" width="1121" height="200" bkimage="res\centerctrl\curtainbg.png"/>
+		<Label text="全选" float="true" pos="307,667,0,0" width="72" height="45" textcolor="#CCD5DEEB" font="0" align="center" textpadding="0,15,0,0"/>
+		<Option name="opAll" float="true" pos="369,667,0,0" width="64" height="64" selectedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png"  enabled="false" />
+		
+		<Button name="BtnCuitainStop" text="停 止" float="true" pos="467,667,0,0" width="149" height="63" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" textcolor="#CCD5DEEB"/>
+		<Button name="BtnCuitainUp" text="上 升" float="true" pos="882,667,0,0" width="149" height="63" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" textcolor="#CCD5DEEB"/>
+		<Button name="BtnCuitainDown" text="下 降" float="true" pos="1297,667,0,0" width="149" height="63" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" textcolor="#CCD5DEEB"/>
+		</VerticalLayout>			
+            </SlideTabLayout>
+		
+	<ChildLayout xmlfile="presetlist.xml" name="PagePresetList" float="true" pos="0,0,1920,1121" />
+	<ChildLayout xmlfile="pagenameset.xml" name="PageNameSet" float="true" pos="0,0,1920,1121" visible="false"/>
+	
+	</HorizontalLayout>
+</Window>

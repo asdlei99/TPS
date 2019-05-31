@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<UserNameSet>
+  <Font name="微软雅黑" size="24" bold="false"/>
+  <Font name="微软雅黑" size="22" bold="false"/>
+  <Font name="微软雅黑" size="20" bold="false"/>
+  <VerticalLayout name="NoticeDlg"  bkimage="res/public/subpopbg.png" inset="0,0,0,0">
+    <Control height="300"/>
+
+    <HorizontalLayout height="520">
+      <Control />
+      <VerticalLayout  name=""  width=""  align="center" width="1920" >
+        <!--bkimage="res/logindlg/loginFrame.png"-->
+        <HorizontalLayout name="" align="center"  >
+          <Control />
+          <VerticalLayout name="" width="200" >
+            <Control />
+            <Label name="lbuserNameSet" text="用户名"    textcolor="#FED5DEEB" font="3" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+            <Control />
+          </VerticalLayout>
+          <Control width="50"/>
+          <VerticalLayout name="" width="600" >
+            <Control />
+            <Edit name="EditName" text="" tiptext="请输入用户名" height="64" width="600" textcolor="#FED5DEEB" font="2" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655"  maxchar="31"/>
+            <Control />
+          </VerticalLayout>
+          <Control />
+        </HorizontalLayout>
+        <HorizontalLayout name="" height="150">
+          <Control />
+          <VerticalLayout width="200" >
+            <Control />
+            <Label name="lbUserPasswdSet" text="密码"    textcolor="#FED5DEEB" font="3" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+            <Control />
+          </VerticalLayout>
+          <Control width="50"/>
+          <VerticalLayout name="" width="600" >
+            <Control height="34" />
+            <Edit name="edtUserPasswdSet" text="" tiptext="8~16个字符，至少包含数字和字母或 “_” “.”" height="64" width="600" textcolor="#FED5DEEB" font="2" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" password="true" maxchar="16"/>
+            <VerticalLayout name="PWStrengthLayout" visible="false">
+				<Label name="RedLab"      float="true" pos="34,24,0,0"  bkcolor="#FF8A96A5" width="100" height="5"/>
+				<Label name="YellowLab"   float="true" pos="144,24,0,0" bkcolor="#FF8A96A5" width="100" height="5"/>
+				<Label name="GreenLab"    float="true" pos="254,24,0,0" bkcolor="#FF8A96A5" width="100" height="5"/>
+				<Label name=""            float="true" pos="364,15,0,0" width="50" height="23" font="2" textcolor="#FFBAC3CF" text="强度"/>
+				<Label name="LevelTipLeb" float="true" pos="424,15,0,0" width="50" height="23" font="2" textcolor="#FFBAC3CF" text=""/>
+			</VerticalLayout>
+			<VerticalLayout name="PWStrengthTipLayout" visible="false">
+				<Label name="TipInmageLeb" float="true" pos="34,16,0,0"  width="20" height="20" bkimage="res\usermanager\TipInfo.png"/>
+				<Label name="TipTextLeb"   float="true" pos="64,15,0,0" width="50" height="23" font="2" textcolor="#FFBAC3CF" text="强度:"/>
+				<Label name="LvlTipLeb"    float="true" pos="124,15,0,0" width="50" height="23" font="2" textcolor="#FFBAC3CF" text="弱"/>
+			</VerticalLayout>
+          </VerticalLayout>
+          <Control />
+		  
+		  <VerticalLayout name="PWTipLayout" float="true" pos="1400,32,0,0" width="390" height="118" bkimage="res\usermanager\pwtip.png" visible="flase">
+			<Label name="LengthLab" float="true" pos="37,21,0,0" bkimage="res\usermanager\CheckNormal.png" width="16" height="16"/>
+			<Label name="RangeLab"  float="true" pos="37,52,0,0" bkimage="res\usermanager\CheckNormal.png" width="16" height="16"/>
+			<Label name="TypeLab"   float="true" pos="37,83,0,0" bkimage="res\usermanager\CheckNormal.png" width="16" height="16"/>
+		  </VerticalLayout>
+		  
+        </HorizontalLayout>
+        <HorizontalLayout name="" height="150">
+          <Control />
+          <VerticalLayout width="200" >
+            <Control />
+            <Label name="lbCheckUserPasswdSet" text="确认密码"   textcolor="#FED5DEEB" font="3" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+            <Control />
+          </VerticalLayout>
+          <Control width="50"/>
+          <VerticalLayout name="" width="600" >
+            <Control height="30" />
+            <Edit name="edtCheckUserPasswdSet" text="" tiptext="请再次输入密码" height="64" width="600" textcolor="#FED5DEEB" font="2" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" password="true" maxchar="31" />
+            <VerticalLayout name="CheckPWInfoLayout" visible="false">
+				<Label name="" float="true" pos="34,16,0,0"  width="20" height="20" bkimage="res\usermanager\TipError.png"/>
+				<Label name="" float="true" pos="64,15,0,0" width="360" height="23" font="2" textcolor="#FFD81118" text="您输入的密码与设置的密码不一致"/>
+			</VerticalLayout>
+          </VerticalLayout>
+          <Control />
+        </HorizontalLayout>
+        <!--<Edit  name="EditName" maxchar="31" bordercolor="" font="1" menu="true" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" gdiplus="true"  width="600" height="64" textcolor="#FED5DEEB"/>
+        <Control height="30"/>
+        <CheckBox name="CheckDefaultPassWord" text="设置为初始密码" maxchar="31" font="1" textcolor="#CCD4DEEB" bordersize="1,1,1,1" width="245" height="64" align="center" normalimage="res\public\sevenletterbtn_normal.png" selectedimage="res\public\sevenletterbtn_down.png" textpadding="0,15,0,0" padding="178,15,0,0"/>-->
+        <Control />
+      </VerticalLayout>
+      <Control />
+    </HorizontalLayout>
+    <Control />
+    <HorizontalLayout  name=""  width="" height="420" >
+      <!--bkimage="res/logindlg/loginFrame.png"-->
+      <Control />
+      <Control width="60"/>
+      <Button name="BtnSaveUserSet" text="确 定" font="1" textcolor="#CCD4DEEB" bordersize="1,1,1,1" width="149" height="66" align="center" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"/>
+      <Control width="120"/>
+      <Button name="BtnCancelUserSet" text="取 消" padding="10,0,0,0" font="1" textcolor="#CCD4DEEB" bordersize="1,1,1,1" width="149" height="66" align="center" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"/>
+      <Control />
+    </HorizontalLayout>
+    <Control height="100"/>
+	
+	<Case name="InitCase">	
+		<PWTipLayout visible="false"/>
+		<PWStrengthLayout visible="false"/>
+		<PWStrengthTipLayout visible="false"/>
+		<CheckPWInfoLayout visible="false"/>
+		<RedLab    bkcolor="#FF8A96A5" />
+		<YellowLab bkcolor="#FF8A96A5" />
+		<GreenLab  bkcolor="#FF8A96A5" />
+		<LevelTipLeb text="" textcolor="#FFD81118" />
+		<LvlTipLeb text="" textcolor="#FFD81118" />
+		<LengthLab bkimage="res\usermanager\CheckNormal.png" />
+		<RangeLab bkimage="res\usermanager\CheckNormal.png" />
+		<TypeLab bkimage="res\usermanager\CheckNormal.png" />
+	</Case>
+	
+	<Case name="PwdEditSetFocus">	
+		<PWTipLayout visible="true"/>
+		<PWStrengthLayout visible="true"/>
+		<PWStrengthTipLayout visible="false"/>
+	</Case>
+	<Case name="PwdEditKillFocus">	
+		<PWTipLayout visible="false"/>
+		<PWStrengthLayout visible="false"/>
+	</Case>
+	
+	<Case name="NoLevelCase">	
+		<RedLab    bkcolor="#FF8A96A5" />
+		<YellowLab bkcolor="#FF8A96A5" />
+		<GreenLab  bkcolor="#FF8A96A5" />
+		<LevelTipLeb text="" textcolor="#FFD81118" />
+		<LvlTipLeb text="" textcolor="#FFD81118" />
+	</Case>
+	<Case name="LowerCase">	
+		<RedLab    bkcolor="#FFD81118" />
+		<YellowLab bkcolor="#FF8A96A5" />
+		<GreenLab  bkcolor="#FF8A96A5" />
+		<LevelTipLeb text="弱" textcolor="#FFD81118" />
+		<LvlTipLeb text="弱" textcolor="#FFD81118" />
+	</Case>
+	<Case name="SeniorCase">	
+		<RedLab    bkcolor="#FFD81118" />
+		<YellowLab bkcolor="#FFF39417" />
+		<GreenLab  bkcolor="#FF8A96A5" />
+		<LevelTipLeb text="中" textcolor="#FFF39417" />
+		<LvlTipLeb text="中" textcolor="#FFF39417" />
+	</Case>
+	<Case name="HighCase">	
+		<RedLab    bkcolor="#FFD81118" />
+		<YellowLab bkcolor="#FFF39417" />
+		<GreenLab  bkcolor="#FF04DF08" />
+		<LevelTipLeb text="高" textcolor="#FF04DF08" />
+		<LvlTipLeb text="高" textcolor="#FF04DF08" />
+	</Case>
+	
+	<Case name="NoPwKillFocus">	
+		<PWStrengthTipLayout visible="false"/>
+	</Case>
+	<Case name="PwKillFocus">	
+		<PWStrengthTipLayout visible="true"/>
+		
+	</Case>
+
+	<Case name="ErrorPwKillFocus">	
+		<TipInmageLeb bkimage="res\usermanager\TipError.png"/>
+		<TipTextLeb text="密码设置不符合要求" textcolor="#FFD81118" width="220"/>
+		<LvlTipLeb visible="false" />
+	</Case>
+	<Case name="InfoPwKillFocus">	
+		<TipInmageLeb bkimage="res\usermanager\TipInfo.png"/>
+		<TipTextLeb text="强度:" textcolor="#FFBAC3CF" width="60" />
+		<LvlTipLeb visible="true" />
+	</Case>
+	
+	<Case name="CheckPasswordSuccess">	
+		<CheckPWInfoLayout visible="false"/>
+	</Case>
+	<Case name="CheckPasswordError">	
+		<CheckPWInfoLayout visible="true"/>
+	</Case>
+	
+	
+  </VerticalLayout>
+  
+</UserNameSet>

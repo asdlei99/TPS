@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Window sizebox="0,0,0,0" caption="0,0,0,0" size="1920,1121" mininfo="800,600"  maxinfo="1920,1121" >
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />
+    <Font name="微软雅黑" size="22" bold="false"></Font>
+    <Font name="微软雅黑" size="20" bold="false" default="false" />
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot; disabledtextcolor=&quot;#33D4DEEB&quot;" />
+	<Default name="VScrollBar" value="mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+
+    <!-- <VerticalLayout name="AddrBookLayout" bkimage="res/subdlgbkg.png"> -->      
+	<SlideTabLayout name="AddrBookLayout" bkimage="res/subdlgbkg.png">
+	<!--地址簿-->
+	<VerticalLayout>
+	<HorizontalLayout height="126" >
+	  <Edit name="EdtSearch" nativebkcolor="#FF0E1620" text="" padding="27,30,0,0" width="610" height="60" textcolor="#FEE4EEFF" font="1"  menu="true" gdiplus="true" tiptext="请输入名称进行搜索"/>
+	  <Label name="" width="610" height="1" float="true" pos="27,89,0,0" bkcolor="#FF4B5764" /> 
+	  <Combo name="ComboAddrShowEx" padding="13,28,0,0" text="全  部" textpadding="0,0,75,0" width="214" height="64" dropboxsize="214,600" textcolor="#CCD4DEEB" gdiplus="true" normalimage="res\public\btnchoiceclass_normal.png" pushedimage="res\public\btnchoiceclass_down.png" vscrollbar="false" hscrollbar="false" itemalign="center" itemfont="1" itemheight="64" align="center" font="1" textcolor="#CCD4DEEB"   dropboxInterspace="6" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FFFFFFFF"  MosPopBoxBk="res\public\combo" itemtextpadding="0,10,0,10" inset="0,20,0,20" itemhottextcolor="#FF00FFFF" itemselectedbkcolor="" itemhotbkcolor="" >
+      </Combo>
+	  <!-- <Button name="BtnAllSel" padding="20,28,0,0" width="149" height="64" text="全 选" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/> -->
+	  <Button name="BtnRefresh" padding="20,28,0,0" width="149" height="64" text="刷 新" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+	  <Button name="BtnAddrConfig" padding="20,28,0,0" width="149" height="64" text="管 理" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+	  <Button name="BtnCnsIsSel" float="true" pos="1406,28,0,0" width="64" height="64" pushedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" /> 
+	  <Text name="" float="true" pos="1480,45,0,0" width="112" height="28" text="已选会场" textcolor="#CCD4DEEB" font="1" align="left" gdiplus="true" />
+	  <Label name="labSelCount" text="" float="true" pos="1580,45,0,0" textcolor="#CCD4DEEB" font="1" width="100" height="28" align="left"  gdiplus="true" />
+	  <Label float="true" pos="1639,28,0,0" width="1" height="64" bkcolor="#FF4B5764" gdiplus="true" />
+	  <Button name="BtnInviteCns" float="true" pos="1668,28,0,0" width="225" height="64" text="" font="1" textcolor="#CCD4DEEB" normalimage="res\public\btninvite_normal.png" pushedimage="res\public\btninvite_down.png"/>
+	</HorizontalLayout>
+	
+	<Case name="caseCnsHasSel">	
+		<BtnCnsIsSel normalimage="res/public/checkbox_select.png" pushedimage="res/public/checkbox_normal.png"/>
+	</Case>
+	<Case name="caseCnsNoSel">	
+		<BtnCnsIsSel pushedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png"/>
+	</Case>
+	
+	<Label name="labCutline" float="true" pos="27,126,0,0" width="1866" height="1" bkcolor="#FF4B5764" /> 
+
+	<HorizontalLayout name="AddrBookPath" height="83" >
+	   <HorizontalLayout name="LayoutAddrMainPath" padding="28,0,0,0" width="150">
+	   <Button name="BtnAddrMainPath" padding="0,20,0,0" textpadding="64,0,0,0" align="left" align="vcenter" textcolor="#FFD5DEEB" gdiplus="true" font="1" text="地址簿" width="150" height="50" normalimage="file=&apos;res\addrbook\btnAddrPath.png&apos; dest=&apos;0,0,50,50&apos;" pushedimage="file=&apos;res\addrbook\btnAddrPath_down.png&apos; dest=&apos;0,0,50,50&apos;"/>
+	   <!--Label name="" text="地址簿" padding="14,30,0,0" width="100" height="40" align="left" textcolor="#FFD5DEEB" gdiplus="true" font="1"/-->
+	   </HorizontalLayout>
+	   <HorizontalLayout name="LayoutGroupPath1" visible="false" >
+	   <Label name="labGroupPath1" text="/" padding="10,20,0,0" width="20" height="50" align="center" textcolor="#FFD5DEEB" gdiplus="true" font="1"/>
+	   <Button name="BtnGroupPath1" text="" padding="20,20,0,0" textpadding="64,10,0,0" align="left" textcolor="#FFD5DEEB" gdiplus="true" font="1" width="500" height="50" normalimage="file=&apos;res\addrbook\btnGroupPath.png&apos; dest=&apos;0,0,50,50&apos;" pushedimage="file=&apos;res\addrbook\btnGroupPath_down.png&apos; dest=&apos;0,0,50,50&apos;"/>
+	   <!--Label name="txtGroupPath1"  text="" padding="14,30,0,0" width="450" height="40" align="left" textcolor="#FFD5DEEB" gdiplus="true" font="1"/-->
+	   </HorizontalLayout>
+	   <HorizontalLayout name="LayoutGroupPath2" visible="false">
+	   <Label name="labGroupPath2" text="/" padding="10,20,0,0" width="20" height="50" align="center" textcolor="#FFD5DEEB" gdiplus="true" font="1"/>
+	   <Button name="BtnGroupPath2" text="" padding="20,20,0,0" textpadding="64,10,0,0" align="left" textcolor="#FFD5DEEB" gdiplus="true" font="1" width="500" height="50" normalimage="file=&apos;res\addrbook\btnGroupPath.png&apos; dest=&apos;0,0,50,50&apos;" pushedimage="file=&apos;res\addrbook\btnGroupPath_down.png&apos; dest=&apos;0,0,50,50&apos;"/>
+	   <!--Label name="txtGroupPath2"  text="" padding="14,30,0,0" width="500" height="40" align="left" textcolor="#FFD5DEEB" gdiplus="true" font="1"/-->
+	   </HorizontalLayout>
+	</HorizontalLayout>	
+	<Case name="caseAddrMainPath">	
+		<LayoutGroupPath1 visible="false"/>
+		<LayoutGroupPath2 visible="false"/> 
+	</Case>
+	<Case name="caseGroupPath1">	
+		<LayoutGroupPath1 visible="true"/>
+		<LayoutGroupPath2 visible="false"/> 
+	</Case>
+	<Case name="caseGroupPath2">	
+		<LayoutGroupPath1 visible="true"/>
+		<LayoutGroupPath2 visible="true"/> 
+	</Case>
+	
+	<LetterIndex name="ListIndex" float="true" pos="43,204,0,0" width="21" height="810" bkimage="res/list/letterIndex.png" font="1" textcolor="#FF379FDB" /> 
+	
+	<TouchList name="AddrList" float="true"  pos="88,210,0,0" width="1767" height="800" columns="6" vscrollbar="true">
+	</TouchList>
+
+	<Case name="caseListNoSel">	
+		<AddrListItem bkimage="res\list\item_normal.png"/>
+	</Case>
+	<Case name="caseListSel">	
+		<AddrListItem bkimage="res\list\item_down.png"/>
+	</Case>
+	<Case name="caseListOffline">	
+		<AddrListItem bkimage="res\list\item_disabled.png"/>
+	</Case>
+	<Case name="caseItemShowInfo">	
+		<AddrListItem bkimage="res\list\item_down.png"/>
+		<imgAddrLabel visible="false"/> 
+		<AddrShowText visible="false"/>
+		<AddrInfoLayout visible="true"/>
+	</Case>
+	<Case name="caseItemShowLabel">	
+		<imgAddrLabel visible="true"/> 
+		<AddrShowText visible="true"/>
+		<AddrInfoLayout visible="false"/>
+	</Case>	
+	<Case name="caseAddrGroupItem">	
+		<BtnAddrSel visible="false"/>
+		<imgAddrLabel bkimage="res/list/imgGroup.png"/> 
+	</Case>
+	<Case name="caseSipItem">	
+		<AddrShowText textcolor="#FF3EC6FF"/>
+	</Case>
+	<Case name="caseMonitorItem">	
+		<imgAddrLabel bkimage="res/list/imgMonitor.png"/> 
+	</Case>	
+	<Case name="caseOrdinaryItem">	
+		<imgAddrLabel bkimage="res/list/imgOrdinary.png"/> 
+	</Case>	
+
+
+	
+	<ChildLayout xmlfile="notice.xml" name="PageNotice" visible="false" float="true" pos="0,0,1920,1121"/>	
+
+    </VerticalLayout>
+	
+	<!--其它-->
+	<VerticalLayout>
+		
+	<Control height="317"/>	  
+	<HorizontalLayout  name="EditNameLayout"  width="" height="64" align="center">
+		<Control />	
+		<Edit name="EditName" tiptext="名称" maxchar="32" bordercolor="" font="1" text="" menu="true" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" gdiplus="true" textcolor="#FED5DEEB" width="700" height="64" />
+		<Control />	
+	</HorizontalLayout>
+	<HorizontalLayout  name="EditE164Layout" padding="0,78,0,0"  width="" height="64" align="center"> 
+		<Control />	
+		<Edit name="EditE164" tiptext="号码" maxchar="16" bordercolor="" font="1" text="" menu="true" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" gdiplus="true" textcolor="#FED5DEEB" width="700" height="64" />
+		<Control />	
+	</HorizontalLayout>
+	<HorizontalLayout  name="EditIpLayout" padding="0,78,0,0"  width="" height="64" align="center"> 
+		<Control />	
+		<Edit name="EditIP" tiptext="IP地址" maxchar="15" bordercolor="" font="1" text="" menu="true" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" gdiplus="true" textcolor="#FED5DEEB" width="700" height="64" />
+		<Control />	
+	</HorizontalLayout>
+	<HorizontalLayout  name="" padding="0,78,0,0"  width="" height="420" >
+		<Control />	
+		<Button name="BtnAddrInviteOther"  width="128" height="128" normalimage="res\addrbook\btnAddrInvite.png" pushedimage="res\addrbook\btnAddrInvite_down.png"/>
+		<Control />	
+	</HorizontalLayout>
+		
+	</VerticalLayout>
+			
+    </SlideTabLayout>
+
+</Window>

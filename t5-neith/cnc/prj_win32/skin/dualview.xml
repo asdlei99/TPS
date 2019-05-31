@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Window sizebox="0,0,0,0" caption="0,0,0,0" size="1920,1121" mininfo="800,200" maxinfo="1920,1121" >
+    <Font name="微软雅黑" size="25" bold="false" default="true"  />
+    <Font name="微软雅黑" size="18" bold="false"></Font>
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+  <HorizontalLayout name="DualViewLayout" bkcolor="#CCFFFFFF" bkimage="res/cnsmanagebkg.png" inset="0,0,0,0">  
+	<VerticalLayout float="true" pos="100,0,518,300">
+	<Label name="LabelTip" text="双流" height="300" textcolor="#CCFFFFFF" align="center" font="0" gdiplus="true"/>
+	</VerticalLayout>
+	<HorizontalLayout float="true" pos="20,10,1920,100">
+	<Control />
+	<Button name="BtnOk" width="200" height="90" font="1" text="全  屏" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"   align="center"  gdiplus="true"/>
+	<Button name="BtnCancel" width="200" height="90" font="1" padding="20,0,0,0" text="隐  藏" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"   align="center" gdiplus="true"/>
+	<Control />
+	</HorizontalLayout>
+  </HorizontalLayout>
+ </Window>

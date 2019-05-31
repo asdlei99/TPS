@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<PageAudioMix>
+  <VerticalLayout name="AudioMixLayout">
+	<HorizontalLayout height="610" padding="87,75,87,75">
+	<Button name="btnListLeft" float="true" pos="0,247,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/left.png" pushedimage="res/roomctrl/left_down.png" enabled="false"/>
+	<SlideTabLayout name="ConfDiscussSlidetab" float="true" pos="150,0,0,0" width="1436" height="600" bkcolor="">
+	</SlideTabLayout>
+	<Button name="btnListRight" float="true" pos="1639,247,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/rignt.png" pushedimage="res/roomctrl/rignt_down.png" />
+	</HorizontalLayout>
+	
+	<Label text="开启语音激励" float="true" pos="241,765,0,0" width="293" height="66" textcolor="#CCD5DEEB" font="0" align="left" textpadding="0,15,0,0"/>
+	<CheckBox name="CheckAudioExcitation" float="true" pos="541,765,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
+	<Label text="创建快捷操作" float="true" pos="241,864,0,0" width="293" height="66" textcolor="#CCD5DEEB" font="0" align="left" textpadding="0,15,0,0"/>
+	<CheckBox name="CheckConfDiscussShortCut" float="true" pos="541,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
+	<Label text="开启会议讨论" float="true" pos="1023,864,0,0" width="293" height="66" textcolor="#CCD5DEEB" font="0" align="left" textpadding="0,15,0,0"/>
+	<CheckBox name="CheckStartDicsuss" float="true" pos="1316,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
+		
+	<Case name="caseDiscListNoSel">	
+		<NormalLayout visible="false"/>
+		<SetLayout visible="false"/>
+		<NoSelLayout visible="true"/>
+	</Case>
+	<Case name="caseDiscListNormal">	
+		<NormalLayout visible="true"/>
+		<SetLayout visible="false"/>
+		<NoSelLayout visible="false"/>
+	</Case>
+	<Case name="caseDiscListSel">	
+		<NormalLayout visible="false"/>
+		<SetLayout visible="true"/>
+		<NoSelLayout visible="false"/>
+	</Case>
+	<Case name="caseNoSpeaker">	
+		<btnSpeaker visible="false"/>
+		<ctlSpeaker visible="false"/>
+	</Case>	
+	<Case name="caseSpeaker">	
+		<btnSpeaker visible="true"/>
+		<ctlSpeaker visible="true"/>
+	</Case>	
+	<ChildLayout xmlfile="conflistpage.xml" name="PageDiscSelConfList" float="true" pos="0,0,1920,1121" visible="false"/>
+	
+  </VerticalLayout>
+</PageAudioMix>

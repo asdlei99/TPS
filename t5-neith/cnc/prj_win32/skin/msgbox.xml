@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Window sizebox="0,0,0,0" caption="0,0,0,0" size="532,333" mininfo="532,333"  maxinfo="532,333" bktrans="true">
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />
+    <Font name="微软雅黑" size="18" bold="false"></Font>
+
+    <VerticalLayout name="VerticalLayoutBack"  bkimage="file='res\msgbox\msgbkg.png'" float="false" >
+        <Label name="titleinfor" float="true" pos="75,54,460,94" align="center" text="你好，外星人" font="0" textcolor="#FFFFFFFF" ></Label>
+        <Label name="messageinfo" float="true" pos="75,134,460,174" align="center" text="你好，地球人" font="1" textcolor="#FFFFFFFF" ></Label>
+
+        <Button name="BtnOk" text="" tooltip="" float="true" pos="100,226,238,284" bordersize="0" width="138" height="58" maxwidth="138" maxheight="58" normalimage="file='res\msgbox\创建.png' mask='0xffffffff'"  hotimage="file='res\msgbox\创建_down.png' mask='0xffffffff'" pushedimage="file='res\msgbox\创建_down.png' mask='0xffffffff'" />
+        <Button name="BtnClose" text="" tooltip="" float="true" pos="302,226,440,284" bordersize="0" width="138" height="58" maxwidth="138" maxheight="58" normalimage="file='res\msgbox\创建.png' mask='0xffffffff'"  hotimage="file='res\msgbox\创建_down.png' mask='0xffffffff'" pushedimage="file='res\msgbox\创建_down.png' mask='0xffffffff'" />
+
+    </VerticalLayout>
+</Window>

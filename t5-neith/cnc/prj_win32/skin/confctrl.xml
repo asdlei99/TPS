@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window caption="0,0,0,0" size="1920,1121" mininfo="1366,768" maxinfo="1920,1121" roundcorner="0,0">
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />  
+	<Font name="微软雅黑" size="22" bold="false"></Font>
+	<Font name="微软雅黑" size="18" bold="false"></Font>
+	<Font name="微软雅黑" size="20" bold="false"></Font>
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+	<Default name="VScrollBar" value="mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="HScrollBar" value="mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+    <VerticalLayout name="ConfCtrlLayout" bkimage="res/subdlgbkg.png">
+		 
+	<HorizontalLayout name="ConfCtrlTitleLayout" inset="0,0,0,0" height="93" >
+		<Control width="105"/>
+		<Label name="labCutline" float="true" pos="27,92,0,0" width="1866" height="1" bkcolor="#FF4B5764" /> 
+		<Button name="btnGoLeft" float="true" pos="27,26,0,0" width="50" height="50" normalimage="res/confctrl/pageup.png" pushedimage="res/confctrl/pageup_down.png" visible="false"/> 
+		<Button name="btnGoRight" float="true" pos="1843,26,0,0" width="50" height="50" normalimage="res/confctrl/pagenext.png" pushedimage="res/confctrl/pagenext_down.png" visible="false"/> 
+		
+        <Option name="confcns" text="会议会场" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" group="confcontrol" selected="true" align="center" />
+		 
+		<Option name="confroll" text="会议点名" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
+		
+ 		<Option name="confMix" text="混音" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
+		
+		<Option name="vidmix" text="画面合成" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
+        <Option name="confpoll" text="会议轮询" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
+        <Option name="audmix" text="会议讨论" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
+        <Option name="confdual" text="双流" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
+        <Option name="mixmotive" text="语音激励" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
+        <Option name="pip" text="画中画" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
+		<Option name="tvwall" text="电视墙" padding="2,23,0,0" width="231" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />		
+        <Option name="FeccCam" text="摄像机远摇" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
+	</HorizontalLayout>
+	<HorizontalLayout bkcolor="#FE4B5764" float="true" pos="27,92,0,0" height="1" width="1866"></HorizontalLayout>
+	<SlideTabLayout name="ConfCtrlSlideTab" >
+	  <!--会议会场 -->
+	  <VerticalLayout name="cncconflayout" >  
+		<ChildLayout xmlfile="confrooms.xml" name="PageCncConf"/>
+	  </VerticalLayout>
+	  
+	  <!--会议点名 -->
+	  <VerticalLayout name="rolllayout">
+		<ChildLayout xmlfile="confroll.xml" name="PageConfRoll"/>	
+	  </VerticalLayout>
+	  <!--混音 -->
+	  <VerticalLayout name="mixlayout">
+		<ChildLayout xmlfile="confmix.xml" name="PageConfMix"/>	
+	  </VerticalLayout>	  
+	  <!--画面合成 -->
+	  <VerticalLayout name="videomixlayout">
+	    <ChildLayout xmlfile="videomix.xml" name="PageVideoMix"/>
+	  </VerticalLayout>
+	  <!--会议轮询 -->
+	  <VerticalLayout name="polllayout">
+		<ChildLayout xmlfile="confpoll.xml" name="PageConfPoll"/>	
+	  </VerticalLayout>
+	  <!--会议讨论 -->
+	  <VerticalLayout name="discusslayout">
+		<ChildLayout xmlfile="audiomix.xml" name="PageAudioMix"/>
+	  </VerticalLayout>
+	  <!--双流演示 -->
+	  <VerticalLayout name="dualviewlayout">
+		<VerticalLayout>
+			<Label name="LabCutline" float="true" pos="0,151,0,0" width="1920" height="1" bkimage="res/roomctrl/vediohorLine.png" align="center" />
+			<VerticalLayout name="vediosource"  inset="0,0,0,0">  
+				<HorizontalLayout float="true" pos="445,129,0,0"  width="1033" height="45" visible="false">
+					<Option name="VedioSouceOp1" width="45" height="45" group="VedioSource" padding="0,0,0,0" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png"  />
+					<Control />
+					<Option name="VedioSouceOp2" width="45" height="45" group="VedioSource" padding="0,0,0,0" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png"  />
+					<Control />
+					<Option name="VedioSouceOp3" width="45" height="45" group="VedioSource" padding="0,0,0,0" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png"  />	
+					<Control />			
+					<Option name="VedioSouceOp4" width="45" height="45" group="VedioSource" padding="0,0,0,0" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png"  />
+					<Control />
+					<Option name="VedioSouceOp5" width="45" height="45" group="VedioSource" padding="0,0,0,0" selectedimage="res/roomctrl/btnVedioSel.png" normalimage="res/roomctrl/btnVedioSel_disable.png" pushedimage="res/roomctrl/btnVedioSel.png"  />
+				</HorizontalLayout>
+				<TouchList name="VedioSourceList" float="true" pos="349,129,0,0" width="1238" height="530" bkcolor="" vscrollbar="false" hscrollbar="false" itemselectedbkcolor="#FE0013F0" itemhotbkcolor="#FE2236EA"  columns="5" />  
+				<!--<Button name="btnNotice" float="true" pos="1827,927,0,0" width="64" height="64" normalimage="res/public/btnnotice_normal.png" pushedimage="res/public/btnnotice_select.png" />-->
+			</VerticalLayout>
+		</VerticalLayout>
+		<!--Label name="" float="true" pos="748,170,0,0" width="424" height="424" bkimage="res/confctrl/imgDual.png"/-->	
+		<Label text="开启双流演示" float="true" pos="751,765,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+		<CheckBox name="CheckCnsDual" float="true" pos="1044,765,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+		<Label text="创建快捷操作" float="true" pos="751,864,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+		<CheckBox name="CheckDualShotCut" float="true" pos="1044,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
+	  </VerticalLayout>
+	  <!--语音激励 -->
+	  <VerticalLayout name="voicearouselayout">
+		<Label name="" float="true" pos="748,170,0,0" width="424" height="424" bkimage="res/confctrl/imgMixMotive.png"/>	
+		<Label text="开启语音激励" float="true" pos="751,765,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+		<CheckBox name="CheckVoiceArouse" float="true" pos="1044,765,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+		<Label text="创建快捷操作" float="true" pos="751,864,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+		<CheckBox name="CheckVSShortCut" float="true" pos="1044,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
+	  </VerticalLayout>
+	  <!--画中画 -->
+	  <VerticalLayout name="piplayout">  		
+		<Label name="" float="true" pos="748,170,0,0" width="424" height="424" bkimage="res/confctrl/imgPIP.png"/>	
+		<Label text="开启画中画" float="true" pos="751,765,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+		<CheckBox name="CheckPIP" float="true" pos="1044,765,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+		<Label text="创建快捷操作" float="true" pos="751,864,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+		<CheckBox name="CheckPIPShortCut" float="true" pos="1044,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
+	  </VerticalLayout>
+	  <!--电视墙-->
+	  <VerticalLayout name="tvwalllayout">
+      <ChildLayout xmlfile="tvwall.xml" name="PageTvWall"/>
+      </VerticalLayout>
+	  	<Case name="caseMultyConfChairCtrl">	<!--多点会议主席-->
+			<confcns visible="true"/>
+			<confroll visible="true"/>
+			<confMix visible="true"/>
+			<vidmix visible="true"/>
+			<confpoll visible="true"/>
+			<audmix visible="true"/>
+			
+			<btnGoLeft visible="false"/>
+			<btnGoRight visible="true"/>
+			<mixmotive visible="false"/>
+			<pip visible="false"/>
+			<tvwall visible="false"/>
+			
+			<FeccCam visible="false"/>
+			
+			<BtnSetSpeaker enabled="true"/>
+			<BtnSetDual enabled="true"/>
+			<BtnSelectPlay enabled="true"/>
+			<BtnSetQuiet enabled="true"/>
+			<BtnSetMute enabled="true"/>
+			<BtnHungupCns enabled="true"/>
+		</Case>
+		<Case name="caseMultyIni">	<!--多点会议主席初始-->
+			<btnGoLeft visible="false"/>
+			<btnGoRight visible="true"/>
+			<mixmotive visible="false"/>
+			<pip visible="false"/>
+			<tvwall visible="false"/>
+			<confcns visible="true"/>
+			<confroll visible="true"/>
+			<confMix visible="true"/>
+			
+			<FeccCam visible="false"/>
+		</Case>
+		<Case name="caseMultyExta">	<!--多点会议主席切换-->
+			<btnGoLeft visible="true"/>
+			<btnGoRight visible="false"/>
+			<mixmotive visible="true"/>
+			<pip visible="true"/>
+			<tvwall visible="true"/>
+			<confcns visible="false"/>
+			<confroll visible="false"/>
+			<confMix visible="false"/>
+			
+			<FeccCam visible="false"/>
+		</Case>
+	   <Case name="caseMultyConfCtrl">	<!--多点会议非主席-->
+			<confcns visible="true"/>
+			<confroll visible="false"/>
+			<confMix visible="false"/>
+			<vidmix visible="false"/>
+			<confpoll visible="false"/>
+			<audmix visible="false"/>
+			<mixmotive visible="true"/>
+			<pip visible="true"/>
+			<tvwall visible="false"/>
+			
+			<FeccCam visible="false"/>
+			
+			<btnGoLeft visible="false"/>
+			<btnGoRight visible="false"/>
+			<BtnSetSpeaker enabled="false"/>
+			<BtnSetDual enabled="false"/>
+			<BtnSelectPlay enabled="false"/>
+			<BtnSetQuiet enabled="false"/>
+			<BtnSetMute enabled="false"/>
+			<BtnHungupCns enabled="false"/>
+		</Case>
+		<Case name="caseP2PConfCtrl">	<!--点对点会议只显示双流、语音激励、画中画-->
+			<confcns visible="false"/>
+			<confroll visible="false"/>
+			<confMix visible="false"/>
+			<vidmix visible="false"/> 
+			<confpoll visible="false"/>
+			<audmix visible="false"/>
+			
+			<FeccCam visible="false"/>
+			
+			<mixmotive visible="true"/>
+			<pip visible="true"/>
+			<tvwall visible="false"/>
+			<btnGoLeft visible="false"/>
+			<btnGoRight visible="false"/>
+		</Case>
+		
+		<Case name="caseP2P323ConfCtrl">	<!--323点对点会议只显示双流、语音激励、画中画，附加摄像机远摇Tab-->
+			<confcns visible="false"/>
+			<confroll visible="false"/>
+			<confMix visible="false"/>
+			<vidmix visible="false"/> 
+			<confpoll visible="false"/>
+			<audmix visible="false"/>
+			
+			<FeccCam visible="true"/>
+			
+			<mixmotive visible="true"/>
+			<pip visible="true"/>
+			<tvwall visible="false"/>
+			<btnGoLeft visible="false"/>
+			<btnGoRight visible="false"/>
+		</Case>
+	    
+		<Case name="caseMonitor">	
+		    <imgConfCnsLabel bkimage="res/list/imgMonitor.png"/> 
+	    </Case>
+		<Case name="caseOrdinary">	
+		    <imgConfCnsLabel bkimage="res/list/imgOrdinary.png"/> 
+	    </Case>
+		<Case name="caseStudio">	
+		    <imgConfCnsLabel bkimage="res/list/imgStudio.png"/> 
+	    </Case>		
+	</SlideTabLayout>
+    </VerticalLayout>
+</Window>

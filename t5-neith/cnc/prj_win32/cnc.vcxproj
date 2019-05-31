@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{87B61608-ED82-46F5-A0BC-E5539609E856}</ProjectGuid>
+    <RootNamespace>cnc</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\common_2010\include;..\..\common_2010\common-header;..\..\AppFrame\include;..\..\duilib;..\..\..\10-common\include\nms1;..\..\..\10-common\include\system;..\..\..\10-common\include\system1;..\..\..\10-common\include\platform;..\..\..\10-common\include\protocol;..\..\..\10-common\include\tp</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\..\..\10-common\lib\debug\win32_2010;..\..\..\10-common\lib\debug\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>mfco42d.lib;mfc42d.lib;mfcs42d.lib;nafxcwd.lib;libcmtd.lib;LIBCD.lib;LIBCMT.lib;LIBC.lib;strmbasd.lib;dxguid.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\common_2010\include;..\..\common_2010\common-header;..\..\AppFrame\include;..\..\duilib;..\..\..\10-common\include\nms1;..\..\..\10-common\include\system;..\..\..\10-common\include\system1;..\..\..\10-common\include\platform;..\..\..\10-common\include\protocol;..\..\..\10-common\include\tp</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\..\..\10-common\lib\release\win32_2010;..\..\..\10-common\lib\release\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>mfc42.lib;mfcs42.lib;LIBCD.lib;LIBCMT.lib;LIBC.lib;nafxcw.lib;nafxcwd.lib;libcmt.lib;strmbasd.lib;dxguid.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapExports>true</MapExports>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\cnc.ico" />
+    <None Include="res\cnc.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\addrbooklogic.h" />
+    <ClInclude Include="..\include\addreditlogic.h" />
+    <ClInclude Include="..\include\audmixlogic.h" />
+    <ClInclude Include="..\include\calendarlogic.h" />
+    <ClInclude Include="..\include\cameracontrollogic.h" />
+    <ClInclude Include="..\include\centercontrollogic.h" />
+    <ClInclude Include="..\include\centermonitorlogic.h" />
+    <ClInclude Include="..\include\cnccommonop.h" />
+    <ClInclude Include="..\include\cncmsgmanager.h" />
+    <ClInclude Include="..\include\cnsmanagelogic.h" />
+    <ClInclude Include="..\include\commoninterface.h" />
+    <ClInclude Include="..\include\confcallcfglogic.h" />
+    <ClInclude Include="..\include\confctrllogic.h" />
+    <ClInclude Include="..\include\confmixlogic.h" />
+    <ClInclude Include="..\include\confmsglogic.h" />
+    <ClInclude Include="..\include\confpolllogic.h" />
+    <ClInclude Include="..\include\confrolllogic.h" />
+    <ClInclude Include="..\include\contentreqlogic.h" />
+    <ClInclude Include="..\include\dualviewlogic.h" />
+    <ClInclude Include="..\include\localroomcfglog.h" />
+    <ClInclude Include="..\include\matrixlogic.h" />
+    <ClInclude Include="..\include\messageboxlogic.h" />
+    <ClInclude Include="..\include\outPrint.h" />
+    <ClInclude Include="..\include\PanCamlogic.h" />
+    <ClInclude Include="..\include\reconnectlogic.h" />
+    <ClInclude Include="..\include\roomctrllogic.h" />
+    <ClInclude Include="..\include\conftemplogic.h" />
+    <ClInclude Include="..\include\constdef.h" />
+    <ClInclude Include="..\include\globalheader.h" />
+    <ClInclude Include="..\include\hzpysearch.h" />
+    <ClInclude Include="..\include\loginlogic.h" />
+    <ClInclude Include="..\include\mainframelogic.h" />
+    <ClInclude Include="..\include\mainmenulogic.h" />
+    <ClInclude Include="..\include\regservicelogic.h" />
+    <ClInclude Include="..\include\srcselwatch.h" />
+    <ClInclude Include="..\include\sysconfiglogic.h" />
+    <ClInclude Include="..\include\system.h" />
+    <ClInclude Include="..\include\tvwalllogic.h" />
+    <ClInclude Include="..\include\UIDataMgr.h" />
+    <ClInclude Include="..\include\userdefinedlogic.h" />
+    <ClInclude Include="..\include\usermanager.h" />
+    <ClInclude Include="..\include\videomixlogic.h" />
+    <ClInclude Include="..\include\wndshadow.h" />
+    <ClInclude Include="cnc.h" />
+    <ClInclude Include="cncDlg.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\addrbooklogic.cpp" />
+    <ClCompile Include="..\source\addreditlogic.cpp" />
+    <ClCompile Include="..\source\audmixlogic.cpp" />
+    <ClCompile Include="..\source\calendarlogic.cpp" />
+    <ClCompile Include="..\source\cameracontrollogic.cpp" />
+    <ClCompile Include="..\source\centercontrollogic.cpp" />
+    <ClCompile Include="..\source\centerctrlif.cpp" />
+    <ClCompile Include="..\source\centermonitorlogic.cpp" />
+    <ClCompile Include="..\source\cncaddrbook.cpp" />
+    <ClCompile Include="..\source\cnccommonop.cpp" />
+    <ClCompile Include="..\source\cncmsgmanager.cpp" />
+    <ClCompile Include="..\source\cnsmanagelogic.cpp" />
+    <ClCompile Include="..\source\commoninterface.cpp" />
+    <ClCompile Include="..\source\confcallcfglogic.cpp" />
+    <ClCompile Include="..\source\confctrllogic.cpp" />
+    <ClCompile Include="..\source\confmixlogic.cpp" />
+    <ClCompile Include="..\source\confmsglogic.cpp" />
+    <ClCompile Include="..\source\confpolllogic.cpp" />
+    <ClCompile Include="..\source\confrolllogic.cpp" />
+    <ClCompile Include="..\source\contentreqlogic.cpp" />
+    <ClCompile Include="..\source\dualviewlogic.cpp" />
+    <ClCompile Include="..\source\localroomcfglog.cpp" />
+    <ClCompile Include="..\source\matrixlogic.cpp" />
+    <ClCompile Include="..\source\messageboxlogic.cpp" />
+    <ClCompile Include="..\source\outPrint.cpp" />
+    <ClCompile Include="..\source\PanCamlogic.cpp" />
+    <ClCompile Include="..\source\reconnectlogic.cpp" />
+    <ClCompile Include="..\source\roomctrlif.cpp" />
+    <ClCompile Include="..\source\roomctrllogic.cpp" />
+    <ClCompile Include="..\source\confctrlif.cpp" />
+    <ClCompile Include="..\source\conftemplogic.cpp" />
+    <ClCompile Include="..\source\hzpysearch.cpp" />
+    <ClCompile Include="..\source\loginlogic.cpp" />
+    <ClCompile Include="..\source\mainframelogic.cpp" />
+    <ClCompile Include="..\source\mainmenulogic.cpp" />
+    <ClCompile Include="..\source\regservicelogic.cpp" />
+    <ClCompile Include="..\source\srcselwatch.cpp" />
+    <ClCompile Include="..\source\sysconfigif.cpp" />
+    <ClCompile Include="..\source\sysconfiglogic.cpp" />
+    <ClCompile Include="..\source\system.cpp" />
+    <ClCompile Include="..\source\tvwalllogic.cpp" />
+    <ClCompile Include="..\source\UIDataMgr.cpp" />
+    <ClCompile Include="..\source\userdefinedlogic.cpp" />
+    <ClCompile Include="..\source\usermanager.cpp" />
+    <ClCompile Include="..\source\videomixlogic.cpp" />
+    <ClCompile Include="..\source\wndshadow.cpp" />
+    <ClCompile Include="cnc.cpp" />
+    <ClCompile Include="cncDlg.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="cnc.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="cnc.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

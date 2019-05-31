@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Window caption="0,0,0,0" size="1920,1121" mininfo="800,200" sizebox="0,0,0,0" maxinfo="1920,1121" roundcorner="0,0">
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />
+    <Font name="微软雅黑" size="22" bold="false"></Font>
+	<Default name="VScrollBar" value="mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+	<HorizontalLayout name="RoomCtrlLayout" bkimage="res/subdlgbkg.png" >
+		 
+		 <HorizontalLayout name="RoonCtrlLayout" inset="30,0,0,0" height="93" >
+            <Option name="confparameter" text="会场参数"  padding="2,23,0,0" width="264" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" selected="true"/>
+			<Control />
+			<Option name="logo" text="台标" padding="0,23,0,0" width="264" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" />
+			<Control />
+            <Option name="banner" text="横幅" padding="2,23,0,0" width="264" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" />
+			<Control width="1120"/>
+		</HorizontalLayout>
+		<HorizontalLayout bkcolor="#FE4B5764" float="true" pos="27,92,0,0" height="1" width="1866"></HorizontalLayout>
+		    <SlideTabLayout name="slidetab" float="true" pos="0,94,1920,1121" >
+				<!--会场参数-->
+		<VerticalLayout >
+		
+		<Case name="caseSet">	
+		    <CtrlFix visible="false"/>
+			<edtConfName visible="true"/> 
+			<edtE64 visible="true"/> 
+			<edtIP visible="true"/> 
+			<edtGateWay visible="true"/> 
+			<edtSubnetMask visible="true"/> 
+			<lbConfName visible="false"/> 
+			<lbE64 visible="false"/> 
+			<lbIP visible="false"/> 
+			<lbGateWay visible="false"/> 
+			<lbSubnetMask visible="false"/> 
+			<edtIPv6Address visible="true"/>
+			<lbIPv6Address visible="false"/>
+			<edtSubNetLength visible="true"/>
+			<lbSubNetLength visible="false"/>
+			<edtGateWayIp visible="true"/>
+			<lbGateWayIp visible="false"/>	
+			<edtDNS1Ip visible="true"/>
+			<lbDNS1Ip visible="false"/>	
+			<edtDNS2Ip visible="true"/>
+			<lbDNS2Ip visible="false"/>		
+			<CheckIsNAT visible="true"/> 
+			<edtNATIp visible="true"/> 
+			<lbIsNAT visible="false"/> 
+			<lbNATIp visible="false"/> 		 
+			<CheckIsVidCurLine visible="true"/>
+			<lbIsVidCurLine visible="false"/>
+		</Case>   
+		<Case name="caseSetCancel">
+		    <CtrlFix visible="true"/> 
+			<edtConfName visible="false"/> 
+			<edtE64 visible="false"/> 
+			<edtIP visible="false"/> 
+			<edtGateWay visible="false"/> 
+			<edtSubnetMask visible="false"/> 
+			<lbConfName visible="true"/> 
+			<lbE64 visible="true"/> 
+			<lbIP visible="true"/> 
+			<lbGateWay visible="true"/> 
+			<lbSubnetMask visible="true"/> 
+			<edtIPv6Address visible="false"/>
+			<lbIPv6Address visible="true"/>
+			<edtSubNetLength visible="false"/>
+			<lbSubNetLength visible="true"/>
+			<edtGateWayIp visible="false"/>
+			<lbGateWayIp visible="true"/>	
+			<edtDNS1Ip visible="false"/>
+			<lbDNS1Ip visible="true"/>	
+			<edtDNS2Ip visible="false"/>
+			<lbDNS2Ip visible="true"/>		
+			<CheckIsNAT visible="false"/> 
+			<edtNATIp visible="false"/> 
+			<lbIsNAT visible="true"/> 
+			<lbNATIp visible="true"/> 
+			<CheckIsVidCurLine visible="false"/>
+			<lbIsVidCurLine visible="true"/>
+		</Case> 
+		<HorizontalLayout height="126">
+		<Control width="1580"/>
+		<VerticalLayout>
+		<Control />
+			<HorizontalLayout height="64">
+			<Control name="CtrlFix" width="163"/>
+			<Button name="BtnFixOrCancel" width="149" height="64" text="修 改" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			<Button name="BtnOk" padding="15,0,0,0" width="149" height="64" text="确 定" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" visible="false"/>
+			</HorizontalLayout>
+		<Control />
+		</VerticalLayout>
+		</HorizontalLayout>
+		<HorizontalLayout bkcolor="#FE4B5764" padding="27,0,0,0" height="1" width="1866"></HorizontalLayout>
+			<HorizontalLayout >
+			<HorizontalLayout bkimage="res/roomctrl/verLine.png" float="true" pos="116,53,0,800" width="1" ></HorizontalLayout>
+			<VerticalLayout float="true" pos="106,35,1920,800" vscrollbar="true" hscrollbar="false" slideable="true">
+			<VerticalLayout height="327">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,11,19,28"  font="1" align="center" gdiplus="true" />
+				<Label name="" text="会场信息" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="会场名称" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtConfName" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res/public/edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" maxchar="31" visible="false"/>
+				<Label name="lbConfName" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="E164号" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Edit name="edtE64" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res/public/edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655" maxchar="16"/>
+				<Label name="lbE64" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				</HorizontalLayout>
+			</VerticalLayout>	
+			<VerticalLayout name="NetInfoSetLayout" height="545">
+				<HorizontalLayout name="" height="109">
+				<Label name="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				<Label name="" text="网络信息" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				
+				<HorizontalLayout name="" height="109">
+				<Label name="" text="地址选择" float="true" pos="41,0,250,36" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Option name="opSetIPv4" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="NetCheckType" selected="true" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" />
+				<Label name="lbSetIPv4" text="IPv4地址" float="true" pos="363,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64" textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Option name="opSetIPv6" float="true" pos="645,0,0,0" text=""  width="45" height="45" group="NetCheckType" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" />
+				<Label name="lbSetIPv6" text="IPv6地址" float="true" pos="715,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64" textpadding="0,5,0,0" align="left" gdiplus="true" />
+				</HorizontalLayout>
+				
+				<VerticalLayout name="IPv4HorLayout">
+					<HorizontalLayout name="">
+						<Label name="" text="IP地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+						<Edit name="edtIP" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+						<Label name="lbIP" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+					</HorizontalLayout>
+					<HorizontalLayout name="">
+						<Label name="" text="子网掩码" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+						<Edit name="edtSubnetMask" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+						<Label name="lbSubnetMask" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+					</HorizontalLayout>
+					<HorizontalLayout name="">
+						<Label name="" text="默认网关" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+						<Edit name="edtGateWay" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+						<Label name="lbGateWay" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+					</HorizontalLayout>
+				</VerticalLayout>
+				
+				<VerticalLayout name="IPv6HorLayout" visible="false">
+					<HorizontalLayout name="">
+						<Label name="" text="IPv6地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+						<Edit name="edtIPv6Address" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+						<Label name="lbIPv6Address" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+					</HorizontalLayout>
+					<HorizontalLayout name="">
+						<Label name="" text="子网关前缀长度" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+						<Edit name="edtSubNetLength" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+						<Label name="lbSubNetLength" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+					</HorizontalLayout>
+					<HorizontalLayout name="">
+						<Label name="" text="网关地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+						<Edit name="edtGateWayIp" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+						<Label name="lbGateWayIp" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+					</HorizontalLayout>
+					<HorizontalLayout name="">
+						<Label name="" text="DNS1" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+						<Edit name="edtDNS1Ip" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+						<Label name="lbDNS1Ip" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+					</HorizontalLayout>
+					<HorizontalLayout name="">
+						<Label name="" text="DNS2" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+						<Edit name="edtDNS2Ip" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+						<Label name="lbDNS2Ip" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+					</HorizontalLayout>
+				</VerticalLayout>
+				
+				<Case name="CaseSelIPv4">
+					<NetInfoSetLayout height="545"/>
+					<IPv4HorLayout visible="true"/>
+					<IPv6HorLayout visible="false"/>
+				</Case>
+				<Case name="CaseSelIPv6">
+					<NetInfoSetLayout height="763"/>
+					<IPv4HorLayout visible="false"/>
+					<IPv6HorLayout visible="true"/>
+				</Case>
+				
+			</VerticalLayout>	
+
+			<VerticalLayout height="327">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30" gdiplus="true" />
+				<Label name="" text="静态NAT" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" float="true" pos="41,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left" text="开启静态NAT" textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				<CheckBox name="CheckIsNAT" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" visible="false"/>
+				<Label name="lbIsNAT" text="开启" float="true" pos="380,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left"  textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="IP地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+				<Edit name="edtNATIp" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+				<Label name="lbNATIp" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				</HorizontalLayout>
+			</VerticalLayout>	
+			
+			<VerticalLayout height="218">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\public\littlecircle.png" float="true" pos="2,13,19,30" gdiplus="true" />
+				<Label name="" text="无缝屏与有缝屏兼容显示" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="400" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" float="true" pos="41,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left" text="兼容显示" textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				<CheckBox name="CheckIsVidCurLine" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" visible="false"/>
+				<Label name="lbIsVidCurLine" text="关闭" float="true" pos="380,0,0,0" width="200" height="64" textpadding="0,5,0,0" align="left"  textcolor="#FED5DEEB" font="1" gdiplus="true" />
+				</HorizontalLayout>
+			</VerticalLayout>	
+			
+			</VerticalLayout>
+			
+			</HorizontalLayout>
+		</VerticalLayout>
+         <!--台标-->       
+		<VerticalLayout>
+			<Case name="caseLogoSetSel">	
+			<LogoSetLayout  visible="false"/>
+			<LogoSetSelLayout  visible="true"/>
+			<edtLogo visible="true"/>
+			<lbLogo visible="false"/>
+			<SetLogoBtnLayout visible="true"/>
+			<lbLeftLine pos="110,32,550,33" />
+			<lbRigntLine pos="1350,32,1810,33" />
+			</Case>
+			<Case name="caseLogoSetUnSel">	
+			<LogoSetLayout  visible="true"/>
+			<LogoSetSelLayout  visible="false"/>
+			<edtLogo visible="false"/>
+			<lbLogo visible="true"/>
+			<SetLogoBtnLayout visible="false"/>
+			<lbLeftLine pos="110,32,870,33" />
+			<lbRigntLine pos="1050,32,1810,33" />
+			</Case>
+			<HorizontalLayout name="RoomScreenLayout" height="443" >
+				<TouchList name="ConfScreenLogoList" float="true" pos="0,0,1920,443" inset="105,40,105,0" columns="3" childpadding="10" vscrollbar="true" hscrollbar="false" itemselectedimage="res/localroomcfg/screen_select.png" itembkimage="res/localroomcfg/screen_normal.png" itemdisabledimage="" itemtextcolor="#FEFFFFFF" itemdisabledtextcolor="#FE000000" itemselectedtextcolor="#FEFFFF00" />  
+				
+			</HorizontalLayout>
+			<HorizontalLayout height="70" >
+			
+			<Label name="lbLeftLine" float="true" pos="110,32,870,33" bkcolor="#FE4B5764"/>
+			<Label name="lbRigntLine" float="true" pos="1050,32,1810,33" bkcolor="#FE4B5764"/>
+			
+			<Label name="lbLogo" text="台标 调节"  float="true" pos="910,12,0,100" width="100" align="left" textcolor="#FE92A7C2"/>
+			<Edit name="edtLogo" tiptext="请输入台标标题" float="true" pos="550,0,1350,60" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" visible="false" maxchar="31" tooltip="31字符以内，多于31字符将被截断" align="center"/>
+			</HorizontalLayout>
+			<VerticalLayout name="LogoSetLayout" float="true" pos="0,500,1920,0" height="515" visible="true">
+			<HorizontalLayout float="true" pos="105,35,0,0"  width="400" height="45">
+			<Label name="" text="位置"  textpadding="0,5,0,0" width="94" align="left" textcolor="#FE92A7C2"/>
+			<Label name="lblogoPos" textpadding="0,5,0,0" text="" width="100" align="left" textcolor="#FE92A7C2"/>
+			</HorizontalLayout >
+			<HorizontalLayout float="true" pos="105,135,0,0"  width="400" height="45" >
+			<Label name="" text="字号" textpadding="0,5,0,0" width="94" align="left" textcolor="#FE92A7C2"/>
+			<Label name="lblogoFontSize" textpadding="0,5,0,0" text="" width="100" align="left" textcolor="#FE92A7C2"/>
+			</HorizontalLayout>
+			<HorizontalLayout float="true" pos="105,235,0,0"  width="400" height="45" >
+			<Label name="" text="颜色" textpadding="0,5,0,0" width="94" align="left" textcolor="#FE92A7C2"/>
+			<Label name="lblogoColor" textpadding="0,5,0,0" text="" width="100" align="left" textcolor="#FE92A7C2"/>
+			</HorizontalLayout>
+			</VerticalLayout>
+			<VerticalLayout name="LogoSetSelLayout" float="true" pos="0,500,1920,0" height="515" visible="false" >
+					<HorizontalLayout height="45" width="1463" float="true" pos="105,35,0,0" >
+					<Label name="" text="位置" width="95" align="left" textpadding="0,5,0,0" textcolor="#FE92A7C2"/>
+					<HorizontalLayout width="228" >
+					<Option name="OpLT" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png"group="logostyle" selected="true" />
+					<Control width="27"/>
+					<Label name="" text="左上" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout width="228" >
+					<Option name="OpMT" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="logostyle" />
+					<Control width="27"/>
+					<Label name="" text="中上" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout width="228" >
+					<Option name="OpRT" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png"group="logostyle" />
+					<Control width="27"/>
+					<Label name="" text="右上" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout width="228" >
+					<Option name="OpLB" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png"group="logostyle" selected="true" />
+					<Control width="27"/>
+					<Label name="" text="左下" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout width="228" >
+					<Option name="OpMB" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="logostyle" />
+					<Control width="27"/>
+					<Label name="" text="中下" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout width="228" >
+					<Option name="OpRB" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png"group="logostyle" />
+					<Control width="27"/>
+					<Label name="" text="右下" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					</HorizontalLayout>
+					<HorizontalLayout height="45" width="779" float="true" pos="105,135,0,0" >
+					<Label name="" text="字号" width="95" align="left" textpadding="0,5,0,0" textcolor="#FE92A7C2"/>
+					<HorizontalLayout width="228" >
+					<Option name="OpFontBig" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png"group="fontsize" selected="true" />
+					<Control width="27"/>
+					<Label name="" text="大" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<!--HorizontalLayout width="228" >
+					<Option name="OpFontMid" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="fontsize" />
+					<Control width="27"/>
+					<Label name="" text="中" textcolor="#FE92A7C2"/>
+					</HorizontalLayout-->
+					<HorizontalLayout width="228" >
+					<Option name="OpFontSmall" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png"group="fontsize" />
+					<Control width="27"/>
+					<Label name="" text="小" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					</HorizontalLayout>
+					<HorizontalLayout height="45" width="1235" float="true" pos="105,235,0,0" > 
+					<Label name="" text="颜色" width="95" align="left" textpadding="0,5,0,0" textcolor="#FE92A7C2"/>
+					<Option name="OpColorRed" width="45" height="45"  selectedbkcolor="#FFC5D4F2" group="fontcolor" selectedimage="res/localroomcfg/red_select.png" normalimage="res/localroomcfg/red_normal.png" selected="true" />
+					<Control width="27"/>
+					<Label name="" text="青色" textcolor="#FE92A7C2"/>
+					<Control />
+					<Option name="OpColorBlue" width="45" height="45" group="fontcolor" selectedimage="res/localroomcfg/blue_select.png" normalimage="res/localroomcfg/blue_normal.png"/>
+					<Control width="27"/>
+					<Label name="" text="蓝色" textcolor="#FE92A7C2"/>
+					<Control />
+					<Option name="OpColorYellow"  width="45" height="45"  group="fontcolor" selectedimage="res/localroomcfg/yellow_select.png" normalimage="res/localroomcfg/yellow_normal.png"/>
+					<Control width="27"/>
+					<Label name="" text="黄色" textcolor="#FE92A7C2"/>
+					<Control />
+					<Option name="OpColorBlack" width="45" height="45" group="fontcolor" selectedimage="res/localroomcfg/black_select.png" normalimage="res/localroomcfg/black_normal.png"/>
+					<Control width="27"/>
+					<Label name="" text="黑色" textcolor="#FE92A7C2"/>
+					<Control />
+					<Option name="OpColorGreen" width="45" height="45" group="fontcolor" selectedimage="res/localroomcfg/green_select.png" normalimage="res/localroomcfg/green_normal.png"/>
+					<Control width="27"/>
+					<Label name="" text="绿色" textcolor="#FE92A7C2"/>
+					<Control />
+					</HorizontalLayout>
+			</VerticalLayout>
+
+			<HorizontalLayout  name="SetLogoBtnLayout"  float="true" pos="0,905,1920,971" visible="false">  
+				<Control />	
+				<Button name="BtnSaveLogo" text="确 定" font="1" textcolor="#CCD4DEEB"  width="149" height="66" align="center" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"/>
+				<Button name="BtnCancleLogo" text="取 消"  padding="10,0,0,0" font="1" textcolor="#CCD4DEEB"  width="149" height="66" align="center" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"/>
+				 <Control />	
+			</HorizontalLayout>
+		</VerticalLayout>
+		<!--横幅-->
+		<VerticalLayout>
+			<Case name="caseBannerSetSel">	
+			<BannerSetLayout  visible="false"/>
+			<BannerSetSelLayout  visible="true"/>
+			<edtBanner visible="true"/>
+			<lbBanner visible="false"/>
+			<SetBannerBtnLayout visible="true"/>
+			<lbLeftL pos="110,32,550,33" />
+			<lbRigntL pos="1350,32,1810,33" />
+			</Case>
+			<Case name="caseBannerSetUnSel">	
+			<BannerSetLayout  visible="true"/>
+			<BannerSetSelLayout  visible="false"/>
+			<edtBanner visible="false"/>
+			<lbBanner visible="true"/>
+			<SetBannerBtnLayout visible="false"/>
+			<lbLeftL pos="110,32,870,33" />
+			<lbRigntL pos="1050,32,1810,33" />
+			</Case>	
+			<HorizontalLayout name="RoomScreenLayout" height="443" >
+			<TouchList name="ConfScreenBannerList" float="true" pos="0,0,1920,443" inset="105,40,105,0" columns="3" childpadding="10" vscrollbar="true" hscrollbar="false" itemselectedimage="res/localroomcfg/screen_select.png" itembkimage="res/localroomcfg/screen_normal.png" itemdisabledimage="" itemtextcolor="#FEFFFFFF" itemdisabledtextcolor="#FE000000" itemselectedtextcolor="#FEFFFF00" />  
+			</HorizontalLayout>
+			<HorizontalLayout height="70" >
+			<Label name="lbLeftL" float="true" pos="110,32,870,33" bkcolor="#FE4B5764"/>
+			<Label name="lbRigntL" float="true" pos="1050,32,1810,33" bkcolor="#FE4B5764"/>
+			<Label name="lbBanner" text="横幅 调节"  float="true" pos="900,12,0,60" width="100" align="left" textcolor="#FE92A7C2"/>
+			<Edit name="edtBanner" tiptext="请输入横幅标题" float="true" pos="550,0,1350,60" textcolor="#FED5DEEB" font="2" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" visible="false" maxchar="64" tooltip="64字符以内，多于64字符将被截断" align="center"/>
+			</HorizontalLayout>
+			<VerticalLayout name="BannerSetLayout" float="true" pos="0,500,1920,0" height="515" >
+			<HorizontalLayout float="true" pos="105,135,0,0"  width="400" height="45"><!--pos="105,35,0,0"-->
+			<Label name="" text="样式" textpadding="0,5,0,0" width="94" align="left" textcolor="#FE92A7C2"/>
+			<Label name="lbBannerStyle" textpadding="0,5,0,0" text="" width="100" align="left" textcolor="#FE92A7C2"/>
+			</HorizontalLayout >
+			<!-- 规格要求台标透明度功能去掉
+			<HorizontalLayout float="true" pos="105,135,0,0"  width="400" height="36" >
+			<Label name="" text="透明度" textpadding="0,5,0,0" width="94" align="left" textcolor="#FE92A7C2"/>
+			<Label name="lbBannerTrans" textpadding="0,5,0,0" text="" width="100" align="left" textcolor="#FE92A7C2"/>
+			</HorizontalLayout>
+			-->
+			</VerticalLayout>
+			<VerticalLayout name="BannerSetSelLayout" float="true" pos="0,500,1920,0" height="515" visible="false">	  
+			<HorizontalLayout height="45" width="1235" float="true" pos="105,135,0,0" ><!--pos="105,35,0,0"-->
+					<Label name="" text="风格" width="95" align="left" textpadding="0,5,0,0" textcolor="#FE92A7C2"/>
+					<HorizontalLayout width="228" >
+					<Option name="OpStyle1" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png"group="bannerstyle" selected="true" />
+					<Control width="27"/>
+					<Label name="" text="风格01" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout width="228" >
+					<Option name="OpStyle2" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="bannerstyle" />
+					<Control width="27"/>
+					<Label name="" text="风格02" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout width="228" >
+					<Option name="OpStyle3" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png"group="bannerstyle" />
+					<Control width="27"/>
+					<Label name="" text="风格03" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout width="228" >
+					<Option name="OpStyle4" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png"group="bannerstyle" />
+					<Control width="27"/>
+					<Label name="" text="风格04" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout width="228" >
+					<Option name="OpStyle5" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="bannerstyle" />
+					<Control width="27"/>
+					<Label name="" text="风格05" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+			</HorizontalLayout>		
+		<!--
+			<HorizontalLayout height="45" width="779" float="true" pos="105,135,0,0" >  规格要求台标透明度功能去掉
+					<Label name="" text="透明度" width="95" align="left" textpadding="0,5,0,0" textcolor="#FE92A7C2"/>
+					<HorizontalLayout width="228" >
+					<Option name="OpFullTrans" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png"group="TransOption" selected="true" />
+					<Control width="27"/>
+					<Label name="" text="全透明" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout width="228" >
+					<Option name="OpSemiTrans" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="TransOption" />
+					<Control width="27"/>
+					<Label name="" text="半透明" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<HorizontalLayout width="228" >
+					<Option name="OpNoTrans" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png"group="TransOption" />
+					<Control width="27"/>
+					<Label name="" text="不透明" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+			</HorizontalLayout> 
+		-->	
+<!--
+			   <HorizontalLayout height="140" width="650" >
+			    <Label name="" text="文字" width="60" align="left" textcolor="#FE92A7C2"/>
+					<Label name="" text="字号" width="60" align="left" textcolor="#FE92A7C2"/>
+					<HorizontalLayout height="30" > 
+					<Option name="OpBannerFontBig" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png"group="fontsize" selected="true" />
+					<Label name="" text="大" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<Control />
+					<HorizontalLayout height="30" > 
+					<Option name="OpBannerFontMid" width="45" height="45" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" group="fontsize" />
+					<Label name="" text="中" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					<Control />
+					<HorizontalLayout height="30" > 
+					<Option name="OpBannerFontSmall" width="45" height="45" group="fontsize" selectedimage="res/public/option_select.png" normalimage="res/public/option_normal.png" />
+					<Label name="" text="小" textcolor="#FE92A7C2"/>
+					</HorizontalLayout>
+					
+			  </HorizontalLayout>
+			  <HorizontalLayout height="140" width="650"  >
+					<Label name="" text="颜色" width="60" align="left" textcolor="#FE92A7C2"/>
+					<Option name="OpBannerColorRed" width="45" height="45" selectedbkcolor="#FFC5D4F2" group="fontcolor" selectedimage="res/localroomcfg/red_select.png" normalimage="res/localroomcfg/red_normal.png" selected="true" />
+					<Control />
+					<Option name="OpBannerColorBlue" width="45" height="45" group="fontcolor" selectedimage="res/localroomcfg/blue_select.png" normalimage="res/localroomcfg/blue_normal.png"/>
+					<Control />
+					<Option name="OpBannerColorYellow"  width="45" height="45" group="fontcolor" selectedimage="res/localroomcfg/yellow_select.png" normalimage="res/localroomcfg/yellow_normal.png"/>
+					<Control />
+					<Option name="OpBannerColorBlack" width="45" height="45" group="fontcolor" selectedimage="res/localroomcfg/black_select.png" normalimage="res/localroomcfg/black_normal.png"/>
+					<Control />
+					<Option name="OpBannerColorGreen" width="45" height="45" group="fontcolor" selectedimage="res/localroomcfg/green_select.png" normalimage="res/localroomcfg/green_normal.png"/>
+					<Control />
+					
+			  </HorizontalLayout>
+		-->	  
+			</VerticalLayout>
+			<HorizontalLayout  name="SetBannerBtnLayout"  float="true" pos="0,905,1920,971" visible="false">  
+				<Control />	
+				<Button name="BtnSaveBanner" text="确 定" font="1" textcolor="#CCD4DEEB"  width="149" height="66" align="center" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"/>
+				<Button name="BtnCancleBanner" text="取 消"  padding="10,0,0,0" font="1" textcolor="#CCD4DEEB"  width="149" height="66" align="center" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"/>
+				 <Control />	
+			</HorizontalLayout>
+		</VerticalLayout>			
+            </SlideTabLayout>
+		</HorizontalLayout>
+
+</Window>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Window sizebox="0,0,0,0" caption="0,0,0,0" size="1920,1200" mininfo="800,600"  maxinfo="1920,1200" >
+    <Font name="微软雅黑" size="25" bold="false" default="true"  />
+	<Default name="VScrollBar" value="mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+    <VerticalLayout name="ConfMsgLayout" bkimage="res/subdlgbkg.png">
+	<List name="MsgList" float="true" pos="122,0,1789,1100" vscrollbar="true" bkcolor="" vscrollbar="true" hscrollbar="false" itemselectedbkcolor="" itemhotbkcolor=""  itemtextcolor="#FED5DEEB" itemdisabledtextcolor="" itemselectedtextcolor=""/>
+    </VerticalLayout>
+
+</Window>

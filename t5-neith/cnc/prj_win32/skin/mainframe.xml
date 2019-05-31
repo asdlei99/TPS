@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window size="1920,1200" roundcorner="1,0" sizebox="4,4,6,6" caption="0,0,0,28" mininfo="900,600" >
+  <Font name="微软雅黑" size="20" bold="false" ></Font>
+  <Font name="微软雅黑" size="22" bold="false" ></Font>
+  <Font name="微软雅黑" default="true" size="12" bold="false"></Font>
+  <Font name="微软雅黑" size="36" bold="false" ></Font>
+  <Default name="RichEdit" value="bordercolor=&quot;#FFABABAB&quot; bordersize=&quot;0,0,0,2&quot; gdiplus=&quot;true&quot; gdipuls=&quot;true&quot;"></Default>
+  <Default name="VScrollBar" value="thumbnormalimage=&quot;file='skinres/scrollcolor.png'  mask='#FFEEEEEE'&quot; thumbhotimage=&quot;file='skinres/scrollcolor.png' mask='#FFEEEEEE'&quot; thumbpushedimage=&quot;file='skinres/scrollcolor.png' mask='#FFEEEEEE'&quot; thumbdisabledimage=&quot;file='skinres/scrollcolor.png' mask='#FFeeeeee'&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; width=&quot;7&quot; "></Default>
+  <Default name="Edit" value="bordercolor=&quot;#FFABABAB&quot; bordersize=&quot;0,0,0,1&quot; gdiplus=&quot;true&quot;" />
+  <Default name="Label" value="gdiplus=&quot;true&quot;" />
+  <Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+
+  <VerticalLayout name="MainFrame"  bkimage="" inset="0,0,0,0">
+    <Container bkcolor="#FFFFFFFF" name="CncLayoutWndBody">
+      <ChildLayout xmlfile="login.xml" name="PageLogin" />
+      <ChildLayout xmlfile="cnsmanage.xml" name="PageCnsManage" />
+    </Container> 
+  </VerticalLayout>
+</Window>

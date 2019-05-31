@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pageconfroll>
+  <VerticalLayout name="confroomsLayout" >
+
+		<HorizontalLayout height="126" >
+			<Edit name="ConfCtrlEdtSearch" tiptext="请输入名称进行搜索" nativebkcolor="#CC1F4066" padding="27,30,0,0" pos="27,30,0,0" width="610" height="60" textcolor="#FEE4EEFF" font="1" bordersize="1,1,1,1" menu="true" gdiplus="true" />
+			<Label name="" width="610" height="1" float="true" pos="27,89,0,0" bkcolor="#FF4B5764" /> 
+			<Combo name="ComboConfCtrlShowEx" padding="13,28,0,0" text="全  部" textpadding="0,0,75,0" width="214" height="64" dropboxsize="214,600" textcolor="#CCD4DEEB" gdiplus="true" normalimage="res\public\btnchoiceclass_normal.png" pushedimage="res\public\btnchoiceclass_down.png" vscrollbar="false" hscrollbar="false" itemalign="center" itemfont="1" itemheight="64" align="center" font="1" textcolor="#CCD4DEEB"   dropboxInterspace="6" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FFFFFFFF"  MosPopBoxBk="res\public\combo" itemtextpadding="0,10,0,10" inset="0,20,0,20" itemhottextcolor="#FF00FFFF" itemselectedbkcolor="" itemhotbkcolor="" >
+			</Combo>
+			<Button name="BtnSetSpeaker" padding="20,28,0,0" width="149" height="64" text="指定发言" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" enabled="false"/>
+			<Button name="BtnSelectPlay"  padding="20,28,0,0" width="149" height="64" text="选 看" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" enabled="false"/>
+			<Button name="BtnCancelSelView" padding="20,28,0,0" width="149" height="64" text="取消选看" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			<Button name="BtnSetQuiet"  padding="20,28,0,0" width="149" height="64" text="静 音" font="1" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			<Button name="BtnSetMute"  padding="20,28,0,0" width="149" height="64" text="哑 音" font="1" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			<Button name="BtnHungupCns"  padding="20,28,0,0" width="149" height="64" text="挂 断" font="1" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>		
+		</HorizontalLayout>
+		
+		<Label name="labCutline" float="true" pos="27,126,0,0" width="1866" height="1" bkcolor="#FF4B5764" /> 
+		
+		<HorizontalLayout name="CnsListPath" height="83" >
+		   <HorizontalLayout name="LayoutListMainPath" padding="28,0,0,0" width="170">
+		   <Button name="BtnListMainPath" padding="0,20,0,0" width="50" height="50"  normalimage="res\addrbook\btnAddrPath.png" pushedimage="res\addrbook\btnAddrPath_down.png"/>
+		   <Button name="txtMainPath" text="会场列表" padding="14,30,0,0" width="120" height="40" align="left" textcolor="#FFD5DEEB" gdiplus="true" font="1"/>
+		   </HorizontalLayout>
+		   <HorizontalLayout name="LayoutGroupPath1" visible="false" >
+		   <Label name="labGroupPath1" text="/" padding="10,20,0,0" width="20" height="50" align="center" textcolor="#FFD5DEEB" gdiplus="true" font="1"/>
+		   <Button name="BtnGroupPath1" text="" padding="20,20,0,0" width="50" height="50" normalimage="res\addrbook\btnGroupPath.png" pushedimage="res\addrbook\btnGroupPath_down.png"/>
+		   <Button name="txtGroupPath1"  text="" padding="14,30,0,0" width="450" height="40" align="left" textcolor="#FFD5DEEB" gdiplus="true" font="1"/>
+		   </HorizontalLayout>
+		</HorizontalLayout>	
+			
+		<LetterIndex name="ConfCnsListIndex" float="true" pos="43,204,0,0" width="21" height="810" bkimage="res/list/letterIndex.png" font="1" textcolor="#FF379FDB" /> 
+		<TouchList name="ConfCnsList" float="true"  pos="88,210,0,0" width="1767" height="800" vscrollbar="true" columns="6" >
+		</TouchList>	
+		
+		<VerticalLayout name="ConfroomCramerLayout" float="true" pos="0,0,1920,1121" visible="false" bkimage="res/public/subpopbg.png">
+			<HorizontalLayout name="CnsP2PFeccHor" height="40" padding="0,20,0,0"/>
+			<HorizontalLayout name="CnsMultyFeccHor" height="100" padding="0,20,0,0">	
+				<Control />
+				<Button name="BtnCramerBack" width="149" height="64" padding="20,0,0,0" text="返  回" textcolor="#ffffffff" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png" align="center" gdiplus="true"/>
+				<Control width="40"/>
+			</HorizontalLayout>
+			<HorizontalLayout height="100" >
+				<Label name="LabConfName" text="未知会场" float="true" pos="230,20,0,0" width="200" height="39" align="left" font="1" textcolor="#CCD4DEEB" />
+				<Label name="" text="视频源切换" float="true" pos="1450,20,0,0" width="145" height="39" align="left" font="1" textcolor="#CCD4DEEB" />
+				<Combo name="ComboCamSel" text="视频源" float="true" pos="1595,0,0,0" align="center" width="285" height="62" dropboxsize="285,600" normalimage="res\roomctrl\ComboCam_normal.png" itemselectedimage="res\roomctrl\combo\sel.png" pushedimage="res\roomctrl\ComboCam_down.png" vscrollbar="true" hscrollbar="false" itemheight="64" itemalign="center" itemfont="1" align="center" font="1" textcolor="#CCD4DEEB" dropboxInterspace="6" inset="0,20,0,20" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FFFFFFFF"  MosPopBoxBk="res\roomctrl\combo" itemhottextcolor="#FF00FFFF" itemselectedbkcolor="" itemhotbkcolor="" enabled="false"/>
+			</HorizontalLayout>
+			<HorizontalLayout>
+				<Label name="" pos="274,136,0,0" float="true" width="424" height="424" bkimage="res/roomctrl/pancam.png" />
+				<Button name="btnCamUp" float="true" pos="434,92,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/up.png" pushedimage="res/roomctrl/up_down.png" enabled="false" />
+				<Button name="btnCamLeft" float="true" pos="230,296,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/left.png" pushedimage="res/roomctrl/left_down.png" enabled="false"/>
+				<Button name="btnCamRight" float="true" pos="640,296,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/rignt.png" pushedimage="res/roomctrl/rignt_down.png" enabled="false" />
+				<Button name="btnCamDown" float="true" pos="434,502,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/down.png" pushedimage="res/roomctrl/down_down.png" enabled="false"/>
+				
+				
+				<Label name="" pos="1013,195,0,0" float="true" width="39" height="39" align="center"  bkimage="res/roomctrl/lbview.png" />
+				<Label name="" text="视野" float="true" pos="1063,198,0,0" width="145" height="39" align="left" font="1" textcolor="#CCD4DEEB" />
+				<Button name="btnViewPlus" float="true" pos="1592,163,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/plus.png" pushedimage="res/roomctrl/plus_down.png" enabled="false"/>
+				<Label name="" float="true" pos="1312,214,0,0" width="281" height="1" bkimage="res/roomctrl/hordotLine.png"  />
+				<Button name="btnViewMinus" float="true" pos="1208,163,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/minus.png" pushedimage="res/roomctrl/minus_down.png" enabled="false"/>
+				<Label name="" pos="1013,328,0,0" float="true" width="39" height="39" align="center"  bkimage="res/roomctrl/lbfocus.png" />
+				<Label name=""  text="焦距" float="true" pos="1063,331,0,0" width="145" height="39" align="left" font="1" textcolor="#CCD4DEEB" />
+				<Button name="btnFocusPlus" float="true" pos="1592,296,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/plus.png" pushedimage="res/roomctrl/plus_down.png" enabled="false"/>
+				<Label name="" float="true" pos="1312,348,0,0" width="88" height="1" bkimage="res/roomctrl/hordotLine.png"  />
+				<Button name="btnFocusAuto" float="true" pos="1400,296,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/aoto.png" pushedimage="res/roomctrl/aoto_down.png" enabled="false"/>
+				<Label name="" float="true" pos="1504,348,0,0" width="88" height="1" bkimage="res/roomctrl/hordotLine.png"  />
+				<Button name="btnFocusMinus" float="true" pos="1208,296,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/minus.png" pushedimage="res/roomctrl/minus_down.png" enabled="false"/>
+				<Label name="" pos="1013,461,0,0" float="true" width="39" height="39" align="center"  bkimage="res/roomctrl/lblight.png" />
+				<Label name=""  text="亮度" float="true" pos="1063,464,0,0" width="145" height="39" align="left" font="1" textcolor="#CCD4DEEB" />
+				<Button name="btnBrightPlus" float="true" pos="1592,429,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/plus.png" pushedimage="res/roomctrl/plus_down.png" enabled="false"/>
+				<Label name="" float="true" pos="1312,480,0,0" width="281" height="1" bkimage="res/roomctrl/hordotLine.png"  />
+				<Button name="btnBrightMinus" float="true" pos="1208,429,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/minus.png" pushedimage="res/roomctrl/minus_down.png" enabled="false"/>
+			</HorizontalLayout>
+		</VerticalLayout>
+		
+		<Case name="caseQuiet">	
+			<ListBtnSetQuiet normalimage="res/list/btnQuiet.png" pushedimage="res/list/btnQuiet_down.png"/>
+		</Case>
+		<Case name="caseSetQuiet">	
+			<ListBtnSetQuiet normalimage="res/list/btnSetQuiet.png" pushedimage="res/list/btnSetQuiet_down.png"/>
+		</Case>
+		<Case name="caseMute">	
+			<ListBtnSetMute normalimage="res/list/btnMute.png" pushedimage="res/list/btnMute_down.png"/>
+		</Case>
+		<Case name="caseSetMute">	
+			<ListBtnSetMute normalimage="res/list/btnSetMute.png" pushedimage="res/list/btnSetMute_down.png"/>
+		</Case>
+		
+		<Case name="caseDual">	
+			<ListBtnSetDual normalimage="res/list/btnDual.png" pushedimage="res/list/btnDual_down.png"/>
+		</Case>
+		<Case name="caseCancelDual">	
+			<ListBtnSetDual normalimage="res/list/btnCancelDual.png" pushedimage="res/list/btnCancelDual_down.png"/>
+		</Case>	
+		
+		<Case name="caseSelectPlay">	
+			<ListBtnSelectPlay normalimage="res/list/btnSelectPlay.png" pushedimage="res/list/btnSelectPlay_down.png"/>
+		</Case>
+		<Case name="caseCancelSelectPlay">	
+			<ListBtnSelectPlay normalimage="res/list/btnCancelSelectPlay.png" pushedimage="res/list/btnCancelSelectPlay_down.png"/>
+		</Case>	
+		
+		<Case name="caseParentItem">	
+			<imgConfCnsLabel bkimage="res/list/imgCascade.png"/>
+			<BtnConfCnsSel visible="false"/>		
+		</Case>
+		
+		<Case name="caseListNoSel">	
+			<ConfCnsListItem bkimage="res\list\item_normal.png"/>
+			<!--<imgOffline visible="true"/> 
+			<imgMute visible="true"/> 
+			<imgQuiet visible="true"/>-->
+			<BtnConfCall visible="false"/>
+			<imgConfCnsLabel visible="true"/>
+			<confcnslabellayout visible="true"/>
+			<ConfCnsName visible="true"/>
+			<ListBtnSetCam visible="false"/>
+			<ListBtnSetDual visible="false"/>
+			<ListBtnSetSpeaker visible="false"/>
+			<ListBtnSelectPlay visible="false"/>
+			<ListBtnSetQuiet visible="false"/>
+			<ListBtnSetMute visible="false"/>
+			<ListBtnHangUp visible="false"/>
+		</Case>
+		
+		<Case name="caseListSel">	
+			<ConfCnsListItem bkimage="res\list\item_down.png"/>
+			<!--<imgOffline visible="false"/> 
+			<imgMute visible="false"/> 
+			<imgQuiet visible="false"/><BtnConfCnsSel enabled="true"/>-->
+			<BtnConfCall visible="false"/>	
+			<confcnslabellayout visible="false"/>
+			<imgConfCnsLabel visible="false"/>
+			<ConfCnsName visible="false"/>
+			<ListBtnSetCam visible="false"/>
+			<ListBtnSetDual visible="true"/>
+			<ListBtnSetSpeaker visible="true"/>
+			<ListBtnSelectPlay visible="true"/>
+			<ListBtnSetQuiet visible="true"/>
+			<ListBtnSetMute visible="true"/>
+			<ListBtnHangUp visible="true"/>
+		</Case>
+		
+		<Case name="caseListSel323">	
+			<ConfCnsListItem bkimage="res\list\item_down.png"/>
+			<!--<imgOffline visible="false"/> 
+			<imgMute visible="false"/> 
+			<imgQuiet visible="false"/><BtnConfCnsSel enabled="true"/>-->
+			<BtnConfCall visible="false"/>	
+			<confcnslabellayout visible="false"/>
+			<imgConfCnsLabel visible="false"/>
+			<ConfCnsName visible="false"/>
+			<ListBtnSetCam visible="true"/>
+			<ListBtnSetDual visible="true"/>
+			<ListBtnSetSpeaker visible="true"/>
+			<ListBtnSelectPlay visible="true"/>
+			<ListBtnSetQuiet visible="true"/>
+			<ListBtnSetMute visible="true"/>
+			<ListBtnHangUp visible="true"/>
+		</Case>
+		
+		<Case name="caseListDisabled">	
+			<ConfCnsListItem bkimage="res\list\item_disabled.png"/>
+			<imgConfCnsLabel visible="true"/>
+			<BtnConfCall visible="true"/>		
+			<confcnslabellayout visible="false"/>
+			<ConfCnsName visible="true"/>
+			<ListBtnSetCam visible="false"/>
+			<ListBtnSetDual visible="false"/>
+			<ListBtnSetSpeaker visible="false"/>
+			<ListBtnSelectPlay visible="false"/>
+			<ListBtnSetQuiet visible="false"/>
+			<ListBtnSetMute visible="false"/>
+			<ListBtnHangUp visible="false"/>
+		</Case>
+		
+		<Case name="caseP2PFeccCam">
+			<CnsP2PFeccHor visible="true"/>
+			<CnsMultyFeccHor visible="false"/>
+		</Case>
+		<Case name="caseMultyFeccCam">
+			<CnsP2PFeccHor visible="false"/>
+			<CnsMultyFeccHor visible="true"/>
+		</Case>
+	
+  </VerticalLayout>
+</Pageconfroll>

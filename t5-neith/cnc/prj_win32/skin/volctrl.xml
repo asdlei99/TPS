@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<PageVolCtrl>
+
+  <VerticalLayout bkimage="res/public/subpopbg.png">
+    <VerticalLayout>
+      <VerticalLayout name="VolCtrlLayout"  bkimage="" inset="0,0,0,0">
+
+        <Label name="" text="" float="true" pos="748,170,0,0" width="424" height="424" bkimage="res/roomctrl/speaker.png"/>
+        <Label name="lbTvWallvol" text="0%" float="true" pos="706,657,0,0" width="79" height="60" bkimage="" textcolor="#FFFFFFFF" align="center"/>
+        <Slider name="sldTvWallVol" float="true" pos="785,657,0,0" width="429" height="60" bkimage="res/public/slider_bg.png"  align="center"  thumbsize="60,60" thumbimage="file='res/public/slider_handler.png' mask='0xffffffff'"  foreimage="res/public/slider.png" iskeepimageheight="true"/>
+        <Label name="" text="开启静音" float="true" pos="751,765,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+        <CheckBox name="CheckTvWallSlient" float="true" pos="1044,765,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+        
+        <!--<Label name="" text="" float="true" pos="748,170,0,0" width="424" height="424" bkimage="res/roomctrl/speaker.png"/>
+        <Label name="lbspeakervol" text="0%" float="true" pos="706,657,0,0" width="79" height="60" bkimage="" textcolor="#FFFFFFFF" align="center"/>
+        <Slider name="sldSpeaker" float="true" pos="785,657,0,0" width="429" height="60" bkimage="res/public/slider_bg.png"  align="center"  thumbsize="60,60" thumbimage="file='res/public/slider_handler.png' mask='0xffffffff'"  foreimage="res/public/slider.png" iskeepimageheight="true"/>
+        <Label name="" text="开启静音" float="true" pos="751,765,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+        <CheckBox name="CheckSlient" float="true" pos="1044,765,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />-->
+        <!--<Button name="btnNotice" float="true" pos="1827,927,0,0" width="64" height="64" normalimage="res/public/btnnotice_normal.png" pushedimage="res/public/btnnotice_select.png" />-->
+      </VerticalLayout>
+    </VerticalLayout>
+  </VerticalLayout>
+</PageVolCtrl>

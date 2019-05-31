@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window sizebox="0,0,0,0" caption="0,0,0,0" size="1920,1121" mininfo="800,200" maxinfo="1920,1121" >
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />
+    <Font name="微软雅黑" size="18" bold="false"></Font>
+    <Font name="微软雅黑" size="12" bold="false" default="false" />
+   
+    <VerticalLayout name="MainMenuLayout" >
+	<VerticalLayout name="MainMenuInitLayout" height="279" bkimage="res\mainmenu\mainmenuInitBkg.png" containerclick="true">
+	 <HorizontalLayout height="58" >
+	  <Control />
+	    <Button name="BtnExtend" text="" width="150" height="48" normalimage="res\mainmenu\btnExtend.png" pushedimage="res\mainmenu\btnExtend_down.png"/>
+	  <Control />	    
+	 </HorizontalLayout>
+	 <HorizontalLayout name="MainMenuBtnLayout" inset="515,0,515,0" height="221">
+	  <VerticalLayout name="AddrBookLayout">
+		<HorizontalLayout height="128">
+			<Control />
+			<Button name="BtnAddrBook" pos="0,0,0,0" width="128" height="128" align="center" normalimage="res/mainmenu/addrbook.png" pushedimage="res/mainmenu/addrbook_down.png" />
+			<Control />
+		</HorizontalLayout>
+	    <Label name="LabAddrBook" text="地址簿" textcolor="#FFD5DEEB" font="0" align="center"  />
+	  </VerticalLayout>
+	  <VerticalLayout name="InviteCnsLayout" visible="false">
+		<HorizontalLayout height="128">
+			<Control />
+			<Button name="BtnInviteCns"  pos="0,0,0,0" width="128" height="128" align="center" normalimage="res/mainmenu/invitecns.png" pushedimage="res/mainmenu/invitecns_down.png" />
+			<Control />
+		</HorizontalLayout>
+	    <Label text="邀请会场" textcolor="#FFD5DEEB" font="0" align="center"  />
+	  </VerticalLayout>
+	  <Control name="AddrBookControl" visible="true"/> 
+	  <VerticalLayout name="ConfTempLayout">
+		<HorizontalLayout height="128">
+			<Control />
+			<Button name="BtnConfTemp"  pos="0,0,0,0" width="128" height="128" align="center" normalimage="res/mainmenu/conftemp.png" pushedimage="res/mainmenu/conftemp_down.png" />
+			<Control />
+		</HorizontalLayout>
+	    <Label name="LabConfTemp" text="会议模板" textcolor="#FFD5DEEB" font="0" align="center"  />
+	  </VerticalLayout>
+	  <Control name="ConfTempControl" visible="true"/>
+	  <VerticalLayout name="ConfCtrlLayout" visible="false" >
+		<HorizontalLayout height="128">
+			<Control />
+			<Button name="BtnConfCtrl"  pos="0,0,0,0" width="128" height="128" align="center" normalimage="res/mainmenu/conftemp.png" pushedimage="res/mainmenu/conftemp_down.png" />
+			<Control />
+		</HorizontalLayout>
+	    <Label text="会议管理" textcolor="#FFD5DEEB" font="0" align="center"  />
+	  </VerticalLayout>
+	  <Control name="ConfCtrlControl" visible="false"/>  
+	  <VerticalLayout >
+		<HorizontalLayout height="128">
+			<Control />
+			<Button name="BtnRoomCtrl"  pos="0,0,0,0" width="128" height="128" align="center" normalimage="res/mainmenu/roomctrl.png" pushedimage="res/mainmenu/roomctrl_down.png" />
+			<Control />
+		</HorizontalLayout>
+	    <Label name="LabRoomCtrl" text="会场管理" textcolor="#FFD5DEEB" font="0" align="center"  />
+	  </VerticalLayout>
+	  <Control name="EndConfControl" visible="false"/>
+	  <VerticalLayout name="EndConfLayout" visible="false" >
+		<HorizontalLayout height="128">
+			<Control />
+			<Button name="BtnEndConf"  pos="0,0,0,0" width="128" height="128" align="center" normalimage="res/mainmenu/endconf.png" pushedimage="res/mainmenu/endconf_down.png" />
+			<Control />
+		</HorizontalLayout>
+	    <Label  name="lbEndConf" text="结束会议" textcolor="#FFD5DEEB" font="0" align="center"  />
+	  </VerticalLayout>
+	  <!-- <Control visible="false"/>
+	  <VerticalLayout visible="false">
+		<HorizontalLayout height="128">
+			<Control />
+			<Button name="BtnCenterCtrl"  pos="0,0,0,0" width="128" height="128" align="center" normalimage="res/mainmenu/centerctrl.png" pushedimage="res/mainmenu/centerctrl_down.png" />
+			<Control />
+		</HorizontalLayout>
+	    <Label name="LabCenterCtrl" text="中控管理" textcolor="#FFD5DEEB" font="0" align="center"  />
+	  </VerticalLayout> -->
+	 </HorizontalLayout>
+	 
+	</VerticalLayout>
+	<HorizontalLayout height="1" padding="0,25,0,0">
+	    <Control />
+	    <Label name="LabCutline" width="1573" text="" bkimage="res/mainmenu/cutline.png" align="center" />
+	    <Control />
+	</HorizontalLayout>
+
+	<TouchList name="ShortCutList" height="800" columns="5" inset="356,0,262,0"  itemselectedimage="res/addrbook/conf_sel.png" >
+	</TouchList>
+	
+	<Button name="BtnMsg" float="true" pos="35,138,0,0" width="100" height="100" normalimage="res\mainmenu\btnMsg.png" pushedimage="res\mainmenu\btnMsg.png"/>
+	<Button name="BtnSysCfg" float="true" pos="1785,138,0,0" width="100" height="100" normalimage="res\mainmenu\btnSyscfg.png" pushedimage="res\mainmenu\btnSyscfg.png"/>
+	
+    </VerticalLayout>
+
+    <Case name="caseMainMenuExtend">	
+		<MainMenuLayout bkimage="res\mainmenuBkg.png"/> 
+		<MainMenuInitLayout bkimage=""/> 
+		<BtnExtend normalimage="res\mainmenu\btnExtendBack.png" pushedimage="res\mainmenu\btnExtendBack_down.png"/> 
+    </Case>
+    <Case name="caseMainMenuBack">	
+		<MainMenuLayout bkimage=""/> 
+		<MainMenuInitLayout bkimage="res\mainmenu\mainmenuInitBkg.png"/> 
+		<BtnExtend normalimage="res\mainmenu\btnExtend.png" pushedimage="res\mainmenu\btnExtend_down.png"/> 
+    </Case>
+	<Case name="caseMenuInConf">	
+		<MainMenuBtnLayout inset="388,0,388,0"/> <!--多点主席 点对点-->	
+		<AddrBookLayout visible="false"/>
+		<InviteCnsLayout visible="true"/>
+		<AddrBookControl visible="true"/>
+		<ConfTempLayout visible="false"/>
+		<ConfTempControl visible="false"/>	
+		<ConfCtrlLayout visible="true"/> 	
+		<ConfCtrlControl visible="true"/> 	
+		<EndConfLayout visible="true"/>
+		<EndConfControl visible="true"/>	
+		<lbEndConf text="结束会议"/>			
+    </Case>
+	
+	<Case name="caseMenuInConfMultNoChair">	<!--多点 非主席-->
+		<MainMenuBtnLayout inset="515,0,515,0"/> 	
+		<AddrBookLayout visible="false"/>
+		<InviteCnsLayout visible="false"/>
+		<AddrBookControl visible="false"/>
+		<ConfTempLayout visible="false"/>
+		<ConfTempControl visible="false"/>	
+		<ConfCtrlLayout visible="true"/> 	
+		<ConfCtrlControl visible="true"/> 	
+		<EndConfLayout visible="true"/>
+		<EndConfControl visible="true"/>	
+		<lbEndConf text="退出会议"/>	
+			
+    </Case>
+	
+	<Case name="caseMenuNotInConf">	
+		<MainMenuBtnLayout inset="515,0,515,0"/> 
+		<AddrBookLayout visible="true"/>
+		<InviteCnsLayout visible="false"/>
+		<AddrBookControl visible="true"/>
+		<ConfTempLayout visible="true"/>
+		<ConfTempControl visible="true"/>
+		<ConfCtrlLayout visible="false"/> 
+		<ConfCtrlControl visible="false"/> 
+		<EndConfLayout visible="false"/>
+		<EndConfControl visible="false"/>	
+    </Case>
+
+</Window>
