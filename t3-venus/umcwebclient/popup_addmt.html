@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>popup_addmt</title>
+        
+        <!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+		
+		<script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/messagebox.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/confirmbox.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/scroll.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='popup_addmt.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/messagebox.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/confirmbox.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/scroll.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/ntymessagebox.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='popup_addmt.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+    </head>
+    <body>
+		<div class="div_top">
+			<span class="span_title">提示</span>
+			<span class="btn_popup_close" onclick="OnPopupBtnCloseClick(this);"> </span>
+		</div>
+		
+		<div class="div_middle">
+			<div class="div_middle_bechecked">
+				<div class="div_search">
+	        		<input type="text" class="text_search"/>
+	        		<div class="img_search"></div>
+	        	</div>
+	        	
+	        	<div class="div_list_meettingroom div_list_meettingroom_bechecked div_list">
+	        		<div class="div_level">全部</div>
+	        		<input type="button" class="btn_back" value="返回" disabled="disabled"/>
+		        	
+		        	<!--添加滚动条-->
+		        	<div class="wraper">
+			        	<div class="slider div_list_content">
+			        		<div class="div_list_item" no="1" onclick="onListItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+			        			<input type="checkbox" style="visibility: hidden;"/>
+			        			<div class="div_list_item_online">--</div>
+			        			<div class="div_list_item_name">group</div>
+			        		</div>
+        		
+			        		<div class="div_list_item" no="1" onclick="onItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+			        			<input type="checkbox" onclick="onItemCheckboxClick(this);"/>
+			        			<div class="div_list_item_online">不在线</div>
+			        			<div class="div_list_item_type">sip</div>
+			        			<div class="div_list_item_name">会场1</div>
+			        			<div class="div_list_item_number">123456</div>
+			        			<div class="div_list_item_ip">172.16.216.120</div>
+			        		</div>
+			        	</div>
+			        	
+			        	<div class="pannel"> 
+							<div class="drag"></div> 
+						</div>
+		        	</div>
+		        </div>
+			</div>
+			
+			<div class="div_middle_handle">
+	        	<input type="button" value=">>" class="btnCheckAll" onclick="onBtnCheckAllClick();"/>
+	        	<input type="button" value=">" class="btnCheckOne" onclick="onBtnCheckOneClick();"/>
+	        	<input type="button" value="<" class="btnUncheckOne" onclick="onBtnUncheckOneClick();"/>
+	        	<input type="button" value="<<" class="btnUncheckAll" onclick="onBtnUncheckAllClick();"/>
+	        </div>
+	        
+	        <div class="div_middle_checked">
+				<div class="div_globle_list_checked_title"><font>已选</font></div>			        	
+	        	
+	        	<div class="div_list_meettingroom div_list_meettingroom_checked div_list">
+		      
+		        	<!--添加滚动条-->
+		        	<div class="wraper">
+			        	<div class="slider div_list_content">
+			        	</div>
+			        	
+			        	<div class="pannel"> 
+							<div class="drag"></div> 
+						</div>
+		        	</div>
+		        </div>
+			</div>
+		</div>
+		
+		<div class="div_bottom">
+			<input type="button" class="butto_ok" value="确定" onclick="OnPopupAddmtBtnOkClick(this);"/>
+			<input type="button" class="button_cancel" value="取消" onclick="OnPopupBtnCloseClick(this);"/>
+		</div>
+    </body>
+</html>
+

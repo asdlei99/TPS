@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>confctrl</title>
+        
+        <script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/scroll.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='confctrl.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/scroll.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='confctrl.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+    </head>
+    <body>
+    	<div class="divTitle">
+    		<input type="button" class="btnBack" value="返回"/>
+    		<font class="font_confname">石城会议</font>
+    		<font class="font_confstarttime">（开始时间：2014-4-5 18:18）</font>
+    		<div class="div_search">
+        		<input type="text" class="text_search"/>
+        		<div class="img_search"></div>
+        	</div>
+        	<input type="button" class="btnStopconf" value="结束会议"/>
+    	</div>
+    	
+    	<div class="divLeft">
+    		<div class="div_list div_list_meettingroom">
+        		<div class="div_list_head">
+        			<div class="div_list_head_checkbox"><input type="checkbox" onclick="onListMTHeadCheckboxClick(this);"/>全选</div>
+        			<div class="div_list_head_name">|名称</div>
+        		</div>
+	        	
+	        	<!--添加滚动条-->
+	        	<div class="wraper">
+		        	<div class="slider div_list_content">
+		        		<div class="div_list_item" no="1" onclick="onListMTItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+		        			<input type="checkbox" onclick="onListMTItemCheckboxClick(this);"/>
+		        			<div class="div_list_item_online">不在线</div>
+		        			<div class="div_list_item_name">会场1</div>
+		        			<div class="div_list_item_oper">
+		        				<font class="font_dual">双流</font>
+		        				<font class="font_speaker">发言</font>
+		        				<font class="font_quiet">静音</font>
+		        				<font class="font_mute">哑音</font>
+		        				<font class="font_selview">选看</font>
+		        			</div>
+		        		</div>
+		        		
+		        		<div class="div_list_item" no="2" onclick="onListMTItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+		        			<input type="checkbox" onclick="onListMTItemCheckboxClick(this);"/>
+		        			<div class="div_list_item_online">在线</div>
+		        			<div class="div_list_item_name">会场1</div>
+		        			<div class="div_list_item_oper">
+		        				<font class="font_dual">未双流</font>
+		        				<font class="font_speaker">未发言</font>
+		        				<font class="font_quiet">未静音</font>
+		        				<font class="font_mute">未哑音</font>
+		        				<font class="font_selview">未选看</font>
+		        			</div>
+		        		</div>
+		        		
+		        		<div class="div_list_item" no="3" onclick="onListMTItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+		        			<input type="checkbox" onclick="onListMTItemCheckboxClick(this);"/>
+		        			<div class="div_list_item_online">不在线</div>
+		        			<div class="div_list_item_name">会场1</div>
+		        			<div class="div_list_item_oper">
+		        				<font class="font_dual">双流</font>
+		        				<font class="font_speaker">发言</font>
+		        				<font class="font_quiet">静音</font>
+		        				<font class="font_mute">哑音</font>
+		        				<font class="font_selview">选看</font>
+		        			</div>
+		        		</div>
+		        	</div>
+		        	
+		        	<div class="pannel"> 
+						<div class="drag"></div> 
+					</div>
+	        	</div>
+	        </div>
+    	</div>
+    	
+    	<div class="divRight">
+    		<iframe src="confoper.html" scrolling="no" frameborder="0" name="confoper" id="confoper">
+				<a href="confoper.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+			</iframe>
+    		<iframe src="confctrldiscuss.html" scrolling="no" frameborder="0" name="confctrldiscuss" id="confctrldiscuss">
+				<a href="confctrldiscuss.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+			</iframe>
+    		<iframe src="confctrlpolling.html" scrolling="no" frameborder="0" name="confctrlpolling" id="confctrlpolling">
+				<a href="confctrlpolling.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+			</iframe>
+    	</div>
+        
+    </body>
+</html>
+

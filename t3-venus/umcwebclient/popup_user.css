@@ -1,0 +1,205 @@
+/*div_adduserbox*/
+.div_adduserbox
+{
+	z-index: 6;
+	position:fixed;
+	margin-left: 440px;
+	margin-top: 200px;
+	width: 400px;
+	height: 325px;
+	background-color: white;
+	border: 1px solid black;
+	visibility: hidden;
+}
+
+.div_adduserbox .div_adduserbox_top
+{
+	margin-top: 12px;
+	margin-left: 15px;
+	width: 375px;
+	height: 30px;
+	border-bottom: 1px solid black;
+	float: left;
+}
+
+.div_adduserbox .div_adduserbox_top .a_adduserbox_close
+{
+	margin-top: -20px;
+	margin-right: 0px;
+	float: right;
+}
+
+.div_adduserbox .div_adduserbox_middle
+{
+	margin-left: 15px;
+	width: 370px;
+	height: 230px;
+	float: left;
+}
+
+.div_adduserbox_username
+{
+	margin-top: 40px;
+	margin-left: 30px;
+	width: 70px;
+	height: 20px;
+	float: left;
+}
+
+.text_adduserbox_username
+{
+	margin-top: 35px;
+	margin-left: 10px;
+	width: 220px;
+	float: left;
+}
+
+.div_adduserbox_pwd
+{
+	margin-top: 35px;
+	margin-left: 30px;
+	width: 70px;
+	height: 20px;
+	float: left;
+}
+
+.text_adduserbox_pwd
+{
+	margin-top: 30px;
+	margin-left: 10px;
+	width: 220px;
+	float: left;
+}
+
+.div_adduserbox_confirmpwd
+{
+	margin-top: 35px;
+	margin-left: 30px;
+	width: 70px;
+	height: 20px;
+	float: left;
+}
+
+.text_adduserbox_confirmpwd
+{
+	margin-top: 30px;
+	margin-left: 10px;
+	width: 220px;
+	float: left;
+}
+
+.div_adduserbox .div_adduserbox_bottom
+{
+	margin-left: 130px;
+	width: 145px;
+	height: 27px;
+	float: left;
+}
+
+.button_adduserbox_cancel
+{
+	margin-left: 5px;
+}
+
+/*div_edituserbox*/
+.div_edituserbox
+{
+	z-index: 6;
+	position:fixed;
+	margin-left: 440px;
+	margin-top: 200px;
+	width: 400px;
+	height: 325px;
+	background-color: white;
+	border: 1px solid black;
+	visibility: hidden;
+}
+
+.div_edituserbox .div_edituserbox_top
+{
+	margin-top: 12px;
+	margin-left: 15px;
+	width: 375px;
+	height: 30px;
+	border-bottom: 1px solid black;
+	float: left;
+}
+
+.div_edituserbox .div_edituserbox_top .a_edituserbox_close
+{
+	margin-top: -20px;
+	margin-right: 0px;
+	float: right;
+}
+
+.div_edituserbox .div_edituserbox_middle
+{
+	margin-left: 15px;
+	width: 370px;
+	height: 230px;
+	float: left;
+}
+
+.div_edituserbox_username
+{
+	margin-top: 40px;
+	margin-left: 30px;
+	width: 70px;
+	height: 20px;
+	float: left;
+}
+
+.text_edituserbox_username
+{
+	margin-top: 35px;
+	margin-left: 10px;
+	width: 220px;
+	float: left;
+}
+
+.div_edituserbox_pwd
+{
+	margin-top: 35px;
+	margin-left: 30px;
+	width: 70px;
+	height: 20px;
+	float: left;
+}
+
+.text_edituserbox_pwd
+{
+	margin-top: 30px;
+	margin-left: 10px;
+	width: 220px;
+	float: left;
+}
+
+.div_edituserbox_confirmpwd
+{
+	margin-top: 35px;
+	margin-left: 30px;
+	width: 70px;
+	height: 20px;
+	float: left;
+}
+
+.text_edituserbox_confirmpwd
+{
+	margin-top: 30px;
+	margin-left: 10px;
+	width: 220px;
+	float: left;
+}
+
+.div_edituserbox .div_edituserbox_bottom
+{
+	margin-left: 130px;
+	width: 145px;
+	height: 27px;
+	float: left;
+}
+
+.button_edituserbox_cancel
+{
+	margin-left: 5px;
+}

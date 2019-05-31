@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+		<!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+
+		<title>conftemplateScan</title>
+		
+		<script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/scroll.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='conftemplateScan.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/scroll.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='conftemplateScan.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='confinfoScan.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+	</head>
+
+	<body>
+		<div class="div_conftemplateScan_top">
+			<div class="div_conftempname fontBig">conftempname</div>
+			<input type="button" class="btnBack" value="返回"/>
+			<input type="button" class="btnModify" value="修改"/>
+			<input type="button" class="btnStartConf" value="召开"/>	
+		</div>
+
+		<div class="div_conftemplateScan_wraper wraper">
+			<div class="div_conftemplateScan_confInfo slider">
+				<div class="divConfName">
+					<span class="spanTip1">会议名称</span>
+					<span class="spanConfName spanInfo"> </span>
+				</div>	
+				<div class="divConfNum">
+					<span class="spanTip1">会议号码</span>
+					<span class="spanConfNum spanInfo"> </span>
+				</div>
+				<div class="divConfType">
+					<span class="spanTip1">会议类型</span>
+					<span class="spanConfType spanInfo"> </span>
+				</div>
+				<div class="divConfTime">
+					<span class="spanTip1">会议时间</span>
+					<span class="spanConfTime spanInfo"> </span>
+				</div>
+				<div class="divMediaFormat">
+					<span class="spanTip1">媒体格式</span>
+					<div class="divConfFormat">
+						<span class="spanTip2">会议格式</span>
+						<span class="spanConfFormat spanInfo"> </span>
+					</div>
+					<div class="divShowFormat divNextLine">
+						<span class="spanTip2">演示格式</span>
+						<span class="spanShowFormat spanInfo"> </span>
+					</div>
+					<div class="divAudioFormat divNextLine">
+						<span class="spanTip2">音频格式</span>
+						<span class="spanAudioFormat spanInfo"> </span>
+					</div>
+					<div class="divAdaptRes divLastLine">
+						<span class="spanTip2">适配资源</span>
+						<span class="spanAdaptRes spanInfo"> </span>
+					</div>
+				</div>
+				<div class="divConfRate">
+					<span class="spanTip1">会议码率</span>
+					<div class="divSingleRate">
+						<span class="spanTip2">单屏码率</span>
+						<span class="spanSingleRate spanInfo"> </span>
+					</div>
+					<div class="divShowRate divLastLine">
+						<span class="spanTip2">演示码率</span>
+						<span class="spanShowRate spanInfo"> </span>
+					</div>
+				</div>
+				<div class="divCascade">
+					<span class="spanTip1">会议级联</span>
+					<div class="divUpBandWidth">
+						<span class="spanTip2">上行带宽</span>
+						<span class="spanUpBandWidth spanInfo"> </span>
+					</div>
+					<div class="divDownBandWidth divLastLine">
+						<span class="spanTip2">下行带宽</span>
+						<span class="spanDownBandWidth spanInfo"> </span>
+					</div>
+				</div>
+				<div class="divTransEncrypt">
+					<span class="spanTip1">传输加密</span>
+					<div class="divEncrypt">
+						<span class="spanTip2">AES密钥</span>
+						<span class="spanEncrypt spanInfo"> </span>
+					</div>
+				</div>
+				<div class="divConfPolling">
+					<span class="spanTip1">会议轮询</span>
+					<div class="divPollingTime">
+						<span class="spanTip2">轮询间隔</span>
+						<span class="spanPollingTime spanInfo"> </span>
+					</div>
+					<input type="button" class="btnPollingMember" value="轮询成员"/>
+				</div>
+				<div class="divConfDiscuss">
+					<span class="spanTip1">会议讨论</span>
+					<input type="button" class="btnDiscussMember" value="讨论成员"/>
+				</div>
+			</div>
+		
+			<div class="div_conftemplateScan_pannel pannel"> 
+				<div class="div_conftemplateScan_drag drag"> </div> 
+			</div>
+		</div>
+		
+		<!------------------------与会会场列表------------------------>
+		<div class="div_Scanf_MeetList_content">
+			<div class="div_search">
+				<input type="text" class="text_search"/>
+				<div class="img_search"> </div>
+			</div>
+	
+			<!--与会会场列表-->
+			<div class="div_list">
+				<div class="div_list_head">
+					<div class="div_Meet_list_head_no">序号</div>
+					<div class="div_Meet_list_head_name">|名称</div>
+				</div>
+	
+				<div class="div_Scanf_Meet_list_content wraper">
+					<div class="div_list_content slider">
+						<div class="div_list_item" no="1" onclick="onItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+							<div class="div_Meet_list_item_no">1</div>
+							<!----><div class="div_Meet_list_item_img"> </div>
+							<div class="div_Meet_list_item_name">会场1</div>
+							<div class="div_Meet_list_item_num">123456</div>
+							<div class="div_Meet_list_item_ip">172.162.155.138</div>
+						</div>
+						<div class="div_list_item" no="2" onclick="onItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+							<div class="div_Meet_list_item_no">2</div>
+							<!----><div class="div_Meet_list_item_img"> </div>
+							<div class="div_Meet_list_item_name">会场2</div>
+							<div class="div_Meet_list_item_num">123456</div>
+							<div class="div_Meet_list_item_ip">172.162.155.138</div>
+						</div>
+					</div>
+
+					<div class="pannel_Scanf_Meet_list pannel"> 
+						<div class="drag_Scanf_Meet_list drag"> </div> 
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

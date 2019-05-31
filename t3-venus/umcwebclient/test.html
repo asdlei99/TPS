@@ -1,0 +1,487 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"  />
+    
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+    
+    <title>test</title>
+    
+    <script src="common/jquery-1.10.2.min.js"> </script>
+    
+   
+    
+    <script type="text/javascript">
+    	 var url= "http://172.16.40.11/fcgi-bin/umcwebserver.fcgi";
+    	 
+    	 //XmlHttpRequest对象    
+		function createXmlHttpRequest(){    
+    	if(window.ActiveXObject){ //如果是IE浏览器    
+        return new ActiveXObject("Microsoft.XMLHTTP");    
+    	}else if(window.XMLHttpRequest){ //非IE浏览器    
+        return new XMLHttpRequest();    
+   	 	}    
+		};
+		
+			//回调函数    
+			function Fun(){    
+    		if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){    
+        	var obj = eval(xmlHttpRequest.responseText);    
+        	if(b == "true"){    
+            alert("登录成功！");    
+        	}else{    
+            alert("登录失败！");    
+       	 }           
+    		}    
+			};
+    	 
+    	function fun1()
+    	{    		
+    		var send_data='{"event":"ev_umcweb_addrbook_globle_get_req","posBegin":"0","posEnd":"10"}';
+    
+		    //1.创建XMLHttpRequest组建    
+				xmlHttpRequest = createXmlHttpRequest();    
+        
+		    //2.设置回调函数    
+		    xmlHttpRequest.onreadystatechange = Fun;    
+		        
+		    //3.初始化XMLHttpRequest组建    
+		    xmlHttpRequest.open("POST",url,true);    
+		        
+		    //4.发送请求    
+		    xmlHttpRequest.send(send_data);      
+    	};
+    	
+    	function fun2()
+    	{
+    		for( var n = 0; n < 10; n++ )
+    		{
+    			//var send_data='{"event":"ev_umcweb_addrbook_item_add_req","name":"shicheng","number":"1","ip":"172.16.216.120"}';
+    			
+    			var send_data='{"event":"ev_umcweb_addrbook_item_add_req"'+','+'"name":'+'"'+n+'"'+','+'"number":'+'"'+n+'"'+','+'"ip":'+'"'+n+'"'+'}';
+    			
+    			
+    
+			    $.post(url,send_data,function(data,ts){
+				  	switch(data.bRet)
+				  	{
+				  	case "1":
+				  		{
+				  			alert("成功");
+				  			break;
+				  		}
+				  	case "0":
+				  		{
+				  			alert("失败");
+				  			break;
+				  		}
+				  	}
+			    },'json');
+	    	}
+    	};
+    		
+    	
+    	function fun3()
+    	{    		
+    		var send_data='{"event":"ev_umcweb_addrbook_item_mod_req","id":"1","name":"xiaochuran","number":"3","ip":"172.16.216.121"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.bRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun4()
+    	{
+    		var send_data='{"event":"ev_umcweb_addrbook_item_del_req","id":"1"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.bRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun5()
+    	{
+    		var send_data='{"event":"ev_umcweb_addrbook_item_get_req","gid":"1","posBegin":"1","posEnd":"10"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.bRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun6()
+    	{
+    		var send_data='{"event":"ev_umcweb_addrbook_group_add_req","name":"gshicheng"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.bRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun7()
+    	{
+    		var send_data='{"event":"ev_umcweb_addrbook_group_mod_req","id":"2","name":"gtiancai"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.bRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun8()
+    	{
+    		var send_data='{"event":"ev_umcweb_addrbook_group_del_req","id":"2"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.bRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun9()
+    	{
+    		var send_data='{"event":"ev_umcweb_addrbook_ig_add_req","iid":"1","gid":"2"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.bRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun10()
+    	{
+    		var send_data='{"event":"ev_umcweb_addrbook_ig_del_req","iid":"1","gid":"2"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.bRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun11()
+    	{
+    		var send_data='{"event":"ev_umcweb_addrbook_gg_add_req","id":"2","pid":"1"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.bRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun12()
+    	{
+    		var send_data='{"event":"ev_umcweb_addrbook_gg_del_req","id":"2","pid":"1"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.bRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun13()
+    	{
+    		var send_data='{"event":"ev_umcweb_addrbook_item_number_req","gid":"1"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.bRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun14()
+    	{
+    		var send_data='{"event":"ev_umcweb_addrbook_group_get_req","pid":"1"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.bRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun15()
+    	{
+    		var send_data='{"event":"ev_umcweb_hangupconf_req","confid":"3"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.emRet)
+			  	{
+			  	case "0":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "1":
+			  		{
+			  			alert("没有改会议模板");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun16()
+    	{
+    		var send_data='{"event":"ev_umcweb_AddUser_req","name":"23","pwd":"23"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.emRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun17()
+    	{
+    		var send_data='{"event":"ev_umcweb_ChangePwd_req","name":"23","pwd":"25"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.emRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun18()
+    	{
+    		var send_data='{"event":"ev_umcweb_DelUser_req","name":"23","pwd":"25"}';
+    
+		    $.post(url,send_data,function(data,ts){
+			  	switch(data.emRet)
+			  	{
+			  	case "1":
+			  		{
+			  			alert("成功");
+			  			break;
+			  		}
+			  	case "0":
+			  		{
+			  			alert("失败");
+			  			break;
+			  		}
+			  	}
+		    },'json');
+    	};
+    	
+    	function fun19()
+    	{
+    		var date = new Date();
+			var send_data = "{\"event\":\"ev_umcweb_SetSysTime_req\"" + "," 
+			+ "\"nYear\":" + "\"" + date.getFullYear() + "\"" + "," 
+			+ "\"nMonth\":" + "\"" + (date.getMonth()+1) + "\"" + "," 
+			+ "\"nMDay\":" + "\"" + date.getDate() + "\"" + ","
+			+ "\"nHour\":" + "\"" + date.getHours() + "\"" + ","
+			+ "\"nMinute\":" + "\"" + date.getMinutes() + "\"" + ","
+			+ "\"nSecond\":" + "\"" + date.getSeconds() + "\"" + "}";
+    
+		    $.post(url,send_data,function(data,ts){
+			  	var time = "" + data.nYear + data.nMonth + data.nMDay + data.nHour + data.nMinute + data.nSecond;
+				alert(time);
+		    },'json');
+    	};
+    	
+    	function fun20()
+    	{
+			var send_data = "{\"event\":\"ev_umcweb_GetSysTime_nty_req\"}";
+    
+		    $.post(url,send_data,function(data,ts){
+			  	var time = "" + data.nYear + data.nMonth + data.nMDay + data.nHour + data.nMinute + data.nSecond;
+				alert(time);
+		    },'json');
+    	};
+
+    </script>
+</head>
+
+<body>
+	
+	<input type="button" value="获取全局地址簿" onclick="fun1()"/>
+	
+	<input type="button" value="添加本地条目" onclick="fun2()"/>
+	<input type="button" value="修改本地条目" onclick="fun3()"/>
+	<input type="button" value="删除本地条目" onclick="fun4()"/>
+	<input type="button" value="获取本地条目" onclick="fun5()"/>
+	
+	<input type="button" value="添加本地组" onclick="fun6()"/>
+	<input type="button" value="修改本地组" onclick="fun7()"/>
+	<input type="button" value="删除本地组" onclick="fun8()"/>
+	
+	<input type="button" value="添加ig" onclick="fun9()"/>
+	<input type="button" value="删除ig" onclick="fun10()"/>
+	
+	<input type="button" value="添加gg" onclick="fun11()"/>
+	<input type="button" value="删除gg" onclick="fun12()"/>
+	
+	<input type="button" value="获取item数量" onclick="fun13()"/>
+	
+	<input type="button" value="获取group信息" onclick="fun14()"/>
+	
+	 <br>
+	 
+	<input type="button" value="挂断会议" onclick="fun15()"/>
+	<input type="button" value="添加用户" onclick="fun16()"/>
+	<input type="button" value="修改密码" onclick="fun17()"/>
+	<input type="button" value="删除用户" onclick="fun18()"/>
+	
+	<input type="button" value="时间同步至服务器" onclick="fun19()"/>
+	<input type="button" value="得到服务器时间" onclick="fun20()"/>
+
+</body>
+</html>

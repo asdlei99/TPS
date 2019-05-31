@@ -1,0 +1,12 @@
+; windowsexsdk.def : Declares the module parameters for the DLL.
+
+LIBRARY       "windowsexsdk"
+
+EXPORTS
+    ; Explicit exports can go here
+
+	WINSDK_RegTouchWindow	   @1
+	WINSDK_GetTouchInputInfo   @2
+	WINSDK_GetTouchInputPoint  @3
+	WINSDK_GetGestureInfo      @4
+	WINSDK_SetGestureConfig    @5

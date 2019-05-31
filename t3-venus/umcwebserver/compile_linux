@@ -1,0 +1,19 @@
+#!/bin/sh
+
+cd ./prjlinux
+
+echo "================ compiling umcewebservice for linux debug ================"
+make -f makefile_debug clean
+make -f makefile_debug 1>umcwebserver_linux_compile_debug.txt 2>&1
+mv umcwebserver_linux_compile_debug.txt ../../../10-common/version/compileinfo/ -f
+cp ./debug/umcwebserver ../../../10-common/version/debug/linux -r
+
+echo "================ compiling umcewebservice for linux release ================"
+make -f makefile_release clean
+make -f makefile_release 1>umcwebserver_linux_compile_release.txt 2>&1
+mv umcwebserver_linux_compile_release.txt ../../../10-common/version/compileinfo/ -f
+cp ./release/umcwebserver ../../../10-common/version/release/linux -r
+
+echo "================ copy fore-end web project ================"
+cp ../../umcwebclient ../../../10-common/version/debug/linux -r
+cp ../../umcwebclient ../../../10-common/version/release/linux -r

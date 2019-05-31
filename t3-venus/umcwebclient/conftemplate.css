@@ -1,0 +1,30 @@
+body
+{
+	width:1280px;
+	height:550px;
+    margin:0 auto;
+    padding:0;
+    background-color: white;
+}
+
+.div_conftemplate_content
+{	
+	float: left;
+	width: 1280px;
+	height: 550px;
+}
+
+#conftemplateList
+{
+	display: block;
+}
+
+#conftemplateScan
+{
+	display: block;
+}
+
+#conftemplateEdit
+{
+	display: block;
+}

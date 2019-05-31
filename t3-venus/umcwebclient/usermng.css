@@ -1,0 +1,147 @@
+body
+{
+	width:1280px;
+	height:550px;
+    margin:0 auto;
+    padding:0;
+    background-color: white;
+}
+
+/*div_usermng_top*/
+.div_usermng_top
+{
+	margin-top: 15px;
+	width: 1280px;
+	height: 30px;
+	float: left;
+}
+
+.div_usermng_top .btn_add
+{
+	margin-right: 8px;
+	float: right;
+}
+
+.div_usermng_top .btn_delete
+{
+	margin-right: 0px;
+	float: right;
+}
+
+/*div_list*/
+.div_list
+{
+	margin-top: 15px;
+	width: 1280px;
+	height: 450px;
+	float: left;
+	border-top: 1px solid black;
+}
+
+/*添加滚动条*/
+.div_list_wraper
+{
+	width: 1280px;
+	height: 420px;
+	float: left;
+}
+
+.div_list .div_list_head
+{
+	margin-top: 5px;
+	height: 30px;
+	width: 1280px;
+	float: left;
+}
+
+.div_list .div_list_head .div_list_head_no
+{
+	height: 30px;
+	width: 70px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_head input
+{
+	width: 20px;
+	float: left;
+}
+
+.div_list .div_list_head .div_list_head_name
+{
+	height: 30px;
+	width: 1095px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_head .div_list_head_handle
+{
+	height: 30px;
+	width: 8spx;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_item
+{
+	margin-top: 10px;
+	height: 22px;
+	width: 1280px;
+	float: left;
+}
+
+.div_list .div_list_item .div_list_item_no
+{
+	height: 22px;
+	width: 70px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_item input
+{
+	width: 22px;
+	float: left;
+}
+
+
+.div_list .div_list_item .div_list_item_name
+{
+	height: 22px;
+	width: 1095px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_item .div_list_item_handle
+{
+	height: 22px;
+	width: 85px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_item .div_list_item_handle a
+{
+	color: #007AC0;
+}
+
+/*div_usermng_bottom*/
+.div_usermng_bottom
+{
+	margin-top: 15px;
+	width: 1280px;
+	height: 14px;
+	float: left;
+}
+
+.div_usermng_bottom .div_choose_number
+{
+	height:14px;
+	margin-right: 0px;
+	float: right;
+	color: #007AC0;
+}
+

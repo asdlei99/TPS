@@ -1,0 +1,490 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        <!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+		
+        <title>网呈统一管理控制台</title>
+        
+        <script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/messagebox.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/confirmbox.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/scroll.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='mainframe.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='popup_user.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='popup_addrbook.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='popup_selview.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='popup_tempaddmt.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/cookie.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/messagebox.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/confirmbox.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/scroll.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='mainframe.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/ntymessagebox.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='popup_user.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='popup_addrbook.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='popup_selview.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='popup_tempaddmt.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+    </head>
+    <body>
+        <div class="mainframe_top" >	
+			<div class="mainframe_top_item">
+				<font class="kedacom">KEDACOM&nbsp;/&nbsp;</font>
+				<font class="titlefont">网呈统一管理控制台</font>
+				<a href="#" class="alogoff">注销</a>
+				<a href="#" class="antymessage">消息</a>
+				<font class="username">admin</font>
+			</div>
+			
+			<div class="mainframe_nav">
+				<ul class="nav_ul">
+					<li><a href="javascript:void(0);" class="ausermng" name="amainmenu">用户管理</a></li>
+					<li><a href="javascript:void(0);" class="asysmng" name="amainmenu">系统配置</a></li>
+					<li><a href="javascript:void(0);" class="aconftemplate" name="amainmenu">会议模板</a></li>
+					<li><a href="javascript:void(0);" class="aaddrbook" name="amainmenu">地址簿</a></li>
+					<li><a href="javascript:void(0);" class="aconfmng" name="amainmenu">会议管理</a></li>
+				</ul>
+			</div>
+		</div>
+	
+		
+		<div class="mainframe_middle">
+			<iframe src="usermng.html" scrolling="no" frameborder="0" name="usermng" id="usermng">
+				<a href="usermng.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+			</iframe>
+			<iframe src="sysmng.html" scrolling="no" frameborder="0" name="sysmng" id="sysmng">
+				<a href="sysmng.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+			</iframe>
+			<iframe src="conftemplate.html" scrolling="no" frameborder="0" name="conftemplate" id="conftemplate">
+				<a href="conftemplate.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+			</iframe>
+			<iframe src="addrbook.html" scrolling="no" frameborder="0" name="addrbook" id="addrbook">
+				<a href="addrbook.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+			</iframe>
+			<iframe src="confmng.html" scrolling="no" frameborder="0" name="confmng" id="confmng">
+				<a href="confmng.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+			</iframe>
+		</div>
+		
+		<!--各种弹出式Dialog的背景 -->
+		<div class="div_popupdialogbg"></div>
+		
+		<div class="div_popup">
+			<iframe src="" scrolling="no" frameborder="0" name="popup" id="popup" style="width:100%;height:100%;"></iframe>
+		</div>
+		
+		
+		
+		<!--服务器消息提示框 -->
+		<div class="div_ntymessagebox">
+			<div class="div_ntymessagebox_top">
+				<div class="div_ntymessagebox_title">系统消息</div>
+				<a href="#" class="a_ntymessagebox_close" onclick="OnPopupBtnCloseClick(this);">关闭</a>
+			</div>
+			
+			
+			<div class="div_ntymessagebox_list" id="wraper">
+				<div class="div_ntymessagebox_list_content" id="slider">
+					<div class="div_ntymessagebox_list_item">
+						<div class="div_ntymessagebox_list_item_no">1</div>
+						<div class="div_ntymessagebox_list_item_content">服务器网络断开</div>
+						<div class="div_ntymessagebox_list_item_data">2014-11-17&nbsp;&nbsp;&nbsp;&nbsp;09:04:22</div>
+					</div>
+					
+					<div class="div_ntymessagebox_list_item">
+						<div class="div_ntymessagebox_list_item_no">2</div>
+						<div class="div_ntymessagebox_list_item_content">重启服务器</div>
+						<div class="div_ntymessagebox_list_item_data">2014-11-17&nbsp;&nbsp;&nbsp;&nbsp;09:04:22</div>
+					</div>
+				</div>
+				<div id="pannel"> 
+					<div id="drag"></div> 
+				</div>
+			</div>
+			
+			
+			<div class="div_ntymessagebox_bottom">
+				<input type="button" class="button_ntymessagebox_clear" value="清空"/>
+			</div>
+		</div>
+		
+		<!--添加用户弹出框 -->
+		<div class="div_adduserbox">
+			<div class="div_adduserbox_top">
+				<div class="div_adduserbox_title">新建用户</div>
+				<a href="#" class="a_adduserbox_close" onclick="OnPopupBtnCloseClick(this);">关闭</a>
+			</div>
+			
+			<div class="div_adduserbox_middle">
+				<div class="div_adduserbox_username">用户名</div>
+				<input type="text" class="text_adduserbox_username"/>
+				<div class="div_adduserbox_pwd">密码</div>
+				<input type="password" class="text_adduserbox_pwd"/>
+				<div class="div_adduserbox_confirmpwd">确认密码</div>
+				<input type="password" class="text_adduserbox_confirmpwd"/>
+			</div>
+			
+			<div class="div_adduserbox_bottom">
+				<input type="button" class="button_adduserbox_ok" value="确定" onclick="OnPopupAdduserBtnOkClick(this);"/>
+				<input type="button" class="button_adduserbox_cancel" value="取消" onclick="OnPopupBtnCloseClick(this);"/>
+			</div>
+		</div>
+		
+		<!--编辑用户弹出框 -->
+		<div class="div_edituserbox">
+			<div class="div_edituserbox_top">
+				<div class="div_edituserbox_title">编辑</div>
+				<a href="#" class="a_edituserbox_close" onclick="OnPopupBtnCloseClick(this);">关闭</a>
+			</div>
+			
+			<div class="div_edituserbox_middle">
+				<div class="div_edituserbox_username">用户名</div>
+				<input type="text" class="text_edituserbox_username" disabled/>
+				<div class="div_edituserbox_pwd">密码</div>
+				<input type="password" class="text_edituserbox_pwd"/>
+				<div class="div_edituserbox_confirmpwd">确认密码</div>
+				<input type="password" class="text_edituserbox_confirmpwd"/>
+			</div>
+			
+			<div class="div_edituserbox_bottom">
+				<input type="button" class="button_edituserbox_ok" value="确定" onclick="OnPopupEdituserBtnOkClick(this);"/>
+				<input type="button" class="button_edituserbox_cancel" value="取消" onclick="OnPopupBtnCloseClick(this);"/>
+			</div>
+		</div>
+		
+		<!--新建、编辑会场弹出框 -->
+		<div class="div_addmeetingroom_box">
+			<div class="div_addmeetingroom_box_top">
+				<div class="div_addmeetingroom_box_title">新建会场</div>
+				<a href="#" class="a_addmeetingroom_box_close" onclick="OnPopupBtnCloseClick(this);">关闭</a>
+			</div>
+			
+			<div class="div_addmeetingroom_box_middle">
+				<div class="div_addmeetingroom_box_name">名称</div>
+				<input type="text" class="text_addmeetingroom_box_name"/>
+				<div class="div_addmeetingroom_box_number">号码</div>
+				<input type="text" class="text_addmeetingroom_box_number"/>
+				<div class="div_addmeetingroom_box_ip">IP地址</div>
+				<input type="text" class="text_addmeetingroom_box_ip"/>
+			</div>
+			
+			<div class="div_addmeetingroom_box_bottom">
+				<input type="button" class="button_addmeetingroom_box_ok" value="确定"/>
+				<input type="button" class="button_addmeetingroom_box_cancel" value="取消" onclick="OnPopupBtnCloseClick(this);"/>
+			</div>
+		</div>
+		
+		<!--新建、编辑组弹出框 -->
+		<div class="div_addgroup_box">
+			<div class="div_addgroup_box_top">
+				<div class="div_addgroup_box_title">新建组</div>
+				<a href="#" class="a_addgroup_box_close" onclick="OnPopupBtnCloseClick(this);">关闭</a>
+			</div>
+			
+			<div class="div_addgroup_box_middle">
+				<div class="div_addgroup_box_name">名称</div>
+				<input type="text" class="text_addgroup_box_name"/>
+			</div>
+			
+			<div class="div_addgroup_box_bottom">
+				<input type="button" class="button_addgroup_box_ok" value="确定"/>
+				<input type="button" class="button_addgroup_box_cancel" value="取消" onclick="OnPopupBtnCloseClick(this);"/>
+			</div>
+		</div>
+		
+		<!--复制、移动到组弹出框 -->
+		<div class="div_addrbook_copy_box">
+			<div class="div_addrbook_copy_box_top">
+				<div class="div_addrbook_copy_box_title">复制到组</div>
+				<a href="#" class="a_addrbook_copy_box_close" onclick="OnPopupBtnCloseClick(this);">关闭</a>
+			</div>
+			
+			<div class="div_addrbook_copy_box_middle">
+				<div class="div_search">
+	        		<input type="text" class="text_search"/>
+	        		<div class="img_search"></div>
+	        	</div>
+				
+				<div class="div_addrbook_copy_box_list">
+		        	<div class="div_addrbook_copy_box_level">全部</div>
+		        	<input type="button" class="btn_addrbook_copy_box_back" value="返回" disabled="disabled"/>
+		        	
+		        	<div class="div_addrbook_copy_box_list_head">
+		        		<div class="div_addrbook_copy_box_list_head_no">序号</div>
+		        		<div class="div_addrbook_copy_box_list_head_name">名称</div>
+		        	</div>
+		        	
+		        	<!--添加滚动条-->
+		        	<div class="wraper div_addrbook_copy_box_wraper">
+			        	<div class="slider div_addrbook_copy_box_slider div_addrbook_copy_box_list_content">
+			        		<div class="div_addrbook_copy_box_list_item" onclick="onAddrbookCopyItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+			        			<div class="div_addrbook_copy_box_list_item_no">1</div>
+			        			<div class="div_addrbook_copy_box_list_item_name">admin</div>
+			        		</div>
+			        	</div>
+			        	
+			        	<div class="pannel div_addrbook_copy_box_pannel"> 
+							<div class="drag div_addrbook_copy_box_drag"></div> 
+						</div>
+		        	</div>
+		        	
+		        </div>
+			</div>
+			
+			<div class="div_addrbook_copy_box_bottom">
+				<input type="button" class="button_addrbook_copy_box_ok" value="确定"/>
+				<input type="button" class="button_addrbook_copy_box_cancel" value="取消" onclick="OnPopupBtnCloseClick(this);"/>
+			</div>
+		</div>
+		
+		<!--导入会场-->
+		<div class="div_globlegroup_box">
+			<div class="div_globlegroup_box_top">
+				<div class="div_globlegroup_box_title">导入会场</div>
+				<a href="#" class="a_globlegroup_box_close" onclick="OnPopupBtnCloseClick(this);">关闭</a>
+			</div>
+			
+			<div class="div_globlegroup_box_middle">
+				<div class="div_globlegroup_middle_globle">
+					<div class="div_globle_list_title"><font>在线</font></div>
+					<div class="div_search">
+		        		<input type="text" class="text_search"/>
+		        		<div class="img_search"></div>
+		        	</div>
+		        	
+		        	<div class="div_list_meettingroom div_list_meettingroom_bechecked div_list">
+		        		<div class="div_list_head">
+		        			<div class="div_list_head_checkbox"><input type="checkbox" onclick="onListHeadCheckboxClick(this);"/>全选</div>
+		        			<div class="div_list_head_name">|名称</div>
+		        		</div>
+			        	
+			        	<!--添加滚动条-->
+			        	<div class="wraper">
+				        	<div class="slider div_list_content">
+				        		<div class="div_list_item" onclick="onItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+				        			<input type="checkbox" onclick="onItemCheckboxClick(this);"/>
+				        			<div class="div_list_item_online">不在线</div>
+				        			<div class="div_list_item_type">sip</div>
+				        			<div class="div_list_item_name">会场1</div>
+				        			<div class="div_list_item_number">123456</div>
+				        			<div class="div_list_item_ip">172.16.216.120</div>
+				        		</div>
+				        	</div>
+				        	
+				        	<div class="pannel"> 
+								<div class="drag"></div> 
+							</div>
+			        	</div>
+			        </div>
+				</div>
+				
+				<div class="div_globlegroup_box_middle_handle">
+		        	<input type="button" value=">>" class="btnCheckAll" onclick="onBtnCheckAllClick();"/>
+		        	<input type="button" value=">" class="btnCheckOne" onclick="onBtnCheckOneClick();"/>
+		        	<input type="button" value="<" class="btnUncheckOne" onclick="onBtnUncheckOneClick();"/>
+		        	<input type="button" value="<<" class="btnUncheckAll" onclick="onBtnUncheckAllClick();"/>
+		        </div>
+		        
+		        <div class="div_globlegroup_middle_checked">
+					<div class="div_globle_list_checked_title"><font>已选</font></div>			        	
+		        	
+		        	<div class="div_list_meettingroom div_list_meettingroom_checked div_list">
+		        		<div class="div_list_head">
+		        			<div class="div_list_head_checkbox"><input type="checkbox" onclick="onListHeadCheckboxClick(this);"/>全选</div>
+		        			<div class="div_list_head_name">|名称</div>
+		        		</div>
+			      
+			        	<!--添加滚动条-->
+			        	<div class="wraper">
+				        	<div class="slider div_list_content">
+				        		<div class="div_list_item" onclick="onItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+				        			<input type="checkbox" onclick="onItemCheckboxClick(this);"/>
+				        			<div class="div_list_item_online">不在线</div>
+				        			<div class="div_list_item_type">gk</div>
+				        			<div class="div_list_item_name">会场1</div>
+				        			<div class="div_list_item_number">123456</div>
+				        			<div class="div_list_item_ip">172.16.216.120</div>
+				        		</div>
+				        	</div>
+				        	
+				        	<div class="pannel"> 
+								<div class="drag"></div> 
+							</div>
+			        	</div>
+			        </div>
+				</div>
+			</div>
+			
+			<div class="div_globlegroup_box_bottom">
+				<input type="button" class="button_globlegroup_box_ok" value="确定" onclick="OnPopupBtnOkClick_Addrbook_import(this);"/>
+				<input type="button" class="button_globlegroup_box_cancel" value="取消" onclick="OnPopupBtnCloseClick(this);"/>
+			</div>
+		</div>
+		
+		<!--会场选看  弹出列表-->
+		<div class="div_popup_selview">
+			<div class="div_top">
+				<div class="div_title">选看</div>
+				<a href="javascript:void(0);" class="a_close" onclick="OnPopupBtnCloseClick(this);">关闭</a>
+			</div>
+			
+			<!--选看列表-->
+			<div class="div_list_matrix">
+				<div class="div_screen_three">
+					<div class="div_list_matrix_item" no="0" onclick="OnListMatrixItemClick(this);" onmouseenter="onListMatrixItemMouseenter(this);" onmouseleave="onListMatrixItemMouseleave(this);">
+						<img src="src/matrixlist/matrix_list_noitem.png" />
+						<input type="button" />
+					</div>
+					<div class="div_mtname">会场01会场01会场01会场01会场01会场01会场01</div>
+				</div>
+				
+				<div class="div_screen_three">
+					<div class="div_list_matrix_item" no="1" onclick="OnListMatrixItemClick(this);" onmouseenter="onListMatrixItemMouseenter(this);" onmouseleave="onListMatrixItemMouseleave(this);">
+						<img src="src/matrixlist/matrix_list_item.png" />
+						<input type="button" />
+					</div>
+					<div class="div_mtname">会场01</div>
+				</div>
+				
+				<div class="div_screen_three">
+					<div class="div_list_matrix_item" no="2" onclick="OnListMatrixItemClick(this);" onmouseenter="onListMatrixItemMouseenter(this);" onmouseleave="onListMatrixItemMouseleave(this);">
+						<img src="src/matrixlist/matrix_list_noitem.png" />
+						<input type="button" />
+					</div>
+					<div class="div_mtname">会场01</div>
+				</div>
+				
+				<div class="div_screen_one" no="1" type="1">
+					<div class="div_list_matrix_item" no="0" onclick="OnListMatrixItemClick(this);" onmouseenter="onListMatrixItemMouseenter(this);" onmouseleave="onListMatrixItemMouseleave(this);">
+						<img src="src/matrixlist/matrix_list_noitem.png" />
+						<input type="button" />
+					</div>
+					<div class="div_mtname">会场01</div>
+				</div>
+			</div>
+			
+			<!--与会会场列表-->
+			<div class="div_MeetList_content">
+				<div class="div_search">
+					<input type="text" class="text_search"/>
+					<div class="img_search"> </div>
+				</div>
+		
+				<!--与会会场列表-->
+				<div class="div_list">
+					<div class="div_list_head">
+						<div class="div_Meet_list_head_no">序号</div>
+						<div class="div_Meet_list_head_name">|名称</div>
+					</div>
+		
+					<div class="wraper">
+						<div class="div_list_content slider">
+							<div class="div_list_item" no="1" onclick="onItemClick_selview(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+								<div class="div_Meet_list_item_no">1</div>
+								<div class="div_Meet_list_item_online">在线</div>
+								<div class="div_Meet_list_item_name">会场1</div>
+								<div class="div_Meet_list_item_num">123456</div>
+								<div class="div_Meet_list_item_ip">172.162.155.138</div>
+							</div>
+							<div class="div_list_item" no="2" onclick="onItemClick_selview(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+								<div class="div_Meet_list_item_no">2</div>
+								<div class="div_Meet_list_item_online">在线</div>
+								<div class="div_Meet_list_item_name">会场2</div>
+								<div class="div_Meet_list_item_num">123456</div>
+								<div class="div_Meet_list_item_ip">172.162.155.138</div>
+							</div>
+						</div>
+	
+						<div class="pannel"> 
+							<div class="drag"></div> 
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="div_bottom">
+				<div class="div_tip">点击选看显示器后，选择右侧列表</div>
+				<input type="button" class="button_ok" value="确定" onclick="OnPopupBtnCloseClick(this);"/>
+				<input type="button" class="button_cancel" value="取消" onclick="OnPopupBtnCloseClick(this);"/>
+			</div>
+		</div>
+		
+		<!--信息提示框 - confirmbox-->
+		<div class="div_confirmbox">
+			<div class="div_confirmbox_title">
+				<span class="span_confirmbox_title">提示</span>
+				<span class="btn_confirmbox_close btn_popup_close" onclick="OnPopupBtnCloseClick(this);"> </span>
+			</div>
+
+			<div class="div_confirmbox_content"> </div>
+			
+			<div class="div_confirmbox_oper">
+				<input type="button" class="btn_confirmbox_ok" value="确定" onclick="onConfirmBoxOKClick(this);"/>
+				<input type="button" class="btn_confirmbox_cancel" value="取消" onclick="OnPopupBtnCloseClick(this);"/>
+			</div>
+		</div>
+		
+		<!--信息提示框 - messagebox-->
+		<div class="div_messagebox">
+			<div class="div_messagebox_title">
+				<span class="span_messagebox_title">提示</span>
+				<span class="btn_messagebox_close btn_popup_close" onclick="OnPopupBtnCloseClick(this);"> </span>
+			</div>
+
+			<div class="div_messagebox_content"> </div>
+			
+			<div class="div_messagebox_oper">
+				<input type="button" class="btn_messagebox_ok" value="确定" onclick="onMessageBoxOKClick(this);"/>
+			</div>
+		</div>
+		
+		
+		<!--临时添加会场-->
+		<div class="div_popup_tempaddmt">
+			<div class="div_top">
+				<span class="span_title">提示</span>
+				<span class="btn_popup_close" onclick="OnPopupBtnCloseClick(this);"> </span>
+			</div>
+
+			<div class="div_middle">
+				<div>
+					<span class="span_calltype">呼叫方式</span>
+					<input type="checkbox" class="checkbox_mt" checked="true"/>
+					<span>呼叫会场终端</span>
+					<input type="checkbox" class="checkbox_jk"/>
+					<span>呼叫监控终端</span>
+				</div>
+				<div>
+					<span class="span_name">名称</span>
+					<input type="text" class="text_name"/>
+				</div>
+				<div>
+					<span class="span_number">号码</span>
+					<input type="text" class="text_number"/>
+				</div>
+				<div>
+					<span class="span_ip">IP地址</span>
+					<input type="text" class="text_ip"/>
+				</div>
+			</div>
+			
+			<div class="div_bottom">
+				<input type="button" class="btn_ok" value="确定" onclick="onPopupTempaddmtOKClick(this);"/>
+				<input type="button" class="btn_cancel" value="取消" onclick="OnPopupBtnCloseClick(this);"/>
+			</div>
+		</div>
+    </body>
+</html>
+

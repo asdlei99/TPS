@@ -1,0 +1,203 @@
+body
+{
+	width:480px;
+	height:500px;
+    margin:0 auto;
+    padding:0;
+    background-color: white;
+}
+
+.divShowInfo
+{
+	float: left;
+	width: 420px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 8px;
+	margin-left: 30px;
+	/*background-color: #64ABEE;*/
+}
+
+.divShowInfo .spanTip
+{
+	float: left;
+	width: 120px;
+	/*background-color: #4CC2FF;*/
+}
+
+.divShowInfo a
+{
+	float: right;
+	color: #3FA9F5;
+	text-decoration: underline;
+}
+
+.divShowInfo a:hover
+{
+	color: black;
+}
+
+.ulDiscussOper
+{
+	float: right;
+	margin: 0 auto;
+	padding: 0px;
+	height: 30px;
+	list-style-type: none;
+}
+
+.ulDiscussOper li
+{	
+	float: left;
+	margin: 0 auto;
+	padding: 0px;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.ulDiscussOper .liSetSpeaker
+{
+	width: 60px;
+}
+
+/*div_list*/
+.div_list
+{
+	float: left;
+	margin-top: 0px;
+	margin-left: 30px;
+	width: 420px;
+	height: 300px;
+	border-top: 1px solid #CDCFD0;
+	border-bottom: 1px solid #CDCFD0;
+	/*background-color: #C7EDCC;*/
+}
+
+.div_list .div_list_head
+{
+	width: 410px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 5px;
+	margin-left: 10px;
+	/*background-color: #006CD9;*/
+}
+
+.div_list .div_list_head input[type="checkbox"]
+{
+	float: left;
+	width: 20px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.div_list .div_list_head .div_list_head_allsel
+{
+	float: left;
+	width: 60px;
+	height: 30px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}
+
+.div_list .div_list_head .div_list_head_name
+{
+	float: left;
+	width: 200px;
+	height: 30px;
+	display: inline;
+	/*background-color: #00B1F7;*/
+}
+
+/*添加滚动条*/
+.div_list .wraper
+{
+	float: left;
+	margin-left: 10px;
+	width: 410px;
+	height: 245px;
+	/*background-color: #9BC3A3;*/
+}
+
+.div_list .div_list_item
+{
+	float: left;
+	width: 380px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 10px;
+	/*background-color: #006CD9;*/
+}
+
+/*
+.div_list .div_list_item .div_list_item_no
+{
+	float: left;
+	width: 25px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #009CEA;
+}
+*/
+
+.div_list .div_list_item input[type="checkbox"]
+{
+	float: left;
+	width: 20px;
+	height: 40px;
+	line-height: 40px;
+}
+
+.div_list .div_list_item .div_list_item_img
+{
+	float: left;
+	width: 65px;
+	height: 40px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}
+
+.div_list .div_list_item .div_list_item_name
+{
+	float: left;
+	width: 200px;
+	height: 25px;
+	line-height: 25px;
+	display: inline;
+	/*background-color: #00B1F7;*/
+}
+.div_list .div_list_item .div_list_item_name .spanSpeaker
+{
+	float: left;
+	width: 60px;
+	color: #64AAD7;
+}
+
+.div_list .div_list_item .div_list_item_number
+{
+	float: left;
+	width: 105px;
+	height: 15px;
+	line-height: 15px;
+	display: inline;
+	/*background-color: #52AAFF;*/
+}
+
+.div_list .div_list_item .div_list_item_ip
+{
+	float: left;
+	width: 95px;
+	height: 15px;
+	line-height: 15px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}
+
+input[name="btnStart"]
+{
+	width: 138px;
+	height: 27px;
+	margin-top: 20px;
+	margin-left: 170px;
+}

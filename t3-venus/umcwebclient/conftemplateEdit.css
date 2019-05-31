@@ -1,0 +1,730 @@
+body
+{
+	width:1280px;
+	height:550px;
+	margin:0 auto;
+	padding:0;
+	background-color: white;
+}
+
+/*div_conftemplateEdit_top*/
+.div_conftemplateEdit_top
+{
+	margin-top: 15px;
+	width: 1280px;
+	height: 30px;
+	float: left;
+	/*background-color: #DEECFA;*/
+}
+
+.div_conftemplateEdit_top .divTapBtn
+{
+	float: left;
+	width: 300px;
+	margin-left: 25px;
+}
+
+.div_conftemplateEdit_top .divTapBtn input[type="button"]
+{
+	float: left;
+	width: 88px;
+	margin-right: 8px;
+	color : #ffffff;
+	background-color: #313438;
+}
+
+.div_conftemplateEdit_top .divTapBtn input[type="button"]:disabled
+{
+	background-color: #51ADE2;
+}
+
+.div_conftemplateEdit_top .divOperBtn
+{
+	float: right;
+	width: 200px;
+}
+
+.div_conftemplateEdit_top .divOperBtn input[type="button"]
+{
+	float: right;
+	margin-left: 8px;
+}
+
+/*div_conftemplateEdit_content*/
+.div_conftemplateEdit_content
+{
+	float: left;
+	width: 1280px;
+	height: 470px;
+	margin-top: 30px;
+	margin-left: 20px;
+	/*background-color: #DEECFA;*/
+}
+
+/*添加滚动条*/
+.div_conftemplateEdit_Logic
+{
+	float: left;
+	width: 630px;
+	height: 470px;
+	/*background-color: #DEECFA;*/
+}
+
+#div_ConfSettings_Logic
+{
+	display: block;
+}
+
+#div_ConfPolling_Logic
+{
+	display: block;
+}
+
+#div_ConfDiscuss_Logic
+{
+	display: block;
+}
+
+/******div_ConfSettings_content******************************************************/
+.div_ConfSettings_content div
+{
+	float: left;
+	width: 630px;
+	margin-bottom: 26px;
+	/*background-color: #CADBEE;*/
+}
+
+.div_ConfSettings_content div .spanTip1
+{
+	float: left;
+	width: 95px;
+	height: 18px;
+	/*background-color: #00BDF9;*/
+}
+
+.div_ConfSettings_content div .spanInfo
+{
+	float: left;
+	width: 360px;
+	height: 18px;
+	/*background-color: #00D7FD;*/
+}
+
+.div_ConfSettings_content div div
+{
+	float: left;
+	width: 500px;
+	/*background-color: #99E2FF;*/
+}
+
+.div_ConfSettings_content div .divNextLine
+{
+	margin-left: 95px;
+	margin-bottom: 26px;
+	/*background-color: #67ACFF;*/
+}
+
+.div_ConfSettings_content div .divLastLine
+{
+	margin-left: 95px;
+	margin-bottom: 0px;
+	/*background-color: #48B5FF;*/
+}
+
+.div_ConfSettings_content div div .spanTip2
+{
+	float: left;
+	width: 125px;
+	height: 18px;
+	/*background-color: #3EABEB;*/
+}
+
+.div_ConfSettings_content .divTransEncrypt .divAESEncrypt .radioAESCustom
+{
+	margin-left: 150px;
+}
+
+/******div_ConfPolling_content******************************************************/
+.div_ConfPolling_content .divShowInfo
+{
+	float: left;
+	width: 630px;
+	/*background-color: #CADBEE;*/
+}
+
+.div_ConfPolling_content .divStartPolling, .div_ConfPolling_content .divPollingTime
+{
+	margin-bottom: 26px;
+}
+
+.div_ConfPolling_content .divShowInfo .spanTip1
+{
+	float: left;
+	width: 120px;
+	height: 30px;
+	line-height: 30px;
+	/*background-color: #00BDF9;*/
+}
+
+/*ulPollingOper*/
+.div_ConfPolling_content .divPollingOper .ulPollingOper
+{
+	float: left;
+	margin: 0 auto;
+	margin-left: 140px;
+	padding: 0px;
+	height: 30px;
+	list-style-type: none;
+}
+
+.div_ConfPolling_content .divPollingOper .ulPollingOper li
+{	
+	float: left;
+	margin: 0 auto;
+	padding: 0px;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.div_ConfPolling_content .divPollingOper .ulPollingOper li a
+{
+	float: left;
+	color: #3FA9F5;
+	text-decoration: none;
+}
+
+.div_ConfPolling_content .divPollingOper .ulPollingOper li a:hover
+{
+	color: black;
+}
+
+/*div_Polling_list*/
+.div_ConfPolling_content .div_list
+{
+	float: left;
+	margin-top: 0px;
+	width: 450px;
+	height: 260px;
+	border-top: 1px solid #CDCFD0;
+	border-bottom: 1px solid #CDCFD0;
+	/*background-color: #C7EDCC;*/
+}
+
+.div_ConfPolling_content .div_list .div_list_head
+{
+	width: 420px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 5px;
+	margin-left: 30px;
+	/*background-color: #006CD9;*/
+}
+
+.div_ConfPolling_content .div_list .div_list_head input[type="checkbox"]
+{
+	float: left;
+	width: 20px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.div_ConfPolling_content .div_list .div_list_head .div_Polling_list_head_allsel
+{
+	float: left;
+	width: 60px;
+	height: 30px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}
+
+.div_ConfPolling_content .div_list .div_list_head .div_Polling_list_head_name
+{
+	float: left;
+	width: 200px;
+	height: 30px;
+	display: inline;
+	/*background-color: #00B1F7;*/
+}
+
+/*添加滚动条*/
+.div_ConfPolling_content .div_list .div_Polling_list_content
+{
+	float: left;
+	margin-left: 30px;
+	width: 420px;
+	height: 205px;
+	/*background-color: #9BC3A3;*/
+}
+
+.div_ConfPolling_content .div_list .div_Polling_list_content .div_list_item
+{
+	float: left;
+	width: 380px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 10px;
+	/*background-color: #006CD9;*/
+}
+
+.div_ConfPolling_content .div_list .div_Polling_list_content .div_list_item input[type="checkbox"]
+{
+	float: left;
+	width: 20px;
+	height: 40px;
+	line-height: 40px;
+}
+
+.div_ConfPolling_content .div_list .div_Polling_list_content .div_list_item .div_list_item_img
+{
+	float: left;
+	width: 65px;
+	height: 40px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}
+
+.div_ConfPolling_content .div_list .div_Polling_list_content .div_list_item .div_list_item_name
+{
+	float: left;
+	width: 200px;
+	height: 25px;
+	line-height: 25px;
+	display: inline;
+	/*background-color: #00B1F7;*/
+}
+
+.div_ConfPolling_content .div_list .div_Polling_list_content .div_list_item .div_list_item_number
+{
+	float: left;
+	width: 105px;
+	height: 15px;
+	line-height: 15px;
+	display: inline;
+	/*background-color: #52AAFF;*/
+}
+
+.div_ConfPolling_content .div_list .div_Polling_list_content .div_list_item .div_list_item_ip
+{
+	float: left;
+	width: 95px;
+	height: 15px;
+	line-height: 15px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}
+
+/******div_ConfDiscuss_content******************************************************/
+.div_ConfDiscuss_content .divShowInfo
+{
+	float: left;
+	width: 630px;
+	/*background-color: #CADBEE;*/
+}
+
+.div_ConfDiscuss_content .divStartDiscuss
+{
+	margin-bottom: 26px;
+}
+
+.div_ConfDiscuss_content .divShowInfo .spanTip1
+{
+	float: left;
+	width: 120px;
+	height: 30px;
+	line-height: 30px;
+	/*background-color: #00BDF9;*/
+}
+
+.div_ConfDiscuss_content .divStartDiscuss .spanTip2
+{
+	float: left;
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+	margin-left: 30px;
+	/*background-color: #00BDF9;*/
+}
+
+/*ulDiscussOper*/
+.div_ConfDiscuss_content .divDiscussOper .ulDiscussOper
+{
+	float: left;
+	margin: 0 auto;
+	margin-left: 290px;
+	padding: 0px;
+	height: 30px;
+	list-style-type: none;
+}
+
+.div_ConfDiscuss_content .divDiscussOper .ulDiscussOper li
+{	
+	float: left;
+	margin: 0 auto;
+	padding: 0px;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.div_ConfDiscuss_content .divDiscussOper .ulDiscussOper li a
+{
+	float: left;
+	color: #3FA9F5;
+	text-decoration: none;
+}
+
+.div_ConfDiscuss_content .divDiscussOper .ulDiscussOper li a:hover
+{
+	color: black;
+}
+
+/*div_Discuss_list*/
+.div_ConfDiscuss_content .div_list
+{
+	float: left;
+	margin-top: 0px;
+	width: 450px;
+	height: 260px;
+	border-top: 1px solid #CDCFD0;
+	border-bottom: 1px solid #CDCFD0;
+	/*background-color: #C7EDCC;*/
+}
+
+.div_ConfDiscuss_content .div_list .div_list_head
+{
+	width: 420px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 5px;
+	margin-left: 30px;
+	/*background-color: #006CD9;*/
+}
+
+.div_ConfDiscuss_content .div_list .div_list_head input[type="checkbox"]
+{
+	float: left;
+	width: 20px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.div_ConfDiscuss_content .div_list .div_list_head .div_Discuss_list_head_allsel
+{
+	float: left;
+	width: 60px;
+	height: 30px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}
+
+.div_ConfDiscuss_content .div_list .div_list_head .div_Discuss_list_head_name
+{
+	float: left;
+	width: 200px;
+	height: 30px;
+	display: inline;
+	/*background-color: #00B1F7;*/
+}
+
+/*添加滚动条*/
+.div_ConfDiscuss_content .div_list .div_Discuss_list_content
+{
+	float: left;
+	margin-left: 30px;
+	width: 420px;
+	height: 205px;
+	/*background-color: #9BC3A3;*/
+}
+
+.div_ConfDiscuss_content .div_list .div_Discuss_list_content .div_list_item
+{
+	float: left;
+	width: 380px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 10px;
+	/*background-color: #006CD9;*/
+}
+
+.div_ConfDiscuss_content .div_list .div_Discuss_list_content .div_list_item input[type="checkbox"]
+{
+	float: left;
+	width: 20px;
+	height: 40px;
+	line-height: 40px;
+}
+
+.div_ConfDiscuss_content .div_list .div_Discuss_list_content .div_list_item .div_list_item_img
+{
+	float: left;
+	width: 65px;
+	height: 40px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}
+
+.div_ConfDiscuss_content .div_list .div_Discuss_list_content .div_list_item .div_list_item_name
+{
+	float: left;
+	width: 200px;
+	height: 25px;
+	line-height: 25px;
+	display: inline;
+	/*background-color: #00B1F7;*/
+}
+
+.div_ConfDiscuss_content .div_list .div_Discuss_list_content .div_list_item .div_list_item_number
+{
+	float: left;
+	width: 105px;
+	height: 15px;
+	line-height: 15px;
+	display: inline;
+	/*background-color: #52AAFF;*/
+}
+
+.div_ConfDiscuss_content .div_list .div_Discuss_list_content .div_list_item .div_list_item_ip
+{
+	float: left;
+	width: 95px;
+	height: 15px;
+	line-height: 15px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}
+
+/******div_MeetOper_handle******************************************************/
+.div_MeetOper_handle
+{
+	float: left;
+	width: 30px;
+	height: 200px;
+	margin-top: 150px;
+	margin-left: 50px;
+	/*background-color: #99E2FF;*/
+}
+
+.div_MeetOper_handle span
+{
+	float: left;
+	margin-top: 20px;
+}
+
+/******div_MeetList_content******************************************************/
+.div_MeetList_content
+{
+	float: right;
+	width: 480px;
+	height: 450px;
+	/*border-bottom: 1px solid black;*/
+	/*background-color: #E0EDFA;*/
+}
+
+.div_MeetList_content .div_MeetList_Oper
+{
+	float: left;
+	margin-left: 30px;
+	width: 420px;
+	height: 40px;
+}
+
+.div_MeetList_content .div_MeetList_Oper .div_search
+{
+	float: left;
+	width: 250px;
+}
+
+.div_MeetList_content .div_MeetList_Oper input[type="button"]
+{
+	float: right;
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	border: 0px;
+	background-color: white;
+}
+
+/*btnAddMeet*/
+.div_MeetList_content .div_MeetList_Oper .btnAddMeet
+{
+	background: url("./src/umc-bg.png") 0px -471px no-repeat;
+}
+.div_MeetList_content .div_MeetList_Oper .btnAddMeet:hover
+{
+	background: url("./src/umc-bg.png") -60px -471px no-repeat;
+}
+.div_MeetList_content .div_MeetList_Oper .btnAddMeet:active
+{
+	background: url("./src/umc-bg.png") -30px -471px no-repeat;
+}
+.div_MeetList_content .div_MeetList_Oper .btnAddMeet:disabled
+{
+	background: url("./src/umc-bg.png") -90px -471px no-repeat;
+}
+
+/*btnTempInvite*/
+.div_MeetList_content .div_MeetList_Oper .btnTempInvite
+{
+	background: url("./src/umc-bg.png") -120px -411px no-repeat;
+}
+.div_MeetList_content .div_MeetList_Oper .btnTempInvite:hover
+{
+	background: url("./src/umc-bg.png") -180px -411px no-repeat;
+}
+.div_MeetList_content .div_MeetList_Oper .btnTempInvite:active
+{
+	background: url("./src/umc-bg.png") -150px -411px no-repeat;
+}
+.div_MeetList_content .div_MeetList_Oper .btnTempInvite:disabled
+{
+	background: url("./src/umc-bg.png") -210px -411px no-repeat;
+}
+
+/*btnDelMeet*/
+.div_MeetList_content .div_MeetList_Oper .btnDelMeet
+{
+	background: url("./src/confctrl-bg.png") -240px -329px no-repeat;
+}
+.div_MeetList_content .div_MeetList_Oper .btnDelMeet:hover
+{
+	background: url("./src/confctrl-bg.png") -300px -329px no-repeat;
+}
+.div_MeetList_content .div_MeetList_Oper .btnDelMeet:active
+{
+	background: url("./src/confctrl-bg.png") -270px -329px no-repeat;
+}
+.div_MeetList_content .div_MeetList_Oper .btnDelMeet:disabled
+{
+	background: url("./src/confctrl-bg.png") -330px -329px no-repeat;
+}
+
+/*div_Meet_list*/
+.div_MeetList_content .div_list
+{
+	float: left;
+	margin-top: 0px;
+	margin-left: 30px;
+	width: 420px;
+	height: 410px;
+	/*background-color: #C7EDCC;*/
+}
+
+.div_MeetList_content .div_list .div_list_head
+{
+	width: 420px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 5px;
+	/*background-color: #006CD9;*/
+}
+
+.div_MeetList_content .div_list .div_list_head .div_Meet_list_head_no
+{
+	float: left;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+	/*background-color: #CCCCCC;*/
+}
+
+.div_MeetList_content .div_list .div_list_head input[type="checkbox"]
+{
+	float: left;
+	width: 20px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.div_MeetList_content .div_list .div_list_head .div_Meet_list_head_allsel
+{
+	float: left;
+	width: 60px;
+	height: 30px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}
+
+.div_MeetList_content .div_list .div_list_head .div_Meet_list_head_name
+{
+	float: left;
+	width: 200px;
+	height: 30px;
+	display: inline;
+	/*background-color: #00B1F7;*/
+}
+
+/*添加滚动条*/
+.div_MeetList_content .div_list .div_Meet_list_content
+{
+	float: left;
+	width: 420px;
+	height: 370px;
+	/*background-color: #9BC3A3;*/
+}
+
+.div_MeetList_content .div_list .div_Meet_list_content .div_list_item
+{
+	float: left;
+	width: 400px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 10px;
+	/*background-color: #006CD9;*/
+}
+
+.div_MeetList_content .div_list .div_Meet_list_content .div_list_item .div_list_item_no
+{
+	float: left;
+	width: 40px;
+	height: 40px;
+	display: inline;
+	/*background-color: #CCCCCC;*/
+}
+
+.div_MeetList_content .div_list .div_Meet_list_content .div_list_item input[type="checkbox"]
+{
+	float: left;
+	width: 20px;
+	height: 40px;
+	line-height: 40px;
+}
+
+.div_MeetList_content .div_list .div_Meet_list_content .div_list_item .div_list_item_img
+{
+	float: left;
+	width: 65px;
+	height: 40px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}
+
+.div_MeetList_content .div_list .div_Meet_list_content .div_list_item .div_list_item_name
+{
+	float: left;
+	width: 260px;
+	height: 25px;
+	line-height: 25px;
+	display: inline;
+	/*background-color: #00B1F7;*/
+}
+
+.div_MeetList_content .div_list .div_Meet_list_content .div_list_item .div_list_item_number
+{
+	float: left;
+	width: 165px;
+	height: 15px;
+	line-height: 15px;
+	display: inline;
+	/*background-color: #52AAFF;*/
+}
+
+.div_MeetList_content .div_list .div_Meet_list_content .div_list_item .div_list_item_ip
+{
+	float: left;
+	width: 95px;
+	height: 15px;
+	line-height: 15px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}

@@ -1,0 +1,142 @@
+/*div_umcServer*/
+.div_umcServer
+{
+	width: 1280px;
+	height: 180px;
+}
+
+.div_umcServer_Tittle
+{
+	width: 150px;
+	height: 22px;
+}
+
+.div_umcServer_Content
+{
+	float: left;
+	margin-top: 18px;
+	margin-left: 78px;
+	width: 500px;
+	height: 140px;
+}
+
+.div_umcServer_Content .div_umcServer_Content_ip
+{
+	float: left;
+	width: 1000px;
+	height: 30px;
+	margin-top: 10px;
+}
+
+.div_umcServer_Content .div_umcServer_Content_ip .span_umcServer_ip
+{
+	float: left;
+	width: 70px;
+	height: 30px;
+}
+
+.div_umcServer_Content .div_umcServer_Content_ip .text_umcServer_ip
+{
+	float: left;
+	width: 320px;
+	height: 27px;
+	margin-left: 80px;
+	margin-top: -5px;
+}
+
+.div_umcServer_Content .div_umcServer_Content_submask
+{
+	float: left;
+	width: 500px;
+	height: 30px;
+	margin-top: 20px;
+}
+
+.div_umcServer_Content .div_umcServer_Content_submask .span_umcServer_submask
+{
+	float: left;
+	width: 70px;
+	height: 30px;
+}
+
+.div_umcServer_Content .div_umcServer_Content_submask .text_umcServer_submask
+{
+	float: left;
+	width: 320px;
+	height: 27px;
+	margin-left: 80px;
+	margin-top: -5px;
+}
+
+.div_umcServer_Content .div_umcServer_Content_gateway
+{
+	float: left;
+	width: 500px;
+	height: 30px;
+	margin-top: 20px;
+}
+
+.div_umcServer_Content .div_umcServer_Content_gateway .span_umcServer_gateway
+{
+	float: left;
+	width: 70px;
+	height: 30px;
+}
+
+.div_umcServer_Content .div_umcServer_Content_gateway .text_umcServer_gateway
+{
+	float: left;
+	width: 320px;
+	height: 27px;
+	margin-left: 80px;
+	margin-top: -5px;
+}
+
+/*div_sipServer*/
+.div_sipServer
+{
+	float: left;
+	margin-top: 20px;
+	width: 1280px;
+	height: 180px;
+}
+
+
+.div_sipServer_Tittle
+{
+	width: 150px;
+	height: 22px;
+}
+
+.div_sipServer_Content
+{
+	float: left;
+	margin-top: 18px;
+	margin-left: 78px;
+	width: 500px;
+	height: 140px;
+}
+
+.div_sipServer_Content_ip
+{
+	float: left;
+	width: 1000px;
+	height: 30px;
+	margin-top: 10px;
+}
+
+.div_sipServer_Content_ip .span_sipServer_ip
+{
+	float: left;
+	width: 70px;
+	height: 30px;
+}
+
+.div_sipServer_Content_ip .text_sipServer_ip
+{
+	float: left;
+	width: 320px;
+	height: 27px;
+	margin-left: 80px;
+	margin-top: -5px;
+}

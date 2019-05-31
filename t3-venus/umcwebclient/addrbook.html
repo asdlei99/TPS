@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>addrbook</title>
+        
+        <script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/scroll.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='addrbook.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/scroll.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='addrbook.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+    </head>
+    <body>
+        <div class="div_addrbook_top">
+        	<div class="div_search">
+        		<input type="text" class="text_search"/>
+        		<div class="img_search"></div>
+        	</div>
+        	<div class="div_showtype"><font class="font_content">显示全部</font><font class="font_img">◢</font></div>
+        	<input type="button" class="btn_more" value="  更多操作  ▽"/>
+        	<input type="button" class="btn_delete" value="删除"/>
+        	<input type="button" class="btn_cut" value="移动" disabled="disabled"/>
+        	<input type="button" class="btn_copy" value="复制"/>
+        	<input type="button" class="btn_add" value=" 新建  ▽"/>
+        	<input type="button" class="btn_back" value="返回" disabled="disabled"/>
+        </div>
+        
+        <div class="div_list">
+        	<div class="div_level">全部</div>
+        	
+        	<div class="div_list_head">
+        		<div class="div_list_head_no">序号</div>
+        		<input type="checkbox" onclick="onListHeadCheckboxClick(this);"/>
+        		<div class="div_list_head_online">在线状态</div>
+        		<div class="div_list_head_type">类型</div>
+        		<div class="div_list_head_name">名称</div>
+        		<div class="div_list_head_ip">| IP地址</div>
+        		<div class="div_list_head_number">| 号码</div>
+        		<div class="div_list_head_handle">| 操作</div>
+        	</div>
+        	
+        	<!--添加滚动条-->
+        	<div class="wraper div_list_wraper">
+	        	<div class="slider div_list_content">
+	        		<div class="div_list_item" onclick="onAddrbookListItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+	        			<div class="div_list_item_no">1</div>
+	        			<input type="checkbox" style="visibility: hidden;"/>
+	        			<div class="div_list_item_online">否</div>
+	        			<div class="div_list_item_type">sip</div>
+	        			<div class="div_list_item_name">admin</div>
+	        			<div class="div_list_item_ip">--</div>
+	        			<div class="div_list_item_number">--</div>
+	        			<div class="div_list_item_handle">
+	        				<a href="javascript:void(0)" onclick="onItemEditClick(this);">编辑</a>
+	        				<a href="javascript:void(0)" onclick="onItemDelClick(this);" class="aDelGroup">删除</a>
+	        			</div>
+	        		</div>
+	        		
+	        		<div class="div_list_item" onclick="onAddrbookListItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+	        			<div class="div_list_item_no">2</div>
+	        			<input type="checkbox" onclick="onItemCheckboxClick(this);"/>
+	        			<div class="div_list_item_online">否</div>
+	        			<div class="div_list_item_type">sip</div>
+	        			<div class="div_list_item_name">admin2</div>
+	        			<div class="div_list_item_ip">172.16.216.122</div>
+	        			<div class="div_list_item_number">122</div>
+	        			<div class="div_list_item_handle"><a href="javascript:void(0)" onclick="onItemEditClick(this);">编辑</a></div>
+	        		</div>
+	        	</div>
+	        	<div class="pannel"> 
+					<div class="drag"></div> 
+				</div>
+        	</div>
+        	
+        </div>
+        
+        <div class="div_addrbook_bottom">
+        	<div class="div_choose_number">已选择（0）</div>
+        </div>
+        
+        <div class="div_dropdown_radio_add">
+        	<div class="add_meetingroom">&nbsp;&nbsp;&nbsp;&nbsp;新建会场</div>
+        	<div class="add_group">&nbsp;&nbsp;&nbsp;&nbsp;新建组</div>
+        </div>
+        
+        <div class="div_dropdown_radio_more">
+        	<div class="more_refresh">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;刷新</div>
+        	<div class="more_import">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;导入</div>
+        </div>
+        
+        <div class="div_dropdown_radio_showtype">
+        	<div class="showtype_online">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在线</div>
+        	<div class="showtype_notonline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不在线</div>
+        	<div class="showtype_group">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;组</div>
+        	<div class="showtype_all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;全部</div>
+        </div>
+    </body>
+</html>
+

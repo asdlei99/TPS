@@ -1,0 +1,74 @@
+body
+{
+	margin: 0 auto;
+	padding: 0px;
+}
+
+.divSystime
+{
+	float: left;
+	width: 530px;
+	height: 105px;
+}
+
+.divSystime .spanSystime
+{
+	float: left;
+	margin-top: 10px;
+	margin-left: 25px;
+}
+
+.divSystime .divTime
+{
+	float: left;
+	width: 530px;
+	margin-top: 18px;
+	margin-left: 78px;
+}
+
+.divSystime .divTime .spanTime
+{
+	float: left;
+}
+
+.divSystime .divTime .sysdate
+{
+	float: left;
+    width: 110px;
+    height: 20px;
+    margin-left: 95px;
+    text-align: center;
+}
+
+.divSystime .divTime .selectSingleBox
+{
+	width: 50px;
+	margin-left: 19px;
+}
+
+.divSystime .divTime .selectSingleBox .wraper_time
+{
+	height: 200px;
+}
+
+.divSystime .divSyn
+{
+	float: left;
+	width: 445px;
+	height: 26px;
+	line-height: 26px;
+	margin-top: 18px;
+	margin-left: 78px;
+}
+
+.divSystime .divSyn .spanSyn
+{
+	float: left;
+	margin-right: 95px;
+}
+
+.divSystime .divSyn .btnSynLocaltime
+{
+	float: left;
+	width: 140px;
+}

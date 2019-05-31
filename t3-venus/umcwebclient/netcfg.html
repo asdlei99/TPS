@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+		<!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+
+		<title>netcfg</title>
+		
+		<script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='netcfg.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='netcfg.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+	</head>
+
+	<body>	
+		<div class="div_umcServer">
+			<div class="div_umcServer_Tittle">UMC服务器配置</div>
+			<div class="div_umcServer_Content">
+				<div class="div_umcServer_Content_ip">
+					<span class="span_umcServer_ip">IP地址</span>
+					<input type="text" class="text_umcServer_ip" disabled></input>
+				</div>
+				
+				<div class="div_umcServer_Content_submask">
+					<span class="span_umcServer_submask">子网掩码</span>
+					<input type="text" class="text_umcServer_submask" disabled></input>
+				</div>
+				
+				<div class="div_umcServer_Content_gateway">
+					<span class="span_umcServer_gateway">网关</span>
+				<input type="text" class="text_umcServer_gateway" disabled></input>
+				</div>
+			</div>	
+		</div>
+		
+		
+		<div class="div_sipServer">
+			<div class="div_sipServer_Tittle">注册服务器</div>	
+			<div class="div_sipServer_Content">
+				<div class="div_sipServer_Content_ip">
+					<span class="span_sipServer_ip">IP地址</span>
+					<input type="text" class="text_sipServer_ip" disabled></input>
+				</div>
+			</div>	
+		</div>
+		
+		
+	</body>
+</html>

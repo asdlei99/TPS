@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        <!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+		
+        <title>网呈统一管理控制台</title>
+		
+		<script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='index.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/messagebox.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/cookie.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/messagebox.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='index.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+    </head>
+    <body>
+	    <!--title--> 
+		<div class="titleDiv">
+			<div class="kedacomFont">
+				<font>KEDACOM</font>
+			</div>
+			<div class="titleFont">
+				<font>网呈统一管理控制台</font>
+			</div>
+		</div>
+		
+		
+		<!---content-->
+		<div class="contentDiv">
+			<form class="formlogin">
+				<input type="text" name="usrname" id="usrname" />
+				<input type="password" title="请输入密码" name="pwd" id="pwd" />
+				<input type="checkbox" name="rememberpwd" id="rememberpwd" />
+				<font class="fontrememberpwd">记住密码</font>
+				<input type="submit" value="登&nbsp;&nbsp;&nbsp;录"/>
+				<font class="tip">登录失败:用户名或密码错误</font>
+			</form>
+		</div>
+	
+		<!--footer-->
+		<center>
+			<div class="footerDiv">
+				<font>Copyright（C）2010-2015，苏州市科达科技股份有限公司</font>
+				<br />
+				<font>版本信息：1.1.1.0</font>
+			</div>
+		</center>
+    </body>
+</html>
+

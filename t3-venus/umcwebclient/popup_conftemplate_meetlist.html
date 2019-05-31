@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+		<!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+		
+		<title>popup_conftemplate_meetlist</title>
+        
+        <script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/scroll.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='popup_conftemplate_meetlist.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/scroll.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='popup_conftemplate_meetlist.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+    </head>
+    
+	<body>
+		<div class="div_top">
+			<div class="div_title">会成员</div>
+			<span class="btn_close btn_popup_close" onclick="OnPopupBtnCloseClick(this);"> </span>
+		</div>
+
+		<!--会场列表-->
+		<div class="div_list">
+			<div class="div_list_head">
+				<div class="div_Meet_list_head_no">序号</div>
+				<div class="div_Meet_list_head_name">|名称</div>
+			</div>
+
+			<div class="div_Popup_Meet_list_content wraper">
+				<div class="div_list_content div_Popup_Meet_list_slider slider">
+					<div class="div_list_item" onclick="onItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+						<div class="div_Meet_list_item_no">1</div>
+						<!----><div class="div_Meet_list_item_img"> </div>
+						<div class="div_Meet_list_item_name">会场1</div>
+						<div class="div_Meet_list_item_num">123456</div>
+						<div class="div_Meet_list_item_ip">172.162.155.138</div>
+					</div>
+					<div class="div_list_item" onclick="onItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+						<div class="div_Meet_list_item_no">2</div>
+						<!----><div class="div_Meet_list_item_img"> </div>
+						<div class="div_Meet_list_item_name">会场2</div>
+						<div class="div_Meet_list_item_num">123456</div>
+						<div class="div_Meet_list_item_ip">172.162.155.138</div>
+					</div>
+				</div>
+
+				<div class="pannel_Popup_Meet_list pannel"> 
+					<div class="drag_Popup_Meet_list drag"> </div> 
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

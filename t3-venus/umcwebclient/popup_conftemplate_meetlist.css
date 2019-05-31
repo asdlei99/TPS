@@ -1,0 +1,137 @@
+body
+{
+	width: 410px;
+	height: 400px;
+}
+
+/*div_top*/
+.div_top
+{
+	float: left;
+	width: 410px;
+	height: 40px;
+	line-height: 40px;
+}
+
+.div_top .div_title
+{
+	float: left;
+	width: 320px;
+	height: 40px;
+	line-height: 40px;
+	margin-left: 30px;
+}
+
+.div_top span
+{
+	float: right;
+	margin-top: 10px;
+	margin-right: 25px;
+}
+
+/*div_list*/
+.div_list
+{
+	float: left;
+	margin-top: 0px;
+	margin-left: 30px;
+	width: 350px;
+	height: 350px;
+	border-top: 1px solid #E5E5E5;
+	border-bottom: 1px solid #E5E5E5;
+	/*background-color: #C7EDCC;*/
+}
+
+.div_list .div_list_head
+{
+	width: 350px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 5px;
+	/*background-color: #006CD9;*/
+}
+
+.div_list .div_list_head .div_Meet_list_head_no
+{
+	float: left;
+	width: 70px;
+	height: 30px;
+	line-height: 30px;
+	/*background-color: #CCCCCC;*/
+}
+
+.div_list .div_list_head .div_Meet_list_head_name
+{
+	float: left;
+	width: 200px;
+	height: 30px;
+	display: inline;
+	/*background-color: #00B1F7;*/
+}
+
+/*添加滚动条*/
+.div_list .div_Popup_Meet_list_content
+{
+	float: left;
+	width: 350px;
+	height: 315px;
+	/*background-color: #9BC3A3;*/
+}
+
+.div_list .div_Popup_Meet_list_content .div_list_item
+{
+	float: left;
+	width: 350px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 10px;
+	/*background-color: #006CD9;*/
+}
+
+.div_list .div_Popup_Meet_list_content .div_list_item .div_Meet_list_item_no
+{
+	float: left;
+	width: 30px;
+	height: 40px;
+	display: inline;
+	/*background-color: #CCCCCC;*/
+}
+
+.div_list .div_Popup_Meet_list_content .div_list_item .div_Meet_list_item_img
+{
+	float: left;
+	width: 45px;
+	height: 40px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}
+
+.div_list .div_Popup_Meet_list_content .div_list_item .div_Meet_list_item_name
+{
+	float: left;
+	width: 260px;
+	height: 25px;
+	line-height: 25px;
+	display: inline;
+	/*background-color: #00B1F7;*/
+}
+
+.div_list .div_Popup_Meet_list_content .div_list_item .div_Meet_list_item_num
+{
+	float: left;
+	width: 165px;
+	height: 15px;
+	line-height: 15px;
+	display: inline;
+	/*background-color: #52AAFF;*/
+}
+
+.div_list .div_Popup_Meet_list_content .div_list_item .div_Meet_list_item_ip
+{
+	float: left;
+	width: 95px;
+	height: 15px;
+	line-height: 15px;
+	display: inline;
+	/*background-color: #52AAFF;*/
+}

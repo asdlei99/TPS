@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+		<!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+
+		<title>nmcfg</title>
+		
+		<script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='nmcfg.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='nmcfg.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+	</head>
+
+	<body>	
+		<div class="divNMServer divNMServer1">
+			<span class="spanNMServer spanNMServer1">网管服务器 01</span>
+			<div class="divStartServer1">
+				<span class="spanTip">开启服务器</span>
+				<span class="switchbtnOff" id="switchStartServer1"> </span>
+			</div>
+			<div class="divServerIp1">
+				<span class="spanTip">服务器地址</span>
+				<input type="text" class="textServerIp1"/>
+			</div>
+			<div class="divReadCommunity1">
+				<span class="spanTip">读共同体名</span>
+				<input type="text" class="textReadCommunity1"/>
+			</div>
+			<div class="divWriteCommunity1">
+				<span class="spanTip">写共同体名</span>
+				<input type="text" class="textWriteCommunity1"/>
+			</div>
+			<div class="divGetSetPort1">
+				<span class="spanTip">读写端口</span>
+				<input type="text" class="textGetSetPort1"/>
+			</div>
+			<div class="divTrapPort1">
+				<span class="spanTip">发告警端口</span>
+				<input type="text" class="textTrapPort1"/>
+			</div>
+		</div>
+
+		<div class="divNMServer divNMServer2">
+			<span class="spanNMServer spanNMServer2">网管服务器 02</span>
+			<div class="divStartServer2">
+				<span class="spanTip">开启服务器</span>
+				<span class="switchbtnOff" id="switchStartServer2"> </span>
+			</div>
+			<div class="divServerIp2">
+				<span class="spanTip">服务器地址</span>
+				<input type="text" class="textServerIp2"/>
+			</div>
+			<div class="divReadCommunity2">
+				<span class="spanTip">读共同体名</span>
+				<input type="text" class="textReadCommunity2"/>
+			</div>
+			<div class="divWriteCommunity2">
+				<span class="spanTip">写共同体名</span>
+				<input type="text" class="textWriteCommunity2"/>
+			</div>
+			<div class="divGetSetPort2">
+				<span class="spanTip">读写端口</span>
+				<input type="text" class="textGetSetPort2"/>
+			</div>
+			<div class="divTrapPort2">
+				<span class="spanTip">发告警端口</span>
+				<input type="text" class="textTrapPort2"/>
+			</div>
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,165 @@
+/*divTitle*/
+.divTitle
+{
+	float: left;
+	margin-top: 10px;
+	height: 55px;
+	width: 1280px;
+}
+
+.btnBack
+{
+	float: left;
+}
+
+.font_confname
+{
+	float: left;
+	margin-left: 10px;
+	width: 250px;
+	margin-top: 5px;
+	overflow: hidden; /*自动隐藏文字*/
+	text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+	white-space: nowrap;/*强制不换行*/
+}
+
+.font_confstarttime
+{
+	float: left;
+	margin-left: 0px;
+	width: 200px;
+	margin-top: 5px;
+}
+
+.div_search
+{
+	width: 170px;
+}
+
+.div_search .text_search
+{
+	width: 150px;
+}
+
+.divTitle .btnStopconf
+{
+	float: right;
+	margin-right: 10px;
+}
+
+/*divLeft*/
+.divLeft
+{
+	float: left;
+	height: 500px;
+	width: 700px;
+	border-bottom: 1px solid #B5B4B4;
+}
+
+/*会场列表*/
+.div_list_meettingroom
+{
+	float: left;
+	height: 450px;
+	width: 650px;
+	margin-top: 15px;
+	margin-left: 30px;
+}
+
+.div_list_meettingroom .div_list_head
+{
+	float: left;
+	height: 20px;
+	width: 650px;
+}
+
+.div_list_meettingroom .div_list_head .div_list_head_checkbox
+{
+	float: left;
+	height: 20px;
+	width: 100px;
+}
+
+.div_list_meettingroom .div_list_head .div_list_head_checkbox input
+{
+	width: 20px;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_head .div_list_head_name
+{
+	float: left;
+	height: 20px;
+	width: 550px;
+}
+
+.div_list_meettingroom .wraper
+{
+	width:650px;
+	height:430px;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item
+{
+	margin-top: 5px;
+	height: 70px;
+	width: 650px;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item input
+{
+	width: 20px;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item .div_list_item_online
+{
+	height: 70px;
+	width: 70px;
+	display: inline;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item .div_list_item_name
+{
+	height: 30px;
+	width: 500px;
+	float: left;
+	display: inline;
+}
+
+.div_list_meettingroom .div_list_item .div_list_item_oper
+{
+	height: 30px;
+	width: 500px;
+	float: left;
+	display: inline;
+}
+
+.div_list_meettingroom .div_list_item font
+{
+	height: 30px;
+	width: 50px;
+	float: left;
+}
+
+/*divLeft*/
+.divRight
+{
+	float: left;
+	margin-left: 100px;
+	height: 500px;
+	width: 480px;
+	border-top: 1px solid #B5B4B4;
+	border-bottom: 1px solid #B5B4B4;
+}
+
+.divRight iframe
+{
+	float: left;
+	display: block;
+	height: 500px;
+	width: 480px;
+}

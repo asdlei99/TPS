@@ -1,0 +1,243 @@
+body
+{
+	width:1280px;
+	height:550px;
+	margin:0 auto;
+	padding:0;
+	background-color: white;
+}
+
+/*div_conftemplateScan_top*/
+.div_conftemplateScan_top
+{
+	margin-top: 15px;
+	width: 1280px;
+	height: 30px;
+	float: left;
+	/*background-color: #DEECFA;*/
+}
+
+.div_conftemplateScan_top .div_conftempname
+{
+	float: left;
+	width: 550px;
+}
+
+.div_conftemplateScan_top input[type="button"]
+{
+	float: right;
+	margin-left: 8px;
+}
+
+/******div_conftemplateScan_wraper******************************************************/
+/*添加滚动条*/
+.div_conftemplateScan_wraper
+{
+	float: left;
+	width: 630px;
+	height: 470px;
+	margin-top: 15px;
+	margin-left: 20px;
+	/*background-color: #DEECFA;*/
+}
+
+/*div_conftemplateScan_confInfo*/
+.div_conftemplateScan_confInfo
+{
+	float: left;
+	width: 630px;
+	margin-top: 15px;
+	/*background-color: #DEECFA;*/
+}
+
+.div_conftemplateScan_confInfo div
+{
+	float: left;
+	width: 630px;
+	margin-bottom: 26px;
+	/*background-color: #CADBEE;*/
+}
+
+.div_conftemplateScan_confInfo div .spanTip1
+{
+	float: left;
+	width: 95px;
+	height: 18px;
+	/*background-color: #00BDF9;*/
+}
+
+.div_conftemplateScan_confInfo div .spanInfo
+{
+	float: left;
+	width: 360px;
+	height: 18px;
+	/*background-color: #00D7FD;*/
+}
+
+.div_conftemplateScan_confInfo div div
+{
+	float: left;
+	width: 500px;
+	/*background-color: #99E2FF;*/
+}
+
+.div_conftemplateScan_confInfo div .divNextLine
+{
+	margin-left: 95px;
+	margin-bottom: 26px;
+	/*background-color: #67ACFF;*/
+}
+
+.div_conftemplateScan_confInfo div .divLastLine
+{
+	margin-left: 95px;
+	margin-bottom: 0px;
+	/*background-color: #48B5FF;*/
+}
+
+.div_conftemplateScan_confInfo div .divEncrypt
+{
+	margin-bottom: 0px;
+}
+
+.div_conftemplateScan_confInfo div div .spanTip2
+{
+	float: left;
+	width: 125px;
+	height: 18px;
+	/*background-color: #3EABEB;*/
+}
+
+.div_conftemplateScan_confInfo input[type="button"]
+{
+	float: left;
+	width: 95px;
+}
+
+.btnPollingMember
+{
+	margin-left: 95px;
+}
+
+/******div_Scanf_MeetList_content******************************************************/
+.div_Scanf_MeetList_content
+{
+	float: right;
+	width: 480px;
+	height: 470px;
+	margin-top: 15px;
+	/*border-bottom: 1px solid black;*/
+	/*background-color: blue;*/
+}
+
+.div_Scanf_MeetList_content .div_search
+{
+	float: left;
+	width: 412px;
+	margin-left: 30px;
+}
+
+/*div_Meet_list*/
+.div_Scanf_MeetList_content .div_list
+{
+	float: left;
+	margin-top: 0px;
+	margin-left: 30px;
+	width: 420px;
+	height: 410px;
+	/*background-color: #C7EDCC;*/
+}
+
+.div_Scanf_MeetList_content .div_list .div_list_head
+{
+	width: 420px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 5px;
+	/*background-color: #006CD9;*/
+}
+
+.div_Scanf_MeetList_content .div_list .div_list_head .div_Meet_list_head_no
+{
+	float: left;
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	/*background-color: #CCCCCC;*/
+}
+
+.div_Scanf_MeetList_content .div_list .div_list_head .div_Meet_list_head_name
+{
+	float: left;
+	width: 200px;
+	height: 30px;
+	display: inline;
+	/*background-color: #00B1F7;*/
+}
+
+/*添加滚动条*/
+.div_Scanf_MeetList_content .div_list .div_Scanf_Meet_list_content
+{
+	float: left;
+	width: 420px;
+	height: 405px;
+	/*background-color: #9BC3A3;*/
+}
+
+.div_Scanf_MeetList_content .div_list .div_Scanf_Meet_list_content .div_list_item
+{
+	float: left;
+	width: 400px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 10px;
+	/*background-color: #006CD9;*/
+}
+
+.div_Scanf_MeetList_content .div_list .div_Scanf_Meet_list_content .div_list_item .div_Meet_list_item_no
+{
+	float: left;
+	width: 40px;
+	height: 40px;
+	display: inline;
+	/*background-color: #CCCCCC;*/
+}
+
+.div_Scanf_MeetList_content .div_list .div_Scanf_Meet_list_content .div_list_item .div_Meet_list_item_img
+{
+	float: left;
+	width: 45px;
+	height: 40px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}
+
+.div_Scanf_MeetList_content .div_list .div_Scanf_Meet_list_content .div_list_item .div_Meet_list_item_name
+{
+	float: left;
+	width: 260px;
+	height: 25px;
+	line-height: 25px;
+	display: inline;
+	/*background-color: #00B1F7;*/
+}
+
+.div_Scanf_MeetList_content .div_list .div_Scanf_Meet_list_content .div_list_item .div_Meet_list_item_num
+{
+	float: left;
+	width: 165px;
+	height: 15px;
+	line-height: 15px;
+	display: inline;
+	/*background-color: #52AAFF;*/
+}
+
+.div_Scanf_MeetList_content .div_list .div_Scanf_Meet_list_content .div_list_item .div_Meet_list_item_ip
+{
+	float: left;
+	width: 95px;
+	height: 15px;
+	line-height: 15px;
+	display: inline;
+	/*background-color: #00DDFE;*/
+}

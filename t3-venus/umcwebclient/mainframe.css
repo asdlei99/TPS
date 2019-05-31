@@ -1,0 +1,251 @@
+/*mainframe_top div*/
+.mainframe_top
+{
+	width: 1280px;
+	height: 100px;
+	float: left;
+}
+
+.mainframe_top .mainframe_top_item
+{
+	width: 1280px;
+	height: 75px;
+	float: left;
+}
+
+.mainframe_top .mainframe_top_item .kedacom
+{
+	margin-top: 30px;
+	margin-left: 10px;
+	font-size: 21px;
+	font-weight: bold;
+	float: left;
+}
+
+.mainframe_top .mainframe_top_item .titlefont
+{
+	margin-top: 35px;
+	font-size: 15px;
+	float: left;
+}
+
+
+.mainframe_top .mainframe_top_item a:active
+{
+}
+
+.mainframe_top .username
+{
+	margin-top: 35px;
+	margin-right: 10px;
+	float: right;
+}
+
+.mainframe_top a
+{
+	margin-top: 35px;
+	margin-right: 10px;
+	text-decoration:none;
+	float: right;
+	color: black;
+}
+
+/*mainframe_nav*/
+.mainframe_nav
+{
+	width: 1280px;
+	height:24px;
+	border-bottom: 1px solid black;
+	float: left;
+}
+
+.mainframe_nav .nav_ul
+{
+	margin-top: 0px;
+	padding: 0px;
+	float: left;
+	height: 24px;
+	width: 1280px;
+	list-style-type: none;
+	float: left;
+}
+
+
+.mainframe_nav .nav_ul li
+{
+	margin-top: 0px;
+	padding: 0px;
+	float: left;
+	height: 24px;
+	width: 100px;
+	float: left;
+}
+
+/*
+.mainframe_nav .nav_ul li .ausermng
+{
+	margin-top: 2px;
+	color: green;
+	float: left;
+}
+*/
+
+.mainframe_nav .nav_ul li a
+{
+	float: left;
+	margin-top: 2px;
+	margin-left: 24px;
+	text-decoration: none;
+	float: left;
+}
+
+.mainframe_nav .nav_ul li a:hover
+{
+	border-bottom: 2px solid;
+}
+
+.mainframe_nav .nav_ul li .ausermng
+{
+	border-bottom: 2px solid;
+}
+
+/*mainframe_middle div*/
+.mainframe_middle
+{
+	margin-top: 1px;
+	width: 1280px;
+	height: 550px;
+	float: left;
+	border-bottom: 1px solid black;
+}
+
+.mainframe_middle iframe
+{
+	float: left;
+	width: 1280px;
+	height: 550px;
+	display: block;
+}
+
+/*div_messageboxbg div*/
+.div_popupdialogbg
+{
+	z-index: 5;
+	position: absolute;
+	left:0px;
+	top:0px;
+	width: 100%;
+	height: 100%;
+	visibility: visible/*hidden*/;
+	background-image:url(src/messagebox/messgebox_bg.png);
+	/*background-color: #B2B2B2;*/
+	filter:alpha(opacity=75); 
+	-moz-opacity:0.75; 
+	opacity:0.75;
+	visibility: hidden;
+}
+
+.div_popup
+{
+	z-index: 6;
+	position:fixed;
+	margin-left: 250px;
+	margin-top: 100px;
+	width: 200px;
+	height: 300px;
+	background-color: white;
+	border: 1px solid black;
+	visibility: hidden;
+}
+
+.div_popup iframe
+{
+	float: left;
+	margin-left: 0px;
+	margin-top: 0px;
+}
+
+.div_ntymessagebox
+{
+	z-index: 6;
+	position:fixed;
+	margin-left: 365px;
+	margin-top: 110px;
+	width: 550px;
+	height: 450px;
+	background-color: white;
+	border: 1px solid black;
+	visibility: hidden;
+}
+
+.div_ntymessagebox .div_ntymessagebox_top
+{
+	margin-top: 12px;
+	margin-left: 15px;
+	width: 520px;
+	height: 30px;
+	border-bottom: 1px solid black;
+	float: left;
+}
+
+.div_ntymessagebox .div_ntymessagebox_top .a_ntymessagebox_close
+{
+	margin-top: -20px;
+	margin-right: 0px;
+	float: right;
+}
+
+.div_ntymessagebox .div_ntymessagebox_list
+{
+	margin-top: 30px;
+	margin-left: 50px;
+	width: 450px;
+	height: 300px;
+	float: left;
+}
+
+.div_ntymessagebox_list .div_ntymessagebox_list_item
+{
+	width: 450px;
+	height: 50px;
+	float: left;
+}
+
+.div_ntymessagebox_list .div_ntymessagebox_list_item .div_ntymessagebox_list_item_no
+{
+	width: 50px;
+	height: 50px;
+	float: left;
+}
+
+.div_ntymessagebox_list .div_ntymessagebox_list_item .div_ntymessagebox_list_item_content
+{
+	width: 400px;
+	height: 20px;
+	float: left;
+}
+
+.div_ntymessagebox_list .div_ntymessagebox_list_item .div_ntymessagebox_list_item_data
+{
+	width: 400px;
+	height: 15px;
+	float: left;
+	font-family:'微软雅黑'; 
+    font-size: 12px;
+    color: #9C9B9B;
+}
+
+.div_ntymessagebox .div_ntymessagebox_bottom
+{
+	margin-top: 20px;
+	margin-left: 240px;
+	width: 70px;
+	height: 25px;
+	float: left;
+}
+
+.div_ntymessagebox .div_ntymessagebox_bottom input
+{
+	width: 70px;
+	height: 25px;
+}

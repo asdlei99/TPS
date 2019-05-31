@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+		<!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+		
+		<title>conftemplate</title>
+
+		<script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='conftemplate.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='conftemplate.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+    </head>
+	
+	<body>			
+		<div class="div_conftemplate_content">				
+			<iframe src="conftemplateList.html" height="100%" width="100%" scrolling="no" frameborder="0" name="conftemplateList" id="conftemplateList">
+				<a href="conftemplateList.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+			</iframe>
+			
+			<iframe src="conftemplateScan.html" height="100%" width="100%" scrolling="no" frameborder="0" name="conftemplateScan" id="conftemplateScan">
+				<a href="conftemplateScan.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+			</iframe>
+			
+			<iframe src="conftemplateEdit.html" height="100%" width="100%" scrolling="no" frameborder="0" name="conftemplateEdit" id="conftemplateEdit">
+				<a href="conftemplateEdit.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+			</iframe>
+		</div>
+	</body>
+</html>
+

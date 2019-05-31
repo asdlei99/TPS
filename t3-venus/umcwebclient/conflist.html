@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>conflist</title>
+        
+        <script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/scroll.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='conflist.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/scroll.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='conflist.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+    </head>
+    <body>
+        <div class="div_stretch div_stretch_conf">
+			<div class="div_stretch_tab" onclick="onClickStretchTab_conf(this);"><font class="font_stretch_tab">></font><font>正在召开的会议（7）</font></div>
+			<div class="div_stretch_content">
+				<div class="div_conf_list">
+					<div class="wraper">
+						<div class="slider div_conf_list_content">
+							<div class="div_conf_list_item" no="33">
+								<div class="div_conf_list_item_type"><img /></div>
+								<div class="div_conf_list_item_name" onclick="OnShowConfinfoClick(this);">苏州科达-上海研发中心-xxx网呈会议</div>
+								<div class="div_conf_list_item_time">2014-09-15 15:45开始</div>
+								<div class="div_conf_list_item_chair">主会场：石城会场01</div>
+								<div class="div_conf_list_item_roomnumber">会成员：32</div>
+								<input type="button" value="结束会议" onclick="OnBtnHangupClick(this);"></input>
+								<input type="button" value="会议控制" onclick="OnBtnConfctrlClick(this);"></input>
+							</div>
+						</div>
+						<div class="pannel"> 
+							<div class="drag"></div> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="div_stretch div_stretch_confbook">
+			<div class="div_stretch_tab" onclick="onClickStretchTab_confbook(this);"><font class="font_stretch_tab">></font><font>预约的会议（7）</font></div>
+			<div class="div_stretch_content">
+				<div class="div_confbook_list">
+					<div class="wraper">
+						<div class="slider div_conf_list_content">
+							<div class="div_conf_list_item" no="33">
+								<div class="div_conf_list_item_type"><img /></div>
+								<div class="div_conf_list_item_name">苏州科达-上海研发中心-xxx网呈会议</div>
+								<div class="div_conf_list_item_time">2014-09-15 15:45-16:45</div>
+								<div class="div_conf_list_item_chair">主会场：石城会场01</div>
+								<div class="div_conf_list_item_roomnumber">会成员：32</div>
+								<div class="div_conf_list_item_interval">距离会议开启时间：25分钟</div>
+								<input type="button" class="btnStartConf" value="立即召开" onclick="onBtnStartConfClick(this);"></input>
+							</div>
+						</div>
+						<div class="pannel"> 
+							<div class="drag"></div> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </body>
+</html>
+

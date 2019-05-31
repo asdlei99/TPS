@@ -1,0 +1,390 @@
+body
+{
+	width:1280px;
+	height:550px;
+}
+
+/*div_usermng_top*/
+.div_addrbook_top
+{
+	margin-top: 15px;
+	width: 1280px;
+	height: 30px;
+	float: left;
+}
+
+.div_addrbook_top .div_showtype
+{
+	margin-top:5px;
+	margin-left: 50px;
+	height: 23px;
+	width: 120px;
+	float: left;
+	border-bottom: 1px solid black;
+	cursor:pointer;
+}
+
+.font_img
+{
+	float: right;
+	right: 0px;
+}
+
+.div_addrbook_top .btn_more
+{
+	margin-right: 0px;
+	float: right;
+	width: 95px;
+}
+
+.div_addrbook_top .btn_delete
+{
+	margin-right: 8px;
+	float: right;
+}
+
+.div_addrbook_top .btn_cut
+{
+	margin-right: 8px;
+	float: right;
+}
+
+.div_addrbook_top .btn_copy
+{
+	margin-right: 8px;
+	float: right;
+}
+
+.div_addrbook_top .btn_add
+{
+	margin-right: 8px;
+	float: right;
+}
+
+.div_addrbook_top .btn_back
+{
+	margin-right: 8px;
+	float: right;
+}
+
+/*div_list*/
+.div_list
+{
+	margin-top: 15px;
+	width: 1280px;
+	height: 450px;
+	float: left;
+	border-top: 1px solid black;
+}
+
+/*添加滚动条*/
+.div_list_wraper
+{
+	width: 1280px;
+	height: 398px;
+	float: left;
+}
+
+.div_list .div_level
+{
+	height:22px;
+	width:1280px;
+	margin-left: 0px;
+	float: left;
+	border-bottom: 1px dashed #ECECEC;
+}
+
+.div_list .div_list_head
+{
+	margin-top: 5px;
+	height: 30px;
+	width: 1280px;
+	float: left;
+}
+
+.div_list .div_list_head .div_list_head_no
+{
+	height: 30px;
+	width: 70px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_head input
+{
+	width: 20px;
+	float: left;
+}
+
+.div_list .div_list_head .div_list_head_online
+{
+	height: 30px;
+	width: 60px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_head .div_list_head_type
+{
+	height: 30px;
+	width: 35px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_head .div_list_head_name
+{
+	height: 30px;
+	width: 400px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_head .div_list_head_ip
+{
+	height: 30px;
+	width: 300px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_head .div_list_head_number
+{
+	height: 30px;
+	width: 300px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_head .div_list_head_handle
+{
+	height: 30px;
+	width: 8spx;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_item
+{
+	margin-top: 10px;
+	height: 22px;
+	width: 1280px;
+	float: left;
+}
+
+.div_list .div_list_item .div_list_item_no
+{
+	height: 22px;
+	width: 70px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_item input
+{
+	width: 22px;
+	float: left;
+}
+
+.div_list .div_list_item .div_list_item_online
+{
+	height: 22px;
+	width: 60px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_item .div_list_item_type
+{
+	height: 22px;
+	width: 35px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_item .div_list_item_name
+{
+	height: 22px;
+	width: 400px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_item .div_list_item_ip
+{
+	height: 22px;
+	width: 300px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_item .div_list_item_number
+{
+	height: 22px;
+	width: 300px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_item .div_list_item_handle
+{
+	height: 22px;
+	width: 85px;
+	display: inline;
+	float: left;
+}
+
+.div_list .div_list_item .div_list_item_handle a
+{
+	color: #007AC0;
+	float: left;
+}
+
+.div_list .div_list_item .div_list_item_handle .aDelGroup
+{
+	margin-left: 10px;
+}
+
+/*div_usermng_bottom*/
+.div_addrbook_bottom
+{
+	margin-top: 15px;
+	width: 1280px;
+	height: 14px;
+	float: left;
+}
+
+.div_addrbook_bottom .div_choose_number
+{
+	height:14px;
+	width:100px;
+	margin-right: 0px;
+	float: right;
+	color: #007AC0;
+}
+
+/*div_dropdown_radio*/
+.div_dropdown_radio_add
+{
+	height:100px;
+	width:95px;
+	z-index: 2;
+	position: absolute;
+	right:337px;
+	top:50px;
+	background-color: white;
+	border: 1px solid #DCDFE1;
+	display:none;
+}
+
+.div_dropdown_radio_add div
+{
+	margin-top: 0px;
+	height:35px;
+	width:95px;
+	float: left;
+	line-height:35px;
+	cursor:pointer;
+}
+
+.div_dropdown_radio_add div:hover
+{
+	background-color: #1E94DA;
+	color: white;
+}
+
+.div_dropdown_radio_add div font
+{
+	margin-left: 20px;
+	margin-top: 6px;
+	float: left;
+}
+
+.div_dropdown_radio_add .add_meetingroom
+{
+	margin-top: 15px;
+}
+
+/*div_dropdown_radio_more*/
+.div_dropdown_radio_more
+{
+	height:100px;
+	width:95px;
+	z-index: 2;
+	position: absolute;
+	right:0px;
+	top:50px;
+	background-color: white;
+	border: 1px solid #DCDFE1;
+	display:none;
+}
+
+.div_dropdown_radio_more div
+{
+	margin-top: 0px;
+	height:35px;
+	width:95px;
+	float: left;
+	line-height:35px;
+	cursor:pointer;
+}
+
+.div_dropdown_radio_more div:hover
+{
+	background-color: #1E94DA;
+	color: white;
+}
+
+.div_dropdown_radio_more div font
+{
+	margin-left: 20px;
+	margin-top: 6px;
+	float: left;
+}
+
+.div_dropdown_radio_more .more_refresh
+{
+	margin-top: 15px;
+}
+
+/*div_dropdown_radio_showtype*/
+.div_dropdown_radio_showtype
+{
+	height:170px;
+	width:120px;
+	z-index: 2;
+	position: absolute;
+	right:858px;
+	top:50px;
+	background-color: white;
+	border: 1px solid #DCDFE1;
+	display:none;
+}
+
+.div_dropdown_radio_showtype div
+{
+	margin-top: 0px;
+	height:35px;
+	width:120px;
+	float: left;
+	line-height:35px;
+	cursor:pointer;
+}
+
+.div_dropdown_radio_showtype div:hover
+{
+	background-color: #1E94DA;
+	color: white;
+}
+
+.div_dropdown_radio_showtype div font
+{
+	margin-left: 20px;
+	margin-top: 6px;
+	float: left;
+}
+
+.div_dropdown_radio_showtype .showtype_online
+{
+	margin-top: 15px;
+}

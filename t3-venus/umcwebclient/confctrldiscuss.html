@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+		<!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+		
+		<title>confctrldiscuss</title>
+        
+        <script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/scroll.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='confctrldiscuss.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/scroll.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='confctrldiscuss.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+    </head>
+    
+	<body>
+		<div class="divShowInfo">
+			<span class="fontBig spanTip">会议讨论</span>
+			<a href="javascript:void(0);" class="aBack">返回</a>
+		</div>
+		<div class="divShowInfo">
+			<span class="spanTip">语音激励</span>
+			<span class="switchbtnOff" id="switchAMixVac"> </span>
+		</div>
+		<div class="divShowInfo">
+			<span class="spanList spanTip">讨论列表</span>
+			<ul class="ulDiscussOper">
+				<li class="liSetSpeaker">
+					<a href="javascript:void(0);" class="aDiscussSetSpeaker" name="aDiscussOper">设为发言人</a>
+				</li>
+				<li><a href="javascript:void(0);" class="aDiscussAdd" name="aDiscussOper">加入</a></li>
+				<li><a href="javascript:void(0);" class="aDiscussRemove" name="aDiscussOper">删除</a></li>
+			</ul>
+		</div>
+		
+		<!--讨论列表-->
+		<div class="div_list">
+			<div class="div_list_head">
+				<!--<div class="div_list_head_no">序号</div>-->
+        		<input type="checkbox" onclick="onDiscussListHeadCheckboxClick(this);"/>
+        		<div class="div_list_head_allsel">全选</div>
+        		<div class="div_list_head_name">|与会方</div>
+        	</div>
+
+        	<div class="wraper">
+	        	<div class="slider div_list_content">
+					<div class="div_list_item" no="1" onclick="onDiscussItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onDiscussItemMouseleave(this);">
+	        			<!--<div class="div_list_item_no">1</div>-->
+	        			<input type="checkbox" onclick="onDiscussItemCheckboxClick(this);"/>
+	        			<!----><div class="div_list_item_img"> </div>
+	        			<div class="div_list_item_name"><span class="spanSpeaker">（发言人）</span>会场1</div>
+	        			<div class="div_list_item_number">123456</div>
+	        			<div class="div_list_item_ip">172.162.155.138</div>
+	        		</div>
+					<div class="div_list_item" no="2" onclick="onDiscussItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onDiscussItemMouseleave(this);">
+	        			<!--<div class="div_list_item_no">2</div>-->
+	        			<input type="checkbox" onclick="onDiscussItemCheckboxClick(this);"/>
+	        			<!----><div class="div_list_item_img"> </div>
+	        			<div class="div_list_item_name">会场2</div>
+	        			<div class="div_list_item_number">123456</div>
+	        			<div class="div_list_item_ip">172.162.155.138</div>
+	        		</div>
+	        	</div>
+	        	
+	        	<div class="pannel"> 
+					<div class="drag"> </div> 
+				</div>
+        	</div>
+        </div>
+        
+		<input type="button" class="btnStart" name="btnStart" value="开启讨论"/>
+
+	</body>
+</html>

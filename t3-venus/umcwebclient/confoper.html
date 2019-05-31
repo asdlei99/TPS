@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>confoper</title>
+        
+        <script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='confoper.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='confoper.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+    </head>
+    <body>
+        <div class="div_stretch">
+			<div class="div_stretch_tab" onclick="onClickStretchTab(this);"><font class="font_stretch_tab">></font><font>会场操作</font></div>
+			<div class="div_stretch_content div_oper_mt">
+				<input type="button" class="btn_chooseview" value="选看" />
+				<input type="button" class="btn_unchooseview" value="取消所有选看" />
+				<input type="button" class="btn_dual" value="双流演示" />
+				<input type="button" class="btn_speaker" value="指定发言人" />
+				<input type="button" class="btn_quiet" value="静音" />
+				<input type="button" class="btn_mute" value="哑音" />
+				<input type="button" class="btn_drop" value="挂断" />
+				<input type="button" class="btn_call" value="呼叫" />
+			</div>
+		</div>
+		
+		<div class="div_stretch">
+			<div class="div_stretch_tab" onclick="onClickStretchTab(this);"><font class="font_stretch_tab">></font><font>会议操作</font></div>
+			<div class="div_stretch_content">
+				<input type="button" class="btn_discuss" value="会议讨论" />
+				<input type="button" class="btn_polling" value="会议轮询" />
+				<input type="button" value="画面合成" />
+				<input type="button" value="电视墙" />
+				<input type="button" value="邀请地址薄会场" />
+				<input type="button" value="邀请临时会场" />
+			</div>
+		</div>
+    </body>
+</html>
+

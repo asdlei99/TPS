@@ -1,0 +1,81 @@
+body 
+{
+	margin: 0 auto;
+	padding: 0px;
+}
+
+.sysmng_nav
+{
+	float: left;
+	width: 1280px;
+	height: 50px;
+}
+
+.divTapBtn
+{
+	float: left;
+	width: 200px;
+	margin-left: 25px;
+	margin-top: 15px;
+}
+
+.divTapBtn input[type="button"]
+{
+	float: left;
+	width: 88px;
+	margin-right: 8px;
+	color : #ffffff;
+	background-color: #313438;
+}
+
+.divTapBtn input[type="button"]:disabled
+{
+	background-color: #51ADE2;
+}
+
+.divbtn
+{
+	float: right;
+	width: 150px;
+	height: 36px;
+	margin-top: 15px;
+}
+
+input[name="btnedit"]
+{
+	float: right;
+	display:inline;
+}
+
+input[name="btncancel"]
+{
+	display:none;
+	margin-left: 10px;
+}
+
+input[name="btnsave"]
+{
+	display:none;
+}
+
+.sysmng_content
+{	
+	float: left;
+	width: 1280px;
+	height: 500px;
+}
+
+#netcfg
+{
+	display: block;
+}
+
+#sysparam
+{
+	display: block;
+}
+/*
+#nmcfg
+{
+	display: block;
+}*/

@@ -1,0 +1,188 @@
+body
+{
+	width: 720px;
+	height: 540px;
+}
+
+.div_top
+{
+	float: left;
+	width: 690px;
+	height: 30px;
+	margin-top: 12px;
+	margin-left: 15px;
+	border-bottom: 1px solid #ECECEC;
+}
+
+.div_top .btn_close
+{
+	float: right;
+}
+
+.div_middle
+{
+	margin-top: 25px;
+	margin-left: 30px;
+	width: 660px;
+	height: 390px;
+	float: left;
+}
+
+.div_middle .div_meet_content
+{
+	height:388px;
+	width:275px;
+	float: left;
+	border: 1px solid #ECECEC;
+	float: left;
+}
+
+.div_middle .div_meet_content .div_search
+{
+	float: left;
+	width: 255px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.div_middle .div_meet_content .div_search .text_search
+{
+	width:235px;
+}
+
+.div_middle .div_meet_checked
+{
+	float: left;
+	width: 275px;
+	height: 388px;
+	margin-left: 15px;
+	border: 1px solid #ECECEC;
+}
+
+.div_middle .div_meet_checked .div_meet_checked_title
+{
+	float: left;
+	width: 275px;
+	height: 35px;
+	border-bottom: 1px solid #ECECEC;
+}
+
+.div_middle .div_meet_checked .div_meet_checked_title span
+{
+	float: left;
+	margin-top: 10px;
+	margin-left: 15px;
+}
+
+/*会场列表*/
+.div_list_meettingroom
+{
+	float: left;
+	height: 300px;
+	width: 275px;
+	margin-top: 10px;
+}
+
+.div_list_meettingroom .div_list_head
+{
+	float: left;
+	height: 20px;
+	width: 275px;
+}
+
+.div_list_meettingroom .div_list_head .div_list_head_checkbox
+{
+	float: left;
+	height: 20px;
+	width: 60px;
+}
+
+.div_list_meettingroom .div_list_head .div_list_head_checkbox input
+{
+	width: 20px;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_head .div_list_head_name
+{
+	float: left;
+	height: 20px;
+	width: 215px;
+}
+
+.div_list_meettingroom .wraper
+{
+	width:275px;
+	height:280px;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item
+{
+	margin-top: 5px;
+	height: 45px;
+	width: 268px;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item input
+{
+	width: 20px;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item .div_list_item_online
+{
+	height: 45px;
+	width: 40px;
+	display: inline;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item .div_list_item_type
+{
+	height: 20px;
+	width: 30px;
+	display: inline;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item .div_list_item_name
+{
+	height: 20px;
+	width: 170px;
+	float: left;
+	display: inline;
+}
+
+.div_list_meettingroom .div_list_item .div_list_item_number
+{
+	height: 25px;
+	width: 100px;
+	display: inline;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item .div_list_item_ip
+{
+	height: 25px;
+	width: 100px;
+	display: inline;
+	float: left;
+}
+
+.div_confctrl_addmeet_handle
+{
+	float: left;
+	width: 30px;
+	height: 200px;
+	margin-left: 35px;
+	margin-right: 20px;
+	margin-top: 80px;
+}
+
+.div_confctrl_addmeet_handle span
+{
+	float: left;
+	margin-top: 20px;
+}

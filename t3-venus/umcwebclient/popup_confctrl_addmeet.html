@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+		<!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+		
+		<title>popup_confctrl_addmeet</title>
+        
+        <script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/scroll.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='popup_confctrl_addmeet.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/scroll.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='popup_confctrl_addmeet.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+    </head>
+    
+	<body>
+		<div class="div_top">
+			<span class="span_title">加入</span>
+			<span class="btn_close btn_popup_close" onclick="OnPopupBtnCloseClick(this);"> </span>
+		</div>
+		
+		<div class="div_middle">
+			<div class="div_meet_content">
+				<div class="div_search">
+	        		<input type="text" class="text_search"/>
+	        		<div class="img_search"> </div>
+	        	</div>
+	        	
+	        	<div class="div_list_meettingroom div_list_meettingroom_bechecked div_list">
+	        		<div class="div_list_head">
+	        			<div class="div_list_head_checkbox"><input type="checkbox" onclick="onListHeadCheckboxClick(this);"/>全选</div>
+	        			<div class="div_list_head_name">|名称</div>
+	        		</div>
+		        	
+		        	<!--添加滚动条-->
+		        	<div class="wraper">
+			        	<div class="slider div_list_content">
+			        		<div class="div_list_item" onclick="onItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+			        			<input type="checkbox" onclick="onItemCheckboxClick(this);"/>
+			        			<div class="div_list_item_online">不在线</div>
+			        			<div class="div_list_item_type">sip</div>
+			        			<div class="div_list_item_name">会场1</div>
+			        			<div class="div_list_item_number">123456</div>
+			        			<div class="div_list_item_ip">172.16.216.120</div>
+			        		</div>
+			        	</div>
+			        	
+			        	<div class="pannel"> 
+							<div class="drag"> </div> 
+						</div>
+		        	</div>
+		        </div>
+			</div>
+			
+			<div class="div_confctrl_addmeet_handle">
+				<span class="btnCheckAll btn_toRight_all" onclick="onBtnAddMeetCheckAllClick();"> </span>
+				<span class="btnCheckOne btn_toRight_one" onclick="onBtnAddMeetCheckOneClick();"> </span>
+				<span class="btnUncheckOne btn_toLeft_one" onclick="onBtnAddMeetUncheckOneClick();"> </span>
+				<span class="btnUncheckAll btn_toLeft_all" onclick="onBtnAddMeetUncheckAllClick();"> </span>
+	        </div>
+	        
+	        <div class="div_meet_checked">
+				<div class="div_meet_checked_title"><span>已选</span></div>			        	
+	        	
+	        	<div class="div_list_meettingroom div_list_meettingroom_checked div_list">
+	        		<div class="div_list_head">
+	        			<div class="div_list_head_checkbox"><input type="checkbox" onclick="onListHeadCheckboxClick(this);"/>全选</div>
+	        			<div class="div_list_head_name">|名称</div>
+	        		</div>
+		      
+		        	<!--添加滚动条-->
+		        	<div class="wraper">
+			        	<div class="slider div_list_content">
+			        		<div class="div_list_item" onclick="onItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+			        			<input type="checkbox" onclick="onItemCheckboxClick(this);"/>
+			        			<div class="div_list_item_online">不在线</div>
+			        			<div class="div_list_item_type">gk</div>
+			        			<div class="div_list_item_name">会场1</div>
+			        			<div class="div_list_item_number">123456</div>
+			        			<div class="div_list_item_ip">172.16.216.120</div>
+			        		</div>
+			        	</div>
+			        	
+			        	<div class="pannel"> 
+							<div class="drag"> </div> 
+						</div>
+		        	</div>
+		        </div>
+			</div>
+		</div>
+
+	</body>
+</html>

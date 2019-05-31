@@ -1,0 +1,211 @@
+body
+{
+	width: 720px;
+	height: 540px;
+}
+
+.div_top
+{
+	margin-top: 12px;
+	margin-left: 15px;
+	width: 690px;
+	height: 30px;
+	border-bottom: 1px solid #ECECEC;
+	float: left;
+}
+
+.div_top .span_title
+{
+	float: left;
+	width: 200px;
+}
+
+.div_top .btn_popup_close
+{
+	margin-right: 0px;
+	float: right;
+}
+
+.div_middle
+{
+	margin-top: 25px;
+	margin-left: 30px;
+	width: 660px;
+	height: 390px;
+	float: left;
+}
+
+.div_middle .div_middle_bechecked
+{
+	height:388px;
+	width:275px;
+	float: left;
+	border: 1px solid #ECECEC;
+	float: left;
+}
+
+.div_middle .div_middle_bechecked .div_search
+{
+	margin-top: 10px;
+	margin-left:10px;
+	width:255px;
+	float: left;
+}
+
+.div_middle .div_middle_bechecked .div_search .text_search
+{
+	width:235px;
+}
+
+.div_middle .div_middle_checked
+{
+	margin-left: 15px;
+	height:388px;
+	width:275px;
+	float: left;
+	border: 1px solid #ECECEC;
+	float: left;
+}
+
+/*会场列表*/
+.div_list_meettingroom
+{
+	float: left;
+	height: 300px;
+	width: 275px;
+	margin-top: 10px;
+}
+
+.div_list_meettingroom_bechecked .div_level
+{
+	float: left;
+	margin-left: 10px;
+	width: 220px;
+	display: inline;
+}
+
+.div_list_meettingroom_bechecked .btn_back
+{
+	float: left;
+	margin-left: 10px;
+	width: 30px;
+	height:20px;
+	display: inline;
+}
+
+.div_list_meettingroom .div_list_head
+{
+	float: left;
+	height: 20px;
+	width: 275px;
+}
+
+.div_list_meettingroom .div_list_head .div_list_head_checkbox
+{
+	float: left;
+	height: 20px;
+	width: 60px;
+}
+
+.div_list_meettingroom .div_list_head .div_list_head_checkbox input
+{
+	width: 20px;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_head .div_list_head_name
+{
+	float: left;
+	height: 20px;
+	width: 215px;
+}
+
+.div_list_meettingroom .wraper
+{
+	width:275px;
+	height:280px;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item
+{
+	margin-top: 5px;
+	height: 45px;
+	width: 268px;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item input
+{
+	width: 20px;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item .div_list_item_online
+{
+	height: 45px;
+	width: 40px;
+	display: inline;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item .div_list_item_type
+{
+	height: 20px;
+	width: 30px;
+	display: inline;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item .div_list_item_name
+{
+	height: 20px;
+	width: 170px;
+	float: left;
+	display: inline;
+}
+
+.div_list_meettingroom .div_list_item .div_list_item_number
+{
+	height: 25px;
+	width: 100px;
+	display: inline;
+	float: left;
+}
+
+.div_list_meettingroom .div_list_item .div_list_item_ip
+{
+	height: 25px;
+	width: 100px;
+	display: inline;
+	float: left;
+}
+
+.div_middle .div_middle_handle
+{
+	margin-left: 15px;
+	margin-top: 80px;
+	width: 70px;
+	height: 200px;
+	float: left;
+}
+
+.div_middle .div_middle_handle input
+{
+	float: left;
+	margin-top: 20px;
+}
+
+.div_bottom
+{
+	margin-top: 30px;
+	margin-left: 285px;
+	width: 145px;
+	height: 27px;
+	float: left;
+}
+
+.div_bottom .button_cancel
+{
+	margin-left: 5px;
+}

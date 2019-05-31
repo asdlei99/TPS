@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        <!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+		
+        <title>usermng</title>
+        
+        <script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/scroll.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='usermng.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/scroll.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='usermng.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+    </head>
+    <body>
+        <div class="div_usermng_top">
+        	<div class="div_search">
+        		<input type="text" class="text_search"/>
+        		<div class="img_search"></div>
+        	</div>
+        	<input type="button" class="btn_delete" value="删除"/>
+        	<input type="button" class="btn_add" value="新建"/>
+        </div>
+        
+        <div class="div_list">
+        	<div class="div_list_head">
+        		<div class="div_list_head_no">序号</div>
+        		<input type="checkbox" onclick="onListHeadCheckboxClick(this);"/>
+        		<div class="div_list_head_name">名称</div>
+        		<div class="div_list_head_handle">| 操作</div>
+        	</div>
+        	
+        	<!--添加滚动条-->
+        	<div class="wraper div_list_wraper">
+	        	<div class="slider div_list_content">
+	        		<div class="div_list_item" onclick="onItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+	        			<div class="div_list_item_no">1</div>
+	        			<input type="checkbox" onclick="onItemCheckboxClick(this);"/>
+	        			<div class="div_list_item_name">admin</div>
+	        			<div class="div_list_item_handle"><a href="javascript:void(0)" onclick="onBtnEditClick(this);">编辑</a></div>
+	        		</div>
+	        		
+	        		<div class="div_list_item" onclick="onItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+	        			<div class="div_list_item_no">2</div>
+	        			<input type="checkbox" onclick="onItemCheckboxClick(this);"/>
+	        			<div class="div_list_item_name">admin2</div>
+	        			<div class="div_list_item_handle"><a href="javascript:void(0)" onclick="onBtnEditClick(this);">编辑</a></div>
+	        		</div>
+	        	</div>
+	        	<div class="pannel"> 
+					<div class="drag"></div> 
+				</div>
+        	</div>
+        	
+        </div>
+        
+        <div class="div_usermng_bottom">
+        	<div class="div_choose_number">已选择（0）</div>
+        </div>
+        
+        
+        
+    </body>
+</html>
+

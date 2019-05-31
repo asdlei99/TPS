@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+		<!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+
+		<title>conftemplateEdit</title>
+		
+		<script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/scroll.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='conftemplateEdit.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/scroll.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='conftemplateEdit.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+	</head>
+
+	<body>
+		<div class="div_conftemplateEdit_top">
+			<div class="divTapBtn">
+				<input type="button" class="btnConfSettings" name="btnTap" value="基本设置">
+				<input type="button" class="btnConfPolling" name="btnTap" value="会议轮询">
+				<input type="button" class="btnConfDiscuss" name="btnTap" value="会议讨论">
+			</div>
+			<div class="divOperBtn">
+				<input type="button" class="btnCancel" value="取消">
+				<input type="button" class="btnSave" value="保存">
+			</div>
+		</div>
+		
+		<div class="div_conftemplateEdit_content">
+			
+			<!------------------------基本设置页面------------------------>
+			<div id="div_ConfSettings_Logic" class="div_conftemplateEdit_Logic wraper">
+				<div class="div_ConfSettings_content slider">
+					<div class="divConfName">
+						<span class="spanTip1">会议名称</span>
+						<input type="text" class="textConfName"/>
+					</div>	
+					<div class="divConfNum">
+						<span class="spanTip1">会议号码</span>
+						<input type="text" class="textConfNum"/>
+					</div>
+					<div class="divConfType">
+						<span class="spanTip1">会议类型</span>
+						<input type="text" class="textConfType"/>
+					</div>
+					<div class="divStartTime">
+						<span class="spanTip1">开始时间</span>
+						<input type="text" class="textStartTime"/>
+					</div>
+					<div class="divMediaFormat">
+						<span class="spanTip1">媒体格式</span>
+						<div class="divConfFormat">
+							<span class="spanTip2">会议格式</span>
+							<input type="text" class="textConfFormat"/>
+						</div>
+						<div class="divShowFormat divNextLine">
+							<span class="spanTip2">演示格式</span>
+							<input type="text" class="textShowFormat"/>
+						</div>
+						<div class="divAudioFormat divNextLine">
+							<span class="spanTip2">音频格式</span>
+							<input type="text" class="textAudioFormat"/>
+						</div>
+						<div class="divAdaptRes divLastLine">
+							<span class="spanTip2">适配资源</span>
+							<span class="spanAdaptRes spanInfo"> </span>
+						</div>
+					</div>
+					<div class="divConfRate">
+						<span class="spanTip1">会议码率</span>
+						<div class="divSingleRate">
+							<span class="spanTip2">单屏码率</span>
+							<input type="text" class="textSingleRate"/>
+						</div>
+						<div class="divShowRate divLastLine">
+							<span class="spanTip2">演示码率</span>
+							<input type="text" class="textShowRate"/>
+						</div>
+					</div>
+					<div class="divCascade">
+						<span class="spanTip1">会议级联</span>
+						<div class="divUpBandWidth">
+							<span class="spanTip2">上行带宽</span>
+							<input type="text" class="textUpBandWidth"/>
+						</div>
+						<div class="divDownBandWidth divLastLine">
+							<span class="spanTip2">下行带宽</span>
+							<input type="text" class="textDownBandWidth"/>
+						</div>
+					</div>
+					<div class="divTransEncrypt">
+						<span class="spanTip1">传输加密</span>
+						<div class="divStartEncrypt">
+							<span class="spanTip2">开启AES加密</span>
+							<span class="switchbtnOff" id="switchStartEncrypt"> </span>
+						</div>
+						<div class="divAESEncrypt divLastLine">
+							<span class="spanTip2">AES密钥</span>
+							<input type="radio" class="radioAESDefault" name="radioAESEncrypt" checked="checked"/>默认
+							<input type="radio" class="radioAESCustom" name="radioAESEncrypt"/>
+							<input type="text" class="textAESCustom" value="自定义"/>
+						</div>
+					</div>
+				</div>
+	
+				<div class="pannel_ConfSettings pannel"> 
+					<div class="drag_ConfSettings drag"> </div> 
+				</div>
+			</div>
+
+			<!------------------------会议轮询页面------------------------>
+			<div id="div_ConfPolling_Logic" class="div_ConfPolling_content div_conftemplateEdit_Logic">
+				<div class="divStartPolling divShowInfo">
+					<span class="spanTip1">开启轮询</span>
+					<span class="switchbtnOpen" id="switchStartPolling"> </span>
+				</div>
+				
+				<div class="divPollingTime divShowInfo">
+					<span class="spanTip1">轮询间隔</span>
+					<input type="text" class="textPollingTime"/>
+				</div>
+				
+				<div class="divPollingOper divShowInfo">
+					<span class="spanPollingNum spanTip1">轮询成员</span>
+					<ul class="ulPollingOper">
+						<li><a href="javascript:void(0);" class="aPollingSetTop" name="aPollingOper">置顶</a></li>
+						<li><a href="javascript:void(0);" class="aPollingMoveUp" name="aPollingOper">上移</a></li>
+						<li><a href="javascript:void(0);" class="aPollingMoveDown" name="aPollingOper">下移</a></li>
+						<li><a href="javascript:void(0);" class="aPollingSetBottom" name="aPollingOper">置底</a></li>
+						<li><a href="javascript:void(0);" class="aPollingRemove" name="aPollingOper">删除</a></li>
+					</ul>
+				</div>
+		
+				<!--轮询列表-->
+				<div class="div_Polling_list div_list">
+					<div class="div_list_head">
+						<!--<div class="div_Polling_list_head_no">序号</div>-->
+		        		<input type="checkbox" onclick="onPollingListHeadCheckboxClick(this);"/>
+		        		<div class="div_Polling_list_head_allsel">全选</div>
+		        		<div class="div_Polling_list_head_name">|名称</div>
+		        	</div>
+		
+		        	<div class="div_Polling_list_content wraper">
+			        	<div class="div_list_content slider">
+							<div class="div_list_item" no="1" onclick="onPollingItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+			        			<!--<div class="div_Polling_list_item_no">1</div>-->
+			        			<input type="checkbox" onclick="onPollingItemCheckboxClick(this);"/>
+			        			<!----><div class="div_list_item_img"> </div>
+			        			<div class="div_list_item_name">会场1</div>
+			        			<div class="div_list_item_number">123456</div>
+			        			<div class="div_list_item_ip">172.162.155.138</div>
+			        		</div>
+							<div class="div_list_item" no="2" onclick="onPollingItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+			        			<!--<div class="div_Polling_list_item_no">2</div>-->
+			        			<input type="checkbox" onclick="onPollingItemCheckboxClick(this);"/>
+			        			<!----><div class="div_list_item_img"> </div>
+			        			<div class="div_list_item_name">会场2</div>
+			        			<div class="div_list_item_number">123456</div>
+			        			<div class="div_list_item_ip">172.162.155.138</div>
+			        		</div>
+			        	</div>
+			        	
+			        	<div class="pannel_Polling_list pannel"> 
+							<div class="drag_Polling_list drag"> </div> 
+						</div>
+		        	</div>
+		        </div>
+			</div>
+
+			<!------------------------会议讨论页面------------------------>
+			<div id="div_ConfDiscuss_Logic" class="div_ConfDiscuss_content div_conftemplateEdit_Logic">
+				<div class="divStartDiscuss divShowInfo">
+					<span class="spanTip1">开启讨论</span>
+					<span class="switchbtnOff" id="switchStartDiscuss"> </span>
+					<span class="spanTip2">开启时,最少一个会场，最多27个</span>
+				</div>
+
+				<div class="divDiscussOper divShowInfo">
+					<span class="spanDiscussNum spanTip1">讨论成员</span>
+					<ul class="ulDiscussOper">
+						<li><a href="javascript:void(0);" class="aDiscussRemove" name="aDiscussOper">删除</a></li>
+					</ul>
+				</div>
+		
+				<!--讨论列表-->
+				<div class="div_Discuss_list div_list">
+					<div class="div_list_head">
+						<!--<div class="div_Discuss_list_head_no">序号</div>-->
+		        		<input type="checkbox" onclick="onDiscussListHeadCheckboxClick(this);"/>
+		        		<div class="div_Discuss_list_head_allsel">全选</div>
+		        		<div class="div_Discuss_list_head_name">|名称</div>
+		        	</div>
+		
+		        	<div class="div_Discuss_list_content wraper">
+			        	<div class="div_list_content slider">
+							<div class="div_list_item" no="1" onclick="onDiscussItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+			        			<!--<div class="div_Discuss_list_item_no">1</div>-->
+			        			<input type="checkbox" onclick="onDiscussItemCheckboxClick(this);"/>
+			        			<!----><div class="div_list_item_img"> </div>
+			        			<div class="div_list_item_name">会场1</div>
+			        			<div class="div_list_item_number">123456</div>
+			        			<div class="div_list_item_ip">172.162.155.138</div>
+			        		</div>
+							<div class="div_list_item" no="2" onclick="onDiscussItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+			        			<!--<div class="div_Discuss_list_item_no">2</div>-->
+			        			<input type="checkbox" onclick="onDiscussItemCheckboxClick(this);"/>
+			        			<!----><div class="div_list_item_img"> </div>
+			        			<div class="div_list_item_name">会场2</div>
+			        			<div class="div_list_item_number">123456</div>
+			        			<div class="div_list_item_ip">172.162.155.138</div>
+			        		</div>
+			        	</div>
+			        	
+			        	<div class="pannel_Discuss_list pannel"> 
+							<div class="drag_Discuss_list drag"> </div> 
+						</div>
+		        	</div>
+		        </div>
+			</div>
+			
+			<!------------------------会场操作------------------------>
+			<div class="div_MeetOper_handle">
+				<span class="btnCheckAll btn_toLeft_all" onclick="onBtnCheckAllClick();"> </span>
+				<span class="btnCheckOne btn_toLeft_one" onclick="onBtnCheckOneClick();"> </span>
+				<span class="btnUncheckOne btn_toRight_one" onclick="onBtnUncheckOneClick();"> </span>
+				<span class="btnUncheckAll btn_toRight_all" onclick="onBtnUncheckAllClick();"> </span>
+			</div>
+			
+			<!------------------------与会会场列表------------------------>
+			<div class="div_MeetList_content">
+				<div class="div_MeetList_Oper">
+					<div class="div_search">
+						<input type="text" class="text_search"/>
+						<div class="img_search"> </div>
+					</div>
+					<input type="button" class="btnDelMeet"/>
+					<input type="button" class="btnAddMeet"/>
+					<input type="button" class="btnTempInvite"/>
+				</div>
+		
+				<!--与会会场列表-->
+				<div class="div_Meet_list div_list">
+					<div class="div_list_head">
+						<div class="div_Meet_list_head_no">序号</div>
+						<input type="checkbox" onclick="onMeetListHeadCheckboxClick(this);"/>
+						<div class="div_Meet_list_head_allsel">全选</div>
+						<div class="div_Meet_list_head_name">|名称</div>
+					</div>
+		
+					<div class="div_Meet_list_content wraper">
+						<div class="div_list_content slider">
+							<div class="div_list_item" no="1" calltype="1" onclick="onMeetItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+								<div class="div_list_item_no">1</div>
+								<input type="checkbox" onclick="onMeetItemCheckboxClick(this);"/>
+								<!----><div class="div_list_item_img"> </div>
+								<div class="div_list_item_name">会场1</div>
+								<div class="div_list_item_number">123456</div>
+								<div class="div_list_item_ip">172.162.155.138</div>
+							</div>
+							<div class="div_list_item" no="2" calltype="1" onclick="onMeetItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+								<div class="div_list_item_no">2</div>
+								<input type="checkbox" onclick="onMeetItemCheckboxClick(this);"/>
+								<!----><div class="div_list_item_img"> </div>
+								<div class="div_list_item_name">会场2</div>
+								<div class="div_list_item_number">123456</div>
+								<div class="div_list_item_ip">172.162.155.138</div>
+							</div>
+						</div>
+
+						<div class="pannel_Meet_list pannel"> 
+							<div class="drag_Meet_list drag"> </div> 
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+
+	</body>
+</html>

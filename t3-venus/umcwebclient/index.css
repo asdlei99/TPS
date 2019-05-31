@@ -1,0 +1,126 @@
+/*title div*/
+.titleDiv
+{
+	width:1280px;
+    height:300px;
+    background-color: #D9D9D9;
+    float: left;
+}
+
+.kedacomFont
+{
+	margin-top: 23px;
+	margin-left: 50px;
+	width: 100px;
+	height: 22px;
+	float: left;
+}
+
+.titleFont
+{
+	margin-left: 334px;
+	margin-top: 100px;
+	width: 170px;
+	height: 25px;
+	float: left;
+}
+
+.titleDiv font
+{
+    font-size: 18px; 
+    color:rgb(46,55,76);
+    font-weight: bold;
+    /*border-bottom: 1px solid;*/
+}
+
+/*contentDiv*/
+.contentDiv
+{
+	width:1280px;
+    height:300px;
+    background-color: white;
+    float: left;
+}
+
+.contentDiv .formlogin
+{
+	width: 200px;
+	height: 210px;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+.contentDiv form input[type="text"][name="usrname"]
+{
+    margin-left:10px;
+    margin-top:20px;
+    width:180px;
+    height: 20px;
+    float:left;
+    text-align:center;
+}
+
+.contentDiv form input[type="password"][name="pwd"]
+{
+    margin-left:10px;
+    margin-top:20px;
+    width:180px;
+    height: 20px;
+    float:left;
+    text-align:center;
+}
+
+.contentDiv .fontrememberpwd
+{
+	margin-top:20px;
+    margin-left:8px;
+    float:left;
+}
+
+.contentDiv form input[type="checkbox"][name="rememberpwd"]
+{
+    margin-top:20px;
+    margin-left:50px;
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+
+.contentDiv form input[type="submit"]
+{
+    margin-left:10px;
+    margin-top:30px;
+    width:185px;
+    height:30px;
+    float: left;
+	background-color: black;
+	border: 0;
+	color: white;
+}
+
+.contentDiv form .tip
+{
+	width:185px;
+	float:left;
+	margin-top:5px;
+	margin-left:10px;
+	color: red;
+	font-size: 15px;
+	visibility: hidden;
+}
+
+/*footer div*/
+.footerDiv
+{
+    height:50px;
+    width:1280px;
+    float: left;
+}
+
+.footerDiv font
+{
+    margin-top:5px;    
+    font-family:"微软雅黑";
+    font-size:14px;
+    color: rgb(65,72,83);
+}

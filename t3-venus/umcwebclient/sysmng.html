@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+		<!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+		
+		<title>sysmng</title>
+
+		<script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='sysmng.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='sysmng.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+    </head>
+	
+	<body>
+		<div class="sysmng_nav">
+			<div class="divTapBtn">
+				<input type="button" class="btnNetcfg" name="btnTap" value="网络配置">
+				<input type="button" class="btnSysparam" name="btnTap" value="系统参数">
+			</div>
+			<div class="divbtn">
+				<input type="button" name="btnsave" class="btnsave" value="确定"/>
+				<input type="button" name="btncancel" class="btncancel" value="取消"/>
+				<input type="button" name="btnedit" class="btnedit" value="修改"/>
+			</div>
+		</div>
+			
+		<div class="sysmng_content">				
+			<iframe src="netcfg.html" height="100%" width="100%" scrolling="no" frameborder="0" name="netcfg" id="netcfg">
+				<a href="netcfg.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+			</iframe>
+			
+			<iframe src="sysparam.html" height="100%" width="100%" scrolling="no" frameborder="0" name="sysparam" id="sysparam">
+				<a href="sysparam.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+			</iframe>
+		<!--	
+			<iframe src="nmcfg.html" height="100%" width="100%" frameborder="0" name="nmcfg" id="nmcfg">
+				<a href="nmcfg.html">你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。</a>
+			</iframe>-->
+		</div>
+	</body>
+</html>
+

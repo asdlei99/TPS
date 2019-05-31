@@ -1,0 +1,67 @@
+// UmcWeb1.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (UmcWeb1.tlb) that will become a resource in
+// UmcWeb1.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(38EF4E0B-4E0F-4C57-9358-BC6BAD8A6699), version(1.0),
+  helpfile("UmcWebProj.hlp"),
+  helpstring("UmcWebProj ActiveX Control module"),
+  control ]
+library UMCWEBPROJLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CUmcWeb1Ctrl
+
+	[ uuid(2B21B77B-7FA8-4B76-8688-305D22302E7E),
+	  helpstring("Dispatch interface for UmcWebProj Control"), hidden ]
+	dispinterface _DUmcWebProj
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CUmcWeb1Ctrl)
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CUmcWeb1Ctrl)
+			//}}AFX_ODL_METHOD
+	};
+
+	//  Event dispatch interface for CUmcWeb1Ctrl
+
+	[ uuid(D65950A5-C91C-47D2-BB59-D60F180BB7D5),
+	  helpstring("Event interface for UmcWebProj Control") ]
+	dispinterface _DUmcWebProjEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CUmcWeb1Ctrl)
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CUmcWeb1Ctrl
+
+	[ uuid(85797439-D3C2-4DD0-A3DE-1F79D2F2FF33), licensed,
+	  helpstring("UmcWebProj Control"), control ]
+	coclass UmcWebProj
+	{
+		[default] dispinterface _DUmcWebProj;
+		[default, source] dispinterface _DUmcWebProjEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

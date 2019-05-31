@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+		<!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+
+		<title>sysparam</title>
+		
+		<script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/webumc.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/scroll.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='sysparam.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/scroll.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='sysparam.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/webumc.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+	</head>
+
+	<body>
+		<div class="divSystime">
+			<span class="spanSystime">系统时间</span>
+			<div class="divTime">
+				<span class="spanTime">时间</span>
+				<input type="text" class="sysdate"/>
+				
+				<div class="selectSingleBoxHour selectSingleBox selectBox">
+				    <div class="selectVal">
+				        <input type="text" class="input_text textHour" value="00" readonly="readonly" onfocus="this.blur();"/>
+				        <span class="span_select_img"> </span>
+				    </div>
+				    
+		        	<div class="wraper_time wraper_select wraper">
+			        	<div class="slider">
+							<ul> </ul>
+			        	</div>
+			        	<div class="pannel"> 
+							<div class="drag"> </div> 
+						</div>
+		        	</div>
+				</div>
+				
+				<div class="selectSingleBoxMinute selectSingleBox selectBox">
+				    <div class="selectVal">
+				        <input type="text" class="input_text textMinute" value="00" readonly="readonly" onfocus="this.blur();"/>
+				        <span class="span_select_img"> </span>
+				    </div>
+
+		        	<div class="wraper_time wraper_select wraper">
+			        	<div class="slider">
+							<ul> </ul>
+			        	</div>
+			        	<div class="pannel"> 
+							<div class="drag"> </div> 
+						</div>
+		        	</div>
+				</div>
+				
+				<div class="selectSingleBoxSecond selectSingleBox selectBox">
+				    <div class="selectVal">
+				        <input type="text" class="input_text textSecond" value="00" readonly="readonly" onfocus="this.blur();"/>
+				        <span class="span_select_img"> </span>
+				    </div>
+
+		        	<div class="wraper_time wraper_select wraper">
+			        	<div class="slider">
+							<ul> </ul>
+			        	</div>
+			        	<div class="pannel"> 
+							<div class="drag"> </div> 
+						</div>
+		        	</div>
+				</div>
+
+			</div>
+
+			<div class="divSyn">
+				<span class="spanSyn">同步</span>
+				<input type="button" class="btnSynLocaltime" value="时间同步至服务器"/>
+			</div>
+		</div>
+	</body>
+</html>

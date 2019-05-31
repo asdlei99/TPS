@@ -1,0 +1,71 @@
+#=====================================================================
+# 说明：编译linux版本dcewebservice工程release版
+#---------------------------------------------------------------------
+#common template makefile muil folder remark: g++ dcwebserver -o dcwebserver -lfcgi
+
+#[指定当前路径为工作路径]
+#---------------------------------------------------------------------
+WORKSPACE  := $(shell pwd)
+
+CC = g++
+
+#[主编译选项，含宏定义]
+#---------------------------------------------------------------------
+DEF_CFLAGS := -D_LINUX_
+
+#[主编译选项，头文件路径]
+DIR_INC = -I../../../10-common/include \
+	 -I../../../10-common/include/system1 \
+	 -I../../../10-common/include/platform \
+	 -I../../../10-common/include/tp \
+	 -I../../../10-common/include/protocol \
+	 -I../../common_linux/include/tp \
+	 -I../../owslib/include \
+	 -I../include/business \
+	 -I../../common_linux/include \
+	 -I../../common_linux/include/fcgi \
+	 -I../../common_linux/include/mysql \
+	 -I../include \
+	 -I../../common_linux/include/boost1.50.0
+	 
+#[依赖的库的名字和路径指定，注意依赖顺序]:
+#---------------------------------------------------------------------
+RELEASE_LIB_PATH   := -L$(WORKSPACE)/../../common_linux/lib/release/linux \
+											-L$/usr/lib
+
+	    
+PRJ_LIBS         := -lows -ltpmsgmgr -lkdvlog -lxmlengine -losp -lkdvsys -lrt -lpthread -lboost_date_time -lboost_system -lboost_thread -lfcgi -lmysqlclient -lumsmsg\
+										-llanman -lcommonapi
+
+
+DIR_SRC = ../source
+DIR_OBJ = ../obj/release
+DIR_BIN = release/umcwebserver
+
+SRC = $(wildcard ${DIR_SRC}/*.cpp)
+OBJ = $(patsubst %.cpp,${DIR_OBJ}/%.o,$(notdir ${SRC}))
+
+APP_NAME = umcwebserver.fcgi
+BIN_TARGET = ${DIR_BIN}/${APP_NAME}
+TARGET_LIBS =$(PRJ_LIBS) $(RELEASE_LIB_PATH)
+
+
+#含所有警告编译
+#CFLAGS = -g -Wall ${DIR_INC}             
+#不含警告编译
+#CFLAGS_D = -g -w ${DIR_INC}
+CFLAGS_R = -O2 -w ${DIR_INC}
+
+
+${BIN_TARGET}:${OBJ}
+	$(CC) $(OBJ) $(TARGET_LIBS) -o $(DIR_BIN)/$(APP_NAME)
+
+${DIR_OBJ}/%.o:${DIR_SRC}/%.cpp
+	$(CC) $(DEF_CFLAGS) $(CFLAGS_R) -c  $< -o $@
+	
+.PHONY:clean
+clean:
+	cd $(WORKSPACE)/$(DIR_OBJ)/;      $ ls;   
+	find $(WORKSPACE)/$(DIR_OBJ)/ -name *.o -exec rm -f {} \;
+	cd $(WORKSPACE)/$(DIR_BIN)/;      $ ls;
+	find $(WORKSPACE)/$(DIR_BIN)/ -name $(APP_NAME) -exec rm -f {} \;

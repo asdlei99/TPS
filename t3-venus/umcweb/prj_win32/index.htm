@@ -1,0 +1,116 @@
+﻿<HTML>
+	<HEAD>
+		<TITLE>网呈统一管理控制台</TITLE>
+		<style type="text/css">
+			body
+			{
+				background-color: #7E97A1;
+			}
+		
+			#ocxdiv
+			{
+				width: 1342px;
+				height: 651px;
+				display: inline;
+			}
+		</style>
+        
+        <META content="text/html; charset=gb2312" http-equiv=Content-Type>
+        <META content=苏州科达科技股份有限公司 name=Description>
+        
+		<script language= "javascript">
+			if( screen.width < 1366 || screen.height < 864 ){
+				document.body.style.overflow = "scroll";
+			}
+			else{
+				document.body.style.overflow = "hidden";
+			}
+			
+			var i=0;
+			document.onmousemove = refresholemain;
+
+			function refresholemain()
+			{ 
+				if( document.body.style.zoom != 1 )
+				{
+			��       document.body.style.zoom = 1;
+				i = 1;
+				} 
+			}
+
+			function refreshole()
+			{ 
+				i++;
+				document.body.style.zoom = 1 + i/10000;
+			}
+
+			function showloginbk(param)
+			{
+				var image = "url(";
+				image += param;
+				image +=")"; // repeat-y center
+				document.getElementById('umc').style.backgroundPosition = "center top";
+				document.getElementById('umc').style.backgroundImage = image;
+				document.getElementById('umc').style.backgroundRepeat = "repeat-y";	//"repeat-y center";
+				document.getElementById('umc').style.backgroundColor = '7E97A1';
+			}
+
+			function showmainbk(param)
+			{
+				document.getElementById('umc').style.background = '';
+				document.getElementById('umc').style.backgroundColor = '809FA6'//yc
+			}
+
+			function shownullbk(param)
+			{
+				document.getElementById('umc').style.background = '';
+				document.getElementById('umc').style.backgroundColor = '7E97A1'//yc				  
+			}			
+			
+			function onkeydown()
+			{   
+				if(window.event.keyCode == 8     //backspace
+					||window.event.keyCode == 37   //Left Arrow
+					|| window.event.keyCode == 39  //Right Arrow
+				){   
+					window.event.keyCode = 0;   
+				}
+			} 	
+			
+			function showtext(param)
+			{ 
+				var str = "";
+				str += param;
+			
+				if(param == "")
+				{
+					shichengdiv.innerHTML = str;
+					document.getElementById('shichengdiv').style.display = "none";
+				}
+				
+				if(param != "" && shichengdiv.innerHTML == "")
+				{
+					shichengdiv.innerHTML = str;
+					document.getElementById('shichengdiv').style.display = "";
+					shichengdiv.style.height="10px";
+				}
+			}
+			
+			
+			function showtitle(param)
+			{
+				document.title=param;
+			}
+			
+
+		</script>
+	</HEAD>
+
+	<BODY id = "umc" TOPMARGIN=0 LEFTMARGIN =0 BOTTOMMARGIN =0 RIGHTMARGIN=0 oncontextmenu="return false">
+		<center>
+			<div class="ocxdiv" >
+				<OBJECT classid=clsid:85797439-D3C2-4DD0-A3DE-1F79D2F2FF34 id="UmcWebProjB3" codeBase="umcweb.cab#version=3,0,1,48" ></OBJECT>
+			</div>
+		</center>
+	</BODY>
+</HTML>

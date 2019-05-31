@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+		<!--不缓存-->
+		<meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+		<meta HTTP-EQUIV="expires" CONTENT="0">
+		
+		<title>conftemplateList</title>
+
+		<script type="text/javascript">
+			var date=new Date();
+			document.write("<link href='common/common.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='common/scroll.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			document.write("<link href='conftemplateList.css?rnd="+date.getTime()+".css' rel='stylesheet'/>");
+			
+			document.write("<script src='common/jquery-1.10.2.min.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/common.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='common/scroll.js?rnd="+date.getTime()+"'></s"+"cript>");
+			document.write("<script src='conftemplateList.js?rnd="+date.getTime()+"'></s"+"cript>");
+		</script>
+	</head>
+	
+	<body>
+		<div class="div_conftemplateList_top">
+			<input type="button" class="btn_delete" value="删除"/>
+			<input type="button" class="btn_modify" value="修改"/>
+			<input type="button" class="btn_add" value="添加"/>
+			<input type="button" class="btn_startconf" value="立即召开"/>
+			<div class="div_search">
+				<input type="text" class="text_search"/>
+				<div class="img_search"> </div>
+			</div>
+        </div>
+        
+		<div class="div_list">
+			<div class="div_list_head">
+				<div class="div_list_head_no">编号</div>
+        		<input type="checkbox" onclick="onConftempListHeadCheckboxClick(this);"/>
+        		<div class="div_list_head_confName">名称</div>
+        		<div class="div_list_head_startTime">|类型</div>
+        		<div class="div_list_head_meetNum">|会成员</div>
+        		<div class="div_list_head_homeMeetName">|主会场</div>
+        		<div class="div_list_head_handle"> </div>
+        	</div>
+        	
+        	<!--添加滚动条-->
+        	<div class="div_list_wraper wraper">
+	        	<div class="div_list_content slider">
+	        		<div class="div_list_item" no="1" onclick="onConftempItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+	        			<div class="div_list_item_no">1</div>
+	        			<input type="checkbox" onclick="onConftempItemCheckboxClick(this);"/>
+	        			<div class="div_list_item_name">会议1</div>
+	        			<div class="div_list_item_startTime">即时</div>
+	        			<div class="div_list_item_meetNum"><a href="javascript:void(0)" onclick="showMeetList(this);">10</a></div>
+	        			<div class="div_list_item_homeMeetName">主会场1</div>
+	        			<div class="div_list_item_handle"><a href="javascript:void(0)" onclick="showConf(this);">详情</a></div>
+	        		</div>
+	        		
+	        		<div class="div_list_item" no="2" onclick="onConftempItemClick(this);" onmouseenter="onItemMouseenter(this);" onmouseleave="onItemMouseleave(this);">
+	        			<div class="div_list_item_no">2</div>
+	        			<input type="checkbox" onclick="onConftempItemCheckboxClick(this);"/>
+	        			<div class="div_list_item_name">会议2</div>
+	        			<div class="div_list_item_startTime">预约</div>
+	        			<div class="div_list_item_meetNum"><a href="javascript:void(0)" onclick="showMeetList(this);">10</a></div>
+	        			<div class="div_list_item_homeMeetName">主会场2</div>
+	        			<div class="div_list_item_handle"><a href="javascript:void(0)" onclick="showConf(this);">详情</a></div>
+	        		</div>
+	        	</div>
+	        	
+	        	<div class="pannel"> 
+					<div class="drag"> </div> 
+				</div>
+        	</div>
+        </div>
+        
+        <div class="div_conftemplateList_bottom">
+        	<div class="div_choose_number">已选择（0）</div>
+        </div>
+	</body>
+</html>
+

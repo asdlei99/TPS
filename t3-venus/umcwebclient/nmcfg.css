@@ -1,0 +1,44 @@
+body
+{
+	margin: 0 auto;
+	padding: 0px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.divNMServer
+{
+	/*float: left;*/
+	width: 510px;
+	height: 330px;
+}
+
+.divNMServer .spanNMServer
+{
+	float: left;
+	width: 510px;
+}
+
+.divNMServer div
+{
+	float: left;
+	width: 430px;
+	height: 26px;
+	line-height: 26px;
+	margin-left: 80px;
+	margin-top: 20px;
+}
+
+.divNMServer div .spanTip
+{
+	float: left;
+	width: 135px;
+}
+
+.divNMServer div input[type="text"]
+{
+	float: left;
+	width: 290px;
+	height: 20px;
+	margin-top: 1px;
+}
