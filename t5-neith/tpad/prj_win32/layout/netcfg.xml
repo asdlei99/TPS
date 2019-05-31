@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Window caption="0,0,0,0" size="1920,1200" mininfo="800,200" sizebox="0,0,0,0" maxinfo="1920,1200" >
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />
+    <Font name="微软雅黑" size="22" bold="false"></Font>
+	<Default name="VScrollBar" value="mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+	<VerticalLayout name="NetCfgLayout" >
+	  <HorizontalLayout height="79" name="NetCfgTitleLayout" bkimage="res/title/titlebkg.png">
+	  <HorizontalLayout >
+		<Button name="BtnBack" float="true" pos="0,0,105,79" normalimage="file=&apos;res/title/btnBack.png&apos; dest=&apos;27,14,77,64&apos;" pushedimage="file=&apos;res/title/btnBack_down.png&apos; dest=&apos;27,14,77,64&apos;" /> 
+		<Label float="true" pos="105,0,0,0" width="1" height="79" bkimage="res/title/titlecutline.png" />
+		<Label name="lbTitleImg" float="true" pos="128,21,0,0" width="40" height="40" bkimage="res/title/imgNetCfg.png"/>
+		<Label name="lbTitleName" text="网络设置" float="true" pos="178,24,1000,55" textcolor="#FF92A7C2" font="1" align="left"/>
+	  </HorizontalLayout>
+<!-- 
+	  <HorizontalLayout width="239">
+		<Button name="BtnTip" float="true" pos="0,30,0,0" width="28" height="18" />
+		<Label name="lbDate" text="2016-7-25" float="true" pos="25,0,0,0" width="150" height="79" textcolor="#FF92A7C2" font="2" align="center"/>
+		<Label name="lbTime" text="15:57:12" float="true" pos="155,0,0,0" width="80" height="79" textcolor="#FF92A7C2" font="2" align="center"/>
+	  </HorizontalLayout>
+	  <HorizontalLayout width="106">
+		<Button name="BtnExit" float="true" pos="1,0,105,79" normalimage="file=&apos;res/title/btnExit.png&apos; dest=&apos;29,15,79,65&apos;" pushedimage="file=&apos;res/title/btnExit_down.png&apos; dest=&apos;29,15,79,65&apos;" />
+	  </HorizontalLayout> -->
+	  </HorizontalLayout>
+	  
+	  <VerticalLayout name="NetCfgContenLayout" bkimage="res/subdlgbkg.png">
+		 <HorizontalLayout name="NetCtrlLayout" inset="30,0,0,0" height="93" >
+            <Option name="wificfg" text="Wi-Fi网络设置"  padding="2,23,0,0" width="264" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" selected="true"/>
+			<Control />
+			<Option name="ipcfg" text="有线网络设置" padding="0,23,0,0" width="264" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" />
+			<Control width="1388"/>
+		</HorizontalLayout>
+		<HorizontalLayout bkcolor="#FE4B5764" float="true" pos="27,92,0,0" height="1" width="1866"></HorizontalLayout>
+		<SlideTabLayout name="slidetab" float="true" pos="0,94,1920,1121" >
+		<!--Wi-Fi网络设置-->
+		<VerticalLayout >
+
+		<VerticalLayout name="WifiCfgLayout" >
+			<HorizontalLayout bkimage="res/netcfg/verLine.png" float="true" pos="116,53,0,1000" width="1" ></HorizontalLayout>
+			<VerticalLayout float="true" pos="106,35,1920,1000" vscrollbar="true" hscrollbar="false" slideable="true">
+			<VerticalLayout height="216">
+				<HorizontalLayout height="106" name="">
+				<Label name="" text="" bkimage="res\netcfg\littlecircle.png" float="true" pos="2,11,19,28"  font="1" align="center" gdiplus="true" />
+				<Label name="" text="Wi-Fi" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="开启Wi-Fi网络" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,15,0,0" align="left"  gdiplus="true" />
+				<CheckBox name="CheckWifiOpen" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" />
+				</HorizontalLayout>
+			</VerticalLayout>	
+			<VerticalLayout name="WifiListLayout"  height="170">
+				<HorizontalLayout height="106" name="">
+				<Label name="" text="" bkimage="res\netcfg\littlecircle.png" float="true" pos="2,11,19,28"  font="1" align="center" gdiplus="true" />
+				<Label name="" text="选择网络" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout height="64" name="">
+				<Label name="" text="网络列表" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,15,0,0" align="left"  gdiplus="true" />
+				<Button name="BtnRefresh" text="刷新列表" float="true" pos="290,0,0,0" width="149" height="64" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+				</HorizontalLayout>
+			</VerticalLayout>	
+			
+			<List name="WifiList" width="600" padding="40,0,0,0" bkcolor="" vscrollbar="false" hscrollbar="false" itemselectedbkcolor="" itemhotbkcolor="" itemtextcolor="#FED5DEEB" />
+			
+			<VerticalLayout name="AddWifiCheckLayout" height="108">
+				<HorizontalLayout name="">
+				<Label name="" text="" bkimage="res\netcfg\littlecircle.png" float="true" pos="2,33,19,50"  font="1" align="center" gdiplus="true" />
+				<Label name="" text="添加Wi-Fi网络" float="true" pos="41,20,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Button name="BtnAddWifi" float="true" pos="542,0,0,0" width="104" height="104" normalimage="res\netcfg\btnAdd.png" pushedimage="res\netcfg\btnAdd_down.png"/>
+				</HorizontalLayout>
+			</VerticalLayout>	
+			</VerticalLayout>
+			
+		</VerticalLayout>
+		
+		<Case name="caseWifiOn">	
+			<WifiListLayout visible="true" />
+			<WifiList visible="true" />	
+			<AddWifiCheckLayout visible="true"/>
+		</Case>
+		<Case name="caseWifiOff">	
+			<WifiListLayout visible="false" />
+			<WifiList visible="false" />
+			<AddWifiCheckLayout visible="false"/>
+		</Case>
+		
+		<VerticalLayout name="ConnectWifiLayout" float="true" pos="0,0,1920,1000" visible="false" bkimage="res/public/subpopbg.png">
+			<HorizontalLayout height="126">
+				<Control width="1580"/>
+				<VerticalLayout>
+				<Control />
+				<HorizontalLayout height="64">
+				<Button name="BtnConnectWifi" width="149" height="64" text="连 接" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+				<Control width="15"/>
+				<Button name="BtnConnectBack" width="149" height="64" text="返 回" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+				</HorizontalLayout>
+				<Control />
+				</VerticalLayout>
+			</HorizontalLayout>
+			<HorizontalLayout bkcolor="#FE4B5764" padding="27,0,0,0" height="1" width="1866"></HorizontalLayout>
+			<HorizontalLayout >
+			  <HorizontalLayout bkimage="res/netcfg/verLine.png" float="true" pos="116,53,0,800" width="1" ></HorizontalLayout>
+			  <VerticalLayout float="true" pos="106,35,1920,800" vscrollbar="true" hscrollbar="false" slideable="true">
+			  
+			  <VerticalLayout height="208">
+				<HorizontalLayout name="">
+				<Label name="" bkimage="res\netcfg\littlecircle.png" float="true" pos="2,13,19,30" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				<Label name="labWifiName" text="" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="900" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="安全密锁" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtWifiPsw" text="" float="true" pos="290,0,0,0" height="64" width="612" password="true" maxchar="64" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+				</HorizontalLayout>
+			  </VerticalLayout>	
+			
+			  </VerticalLayout>
+				
+			</HorizontalLayout>
+		</VerticalLayout>
+		
+		<VerticalLayout name="AddWifiLayout" float="true" pos="0,0,1920,1000" visible="false" bkimage="res/public/subpopbg.png">
+			<HorizontalLayout height="126">
+				<Control width="1580"/>
+				<VerticalLayout>
+				<Control />
+				<HorizontalLayout height="64">
+				<Button name="BtnCancelWifiAdd" width="149" height="64" text="取 消" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+				<Control width="15"/>
+				<Button name="BtnSaveWifiAdd" width="149" height="64" text="确 定" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+				</HorizontalLayout>
+				<Control />
+				</VerticalLayout>
+			</HorizontalLayout>
+			<HorizontalLayout bkcolor="#FE4B5764" padding="27,0,0,0" height="1" width="1866"></HorizontalLayout>
+			<HorizontalLayout >
+			  <HorizontalLayout bkimage="res/netcfg/verLine.png" float="true" pos="116,53,0,800" width="1" ></HorizontalLayout>
+			  <VerticalLayout float="true" pos="106,35,1920,800" vscrollbar="true" hscrollbar="false" slideable="true">
+			  
+			  <VerticalLayout height="327">
+				<HorizontalLayout name="">
+				<Label name="" bkimage="res\netcfg\littlecircle.png" float="true" pos="2,13,19,30" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				<Label name="" text="Wi-Fi" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="名称" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtAddWifiName" text="" maxchar="32" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res/public/edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="安全性" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<CheckBox name="CheckSafe" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" />
+				</HorizontalLayout>	
+			  </VerticalLayout>	
+			  
+			  <VerticalLayout name="EncryptModeLayout" height="450" visible="false" >
+				<HorizontalLayout name="">
+				<Label name="" bkimage="res\netcfg\littlecircle.png" float="true" pos="2,13,19,30" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				<Label name="" text="加密模式" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="无" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Option name="opModeNull" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="EncryptMode" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="共享式" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Option name="opModeShare" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="EncryptMode" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" />
+				</HorizontalLayout>	
+				<HorizontalLayout name="">
+				<Label name="" text="WPA" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Option name="opModeWPA" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="EncryptMode" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" />
+				</HorizontalLayout>	
+				<HorizontalLayout name="">
+				<Label name="" text="WPA2" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Option name="opModeWPA2" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="EncryptMode" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" selected="true" />
+				</HorizontalLayout>	
+			  </VerticalLayout>	
+			  <VerticalLayout name="EncryptTypeLayout" visible="false" height="327">
+				<HorizontalLayout name="">
+				<Label name="" bkimage="res\netcfg\littlecircle.png" float="true" pos="2,13,19,30" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				<Label name="" text="加密类型" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="TKIP" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Option name="opTypeTkip" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="EncryptType" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="AES" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Option name="opTypeAes" float="true" pos="290,0,0,0" text=""  width="45" height="45" group="EncryptType" normalimage="res\public\option_normal.png" selectedimage="res\public\option_select.png" selected="true" />
+				</HorizontalLayout>	
+			  </VerticalLayout>	
+			  <VerticalLayout name="AddWifiPswLayout" height="208" visible="false" >
+				<HorizontalLayout name="">
+				<Label name="" bkimage="res\netcfg\littlecircle.png" float="true" pos="2,13,19,30" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				<Label name="" text="安全密锁" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="安全密锁" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtAddWifiPsw" text="" float="true" pos="290,0,0,0" height="64" width="612" password="true" maxchar="64" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res/public/edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+				</HorizontalLayout>
+			  </VerticalLayout>	
+			
+			  </VerticalLayout>
+				
+			</HorizontalLayout>
+			
+			<Case name="caseAddWifiSafeOn">	
+			<EncryptModeLayout visible="true" />
+			<EncryptTypeLayout visible="true"/>
+			<AddWifiPswLayout visible="true"/>
+			</Case>
+			<Case name="caseAddWifiSafeOff">	
+				<EncryptModeLayout visible="false" />
+				<EncryptTypeLayout visible="false"/>
+				<AddWifiPswLayout visible="false"/>
+				<CheckSafe selected="false"/>
+				<opModeWPA2 selected="true"/>
+				<opTypeAes selected="true"/>
+				<edtAddWifiPsw text=""/>		
+			</Case>
+		</VerticalLayout>
+			
+		<VerticalLayout name="WifiIpCfgLayout" float="true" pos="0,0,1920,1000" visible="false" bkimage="res/public/subpopbg.png">
+			  <HorizontalLayout height="126">
+				<Control width="1580"/>
+				<VerticalLayout>
+				<Control />
+				<HorizontalLayout height="64">
+				<Button name="BtnCancelWifiIp" width="149" height="64" text="取 消" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+				<Control width="15"/>
+				<Button name="BtnSaveWifiIp" width="149" height="64" text="确 定" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+				</HorizontalLayout>
+				<Control />
+				</VerticalLayout>
+			  </HorizontalLayout>
+			  <HorizontalLayout bkcolor="#FE4B5764" padding="27,0,0,0" height="1" width="1866"></HorizontalLayout>
+			  <HorizontalLayout >
+			  <HorizontalLayout bkimage="res/netcfg/verLine.png" float="true" pos="116,53,0,800" width="1" ></HorizontalLayout>
+			  <VerticalLayout float="true" pos="106,35,1920,800" vscrollbar="true" hscrollbar="false" slideable="true">
+			  
+			  <VerticalLayout height="872">
+				<HorizontalLayout name="">
+				<Label name="" bkimage="res\netcfg\littlecircle.png" float="true" pos="2,13,19,30" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				<Label name="" text="网络信息" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="自动获得IP地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<CheckBox name="WifiCheckAutoIpAddress" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="IP地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtWifiIP" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="子网掩码" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtWifiSubnetMask" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="默认网关" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtWifiGateWay" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1"  textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="自动获得DNS地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="220" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<CheckBox name="WifiCheckAutoDNSAddress" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="首选DNS" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtWifiPriorityDNS" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1"  textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="备用DNS" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtWifiBkupDNS" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1"  textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+				</HorizontalLayout>
+			  </VerticalLayout>	
+			
+			  </VerticalLayout>
+			
+			  <Case name="caseWifiUseIPDhcp">	
+				<edtWifiIP enabled="false" text="" />
+				<edtWifiSubnetMask enabled="false" text=""/>
+				<edtWifiGateWay enabled="false" text=""/>
+				<WifiCheckAutoDNSAddress enabled="true"/>
+			  </Case>
+			  <Case name="caseWifiNotUseIPDhcp">	
+				<edtWifiIP enabled="true"/>
+				<edtWifiSubnetMask enabled="true"/>
+				<edtWifiGateWay enabled="true"/>
+				<WifiCheckAutoDNSAddress enabled="false" selected="false" />	
+				<edtWifiPriorityDNS enabled="true"/>
+				<edtWifiBkupDNS enabled="true"/>				
+			  </Case>
+			  <Case name="caseWifiUseDnsDhcp">	
+				<edtWifiPriorityDNS enabled="false" text=""/>
+				<edtWifiBkupDNS enabled="false" text=""/>
+			  </Case>
+			  <Case name="caseWifiNotUseDnsDhcp">	
+				<edtWifiPriorityDNS enabled="true"/>
+				<edtWifiBkupDNS enabled="true"/>
+			  </Case>
+			
+			  </HorizontalLayout>
+		  </VerticalLayout>
+			
+		</VerticalLayout>
+        
+		<!--有线网络设置-->
+		<VerticalLayout>
+		
+		<HorizontalLayout height="126">
+		  <Control width="1580"/>
+		  <VerticalLayout>
+		    <Control />
+			<HorizontalLayout height="64">
+			<Button name="BtnCancelIp" width="149" height="64" text="取 消" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			<Control width="15"/>
+			<Button name="BtnSaveIp" width="149" height="64" text="确 定" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+			</HorizontalLayout>
+		    <Control />
+		  </VerticalLayout>
+		</HorizontalLayout>
+		<HorizontalLayout bkcolor="#FE4B5764" padding="27,0,0,0" height="1" width="1866"></HorizontalLayout>
+			<HorizontalLayout >
+			<HorizontalLayout bkimage="res/netcfg/verLine.png" float="true" pos="116,53,0,800" width="1" ></HorizontalLayout>
+			<VerticalLayout float="true" pos="106,35,1920,800" vscrollbar="true" hscrollbar="false" slideable="true">
+			  
+			<VerticalLayout height="872">
+				<HorizontalLayout name="">
+				<Label name="" bkimage="res\netcfg\littlecircle.png" float="true" pos="2,13,19,30" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				<Label name="" text="网络信息" float="true" pos="41,0,0,0" textcolor="#FE92A7C2" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="自动获得IP地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<CheckBox name="CheckAutoIpAddress" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" />
+				<Label name="lbAutoIpAddress" text="开" visible = "false" float="true" pos="290,0,0,0" width="200" height="64" textcolor="#FED5DEEB" textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="IP地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtIP" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+				<Label name="lbIP" text="" float="true" visible="false" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="子网掩码" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtSubnetMask" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+				<Label name="lbSubnetMask" text="" visible="false" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="默认网关" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtGateWay" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1"  textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+				<Label name="lbGateWay" text="" visible="false" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="自动获得DNS地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="220" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<CheckBox name="CheckAutoDNSAddress" text="" float="true" pos="290,0,0,0" height="66" width="124" normalimage="res\public\switchbtn_off.png" selectedimage="res\public\switchbtn_on.png" />
+				<Label name="lbAutoDNSAddress" visible = "false" text="开" float="true" pos="290,0,0,0" width="200" height="64" textcolor="#FED5DEEB" textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="首选DNS" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtPriorityDNS" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1"  textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+				<Label name="lbPriorityDNS" text="" visible="false" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				</HorizontalLayout>
+				<HorizontalLayout name="">
+				<Label name="" text="备用DNS" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+				<Edit name="edtBkupDNS" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1"  textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+				<Label name="lbBkupDNS" text="" visible="false" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
+				</HorizontalLayout>
+			</VerticalLayout>	
+			
+			</VerticalLayout>
+			
+			<Case name="caseUseIPDhcp">	
+				<edtIP enabled="false" text="" />
+				<edtSubnetMask enabled="false" text=""/>
+				<edtGateWay enabled="false" text=""/>
+				<CheckAutoDNSAddress enabled="true"/>
+			</Case>
+			<Case name="caseNotUseIPDhcp">	
+				<edtIP enabled="true"/>
+				<edtSubnetMask enabled="true"/>
+				<edtGateWay enabled="true"/>
+				<CheckAutoDNSAddress enabled="false" selected="false" />	
+				<edtPriorityDNS enabled="true"/>
+				<edtBkupDNS enabled="true"/>				
+			</Case>
+			<Case name="caseUseDnsDhcp">	
+				<edtPriorityDNS enabled="false" text=""/>
+				<edtBkupDNS enabled="false" text=""/>
+			</Case>
+			<Case name="caseNotUseDnsDhcp">	
+				<edtPriorityDNS enabled="true"/>
+				<edtBkupDNS enabled="true"/>
+			</Case>
+			
+			</HorizontalLayout>
+		</VerticalLayout>		
+        </SlideTabLayout>
+	  </VerticalLayout>
+	</VerticalLayout>
+
+</Window>

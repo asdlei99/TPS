@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window sizebox="0,0,0,0" caption="0,0,0,0" size="1920,1063" maxinfo="1920,1063" >
+    <Font name="微软雅黑" size="24" bold="false" default="true" />
+    <Font name="微软雅黑" size="18" bold="false"></Font>
+    <Font name="微软雅黑" size="12" bold="false" default="false" />
+   
+    <VerticalLayout name="MainMenuLayout" bkimage="res\cnsmanagebkg.png" >
+	 <HorizontalLayout name="MainMenuBtnLayout1" inset="260,0,260,0" padding="0,439,0,0" height="246" visible="false">
+	  <VerticalLayout name="CnsManageLayout">
+	    <Button name="BtnCnsManage"  width="184" height="184" align="center" normalimage="res/mainmenu/cnsmanage.png" pushedimage="res/mainmenu/cnsmanage_down.png" />
+	    <Label name="LabCnsManage" text="会场管理" padding="0,18,0,0" textcolor="#FFD5DEEB" font="0" align="center" />
+	  </VerticalLayout>
+	  <Control width="120" visible="false"/> 
+	  <VerticalLayout name="CenterCtrlLayout" visible="false">
+	    <Button name="BtnCenterCtrl"  width="184" height="184" align="center" normalimage="res/mainmenu/centerctrl.png" pushedimage="res/mainmenu/centerctrl_down.png" />
+	    <Label text="中控管理" padding="0,18,0,0" textcolor="#FFD5DEEB" font="0" align="center" />
+	  </VerticalLayout>
+	  <Control width="120"/> 
+	  <VerticalLayout name="FileManageLayout">
+	    <Button name="BtnFileManage"  width="184" height="184" align="center" normalimage="res/mainmenu/filemanage.png" pushedimage="res/mainmenu/filemanage_down.png" />
+	    <Label name="LabFileManage" text="文件管理" padding="0,18,0,0" textcolor="#FFD5DEEB" font="0" align="center"  />
+	  </VerticalLayout>
+	 <!--/HorizontalLayout>
+	 
+	 <HorizontalLayout name="MainMenuBtnLayout2" inset="503,0,503,0" padding="0,80,0,0" height="246" visible="false"-->
+	  <Control width="120"/>
+	  <VerticalLayout name="BrowserLayout">
+	    <Button name="BtnBrowser" width="184" height="184" align="center" normalimage="res/mainmenu/browser.png" pushedimage="res/mainmenu/browser_down.png" />
+	    <Label name="LabBrowser" text="浏览器" padding="0,18,0,0" textcolor="#FFD5DEEB" font="0" align="center"  />
+	  </VerticalLayout>
+	  <Control width="120" /> 
+	  <VerticalLayout name="DataConfLayout" >
+	    <Button name="BtnDataConf" width="184" height="184" align="center" normalimage="res/mainmenu/whiteboard.png" pushedimage="res/mainmenu/whiteboard_down.png" />
+	    <Label text="数据会议" padding="0,18,0,0" textcolor="#FFD5DEEB" font="0" align="center" />
+	  </VerticalLayout>
+	  <Control width="120" /> 
+	  <VerticalLayout name="WatchDualLayout">
+	    <Button name="BtnWatchDual" width="184" height="184" align="center" normalimage="res/mainmenu/watchdual.png" pushedimage="res/mainmenu/watchdual_down.png" disabledimage="res/mainmenu/watchdual_disable.png" />
+	    <Label name="LabWatchDual" text="收看演示" padding="0,18,0,0" textcolor="#FFD5DEEB" font="0" align="center"  />
+	  </VerticalLayout>
+	 </HorizontalLayout>
+	 
+	 <HorizontalLayout name="MainMenuNoAdminLayout" padding="412,439,0,0" >
+	 <VerticalLayout name="FileManageLayout"  width="184">
+	    <Button name="BtnFileManage"  height="184" align="center" normalimage="res/mainmenu/filemanage.png" pushedimage="res/mainmenu/filemanage_down.png" />
+	    <Label name="LabFileManage" text="文件管理" padding="0,18,0,0" textcolor="#FFD5DEEB" font="0" align="center"  />
+	  </VerticalLayout>
+	  <Control width="120" /> 
+	  <VerticalLayout name="BrowserLayout" width="184">
+	    <Button name="BtnBrowser" height="184" align="center" normalimage="res/mainmenu/browser.png" pushedimage="res/mainmenu/browser_down.png" />
+	    <Label name="LabBrowser" text="浏览器" padding="0,18,0,0" textcolor="#FFD5DEEB" font="0" align="center"  />
+	  </VerticalLayout>
+	  <Control width="120" /> 
+	  <VerticalLayout name="DataConfLayout" width="184">
+	    <Button name="BtnDataConf" height="184" align="center" normalimage="res/mainmenu/whiteboard.png" pushedimage="res/mainmenu/whiteboard_down.png" />
+	    <Label text="数据会议" padding="0,18,0,0" textcolor="#FFD5DEEB" font="0" align="center" />
+	  </VerticalLayout>
+	  <Control width="120" /> 
+	  <VerticalLayout name="WatchDualLayout" width="184">
+	    <Button name="BtnWatchDual" height="184" align="center" normalimage="res/mainmenu/watchdual.png" pushedimage="res/mainmenu/watchdual_down.png"  disabledimage="res/mainmenu/watchdual_disable.png" />
+	    <Label name="LabWatchDual" text="收看演示" padding="0,18,0,0" textcolor="#FFD5DEEB" font="0" align="center"  />
+	  </VerticalLayout>
+	 </HorizontalLayout>
+	 
+	<Case name="caseAdmin">	
+	    <MainMenuBtnLayout1 visible="true"/> 
+		<!--MainMenuBtnLayout2 visible="true"/--> 
+		<MainMenuNoAdminLayout visible="false"/>
+    </Case>
+    <Case name="caseNoAdmin">	
+	    <MainMenuBtnLayout1 visible="false"/> 
+		<!--MainMenuBtnLayout2 visible="false"/--> 
+		<MainMenuNoAdminLayout visible="true"/>
+    </Case>
+	
+	</VerticalLayout>
+
+
+</Window>

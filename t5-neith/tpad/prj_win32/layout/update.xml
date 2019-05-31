@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="gb2312"?>
+<Window sizebox="0,0,0,0" caption="0,0,0,418" size="618,418" mininfo="618,418"  maxinfo="618,418" bktrans="true">
+    <Font name="微软雅黑" size="25" bold="false" default="true"  />
+    <Font name="微软雅黑" size="18" bold="false"></Font>
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+   <HorizontalLayout name="UpdateLayout" bkimage="res/public/messagebox.png" inset="0,0,0,0">  
+	<VerticalLayout float="true" pos="68,100,550,200">
+	<Label name="LabelTip" text="检测到最新版本，是否立即升级？" height="100" textcolor="#CCFFFFFF" align="center" font="0" gdiplus="true"/>
+	</VerticalLayout>
+	<VerticalLayout name="progressLay" float="true" pos="100,200,518,300" visible="false">
+	<Label name="LbProgress" text="0%" height="60" textcolor="#CCFFFFFF" align="center" font="0" gdiplus="true"/>	
+	<Progress name="progressBar" height="8" value="0" foreimage="res\public\progress_fore.png" bkimage="res\public\progress_fore_bg.png" min="0" max="100" bordersize="0" borderround="2,2" gdiplus="true"/> 
+	
+	</VerticalLayout>
+	<HorizontalLayout float="true" pos="150,300,468,364">
+	<!--Control /-->
+	<Button name="BtnOk" float="true" pos="6,0,155,64" width="149" height="64" font="1" text="立即升级" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"   align="center"  gdiplus="true"/>
+	<Button name="BtnCancel" float="true" pos="163,0,312,64" width="149" height="64" font="1" padding="20,0,0,0" text="取  消" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"   align="center" gdiplus="true"/>
+	<!--Control /-->
+	</HorizontalLayout>
+	
+	<Case name="caseUpdate">	
+		<LabelTip text="正在下载请稍后.. .."/> 
+		<BtnOk visible="true" enabled="false"/>
+		<BtnCancel visible="true"/>
+		<progressLay visible="true"/> 
+    </Case>
+    <Case name="caseNoUpdate">	
+		<LabelTip text="检测到最新版本，是否立即升级？"/> 
+		<BtnOk visible="true" enabled="true" text="立即升级"/>
+		<BtnCancel visible="true" enabled="true" text="取  消"/>
+		<progressLay visible="false"/> 
+    </Case>
+	 <Case name="caseDownLoadEnd">
+		<LabelTip text="升级成功，点击确定后重启系统"/> 
+		<BtnOk visible="true" enabled="true" text="确 定"/>
+		<BtnCancel visible="true" enabled="true" text="取  消"/>
+    </Case>
+	<Case name="caseDownLoadFail">
+		<BtnOk visible="true" enabled="true" text="确 定"/>
+		<BtnCancel visible="true" />
+    </Case>
+	<Case name="caseIntall">
+		<LabelTip text="正在安装请稍后.. .."/> 
+		<BtnOk visible="false" enabled="false" text="确 定"/>
+		<BtnCancel visible="false" enabled="false" text="取 消"/>
+		<progressLay visible="false"/> 
+    </Case>
+	
+  </HorizontalLayout>
+ </Window>

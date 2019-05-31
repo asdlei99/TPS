@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Window caption="0,0,0,0" size="1920,1200" mininfo="800,200" sizebox="0,0,0,0" maxinfo="1920,1200" roundcorner="0,0">
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />
+    <Font name="微软雅黑" size="22" bold="false"></Font>
+	<Font name="微软雅黑" size="20" bold="false"></Font>
+	<Default name="VScrollBar" value="mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+	<VerticalLayout name="AboutLayout">	
+	<HorizontalLayout height="79" bkimage="res/title/titlebkg.png">
+	  <HorizontalLayout width="1570">
+		<Button name="BtnBack" float="true" pos="0,0,105,79" normalimage="file=&apos;res/title/btnBack.png&apos; dest=&apos;27,14,77,64&apos;" pushedimage="file=&apos;res/title/btnBack_down.png&apos; dest=&apos;27,14,77,64&apos;" /> 
+		<Label float="true" pos="105,0,0,0" width="1" height="79" bkimage="res/title/titlecutline.png" />
+		<Label name="lbTitleImg" float="true" pos="128,21,0,0" width="40" height="40" bkimage="res/title/imgAbout.png"/>
+		<Label name="lbTitleName" text="帮助信息" float="true" pos="178,24,1800,55" textcolor="#FF92A7C2" font="1" align="left"/>
+	  </HorizontalLayout>
+	  <HorizontalLayout width="239">
+		<Label name="lbDate" float="true" pos="25,0,0,0" width="150" height="79" textcolor="#FF92A7C2" font="2" align="center"/>
+		<Label name="lbTime" float="true" pos="155,0,0,0" width="80" height="79" textcolor="#FF92A7C2" font="2" align="center"/>
+	  </HorizontalLayout>
+	  <HorizontalLayout width="106">
+	    <Label float="true" pos="5,0,0,0" width="1" height="79" bkimage="res/title/titlecutline.png" />
+		<Button name="BtnExit" float="true" pos="1,0,105,79" normalimage="file=&apos;res/title/btnExit.png&apos; dest=&apos;29,15,79,65&apos;" pushedimage="file=&apos;res/title/btnExit_down.png&apos; dest=&apos;29,15,79,65&apos;" />
+	  </HorizontalLayout>
+	</HorizontalLayout>
+	<HorizontalLayout bkimage="res/subdlgbkg.png">	
+	<TouchList name="AboutList" float="true"  pos="88,88,1855,1140" columns="6" itemselectedimage="res\list\item_sel.png" itembkimage="res\list\item_normal.png" itemdisabledimage="res\list\item_disabled.png">
+	</TouchList>
+	</HorizontalLayout>
+	</VerticalLayout>
+</Window>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<PageTPadMain>
+  <VerticalLayout name="TPadMainPage" bkimage="res/cnsmanagebkg.png" inset="0,0,0,0">
+    
+	<HorizontalLayout height="28" bkimage="res/titlebar/titlebarbkg.png" >
+	  <Text name="" float="true" pos="9,0,0,0" width="80" height="28" text="TPAD" textcolor="#CCD4DEEB" font="0" align="left" gdiplus="true" />
+	  <Label name="labWifiSinal" float="true" pos="75,3,0,0" width="23" height="20" bkimage=""/>
+	  <Label name="labTime" float="true" pos="910,0,0,0" width="100" height="28" textcolor="#CCD4DEEB" font="0" align="center" gdiplus="true"/>
+	  <Label name="labBatteryLife" float="true" pos="1797,0,0,0" width="60" height="28" textcolor="#CCD4DEEB" font="0" align="right" gdiplus="true"/>
+	  <Label name="labBatteryFrame" float="true" pos="1864,6,0,0" width="36" height="17" bkimage="" />
+	  <Progress name="progressBarBattery" float="true" pos="1866,8,0,0" width="29" height="13" forebkcolor="#1A5DC011" value="0" min="0" max="100" bordersize="0" borderround="0,0" gdiplus="true" />
+	</HorizontalLayout>
+    <Case name="caseWifiNoSignal">
+		<labWifiSinal bkimage="res/titlebar/no_signal.png" />
+	 </Case>
+	 <Case name="caseWifiLittleSignal" >
+		<labWifiSinal bkimage="res/titlebar/little_signal.png" />
+	 </Case>
+	 <Case name="caseWifiHalfSignal">
+		<labWifiSinal bkimage="res/titlebar/half_signal.png" />
+	 </Case>
+	 <Case name="caseWifiFullSignal">
+		<labWifiSinal bkimage="res/titlebar/full_signal.png" />
+	 </Case>
+	 <!--NO Acline-->
+	 <Case name="caseBatteryNOACLine">
+		<labBatteryFrame bkimage="res/titlebar/Battery.png" />
+	 </Case>
+	 <!--ACline-->
+	 <Case name="caseBatteryACLine">
+		<labBatteryFrame bkimage="res/titlebar/ACLine.png" />
+	 </Case>
+	 
+    <VerticalLayout height="1063" bkimage="res/mainmenu/mainmenubkg.png" >  
+
+    </VerticalLayout>
+
+	<HorizontalLayout height="109" >
+	  <Button name="BtnHelp"  padding="1641,0,,0" width="68" height="68" normalimage="res/mainmenu/help.png" hotimage="res/mainmenu/help_down.png" />
+	  <Button name="BtnSysConfig"  padding="20,0,0,0" width="68" height="68" normalimage="res/mainmenu/syscfg.png" hotimage="res/mainmenu/syscfg_down.png" />
+	  <Button name="BtnExit"  padding="20,0,0,0" width="68" height="68" normalimage="res/mainmenu/exit.png" hotimage="res/mainmenu/exit_down.png" />
+	</HorizontalLayout>
+	
+	<Case name="caseAdminLogin">	
+	    <BtnHelp padding="1641,0,,0"/> 
+		<BtnSysConfig visible="true"/> 
+    </Case>
+	<Case name="caseNoAdminLogin">	
+	    <BtnHelp padding="1729,0,,0"/> 
+		<BtnSysConfig visible="false"/> 
+    </Case>
+  </VerticalLayout>
+</PageTPadMain>

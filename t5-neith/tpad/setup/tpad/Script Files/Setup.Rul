@@ -1,0 +1,436 @@
+//===========================================================================
+//
+//  File Name:    Setup.rul
+//
+//  Description:  Blank setup main script file
+//
+//  Comments:     Blank setup is an empty setup project. If you want to
+//				  create a new project via. step-by step instructions use the
+//				  Project Assistant.
+//
+//===========================================================================
+
+// Included header files ----------------------------------------------------
+#include "ifx.h"   
+#include "ShutDownRunningApp.rul"    
+
+
+//---------------------------------------------------------------------------                                                                        
+// OnFirstUIBefore
+//
+// First Install UI Sequence - Before Move Data
+//
+// The OnFirstUIBefore event is called by OnShowUI when the setup is
+// running in first install mode. By default this event displays UI allowing
+// the end user to specify installation parameters.
+//
+// Note: This event will not be called automatically in a
+// program...endprogram style setup.
+//---------------------------------------------------------------------------
+function OnFirstUIBefore()
+    number  nResult, nLevel, nSize, nSetupType;
+    string  szTitle, szMsg, szOpt1, szOpt2, szLicenseFile;
+    string  szName, szCompany, szTargetPath, szDir, szFeatures;
+    BOOL    bLicenseAccepted;	
+begin	
+   
+    nSetupType = COMPLETE;	
+    szDir = TARGETDIR;
+    szName = "";
+    szCompany = "";
+    bLicenseAccepted = FALSE;
+
+// Beginning of UI Sequence
+Dlg_Start:
+    nResult = 0;
+
+Dlg_SdWelcome:
+    szTitle = "欢迎使用 TPad 安装程序";
+    szMsg = "";
+    //{{IS_SCRIPT_TAG(Dlg_SdWelcome)
+    nResult = SdWelcome( szTitle, szMsg );
+    //}}IS_SCRIPT_TAG(Dlg_SdWelcome)
+    if (nResult = BACK) goto Dlg_Start;
+
+Dlg_SdLicense2:
+    szTitle = "";
+    szOpt1 = "";
+    szOpt2 = "";
+    //{{IS_SCRIPT_TAG(License_File_Path)
+    szLicenseFile = SUPPORTDIR ^ "License.rtf";
+    //}}IS_SCRIPT_TAG(License_File_Path)
+    //{{IS_SCRIPT_TAG(Dlg_SdLicense2)
+   // nResult = SdLicense2Rtf( szTitle, szOpt1, szOpt2, szLicenseFile, bLicenseAccepted );
+    //}}IS_SCRIPT_TAG(Dlg_SdLicense2)
+    if (nResult = BACK) then
+        goto Dlg_SdWelcome;
+    else
+        bLicenseAccepted = TRUE;
+    endif;
+
+Dlg_SdRegisterUser:
+    szMsg = "";
+    szTitle = "";
+    //{{IS_SCRIPT_TAG(Dlg_SdRegisterUser)	
+   // nResult = SdRegisterUser( szTitle, szMsg, szName, szCompany );
+    //}}IS_SCRIPT_TAG(Dlg_SdRegisterUser)
+    if (nResult = BACK) goto Dlg_SdLicense2;
+
+Dlg_SetupType2:   
+    szTitle = "";
+    szMsg = "";
+    nResult = CUSTOM;
+    //{{IS_SCRIPT_TAG(Dlg_SetupType2)	
+   // nResult = SetupType2( szTitle, szMsg, "", nSetupType, 0 );
+    //}}IS_SCRIPT_TAG(Dlg_SetupType2)
+    if (nResult = BACK) then
+        goto Dlg_SdRegisterUser;
+    else
+        nSetupType = nResult;
+        if (nSetupType != CUSTOM) then
+            szTargetPath = TARGETDIR;
+            nSize = 0;
+            FeatureCompareSizeRequired( MEDIA, szTargetPath, nSize );
+            if (nSize != 0) then      
+                MessageBox( szSdStr_NotEnoughSpace, WARNING );
+                goto Dlg_SetupType2;
+            endif;
+        endif;   
+    endif;
+
+Dlg_SdAskDestPath2:
+    Disable( BACKBUTTON );
+    if ((nResult = BACK) && (nSetupType != CUSTOM)) goto Dlg_SetupType2;
+	szTitle = "";
+    szMsg = "";
+    if (nSetupType = CUSTOM) then
+                //{{IS_SCRIPT_TAG(Dlg_SdAskDestPath2)	
+		nResult = SdAskDestPath2( szTitle, szMsg, szDir );
+                //}}IS_SCRIPT_TAG(Dlg_SdAskDestPath2)
+        TARGETDIR = szDir;
+    endif;
+    if (nResult = BACK) goto Dlg_SetupType2;
+    
+    Enable( BACKBUTTON );
+
+Dlg_SdFeatureTree: 
+    if ((nResult = BACK) && (nSetupType != CUSTOM)) goto Dlg_SdAskDestPath2;
+    szTitle = "";
+    szMsg = "";
+    szFeatures = "";
+    nLevel = 2;
+    if (nSetupType = CUSTOM) then
+        //{{IS_SCRIPT_TAG(Dlg_SdFeatureTree)	
+       // nResult = SdFeatureTree( szTitle, szMsg, TARGETDIR, szFeatures, nLevel );
+        //}}IS_SCRIPT_TAG(Dlg_SdFeatureTree)
+        if (nResult = BACK) goto Dlg_SdAskDestPath2;  
+    endif;
+
+Dlg_SQLServer:
+    nResult = OnSQLServerInitialize( nResult );
+    if( nResult = BACK ) goto Dlg_SdFeatureTree;
+
+Dlg_ObjDialogs:
+    nResult = ShowObjWizardPages( nResult );
+    if (nResult = BACK) goto Dlg_SQLServer;
+    
+Dlg_SdStartCopy2:
+    szTitle = "";
+    szMsg = "";
+    //{{IS_SCRIPT_TAG(Dlg_SdStartCopy2)	
+    nResult = SdStartCopy2( szTitle, szMsg );	
+    //}}IS_SCRIPT_TAG(Dlg_SdStartCopy2)
+    if (nResult = BACK) goto Dlg_ObjDialogs;
+
+    // Added in 11.0 - Set appropriate StatusEx static text.
+    SetStatusExStaticText( SdLoadString( IDS_IFX_STATUSEX_STATICTEXT_FIRSTUI ) );
+ 
+    return 0;
+end;
+
+//---------------------------------------------------------------------------
+// OnUninstallingFile
+//
+// The OnUninstallingFile event is called when a file is about to be
+// uninstalled as a result of FeatureTransferData or FeatureMoveData.
+//
+// szFile will contain the full path of file about to be uninstalled.
+//---------------------------------------------------------------------------
+function OnUninstallingFile(szFile)
+begin
+
+
+end;
+//---------------------------------------------------------------------------
+// OnMoved
+//
+// The OnMoved event is called as a result of the setup calling
+// FeatureTransferData or FeatureMoveData. The event is called when
+// all file transfer operations are completed except for batch
+// self-registration which is performed immediately after this event returns.
+// During uninstallation this event sent after uninstallation is completed,
+// therefore you should not modify system state in this event.
+//---------------------------------------------------------------------------
+function OnMoved()
+NUMBER nRootKey;
+string szExePath; 
+string szQQSkinCmdLie;  
+
+string szSrcFile;   
+string szTargetFile; 
+begin  
+
+	//安装VC环境
+	if (SYSINFO.bIsWow64 = TRUE) then                               
+        LaunchAppAndWait (TARGETDIR ^ "vcredist_x64.exe", "/q", WAIT);
+    else   
+        LaunchAppAndWait (TARGETDIR ^ "vcredist_x86.exe", "/q", WAIT);
+    endif;      
+
+	//替代run.bat		
+	CreateDir ( FOLDER_APPDATA ^ "OpenOffice");
+    XCopyFile ( TARGETDIR ^ "OpenOffice\\*.*", FOLDER_APPDATA ^ "OpenOffice", COMP_NORMAL|INCLUDE_SUBDIR );  
+   
+    // 修改启动项，将桌面替换为kdv1000  
+    /*
+    nRootKey = HKEY_LOCAL_MACHINE;
+    RegDBSetDefaultRoot(nRootKey);
+    
+    if (MAINTENANCE) then
+
+        szExePath  = "Explorer.exe";
+        
+    else
+    
+        szExePath  = TARGETDIR + "\\tpad.exe";
+       
+    endif;
+    */
+    // 修改启动项，将桌面替换为tpad
+    //RegDBSetKeyValueEx ( "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon", "Shell", REGDB_STRING, szExePath, -1 );
+   
+    // 安装WINRAR     
+	if (SYSINFO.bIsWow64 = TRUE) then                               
+        LaunchAppAndWait (TARGETDIR ^ "wrarx64.exe", TARGETDIR, WAIT);
+    else   
+        LaunchAppAndWait (TARGETDIR ^ "wrar420sc.exe", TARGETDIR, WAIT);
+    endif;  
+    
+    // 安装qq输入法皮肤  
+    //szQQSkinCmdLie = " -install " + "\"" + TARGETDIR + "cmc.qpys" + "\"";
+	//LaunchAppAndWait (TARGETDIR ^ "qqimeregskin.exe", szQQSkinCmdLie, WAIT);  
+	
+    // 删除WINRAR安装程序
+	DeleteFile(TARGETDIR ^ "wrar420sc.exe");    
+	DeleteFile(TARGETDIR ^ "wrarx64.exe"); 
+	 
+end;
+//---------------------------------------------------------------------------
+// OnMaintUIBefore
+//
+// Maintenance UI Sequence - Before Move Data
+//
+// The OnMaintUIBefore event is called by OnShowUI when the setup is
+// running in maintenance mode. By default this event displays UI that
+// allows the end user to add or remove features, repair currently
+// installed features or uninstall the application.
+//
+// Note: This event will not be called automatically in a
+// program...endprogram style setup.
+//---------------------------------------------------------------------------
+function OnMaintUIBefore()
+    number	nResult, nType, nMediaFlags;
+    string	szTitle, szMsg, szIgnore;
+begin
+	
+	// nType defaults to MODIFY.
+	nType = MODIFY;
+
+    //Initialize SQL
+    OnSQLServerInitializeMaint();
+
+// Beginning of UI Sequence
+Dlg_Start:
+
+    // Added in Version 9.5 - Support for REMOVEONLY option.
+    if( !REMOVEONLY ) then
+    	// In standard mode show maintenance dialog
+	    Disable( BACKBUTTON );
+	    nType = SdWelcomeMaint( szTitle, szMsg, nType );
+	    Enable( BACKBUTTON );
+        nResult = NEXT;
+    else
+        // Hide the initial progress dialog as otherwise the user can
+        // click on it, and hide the MessageBox.
+        Disable( DIALOGCACHE );
+
+        // In RemoveOnly mode, set to remove.
+        nType = REMOVEALL;
+    endif;
+
+	// Show Uninstall Confirmation Dialog
+    if ( nType = REMOVEALL ) then      
+    
+          if ProcessRunning("tpad") then    
+			//ProcessEnd("whiteboard");  
+			nResult = MessageBox( "程序正在运行，是否继续", MB_YESNO );
+	        if (nResult == IDYES ) then    
+	        
+	            ProcessEnd("tpad"); 
+		        if ProcessRunning("cnc") then
+					ProcessEnd("cnc"); 
+				endif;    
+				if ProcessRunning("loadtpad.exe") then
+					ProcessEnd("loadtpad.exe"); 
+				endif;			              
+	        else        
+   				goto Dlg_Start;
+			endif;
+		endif; 
+		
+		nResult = MessageBox( SdLoadString( IFX_MAINTUI_MSG ), MB_YESNO );
+		if (nResult != IDYES ) then
+            
+            if( REMOVEONLY ) then
+                // In REMOVEONLY mode, abort the setup.
+                abort;
+            else
+                // In non-REMOVEONLY mode, redisplay the previous dialog.
+			    goto Dlg_Start;
+            endif;
+
+		endif;
+	endif;
+
+Dlg_SdFeatureTree:
+	if ( nType = MODIFY ) then
+		szTitle = "";
+		szMsg = SdLoadString( SD_STR_COMPONENT_MAINT_MSG );
+		nResult = SdFeatureTree( szTitle, szMsg, TARGETDIR, "", -1 );
+		if ( nResult = BACK ) goto Dlg_Start;
+    endif;
+
+Dlg_ObjDialogs:
+    nResult = ShowObjWizardPages( nResult );
+    if ( ( nResult = BACK ) && ( nType != MODIFY ) ) goto Dlg_Start;
+    if ( ( nResult = BACK ) && ( nType = MODIFY ) ) goto Dlg_SdFeatureTree;
+
+	switch(nType)
+
+        case REMOVEALL:
+						    
+			if ProcessRunning("cnc") then
+				// MessageBox("Application is running.", INFORMATION);
+				ProcessEnd("cnc"); 
+			endif;    
+			//if ProcessRunning("centerctrl") then
+			//	ProcessEnd("centerctrl"); 
+			//endif;
+			if ProcessRunning("loadtpad.exe") then
+				ProcessEnd("loadtpad.exe"); 
+			endif;
+			if ProcessRunning("tpad") then    
+				ProcessEnd("tpad"); 
+			endif;   			
+    
+			// Ensure that all previously installed features are removed
+			// for media that supports updating.
+			MediaGetData( MEDIA, MEDIA_FIELD_MEDIA_FLAGS, nMediaFlags, szIgnore );
+			
+			if( nMediaFlags & MEDIA_FLAG_UPDATEMODE_SUPPORTED ) then
+				FeatureRemoveAllInMediaAndLog();
+			else
+				FeatureRemoveAllInMedia();
+			endif;
+
+            // Added in 11.0 - Set appropriate StatusEx static text.
+            SetStatusExStaticText( SdLoadString( IDS_IFX_STATUSEX_STATICTEXT_MAINTUI_REMOVEALL ) );
+
+        case REPAIR:
+		     if ProcessRunning("tpad") then    
+			//ProcessEnd("whiteboard");  
+			nResult = MessageBox( "程序正在运行，是否继续", MB_YESNO );
+	        if (nResult == IDYES ) then    
+	        
+	            ProcessEnd("tpad"); 
+		        if ProcessRunning("cnc") then
+					ProcessEnd("cnc"); 
+				endif;    
+				//if ProcessRunning("centerctrl") then
+				//	ProcessEnd("centerctrl"); 
+				//endif;
+				if ProcessRunning("loadtpad.exe") then
+					ProcessEnd("loadtpad.exe"); 
+				endif;			              
+	        else        
+   				goto Dlg_Start;
+			endif;
+		endif; 		
+			// Changed for DevStudio 9, Disk1 files are now always updated when installed
+			// so when running from ADDREMOVE we need to prevent these files from being
+			// updated since this will result in files being updated that are locked by the setup.
+			// Updating these files when running from ADDREMOVE should not be needed since updates
+			// are not run directly from Add/Remove.
+            if( ADDREMOVE ) then
+                // Reinstall all previously installed features, except
+                // disk1 features.
+                FeatureUpdate( "" );
+            else
+                // Reinstall all previously installed features.
+                FeatureReinstall();
+            endif;
+
+            // Added in 11.0 - Set appropriate StatusEx static text.
+            SetStatusExStaticText( SdLoadString( IDS_IFX_STATUSEX_STATICTEXT_MAINTUI_REPAIR ) );
+
+        case MODIFY:
+            
+            // Added in 11.0 - Set appropriate StatusEx static text.
+            SetStatusExStaticText( SdLoadString( IDS_IFX_STATUSEX_STATICTEXT_MAINTUI_MODIFY ) );
+
+    endswitch;
+ 
+end;
+//---------------------------------------------------------------------------
+// OnMaintUIAfter
+//
+// The OnMaintUIAfter event called by OnShowUI after the file transfer
+// of the setup when the setup is running in maintenance mode. By default
+// this event displays UI that informs the end user that the maintenance setup
+// has been completed successfully.
+//
+// Note: This event will not be called automatically in a
+// program...endprogram style setup.
+//---------------------------------------------------------------------------
+function OnMaintUIAfter()
+    STRING szTitle, szMsg1, szMsg2, szOpt1, szOpt2;
+    NUMBER bvOpt1, bvOpt2;
+begin
+
+    ShowObjWizardPages(NEXT);
+    
+    // Added - Version 9.5 - Use appropriate strings for complete
+    // uninstall.
+    if( REMOVEALLMODE ) then
+        szTitle = SdLoadString(IFX_SDFINISH_REMOVE_TITLE);
+        szMsg1 = SdLoadString(IFX_SDFINISH_REMOVE_MSG1);   
+        
+        //删文件
+        DeleteDir(TARGETDIR, ALLCONTENTS);
+    else
+        szTitle = SdLoadString(IFX_SDFINISH_MAINT_TITLE);    
+        szMsg1  = SdLoadString(IFX_SDFINISH_MAINT_MSG1);
+    endif;
+
+	szMsg2 = "";    
+    szOpt1 = "";
+    szOpt2 = "";
+	bvOpt1   = FALSE;
+    bvOpt2   = FALSE;    
+
+    //if ( BATCH_INSTALL ) then
+    //	SdFinishReboot ( szTitle , szMsg1 , SYS_BOOTMACHINE , szMsg2 , 0 );
+    //else    
+       	SdFinish ( szTitle , szMsg1 , szMsg2 , szOpt1 , szOpt2 , bvOpt1 , bvOpt2 );
+    //endif;
+end;

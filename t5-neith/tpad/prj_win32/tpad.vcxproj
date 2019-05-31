@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{953FD0D6-FDBA-4B74-9DA1-FDBF39DE1AAA}</ProjectGuid>
+    <RootNamespace>tpad</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\common_2010\include;..\..\common_2010\common-header;..\..\AppFrame\include;..\..\duilib;..\..\..\10-common\include\nms1;..\..\..\10-common\include\system;..\..\..\10-common\include\system1;..\..\..\10-common\include\platform;..\..\..\10-common\include\protocol;..\..\..\10-common\include\tp;..\whiteboard\include;..\whiteboard\java;..\whiteboard\java\win32</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\..\..\10-common\lib\debug\win32_2010;..\..\..\10-common\lib\debug\win32;..\whiteboard\lib\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>mfco42d.lib;mfc42d.lib;mfcs42d.lib;nafxcwd.lib;libcmtd.lib;LIBCD.lib;LIBCMT.lib;LIBC.lib;strmbasd.lib;dxguid.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\common_2010\include;..\..\common_2010\common-header;..\..\AppFrame\include;..\..\duilib;..\..\..\10-common\include\nms1;..\..\..\10-common\include\system;..\..\..\10-common\include\system1;..\..\..\10-common\include\platform;..\..\..\10-common\include\protocol;..\..\..\10-common\include\tp;..\whiteboard\include;..\whiteboard\java;..\whiteboard\java\win32</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\..\..\10-common\lib\release\win32_2010;..\..\..\10-common\lib\release\win32;..\whiteboard\lib\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>mfc42.lib;mfcs42.lib;libcmt.lib;LIBC.lib</IgnoreSpecificDefaultLibraries>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapExports>true</MapExports>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\tpad.ico" />
+    <None Include="res\tpad.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\aboutlogic.h" />
+    <ClInclude Include="..\include\commoninterface.h" />
+    <ClInclude Include="..\include\constdef.h" />
+    <ClInclude Include="..\include\Decoder.h" />
+    <ClInclude Include="..\include\filemanager.h" />
+    <ClInclude Include="..\include\filepreview.h" />
+    <ClInclude Include="..\include\globalheader.h" />
+    <ClInclude Include="..\include\hzpysearch.h" />
+    <ClInclude Include="..\include\ipcfglogic.h" />
+    <ClInclude Include="..\include\ipinfomanager.h" />
+    <ClInclude Include="..\include\loginlogic.h" />
+    <ClInclude Include="..\include\mainframelogic.h" />
+    <ClInclude Include="..\include\mainmenulogic.h" />
+    <ClInclude Include="..\include\messageboxlogic.h" />
+    <ClInclude Include="..\include\modalwndlogic.h" />
+    <ClInclude Include="..\include\netadapter.h" />
+    <ClInclude Include="..\include\reconnectlogic.h" />
+    <ClInclude Include="..\include\system.h" />
+    <ClInclude Include="..\include\sysupdateLogic.h" />
+    <ClInclude Include="..\include\toolwindowlogic.h" />
+    <ClInclude Include="..\include\tpadcommonop.h" />
+    <ClInclude Include="..\include\tpadmsgmanager.h" />
+    <ClInclude Include="..\include\tpadupdateLogic.h" />
+    <ClInclude Include="..\include\UIDataMgr.h" />
+    <ClInclude Include="..\include\videologic.h" />
+    <ClInclude Include="..\include\wbconflogic.h" />
+    <ClInclude Include="..\include\wificfglogic.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="tpad.h" />
+    <ClInclude Include="tpadDlg.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\aboutlogic.cpp" />
+    <ClCompile Include="..\source\commonbusiness.cpp" />
+    <ClCompile Include="..\source\commoninterface.cpp" />
+    <ClCompile Include="..\source\Decoder.cpp" />
+    <ClCompile Include="..\source\filemanager.cpp" />
+    <ClCompile Include="..\source\filepreview.cpp" />
+    <ClCompile Include="..\source\hzpysearch.cpp" />
+    <ClCompile Include="..\source\ipcfglogic.cpp" />
+    <ClCompile Include="..\source\ipinfomanager.cpp" />
+    <ClCompile Include="..\source\loginlogic.cpp" />
+    <ClCompile Include="..\source\mainframelogic.cpp" />
+    <ClCompile Include="..\source\mainmenulogic.cpp" />
+    <ClCompile Include="..\source\messageboxlogic.cpp" />
+    <ClCompile Include="..\source\modalwndlogic.cpp" />
+    <ClCompile Include="..\source\netadapter.cpp" />
+    <ClCompile Include="..\source\reconnectlogic.cpp" />
+    <ClCompile Include="..\source\system.cpp" />
+    <ClCompile Include="..\source\sysupdateLogic.cpp" />
+    <ClCompile Include="..\source\toolwindowlogic.cpp" />
+    <ClCompile Include="..\source\tpadcommonop.cpp" />
+    <ClCompile Include="..\source\tpadmsgmanager.cpp" />
+    <ClCompile Include="..\source\tpadupdateLogic.cpp" />
+    <ClCompile Include="..\source\UIDataMgr.cpp" />
+    <ClCompile Include="..\source\videologic.cpp" />
+    <ClCompile Include="..\source\wbconflogic.cpp" />
+    <ClCompile Include="..\source\wificfglogic.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="tpad.cpp" />
+    <ClCompile Include="tpadDlg.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="tpad.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

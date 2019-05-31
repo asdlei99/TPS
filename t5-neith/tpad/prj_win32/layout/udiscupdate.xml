@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="gb2312"?>
+<Window sizebox="0,0,0,0" caption="0,0,0,418" size="618,418" mininfo="618,418"  maxinfo="618,418" bktrans="true">
+    <Font name="微软雅黑" size="25" bold="false" default="true"  />
+    <Font name="微软雅黑" size="18" bold="false"></Font>
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+   <HorizontalLayout name="UdiscUpdateLayout" bkimage="res/public/messagebox.png" inset="0,0,0,0">  
+	<VerticalLayout float="true" pos="68,100,550,250">
+	<Label name="LabelTip" height="120" textcolor="#CCFFFFFF" align="center" font="0" gdiplus="true"/>
+	</VerticalLayout>
+
+	<HorizontalLayout float="true" pos="150,300,468,364">
+	<Control />
+	<Button name="BtnOk" width="149" height="64" font="1" text="立即升级" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"   align="center"  gdiplus="true"/>
+	<Button name="BtnCancel" width="149" height="64" font="1" padding="20,0,0,0" text="关 闭" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"   align="center" gdiplus="true"/>
+	<Control />
+	</HorizontalLayout>
+	
+	<Case name="caseUpdate">	
+		<LabelTip text="正在升级，请不要关闭系统..."/> 
+		<BtnOk enabled="false"/>
+		<BtnCancel enabled="false"/>
+    </Case>
+	<Case name="caseNoCopy">
+		<BtnOk enabled="true" text="立即升级"/>
+		<BtnCancel enabled="true" text="关 闭"/>
+    </Case>
+	 <Case name="caseCopyEnd">
+		<LabelTip text="升级成功，是否立即重启计算机"/> 
+		<BtnOk enabled="true" text="立即重启"/>
+		<BtnCancel enabled="true" text="稍后重启"/>
+    </Case>
+	<Case name="caseCopyFail">
+		<LabelTip text="升级失败，请检查U盘文件是否存在"/> 
+		<BtnOk enabled="true" text="确 定"/>
+		<BtnCancel enabled="true" text="取 消"/>
+    </Case>
+	
+  </HorizontalLayout>
+ </Window>

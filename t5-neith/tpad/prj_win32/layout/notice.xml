@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<PageNotice>
+  <VerticalLayout name="NoticeDlg"  bkimage="res/public/subpopbg.png" inset="0,0,0,0">  
+	<Control height="400" />
+	<Label name="LabelTip" text="确认要是删除所选项吗？" height="30" textcolor="#CCD4DEEB" align="center" font="0" />
+	<Control />
+	<HorizontalLayout >
+	 <Control />
+	 <Button name="BtnConfirmDel" text="确 定" font="1" textcolor="#CCD4DEEB" bordersize="1,1,1,1" width="149" height="66" align="center" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"/>
+     <Button name="BtnCancelDel" text="取 消" padding="10,0,0,0" font="1" textcolor="#CCD4DEEB" bordersize="1,1,1,1" width="149" height="66" align="center" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"/>
+	 <Control  height="80"/>
+	</HorizontalLayout>
+	<Control height="10"/>
+  </VerticalLayout>
+</PageNotice>

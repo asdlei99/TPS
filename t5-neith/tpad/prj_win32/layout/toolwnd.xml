@@ -1,0 +1,11 @@
+﻿<Window sizebox="0,0,0,0" caption="0,0,0,0" size="72,72" mininfo="72,72"  maxinfo="72,72" roundcorner="8,8,8,8" bktrans="true" >
+   
+<VerticalLayout name="ToolWindowLayout" >
+   <Button name="BtnPageChange" width="72" height="72"  normalimage="res\public\pagechangebtn\pre.png" pushedimage="res\public\pagechangebtn\pre_down.png" />
+</VerticalLayout>
+
+	<Case name="keyboard">
+		<BtnPageChange normalimage="res\public\keyboard_nomal.png" pushedimage="res\public\keyboard_select.png"/>
+	</Case>
+
+</Window>

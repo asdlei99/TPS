@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<PageNewFolder>
+  <Font name="微软雅黑" size="24" bold="false"/>
+  <Font name="微软雅黑" size="22" bold="false"/>
+  <VerticalLayout name="NewFolderDlg"  bkimage="res/public/subpopbg.png" inset="0,0,0,0">
+    <Control height="300"/>
+
+    <HorizontalLayout height="520">
+      <Control />
+      <VerticalLayout  name=""  width=""  align="center" width="1920" >
+        <!--bkimage="res/logindlg/loginFrame.png"-->
+        <HorizontalLayout name="" align="center"  >
+          <Control />
+          <VerticalLayout name="" width="200" >
+            <Control />
+            <Label name="lbTitle" text="新建文件夹" textcolor="#FED5DEEB" font="3" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+            <Control />
+          </VerticalLayout>
+          <Control width="50"/>
+          <VerticalLayout name="" width="600" >
+            <Control />
+            <Edit name="EdNewFolder" text=""  height="64" width="600" textcolor="#FED5DEEB" font="2" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655"  maxchar="31"/>
+            <Control />
+          </VerticalLayout>
+          <Control />
+        </HorizontalLayout>
+	</VerticalLayout>
+	 <Control />
+	</HorizontalLayout>
+    <Control />
+    <HorizontalLayout  name=""  width="" height="420" >
+      <!--bkimage="res/logindlg/loginFrame.png"-->
+      <Control />
+      <Control width="60"/>
+      <Button name="BtnSaveFolder" text="确 定" font="1" textcolor="#CCD4DEEB" bordersize="1,1,1,1" width="149" height="66" align="center" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"/>
+      <Control width="120"/>
+      <Button name="BtnCancelMakeFolder" text="取 消" padding="10,0,0,0" font="1" textcolor="#CCD4DEEB" bordersize="1,1,1,1" width="149" height="66" align="center" normalimage="res\public\twoletterbtn_normal.png" hotimage="res\public\twoletterbtn_down.png" pushedimage="res\public\twoletterbtn_down.png"/>
+      <Control />
+    </HorizontalLayout>
+    <Control height="100"/>
+  </VerticalLayout>
+</PageNewFolder>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="gb2312"?>
+<Window sizebox="0,0,0,0" caption="0,0,0,0" size="618,418" mininfo="618,418"  maxinfo="618,418" bktrans="true">
+    <Font name="微软雅黑" size="25" bold="false" default="true"  />
+    <Font name="微软雅黑" size="18" bold="false"></Font>
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+  <HorizontalLayout name="ModalWndLayout" bkimage="res/public/messagebox.png" inset="0,0,0,0">  
+	<VerticalLayout>
+	<Control />
+	<Label name="LabelTip" text="正在处理，请稍后 ... ... " height="300" textcolor="#CCFFFFFF" align="center" font="0" gdiplus="true"/>
+	<Control />
+	</VerticalLayout>
+  </HorizontalLayout>
+ </Window>

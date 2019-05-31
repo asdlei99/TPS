@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<subcontrol>
+  <ComboItem><!--下拉框列表-->   
+    <ListLabelElement name="ComboItem" gdiplus="true" height="64"></ListLabelElement>
+  </ComboItem>
+
+  <TouchListItem><!--文档摄像机预置位列表-->   
+     <TouchList name="TouchListItem" vscrollbar="" hscrollbar="" columns="3" itemselectedimage="res\roomctrl\preposbk_select.png" itembkimage="res\roomctrl\preposbk.png" itemdisabledimage="res\roomctrl\preposbk.png" />  
+  </TouchListItem>
+  
+  <FileListItem>  <!--文件列表-->
+	<ListContainerElement width="282" height="337" padding="5,0,15,15" bordercolor="#FE000000">
+	<VerticalLayout>
+	<HorizontalLayout height="64">
+	<CheckBox name="CheckBoxItemSel" pos="6,9,0,0" width="64" height="64" selectedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" /> 
+	</HorizontalLayout>
+	<Button name="FileItemPic" float="true" pos="70,81,0,0" width="142" height="142" bkimage="res/list/imgFile.png" />
+	<Label name="FileItemName" float="true" pos="0,238,282,337" text="" textcolor="#FFD5DEEB" font="1" align="center" gdiplus="true"/>
+	</VerticalLayout>	
+	</ListContainerElement>
+  </FileListItem>
+  
+  <AboutListItem>  <!--帮助文档列表-->
+	<ListContainerElement width="282" height="337" padding="5,0,15,15" bordercolor="#FE000000">
+	<VerticalLayout>
+	<HorizontalLayout height="64">
+	<CheckBox name="CheckBoxItemSel" pos="6,9,0,0" width="64" height="64" selectedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" /> 
+	</HorizontalLayout>
+	<Label name="FileItemPic" float="true" pos="70,81,0,0" width="142" height="142" bkimage="res/list/imgFile.png" />
+	<Label name="FileItemName" float="true" pos="0,238,282,337" text="" textcolor="#FFD5DEEB" font="1" align="center" gdiplus="true"/>
+	</VerticalLayout>	
+	</ListContainerElement>
+  </AboutListItem>
+  
+  <NaviItem>  <!--导航条条目-->
+	<HorizontalLayout >
+	   <Button name="BtnGroupPath" text="" padding="10,20,0,0" width="50" height="50" normalimage="res\list\btnFilePath.png" pushedimage="res\list\btnFilePath_down.png"/>
+	   <Button name="lbGroupPath"  text="" padding="10,25,0,0" height="40" align="center" textcolor="#FFD5DEEB" gdiplus="true" font="1"/>
+	   <Label name="lbCut"  text="/" padding="10,28,0,0" height="35" width="15" align="center" textcolor="#FFD5DEEB" gdiplus="true" font="1"/>
+	</HorizontalLayout>
+  </NaviItem>	
+	
+  <WifiListItem><!--Wifi条目-->   
+    <ListContainerElement name="WifiListItem" height="63" padding="0,25,0,25" >
+      <HorizontalLayout height="63">
+	  <Label name="lbWifiName" height="63" width="280" font="1" gdiplus="true" textcolor="#EE92A7C2" align="left|singleline" endellipsis="true" textpadding="0,15,0,0"/>
+      <Label name="imgPswLock" float="true" pos="280,0,0,0" height="63" width="63" bkimage="res\netcfg\pswLock.png"/> 
+	  <Label name="imgWifiSignal" float="true" pos="403,0,0,0" height="63" width="63" bkimage="res\netcfg\WifiHalfSignal.png" /> 
+	  <Button name="btnCfgWifiIp" float="true" pos="526,0,0,0" height="63" width="63" normalimage="res\netcfg\enter_normal.png" pushedimage="res\netcfg\enter_down.png"  /> 
+      </HorizontalLayout> 	  
+    </ListContainerElement>
+  </WifiListItem>
+  
+ <ConfMsgListItem><!--通知消息列表-->   
+    <ListContainerElement height="101" bordercolor="#FE000000">
+	 <VerticalLayout>
+      <HorizontalLayout height="100">
+	  <Label name="lbPic" float="true" pos="10,25,0,0" font="0" gdiplus="true" bkimage="res\mainmenu\MsgItem.png" height="50" width="50"/>
+      <Label name="lbMsg" float="true" pos="69,33,0,0" text="" height="30" width="1000"  font="0" gdiplus="true" textcolor="#FED5DEEB"/> 
+	  <Label name="lbTime" text="123456" float="true" pos="1350,33,0,0"  height="60" width="300" font="0" gdiplus="true" textcolor="#FED5DEEB" align="left"/> 
+      </HorizontalLayout> 
+	 <HorizontalLayout height="1" bkcolor="FE3B5980" />
+	 </VerticalLayout>	  
+    </ListContainerElement>
+</ConfMsgListItem>
+
+  <DateItem> <!--日期-->
+	<ListContainerElement width="50" height="50" padding="0,0,34,8"> 
+		<Label name="lbdate" width="50" height="50" bkimage="" textcolor="#CCD4DEEB" font="1" align="center" gdiplus="true"/>
+	</ListContainerElement>
+  </DateItem>
+ 
+</subcontrol>

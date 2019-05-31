@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<index>
+<!--index下配置窗口索引 file-窗口对应xml文件   logic-窗口逻辑类名  parent-父窗口名  style(frame|dialog|child)风格,默认frame-->
+  <tpad file="mainframe.xml" logic="CMainFrameLogic|CLoginLogic" style="frame" />
+  <MainMenu file="mainmenu.xml" logic="CMainMenuLogic" parent="tpad" style="child" />
+  <FileManager file="filemanager.xml" logic="CFileManagerLogic" parent="tpad" style="child" />
+  <FilePreview file="filepreview.xml" logic="CFilePreviewLogic" parent="tpad" style="dialog" />
+  <MessageBoxDlg file="messagebox.xml" logic="CMessageBoxLogic" parent="tpad" style="dialog" /> 
+  <ToolWindow file="toolwnd.xml" logic="CToolWindowLogic" parent="tpad" style="dialog" />
+  <VideoWindow file="video.xml" logic="CVideoLogic" parent="tpad" style="dialog" />
+  <WbManager file="wbmanager.xml" logic="CWBConfLogic" parent="tpad" style="child" />
+  <AboutWindow file="about.xml" logic="CAboutLogic" parent="tpad" style="child" />
+  <NetCfgDlg file="netcfg.xml" logic="CIpCfgLogic|CWifiCfgLogic" parent="tpad" style="child" />
+  <ModalWindow file="modalwnd.xml" logic="CModalWndLogic" parent="tpad" style="dialog" />  
+  <UpdateWindow file="update.xml" logic="CTPadUpdateLogic" parent="tpad" style="dialog" />
+  <UdiscUpdateWindow file="udiscupdate.xml" logic="CSysUpdateLogic" parent="tpad" style="dialog" />
+  <ReconnectBox file="reconnectbox.xml" logic="CReconnectLogic" parent="tpad" style="dialog" />
+</index>

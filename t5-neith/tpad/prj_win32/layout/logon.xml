@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<PageLogin>
+  <VerticalLayout name="LoginDlg" bkimage="res/cnsmanagebkg.png" inset="0,0,0,0">
+    <Label name="kedaLogo" float="true" pos="838,80,0,0" width="243" height="35" bkimage="res/logindlg/logo.png" />   
+    <Label name="lbSysName" float="true" pos="0,120,0,0" width="1920" height="40" font="3" textcolor="#FF92A7C2" align="center"/>
+  
+    <VerticalLayout float="true" pos="641,193,0,0" width="637" height="706" bkimage="res/logindlg/loginFrame.png" >  
+		<Edit nativebkcolor="#FF1c3655" name="EdIp"  text=""  float="true" maxchar="15" font="1" gdiplus="true" pos="85,63,0,0" width="468" height="63" textpadding="84,16,34,16" mosimgfolfer="res/public/edit" textcolor="#FFD4DEEB" bordersize="0" />
+		<Label float="true" pos="114,79,0,0" width="33" height="33"  bkimage="res/logindlg/icon_ip.png" />
+		<Label float="true" pos="160,78,0,0" width="1" height="35" bkcolor="#FFD4DEEB" />
+		<Edit nativebkcolor="#FF1c3655" name="EdUserName" text=""  float="true" maxchar="31" font="1" pos="85,170,0,0" width="468" height="63" textpadding="84,16,34,16" mosimgfolfer="res/public/edit" textcolor="#FFD4DEEB" bordersize="0"/>
+        <Label float="true" pos="114,186,0,0" width="33" height="33"  bkimage="res/logindlg/icon_username.png" />
+		<Label float="true" pos="160,185,0,0" width="1" height="35" bkcolor="#FFD4DEEB" />
+		<Edit nativebkcolor="#FF1c3655" name="EdPassword" text="" float="true" maxchar="31" font="1"  pos="85,277,0,0" width="468" height="63" textpadding="84,16,34,16" mosimgfolfer="res/public/edit" password="true" textcolor="#FFD4DEEB" bordersize="0" />
+		<Label float="true" pos="114,293,0,0" width="33" height="33"  bkimage="res/logindlg/icon_password.png" />
+		<Label float="true" pos="160,292,0,0" width="1" height="35"  bkcolor="#FFD4DEEB" />
+	
+		<Label name="LabelTip" text="记住密码" float="true" pos="85,392,0,0" width="100" height="26" textcolor="#FFD4DEEB" font="1" />
+		<Label name="LabelTip" text="自动登录" float="true" pos="85,495,0,0" width="100" height="26" textcolor="#FFD4DEEB" font="1" />
+		
+		<CheckBox name="CheckRemPassWord" float="true" pos="434,371,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+		<CheckBox name="CheckAutoLogin" float="true" pos="434,474,0,0" width="124" height="66" align="center" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+		
+        <Button name="BtnNetCfg" text="" float="true" pos="85,584,0,0" width="214" height="63" normalimage="res/logindlg/netcfg.png" pushedimage="res/logindlg/netcfg_down.png" hotimage="res/logindlg/netcfg_down.png" textcolor="#FFD4DEEB" font="1"/>
+		<Button name="BtnLogin" text="登 录" enabled="false" float="true" pos="339,584,0,0" width="214" height="63" normalimage="res/logindlg/login.png" pushedimage="res/logindlg/logindown.png" focusedimage="res/logindlg/logindown.png" hotimage="res/logindlg/logindown.png" textcolor="#FFD4DEEB" font="1"/>
+    </VerticalLayout>
+
+    <Button name="BtnPowerOff" float="true" pos="896,955,0,0" width="128" height="128" align="center" normalimage="res/logindlg/poweroff.png" pushedimage="res/logindlg/poweroff_down.png" />
+	<Label name="StcCopyRight" text="Copyright © 2013-2019，苏州科达科技股份有限公司" float="true" pos="641,1128,0,0" textcolor="#FF92A7C2"  font="0" align="center" width="637" height="26" />
+    <Label name="version" text="V6.0.0.3.0" float="true" pos="641,1155,0,0" textcolor="#FF92A7C2" font="0" align="center" width="637" height="26"/>
+  </VerticalLayout>
+</PageLogin>

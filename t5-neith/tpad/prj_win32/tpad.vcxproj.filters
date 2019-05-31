@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\logic_h">
+      <UniqueIdentifier>{99acb2a3-148e-44a0-ae90-dafada006342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\logic_cpp">
+      <UniqueIdentifier>{8d1a5c6f-f612-4e0c-8348-a1ed5ae4828d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\tpad.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\tpad.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tpad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tpadDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\globalheader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tpadcommonop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tpadmsgmanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\constdef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\loginlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mainframelogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\messageboxlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\commoninterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\filemanager.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UIDataMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\hzpysearch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mainmenulogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\filepreview.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\wbconflogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\toolwindowlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\videologic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Decoder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\aboutlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\modalwndlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ipinfomanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\netadapter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\wificfglogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ipcfglogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\tpadupdateLogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\sysupdateLogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\reconnectlogic.h">
+      <Filter>Header Files\logic_h</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="tpad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tpadDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\tpadcommonop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\tpadmsgmanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\loginlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\mainframelogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\messageboxlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\commoninterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\commonbusiness.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\filemanager.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\UIDataMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\hzpysearch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\mainmenulogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\filepreview.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\wbconflogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\toolwindowlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\videologic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Decoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\aboutlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\modalwndlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ipinfomanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\netadapter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ipcfglogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\wificfglogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\tpadupdateLogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\sysupdateLogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\reconnectlogic.cpp">
+      <Filter>Source Files\logic_cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="tpad.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

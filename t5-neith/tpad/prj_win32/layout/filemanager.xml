@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Window caption="0,0,0,0" size="1920,1200" mininfo="800,200" sizebox="0,0,0,0" maxinfo="1920,1200" roundcorner="0,0">
+    <Font name="微软雅黑" size="24" bold="false" default="true"  />
+    <Font name="微软雅黑" size="22" bold="false"></Font>
+	<Font name="微软雅黑" size="20" bold="false"></Font>
+	<Default name="VScrollBar" value="mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
+	<VerticalLayout name="FileManagerLayout">	
+	<HorizontalLayout height="79" name="SubPageTitleLayout" bkimage="res/title/titlebkg.png">
+	  <HorizontalLayout width="1570" >
+		<Button name="BtnBack" float="true" pos="0,0,105,79" normalimage="file=&apos;res/title/btnBack.png&apos; dest=&apos;27,14,77,64&apos;" pushedimage="file=&apos;res/title/btnBack_down.png&apos; dest=&apos;27,14,77,64&apos;" /> 
+		<Label float="true" pos="105,0,0,0" width="1" height="79" bkimage="res/title/titlecutline.png" />
+		<Label name="lbTitleImg" float="true" pos="128,21,0,0" width="40" height="40" bkimage="res/title/imgFolder.png"/>
+		<Label name="lbTitleName" text="文件管理" float="true" pos="178,24,1800,55" textcolor="#FF92A7C2" font="1" align="left"/>
+	  </HorizontalLayout>
+	  <HorizontalLayout width="239">
+		<!--<Button name="BtnTip" float="true" pos="0,30,0,0" width="28" height="18" />-->
+		<Label name="lbDate" float="true" pos="25,0,0,0" width="150" height="79" textcolor="#FF92A7C2" font="2" align="center"/>
+		<Label name="lbTime" float="true" pos="155,0,0,0" width="80" height="79" textcolor="#FF92A7C2" font="2" align="center"/>
+	  </HorizontalLayout>
+	  <HorizontalLayout width="106">
+	    <Label float="true" pos="5,0,0,0" width="1" height="79" bkimage="res/title/titlecutline.png" />
+		<Button name="BtnExit" float="true" pos="1,0,105,79" normalimage="file=&apos;res/title/btnExit.png&apos; dest=&apos;29,15,79,65&apos;" pushedimage="file=&apos;res/title/btnExit_down.png&apos; dest=&apos;29,15,79,65&apos;" />
+	  </HorizontalLayout>
+	</HorizontalLayout>
+	<HorizontalLayout name="FileManagerContenLayout" bkimage="res/subdlgbkg.png">	
+	<HorizontalLayout height="126" >
+	  <HorizontalLayout width="527" height="60" padding="27,30,0,0">
+	  <Edit name="EdtSearch" tiptext="请输入字符或数字进行查询" nativebkcolor="#FF0E1620" float="true" pos="0,0,0,0" width="467" height="60" textcolor="#FEE4EEFF" font="1" bordersize="1,1,1,1" menu="true" gdiplus="true" />  
+	  <Label float="true" pos="0,57,0,0" width="527" height="1"  bkcolor="#FF4B5764" /> 
+	  <Button name="BtnSearch" float="true" pos="467,0,0,0" width="60" height="60" align="center" normalimage="res\public\search.png" pushedimage="res\public\search_down.png"/>
+	  </HorizontalLayout>
+	  <Button name="BtnNewFolder" text="新建文件夹" padding="11,28,0,0" width="214" height="64" font="1" textcolor="#CCD4DEEB" normalimage="res\public\fourletterbtn_normal.png" pushedimage="res\public\fourletterbtn_down.png"/>
+	  <Button name="BtnManager" padding="15,28,0,0" width="149" height="64" text="管 理" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+	  <Button name="BtnAllSel" padding="15,28,0,0" width="149" height="64" text="全 选" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+	  <Button name="BtnCopy" padding="15,28,0,0" width="149" height="64" text="复 制" font="1" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" disabledimage="res\public\twoletterbtn_disable.png" />
+	  <Button name="BtnCut" padding="15,28,0,0" width="149" height="64" text="剪 切" font="1" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" disabledimage="res\public\twoletterbtn_disable.png" />
+	  <Button name="BtnDelete" padding="15,28,0,0" width="149" height="64" text="删 除" font="1" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+	  <Button name="BtnRename" padding="15,28,0,0" width="149" height="64" text="重命名" font="1" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+	  <Button name="BtnDone" padding="15,28,0,0" width="149" height="64" text="完 成" font="1" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+	  <Button name="BtnPaste" padding="15,28,0,0" width="149" height="64" text="粘 贴" font="1" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+	  <Button name="BtnCancel" padding="15,28,0,0" width="149" height="64" text="取 消" font="1" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+	</HorizontalLayout>
+	
+	<Case name="caseRoot">
+		<BtnManager  visible="false"/>
+		<BtnAllSel  visible="false"/>
+		<BtnCopy  visible="false"/>
+		<BtnCut  visible="false"/>
+		<BtnDelete  visible="false"/>
+		<BtnRename  visible="false"/>
+		<BtnDone  visible="false"/>
+		<BtnPaste  visible="false"/>
+		<BtnCancel  visible="false"/>		
+		<BtnNewFolder  visible="false"/>
+		<lbCutline  visible="false"/>
+		<naviList  visible="false"/>
+		<ListIndex  visible="false"/>
+		<FileList pos="40,120,1847,1040" />
+	</Case>
+	
+	<Case name="caseRoot2Dir">
+		<BtnNewFolder  visible="true"/>
+		<lbCutline  visible="true"/>
+		<naviList  visible="true"/>
+		<ListIndex  visible="true"/>
+		<FileList pos="88,220,1880,1100" />
+	</Case>
+	
+	<Case name="caseNoMng">	
+		<naviList  visible="true"/>
+		<ListIndex  visible="true"/>
+		<FileList pos="88,220,1880,1100" />
+		
+		<BtnNewFolder  visible="true"/>
+		<lbCutline  visible="true"/>
+		<BtnManager  visible="true"/>
+		<BtnAllSel  visible="false"/>
+		<BtnCopy  visible="false"/>
+		<BtnCut  visible="false"/>
+		<BtnDelete  visible="false"/>
+		<BtnRename  visible="false"/>
+		<BtnDone  visible="false"/>
+		<BtnPaste  visible="false"/>
+		<BtnCancel  visible="false"/>
+	</Case>
+	<Case name="caseMngNoSel">
+		<BtnManager  visible="false"/>
+		<BtnAllSel  visible="true"/>
+		<BtnCopy  visible="false"/>
+		<BtnCut  visible="false"/>
+		<BtnDelete  visible="false"/>
+		<BtnRename  visible="false"/>
+		<BtnDone  visible="true"/>
+		<BtnPaste  visible="false"/>
+		<BtnCancel  visible="false"/>
+	</Case>
+	<Case name="caseMngSel">
+		<BtnManager  visible="false"/>
+		<BtnAllSel  visible="true"/>
+		<BtnCopy  visible="true"/>
+		<BtnCut  visible="true"/>
+		<BtnDelete  visible="true"/>
+		<BtnRename  visible="true"/>
+		<BtnDone  visible="true"/>
+		<BtnPaste  visible="false"/>
+		<BtnCancel  visible="false"/>
+	</Case>
+	<Case name="caseMngEdit">
+		<BtnManager  visible="false"/>
+		<BtnAllSel  visible="false"/>
+		<BtnCopy  visible="false"/>
+		<BtnCut  visible="false"/>
+		<BtnDelete  visible="false"/>
+		<BtnRename  visible="false"/>
+		<BtnDone  visible="false"/>
+		<BtnPaste  visible="true"/>
+		<BtnCancel  visible="true"/>
+	</Case>
+
+
+	
+	<Label name="lbCutline" float="true" pos="27,126,0,0" width="1866" height="1" bkcolor="#FF4B5764" /> 
+	<HorizontalLayout name="naviList" float="true" pos="27,130,0,0" width="1866" height="83" >
+	</HorizontalLayout>
+	<LetterIndex name="ListIndex" float="true" pos="43,204,0,0" width="21" height="810" bkimage="res/list/letterIndex.png" font="1" textcolor="#FF379FDB" /> 
+	
+	<TouchList name="FileList" float="true"  pos="88,220,1880,1100" vscrollbar="true" columns="6" itemselectedimage="res\list\item_sel.png" itembkimage="res\list\item_normal.png" itemdisabledimage="res\list\item_disabled.png">
+	</TouchList>
+	
+	<Label name="lbNofile" text="未找到符合的文件或文件夹" float="true" pos="88,350,1855,790" textcolor="#FF92A7C2" font="1" align="center" visible="false"/>
+	
+	<ChildLayout xmlfile="newfolder.xml" name="PageNewFolder" float="true" pos="0,0,1920,1120" visible="false"/>
+	
+	</HorizontalLayout>
+	</VerticalLayout>
+</Window>
