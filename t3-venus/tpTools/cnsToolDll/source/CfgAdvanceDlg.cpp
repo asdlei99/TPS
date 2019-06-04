@@ -36,6 +36,9 @@ void CCfgAdvanceDlg::RegCBFun()
 
 	REG_LIST_CALLFUNC( "CCfgAdvanceDlg::OnClickRouteMngLst", CCfgAdvanceDlg::OnClickRouteMngLst, pThis, CCfgAdvanceDlg );
 	REG_GOBAL_MEMBER_FUNC( "CCfgAdvanceDlg::OnClickRouteCfgLstBlack", CCfgAdvanceDlg::OnClickRouteCfgLstBlack, pThis, CCfgAdvanceDlg );
+
+	REG_GOBAL_MEMBER_FUNC( "CCfgAdvanceDlg::OnCom2SelectedChange", CCfgAdvanceDlg::OnCom2SelectedChange, pThis, CCfgAdvanceDlg );
+	REG_GOBAL_MEMBER_FUNC( "CCfgAdvanceDlg::OnCom3SelectedChange", CCfgAdvanceDlg::OnCom3SelectedChange, pThis, CCfgAdvanceDlg );
 }
 
 void CCfgAdvanceDlg::Clear()
@@ -104,6 +107,8 @@ void CCfgAdvanceDlg::RegMsg()
 	REG_MSG_HANDLER( UI_ROUTEINFO_Nty, CCfgAdvanceDlg::OnSetRouteInfoNty, pThis, CCfgAdvanceDlg );
 	REG_MSG_HANDLER( UI_ADDROUTE_Ind, CCfgAdvanceDlg::OnAddRouteInfoInd, pThis, CCfgAdvanceDlg );
 	REG_MSG_HANDLER( UI_DelROUTE_Ind, CCfgAdvanceDlg::OnDelRouteInfoInd, pThis, CCfgAdvanceDlg );
+
+	REG_MSG_HANDLER( UI_SELECTCOMG_IND, CCfgAdvanceDlg::OnSelectComInd, pThis, CCfgAdvanceDlg );
 }
 
 
@@ -203,6 +208,50 @@ bool CCfgAdvanceDlg::OnBtnDel(const IArgs& args)
 		}
 	}
 
+	return true;
+}
+
+bool CCfgAdvanceDlg::OnCom2SelectedChange( const IArgs & arg )
+{
+	string strComType = "";
+	EmComType emComType;
+	bool bChange = false;
+	
+	UIFACTORYMGR_PTR->GetComboText("CfgAdvanceDlg/ComboboxCom2",strComType,m_pWndTree);
+	emComType = TransComType( strComType );
+	
+	if ( emComType != m_aemComType[0] )
+	{
+		bChange = true;
+	}
+	else
+	{
+		bChange = false;
+	}
+	CheckData( "CfgAdvanceDlg/ComboboxCom2", bChange );	
+	UpBtnState();
+	return true;
+}
+
+bool CCfgAdvanceDlg::OnCom3SelectedChange( const IArgs & arg )
+{
+	string strComType = "";
+	EmComType emComType;
+	bool bChange = false;
+	
+	UIFACTORYMGR_PTR->GetComboText("CfgAdvanceDlg/ComboboxCom3",strComType,m_pWndTree);
+	emComType = TransComType( strComType );
+	
+	if ( emComType != m_aemComType[1] )
+	{
+		bChange = true;
+	}
+	else
+	{
+		bChange = false;
+	}
+	CheckData( "CfgAdvanceDlg/ComboboxCom3", bChange );	
+	UpBtnState();
 	return true;
 }
 
@@ -417,6 +466,21 @@ EmTpLostPackageRestore CCfgAdvanceDlg::TransLostPacketConf( string strConf )
 	return emLostPacket;
 }
 
+EmComType CCfgAdvanceDlg::TransComType( string strComType )
+{
+	EmComType emComType;
+	
+	if ( strcmp( strComType.c_str(),"Éý½µÆÁ" ) == 0 )
+	{
+		emComType = emDFScreen;
+	}
+	else
+	{
+		emComType = emDCam;
+	}
+	return emComType;
+}
+
 bool CCfgAdvanceDlg::OnBtnSave( const IArgs& args )
 {
 	string strLevel = "";
@@ -444,12 +508,31 @@ bool CCfgAdvanceDlg::OnBtnSave( const IArgs& args )
 	}
 	
 	emLostPackage = TransLostPacketConf( strLevel );
-	u16 wRet = COMIFMGRPTR->SetLostPacketCmd( emLostPackage );	
-	
-	if ( wRet != NO_ERROR )
+
+	if (emLostPackage != m_emLostPacket)
 	{
-		WARNMESSAGE( "¶ª°ü»Ö¸´ÅäÖÃ·¢ËÍÊ§°Ü" );
+		u16 wRet = COMIFMGRPTR->SetLostPacketCmd( emLostPackage );	
+		if ( wRet != NO_ERROR )
+		{
+			WARNMESSAGE( "¶ª°ü»Ö¸´ÅäÖÃ·¢ËÍÊ§°Ü" );
+		}
 	}
+
+	string strComType2 = "";
+	UIFACTORYMGR_PTR->GetComboText("CfgAdvanceDlg/ComboboxCom2",strComType2,m_pWndTree);
+	EmComType emComType2 = TransComType(strComType2);
+	string strComType3 = "";
+	UIFACTORYMGR_PTR->GetComboText("CfgAdvanceDlg/ComboboxCom3",strComType3,m_pWndTree);
+	EmComType emComType3 = TransComType(strComType3);
+	if (emComType2 != m_aemComType[0] || emComType2 != m_aemComType[1])
+	{
+		u16 wRet = COMIFMGRPTR->SetSelectComCmd( emComType2, emComType3 );	
+		if ( wRet != NO_ERROR )
+		{
+			WARNMESSAGE( "´®¿ÚÅäÖÃ·¢ËÍÊ§°Ü" );
+		}
+	}
+
 	return true;
 }
 
@@ -522,4 +605,37 @@ bool CCfgAdvanceDlg::SaveMsgBox()
 		OnBtnCancel(args);
 	}
 	return true;
+}
+
+//´®¿Ú
+HRESULT CCfgAdvanceDlg::OnSelectComInd(WPARAM wparam, LPARAM lparam)
+{
+	m_aemComType[0] = *(EmComType*)(wparam);
+	m_aemComType[1] = *(EmComType*)(lparam);
+	//com2
+	switch(m_aemComType[0])
+	{
+	case emDFScreen:
+		UIFACTORYMGR_PTR->SetComboText( "CfgAdvanceDlg/ComboboxCom2", "Éý½µÆÁ", m_pWndTree ); 
+		break;
+	case emDCam:
+		UIFACTORYMGR_PTR->SetComboText( "CfgAdvanceDlg/ComboboxCom2", "ÎÄµµ", m_pWndTree ); 
+		break;
+	default:
+		break;
+	}
+	//com3
+	switch(m_aemComType[1])
+	{
+	case emDFScreen:
+		UIFACTORYMGR_PTR->SetComboText( "CfgAdvanceDlg/ComboboxCom3", "Éý½µÆÁ", m_pWndTree ); 
+		break;
+	case emDCam:
+		UIFACTORYMGR_PTR->SetComboText( "CfgAdvanceDlg/ComboboxCom2", "ÎÄµµ", m_pWndTree ); 
+		break;
+	default:
+		break;
+	}
+
+	return S_OK;
 }

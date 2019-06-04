@@ -1621,6 +1621,14 @@ bool CAddrBookLogic::OnSearchEditChange( TNotifyUI& msg )
 
 bool CAddrBookLogic::OnBtnAddrInviteOther( TNotifyUI& msg )
 {
+    EmTpConfProtocol emProtocol = emTpSIP; //会场类型 0-网呈会场 1-监控会场 2-普通终端
+    COptionUI* pOptMonitor = (COptionUI*)ICncCommonOp::FindControl(m_pm,_T("opMonitorTer"));
+    COptionUI* pOptOrdinary = (COptionUI*)ICncCommonOp::FindControl(m_pm,_T("opOrdinaryTer"));
+    if ((pOptMonitor != NULL && pOptMonitor->IsSelected()) || (pOptOrdinary != NULL && pOptOrdinary->IsSelected()))
+    {
+        emProtocol = emTpH323;
+    }
+
     tstring strAddrName = ICncCommonOp::GetControlText( m_pm, _T("EditName") );  
 
     tstring strAddrE164 = ICncCommonOp::GetControlText( m_pm, _T("EditE164") );
@@ -1688,6 +1696,7 @@ bool CAddrBookLogic::OnBtnAddrInviteOther( TNotifyUI& msg )
             tCnAddr.emType = emTpAlias;
             strncpy( tCnAddr.achAlias, tCnsInfo.m_achRoomName, TP_MAX_H323ALIAS_LEN+1 );
             strncpy( tCnAddr.achE164, tCnsInfo.m_achE164, TP_MAX_H323ALIAS_LEN+1 );
+            tCnAddr.emTpConfProtocol = emProtocol;
             tCnAddrList.push_back( tCnAddr );
 
             //点对点会议变多点会议,添加点对点会议对端会场
@@ -1696,6 +1705,7 @@ bool CAddrBookLogic::OnBtnAddrInviteOther( TNotifyUI& msg )
             {
                 TCnAddr tCnAdd;
                 tCnAdd = status.tCalledAddr;
+                tCnAdd.emTpConfProtocol = emProtocol;
                 tCnAddrList.push_back( tCnAdd );
             }
 
@@ -1706,6 +1716,7 @@ bool CAddrBookLogic::OnBtnAddrInviteOther( TNotifyUI& msg )
                 strncpy( tCnAddr.achAlias, CT2A(strAddrName.c_str()), TP_MAX_H323ALIAS_LEN+1 );
                 strncpy( tCnAddr.achE164, CT2A(strAddrE164.c_str()), TP_MAX_H323ALIAS_LEN+1 );
                 tCnAddr.dwIP = dwIp;
+                tCnAddr.emTpConfProtocol = emProtocol;
                 tCnAddrList.push_back( tCnAddr );
             }
             else
@@ -1714,6 +1725,7 @@ bool CAddrBookLogic::OnBtnAddrInviteOther( TNotifyUI& msg )
                 strncpy( tCnAddr.achAlias, CT2A(strAddrName.c_str()), TP_MAX_H323ALIAS_LEN+1 );
                 strncpy( tCnAddr.achE164, CT2A(strAddrE164.c_str()), TP_MAX_H323ALIAS_LEN+1 );
                 tCnAddr.dwIP = dwIp;
+                tCnAddr.emTpConfProtocol = emProtocol;
                 tCnAddrList.push_back( tCnAddr );
             }
 
@@ -1732,12 +1744,14 @@ bool CAddrBookLogic::OnBtnAddrInviteOther( TNotifyUI& msg )
                 tCallAddr.m_tAlias.SetAlias( tp_Alias_h323,  CT2A(strAddrName.c_str()) );
                 tCallAddr.m_tE164.SetAlias( tp_Alias_e164, CT2A(strAddrE164.c_str()) );
                 tCallAddr.m_dwIP = dwIp;
+                tCallAddr.m_emTpConfProtocol = emProtocol;
             }
             else
             {
                 tCallAddr.m_tAlias.SetAlias( tp_Alias_h323,  CT2A(strAddrName.c_str()) );
                 tCallAddr.m_tE164.SetAlias( tp_Alias_e164, CT2A(strAddrE164.c_str()) );
                 tCallAddr.m_dwIP = dwIp;
+                tCallAddr.m_emTpConfProtocol = emProtocol;
             }
 
             ComInterface->InviteCns( tCallAddr );

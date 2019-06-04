@@ -574,6 +574,8 @@ public:
 	u16 SetDCamSelectIndex( u8 byIndex );
 	//¾ØÕó
 	u16 SetMatrixConfig( TTPMatrixConfig tTPMatrixConfig );
+	//´®¿Ú
+	u16 SetSelectComCmd( const EmComType& emComType2, const EmComType& emComType3 );
 private:
 	CCnclibCommonIF();
 private:

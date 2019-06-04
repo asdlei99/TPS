@@ -1000,19 +1000,17 @@ void CCentCfgMatrix::UnRegFunc()
 bool CCentCfgMatrix::InitWnd( const IArgs & arg )
 {
 	CLogicBase::InitWnd( arg );	
-	
-	CString strCombo;
 	vector<CString> vecStrCombo;
 	//¾ØÕó³§ÉÌ
-	strCombo.Format( "Kedacom");
-	vecStrCombo.push_back( strCombo);
+	vecStrCombo.push_back("KEDACOM");
 	UIFACTORYMGR_PTR->SetComboListData( "CentCfgMatrixDlg/ComboboxInMatrixStore", vecStrCombo, m_pWndTree );
 	vecStrCombo.clear();
 	//¾ØÕóÐÍºÅ
-	strCombo.Format( "KMX4000");
-	vecStrCombo.push_back( strCombo);
+	vecStrCombo.push_back("KMX2000");
+	vecStrCombo.push_back("KMX4000");
 	UIFACTORYMGR_PTR->SetComboListData( "CentCfgMatrixDlg/ComboboxInMatrixModel", vecStrCombo, m_pWndTree );
-
+	vecStrCombo.clear();
+	
 	m_vctWndName.clear();
 	UpBtnState();
 	return true;
@@ -1039,7 +1037,7 @@ bool CCentCfgMatrix::OnChangedMatrixStore( const IArgs & arg )
 	UIFACTORYMGR_PTR->GetComboText( "CentCfgMatrixDlg/ComboboxInMatrixStore", strCaption, m_pWndTree);
 
 	EmMatrixFirmType emMatrixFirmType = emKedacom;
-	if (strCaption == "Kedacom")
+	if (strCaption == "KEDACOM")
 	{
 		emMatrixFirmType = emKedacom;
 	}
@@ -1123,7 +1121,7 @@ bool CCentCfgMatrix::OnBtnSave( const IArgs & arg )
 	//¾ØÕó³§ÉÌ
 	String strMatrixFirm = "";
 	UIFACTORYMGR_PTR->GetComboText( "CentCfgMatrixDlg/ComboboxInMatrixStore", strMatrixFirm, m_pWndTree);
-	if (strMatrixFirm == "Kedacom")
+	if (strMatrixFirm == "KEDACOM")
 	{
 		tTPMatrixConfig.m_emMatrixFirmType = emKedacom;
 	}
@@ -1171,7 +1169,7 @@ LRESULT CCentCfgMatrix::OnMatrixConfigNty( WPARAM wParam, LPARAM lParam )
 	switch(m_tTPMatrixConfig.m_emMatrixFirmType)
 	{
 	case emKedacom:
-		strMatrixStore = "Kedacom";
+		strMatrixStore = "KEDACOM";
 		break;
 	default:
 		break;
@@ -1195,6 +1193,7 @@ LRESULT CCentCfgMatrix::OnMatrixConfigNty( WPARAM wParam, LPARAM lParam )
 	//¾ØÕóÅäÖÃ½çÃæ
 	UIFACTORYMGR_PTR->SetSwitchState("CentCfgMatrixDlg/MatrixSwitchButton",m_tTPMatrixConfig.m_bOpenUI,m_pWndTree);
 
+	UpBtnState();
 	return S_OK;
 }
 
@@ -1238,8 +1237,48 @@ bool CCentCfgSrceen::InitWnd( const IArgs & arg )
 		vecAcNum.push_back( strACNum);
 	}
 	UIFACTORYMGR_PTR->SetComboListData( "CentCfgSrceenDlg/ComboboxInGroupCount", vecAcNum, m_pWndTree );
-	m_vctWndName.clear();
 
+	vector<CString> vecStrCombo;
+	//Éý½µÆÁÀàÐÍ
+	vecStrCombo.push_back("ÐûµÂÉý½µÆÁ");
+	vecStrCombo.push_back("ÐûµÂ·­×ªÆÁ");
+	UIFACTORYMGR_PTR->SetComboListData( "CentCfgSrceenDlg/ComboboxInSrceenType", vecStrCombo, m_pWndTree );
+	vecStrCombo.clear();
+	//Éý½µÆÁ²¨ÌØÂÊ
+	vecStrCombo.push_back("300");
+	vecStrCombo.push_back("600");
+	vecStrCombo.push_back("1200");
+	vecStrCombo.push_back("2400");
+	vecStrCombo.push_back("4800");
+	vecStrCombo.push_back("9600");
+	vecStrCombo.push_back("19200");
+	vecStrCombo.push_back("38400");
+	vecStrCombo.push_back("43000");
+	vecStrCombo.push_back("56000");
+	vecStrCombo.push_back("57600");
+	vecStrCombo.push_back("115200");
+	UIFACTORYMGR_PTR->SetComboListData( "CentCfgSrceenDlg/ComboboxInBaudRate", vecStrCombo, m_pWndTree );
+	vecStrCombo.clear();
+	//Éý½µÆÁÊý¾ÝÎ»
+	vecStrCombo.push_back("6");
+	vecStrCombo.push_back("7");
+	vecStrCombo.push_back("8");
+	UIFACTORYMGR_PTR->SetComboListData( "CentCfgSrceenDlg/ComboboxInDataBits", vecStrCombo, m_pWndTree );
+	vecStrCombo.clear();
+	//Éý½µÆÁÐ£ÑéÎ»
+	vecStrCombo.push_back("none");
+	vecStrCombo.push_back("odd");
+	vecStrCombo.push_back("even");
+	UIFACTORYMGR_PTR->SetComboListData( "CentCfgSrceenDlg/ComboboxInCheckBits", vecStrCombo, m_pWndTree );
+	vecStrCombo.clear();
+	//Éý½µÆÁÍ£Ö¹Î»
+	vecStrCombo.push_back("1");
+	vecStrCombo.push_back("1.5");
+	vecStrCombo.push_back("2");
+	UIFACTORYMGR_PTR->SetComboListData( "CentCfgSrceenDlg/ComboboxInStopBits", vecStrCombo, m_pWndTree );
+	vecStrCombo.clear();
+
+	m_vctWndName.clear();
 	UpBtnState();
 	return true;
 }

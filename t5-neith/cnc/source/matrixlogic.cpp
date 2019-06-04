@@ -308,10 +308,16 @@ bool CMatrixLogic::OnBtnSaveUISave( TNotifyUI& msg )
     //获取编号
     u32 dwIndex = 0;
     CComboUI* pcombo = (CComboUI*)ICncCommonOp::FindControl(m_pm,_T("ComboSavePreplanNo"));
-    if (pcombo)
+    if (pcombo == NULL)
     {
-        dwIndex = pcombo->GetItemAt(pcombo->GetCurSel())->GetnTag();
+        return false;
     }
+    CListLabelElementUI* pListLabelElementUI = (CListLabelElementUI*)pcombo->GetItemAt(pcombo->GetCurSel());
+    if (pListLabelElementUI == NULL)
+    {
+        return false;
+    }
+     dwIndex = pListLabelElementUI->GetnTag();
     //获取名称
     CString strName = (ICncCommonOp::GetControlText(m_pm,_T("EditSavePreplanName"))).c_str();
     s8 achName[TP_MATRIX_SCENENAME_LEN + 1] = {0};
@@ -355,6 +361,18 @@ bool CMatrixLogic::OnCnsInfoNotify( WPARAM wParam, LPARAM lParam, bool& bHandle 
 
 bool CMatrixLogic::OnMatrixConFigNotify(WPARAM wParam, LPARAM lParam, bool& bHandle)
 {
+    TTPMatrixConfig tTPMatrixConfig;
+    ComInterface->GetMatrixConfig(tTPMatrixConfig);
+
+    if (tTPMatrixConfig.m_bOpenUI && ComInterface->GetMatrixOnlineState())
+    {
+
+    }
+    else
+    {
+
+    }
+
     return true;
 }
 

@@ -37,6 +37,9 @@ public:
 
 	bool OnBtnCancel( const IArgs& args );
 
+	bool OnCom2SelectedChange( const IArgs & arg );
+	bool OnCom3SelectedChange( const IArgs & arg );
+
 	/**	 
 	* 功能:  单击RouteMngLst某个Item的响应函数
 	* @return   bool
@@ -61,6 +64,9 @@ public:
 
 	HRESULT OnDelRouteInfoInd( WPARAM wparam, LPARAM lparam );
 
+	//串口部分
+	HRESULT OnSelectComInd( WPARAM wparam, LPARAM lparam );
+
 	bool IsCfgChange();
 	bool SaveMsgBox();
 	s32 GetCtrlChangeNum() { return m_vctWndName.size(); }
@@ -68,6 +74,7 @@ private:
 	string GetLoatPacketConf( EmTpLostPackageRestore emLostPacket );
 
 	EmTpLostPackageRestore TransLostPacketConf( string strConf );
+	EmComType TransComType( string strComType );
 
 	void UpdateBtnLossPacket( EmTpLostPackageRestore emLostPacket );
 
@@ -93,6 +100,8 @@ private:
 	const String m_strBtnDel;
 
 	TRouteCfg m_tTRouteCfgSel;  //选中的行
+
+	EmComType m_aemComType[2];
 };
 
 #endif // !defined(AFX_CFGADVANCEDLG_H__146F781C_947B_4E31_B49B_F16BE3072D67__INCLUDED_)

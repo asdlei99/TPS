@@ -796,7 +796,12 @@ u16 CCnclibCommonIF::SetMatrixConfig( TTPMatrixConfig tTPMatrixConfig )
 	u16 re = CNCSESSION_MGR_PTR->GetCenterCtrlIF()->SetMatrixConfig( tTPMatrixConfig );
 	return re;
 }
-
+//´®¿Ú
+u16 CCnclibCommonIF::SetSelectComCmd( const EmComType& emComType2, const EmComType& emComType3 )
+{
+	u16 re = CNCSESSION_MGR_PTR->GetPortDiagCtrlIF()->SetSelectComCmd( emComType2, emComType3 );
+	return re;
+}
 
 
 
