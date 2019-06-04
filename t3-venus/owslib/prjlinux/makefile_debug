@@ -1,0 +1,65 @@
+#=====================================================================
+# 说明：编译linux版本libows.a工程 debug版
+#---------------------------------------------------------------------
+#common template makefile muil folder remark: g++ ows -o ows -lfcgi
+
+#[指定当前路径为工作路径]
+#---------------------------------------------------------------------
+WORKSPACE  := $(shell pwd)
+
+#[主编译选项，含宏定义]
+#---------------------------------------------------------------------
+BDW_CFLAGS := -D_LINUX_
+
+#[主编译选项，头文件路径]
+DIR_INC = -I../../../10-common/include \
+	 -I../../../10-common/include/system1 \
+	 -I../../../10-common/include/platform \
+	 -I../../common_linux/include/tp \
+	 -I../../common_linux/include/fcgi \
+	 -I../../common_linux/include/mysql \
+	 -I../include \
+	 -I../../common_linux/include/boost1.50.0
+
+
+
+
+#[依赖的库的名字和路径指定]:
+#---------------------------------------------------------------------
+DEBUG_LIB_PATH   := ../../common_linux/lib/debug/linux
+
+PRJ_LIBS         := -lmysqlclient
+
+DIR_SRC = ../source
+DIR_OBJ = ../obj/debug
+DIR_LIB = ./
+
+SRC = $(wildcard ${DIR_SRC}/*.cpp)
+OBJ = $(patsubst %.cpp,${DIR_OBJ}/%.o,$(notdir ${SRC}))
+
+LIBNAME = libows.a
+
+BIN_TARGET = ${DIR_LIB}/${LIBNAME}
+
+CC = g++
+BDW_AR = ar
+
+#含所有警告编译
+#D_CFLAGS = -g -Wall ${DIR_INC}
+
+#不含警告编译
+D_CFLAGS = -g -w ${DIR_INC}
+
+${BIN_TARGET}:${OBJ}
+	$(BDW_AR) crus $(LIBNAME) $(OBJ)
+	mv -f $(LIBNAME) $(DEBUG_LIB_PATH)/$(LIBNAME)
+
+${DIR_OBJ}/%.o:${DIR_SRC}/%.cpp
+	$(CC) $(BDW_CFLAGS) $(D_CFLAGS) -c  $< -o $@
+	
+.PHONY:clean
+clean:
+	cd $(WORKSPACE)/$(DIR_OBJ)/;      $ ls;
+	find $(WORKSPACE)/$(DIR_OBJ)/ -name *.o -exec rm -f {} \;
+	cd $(WORKSPACE)/$(DEBUG_LIB_PATH)/;      $ ls;
+	find $(WORKSPACE)/$(DEBUG_LIB_PATH)/ -name $(LIBNAME) -exec rm -f {} \;

@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files\70-common">
+      <UniqueIdentifier>{e3ca4023-aef2-41ad-aeef-20a87f13dcf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\10-common">
+      <UniqueIdentifier>{cc0534c5-7df4-4dc5-8baa-16b0413e5c49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common">
+      <UniqueIdentifier>{d10a30b4-452f-4e29-8e2a-80f629fa78ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common No. 1">
+      <UniqueIdentifier>{2720093a-67be-4137-b573-398532664231}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\common\include\commandqueue.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\addrmsgdriver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cncaddrbook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cnccenterctrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cncconfctrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cncconfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cncmsgdriver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cncmsgrecver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cncportdiagctrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cncsysctrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cncuserctrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\cnsSession.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\umcconfCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\cncaddrbookif.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\cnccenterctrlif.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\cncconfctrlif.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\cncconfigif.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\cncConst.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\cncevent.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\cnclib.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\cncportdiagctrlif.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\cncstruct.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\cncsysctrlif.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\cncuserctrlif.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\cnsSessionCtrlIF.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\kdvdispevent.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\msgIdDispatch.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\tpadplatconst.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\tpadplatstuct.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common_2010\include\umcconfCtrlIF.h">
+      <Filter>Header Files\70-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\printctrl.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\10-common\include\tp\eventtpsys.h">
+      <Filter>Header Files\10-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\10-common\include\tp\tpsys.h">
+      <Filter>Header Files\10-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\10-common\include\tp\tptype.h">
+      <Filter>Header Files\10-common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\10-common\include\tp\tpstruct.h">
+      <Filter>Header Files\10-common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\addrmsgdriver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cncaddrbook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cnccenterctrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cncconfctrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cncconfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cnclib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cncmsgdriver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cncmsgrecver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cncportdiagctrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cncsysctrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cncuserctrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\cnsSession.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\umcconfCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\commandqueue.cpp">
+      <Filter>Source Files\common No. 1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\kdvdispevent.cpp">
+      <Filter>Source Files\common No. 1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\printctrl.cpp">
+      <Filter>Source Files\common No. 1</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

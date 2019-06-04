@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{07E15482-AD72-4C9C-BDF1-31F86410B271}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>cnclib</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\..\..\10-common\lib\debug\win32_2010\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\..\..\10-common\lib\release\win32_2010\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;..\source;..\include;..\..\common_2010\include;..\..\..\10-common\include\um;..\..\..\10-common\include\radstack;..\..\..\10-common\include\platform;..\..\..\10-common\include\mt;..\..\..\10-common\include\system;..\..\..\10-common\include\system1;..\..\..\10-common\include\nms1;..\..\..\10-common\include\snmp;..\..\..\10-common\include\protocol;..\..\..\10-common\include\tp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;..\source;..\include;..\..\common_2010\include;..\..\..\10-common\include\um;..\..\..\10-common\include\radstack;..\..\..\10-common\include\platform;..\..\..\10-common\include\mt;..\..\..\10-common\include\system;..\..\..\10-common\include\system1;..\..\..\10-common\include\nms1;..\..\..\10-common\include\snmp;..\..\..\10-common\include\protocol;..\..\..\10-common\include\tp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\10-common\include\tp\eventtpsys.h" />
+    <ClInclude Include="..\..\..\10-common\include\tp\tpstruct.h" />
+    <ClInclude Include="..\..\..\10-common\include\tp\tpsys.h" />
+    <ClInclude Include="..\..\..\10-common\include\tp\tptype.h" />
+    <ClInclude Include="..\..\common\include\commandqueue.h" />
+    <ClInclude Include="..\..\common_2010\include\cncaddrbookif.h" />
+    <ClInclude Include="..\..\common_2010\include\cnccenterctrlif.h" />
+    <ClInclude Include="..\..\common_2010\include\cncconfctrlif.h" />
+    <ClInclude Include="..\..\common_2010\include\cncconfigif.h" />
+    <ClInclude Include="..\..\common_2010\include\cncConst.h" />
+    <ClInclude Include="..\..\common_2010\include\cncevent.h" />
+    <ClInclude Include="..\..\common_2010\include\cnclib.h" />
+    <ClInclude Include="..\..\common_2010\include\cncportdiagctrlif.h" />
+    <ClInclude Include="..\..\common_2010\include\cncstruct.h" />
+    <ClInclude Include="..\..\common_2010\include\cncsysctrlif.h" />
+    <ClInclude Include="..\..\common_2010\include\cncuserctrlif.h" />
+    <ClInclude Include="..\..\common_2010\include\cnsSessionCtrlIF.h" />
+    <ClInclude Include="..\..\common_2010\include\kdvdispevent.h" />
+    <ClInclude Include="..\..\common_2010\include\msgIdDispatch.h" />
+    <ClInclude Include="..\..\common_2010\include\tpadplatconst.h" />
+    <ClInclude Include="..\..\common_2010\include\tpadplatstuct.h" />
+    <ClInclude Include="..\..\common_2010\include\umcconfCtrlIF.h" />
+    <ClInclude Include="..\include\addrmsgdriver.h" />
+    <ClInclude Include="..\include\cncaddrbook.h" />
+    <ClInclude Include="..\include\cnccenterctrl.h" />
+    <ClInclude Include="..\include\cncconfctrl.h" />
+    <ClInclude Include="..\include\cncconfig.h" />
+    <ClInclude Include="..\include\cncmsgdriver.h" />
+    <ClInclude Include="..\include\cncmsgrecver.h" />
+    <ClInclude Include="..\include\cncportdiagctrl.h" />
+    <ClInclude Include="..\include\cncsysctrl.h" />
+    <ClInclude Include="..\include\cncuserctrl.h" />
+    <ClInclude Include="..\include\cnsSession.h" />
+    <ClInclude Include="..\include\printctrl.h" />
+    <ClInclude Include="..\include\umcconfCtrl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\addrmsgdriver.cpp" />
+    <ClCompile Include="..\source\cncaddrbook.cpp" />
+    <ClCompile Include="..\source\cnccenterctrl.cpp" />
+    <ClCompile Include="..\source\cncconfctrl.cpp" />
+    <ClCompile Include="..\source\cncconfig.cpp" />
+    <ClCompile Include="..\source\cnclib.cpp" />
+    <ClCompile Include="..\source\cncmsgdriver.cpp" />
+    <ClCompile Include="..\source\cncmsgrecver.cpp" />
+    <ClCompile Include="..\source\cncportdiagctrl.cpp" />
+    <ClCompile Include="..\source\cncsysctrl.cpp" />
+    <ClCompile Include="..\source\cncuserctrl.cpp" />
+    <ClCompile Include="..\source\cnsSession.cpp" />
+    <ClCompile Include="..\source\commandqueue.cpp" />
+    <ClCompile Include="..\source\kdvdispevent.cpp" />
+    <ClCompile Include="..\source\printctrl.cpp" />
+    <ClCompile Include="..\source\umcconfCtrl.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
