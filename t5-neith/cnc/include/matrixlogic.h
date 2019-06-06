@@ -9,6 +9,20 @@
 #define NUM_MATRIX_WIDTH    160
 #define NUM_MATRIX_HEIGHT   110
 
+enum EmTouchListType
+{
+    emTouchListHTip = 0,//横向表头
+    emTouchListVTip,//纵向表头 
+    emTouchListInfo,//内容
+};
+
+enum EmTouchList
+{
+    emOperation = 0,//操作
+    emManager,//管理 
+};
+
+
 class CMatrixLogic : public CNotifyUIImpl, public Singleton<CMatrixLogic> 
 {
 public:
@@ -16,8 +30,11 @@ public:
 	~CMatrixLogic();
 
     //更新当前矩阵状态
-	void UpdateMatrixTip(const TTPCurMatrixInfo& tTPCurMatrixInfo);//更新矩阵表头（输入输出通道）
-    void UpdateMatrixInfo(const TTPCurMatrixInfo& tTPCurMatrixInfo);//更新矩阵内容（对应勾选状态）
+	void UpdateMatrixTip(const TTPCurMatrixInfo& tTPCurMatrixInfo, EmTouchList emTouchList);//更新矩阵表头（输入输出通道）
+    void UpdateMatrixInfo(const TTPCurMatrixInfo& tTPCurMatrixInfo, EmTouchList emTouchList);//更新矩阵内容（对应勾选状态）
+
+    //获取更新的列表名称
+    CDuiString GetTouchListName(EmTouchList emTouchList, EmTouchListType emTouchListType);
 protected:
 
     /** 初始化消息 
@@ -51,6 +68,8 @@ protected:
 
 
 	/*--------编辑界面--------*/
+    //预案管理切换
+    bool OnSelPreplanSelectChange(TNotifyUI& msg);
 	/** 保存编辑预案
 	 *  @param[in] 
 	 *  @node 
@@ -77,6 +96,8 @@ protected:
 	bool OnBtnUICancel(TNotifyUI& msg);
 
 	/*--------保存界面--------*/
+    //保存切换
+    bool OnPreplanSaveChange(TNotifyUI& msg);
 	/** 取消
 	 *  @param[in] 
 	 *  @node 
@@ -91,6 +112,8 @@ protected:
 	bool OnBtnSaveUISave(TNotifyUI& msg);
 
     /*--------重命名界面--------*/
+    //重命名切换
+    bool OnPreplanReNameChange(TNotifyUI& msg);
 	/** 取消
 	 *  @param[in] 
 	 *  @node 
@@ -104,6 +127,8 @@ protected:
 	 */
 	bool OnBtnReNameUISave(TNotifyUI& msg);
 
+    //断链
+    bool OnDisconnect(WPARAM wParam, LPARAM lParam, bool& bHandle);
     //会场信息通知
     bool OnCnsInfoNotify(WPARAM wParam, LPARAM lParam, bool& bHandle);
     //矩阵配置更新

@@ -252,7 +252,7 @@
 	
 	<Window Type="TransComboBox" Name="ComboboxCom2" Style="WS_CHILD|WS_CLIPSIBLINGS">
       <Property Name="WindowPos" Value="x:160 y:432" />
-      <Property Name="WindowSize" Value="x:100 y:30" />
+      <Property Name="WindowSize" Value="x:120 y:30" />
       <Property Name="WindowVisible" Value="True" />
       <Property Name="IsIPStyle" Value="False" />
       <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
@@ -281,7 +281,7 @@
 	
 	<Window Type="TransComboBox" Name="ComboboxCom3" Style="WS_CHILD|WS_CLIPSIBLINGS">
       <Property Name="WindowPos" Value="x:340 y:432" />
-      <Property Name="WindowSize" Value="x:100 y:30" />
+      <Property Name="WindowSize" Value="x:120 y:30" />
       <Property Name="WindowVisible" Value="True" />
       <Property Name="IsIPStyle" Value="False" />
       <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />

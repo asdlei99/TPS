@@ -64,6 +64,9 @@ public:
 
 	virtual void SetContainerClick(bool bDelayed = false);
 
+    virtual void SetVScollBarHide(bool bVHide = false);
+    virtual void SetHScollBarHide(bool bHHide = false);
+
     virtual int FindSelectable(int iIndex, bool bForward = true) const;
 
     void SetPos(RECT rc);
@@ -118,6 +121,8 @@ protected:
     bool m_bScrollProcess; // 防止SetPos循环调用
 	
 	bool m_bContainerClick; //是否发生点击消息给容器
+    bool m_bVScrollBarHide; //是否隐藏滚动条
+    bool m_bHScrollBarHide; //是否隐藏滚动条
 
     CScrollBarUI* m_pVerticalScrollBar;
     CScrollBarUI* m_pHorizontalScrollBar;

@@ -387,7 +387,7 @@
    <Window Type="TransSwitchButton" Name="MatrixSwitchButton" Style="WS_CHILD|WS_CLIPSIBLINGS">
      <Property Name="WindowPos" Value="x:170 y:182" />
      <Property Name="WindowSize" Value="x:107 y:32" />
-     <Property Name="Image" Value="ExistSwitch" />
+     <Property Name="Image" Value="AudioSwitch" />
      <Property Name="WindowEnable" Value="True" />
      <Property Name="WindowVisible" Value="True" />
      <Property Name="SwitchState" Value="True" />
@@ -587,7 +587,7 @@
 		
 	</Window>
 		
-	<Window Type="TransIPEdit" Name="GroupNameEdit1" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+	<Window Type="TransEdit" Name="GroupNameEdit1" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
 		<Property Name="WindowPos" Value="x:190 y:262" />
 		<Property Name="WindowSize" Value="x:160 y:30" />
 		<Property Name="WindowCaption" Value="" />
@@ -704,7 +704,7 @@
 		
 	</Window>
 		
-	<Window Type="TransIPEdit" Name="GroupNameEdit2" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+	<Window Type="TransEdit" Name="GroupNameEdit2" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
 		<Property Name="WindowPos" Value="x:190 y:302" />
 		<Property Name="WindowSize" Value="x:160 y:30" />
 		<Property Name="WindowCaption" Value="" />
@@ -821,7 +821,7 @@
 		
 	</Window>
 		
-	<Window Type="TransIPEdit" Name="GroupNameEdit3" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+	<Window Type="TransEdit" Name="GroupNameEdit3" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
 		<Property Name="WindowPos" Value="x:190 y:342" />
 		<Property Name="WindowSize" Value="x:160 y:30" />
 		<Property Name="WindowCaption" Value="" />
@@ -938,7 +938,7 @@
 		
 	</Window>
 		
-	<Window Type="TransIPEdit" Name="GroupNameEdit4" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+	<Window Type="TransEdit" Name="GroupNameEdit4" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
 		<Property Name="WindowPos" Value="x:190 y:382" />
 		<Property Name="WindowSize" Value="x:160 y:30" />
 		<Property Name="WindowCaption" Value="" />
@@ -1055,7 +1055,7 @@
 		
 	</Window>
 		
-	<Window Type="TransIPEdit" Name="GroupNameEdit5" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+	<Window Type="TransEdit" Name="GroupNameEdit5" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
 		<Property Name="WindowPos" Value="x:190 y:422" />
 		<Property Name="WindowSize" Value="x:160 y:30" />
 		<Property Name="WindowCaption" Value="" />

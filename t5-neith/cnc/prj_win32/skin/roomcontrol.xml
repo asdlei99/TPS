@@ -6,6 +6,8 @@
 	<Font name="微软雅黑" size="25" bold="false"></Font>
 	<Default name="VScrollBar" value="width=&quot;11&quot; mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
 	<Default name="HScrollBar" value="height=&quot;11&quot; mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="VScrollBarHide" value="width=&quot;0&quot; mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
+	<Default name="HScrollBarHide" value="height=&quot;0&quot; mosaicscroll=&quot;true&quot; showbutton1=&quot;false&quot; showbutton2=&quot;false&quot; mosaicscrollpic=&quot;res\public\scroll&quot;" />
 	<Default name="Button" value="gdiplus=&quot;true&quot; textcolor=&quot;#CCD4DEEB&quot; pushedtextcolor=&quot;#FF379FDB&quot;" />
 	<HorizontalLayout name="RoomCtrlLayout" bkimage="res/subdlgbkg.png">
 	
@@ -23,7 +25,7 @@
             <Option name="mainvedio" padding="2,23,0,0" text="视频源"  width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol"/>	
 			<Control />
             <Option name="Matrix" padding="0,23,0,0" text="矩阵控制"  width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" />
-			<Control />
+			<Control name="ctlMatrix"/>
 			<Option name="Screen" padding="0,23,0,0" text="升降屏控制"  width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" />
 			<Control />
 			<Option name="Monitor" text="显示器" padding="0,23,0,0" width="200" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" align="center" group="roomcontrol" />
@@ -491,7 +493,7 @@
 			</VerticalLayout>
 		</VerticalLayout>		
         <!--矩阵-->
-		<VerticalLayout>
+		<VerticalLayout name="Matrixlayout">
 			<ChildLayout xmlfile="matrix.xml" name="PageMatrix"/>	
 		</VerticalLayout>
 		<!--升降屏-->

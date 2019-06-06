@@ -250,6 +250,7 @@ protected:
 	void OnDelRouteInfoInd( const CMessage& cMsg );
 
 	//¥Æø⁄≈‰÷√
+	void OnSelectComNty( const CMessage& cMsg );
 	void OnSelectComInd( const CMessage& cMsg );
 private:
 	CCnsSession		*m_pSession;

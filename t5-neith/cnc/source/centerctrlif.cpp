@@ -395,7 +395,7 @@ u16 CCommonInterface::SetMatrixInOutCmd( u32 dwIn, u32 dwOut )
     return m_pCenterCtrl->SetMatrixInOutCmd(dwIn, dwOut);
 }
 
-u16 CCommonInterface::SaveMatrixScenceCmd( u32 dwIndex, s8* achName )
+u16 CCommonInterface::SaveMatrixScenceCmd( s32 dwIndex, s8* achName )
 {
     if ( NULL == m_pCenterCtrl )
     {
@@ -425,7 +425,7 @@ u16 CCommonInterface::DeleteMatrixScenceCmd( u32 dwIndex )
     return m_pCenterCtrl->DeleteMatrixScenceCmd( dwIndex );
 }
 
-u16 CCommonInterface::ApplyMatrixScenceCmd( u32 dwIndex )
+u16 CCommonInterface::ApplyMatrixScenceCmd( s32 dwIndex )
 {
     if ( NULL == m_pCenterCtrl )
     {

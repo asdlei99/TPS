@@ -1459,7 +1459,10 @@ void CCncMsgDriver::MappingEventName()
     MAPPING_HELPER( ev_CnSetMatrixConfig_Ind, _T("ev_CnSetMatrixConfig_Ind") );
     MAPPING_HELPER( ev_CnMatrixOnlineState_Nty, _T("ev_CnMatrixOnlineState_Nty") );
     MAPPING_HELPER( ev_CnMatrixSceneInfo_Nty, _T("ev_CnMatrixSceneInfo_Nty") );
+    MAPPING_HELPER( ev_CnCurMatrixInfo_Nty, _T("ev_CnCurMatrixInfo_Nty") );
+    MAPPING_HELPER( ev_Cn_CurMatrixInOutRelation_Nty, _T("ev_Cn_CurMatrixInOutRelation_Nty") );
     MAPPING_HELPER( ev_CnChangeMatrixOutInRelation_Cmd, _T("ev_CnChangeMatrixOutInRelation_Cmd") );
+    MAPPING_HELPER( ev_CnChangeMatrixOutInRelation_Ind, _T("ev_CnChangeMatrixOutInRelation_Ind") );
     MAPPING_HELPER( ev_CnSaveMatrixScence_Cmd, _T("ev_CnSaveMatrixScence_Cmd") );
     MAPPING_HELPER( ev_CnSaveMatrixScence_Ind, _T("ev_CnSaveMatrixScence_Ind") );
     MAPPING_HELPER( ev_CnRenameMatrixScence_Cmd, _T("ev_CnRenameMatrixScence_Cmd") );

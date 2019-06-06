@@ -77,6 +77,8 @@ void CCncCenterCtrl::BuildEventsMap()
     REG_PFUN( ev_CnRenameMatrixScence_Ind, CCncCenterCtrl::OnReNameMatrixSceneInd );
     REG_PFUN( ev_CnDeleteMatrixScence_Ind, CCncCenterCtrl::OnDeleteMatrixSceneInd );
     REG_PFUN( ev_CnUseMatrixScence_Ind, CCncCenterCtrl::OnApplyMatrixSceneInd );
+    REG_PFUN( ev_CnChangeMatrixOutInRelation_Ind, CCncCenterCtrl::OnChangeMatrixOutInRelationInd );
+    REG_PFUN( ev_Cn_CurMatrixInOutRelation_Nty, CCncCenterCtrl::OnMatrixOutInRelationNty );
 	//¶ÏÁ´Í¨Öª
 	REG_PFUN( OSP_DISCONNECT, CCncCenterCtrl::OnLinkBreak );
 }
@@ -1185,7 +1187,22 @@ void CCncCenterCtrl::OnMatrixSceneInfoNty(const CMessage& cMsg)
 
     for (int i = 0 ; i < TP_MATRIX_SCENENUM_MAX ; i++)
     {
-        PrtMsg( ev_CnMatrixSceneInfo_Nty, emEventTypeCnsRecv, "Index: %d, bUsed£º%d", i ,m_atTPMatrixSceneInfo[i].bUsed);
+        PrtMsg( ev_CnMatrixSceneInfo_Nty, emEventTypeCnsRecv, "Index: %d, name= %s, bUsed£º%d,               \
+                CurMatrixInfo:%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d",
+                i, m_atTPMatrixSceneInfo[i].achSceneName, m_atTPMatrixSceneInfo[i].bUsed,
+                m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[0],m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[1],
+                m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[2],m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[3],
+                m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[4],m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[5],
+                m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[6],m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[7],
+                m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[8],m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[9],
+                m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[10],m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[11],
+                m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[12],m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[13],
+                m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[14],m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[15],
+                m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[16],m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[17],
+                m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[18],m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[19],
+                m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[20],m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[21],
+                m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[22],m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[23],
+                m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[24],m_atTPMatrixSceneInfo[i].m_achMatrixInOutRelation[25]);
     }
 
     PostEvent( UI_MATRIXSCENE_NTY );
@@ -1201,9 +1218,23 @@ void CCncCenterCtrl::OnCurMatrixInfoNty(const CMessage& cMsg)
     CTpMsg cTpMsg(&cMsg);
     m_tTPCurMatrixInfo = *(TTPCurMatrixInfo*)( cTpMsg.GetBody());
 
-    PrtMsg( ev_CnCurMatrixInfo_Nty, emEventTypeCnsRecv, "CurMatrixInfo.");
+    PrtMsg( ev_CnCurMatrixInfo_Nty, emEventTypeCnsRecv, 
+            "CurMatrixInfo:%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d", 
+            m_tTPCurMatrixInfo.m_achMatrixInOutRelation[0],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[1],
+            m_tTPCurMatrixInfo.m_achMatrixInOutRelation[2],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[3],
+            m_tTPCurMatrixInfo.m_achMatrixInOutRelation[4],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[5],
+            m_tTPCurMatrixInfo.m_achMatrixInOutRelation[6],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[7],
+            m_tTPCurMatrixInfo.m_achMatrixInOutRelation[8],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[9],
+            m_tTPCurMatrixInfo.m_achMatrixInOutRelation[10],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[11],
+            m_tTPCurMatrixInfo.m_achMatrixInOutRelation[12],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[13],
+            m_tTPCurMatrixInfo.m_achMatrixInOutRelation[14],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[15],
+            m_tTPCurMatrixInfo.m_achMatrixInOutRelation[16],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[17],
+            m_tTPCurMatrixInfo.m_achMatrixInOutRelation[18],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[19],
+            m_tTPCurMatrixInfo.m_achMatrixInOutRelation[20],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[21],
+            m_tTPCurMatrixInfo.m_achMatrixInOutRelation[22],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[23],
+            m_tTPCurMatrixInfo.m_achMatrixInOutRelation[24],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[25]);
 
-    PostEvent( UI_CURMATRIXSCENE_NTY );
+    PostEvent( UI_CURMATRIXSCENE_NTY ,TRUE);
 }
 
 TTPCurMatrixInfo CCncCenterCtrl::GetCurMatrixInfo()
@@ -1230,13 +1261,64 @@ u16 CCncCenterCtrl::SetMatrixInOutCmd( u32 dwIn, u32 dwOut )
     return wRet;
 }
 
-u16 CCncCenterCtrl::SaveMatrixScenceCmd( u32 dwIndex, s8* achName )
+void CCncCenterCtrl::OnChangeMatrixOutInRelationInd(const CMessage& cMsg)
+{
+    CTpMsg cTpMsg(&cMsg);
+    s32 *pcCurInfo = reinterpret_cast<s32*>( cTpMsg.GetBody());
+    memcpy(m_tTPCurMatrixInfo.m_achMatrixInOutRelation, pcCurInfo, sizeof(s32)*MT_MAX_MATRIX_CHANNEL_LEN);
+    BOOL bSuccess = *(BOOL*)( cTpMsg.GetBody() + sizeof(s32)*MT_MAX_MATRIX_CHANNEL_LEN);
+
+    PrtMsg( ev_CnChangeMatrixOutInRelation_Ind, emEventTypeCnsRecv, 
+        "bSuccess:%d, CurMatrixInfo:%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d", bSuccess,
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[0],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[1],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[2],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[3],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[4],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[5],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[6],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[7],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[8],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[9],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[10],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[11],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[12],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[13],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[14],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[15],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[16],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[17],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[18],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[19],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[20],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[21],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[22],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[23],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[24],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[25]);
+
+    PostEvent( UI_CURMATRIXSCENE_NTY, FALSE );
+}
+
+void CCncCenterCtrl::OnMatrixOutInRelationNty(const CMessage& cMsg)
+{
+    CTpMsg cTpMsg(&cMsg);
+    s32 *pcCurInfo = reinterpret_cast<s32*>( cTpMsg.GetBody());
+    memcpy(m_tTPCurMatrixInfo.m_achMatrixInOutRelation, pcCurInfo, sizeof(s32)*MT_MAX_MATRIX_CHANNEL_LEN);
+
+    PrtMsg( ev_Cn_CurMatrixInOutRelation_Nty, emEventTypeCnsRecv, 
+        "CurMatrixInfo:%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d", 
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[0],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[1],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[2],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[3],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[4],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[5],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[6],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[7],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[8],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[9],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[10],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[11],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[12],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[13],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[14],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[15],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[16],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[17],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[18],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[19],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[20],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[21],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[22],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[23],
+        m_tTPCurMatrixInfo.m_achMatrixInOutRelation[24],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[25]);
+
+    PostEvent( UI_CURMATRIXSCENE_NTY, FALSE );
+}
+
+u16 CCncCenterCtrl::SaveMatrixScenceCmd( s32 dwIndex, s8* achName )
 {
     CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr(); 
     pcTpMsg->SetUserData( m_pSession->GetInst() );
 
     pcTpMsg->SetEvent( ev_CnSaveMatrixScence_Cmd ); 
-    pcTpMsg->SetBody( &dwIndex, sizeof(u32) );
+    pcTpMsg->SetBody( &dwIndex, sizeof(s32) );
     pcTpMsg->CatBody( achName, sizeof(s8)*(TP_MATRIX_SCENENAME_LEN + 1) );
 
     u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
@@ -1248,13 +1330,13 @@ void CCncCenterCtrl::OnSaveMatrixSceneInd(const CMessage& cMsg)
 {
     CTpMsg cTpMsg(&cMsg);
     //index
-    u32 dwIndex = *(u32*)( cTpMsg.GetBody());
+    s32 dwIndex = *(s32*)( cTpMsg.GetBody());
     //name
     s8 achName[TP_MATRIX_SCENENAME_LEN + 1] = {0};
-    s8 *chName = reinterpret_cast<s8*>( cTpMsg.GetBody() + sizeof(u32));
+    s8 *chName = reinterpret_cast<s8*>( cTpMsg.GetBody() + sizeof(s32));
     memcpy(achName, chName, sizeof(s8)*(TP_MATRIX_SCENENAME_LEN + 1));
     //success
-    BOOL bSuccess = *(BOOL*)( cTpMsg.GetBody() + sizeof(u32) + sizeof(s8)*(TP_MATRIX_SCENENAME_LEN + 1));
+    BOOL bSuccess = *(BOOL*)( cTpMsg.GetBody() + sizeof(s32) + sizeof(s8)*(TP_MATRIX_SCENENAME_LEN + 1));
 
     PrtMsg( ev_CnSaveMatrixScence_Ind, emEventTypeCnsRecv, "Index: %d, Success£º%d", dwIndex ,bSuccess);
 
@@ -1318,13 +1400,13 @@ void CCncCenterCtrl::OnDeleteMatrixSceneInd(const CMessage& cMsg)
     PostEvent( UI_DELETEMATRIXSCENE_IND ,bSuccess, dwIndex);
 }
 
-u16 CCncCenterCtrl::ApplyMatrixScenceCmd( u32 dwIndex )
+u16 CCncCenterCtrl::ApplyMatrixScenceCmd( s32 dwIndex )
 {
     CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr(); 
     pcTpMsg->SetUserData( m_pSession->GetInst() );
 
     pcTpMsg->SetEvent( ev_CnUseMatrixScence_Cmd ); 
-    pcTpMsg->SetBody( &dwIndex, sizeof(u32) );
+    pcTpMsg->SetBody( &dwIndex, sizeof(s32) );
 
     u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
     PrtMsg( ev_CnUseMatrixScence_Cmd, emEventTypeCnsSend,"Index : %d", dwIndex);
@@ -1335,9 +1417,9 @@ void CCncCenterCtrl::OnApplyMatrixSceneInd(const CMessage& cMsg)
 {
     CTpMsg cTpMsg(&cMsg);
     //index
-    u32 dwIndex = *(u32*)( cTpMsg.GetBody() );
+    s32 dwIndex = *(s32*)( cTpMsg.GetBody() );
     //success
-    BOOL bSuccess = *(BOOL*)( cTpMsg.GetBody() + sizeof(u32) );
+    BOOL bSuccess = *(BOOL*)( cTpMsg.GetBody() + sizeof(s32) );
 
     PrtMsg( ev_CnUseMatrixScence_Ind, emEventTypeCnsRecv, "Index: %d, Success£º%d", dwIndex ,bSuccess);
 

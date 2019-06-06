@@ -15,7 +15,9 @@ namespace DuiLib
 		m_pVerticalScrollBar(NULL),
 		m_pHorizontalScrollBar(NULL),
 		m_bScrollProcess(false),
-		m_bContainerClick(false)
+		m_bContainerClick(false),
+        m_bHScrollBarHide(false),
+        m_bVScrollBarHide(false)
 	{
 		::ZeroMemory(&m_rcInset, sizeof(m_rcInset));
 	}
@@ -481,7 +483,15 @@ namespace DuiLib
 			m_pVerticalScrollBar->SetOwner(this);
 			m_pVerticalScrollBar->SetManager(m_pManager, NULL, false);
 			if ( m_pManager ) {
-				LPCTSTR pDefaultAttributes = m_pManager->GetDefaultAttributeList(_T("VScrollBar"));
+                LPCTSTR pDefaultAttributes = _T("");
+                if (m_bVScrollBarHide)
+                {
+                    pDefaultAttributes = m_pManager->GetDefaultAttributeList(_T("VScrollBarHide"));
+                }
+                else
+                {
+                    pDefaultAttributes = m_pManager->GetDefaultAttributeList(_T("VScrollBar"));
+                }
 				if( pDefaultAttributes ) {
 					m_pVerticalScrollBar->ApplyAttributeList(pDefaultAttributes);
 				}
@@ -498,7 +508,15 @@ namespace DuiLib
 			m_pHorizontalScrollBar->SetOwner(this);
 			m_pHorizontalScrollBar->SetManager(m_pManager, NULL, false);
 			if ( m_pManager ) {
-				LPCTSTR pDefaultAttributes = m_pManager->GetDefaultAttributeList(_T("HScrollBar"));
+				LPCTSTR pDefaultAttributes = _T("");
+                if (m_bHScrollBarHide)
+                {
+                    pDefaultAttributes = m_pManager->GetDefaultAttributeList(_T("HScrollBarHide"));
+                }
+                else
+                {
+                    pDefaultAttributes = m_pManager->GetDefaultAttributeList(_T("HScrollBar"));
+                }
 				if( pDefaultAttributes ) {
 					m_pHorizontalScrollBar->ApplyAttributeList(pDefaultAttributes);
 				}
@@ -593,6 +611,8 @@ namespace DuiLib
 			EnableScrollBar(GetVerticalScrollBar() != NULL, true);
 			if( GetHorizontalScrollBar() ) GetHorizontalScrollBar()->ApplyAttributeList(pstrValue);
 		}
+        else if( _tcscmp(pstrName, _T("vscrollbarhide")) == 0 ) SetVScollBarHide(_tcscmp(pstrValue, _T("true")) == 0);
+        else if( _tcscmp(pstrName, _T("hscrollbarhide")) == 0 ) SetHScollBarHide(_tcscmp(pstrValue, _T("true")) == 0);
 		else if( _tcscmp(pstrName, _T("childpadding")) == 0 ) SetChildPadding(_ttoi(pstrValue));
 		else if( _tcscmp(pstrName, _T("containerclick")) == 0 ) SetContainerClick(_tcscmp(pstrValue, _T("true")) == 0);
 		else CControlUI::SetAttribute(pstrName, pstrValue);
@@ -968,5 +988,15 @@ namespace DuiLib
 	{
 		m_bContainerClick = bclick;
 	}
+
+    void CContainerUI::SetVScollBarHide(bool bVHide /*= false*/)
+    {
+        m_bVScrollBarHide = bVHide;
+    }
+
+    void CContainerUI::SetHScollBarHide(bool bHHide /*= false*/)
+    {
+        m_bHScrollBarHide = bHHide;
+    }
 
 } // namespace DuiLib

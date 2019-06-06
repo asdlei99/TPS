@@ -227,9 +227,9 @@ public:
     virtual TTPCurMatrixInfo GetCurMatrixInfo() = 0;
     virtual TTPMatrixConfig GetMatrixConfig() = 0;
     virtual u16 SetMatrixInOutCmd( u32 dwIn, u32 dwOut ) = 0;
-    virtual u16 SaveMatrixScenceCmd( u32 dwIndex, s8* achName ) = 0;
+    virtual u16 SaveMatrixScenceCmd( s32 dwIndex, s8* achName ) = 0;
     virtual u16 ReNameMatrixScenceCmd( u32 dwIndex, s8* achName ) = 0;
     virtual u16 DeleteMatrixScenceCmd( u32 dwIndex ) = 0;
-    virtual u16 ApplyMatrixScenceCmd( u32 dwIndex ) = 0;
+    virtual u16 ApplyMatrixScenceCmd( s32 dwIndex ) = 0;
 };
 #endif

@@ -1528,10 +1528,10 @@ public:
 
     //æÿ’Û
     u16 SetMatrixInOutCmd( u32 dwIn, u32 dwOut );
-    u16 SaveMatrixScenceCmd( u32 dwIndex, s8* achName );
+    u16 SaveMatrixScenceCmd( s32 dwIndex, s8* achName );
     u16 ReNameMatrixScenceCmd( u32 dwIndex, s8* achName );
     u16 DeleteMatrixScenceCmd( u32 dwIndex );
-    u16 ApplyMatrixScenceCmd( u32 dwIndex );
+    u16 ApplyMatrixScenceCmd( s32 dwIndex );
 
 protected:
 	void UpdateAddrList();

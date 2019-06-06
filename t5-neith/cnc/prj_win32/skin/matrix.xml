@@ -23,11 +23,11 @@
 					<Label text="输出" float="true" pos="0,55,0,0" width="80" height="45" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true"/>
 					<Label text="输入" float="true" pos="80,0,0,0" width="80" height="55" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true"/>
 				</VerticalLayout>
-				<TouchList name="MatrixListHeadH" listdrag="false" autolayout="false" />
+				<TouchList name="MatrixListHeadH" hscrollbarhide="true" vscrollbar="true" hscrollbar="true" listdrag="false" autolayout="false" />
 			</HorizontalLayout>
 			<HorizontalLayout>
-				<TouchList name="MatrixListHeadV" width="160" listdrag="false" autolayout="false" />
-				<TouchList name="MatrixList" vscrollbar="true" hscrollbar ="true" columns="1" listheadh="MatrixListHeadH" listheadv="MatrixListHeadV" listdrag="false" autolayout="false" />
+				<TouchList name="MatrixListHeadV" vscrollbarhide="true" vscrollbar="true" hscrollbar="true" width="160" listdrag="false" autolayout="false" />
+				<TouchList name="MatrixList" vscrollbar="true" hscrollbar="true" columns="1" listheadh="MatrixListHeadH" listheadv="MatrixListHeadV" listdrag="false" autolayout="false" />
 			</HorizontalLayout>
 		  </VerticalLayout>
 		</VerticalLayout>
@@ -39,11 +39,11 @@
 					<Label text="输出" float="true" pos="0,55,0,0" width="80" height="45" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true"/>
 					<Label text="输入" float="true" pos="80,0,0,0" width="80" height="55" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true"/>
 				</VerticalLayout>
-				<TouchList name="MatrixEditListHeadH" listdrag="false" autolayout="false" />
+				<TouchList name="MatrixEditListHeadH" hscrollbarhide="true" vscrollbar="true" hscrollbar="true" listdrag="false" autolayout="false" />
 			</HorizontalLayout>
 			<HorizontalLayout>
-				<TouchList name="MatrixEditListHeadV" width="160" listdrag="false" autolayout="false" />
-				<TouchList name="MatrixEditList" vscrollbar="true" hscrollbar ="true" columns="1" listheadh="MatrixEditListHeadH" listheadv="MatrixEditListHeadV" listdrag="false" autolayout="false" />
+				<TouchList name="MatrixEditListHeadV" vscrollbarhide="true" vscrollbar="true" hscrollbar="true" width="160" listdrag="false" autolayout="false" />
+				<TouchList name="MatrixEditList" vscrollbar="true" hscrollbar="true" columns="1" listheadh="MatrixEditListHeadH" listheadv="MatrixEditListHeadV" listdrag="false" autolayout="false" />
 			</HorizontalLayout>
 		  </VerticalLayout>
 		</VerticalLayout>
@@ -59,7 +59,7 @@
 		  
 		  <HorizontalLayout height="93" padding="0,40,0,0" inset="500">
 			  <Label name="" text="预案名称" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
-			  <Edit name="EditSavePreplanName" padding="10,0,0,0" tiptext="" maxchar="31" font="1" text="" menu="true" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" gdiplus="true" textcolor="#FED5DEEB" width="600" height="64" />
+			  <Edit name="EditSavePreplanName" padding="10,0,0,0" tiptext="" maxchar="32" font="1" text="" menu="true" align="center" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" gdiplus="true" textcolor="#FED5DEEB" width="600" height="64" />
 		  </HorizontalLayout>
 		  <Control />
 		  <HorizontalLayout height="93" padding="0,0,0,0">
@@ -81,7 +81,7 @@
 		  
 		  <HorizontalLayout height="93" padding="0,40,0,0" inset="500">
 			  <Label name="" text="预案名称" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
-			  <Edit name="EditReNamePreplanName" padding="10,0,0,0" tiptext="" maxchar="31" font="1" text="" menu="true" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" gdiplus="true" textcolor="#FED5DEEB" width="600" height="64" />
+			  <Edit name="EditReNamePreplanName" padding="10,0,0,0" tiptext="" maxchar="31" font="1" text="" menu="true" align="center" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" gdiplus="true" textcolor="#FED5DEEB" width="600" height="64" />
 		  </HorizontalLayout>
 		  <Control />
 		  <HorizontalLayout height="93" padding="0,0,0,0">

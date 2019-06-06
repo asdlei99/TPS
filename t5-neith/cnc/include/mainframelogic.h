@@ -111,6 +111,8 @@ protected:
     bool OnDisplayChange( WPARAM wParam, LPARAM lParam, bool& bHandle );
 	bool OnCnsDisconnectNty( WPARAM wParam, LPARAM lParam, bool& bHandle );
 	bool OnDisconnectClear( WPARAM wParam, LPARAM lParam, bool& bHandle );
+    //会议状态变化
+    bool OnConfStateNty(WPARAM wParam, LPARAM lParam, bool& bHandle);
 public:
 	/** 更新消息通知按钮图片
 	 *  @param[in] 

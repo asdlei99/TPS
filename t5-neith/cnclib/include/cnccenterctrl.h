@@ -192,10 +192,10 @@ public:
     virtual TTPMatrixConfig GetMatrixConfig(); 
 
      virtual u16 SetMatrixInOutCmd( u32 dwIn, u32 dwOut );
-     virtual u16 SaveMatrixScenceCmd( u32 dwIndex, s8* achName );
+     virtual u16 SaveMatrixScenceCmd( s32 dwIndex, s8* achName );
      virtual u16 ReNameMatrixScenceCmd( u32 dwIndex, s8* achName );
      virtual u16 DeleteMatrixScenceCmd( u32 dwIndex );
-     virtual u16 ApplyMatrixScenceCmd( u32 dwIndex );
+     virtual u16 ApplyMatrixScenceCmd( s32 dwIndex );
 
 protected:
     virtual void OnTimeOut(u16 wEvent); 
@@ -268,6 +268,8 @@ protected:
     void OnReNameMatrixSceneInd(const CMessage& cMsg);
     void OnDeleteMatrixSceneInd(const CMessage& cMsg);
     void OnApplyMatrixSceneInd(const CMessage& cMsg);
+    void OnChangeMatrixOutInRelationInd(const CMessage& cMsg);
+    void OnMatrixOutInRelationNty(const CMessage& cMsg);
 
 private:
 	CCnsSession				*m_pSession;

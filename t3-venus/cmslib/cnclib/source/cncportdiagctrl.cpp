@@ -92,6 +92,7 @@ void CCncPortDiagCtrl::BuildEventsMap()
 	REG_PFUN( ev_tppDelRoute_Ind, CCncPortDiagCtrl::OnDelRouteInfoInd);
 	
 	//¥Æø⁄≈‰÷√
+	REG_PFUN( ev_Cn_SelectCom_Nty, CCncPortDiagCtrl::OnSelectComNty);
 	REG_PFUN( ev_Cn_SelectCom_Ind, CCncPortDiagCtrl::OnSelectComInd);
 }
 
@@ -2012,15 +2013,34 @@ u16 CCncPortDiagCtrl::SetSelectComCmd( const EmComType& emComType2, const EmComT
 	return wRet;
 }
 
+void CCncPortDiagCtrl::OnSelectComNty( const CMessage& cMsg )
+{
+	CTpMsg cTpMsg(&cMsg);
+	EmComType emComType2 = *(EmComType*)( cTpMsg.GetBody());
+	EmComType emComType3 = *(EmComType*)( cTpMsg.GetBody() + sizeof(EmComType));
+	
+	PrtMsg( ev_Cn_SelectCom_Nty, emEventTypecnstoolRecv, "emComType2:%d emComType3:%d", emComType2, emComType3 );
+	
+	PostEvent( UI_SELECTCOMG_IND, emComType2, emComType3 );
+}
+
 void CCncPortDiagCtrl::OnSelectComInd( const CMessage& cMsg )
 {
 	CTpMsg cTpMsg(&cMsg);
 	EmComType emComType2 = *(EmComType*)( cTpMsg.GetBody());
 	EmComType emComType3 = *(EmComType*)( cTpMsg.GetBody() + sizeof(EmComType));
+	BOOL bSuccess = *(BOOL*)( cTpMsg.GetBody() + sizeof(EmComType) + sizeof(EmComType));
 
-	PrtMsg( ev_Cn_SelectCom_Ind, emEventTypecnstoolRecv, "emComType2:%d emComType3:%d", emComType2, emComType3 );
-	
-	PostEvent( UI_SELECTCOMG_IND, (WPARAM)&emComType2, (LPARAM)&emComType2 );
+	PrtMsg( ev_Cn_SelectCom_Ind, emEventTypecnstoolRecv, "bSuccess = %d, emComType2:%d emComType3:%d",bSuccess, emComType2, emComType3 );
+
+	if (bSuccess)
+	{
+		PostEvent( UI_SELECTCOMG_IND, emComType2, emComType3 );
+	}
+	else
+	{
+		PostEvent( UI_SELECTCOMG_IND, -1, -1 );
+	}
 }
 
 

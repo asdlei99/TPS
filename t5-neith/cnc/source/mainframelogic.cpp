@@ -62,6 +62,8 @@ APP_BEGIN_MSG_MAP(CMainFrameLogic, CNotifyUIImpl)
     USER_MSG( WM_DISPLAYCHANGE, OnDisplayChange )
 	USER_MSG( UI_TPAD_CNSDISCONNECTED_NTY, OnCnsDisconnectNty )
 	USER_MSG( UI_DISCONNECTED_CLEARDATA, OnDisconnectClear )
+
+    USER_MSG( UI_CNS_CONFSTATE_NOTIFY, OnConfStateNty )
 	
 APP_END_MSG_MAP()
 
@@ -1583,4 +1585,26 @@ bool CMainFrameLogic::OnDisconnectClear( WPARAM wParam, LPARAM lParam, bool& bHa
 	CMainMenuLogic::GetSingletonPtr()->SaveShortCutToIni();
 
 	return true;
+}
+
+bool CMainFrameLogic::OnConfStateNty(WPARAM wParam, LPARAM lParam, bool& bHandle)
+{
+    TCMSConf tConfInfo;
+    BOOL32 bInConf = ComInterface->IsInConf( &tConfInfo );
+
+    if ( !bInConf )
+    {
+        String strCurWnd = UIDATAMGR->GetCurShowWndName();
+		if ( strCurWnd == g_strInviteCnsDlg )
+		{
+			SetTitleTab( false );
+            strCurWnd = g_strAddrbookDlg;
+
+            m_pm->DoCase( _T("caseShowCnsManage") );
+            WINDOW_MGR_PTR->ShowWindowFromLeftToRight( strCurWnd.c_str(), false );
+            UIDATAMGR->SetCurShowWndName(_T(""));
+		}
+    }
+
+    return true;
 }

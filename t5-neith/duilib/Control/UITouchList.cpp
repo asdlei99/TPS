@@ -226,12 +226,40 @@ void CTouchListUI::SetScrollPos(SIZE szPos)
         int iLastScrollPos = m_pVerticalScrollBar->GetScrollPos();
         m_pVerticalScrollBar->SetScrollPos(szPos.cy);
         cy = m_pVerticalScrollBar->GetScrollPos() - iLastScrollPos;
+
+        if(cy != 0 && GetListHeadNameV().IsEmpty() == false)
+        {
+            CTouchListUI* pListHeadV = static_cast<CTouchListUI*>(GetManager()->FindControl(GetListHeadNameV()));
+            if(pListHeadV)
+            {
+                int iLastHeadScrollPos = pListHeadV->GetVerticalScrollBar()->GetScrollPos();
+                pListHeadV->GetVerticalScrollBar()->SetScrollPos(szPos.cy);
+                int ny = pListHeadV->GetVerticalScrollBar()->GetScrollPos() - iLastScrollPos;
+                pListHeadV->GetVerticalScrollBar()->SetScrollPos(iLastHeadScrollPos);
+                cy = ny;
+                m_pVerticalScrollBar->SetScrollPos(iLastScrollPos + cy);
+            }
+        }
     }
 
     if( m_pHorizontalScrollBar && m_pHorizontalScrollBar->IsVisible() ) {
         int iLastScrollPos = m_pHorizontalScrollBar->GetScrollPos();
         m_pHorizontalScrollBar->SetScrollPos(szPos.cx);
         cx = m_pHorizontalScrollBar->GetScrollPos() - iLastScrollPos;
+
+        if(cx != 0 && GetListHeadNameH().IsEmpty() == false)
+        {
+            CTouchListUI* pListHeadH = static_cast<CTouchListUI*>(GetManager()->FindControl(GetListHeadNameH()));
+            if(pListHeadH)
+            {
+                int iLastHeadScrollPos = pListHeadH->GetHorizontalScrollBar()->GetScrollPos();
+                pListHeadH->GetHorizontalScrollBar()->SetScrollPos(szPos.cx);
+                int nx = pListHeadH->GetHorizontalScrollBar()->GetScrollPos() - iLastScrollPos;
+                pListHeadH->GetHorizontalScrollBar()->SetScrollPos(iLastHeadScrollPos);
+                cx = nx;
+                m_pHorizontalScrollBar->SetScrollPos(iLastScrollPos + cx);
+            }
+        }
     }
 
     if( cx == 0 && cy == 0 ) return;
@@ -252,6 +280,23 @@ void CTouchListUI::SetScrollPos(SIZE szPos)
 
     Invalidate();
 
+    if(cx != 0 && GetListHeadNameH().IsEmpty() == false)
+    {
+        CTouchListUI* pListHeadH = static_cast<CTouchListUI*>(GetManager()->FindControl(GetListHeadNameH()));
+        if(pListHeadH)
+        {
+            pListHeadH->SetScrollPos(szPos);
+        }
+    }
+    if(cy != 0 && GetListHeadNameV().IsEmpty() == false)
+    {
+        CTouchListUI* pListHeadV = static_cast<CTouchListUI*>(GetManager()->FindControl(GetListHeadNameV()));
+        if(pListHeadV)
+        {
+            pListHeadV->SetScrollPos(szPos);
+        }
+    }
+/*
     //横向表头 左右移动
     if (cx != 0)
     {
@@ -300,6 +345,7 @@ void CTouchListUI::SetScrollPos(SIZE szPos)
             }
         }
     }
+*/
 }
 
 

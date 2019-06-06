@@ -1133,13 +1133,23 @@ bool CCentCfgMatrix::OnBtnSave( const IArgs & arg )
 		tTPMatrixConfig.m_emMatrixModel = emKMX4000;
 	}
 	//矩阵服务器地址
+	String strCaption;
+	UIFACTORYMGR_PTR->GetCaption( "CentCfgMatrixDlg/MatrixServerEdit" , strCaption , m_pWndTree );
 	Value_IpEditData valServerIP;
     UIFACTORYMGR_PTR->GetPropertyValue(valServerIP, "CentCfgMatrixDlg/MatrixServerEdit", m_pWndTree); 
+	if ( !CCallAddr::IsValidIpV4(valServerIP.dwIP ) && strCaption.empty() == false)
+	{
+		MSG_BOX_OK( "矩阵服务器地址非法" );
+		UIFACTORYMGR_PTR->SetFocus( "CentCfgMatrixDlg/MatrixServerEdit", m_pWndTree );
+		return false;
+	}
 	tTPMatrixConfig.m_tMatrixAddr.SetIP(htonl(valServerIP.dwIP));
 	//矩阵配置界面
 	bool bSwitch = false;
 	UIFACTORYMGR_PTR->GetSwitchState("CentCfgMatrixDlg/MatrixSwitchButton",bSwitch,m_pWndTree);
 	tTPMatrixConfig.m_bOpenUI = bSwitch;
+	//端口写死
+	tTPMatrixConfig.m_tMatrixAddr.m_wPort = 5000;
 
 	COMIFMGRPTR->SetMatrixConfig(tTPMatrixConfig);
 	return true;
@@ -1193,6 +1203,7 @@ LRESULT CCentCfgMatrix::OnMatrixConfigNty( WPARAM wParam, LPARAM lParam )
 	//矩阵配置界面
 	UIFACTORYMGR_PTR->SetSwitchState("CentCfgMatrixDlg/MatrixSwitchButton",m_tTPMatrixConfig.m_bOpenUI,m_pWndTree);
 
+	m_vctWndName.clear();
 	UpBtnState();
 	return S_OK;
 }
@@ -1276,6 +1287,19 @@ bool CCentCfgSrceen::InitWnd( const IArgs & arg )
 	vecStrCombo.push_back("1.5");
 	vecStrCombo.push_back("2");
 	UIFACTORYMGR_PTR->SetComboListData( "CentCfgSrceenDlg/ComboboxInStopBits", vecStrCombo, m_pWndTree );
+	vecStrCombo.clear();
+
+	//组号
+	vecStrCombo.push_back("01");
+	vecStrCombo.push_back("02");
+	vecStrCombo.push_back("03");
+	vecStrCombo.push_back("04");
+	vecStrCombo.push_back("05");
+ 	UIFACTORYMGR_PTR->SetComboListData( "CentCfgSrceenDlg/ComboboxInAddrCode1", vecStrCombo, m_pWndTree );
+ 	UIFACTORYMGR_PTR->SetComboListData( "CentCfgSrceenDlg/ComboboxInAddrCode2", vecStrCombo, m_pWndTree );
+ 	UIFACTORYMGR_PTR->SetComboListData( "CentCfgSrceenDlg/ComboboxInAddrCode3", vecStrCombo, m_pWndTree );
+ 	UIFACTORYMGR_PTR->SetComboListData( "CentCfgSrceenDlg/ComboboxInAddrCode4", vecStrCombo, m_pWndTree );
+ 	UIFACTORYMGR_PTR->SetComboListData( "CentCfgSrceenDlg/ComboboxInAddrCode5", vecStrCombo, m_pWndTree );
 	vecStrCombo.clear();
 
 	m_vctWndName.clear();

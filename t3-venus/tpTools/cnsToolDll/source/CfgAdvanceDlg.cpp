@@ -66,8 +66,8 @@ bool CCfgAdvanceDlg::InitWnd( const IArgs & arg )
 	UIFACTORYMGR_PTR->SetComboText( "CfgAdvanceDlg/ComboboxRouteCfg", "LAN1", m_pWndTree );
 
 	vecConfig.clear();
-	vecConfig.push_back("升降屏");
-	vecConfig.push_back("文档");
+	vecConfig.push_back("无纸化设备");
+	vecConfig.push_back("文档摄像机");
 	UIFACTORYMGR_PTR->SetComboListData( "CfgAdvanceDlg/ComboboxCom2", vecConfig, m_pWndTree ); 
 	UIFACTORYMGR_PTR->SetComboListData( "CfgAdvanceDlg/ComboboxCom3", vecConfig, m_pWndTree ); 
 
@@ -470,7 +470,7 @@ EmComType CCfgAdvanceDlg::TransComType( string strComType )
 {
 	EmComType emComType;
 	
-	if ( strcmp( strComType.c_str(),"升降屏" ) == 0 )
+	if ( strcmp( strComType.c_str(),"无纸化设备" ) == 0 )
 	{
 		emComType = emDFScreen;
 	}
@@ -524,7 +524,7 @@ bool CCfgAdvanceDlg::OnBtnSave( const IArgs& args )
 	string strComType3 = "";
 	UIFACTORYMGR_PTR->GetComboText("CfgAdvanceDlg/ComboboxCom3",strComType3,m_pWndTree);
 	EmComType emComType3 = TransComType(strComType3);
-	if (emComType2 != m_aemComType[0] || emComType2 != m_aemComType[1])
+	if (emComType2 != m_aemComType[0] || emComType3 != m_aemComType[1])
 	{
 		u16 wRet = COMIFMGRPTR->SetSelectComCmd( emComType2, emComType3 );	
 		if ( wRet != NO_ERROR )
@@ -538,6 +538,8 @@ bool CCfgAdvanceDlg::OnBtnSave( const IArgs& args )
 
 bool CCfgAdvanceDlg::OnBtnCancel( const IArgs& args )
 {
+	OnSelectComInd(-1,-1);
+
 	m_emTempLevel = m_emLostPacket;
 	UpdateBtnLossPacket(m_emLostPacket);
 
@@ -610,16 +612,19 @@ bool CCfgAdvanceDlg::SaveMsgBox()
 //串口
 HRESULT CCfgAdvanceDlg::OnSelectComInd(WPARAM wparam, LPARAM lparam)
 {
-	m_aemComType[0] = *(EmComType*)(wparam);
-	m_aemComType[1] = *(EmComType*)(lparam);
+	if (wparam != -1 && lparam != -1)
+	{
+		m_aemComType[0] = (EmComType)(wparam);
+		m_aemComType[1] = (EmComType)(lparam);
+	}
 	//com2
 	switch(m_aemComType[0])
 	{
 	case emDFScreen:
-		UIFACTORYMGR_PTR->SetComboText( "CfgAdvanceDlg/ComboboxCom2", "升降屏", m_pWndTree ); 
+		UIFACTORYMGR_PTR->SetComboText( "CfgAdvanceDlg/ComboboxCom2", "无纸化设备", m_pWndTree ); 
 		break;
 	case emDCam:
-		UIFACTORYMGR_PTR->SetComboText( "CfgAdvanceDlg/ComboboxCom2", "文档", m_pWndTree ); 
+		UIFACTORYMGR_PTR->SetComboText( "CfgAdvanceDlg/ComboboxCom2", "文档摄像机", m_pWndTree ); 
 		break;
 	default:
 		break;
@@ -628,14 +633,18 @@ HRESULT CCfgAdvanceDlg::OnSelectComInd(WPARAM wparam, LPARAM lparam)
 	switch(m_aemComType[1])
 	{
 	case emDFScreen:
-		UIFACTORYMGR_PTR->SetComboText( "CfgAdvanceDlg/ComboboxCom3", "升降屏", m_pWndTree ); 
+		UIFACTORYMGR_PTR->SetComboText( "CfgAdvanceDlg/ComboboxCom3", "无纸化设备", m_pWndTree ); 
 		break;
 	case emDCam:
-		UIFACTORYMGR_PTR->SetComboText( "CfgAdvanceDlg/ComboboxCom2", "文档", m_pWndTree ); 
+		UIFACTORYMGR_PTR->SetComboText( "CfgAdvanceDlg/ComboboxCom3", "文档摄像机", m_pWndTree ); 
 		break;
 	default:
 		break;
 	}
+
+	CheckData( "CfgAdvanceDlg/ComboboxCom2", false );	
+	CheckData( "CfgAdvanceDlg/ComboboxCom3", false );	
+	UpBtnState();
 
 	return S_OK;
 }
