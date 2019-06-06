@@ -438,6 +438,8 @@ bool CRoomCtrlLogic::OnCheckSrceenControl(TNotifyUI& msg)
             m_bySrceenControl &= ~(FLAG_FIRST | FLAG_SECOND | FLAG_THIRD | FLAG_FOURTH | FLAG_FIFTH);
             m_pm->DoCase(_T("caseCheckSelectNone"));
         }
+
+        ComInterface->SelectDFScreen( m_bySrceenControl );
     }
     else if ( nCheckBoxTag > 0 && nCheckBoxTag <= NUM_SRCEEN_COUNT )//点击位置
     {
@@ -462,90 +464,103 @@ bool CRoomCtrlLogic::OnCheckSrceenControl(TNotifyUI& msg)
             (m_bySrceenControl & FLAG_FIFTH))
         {
             pCheckBoxAll->SetCheckNoMsg(true);
+            ComInterface->SelectDFScreen( m_bySrceenControl );
         }
         else
         {
             pCheckBoxAll->SetCheckNoMsg(false);
         }
     }
+
+    if (m_bySrceenControl != 0x1F && m_bySrceenControl != 0)
+    {
+        ComInterface->SelectDFScreen( m_bySrceenControl );        
+    }
+
     return true;
 }
 
 bool CRoomCtrlLogic::OnBtnLiftSrceenUp(TNotifyUI& msg)
 {
-    CDuiString strtmp = _T("");
+    /*CDuiString strtmp = _T("");
     strtmp.Format(_T("一：%d\t二：%d\t三：%d\t四：%d\t五：%d\n") ,
                                     m_bySrceenControl & FLAG_FIRST,
                                     m_bySrceenControl & FLAG_SECOND,
                                     m_bySrceenControl & FLAG_THIRD,
                                     m_bySrceenControl & FLAG_FOURTH,
                                     m_bySrceenControl & FLAG_FIFTH);
-    OutputDebugString(strtmp);
+    OutputDebugString(strtmp);*/
+    ComInterface->SetDFScreenCommand( emScreenUP );
     return true;
 }
 
 bool CRoomCtrlLogic::OnBtnLiftSrceenDown(TNotifyUI& msg)
 {
-    CDuiString strtmp = _T("");
+    /*CDuiString strtmp = _T("");
     strtmp.Format(_T("一：%d\t二：%d\t三：%d\t四：%d\t五：%d\n") ,
-        m_bySrceenControl & FLAG_FIRST,
-        m_bySrceenControl & FLAG_SECOND,
-        m_bySrceenControl & FLAG_THIRD,
-        m_bySrceenControl & FLAG_FOURTH,
-        m_bySrceenControl & FLAG_FIFTH);
-    OutputDebugString(strtmp);
+    m_bySrceenControl & FLAG_FIRST,
+    m_bySrceenControl & FLAG_SECOND,
+    m_bySrceenControl & FLAG_THIRD,
+    m_bySrceenControl & FLAG_FOURTH,
+    m_bySrceenControl & FLAG_FIFTH);
+    OutputDebugString(strtmp);*/
+    ComInterface->SetDFScreenCommand( emScrrenDown );
     return true;
 }
 
 bool CRoomCtrlLogic::OnBtnLiftSrceenStop(TNotifyUI& msg)
 {
-    CDuiString strtmp = _T("");
+    /*CDuiString strtmp = _T("");
     strtmp.Format(_T("一：%d\t二：%d\t三：%d\t四：%d\t五：%d\n") ,
-        m_bySrceenControl & FLAG_FIRST,
-        m_bySrceenControl & FLAG_SECOND,
-        m_bySrceenControl & FLAG_THIRD,
-        m_bySrceenControl & FLAG_FOURTH,
-        m_bySrceenControl & FLAG_FIFTH);
-    OutputDebugString(strtmp);
+    m_bySrceenControl & FLAG_FIRST,
+    m_bySrceenControl & FLAG_SECOND,
+    m_bySrceenControl & FLAG_THIRD,
+    m_bySrceenControl & FLAG_FOURTH,
+    m_bySrceenControl & FLAG_FIFTH);
+    OutputDebugString(strtmp);*/
+    ComInterface->SetDFScreenCommand( emScrrenStop );
     return true;
 }
 
 bool CRoomCtrlLogic::OnBtnFlipSrceenOpen(TNotifyUI& msg)
 {
-    CDuiString strtmp = _T("");
+    /*CDuiString strtmp = _T("");
     strtmp.Format(_T("一：%d\t二：%d\t三：%d\t四：%d\t五：%d\n") ,
         m_bySrceenControl & FLAG_FIRST,
         m_bySrceenControl & FLAG_SECOND,
         m_bySrceenControl & FLAG_THIRD,
         m_bySrceenControl & FLAG_FOURTH,
         m_bySrceenControl & FLAG_FIFTH);
-    OutputDebugString(strtmp);
+    OutputDebugString(strtmp);*/
+    ComInterface->SetDFScreenCommand( emScreenUP );
     return true;
 }
 
 bool CRoomCtrlLogic::OnBtnFlipSrceenClose(TNotifyUI& msg)
 {
-    CDuiString strtmp = _T("");
+    /*CDuiString strtmp = _T("");
     strtmp.Format(_T("一：%d\t二：%d\t三：%d\t四：%d\t五：%d\n") ,
         m_bySrceenControl & FLAG_FIRST,
         m_bySrceenControl & FLAG_SECOND,
         m_bySrceenControl & FLAG_THIRD,
         m_bySrceenControl & FLAG_FOURTH,
         m_bySrceenControl & FLAG_FIFTH);
-    OutputDebugString(strtmp);
+    OutputDebugString(strtmp);*/
+    ComInterface->SetDFScreenCommand( emScrrenDown );
     return true;
 }
 
 bool CRoomCtrlLogic::OnBtnFlipSrceenStop(TNotifyUI& msg)
 {
-    CDuiString strtmp = _T("");
+    /*CDuiString strtmp = _T("");
     strtmp.Format(_T("一：%d\t二：%d\t三：%d\t四：%d\t五：%d\n") ,
         m_bySrceenControl & FLAG_FIRST,
         m_bySrceenControl & FLAG_SECOND,
         m_bySrceenControl & FLAG_THIRD,
         m_bySrceenControl & FLAG_FOURTH,
         m_bySrceenControl & FLAG_FIFTH);
-    OutputDebugString(strtmp);
+    OutputDebugString(strtmp);*/
+    ComInterface->SetDFScreenCommand( emScrrenStop );
     return true;
 }
 

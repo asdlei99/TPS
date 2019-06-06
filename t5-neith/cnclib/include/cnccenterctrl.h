@@ -1,5 +1,7 @@
 #include "cnsSession.h"
 
+//用于屏幕的取位
+const int adwTagArray[MAX_CENTREDFSCREEN_GROUP_NUM] = {0x01,0x02,0x04,0x08,0x10};
 
 class CCncCenterCtrl : public CCncCenterCtrlIF
 {
@@ -197,6 +199,10 @@ public:
      virtual u16 DeleteMatrixScenceCmd( u32 dwIndex );
      virtual u16 ApplyMatrixScenceCmd( s32 dwIndex );
 
+    //升降屏
+    virtual u16 SelectDFScreen( u8 bySrceenControl );
+    virtual u16 SetDFScreenCommand(EmCommandType emCommand);
+
 protected:
     virtual void OnTimeOut(u16 wEvent); 
     virtual void DispEvent(const CMessage &cMsg);
@@ -270,6 +276,9 @@ protected:
     void OnApplyMatrixSceneInd(const CMessage& cMsg);
     void OnChangeMatrixOutInRelationInd(const CMessage& cMsg);
     void OnMatrixOutInRelationNty(const CMessage& cMsg);
+
+    //升降屏
+    void OnDFScreenCommandInd(const CMessage& cMsg);
 
 private:
 	CCnsSession				*m_pSession;

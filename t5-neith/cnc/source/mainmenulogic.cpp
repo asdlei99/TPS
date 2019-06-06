@@ -334,6 +334,7 @@ bool CMainMenuLogic::OnBtnConfTemp( TNotifyUI& msg )
 
 bool CMainMenuLogic::OnBtnRoomCtrl( TNotifyUI& msg )
 {
+    WINDOW_MGR_PTR->ShowWindow( g_strRoomControlDlg.c_str(), false );
 	WINDOW_MGR_PTR->ShowWindowFromLeftToRight( g_strRoomControlDlg.c_str() );
 
 	CMainFrameLogic::GetSingletonPtr()->SetTitle(_T("会场管理"));

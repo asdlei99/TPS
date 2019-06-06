@@ -210,6 +210,10 @@ public:
 	//矩阵相关
 	virtual const TTPMatrixConfig& GetMatrixConfig() const;//获取矩阵配置信息
 	virtual u16 SetMatrixConfig( TTPMatrixConfig tTPMatrixConfig ) const;
+    //升降屏相关
+    virtual u16 SetDFScreenConfigCmd(EmComConfigType emComConfigType, TSerialCfg tSerialCfg) const;
+    virtual u16 SetDFScreenGroupCmd(u32 dwGroupNum, TCenDownOrFlipScreenCfg** pptScreenCfg) const;
+
 protected:
     virtual void OnTimeOut(u16 wEvent); 
     virtual void DispEvent(const CMessage &cMsg);
@@ -291,6 +295,9 @@ protected:
 	//矩阵
 	void OnMatrixConfigNty( const CMessage& cMsg );
 	void OnSetMatrixConfigInd( const CMessage& cMsg );
+    //升降屏
+    void OnSetDFScreenConfigInd( const CMessage& cMsg );
+    void OnSetDFScreenGroupInd( const CMessage& cMsg );
 private:
 	CCnsSession				*m_pSession;
     TCentreTVCfg            m_atTVCfg[MAX_CENTRETV_NUM];   //显示器信息 
@@ -309,4 +316,5 @@ private:
 
 	//矩阵
 	TTPMatrixConfig m_tTPMatrixConfig;//矩阵配置信息
+    TCenDownOrFlipScreenCfg m_atScreenCfg[MAX_CENTREDFSCREEN_GROUP_NUM];//升级旋转屏组信息
 };

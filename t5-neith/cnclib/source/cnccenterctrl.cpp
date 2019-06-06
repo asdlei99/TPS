@@ -79,6 +79,10 @@ void CCncCenterCtrl::BuildEventsMap()
     REG_PFUN( ev_CnUseMatrixScence_Ind, CCncCenterCtrl::OnApplyMatrixSceneInd );
     REG_PFUN( ev_CnChangeMatrixOutInRelation_Ind, CCncCenterCtrl::OnChangeMatrixOutInRelationInd );
     REG_PFUN( ev_Cn_CurMatrixInOutRelation_Nty, CCncCenterCtrl::OnMatrixOutInRelationNty );
+
+    //Éý½µÆÁ
+    REG_PFUN( ev_Cn_CentreDFScreenCommand_Ind, CCncCenterCtrl::OnDFScreenCommandInd);
+
 	//¶ÏÁ´Í¨Öª
 	REG_PFUN( OSP_DISCONNECT, CCncCenterCtrl::OnLinkBreak );
 }
@@ -1424,4 +1428,50 @@ void CCncCenterCtrl::OnApplyMatrixSceneInd(const CMessage& cMsg)
     PrtMsg( ev_CnUseMatrixScence_Ind, emEventTypeCnsRecv, "Index: %d, Success£º%d", dwIndex ,bSuccess);
 
     PostEvent( UI_APPLYMATRIXSCENE_IND ,bSuccess, dwIndex);
+}
+
+u16 CCncCenterCtrl::SelectDFScreen( u8 bySrceenControl )
+{
+    CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr(); 
+    pcTpMsg->SetUserData( m_pSession->GetInst() );
+
+    pcTpMsg->SetEvent( ev_cns_centreSelectDFScreen_Cmd );
+
+    BOOL bSelect[MAX_CENTREDFSCREEN_GROUP_NUM] = {0};
+    for (u16 wIndex = 0; wIndex < MAX_CENTREDFSCREEN_GROUP_NUM; wIndex++)
+    {
+        bSelect[wIndex] = bySrceenControl & adwTagArray[wIndex];
+    }
+
+    pcTpMsg->SetBody( bSelect, sizeof(BOOL)*MAX_CENTREDFSCREEN_GROUP_NUM );
+
+    u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
+    PrtMsg( ev_cns_centreSelectDFScreen_Cmd, emEventTypeCnsSend,"bySrceenControl : %d", bySrceenControl);
+    return wRet;
+}
+
+u16 CCncCenterCtrl::SetDFScreenCommand( EmCommandType emCommand )
+{
+    CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr(); 
+    pcTpMsg->SetUserData( m_pSession->GetInst() );
+
+    pcTpMsg->SetEvent( ev_Cn_CentreDFScreenCommand_Cmd );
+    pcTpMsg->SetBody( &emCommand, sizeof(EmCommandType) );
+
+    u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
+    PrtMsg( ev_Cn_CentreDFScreenCommand_Cmd, emEventTypeCnsSend,"EmCommandType : %d", emCommand);
+    return wRet;
+}
+
+void CCncCenterCtrl::OnDFScreenCommandInd(const CMessage& cMsg)
+{
+    CTpMsg cTpMsg(&cMsg);
+    //EmComConfigType
+    //TSerialCfg
+    //BOOL
+    BOOL bSuccess = *(BOOL*)(cTpMsg.GetBody() + sizeof(EmComConfigType) + sizeof(TSerialCfg));
+
+    PrtMsg( ev_Cn_CentreDFScreenCommand_Ind, emEventTypeCnsRecv, "Success£º%d", bSuccess);
+
+    //PostEvent( UI_DELETEMATRIXSCENE_IND ,bSuccess, dwIndex);
 }

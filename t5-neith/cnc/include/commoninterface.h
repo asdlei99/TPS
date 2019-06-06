@@ -1489,6 +1489,12 @@ public:
     TTPMatrixSceneInfo* GetMatrixScneInfo();
     u16 GetCurMatrixInfo(TTPCurMatrixInfo &tTPCurMatrixInfo);
     u16 GetMatrixConfig(TTPMatrixConfig &tTPMatrixConfig);
+
+    /* ---- 升降屏 ---- */
+	//升降屏排数选择
+	u16 SelectDFScreen( u8 bySrceenControl );
+    u16 SetDFScreenCommand(EmCommandType emCommand);
+
 	  /**
     * 功能:	断开与UMS和CNS的连接
 	* @param [in]  

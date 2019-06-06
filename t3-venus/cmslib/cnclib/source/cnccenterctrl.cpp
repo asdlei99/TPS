@@ -85,6 +85,10 @@ void CCncCenterCtrl::BuildEventsMap()
 	//¾ØÕó
 	REG_PFUN( ev_CnMatrixConfigInfo_Nty,CCncCenterCtrl::OnMatrixConfigNty);
 	REG_PFUN( ev_CnSetMatrixConfig_Ind,CCncCenterCtrl::OnSetMatrixConfigInd);
+    //Éý½µÆÁ
+    REG_PFUN( ev_Cn_CentreModifyDFScreenConfig_Ind,CCncCenterCtrl::OnSetDFScreenConfigInd);
+    REG_PFUN( ev_Cn_CentreModifyDFScreenGroup_Ind,CCncCenterCtrl::OnSetDFScreenGroupInd);
+
 	//¶ÏÁ´Í¨Öª
 	REG_PFUN( OSP_DISCONNECT, CCncCenterCtrl::OnLinkBreak );
 }
@@ -1648,3 +1652,63 @@ const TTPMatrixConfig& CCncCenterCtrl::GetMatrixConfig() const
 {
 	return m_tTPMatrixConfig;
 }
+
+//Éý½µÆÁ
+u16 CCncCenterCtrl::SetDFScreenConfigCmd( EmComConfigType emComConfigType, TSerialCfg tSerialCfg ) const
+{
+    CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr();  
+    pcTpMsg->SetUserData( m_pSession->GetInst() );
+    pcTpMsg->SetEvent( ev_Cn_CentreModifyDFScreenConfig_Cmd );
+    pcTpMsg->SetBody( &emComConfigType,sizeof( EmComConfigType ) );
+    pcTpMsg->CatBody( &tSerialCfg, sizeof( TSerialCfg ) );
+    
+    u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
+    PrtMsg( ev_Cn_CentreModifyDFScreenConfig_Cmd, emEventTypeCnsSend, "Config Type: %d", emComConfigType);
+    return wRet;
+}
+
+void CCncCenterCtrl::OnSetDFScreenConfigInd( const CMessage& cMsg )
+{
+    CTpMsg cTpMsg(&cMsg);
+    
+    EmComConfigType emConfigType = *(EmComConfigType*)( cTpMsg.GetBody() );
+    TSerialCfg tSerialCfg = *(TSerialCfg*)( cTpMsg.GetBody() + sizeof(EmComConfigType) );
+    BOOL bSuccess = *(BOOL*)( cTpMsg.GetBody() + sizeof(EmComConfigType) + sizeof(TSerialCfg) );
+    
+    PrtMsg( ev_Cn_CentreModifyDFScreenConfig_Ind, emEventTypecnstoolRecv,"Success=%d.", bSuccess);
+    
+    PostEvent( UI_MODIFYDFSCREENCONFIG_IND, bSuccess);
+}
+
+u16 CCncCenterCtrl::SetDFScreenGroupCmd( u32 dwGroupNum, TCenDownOrFlipScreenCfg** pptScreenCfg ) const
+{
+    CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr();  
+    pcTpMsg->SetUserData( m_pSession->GetInst() );
+    pcTpMsg->SetEvent( ev_Cn_CentreModifyDFScreenGroup_Cmd );
+    pcTpMsg->SetBody( &dwGroupNum,sizeof( u32 ) );
+    pcTpMsg->CatBody( *pptScreenCfg, sizeof( TCenDownOrFlipScreenCfg ) );
+    pcTpMsg->CatBody( (*pptScreenCfg)+1, sizeof( TCenDownOrFlipScreenCfg ) );
+    pcTpMsg->CatBody( (*pptScreenCfg)+2, sizeof( TCenDownOrFlipScreenCfg ) );
+    pcTpMsg->CatBody( (*pptScreenCfg)+3, sizeof( TCenDownOrFlipScreenCfg ) );
+    pcTpMsg->CatBody( (*pptScreenCfg)+4, sizeof( TCenDownOrFlipScreenCfg ) );
+
+    u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
+    PrtMsg( ev_Cn_CentreModifyDFScreenGroup_Cmd, emEventTypeCnsSend, "Group Number: %d", dwGroupNum);
+    return wRet;
+}
+
+void CCncCenterCtrl::OnSetDFScreenGroupInd( const CMessage& cMsg )
+{
+    CTpMsg cTpMsg(&cMsg);
+    
+    u32 dwGroupNum = *(u32*)( cTpMsg.GetBody() );
+    TCenDownOrFlipScreenCfg *ptScreenCfg = reinterpret_cast<TCenDownOrFlipScreenCfg *>( cTpMsg.GetBody() + sizeof(u32) );
+    memcpy(m_atScreenCfg, ptScreenCfg, sizeof(TCenDownOrFlipScreenCfg)*MAX_CENTREDFSCREEN_GROUP_NUM);
+    BOOL bSuccess = *(BOOL*)( cTpMsg.GetBody() + sizeof(u32) + sizeof(TCenDownOrFlipScreenCfg)*MAX_CENTREDFSCREEN_GROUP_NUM );
+    
+    PrtMsg( ev_Cn_CentreModifyDFScreenGroup_Ind, emEventTypecnstoolRecv,"Success=%d.", bSuccess);
+    
+    PostEvent( UI_MODIFYDFSCREENGROUP_IND, bSuccess);
+}
+
+

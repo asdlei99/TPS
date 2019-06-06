@@ -576,6 +576,10 @@ public:
 	u16 SetMatrixConfig( TTPMatrixConfig tTPMatrixConfig );
 	//´®¿Ú
 	u16 SetSelectComCmd( const EmComType& emComType2, const EmComType& emComType3 );
+    //Éý½µÆÁ
+    u16 SetDFScreenConfigCmd(EmComConfigType emComConfigType, TSerialCfg tSerialCfg);
+    u16 SetDFScreenGroupCmd(u32 dwGroupNum, TCenDownOrFlipScreenCfg* ptScreenCfg);
+
 private:
 	CCnclibCommonIF();
 private:

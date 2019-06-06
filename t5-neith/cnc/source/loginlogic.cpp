@@ -89,13 +89,16 @@ bool CLoginLogic::OnBtnLogin( TNotifyUI& msg )
 	}
 
     ICncCommonOp::EnableControl( false, m_pm, _T("BtnLogin") );
-
+#if 0
 	u16 uRe = ComInterface->Connect( dwIp, CONNETCT_CNS_PORT, strUserName.c_str(), strPassword.c_str() );
 	if ( uRe != NO_ERROR )
 	{  
         ICncCommonOp::EnableControl( true, m_pm, _T("BtnLogin") );
 		return false;
 	}
+#else
+    NOTIFY_MSG( UI_CNS_CONNECTED, TRUE, NO_ERROR );
+#endif
 
 	return true;
 }

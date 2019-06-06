@@ -434,3 +434,23 @@ u16 CCommonInterface::ApplyMatrixScenceCmd( s32 dwIndex )
 
     return m_pCenterCtrl->ApplyMatrixScenceCmd( dwIndex );
 }
+
+u16 CCommonInterface::SelectDFScreen( u8 bySrceenControl )
+{
+    if ( NULL == m_pCenterCtrl )
+    {
+        return NULL;
+    }
+
+    return m_pCenterCtrl->SelectDFScreen( bySrceenControl );
+}
+
+u16 CCommonInterface::SetDFScreenCommand(EmCommandType emCommand)
+{
+    if ( NULL == m_pCenterCtrl )
+    {
+        return NULL;
+    }
+
+    return m_pCenterCtrl->SetDFScreenCommand( emCommand );
+}

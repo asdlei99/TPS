@@ -802,6 +802,17 @@ u16 CCnclibCommonIF::SetSelectComCmd( const EmComType& emComType2, const EmComTy
 	u16 re = CNCSESSION_MGR_PTR->GetPortDiagCtrlIF()->SetSelectComCmd( emComType2, emComType3 );
 	return re;
 }
+//Éý½µÆÁ
+u16 CCnclibCommonIF::SetDFScreenConfigCmd(EmComConfigType emComConfigType, TSerialCfg tSerialCfg)
+{
+    u16 re = CNCSESSION_MGR_PTR->GetCenterCtrlIF()->SetDFScreenConfigCmd( emComConfigType, tSerialCfg );
+    return re;
+}
+u16 CCnclibCommonIF::SetDFScreenGroupCmd(u32 dwGroupNum, TCenDownOrFlipScreenCfg* ptScreenCfg)
+{
+    u16 re = CNCSESSION_MGR_PTR->GetCenterCtrlIF()->SetDFScreenGroupCmd( dwGroupNum, &ptScreenCfg );
+    return re;
+}
 
 
 
