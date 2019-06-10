@@ -64,13 +64,18 @@ typedef BOOL (PACALLBACK* PACBCallDisconnected)(
 	HMDLAPPCALL hAppCall,
 	EmModuleCallDisconnectReason emReason );
 
+typedef BOOL (PACALLBACK* PACBSipPeeripNotify)( 
+	HMDLCALL    hCall,
+	HMDLAPPCALL hAppCall,
+	PFC_IPADDR  *pPeerAddr );
+
 /// The call back function about calls
 typedef struct tagPACallCBFunction
 {
 	PACBNewCallIncoming    m_fpNewCallIncoming;
 	PACBCallConnected      m_fpCallConnected;
 	PACBCallDisconnected   m_fpCallDisconnected;
-
+	PACBSipPeeripNotify     m_fpSipPeeripNotify;
 	tagPACallCBFunction()
 	{
 		memset( this, 0, sizeof(tagPACallCBFunction) );
@@ -575,7 +580,6 @@ typedef struct tagPAH323Cfg
 typedef struct tagPASipCfg
 {
 	emModuleEndpointType m_emEndpointType;
-	u16  m_wCallingPort;            ///< 呼叫端口
 	u16  m_wSipTotalCallNum;
 	u16  m_wIfProxy;                ///< 若为注册服务器则大于0 否则填0
 	u32  m_dwKeepAliveTime;         ///< 单位: 秒
@@ -589,11 +593,13 @@ typedef struct tagPASipCfg
 	u8		m_abyProductId[MAX_LEN_PRODUCT_ID];				///< 产品号
 	s32		m_nVerIdSize;
 	u8		m_abyVersionId[MAX_LEN_VERSION_ID];				///< 版本号
-	u32     m_dwPaLocalIP;									///< 本端业务指定绑定地址.网络序
+	PFC_IPADDR m_tPaLocalIPv4;    ///< 本端业务指定绑定ipv4地址
+	BOOL32     m_bIfUseIpv6;
+	PFC_IPADDR m_tPaLocalIPv6;    ///< 本端业务指定绑定ipv6地址
+
 	tagPASipCfg()
 	{	
 		m_emEndpointType   = emModuleEndpointMT;
-		m_wCallingPort     = DEFAULT_SIP_CALLING_PORT;
 		m_wSipTotalCallNum = DEFAULT_CALL_NUMBER;
 		m_wIfProxy        = FALSE;
 		m_dwKeepAliveTime = DEFAULT_SIP_ALIVE_TIME;
@@ -606,7 +612,9 @@ typedef struct tagPASipCfg
 		m_bAutoAnswerFCS      = FALSE;
 		memset( m_abyProductId, 0, MAX_LEN_PRODUCT_ID );
 		memset( m_abyVersionId, 0, MAX_LEN_VERSION_ID );
-		m_dwPaLocalIP = 0;
+		m_tPaLocalIPv4.Clear();
+		m_bIfUseIpv6 = FALSE;
+		m_tPaLocalIPv6.Clear();
 	}
 	
 }TPASipCfg;

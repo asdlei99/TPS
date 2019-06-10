@@ -7,7 +7,6 @@
 //define inline
 #if defined(_MSC_VER)
 #define WIN32_LEAN_AND_MEAN
-#pragma warning(disable:4996)
 #ifndef __INLINE__
 #ifdef __cplusplus
 #define __INLINE__	inline

@@ -319,6 +319,16 @@ typedef BOOL32 (PROTO_CALLBACK* CBSipDualIncomingBfcp)(HMDLCALL hCall, HMDLAPPCA
 */
 typedef BOOL32 (PROTO_CALLBACK* CBSipRoundTripTimeOut)(HMDLCALL hCall, HMDLAPPCALL hAppCall);
 
+//»Øµ÷Peerip
+/**
+* \brief            callback peerip
+* \param[in]        hCall             :lower call handle
+* \param[in]        hAppCall          :upper call info
+* \param[in]        pbyBuf			  :info buffer:peerip
+* \param[in]        nLen			  :buffer length
+*/
+typedef BOOL32 (PROTO_CALLBACK* CBSipPeeripNotify)(HMDLCALL hCall, HMDLAPPCALL hAppCall,const u8 *pbyBuf, const s32 nLen);
+
 /// call back  function
 typedef struct tagCallCBFunction
 {
@@ -340,6 +350,7 @@ typedef struct tagCallCBFunction
 	CBSipDualIncomingBfcp  m_cbDualIncomingBfcp;    ///< dual incoming for bfcp callback
 	CBSipRoundTripTimeOut  m_cbRoundTripTimeOut;    ///< round trip time out callback
 	CBSipReinviteRecive    m_cbReciveReinvite;      ///< receive reinvite callback
+	CBSipPeeripNotify      m_cbPeeripNotify;		///< receive peerip callback
 
 	/**
     * \brief            tagCallCBFunction init
@@ -365,6 +376,7 @@ typedef struct tagCallCBFunction
 		m_cbDualIncomingBfcp	= NULL;
 		m_cbRoundTripTimeOut    = NULL;
 		m_cbReciveReinvite      = NULL;
+		m_cbPeeripNotify        = NULL;
 	}
 
 	/**
@@ -502,9 +514,7 @@ typedef struct tagSipModuleCfg
 	/// ±¾¶ËµØÖ·ipv6.ÍøÂçÐò only fe80::,if ipv6 addr is 0,will bind addr_any
 	///< if ipv6 Scopeid is 0,then ipv6 addr mut be global address
 	PFC_IPADDR m_tLocalAddr6;                   ///< local address of ipv6, port is default 5060
-	u16	       m_wCallingPort;		            ///< ºô½Ð¶Ë¿Úipv4 default 5060
-
-	u32     m_dwSetLocalIP;            //±¾¶ËµØÖ·.ÍøÂçÐò
+	PFC_IPADDR m_tLocalAddr4;                   ///< local address of ipv4, port is default 
 
 	/**
     * \brief            tagSipModuleCfg Constructor
@@ -548,8 +558,9 @@ typedef struct tagSipModuleCfg
 		m_tLocalAddr6.Clear();
 		m_tLocalAddr6.m_emType= PFC_TRANSPORT_TYPE_IPV6;
 		m_tLocalAddr6.m_wPort = SIP_DEFAULT_SERVER_PORT;
-		m_wCallingPort        = SIP_DEFAULT_SERVER_PORT;
-		m_dwSetLocalIP = 0;
+		m_tLocalAddr4.Clear();
+		m_tLocalAddr4.m_emType= PFC_TRANSPORT_TYPE_IP;
+		m_tLocalAddr4.m_wPort = SIP_DEFAULT_SERVER_PORT;
 	}
 	
 }TSipModuleCfg;

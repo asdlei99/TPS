@@ -9142,9 +9142,9 @@ typedef struct tagTTPCurMatrixInfo
     //矩阵通道信息
     TTPMatrixInOutInfo  m_tTPMatrixInInfo;                                   //输入通道信息
     TTPMatrixInOutInfo  m_tTPMatrixOutInfo;                                  //输出通道信息
-    //m_achMatrixInOutRelation不要当成一个字符数组，我们使用的是它的ASCII码值，下标为矩阵输出通道号-1，值为输入通道号-1
-    //即m_achMatrixInOutRelation[0] = 1,代表矩阵中的输出通道1对应输入通道2，
-    s8      m_achMatrixInOutRelation[MT_MAX_MATRIX_CHANNEL_LEN];             //矩阵输出出对应关系
+    //m_achMatrixInOutRelation下标为矩阵输出通道号，值为输入通道号
+    //即m_achMatrixInOutRelation[0] = 1,代表矩阵中的输出通道1对应输入通道2，-1则代表没有用
+    s32     m_achMatrixInOutRelation[MT_MAX_MATRIX_CHANNEL_LEN];             //矩阵输出出对应关系
     BOOL    m_bFirstReq;                                     //是否第一次向此终端查询通道
 
     public:
@@ -9164,9 +9164,9 @@ typedef struct tagTTPMatrixSceneInfo
 {
     BOOL    bUsed;                                                            //是否使用该预案
     s8      achSceneName[TP_MATRIX_SCENENAME_LEN + 1];                        //预案名
-    //m_achMatrixInOutRelation不要当成一个字符数组，我们使用的是它的ASCII码值，下标为矩阵输出通道号-1，值为输入通道号-1
+    //m_achMatrixInOutRelation下标为矩阵输出通道号，值为输入通道号-1则代表没有用
     //即m_achMatrixInOutRelation[0] = 1,代表矩阵中的输出通道1对应输入通道2，
-    s8      m_achMatrixInOutRelation[MT_MAX_MATRIX_CHANNEL_LEN];              //矩阵输出出对应关系
+    s32      m_achMatrixInOutRelation[MT_MAX_MATRIX_CHANNEL_LEN];              //矩阵输出出对应关系
 
     tagTTPMatrixSceneInfo()
     {

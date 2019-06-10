@@ -7,7 +7,7 @@
 #include "tpcommonstruct.h"
 #include "tpcommonxmltype.h"
 
-const char XmlTpStructVersion[] = "2019-5-30 19:44:47";
+const char XmlTpStructVersion[] = "2019-6-5 16:7:26";
 
 #define XML_TP_TYPE_NUM      329
 #define XML_TP_STRUCT_NUM    446
@@ -4619,7 +4619,7 @@ TYPESTRUCT_END(  TTPMatrixInOutRelation )
 TYPESTRUCT_BEGIN( TTPCurMatrixInfo )
     TYPESTRUCT_MEMBER( TTPCurMatrixInfo, TTPMatrixInOutInfo, m_tTPMatrixInInfo )
     TYPESTRUCT_MEMBER( TTPCurMatrixInfo, TTPMatrixInOutInfo, m_tTPMatrixOutInfo )
-    TYPESTRUCT_MEMBER( TTPCurMatrixInfo, s8, m_achMatrixInOutRelation )
+    TYPESTRUCT_MEMBER( TTPCurMatrixInfo, s32, m_achMatrixInOutRelation )
     TYPESTRUCT_MEMBER( TTPCurMatrixInfo, BOOL, m_bFirstReq )
 TYPESTRUCT_END(  TTPCurMatrixInfo )
 
@@ -4627,7 +4627,7 @@ TYPESTRUCT_END(  TTPCurMatrixInfo )
 TYPESTRUCT_BEGIN( TTPMatrixSceneInfo )
     TYPESTRUCT_MEMBER( TTPMatrixSceneInfo, BOOL, bUsed )
     TYPESTRUCT_MEMBER( TTPMatrixSceneInfo, s8, achSceneName )
-    TYPESTRUCT_MEMBER( TTPMatrixSceneInfo, s8, m_achMatrixInOutRelation )
+    TYPESTRUCT_MEMBER( TTPMatrixSceneInfo, s32, m_achMatrixInOutRelation )
 TYPESTRUCT_END(  TTPMatrixSceneInfo )
 
 //TTPEthnetIPV6Info
@@ -8662,7 +8662,6 @@ const TXENUMINFO enumEmMatrixModelDescript[]={
 const TXENUMINFO enumEmMatrixCommandTypeDescript[]={
 	{ "emReadAndCfg", (int)emReadAndCfg },
 	{ "emReadChannelOutInRelation", (int)emReadChannelOutInRelation },
-	{ "emChangeChannel", (int)emChangeChannel },
 	{ "emSaveSence", (int)emSaveSence },
 	{ "emUseSence", (int)emUseSence },
 	{ "emChangeMatrixOutInRelation", (int)emChangeMatrixOutInRelation },

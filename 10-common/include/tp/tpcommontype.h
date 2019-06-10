@@ -4042,7 +4042,6 @@ enum EmMatrixCommandType
 {
 	emReadAndCfg	= 0,							//（读取通道类型）、（读取信号状态）、（读取通道类型，硬件、软件版本信息）、（配置通道类型命令）回复
 	emReadChannelOutInRelation,						//输入输出通道对应关系（单输入输出对应关系、全部输入输出对应关系）
-	emChangeChannel,								//视频单独切换、多路视频切换、视频全切换
 	emSaveSence,									//保存场景回应 
 	emUseSence,										//调用场景回应
 	emChangeMatrixOutInRelation,					//视频单独切换、多路视频切换、视频全切换	

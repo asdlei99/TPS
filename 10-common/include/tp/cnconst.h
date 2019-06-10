@@ -836,7 +836,7 @@ const u8 TP_MAX_VMP_CHANNEL_NUM = 25;
 #define NPEQP_RIGHT_PARENTHESES        ")"
 #define NPEQP_COMMA		               ","
 #define NPS_EQP_CMD_LEN_128				128
-#define NP_MSG_MAX_LENGTH_10K			10000
+#define NP_MSG_MAX_LENGTH_10K			10*1024
 #define TP_MATRIX_SCENENUM_MAX			16
 #define TP_MATRIX_SCENENAME_LEN			255
 
