@@ -1224,6 +1224,9 @@ void CCentCfgSrceen::RegCBFun()
 	CCentCfgSrceen *pThis = GetSingletonPtr();
     REG_GOBAL_MEMBER_FUNC( "CCentCfgSrceen::InitWnd", CCentCfgSrceen::InitWnd, pThis, CCentCfgSrceen );
 	REG_GOBAL_MEMBER_FUNC( "CCentCfgSrceen::OnChangedGroupCount", CCentCfgSrceen::OnChangedGroupCount, pThis, CCentCfgSrceen );
+    REG_GOBAL_MEMBER_FUNC( "CCentCfgSrceen::OnBtnSave", CCentCfgSrceen::OnBtnSave, pThis, CCentCfgSrceen );
+    REG_GOBAL_MEMBER_FUNC( "CCentCfgSrceen::OnBtnCancel", CCentCfgSrceen::OnBtnCancel, pThis, CCentCfgSrceen );
+
 }
 
 void CCentCfgSrceen::RegMsg()
@@ -1301,6 +1304,7 @@ bool CCentCfgSrceen::InitWnd( const IArgs & arg )
  	UIFACTORYMGR_PTR->SetComboListData( "CentCfgSrceenDlg/ComboboxInAddrCode4", vecStrCombo, m_pWndTree );
  	UIFACTORYMGR_PTR->SetComboListData( "CentCfgSrceenDlg/ComboboxInAddrCode5", vecStrCombo, m_pWndTree );
 	vecStrCombo.clear();
+    m_nGroupNum = 0;
 
 	m_vctWndName.clear();
 	UpBtnState();
@@ -1346,4 +1350,90 @@ bool CCentCfgSrceen::OnChangedGroupCount( const IArgs & arg )
 
 	CheckData("CentCfgSrceenDlg/ComboboxInGroupCount",bChange);
 	return true;
+}
+
+bool CCentCfgSrceen::OnBtnSave( const IArgs & arg )
+{
+    TCenDownOrFlipScreenInfo tCenDownOrFlipScreenInfo;
+    //设备类型
+    String strSrceenType = "";
+    UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInSrceenType", strSrceenType, m_pWndTree);
+    if (strSrceenType == "宣德升降屏")
+    {
+        tCenDownOrFlipScreenInfo.emDeviceType = emDefault;
+    }
+    else
+    {
+        tCenDownOrFlipScreenInfo.emDeviceType = emXuanDeDFScreen;
+    }
+    //波特率
+    String strBaudRate = "";
+    UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInBaudRate", strBaudRate, m_pWndTree);
+    u32 dwBaudRate = (u32)atoi(strBaudRate.c_str());
+    tCenDownOrFlipScreenInfo.tSerialCfg.dwBaudRate = dwBaudRate;
+    //数据位
+    String strDataBits = "";
+    UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInDataBits", strDataBits, m_pWndTree);
+    u8 byDataBits = (u32)atoi(strDataBits.c_str());
+    tCenDownOrFlipScreenInfo.tSerialCfg.byByteSize = byDataBits;
+    //校验位
+    String strCheckBits = "";
+    UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInCheckBits", strCheckBits, m_pWndTree);
+    if (strCheckBits == "none")
+    {
+        tCenDownOrFlipScreenInfo.tSerialCfg.emCheck = emNoCheck;
+    }
+    else if (strCheckBits == "odd")
+    {
+        tCenDownOrFlipScreenInfo.tSerialCfg.emCheck = emOddCheck;
+    }
+    else
+    {
+        tCenDownOrFlipScreenInfo.tSerialCfg.emCheck = emEvenCheck;
+    }
+    //停止位
+    String strStopBits = "";
+    UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInStopBits", strStopBits, m_pWndTree);
+    EmStopBits emStopBits = (EmStopBits)atoi(strStopBits.c_str());
+    tCenDownOrFlipScreenInfo.tSerialCfg.emStopBits = emStopBits;
+    //分组数
+    String strGroupCount = "";
+    UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInGroupCount", strGroupCount, m_pWndTree);
+    u32 dwGroupCount = (u32)atoi(strGroupCount.c_str());
+    tCenDownOrFlipScreenInfo.dwGroupNum = dwGroupCount;
+    m_nGroupNum = dwGroupCount;
+    //升降屏组信息
+    if (m_nGroupNum > 0)
+    {
+        string strGroupNameEdit = "CentCfgMatrixDlg/GroupNameEdit";
+        string strAddrCodeEdit = "CentCfgMatrixDlg/ComboboxInAddrCode";
+        s8 byGroupNum[4];
+        for (u32 dwIndex = 0; dwIndex < m_nGroupNum; dwIndex++)
+        {
+            //组名称
+            String strGroupName = "";
+            memset(byGroupNum, 0, sizeof(u8)*4);
+            itoa(dwIndex+1, byGroupNum, 10);
+            UIFACTORYMGR_PTR->GetCaption( strGroupNameEdit+byGroupNum, strGroupName, m_pWndTree);
+            strncpy( tCenDownOrFlipScreenInfo.tCenDownOrFlipScreenCfg[dwIndex].achGroupName,
+                strGroupName.c_str(), MAX_CENTREDFSCREEN_GROUPNAME_LEN );
+            //地址码
+            String strAddrCode = "";
+            UIFACTORYMGR_PTR->GetComboText( strAddrCodeEdit+byGroupNum, strAddrCode, m_pWndTree);
+            EmAddrCode emAddrCode = (EmAddrCode)( atoi(strAddrCode.c_str()) - 1 );
+            tCenDownOrFlipScreenInfo.tCenDownOrFlipScreenCfg[dwIndex].emAddrCode = emAddrCode;
+        }
+        COMIFMGRPTR->SetDFScreenGroupCmd(tCenDownOrFlipScreenInfo.dwGroupNum, tCenDownOrFlipScreenInfo.tCenDownOrFlipScreenCfg);
+    }
+
+	COMIFMGRPTR->SetDFScreenConfigCmd(tCenDownOrFlipScreenInfo.emDeviceType, tCenDownOrFlipScreenInfo.tSerialCfg);
+    //COMIFMGRPTR->SetDFScreenGroupCmd(tCenDownOrFlipScreenInfo.dwGroupNum, tCenDownOrFlipScreenInfo.tCenDownOrFlipScreenCfg);
+
+    return true;
+}
+
+bool CCentCfgSrceen::OnBtnCancel( const IArgs & arg )
+{
+    //
+    return true;
 }

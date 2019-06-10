@@ -416,9 +416,14 @@ public:
 
 	 //点击切换组数
 	 bool OnChangedGroupCount( const IArgs & arg );
+     //保存
+     bool OnBtnSave( const IArgs & arg ); 
+     //取消
+	 bool OnBtnCancel( const IArgs & arg );
 
 private:
 	int m_nGroupNum;//当前有多少组数
+    TCenDownOrFlipScreenInfo m_tCenDownOrFlipScreenInfo;//升降屏配置信息
 };
 
 #endif // !defined(AFX_CENTCTRLLOGIC_H__777D44E7_A11A_4507_AA4E_F26B05745548__INCLUDED_)

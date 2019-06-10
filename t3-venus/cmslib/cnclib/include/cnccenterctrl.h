@@ -316,5 +316,5 @@ private:
 
 	//矩阵
 	TTPMatrixConfig m_tTPMatrixConfig;//矩阵配置信息
-    TCenDownOrFlipScreenCfg m_atScreenCfg[MAX_CENTREDFSCREEN_GROUP_NUM];//升级旋转屏组信息
+    TCenDownOrFlipScreenCfg m_atCenDownOrFlipScreenCfg[MAX_CENTREDFSCREEN_GROUP_NUM];//升降旋转屏组信息
 };

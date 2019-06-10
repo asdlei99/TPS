@@ -1152,7 +1152,7 @@
       <Property Name="WindowSize" Value="x:86 y:38" />
       <Property Name="WindowCaption" Value="±£´æÅäÖÃ" />
       <Property Name="WindowVisible" Value="true" />
-      <Event Type="WM_BUTTON_CLICK" Value="CCentCfgAirCondition::OnBtnSave" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCentCfgSrceen::OnBtnSave" />
       <Property Name="Image" Value="btnSave" />
     </Window>
 
@@ -1161,7 +1161,7 @@
       <Property Name="WindowSize" Value="x:86 y:38" />
       <Property Name="WindowCaption" Value="»¹Ô­ÅäÖÃ" />
       <Property Name="WindowVisible" Value="true" />
-      <Event Type="WM_BUTTON_CLICK" Value="CCentCfgAirCondition::OnBtnCancel" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCentCfgSrceen::OnBtnCancel" />
       <Property Name="Image" Value="btnCancleCfg" />
     </Window>
 	
