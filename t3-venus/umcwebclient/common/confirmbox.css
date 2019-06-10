@@ -1,0 +1,54 @@
+/*div_confirmbox*/
+.div_confirmbox
+{
+	z-index: 6;
+	position: fixed;
+	margin-left: 440px;
+	margin-top: 230px;
+	width: 400px;
+	height: 260px;
+	background-color: white;
+	border: 1px solid black;
+	visibility: hidden;
+	/*text-align: center;*/
+}
+
+.div_confirmbox .div_confirmbox_title
+{
+	width: 370px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 10px;
+	margin-left: 15px;
+	border-bottom: 1px solid #E5E5E5;
+}
+
+.div_confirmbox .div_confirmbox_title .span_confirmbox_title
+{
+	float: left;
+	width: 200px;
+}
+
+.div_confirmbox .div_confirmbox_title .btn_confirmbox_close
+{
+	float: right;
+}
+
+.div_confirmbox .div_confirmbox_content
+{
+	height: 170px;
+	line-height: 170px;
+	text-align: center;
+}
+
+.div_confirmbox .btn_confirmbox_ok
+{
+	float: left;
+	margin-left: 125px;
+}
+
+.div_confirmbox .btn_confirmbox_cancel
+{
+	float: left;
+	margin-left: 6px;
+}

@@ -1,0 +1,273 @@
+.fontBig
+{
+	font-family:'微软雅黑';
+	font-size: 18px; 
+	color:rgb(46,55,76);
+}
+
+*
+{
+	/*
+    border-style:none;
+    background-color:transparent;
+    background:none;
+    */
+    font-family:'微软雅黑'; 
+    font-size: 12px;
+    color: #4e4e4e;
+}
+
+.div_list .div_list_head *
+{
+	color: #B5B4B4;
+}
+
+.div_list .div_list_item *
+{
+	overflow: hidden; /*自动隐藏文字*/
+	text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+	white-space: nowrap;/*强制不换行*/
+}
+
+body
+{
+	width:1280px;
+	height:650px;
+    margin:0 auto;
+    padding:0;
+    background-color: white;
+}
+
+
+
+
+input[type="text"],input[type="password"]
+{
+	border: 0;
+    border-bottom: 1px solid;
+    height: 27px;
+}
+
+input[type="text"]:hover,input[type="password"]:hover
+{
+	border: 0;
+    border-bottom: 1px solid #007AC0;
+}
+
+input[type="text"]:disabled,input[type="password"]:disabled
+{
+	border: 0;
+	background-color: white;
+	border-bottom: 1px solid #C5C5C5;
+}
+
+input[type="button"]
+{
+	float : left;
+	width : 70px; 
+  	height : 28px; 
+  	border: 1px solid #DCDFE1;
+   	/*background:url(../src/scan.png);*/
+   	background-color: #EFF2F4;
+   	cursor:pointer;
+}
+
+input[type="button"]:hover
+{
+	background-color: white;
+	border: 1px solid #007AC0;
+	color : #007AC0;
+}
+
+input[type="button"]:disabled
+{
+	background-color: #e5e5e5;
+	border: 0px;
+	color : #ffffff;
+}
+
+/*switchbtn*/
+.switchbtnOff, .switchbtnOpen
+{
+	float: left;
+	width: 63px;
+    height: 23px;
+    display: inline-block;
+	cursor: pointer;
+    vertical-align: middle;
+}
+
+.switchbtnOff
+{
+   background: url("../src/umc-bg.png") -126px -565px no-repeat;
+}
+
+.switchbtnOpen
+{
+   background: url("../src/umc-bg.png") 0px -565px no-repeat;
+}
+
+.switchbtnOff:disabled
+{
+   background: url("../src/umc-bg.png") -189px -565px no-repeat;
+}
+
+.switchbtnOpen:disabled
+{
+   background: url("../src/umc-bg.png") -63px -565px no-repeat;
+}
+
+/* a */
+a { 
+	text-decoration:none; 
+	outline:none;
+}
+
+a:link {
+ color: #000000;
+}
+a:visited {
+ color: #000000;
+}
+a:hover {
+ color: /*#298CCE*/green;
+}
+a:active {
+ color: /*#298CCE*/green;  
+ star:expression(this.onFocus=this.blur());
+}
+
+/*搜索*/
+.div_search
+{
+	margin-left: 0px;
+	width: 250px;
+	float: left;
+	border-bottom: 1px solid black;
+}
+
+.div_search:hover
+{
+	border-bottom: 1px solid #007AC0;
+}
+
+.div_search .text_search
+{
+	margin-left: 0px;
+	width: 230px;
+	float: left;
+	border: 0px;
+}
+
+.div_search .text_search:hover
+{
+	border: 0px;
+}
+
+.img_search
+{
+	height: 17px;
+	width: 17px;
+	margin-left:0px;
+	margin-top:5px;
+	float: left;
+	background: url("../src/VRS-bg.png") -162px -303px no-repeat;
+	cursor: pointer;
+}
+
+/*弹出菜单关闭按钮*/
+.btn_popup_close
+{
+	background: url("../src/umc-bg.png") 0px -226px no-repeat;
+	width: 23px;
+	height: 23px;
+}
+.btn_popup_close:hover
+{
+	background: url("../src/umc-bg.png") -23px -226px no-repeat;
+}
+.btn_popup_close:active
+{
+	background: url("../src/umc-bg.png") -46px -226px no-repeat;
+}
+.btn_popup_close:disabled
+{
+	background: url("../src/umc-bg.png") -69px -226px no-repeat;
+}
+
+/*会场操作按键*/
+.btn_toLeft_all
+{
+	background: url("../src/umc-bg.png") -240px -441px no-repeat;
+	width: 30px;
+	height: 30px;
+}
+.btn_toLeft_all:hover
+{
+	background: url("../src/umc-bg.png") -300px -441px no-repeat;
+}
+.btn_toLeft_all:active
+{
+	background: url("../src/umc-bg.png") -270px -441px no-repeat;
+}
+.btn_toLeft_all:disabled
+{
+	background: url("../src/umc-bg.png") -330px -441px no-repeat;
+}
+
+.btn_toLeft_one
+{
+	background: url("../src/umc-bg.png") -120px -441px no-repeat;
+	width: 30px;
+	height: 30px;
+}
+.btn_toLeft_one:hover
+{
+	background: url("../src/umc-bg.png") -180px -441px no-repeat;
+}
+.btn_toLeft_one:active
+{
+	background: url("../src/umc-bg.png") -150px -441px no-repeat;
+}
+.btn_toLeft_one:disabled
+{
+	background: url("../src/umc-bg.png") -210px -441px no-repeat;
+}
+
+.btn_toRight_one
+{
+	background: url("../src/umc-bg.png") 0px -441px no-repeat;
+	width: 30px;
+	height: 30px;
+}
+.btn_toRight_one:hover
+{
+	background: url("../src/umc-bg.png") -60px -441px no-repeat;
+}
+.btn_toRight_one:active
+{
+	background: url("../src/umc-bg.png") -30px -441px no-repeat;
+}
+.btn_toRight_one:disabled
+{
+	background: url("../src/umc-bg.png") -90px -441px no-repeat;
+}
+
+.btn_toRight_all
+{
+	background: url("../src/umc-bg.png") -240px -411px no-repeat;
+	width: 30px;
+	height: 30px;
+}
+.btn_toRight_all:hover
+{
+	background: url("../src/umc-bg.png") -300px -411px no-repeat;
+}
+.btn_toRight_all:active
+{
+	background: url("../src/umc-bg.png") -270px -411px no-repeat;
+}
+.btn_toRight_all:disabled
+{
+	background: url("../src/umc-bg.png") -330px -411px no-repeat;
+}

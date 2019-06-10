@@ -1,0 +1,33 @@
+.wraper
+{
+	position:relative;
+	overflow:hidden;
+} 
+
+.slider
+{
+	position:absolute;
+	top:0;
+	left:0;
+	line-height:1.5;
+} 
+
+.pannel
+{
+	position:absolute;
+	right:0;
+	top:0;
+	width:7px;
+	height:100%;
+	/*background-color:#EDEDEB;*/
+} 
+
+.drag
+{
+	position:absolute;
+	left:0;
+	width:7px;
+	height:80px;
+	background-color:#BCBCBA;
+	cursor:pointer;
+} 

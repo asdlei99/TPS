@@ -1,0 +1,126 @@
+/*selectSingleBox*/
+.selectSingleBox
+{
+	float: left;
+	height: 30px;
+	padding: 0px;
+	position: relative;
+	cursor: pointer;
+}
+.selectSingleBox .selectVal
+{
+	float: left;
+	overflow: hidden;
+	height: 25px;
+	border-bottom: 1px solid #dbdbdb;
+}
+.selectSingleBox .selectVal input[type="text"]
+{
+	float: left;
+	margin-left: 1px;
+	border: 0px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+/*selectMultipleBox*/
+.selectMultipleBox
+{
+	float: left;
+	height: 30px;
+	padding: 0px;
+	position: relative;
+	cursor: pointer;
+}
+.selectMultipleBox .selectVal
+{
+	float: left;
+	overflow: hidden;
+	height: 25px;
+	border-bottom: 1px solid #dbdbdb;
+}
+.selectMultipleBox .selectVal input[type="text"]
+{
+	float: left;
+	margin-left: 1px;
+	border: 0px;
+	overflow: hidden;
+	cursor: pointer;
+}
+.selectMultipleBox ul li input[type="checkbox"]
+{
+	float: left;
+	margin-top: 6px;
+	margin-right: 10px;
+}
+
+/*selectBox*/
+.selectBox .selectVal_hover
+{
+	border-bottom: 1px solid #1E94DA;
+}
+.selectBox .selectVal_disabled
+{
+	border-bottom: 1px solid #E5E5E5;
+}
+.selectBox .selectVal .input_text
+{
+	background-color: white;
+}
+.selectBox .selectVal .input_text_hover
+{
+	color: #1E94DA;
+}
+.selectBox .selectVal .input_text_disabled
+{
+	color: #E5E5E5;
+}
+.selectBox .selectVal .span_select_img
+{
+	float: left;
+	width: 15px;
+	height: 15px;
+	margin-top: 9px;
+	background: url("../src/umc-bg.png") 0px -177px no-repeat;
+}
+.selectBox .selectVal .span_select_img_hover
+{
+	background: url("../src/umc-bg.png") -15px -177px no-repeat;
+}
+.selectBox .selectVal .span_select_img_disabled
+{
+	background: url("../src/umc-bg.png") -45px -177px no-repeat;
+}
+.selectBox .wraper_select
+{
+	display: none;
+	border: 1px solid #1E94DA;
+	top: 2px;
+}
+.selectBox .wraper_select ul
+{
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+	background-color: white;
+	/*border: 1px solid #1E94DA;
+	position: absolute;
+	width: 100%;
+	top: 29px;
+	left: -1px;*/
+	display: none;
+	z-index: 1000;
+}
+.selectBox .wraper_select ul li
+{
+	padding-left: 5px;
+	line-height: 30px;
+	background-color: #FEFEFE;
+	/*border-bottom: 1px solid #d2d1d1;*/
+	cursor: pointer;
+}
+.selectBox .wraper_select ul .selected_hover
+{
+	background-color: #5AB5EB;
+	color: #fff;
+}

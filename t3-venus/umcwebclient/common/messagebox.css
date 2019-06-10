@@ -1,0 +1,48 @@
+/*div_messagebox*/
+.div_messagebox
+{
+	z-index: 6;
+	position: fixed;
+	margin-left: 440px;
+	margin-top: 230px;
+	width: 400px;
+	height: 260px;
+	background-color: white;
+	border: 1px solid black;
+	visibility: hidden;
+	/*text-align: center;*/
+}
+
+.div_messagebox .div_messagebox_title
+{
+	width: 370px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 10px;
+	margin-left: 15px;
+	border-bottom: 1px solid #E5E5E5;
+}
+
+.div_messagebox .div_messagebox_title .span_messagebox_title
+{
+	float: left;
+	width: 200px;
+}
+
+.div_messagebox .div_messagebox_title .btn_messagebox_close
+{
+	float: right;
+}
+
+.div_messagebox .div_messagebox_content
+{
+	height: 170px;
+	line-height: 170px;
+	text-align: center;
+}
+
+.div_messagebox .btn_messagebox_ok
+{
+	float: left;
+	margin-left: 165px;
+}
