@@ -32,6 +32,8 @@ typedef struct tagWlanInfo
 	int		m_dotTypeOfAuth;         //加密类型
 	int     m_dotTyprOfCipher;       //密钥算法
 	BOOL    m_bConnected;            //是否已连接
+    WCHAR   strProfileName[256];
+    DOT11_SSID dot11Ssid;
 
 	tagWlanInfo()
 	{

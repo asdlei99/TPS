@@ -291,7 +291,8 @@ bool CWifiCfgLogic::OnClickWifiItem(TNotifyUI& msg)
 
         m_tSelItem = tWifiItem;
         //如果系统中已有网络配置文件，则不需要再输入密码
-        if ( APIWlanIsHaveProfile( tWifiItem.achSSID ) )
+        CString strProName = UIDATAMGR->UTF82Unicode(tWifiItem.achSSID);
+        if ( APIWlanIsHaveProfile( CW2A(strProName)/*tWifiItem.achSSID*/ ) )
         {
             strncpy( m_achConnectName, tWifiItem.achSSID, sizeof(m_achConnectName) );
             m_bWaitWifi = TRUE;          
@@ -337,6 +338,11 @@ bool CWifiCfgLogic::OnBtnConnectWifi(TNotifyUI& msg)
     {
         showMessageBox( strErr );
         return false;
+    }
+
+    if (APIWlanIsConn())
+    {
+        APIWlanDisConn();
     }
 
     strncpy( m_achConnectName, m_tSelItem.achSSID, sizeof(m_achConnectName) );
@@ -557,7 +563,7 @@ void CWifiCfgLogic::ShowWifiConnectModal()
 
 void CWifiCfgLogic::ShowWifiConnectModalTrue()
 {
-	g_nTmHandleWifiConnect = SetTimer( NULL, 0, 15000, CWifiTimerFun ); 
+	g_nTmHandleWifiConnect = SetTimer( NULL, 0, 20000, CWifiTimerFun ); 
 	CModalWndLogic::GetSingletonPtr()->ShowModalWnd( _T("正在连接......") );
 }
 
@@ -861,7 +867,7 @@ bool CWifiCfgLogic::OnWiFiConnectFailed(WPARAM wParam, LPARAM lParam, bool& bHan
 
         ShowMessageBox( strError );
 
-        APIWlanDeleteProfile( m_achConnectName );
+        APIWlanDeleteProfile( CT2A(UIDATAMGR->UTF82Unicode(m_achConnectName)) );
         memset( m_achLastWifiName, 0 , sizeof(m_achLastWifiName) );
     }
     
@@ -921,7 +927,7 @@ bool CWifiCfgLogic::OnWiFiConnectTimeOut()
         strError.Format( _T("连接网络 %s 失败:超时"), UIDATAMGR->UTF82Unicode(m_achConnectName) );
         ShowMessageBox( strError );
 
-        APIWlanDeleteProfile( m_achConnectName );
+        APIWlanDeleteProfile( CT2A(UIDATAMGR->UTF82Unicode(m_achConnectName)) );
     }
     
 	if (!m_bIsScanning)

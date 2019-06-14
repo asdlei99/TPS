@@ -17,6 +17,9 @@ public:
 
     //获取当前呼叫的模板名称
     TTPAlias GetCallTempName();
+
+    //关闭呼叫界面
+    void CancelCallTemp();
 protected:
 	/** 窗口创建 
 	*  @param[in] 消息

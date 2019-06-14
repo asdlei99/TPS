@@ -300,7 +300,7 @@ bool CAddrBookLogic::OnBtnAddrLabel(TNotifyUI& msg)
         }
         else//点击组条目，进入组
         {
-            //m_vctSelectList.clear();
+            m_vctSelectList.clear();
             m_pm->DoCase( _T("caseCnsNoSel") );
             ICncCommonOp::SetControlText(_T(""), m_pm, _T("labSelCount"));
             ICncCommonOp::SetControlText( _T(""), m_pm, _T("EdtSearch") );
@@ -420,6 +420,7 @@ bool CAddrBookLogic::OnBtnAddrCall(TNotifyUI& msg)
                         TCnAddr tCnAdd;
                         //strncpy( tCnAddr.achAlias, status.achConfName, TP_MAX_H323ALIAS_LEN+1 );
                         tCnAdd = status.tCalledAddr;
+                        tCnAdd.emTpConfProtocol = status.m_emConfProtocal;
                         tCnAddrList.push_back( tCnAdd );
                     }
 
@@ -429,6 +430,16 @@ bool CAddrBookLogic::OnBtnAddrCall(TNotifyUI& msg)
                     tCnAddr.dwIP = dwIp;
                     //tCnAddr.bCallByIPAndAlias = tAddrInfo.bMonitorTer;
 					tCnAddr.bCallByIPAndAlias = (1 == tAddrInfo.byTerType);
+                    switch (tAddrInfo.byTerType)
+                    {
+                    case 1://监控终端
+                    case 2://普通终端
+                        tCnAddr.emTpConfProtocol = emTpH323;
+                        break;
+                    default://网呈终端 和 其它
+                        tCnAddr.emTpConfProtocol = emTpSIP;
+                        break;
+                    }
                     tCnAddrList.push_back( tCnAddr );
 
 					wRe = ComInterface->StartInstantConf( tCnAddrList );		
@@ -1635,6 +1646,21 @@ bool CAddrBookLogic::OnBtnAddrInviteOther( TNotifyUI& msg )
 
     tstring strAddrIp = ICncCommonOp::GetControlText( m_pm, _T("EditIP") );
 
+    //监控终端输入内容判断
+    if ((pOptMonitor != NULL && pOptMonitor->IsSelected()))
+    {
+        if (strAddrIp.empty() == true)
+        {
+            ShowMessageBox( _T("监控终端IP不可为空") );
+            return false;
+        }
+        else if (strAddrName.empty() == true && strAddrE164.empty() == true)
+        {
+            ShowMessageBox( _T("监控终端别名和E164号不可同时为空") );
+            return false;
+        }
+    }
+
     if ( strAddrName.empty() && strAddrE164.empty() && strAddrIp.empty() )
     {
         ShowMessageBox( _T("会场名称、号码和IP不能全为空") );
@@ -1873,10 +1899,10 @@ bool CAddrBookLogic::OnHungupConfInd(WPARAM wParam, LPARAM lParam, bool& bHandle
         strErr = _T("");
         break;
     case EmCnsCallReason_hungup://本地挂断
-        strErr = _T("");
+        strErr = _T("对端挂断");
         break;
     case EmCnsCallReason_Unreachable:
-        strErr = _T("对端不在线");
+        strErr = _T("对端不可达");
         break;
     case EmCnsCallReason_resourcefull:
         strErr = _T("已达到会场最大接入数");
@@ -1900,7 +1926,7 @@ bool CAddrBookLogic::OnHungupConfInd(WPARAM wParam, LPARAM lParam, bool& bHandle
     // 		strErr = ": 本端不在线";
     // 		break;
     case EmCnsCallReason_PeerAbnormal:
-        strErr = _T("对端不在线");
+        strErr = _T("对端不可达");
         break;
     case EmCnsCallReason_ConfOver:	//会议结束
         strErr = _T("会议结束"); 
@@ -1911,6 +1937,9 @@ bool CAddrBookLogic::OnHungupConfInd(WPARAM wParam, LPARAM lParam, bool& bHandle
     case EmCnsCallReason_ConfExist:		//会议已存在
         strErr = _T("会议已存在");
         break; 
+    case EmCnsCallReason_StreamEncryptKeyNotEqual:
+        strErr = "";
+        break;
     case EmCnsCallReason_unknown:
         strErr = _T("呼叫失败");             //未知错误不做提示 
         break;

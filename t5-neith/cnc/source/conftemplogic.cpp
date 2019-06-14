@@ -59,6 +59,12 @@ CConfTempLogic::~CConfTempLogic(void)
 {
 }
 
+void CConfTempLogic::CancelCallTemp()
+{
+    ICncCommonOp::ShowControl( false, m_pm, _T("PageNotice") );
+    ICncCommonOp::SetControlText( _T("正在呼叫.."), m_pm, _T("LabelTip") );
+}
+
 bool CConfTempLogic::OnCreate( TNotifyUI& msg )
 {
 	REG_CNC_MSG_WND_OB(m_pm->GetPaintWindow());
@@ -101,15 +107,7 @@ bool CConfTempLogic::OnRefreshConftempLst( WPARAM wParam, LPARAM lParam, bool& b
 
 bool CConfTempLogic::OnCnGetTempPwdCmd(WPARAM wParam, LPARAM lParam, bool& bHandle)
 {
-    s8 achTempPwd[MT_MAX_TEMP_PWD_LEN + 1] = {0};
-    if (ShowContentReq() == IDCANCEL)
-    {
-        ICncCommonOp::ShowControl( false, m_pm, _T("PageNotice") );
-        ICncCommonOp::SetControlText( _T("正在呼叫.."), m_pm, _T("LabelTip") );
-        return false;
-    }
-    strcpy(achTempPwd, g_strContentReq.c_str());
-    ComInterface->GetCnTempPwdInd(achTempPwd);
+    ShowContentReq();
     return true;
 }
 
@@ -380,6 +378,9 @@ bool CConfTempLogic::OnHungupConfInd(WPARAM wParam, LPARAM lParam, bool& bHandle
     case EmCnsCallReason_ConfExist:		//会议已存在
         strErr = _T("会议已存在");
         break; 
+    case EmCnsCallReason_StreamEncryptKeyNotEqual:
+        strErr = _T("密码错误，呼叫失败");
+        break;
     case EmCnsCallReason_unknown:
         strErr = _T("呼叫失败");             //未知错误不做提示 
         break;

@@ -472,7 +472,7 @@
   
   <MatrixInfoListItem><!--矩阵控制条目-->
     <ListContainerElement name="MatrixInfoListItem" width="1280" height="110">
-		<TouchList name="MatrixInfoList" width="160" listdrag="false" autolayout="false" />
+		<TouchList name="MatrixInfoList" width="160" listdrag="false" autolayout="false" mouse="false"/>
         <!--CheckBox name="OptIsUseful" float="true" pos="48,23" width="64" height="64" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" /-->
     </ListContainerElement>
   </MatrixInfoListItem>

@@ -5,6 +5,10 @@ extern "C" {
 #endif /* __cplusplus */
 #include "netcbb_def.h"
 
+/* DHCP 启动状态 */
+#define DHCPC_ALREADY_START          1
+#define DHCPC_NOT_START              0
+
 /* DHCPC回调函数的回调类型，用于NetcbbDhcpcNotifyCallBack回调函数的dwMsgID */
 #define NETCBB_DHCPC_MSG_BASE               (u32)30000
 #define NETCBB_DHCPC_SUCC_MSG               (u32)(NETCBB_DHCPC_MSG_BASE+1)

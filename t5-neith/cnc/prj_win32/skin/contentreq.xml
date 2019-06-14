@@ -17,7 +17,7 @@
 	<Control />
 	<Label text="会议密码" textcolor="#CCD4DEEB" font="0" height="64" width="100" />
 	<Control width="20"/>
-	<Edit name="EditContent" text="" tiptext="请输入会议密码" height="64" width="600" textcolor="#CCD4DEEB" font="0" textpadding="34,10,34,10" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" maxchar="16" align="left" gdiplus="true"/>
+	<Edit name="EditContent" text="" tiptext="请输入会议密码" numberonly="true" height="64" width="600" textcolor="#CCD4DEEB" font="0" textpadding="34,10,34,10" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" maxchar="16" align="left" gdiplus="true"/>
 	<Control />
 	</HorizontalLayout>
 	<VerticalLayout /> 

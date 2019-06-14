@@ -363,6 +363,16 @@ TTPMatrixSceneInfo* CCommonInterface::GetMatrixScneInfo()
     return m_pCenterCtrl->GetMatrixScneInfo();
 }
 
+EmComType* CCommonInterface::GetComType()
+{
+    if ( NULL == m_pCenterCtrl )
+    {
+        return NULL;
+    }
+
+    return m_pCenterCtrl->GetComType();
+}
+
 u16 CCommonInterface::GetCurMatrixInfo(TTPCurMatrixInfo &tTPCurMatrixInfo)
 {
     if ( NULL == m_pCenterCtrl )

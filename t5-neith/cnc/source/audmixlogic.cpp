@@ -223,6 +223,14 @@ bool CAudMixLogic::UpdateList()
 
 			m_nSpeakerCount = m_nSpeakerCount + m_vctAudmix.at(index).wSpeakerNum;
 			ICncCommonOp::SetControlText( m_vctAudmix.at(index).strConfName, m_pm, _T("lbconfName"), pListContainer );
+            if (m_vctAudmix.at(index).m_emEpType != emTPEndpointTypeCNS)
+            {
+                ICncCommonOp::SetControlBkImg(_T("res/list/imgOrdinary.png"), m_pm, _T("lbImg"), pListContainer);
+            }
+            else
+            {
+                ICncCommonOp::SetControlBkImg(_T("res/confctrl/confdiscuss/discuss.png"), m_pm, _T("lbImg"), pListContainer);
+            }
 
 			CButtonUI* pBtnSpeaker = (CButtonUI*)ICncCommonOp::FindControl( m_pm, _T("btnSpeaker"), pListContainer);
 			CButtonUI* pBtnDel = (CButtonUI*)ICncCommonOp::FindControl( m_pm, _T("btnDelDisc"), pListContainer);
@@ -672,6 +680,7 @@ bool CAudMixLogic::OnBtnSelRoomOK(TNotifyUI& msg )
 				tAudMixCtrls.wCnsID = m_vctSelConf.at(i).m_wEpID;
 				tAudMixCtrls.bIsSpeaker = m_vctSelConf.at(i).m_bIsSpeaker;
 				tAudMixCtrls.wSpeakerNum = m_vctSelConf.at(i).m_wSpeakerNum;
+                tAudMixCtrls.m_emEpType = m_vctSelConf.at(i).m_emEpType;
 				m_vctAudmix.push_back(tAudMixCtrls);//收到ind再更新
 			}
 			if (nSpeakerCount != m_nSpeakerCount)//一样说明未添加就不更新
@@ -774,6 +783,7 @@ bool CAudMixLogic::RefreshAudMixList( WPARAM wParam, LPARAM lParam, bool& bHandl
 				{
 					tAudMixCtrls.bIsSpeaker = true;
 				}
+                tAudMixCtrls.m_emEpType = tCnsInfo->m_emEpType;
 				//tAudMixCtrls.bIsSpeaker = tCnsInfo->m_bIsSpeaker;//lst若不更新 此项直接取有误
 			}
 
@@ -1228,6 +1238,7 @@ bool CAudMixLogic::OnAudMixDisListOprInd( WPARAM wParam, LPARAM lParam, bool& bH
 			{
 				tAudMixCtrls.bIsSpeaker = true;
 			}
+            tAudMixCtrls.m_emEpType = tCnsInfo->m_emEpType;
 			//tAudMixCtrls.bIsSpeaker = tCnsInfo->m_bIsSpeaker;
 
 			if (tDisListOpr.m_emOprType == em_DisListOpr_Add)

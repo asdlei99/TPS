@@ -242,6 +242,14 @@ bool CConfRollLogic::OnRollStateNty( WPARAM wParam, LPARAM lParam, bool& bHandle
 			m_tRollerInfo = *(TCnsInfo*)tConf.GetCnsInfoByID(tTpRollCallList.m_wRollCaller);
 			ICncCommonOp::EnableControl(true,m_pm,_T("CheckStartConfroll"));
 			ICncCommonOp::SetControlText( CA2T(m_tRollerInfo.m_achRoomName), m_pm, _T("lbRollerName"));
+            if (m_tRollerInfo.m_emEpType != emTPEndpointTypeCNS)
+            {
+                ICncCommonOp::SetControlBkImg(_T("res/list/imgOrdinary.png"), m_pm, _T("UserItemPic"));
+            }
+            else
+            {
+                ICncCommonOp::SetControlBkImg(_T("res/confctrl/confroll/roller.png"), m_pm, _T("UserItemPic"));
+            }
 			//OspPrintf(TRUE,false,"m_tRollerInfo:OnRollStateNty %d",m_tRollerInfo.m_wEpID);
 		}
 	}
@@ -270,6 +278,7 @@ bool CConfRollLogic::OnRollStateNty( WPARAM wParam, LPARAM lParam, bool& bHandle
 		{
 			tRolleeState.m_bOnline = tCnsInfo->m_bOnline;
 			memcpy(tRolleeState.m_achRoomName, tCnsInfo->m_achRoomName,sizeof(tCnsInfo->m_achRoomName));
+            tRolleeState.m_emEpType = tCnsInfo->m_emEpType;
 
 			m_vctRollList.push_back(tRolleeState);
 			if (wCallTarget != TP_INVALID_INDEX && tTpRollCallList.m_awList[i] == wCallTarget)
@@ -746,6 +755,12 @@ void CConfRollLogic::UpdateRollList(vector<TRolleeState>  vctRollList)
 		strRoomName = ptCnsInfo.m_achRoomName;
 		strNum.Format(_T("%d"),i+1);
 		ICncCommonOp::SetControlText( strRoomName, m_pm, _T("lbRollName"), pListContainer );
+
+        if (ptCnsInfo.m_emEpType != emTPEndpointTypeCNS)
+        {
+            ICncCommonOp::SetControlBkImg(_T("res/list/imgOrdinary.png"), m_pm, _T("lbicom"),pListContainer);
+        }
+
 		if (ptCnsInfo.m_emAttend == emAttend)
 		{
 			ICncCommonOp::SetControlBkImg(_T("res/confctrl/confroll/attend.png"), m_pm, _T("lbstateicon"),pListContainer);
@@ -905,6 +920,14 @@ void CConfRollLogic::UpdateRoller()
 	{
 		ICncCommonOp::EnableControl(true,m_pm,_T("CheckStartConfroll"));
 		ICncCommonOp::SetControlText( CA2T(m_tRollerInfo.m_achRoomName), m_pm, _T("lbRollerName"));
+        if (m_tRollerInfo.m_emEpType != emTPEndpointTypeCNS)
+        {
+            ICncCommonOp::SetControlBkImg(_T("res/list/imgOrdinary.png"), m_pm, _T("UserItemPic"));
+        }
+        else
+        {
+            ICncCommonOp::SetControlBkImg(_T("res/confctrl/confroll/roller.png"), m_pm, _T("UserItemPic"));
+        }
 		//OspPrintf(TRUE,false,"m_tRollerInfo:UpdateRoller m_tRollerInfo.m_wEpID != TP_INVALID_INDEX  %d",m_tRollerInfo.m_wEpID);
 		return;
 	}
@@ -927,6 +950,14 @@ void CConfRollLogic::UpdateRoller()
 			m_tRollerInfo = *(TCnsInfo*)tConf.GetCnsInfoByID(tTpRollCallList.m_wRollCaller);
 			ICncCommonOp::EnableControl(true,m_pm,_T("CheckStartConfroll"));
 			ICncCommonOp::SetControlText( CA2T(m_tRollerInfo.m_achRoomName), m_pm, _T("lbRollerName"));
+            if (m_tRollerInfo.m_emEpType != emTPEndpointTypeCNS)
+            {
+                ICncCommonOp::SetControlBkImg(_T("res/list/imgOrdinary.png"), m_pm, _T("UserItemPic"));
+            }
+            else
+            {
+                ICncCommonOp::SetControlBkImg(_T("res/confctrl/confroll/roller.png"), m_pm, _T("UserItemPic"));
+            }
 			//OspPrintf(TRUE,false,"m_tRollerInfo: UpdateRoller tTpRollCallList.m_wRollCaller != TP_INVALID_INDEX %d %d",tTpRollCallList.m_wRollCaller,m_tRollerInfo.m_wEpID);
 		}
 	}
@@ -1707,6 +1738,14 @@ bool CConfRollLogic::OnBtnRollSelRoomOK( TNotifyUI& msg )
 		m_tRollerInfo = m_vctSelConf.at(0);
 		m_emSelConf = emSelConfNo;
 		ICncCommonOp::SetControlText( CA2T(m_tRollerInfo.m_achRoomName), m_pm, _T("lbRollerName"));
+        if (m_tRollerInfo.m_emEpType != emTPEndpointTypeCNS)
+        {
+            ICncCommonOp::SetControlBkImg(_T("res/list/imgOrdinary.png"), m_pm, _T("UserItemPic"));
+        }
+        else
+        {
+            ICncCommonOp::SetControlBkImg(_T("res/confctrl/confroll/roller.png"), m_pm, _T("UserItemPic"));
+        }
 		//OspPrintf(TRUE,false,"m_tRollerInfo:OnBtnRollSelRoomOK %d",m_tRollerInfo.m_wEpID);
 		ICncCommonOp::EnableControl(true,m_pm,_T("CheckStartConfroll"));
 		ICncCommonOp::ShowControl( false, m_pm, _T("PageRollSelConfList") );
@@ -1741,6 +1780,7 @@ bool CConfRollLogic::OnBtnRollSelRoomOK( TNotifyUI& msg )
 			tRolleeState.m_wEpID = m_vctSelConf.at(i).m_wEpID;
 			tRolleeState.m_bOnline = m_vctSelConf.at(i).m_bOnline;
 			memcpy(tRolleeState.m_achRoomName,m_vctSelConf.at(i).m_achRoomName,TP_MAX_ALIAS_LEN);
+            tRolleeState.m_emEpType = m_vctSelConf.at(i).m_emEpType;
 			m_vctRollList.push_back(tRolleeState);
 
 			if (m_tTpConfRollCallInfo.m_bStart)
@@ -2011,6 +2051,14 @@ bool CConfRollLogic::OnChairNty(WPARAM wParam, LPARAM lParam, bool& bHandle)
 		{
 			m_tRollerInfo = *(TCnsInfo*)tInfor;
 			ICncCommonOp::SetControlText( CA2T(m_tRollerInfo.m_achRoomName), m_pm, _T("lbRollerName"));
+            if (m_tRollerInfo.m_emEpType != emTPEndpointTypeCNS)
+            {
+                ICncCommonOp::SetControlBkImg(_T("res/list/imgOrdinary.png"), m_pm, _T("UserItemPic"));
+            }
+            else
+            {
+                ICncCommonOp::SetControlBkImg(_T("res/confctrl/confroll/roller.png"), m_pm, _T("UserItemPic"));
+            }
 			//OspPrintf(TRUE,false,"m_tRollerInfo:OnChairNty inconf %d",m_tRollerInfo.m_wEpID);
 			ICncCommonOp::EnableControl(true,m_pm,_T("CheckStartConfroll"));
 			ICncCommonOp::ShowControl( false, m_pm, _T("PageRollSelConfList") );

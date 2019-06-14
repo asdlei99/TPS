@@ -8,6 +8,7 @@
 #include "userdefinedlogic.h"
 #include "tvwalllogic.h"
 #include "videomixlogic.h"
+#include "conftemplogic.h"
 
 template<> CMainFrameLogic* Singleton<CMainFrameLogic>::ms_pSingleton  = NULL;
 
@@ -406,6 +407,16 @@ bool CMainFrameLogic::OnBtnBack( TNotifyUI& msg )
 			WINDOW_MGR_PTR->ShowWindowFromLeftToRight( strCurWnd.c_str(), false );
 			return true;
 		}
+
+        if (strCurWnd == g_strConfTempDlg)
+        {
+            if (WINDOW_MGR_PTR->IsWindowVisible(g_strContentReqDlg.c_str()))
+            {
+                ComInterface->GetCnTempPwdInd("");
+                WINDOW_MGR_PTR->CloseWindow(g_strContentReqDlg.c_str(),IDCANCEL);
+                CConfTempLogic::GetSingletonPtr()->CancelCallTemp();
+            }
+        }
 
 		m_pm->DoCase( _T("caseShowCnsManage") );
 		WINDOW_MGR_PTR->ShowWindowFromLeftToRight( strCurWnd.c_str(), false );

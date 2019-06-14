@@ -3,6 +3,9 @@
 
 CCncCenterCtrl::CCncCenterCtrl(CCnsSession &cSession):CCncCenterCtrlIF()
 {
+    m_aemComType[0] = emDFScreen;
+    m_aemComType[1] = emDCam;
+
 	m_pSession = &cSession;
 	BuildEventsMap();
     m_bIsMatrixOnline = FALSE;
@@ -77,8 +80,14 @@ void CCncCenterCtrl::BuildEventsMap()
     REG_PFUN( ev_CnRenameMatrixScence_Ind, CCncCenterCtrl::OnReNameMatrixSceneInd );
     REG_PFUN( ev_CnDeleteMatrixScence_Ind, CCncCenterCtrl::OnDeleteMatrixSceneInd );
     REG_PFUN( ev_CnUseMatrixScence_Ind, CCncCenterCtrl::OnApplyMatrixSceneInd );
-    REG_PFUN( ev_CnChangeMatrixOutInRelation_Ind, CCncCenterCtrl::OnChangeMatrixOutInRelationInd );
-    REG_PFUN( ev_Cn_CurMatrixInOutRelation_Nty, CCncCenterCtrl::OnMatrixOutInRelationNty );
+    REG_PFUN( ev_CnMatrixOutInRelation_Ind, CCncCenterCtrl::OnChangeMatrixOutInRelationInd );
+    REG_PFUN( ev_Cn_MatrixInOutRelation_Nty, CCncCenterCtrl::OnMatrixOutInRelationNty );
+
+    //´®¿Ú
+    REG_PFUN( ev_Cn_SelectCom_Nty, CCncCenterCtrl::OnSelectComNty);
+    REG_PFUN( ev_Cn_SelectCom_Ind, CCncCenterCtrl::OnSelectComInd);
+
+
 
     //Éý½µÆÁ
     REG_PFUN( ev_Cn_CentreDFScreenCommand_Ind, CCncCenterCtrl::OnDFScreenCommandInd);
@@ -1268,11 +1277,11 @@ u16 CCncCenterCtrl::SetMatrixInOutCmd( u32 dwIn, u32 dwOut )
 void CCncCenterCtrl::OnChangeMatrixOutInRelationInd(const CMessage& cMsg)
 {
     CTpMsg cTpMsg(&cMsg);
-    s32 *pcCurInfo = reinterpret_cast<s32*>( cTpMsg.GetBody());
-    memcpy(m_tTPCurMatrixInfo.m_achMatrixInOutRelation, pcCurInfo, sizeof(s32)*MT_MAX_MATRIX_CHANNEL_LEN);
-    BOOL bSuccess = *(BOOL*)( cTpMsg.GetBody() + sizeof(s32)*MT_MAX_MATRIX_CHANNEL_LEN);
+    TTPMatrixSceneInfo tTPMatrixSceneInfo = *(TTPMatrixSceneInfo*)( cTpMsg.GetBody());
+    memcpy(m_tTPCurMatrixInfo.m_achMatrixInOutRelation, tTPMatrixSceneInfo.m_achMatrixInOutRelation, sizeof(s32)*MT_MAX_MATRIX_CHANNEL_LEN);
+    BOOL bSuccess = *(BOOL*)( cTpMsg.GetBody() + sizeof(TTPMatrixSceneInfo));
 
-    PrtMsg( ev_CnChangeMatrixOutInRelation_Ind, emEventTypeCnsRecv, 
+    PrtMsg( ev_CnMatrixOutInRelation_Ind, emEventTypeCnsRecv, 
         "bSuccess:%d, CurMatrixInfo:%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d", bSuccess,
         m_tTPCurMatrixInfo.m_achMatrixInOutRelation[0],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[1],
         m_tTPCurMatrixInfo.m_achMatrixInOutRelation[2],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[3],
@@ -1294,10 +1303,10 @@ void CCncCenterCtrl::OnChangeMatrixOutInRelationInd(const CMessage& cMsg)
 void CCncCenterCtrl::OnMatrixOutInRelationNty(const CMessage& cMsg)
 {
     CTpMsg cTpMsg(&cMsg);
-    s32 *pcCurInfo = reinterpret_cast<s32*>( cTpMsg.GetBody());
-    memcpy(m_tTPCurMatrixInfo.m_achMatrixInOutRelation, pcCurInfo, sizeof(s32)*MT_MAX_MATRIX_CHANNEL_LEN);
+    TTPMatrixSceneInfo tTPMatrixSceneInfo = *(TTPMatrixSceneInfo*)( cTpMsg.GetBody());
+    memcpy(m_tTPCurMatrixInfo.m_achMatrixInOutRelation, tTPMatrixSceneInfo.m_achMatrixInOutRelation, sizeof(s32)*MT_MAX_MATRIX_CHANNEL_LEN);
 
-    PrtMsg( ev_Cn_CurMatrixInOutRelation_Nty, emEventTypeCnsRecv, 
+    PrtMsg( ev_Cn_MatrixInOutRelation_Nty, emEventTypeCnsRecv, 
         "CurMatrixInfo:%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d", 
         m_tTPCurMatrixInfo.m_achMatrixInOutRelation[0],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[1],
         m_tTPCurMatrixInfo.m_achMatrixInOutRelation[2],m_tTPCurMatrixInfo.m_achMatrixInOutRelation[3],
@@ -1428,6 +1437,43 @@ void CCncCenterCtrl::OnApplyMatrixSceneInd(const CMessage& cMsg)
     PrtMsg( ev_CnUseMatrixScence_Ind, emEventTypeCnsRecv, "Index: %d, Success£º%d", dwIndex ,bSuccess);
 
     PostEvent( UI_APPLYMATRIXSCENE_IND ,bSuccess, dwIndex);
+}
+
+void CCncCenterCtrl::OnSelectComNty( const CMessage& cMsg )
+{
+    CTpMsg cTpMsg(&cMsg);
+    EmComType emComType2 = *(EmComType*)( cTpMsg.GetBody());
+    EmComType emComType3 = *(EmComType*)( cTpMsg.GetBody() + sizeof(EmComType));
+    m_aemComType[0]= emComType2;
+    m_aemComType[1]= emComType3;
+    PrtMsg( ev_Cn_SelectCom_Nty, emEventTypecnstoolRecv, "emComType2:%d emComType3:%d", emComType2, emComType3 );
+
+    PostEvent( UI_SELECTCOMG_IND );
+}
+
+void CCncCenterCtrl::OnSelectComInd( const CMessage& cMsg )
+{
+    CTpMsg cTpMsg(&cMsg);
+    EmComType emComType2 = *(EmComType*)( cTpMsg.GetBody());
+    EmComType emComType3 = *(EmComType*)( cTpMsg.GetBody() + sizeof(EmComType));
+    BOOL bSuccess = *(BOOL*)( cTpMsg.GetBody() + sizeof(EmComType) + sizeof(EmComType));
+
+    PrtMsg( ev_Cn_SelectCom_Ind, emEventTypecnstoolRecv, "bSuccess = %d, emComType2:%d emComType3:%d",bSuccess, emComType2, emComType3 );
+
+    if (bSuccess)
+    {
+        m_aemComType[0]= emComType2;
+        m_aemComType[1]= emComType3;
+        PostEvent( UI_SELECTCOMG_IND );
+    }
+}
+
+EmComType* CCncCenterCtrl::GetComType()
+{
+    return m_aemComType;
+}
+}
+
 }
 
 u16 CCncCenterCtrl::SelectDFScreen( u8 bySrceenControl )

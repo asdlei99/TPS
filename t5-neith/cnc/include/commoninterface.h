@@ -1489,6 +1489,8 @@ public:
     TTPMatrixSceneInfo* GetMatrixScneInfo();
     u16 GetCurMatrixInfo(TTPCurMatrixInfo &tTPCurMatrixInfo);
     u16 GetMatrixConfig(TTPMatrixConfig &tTPMatrixConfig);
+    //╢╝©зеДжц
+    EmComType* GetComType();
 
     /* ---- иЩ╫╣фа ---- */
 	//иЩ╫╣фаеейЩя║тЯ

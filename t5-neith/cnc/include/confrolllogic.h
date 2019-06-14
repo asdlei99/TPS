@@ -31,7 +31,8 @@ typedef struct tagTRolleeState
 	u16	m_wEpID;							//会场ID
 	EMAttend m_emAttend;			        //是否出席
 	s8	m_achRoomName[TP_MAX_ALIAS_LEN+1];	//会场名
-	bool m_bOnline;						//是否在线
+	bool m_bOnline;						    //是否在线
+    EmTPEndpointType m_emEpType;			//结点类型
 
 	tagTRolleeState()
 	{	
@@ -44,6 +45,7 @@ typedef struct tagTRolleeState
 		m_emAttend = emAttendNo;
 		m_achRoomName[0] = '\0';
 		m_bOnline = true;
+        m_emEpType = emTPEndpointTypeUnknown;
 	}
 
 }TRolleeState;

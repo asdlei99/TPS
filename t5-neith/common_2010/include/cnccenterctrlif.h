@@ -232,6 +232,10 @@ public:
     virtual u16 DeleteMatrixScenceCmd( u32 dwIndex ) = 0;
     virtual u16 ApplyMatrixScenceCmd( s32 dwIndex ) = 0;
 
+    //´®¿Ú
+    virtual EmComType* GetComType() = 0;
+
+
     //Éý½µÆÁ
     virtual u16 SelectDFScreen( u8 bySrceenControl ) = 0;
     virtual u16 SetDFScreenCommand(EmCommandType emCommand) = 0;

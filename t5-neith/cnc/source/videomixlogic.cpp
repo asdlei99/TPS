@@ -1441,6 +1441,14 @@ void CVideoMixLogic::UpdateVmpCfgItem( u16 wIndex, CListContainerElementUI* pCon
             if ( ptCnsInfo != NULL )
             {
 				pText->SetText( CA2T(ptCnsInfo->m_achRoomName) );
+                if (ptCnsInfo->m_emEpType != emTPEndpointTypeCNS)
+                {
+                    pLabel->SetBkImage( _T("res\\confctrl\\videomix\\imgSelOrd.png") );
+                }
+                else
+                {
+                    pLabel->SetBkImage( _T("res\\confctrl\\videomix\\imgSelCns.png") );
+                }
 				if (ptCnsInfo->m_wSpeakerNum == 3)
 				{
 					u16 wScrIndex = m_tLocalVmpStyle.m_atVmpChnl[wIndex].m_wScrIndx;

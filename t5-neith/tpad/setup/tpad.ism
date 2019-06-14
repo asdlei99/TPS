@@ -121,6 +121,7 @@
 		<row><td>Files16</td><td>{1252BA74-80B5-433C-A41C-6D493C1911CC}</td><td>ROOMCTRL</td><td>0</td><td/><td>verlinescreen.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files17</td><td>{1DBB18A9-E431-4F65-A479-F6016D488E42}</td><td>USERMANAGER</td><td>0</td><td/><td>tipinfo.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files18</td><td>{F9FA53DA-6506-4C7D-98DD-4F86F095A81F}</td><td>MAINMENU1</td><td>0</td><td/><td>watchdual_disable.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Files19</td><td>{DE0B5810-4177-4EBE-B5B5-32A196272485}</td><td>VIDEOMIX</td><td>0</td><td/><td>imgselord.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files2</td><td>{0839D46A-66E3-42F6-B4E7-B40DA9116718}</td><td>WINSYSDIR</td><td>16</td><td/><td>kdmp3.acm</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files3</td><td>{AE5D26D8-8A6A-4EBF-9DC4-2075BC9C2D08}</td><td>CNC</td><td>0</td><td/><td>pfc.dll</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files4</td><td>{D4705B89-B890-4BC0-A030-F3456D32084C}</td><td>LAYOUT</td><td>0</td><td/><td>reconnectbox.xml1</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -422,6 +423,7 @@
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files16</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files17</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files18</td></row>
+		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files19</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files2</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files3</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files4</td></row>
@@ -1514,6 +1516,7 @@
 		<row><td>imgscreencutline.png</td><td>Files5</td><td>imgScreenCutline.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES2&gt;\res\cnsmanage\imgScreenCutline.png</td><td>1</td><td>cnsmanage</td></row>
 		<row><td>imgselcns.png</td><td>Files5</td><td>imgSelCns.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES2&gt;\res\confctrl\videomix\imgSelCns.png</td><td>1</td><td>videomix</td></row>
 		<row><td>imgselfset.png</td><td>Files5</td><td>imgSelfSet.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES2&gt;\res\title\imgSelfSet.png</td><td>1</td><td>title1</td></row>
+		<row><td>imgselord.png</td><td>Files19</td><td>imgSelOrd.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_VIDEOMIX_FILES&gt;\imgSelOrd.png</td><td>1</td><td/></row>
 		<row><td>imgselwatch.png</td><td>Files5</td><td>imgSelWatch.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES2&gt;\res\title\imgSelWatch.png</td><td>1</td><td>title1</td></row>
 		<row><td>imgserver.png</td><td>Files5</td><td>imgServer.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES2&gt;\res\title\imgServer.png</td><td>1</td><td>title1</td></row>
 		<row><td>imgspeaker.png</td><td>Files5</td><td>imgSpeaker.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES2&gt;\res\list\imgSpeaker.png</td><td>1</td><td>list3</td></row>
@@ -2800,6 +2803,7 @@
 		<row><td>Files16</td><td/><td/><td>_24033755_CEEA_4586_838D_24D651D7A8C8_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files17</td><td/><td/><td>_AE1F3D93_4CDA_4957_A7E2_826330D6F04C_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files18</td><td/><td/><td>_48DD6990_5A54_4FCA_BDDA_7D6B28F94C93_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Files19</td><td/><td/><td>_362BAA46_1D99_46D0_963E_B2260D2BA026_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files2</td><td/><td/><td>_43B092E3_4E15_4849_815D_9EF6989AF4F0_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files3</td><td/><td/><td>_FE60CEF5_FD57_4195_B347_27510228C831_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files4</td><td/><td/><td>_C2B15491_36F4_49F7_8250_0681D7C88A5A_FILTER</td><td/><td/><td/><td/></row>
@@ -3230,6 +3234,7 @@
 		<row><td>PATH_TO_SKIN_FILES4</td><td>..\setup files\cnc\skin</td><td/><td>2</td></row>
 		<row><td>PATH_TO_SKIN_FILES5</td><td>..\setup files\cnc\skin</td><td/><td>2</td></row>
 		<row><td>PATH_TO_USERMANAGER_FILES</td><td>..\setup files\cnc\skin\res\usermanager</td><td/><td>2</td></row>
+		<row><td>PATH_TO_VIDEOMIX_FILES</td><td>..\setup files\cnc\skin\res\confctrl\videomix</td><td/><td>2</td></row>
 		<row><td>PATH_TO_XML_FILES</td><td>..\setup files\xml</td><td/><td>2</td></row>
 		<row><td>PATH_TO_XML_FILES1</td><td>..\setup files\xml</td><td/><td>2</td></row>
 		<row><td>ProgramFilesFolder</td><td/><td/><td>1</td></row>

@@ -195,7 +195,7 @@ _ev_end
  *[消息方向]
  *  cns -> cnc
 */
-_event(  ev_CnChangeMatrixOutInRelation_Ind  )
+_event(  ev_CnMatrixRelation_Ind  )
 _body( s32   , MT_MAX_MATRIX_CHANNEL_LEN )    
 _body( BOOL , 1 )
 _ev_end
@@ -325,7 +325,7 @@ _ev_end
  * TSerialCfg                          各组信息 
  * BOOL                                结果    
  *[消息方向]
- *  cndevice <- tptool
+ *  cndevice -> tptool CNC
 */
 _event(  ev_Cn_CentreModifyDFScreenGroup_Ind  )
 _body( u32   , 1 ) 
@@ -357,7 +357,7 @@ _ev_end
  *[消息方向]
  *  cnc <- cns
 */
-_event(  ev_Cn_CurMatrixInOutRelation_Nty  )
+_event(  ev_Cn_MatrixRelation_Nty  )
 _body( s32   , MT_MAX_MATRIX_CHANNEL_LEN )    
 _ev_end
 
@@ -371,6 +371,38 @@ _ev_end
 _event(  ev_Cn_CtrlSelectCom_Nty  )
 _body( EmSerialType   , 1) 
 _body( EmComType      , 1)
+_ev_end
+
+  /***********************<< 矩阵修改输入输出关系反馈 >>******************** 
+ *[消息体]
+ * TTPMatrixSceneInfo        矩阵对应关系            
+ * BOOL                      结果    
+ *[消息方向]
+ *  cns -> cnc
+*/
+_event(  ev_CnMatrixOutInRelation_Ind  )
+_body( TTPMatrixSceneInfo   , 1 )    
+_body( BOOL , 1 )
+_ev_end
+
+  /***********************<< 当前矩阵对应关系通知 >>******************** 
+ *[消息体] 
+ * TTPMatrixSceneInfo       矩阵对应关系
+ *[消息方向]
+ *  cnc <- cns
+*/
+_event(  ev_Cn_MatrixInOutRelation_Nty  )
+_body( TTPMatrixSceneInfo   , 1 )    
+_ev_end
+
+  /***********************<< 升降屏配置通知 >>******************** 
+ *[消息体]
+ * TCenDownOrFlipScreenInfo                    配置信息
+ *[消息方向]
+ *  cndevice -> cnc tptool
+*/
+_event(  ev_Cn_CentreDFScreenConfig_Nty  )
+_body( TCenDownOrFlipScreenInfo   , 1) 
 _ev_end
 
 #ifndef _MakeTpEventDescription_

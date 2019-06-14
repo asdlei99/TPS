@@ -228,9 +228,12 @@ protected:
 	bool HideMonitorSwitch();
     //开启ftp反馈
     bool OnSetCnFtpRsp(WPARAM wParam, LPARAM lParam, bool& bHandle);
-
+    //串口部分
+    bool OnSelectComInd(WPARAM wparam, LPARAM lparam, bool& bHandle);
 private:
 	void ChangeInterface( EmDCamProType emCamModelType );
+    //更新文档摄像机combo
+    void UpDateDocComConfig();
 public:
 	//更新timer弹窗
 	void UpdateTimer();

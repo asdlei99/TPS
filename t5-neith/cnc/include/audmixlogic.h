@@ -11,6 +11,7 @@ struct TAudMixCtrls
 	bool bIsSpeaker;		                     //是否是发言会场
 	u16 wCnsID;                                 //对应的cnsID
 	u16 wSpeakerNum;						    //会场屏数	
+    EmTPEndpointType m_emEpType;			    //结点类型
 
 	TAudMixCtrls()
 	{
@@ -18,6 +19,7 @@ struct TAudMixCtrls
 		bIsSpeaker = false;
 		wCnsID = TP_INVALID_INDEX;
 		u16 m_wSpeakerNum = 0;
+        m_emEpType = emTPEndpointTypeUnknown;
 	}
 };
 

@@ -2764,6 +2764,14 @@ enum EmUiCnstoolMsg
 	/************************************************************************/
 	ev_ApplyMatrixSceneInd,
 #define UI_APPLYMATRIXSCENE_IND  ev_ApplyMatrixSceneInd
+
+    /************************************************************************/
+	/**  ´®¿ÚÇÐ»»Í¨Öª
+	wParam = bShow
+	lparam = bSuccess 
+	/************************************************************************/
+	ev_SelectComInd,
+#define UI_SELECTCOMG_IND  ev_SelectComInd
 };
 
 //* @}*/

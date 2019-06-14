@@ -91,6 +91,9 @@ MSG_CREATEWINDOW(_T("CenterCtrlLayout"), OnCreate)
 
     USER_MSG(UI_CNSETFTPRSP, OnSetCnFtpRsp)
 
+    //串口
+    USER_MSG(UI_SELECTCOMG_IND, OnSelectComInd)
+
 APP_END_MSG_MAP()
 
 
@@ -891,21 +894,33 @@ bool CCenterCtrlLogic::OnDCamStateNty( WPARAM wParam, LPARAM lParam, bool& bHand
         }
 	}
     //更新文档摄像机界面
-    CComboUI* pCombo = (CComboUI*)ICncCommonOp::FindControl( m_pm, _T("ComboDCamSel") );
-    if (pCombo)
-    {
-        pCombo->RemoveAll();
-        itor = mapDCamCfg.begin();
-        for ( ; itor != mapDCamCfg.end() ; itor++ )
-        {
-            CListLabelElementUI *pListLabelElement = (CListLabelElementUI*)CONTROLFACTORY()->GetControl( _T("ComboItem") );
-            CString str=_T("");
-            str.Format(_T("文档摄像机%d"),itor->first);
-            pListLabelElement->SetText(str);
-            pCombo->Add(pListLabelElement);
-        }
-        pCombo->SelectItem(m_byDCamSelIndex);
-    }
+    UpDateDocComConfig();
+//     CComboUI* pCombo = (CComboUI*)ICncCommonOp::FindControl( m_pm, _T("ComboDCamSel") );
+//     if (pCombo)
+//     {
+//         pCombo->RemoveAll();
+//         itor = mapDCamCfg.begin();
+//         for ( ; itor != mapDCamCfg.end() ; itor++ )
+//         {
+//             CListLabelElementUI *pListLabelElement = (CListLabelElementUI*)CONTROLFACTORY()->GetControl( _T("ComboItem") );
+//             switch (itor->first)
+//             {
+//             case 0:
+//                 pListLabelElement->SetText(_T("DOCCAM口文档摄像机"));
+//                 break;
+//             case 1:
+//                 pListLabelElement->SetText(_T("COM2口文档摄像机"));
+//                 break;
+//             case 2:
+//                 pListLabelElement->SetText(_T("COM3口文档摄像机"));
+//                 break;
+//             default:
+//                 break;
+//             }
+//             pCombo->Add(pListLabelElement);
+//         }
+//         pCombo->SelectItem(m_byDCamSelIndex);
+//     }
 
     TCentreDCamCfg tDCamCfg;
     ComInterface->GetDCamState(tDCamCfg, m_byDCamSelIndex);
@@ -969,10 +984,46 @@ bool CCenterCtrlLogic::OnDCamSelectedInd( WPARAM wParam, LPARAM lParam, bool& bH
     else
     {
         ShowPopMsg(_T("选择文档摄像机失败"));
+        //串口
+        EmComType aemComType[2] = {emDCam};
+        memcpy( aemComType , ComInterface->GetComType(), sizeof(EmComType) * 2 );
+
         CComboUI *pCombo = (CComboUI*)ICncCommonOp::FindControl(m_pm, _T("ComboDCamSel"));
         if (pCombo)
         {
-            pCombo->SelectItem(m_byDCamSelIndex);
+            if (m_byDCamSelIndex == 0)
+            {
+                pCombo->SelectItem(0);
+            }
+            else if (m_byDCamSelIndex == 1)
+            {
+                if (aemComType[0] != emDCam)
+                {
+                    pCombo->SelectItem(0);
+                }
+                else
+                {
+                    pCombo->SelectItem(1);
+                }
+            }
+            else if (m_byDCamSelIndex == 2)
+            {
+                if (aemComType[1] != emDCam)
+                {
+                    pCombo->SelectItem(0);
+                }
+                else
+                {
+                    if (aemComType[0] != emDCam)
+                    {
+                        pCombo->SelectItem(1);
+                    }
+                    else
+                    {
+                        pCombo->SelectItem(2);
+                    }
+                }
+            }
         }
     }
     return NO_ERROR;
@@ -1273,9 +1324,18 @@ void CCenterCtrlLogic::ChangeInterface( EmDCamProType emCamModelType )
 bool CCenterCtrlLogic::OnComboDCamSel(TNotifyUI& msg)
 {
     u8 byIndex = msg.wParam;
-    if (m_byDCamSelIndex != byIndex)
+    CComboUI* pCombo = (CComboUI*)ICncCommonOp::FindControl( m_pm, _T("ComboDCamSel") );
+    if (pCombo->GetCount() > byIndex)
     {
-        ComInterface->SetDCamSelectIndex(byIndex);
+        CListLabelElementUI *pListLabelElement = (CListLabelElementUI*)pCombo->GetItemAt(byIndex);
+        if (pListLabelElement)
+        {
+            int comIndex = pListLabelElement->GetTag();
+            if (m_byDCamSelIndex != comIndex)
+            {
+                ComInterface->SetDCamSelectIndex(comIndex);
+            }
+        }
     }
     return true;
 }
@@ -1723,4 +1783,99 @@ bool CCenterCtrlLogic::OnSetCnFtpRsp(WPARAM wParam, LPARAM lParam, bool& bHandle
         m_bIsShotcupOpenFtp = false;
     }
     return true;
+}
+
+//串口
+bool CCenterCtrlLogic::OnSelectComInd(WPARAM wParam, LPARAM lParam, bool& bHandle)
+{
+    UpDateDocComConfig();
+
+    return true;
+}
+
+void CCenterCtrlLogic::UpDateDocComConfig()
+{
+    //文档摄像机信息
+    map<u8, TCentreDCamCfg> mapDCamCfg;
+    ComInterface->GetDCamStateMap(mapDCamCfg);
+    //串口
+    EmComType aemComType[2] = {emDCam};
+    memcpy( aemComType , ComInterface->GetComType(), sizeof(EmComType) * 2 );
+
+    CComboUI* pCombo = (CComboUI*)ICncCommonOp::FindControl( m_pm, _T("ComboDCamSel") );
+    if (pCombo)
+    {
+        pCombo->RemoveAll();
+        map<u8, TCentreDCamCfg>::iterator itor = mapDCamCfg.begin();
+        for ( ; itor != mapDCamCfg.end() ; itor++ )
+        {
+            if ((itor->first == 1 && aemComType[0] != emDCam) || (itor->first == 2 && aemComType[1] != emDCam ))
+            {
+                continue;
+            }
+
+            CListLabelElementUI *pListLabelElement = (CListLabelElementUI*)CONTROLFACTORY()->GetControl( _T("ComboItem") );
+            switch (itor->first)
+            {
+            case 0:
+                pListLabelElement->SetText(_T("DOCCAM口文档摄像机"));
+                break;
+            case 1:
+                pListLabelElement->SetText(_T("COM2口文档摄像机"));
+                break;
+            case 2:
+                pListLabelElement->SetText(_T("COM3口文档摄像机"));
+                break;
+            default:
+                break;
+            }
+            pListLabelElement->SetTag(itor->first);
+            pCombo->Add(pListLabelElement);
+        }
+        //选中项
+        if ((m_byDCamSelIndex == 1 && aemComType[0] != emDCam) || (m_byDCamSelIndex == 2 && aemComType[1] != emDCam))
+        {
+            u16 nRet = ComInterface->SetDCamSelectIndex( 0 );
+            if ( nRet != NO_ERROR )
+            {
+                m_byDCamSelIndex = -1;
+            }
+        }
+        else
+        {
+            if (m_byDCamSelIndex == 0)
+            {
+                pCombo->SelectItem(0);
+            }
+            else if (m_byDCamSelIndex == 1)
+            {
+                if (aemComType[0] != emDCam)
+                {
+                    pCombo->SelectItem(0);
+                }
+                else
+                {
+                    pCombo->SelectItem(1);
+                }
+            }
+            else if (m_byDCamSelIndex == 2)
+            {
+                if (aemComType[1] != emDCam)
+                {
+                    pCombo->SelectItem(0);
+                }
+                else
+                {
+                    if (aemComType[0] != emDCam)
+                    {
+                        pCombo->SelectItem(1);
+                    }
+                    else
+                    {
+                        pCombo->SelectItem(2);
+                    }
+                }
+            }
+        }
+    }
 }

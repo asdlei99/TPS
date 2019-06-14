@@ -60,6 +60,7 @@ enum EmTVModle
 	emSharp70LX565A,
 	emKangGuan70B17,
 	emKeShi70GMO1A,
+	emLCD_W70GM44A,
 };
 
 enum EmPanCamBright

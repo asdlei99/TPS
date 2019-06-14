@@ -56,13 +56,18 @@ bool CContentReqLogic::OnInit(TNotifyUI& msg)
 
 bool CContentReqLogic::OnDisconnect( WPARAM wParam, LPARAM lParam, bool& bHandle )
 {
+    g_strContentReq = "";
 	WINDOW_MGR_PTR->CloseWindow(g_strContentReqDlg.c_str(),IDCANCEL);
+    CConfTempLogic::GetSingletonPtr()->CancelCallTemp();
 	return NO_ERROR;
 }
 
 bool CContentReqLogic::OnBtnCancel( TNotifyUI& msg )
 {
+    g_strContentReq = "";
+    ComInterface->GetCnTempPwdInd("");
 	WINDOW_MGR_PTR->CloseWindow(g_strContentReqDlg.c_str(),IDCANCEL);
+    CConfTempLogic::GetSingletonPtr()->CancelCallTemp();
 	return true;
 }
 
@@ -80,6 +85,11 @@ bool CContentReqLogic::OnBtnOk( TNotifyUI& msg )
         return false;
     }
     g_strContentReq = CT2A(strContent);
+
+    s8 achTempPwd[MT_MAX_TEMP_PWD_LEN + 1] = {0};
+    strcpy(achTempPwd, g_strContentReq.c_str());
+    ComInterface->GetCnTempPwdInd(achTempPwd);
+
 	WINDOW_MGR_PTR->CloseWindow(g_strContentReqDlg.c_str(),IDOK);
 	return true;
 }
