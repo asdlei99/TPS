@@ -323,6 +323,7 @@ protected:
 	* @return   BOOL 是否上传成功
 	* @remarks  
 	*/
+    BOOL UploadLogoCoreFirstLogin( const String& strRemotePath, const String& strLocalFile, const String& strCheckFileName, BOOL bAutoEnd /*= TRUE */ );
 	BOOL UploadLogoCore( const String& strRemotePath, const String& strLocalFile, const String& strCheckFileName, BOOL bAutoEnd /*= TRUE */ );
 	BOOL UploadBannerCore( const String& strRemotePath, const String& strLocalFile, const String& strCheckFileName, BOOL bAutoEnd /*= TRUE */ );
 	/** 台标上传ftp消息响应
@@ -330,6 +331,7 @@ protected:
 	*  @node 
 	*  @return 
 	*/	
+    bool OnUploadLogoProgressFirstLogin(WPARAM wParam, LPARAM lParam, bool& bHandle);
 	bool OnUploadLogoProgress(WPARAM wParam, LPARAM lParam, bool& bHandle);
 	bool OnUploadBannerProgress(WPARAM wParam, LPARAM lParam, bool& bHandle);
 	/** 更新界面logo设置

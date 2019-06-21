@@ -368,6 +368,11 @@ public:
 	 //æÿ’Û≈‰÷√–≈œ¢
 	 LRESULT OnMatrixConfigNty( WPARAM wParam, LPARAM lParam );
 
+	 bool IsMatrixChange();
+	 bool SaveMsgBox();
+
+	 s32 GetCtrlChangeNum() { return m_vctWndName.size(); }
+
 private:
 	//æÿ’Û≈‰÷√
 	TTPMatrixConfig m_tTPMatrixConfig;

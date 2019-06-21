@@ -575,6 +575,16 @@ void CMainFrameLogic::SwitchCfgTabWnd( string strWnd )
 		}	
 	}
 
+	if ( m_strCurWnd == g_strCentMatrix && strWnd != g_strCentMatrix )
+	{
+		bool bChange = CCentCfgMatrix::GetSingletonPtr()->IsMatrixChange();
+		if ( false == bChange )
+		{
+			UIDATAMGR_PTR->SetLstSelItem( m_strLstFunMenu, m_pWndTree, 3 );
+			return;
+		}	
+	}
+
 	if ( m_strCurWnd == g_strCentDisplayDlg && strWnd != g_strCentDisplayDlg )
 	{
 		bool bChange = CCentCfgDisplayDlg::GetSingletonPtr()->IsCentCfgDisplayChange();
@@ -827,6 +837,22 @@ s32 CMainFrameLogic::IsCfgChange()
 	else if ( m_strCurWnd == g_strCentAirCondition )
 	{
 		/*s32*/ n = CCentCfgAirCondition::GetSingletonPtr()->GetCtrlChangeNum();
+		if ( n > 0 )
+		{
+			//bChange = CCfgEqLogic::GetSingletonPtr()->IsCfgEqChange();
+			if ( bChange )
+			{
+				bFlag = 1;
+			} 
+			else
+			{
+				bFlag = 2;
+			}
+		} 
+	}
+	else if ( m_strCurWnd == g_strCentMatrix )
+	{
+		/*s32*/ n = CCentCfgMatrix::GetSingletonPtr()->GetCtrlChangeNum();
 		if ( n > 0 )
 		{
 			//bChange = CCfgEqLogic::GetSingletonPtr()->IsCfgEqChange();

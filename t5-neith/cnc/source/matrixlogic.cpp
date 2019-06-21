@@ -32,7 +32,6 @@ APP_BEGIN_MSG_MAP(CMatrixLogic,CNotifyUIImpl)
     MSG_CLICK(_T("BtnReNameUISave"), OnBtnReNameUISave)
 
     USER_MSG(UI_DISCONNECTED_CLEARDATA, OnDisconnect)
-    USER_MSG(UI_CNS_CNSINFO_NOTIFY,OnCnsInfoNotify)
 
     USER_MSG(UI_MATRIXCONFIG_NTY,OnMatrixConFigNotify)
     USER_MSG(UI_MATRIXSCENE_NTY,OnMatrixSceneInfoNotify)
@@ -58,15 +57,19 @@ CMatrixLogic::~CMatrixLogic()
 bool CMatrixLogic::OnInit(TNotifyUI& msg)
 {
     //更新可保存的预案编号
-    CComboUI* pComboEx = (CComboUI*)ICncCommonOp::FindControl( m_pm, _T("ComboSavePreplanNo") );
-    for (int i = 0 ; i < TP_MATRIX_SCENENUM_MAX ; i++ )
+    CComboUI* pComboSave = (CComboUI*)ICncCommonOp::FindControl( m_pm, _T("ComboSavePreplanNo") );
+    if (pComboSave)
     {
-        CListLabelElementUI *pListLabelElement = (CListLabelElementUI*)CONTROLFACTORY()->GetControl( _T("ComboItem") );
-        CDuiString strtmp = _T("");
-        strtmp.Format(_T("预案%d"),i+1);
-        pListLabelElement->SetText(strtmp);
-        pListLabelElement->SetnTag(i);
-        pComboEx->Add(pListLabelElement);
+        pComboSave->RemoveAll();
+        for (int i = 0 ; i < TP_MATRIX_SCENENUM_MAX ; i++ )
+        {
+            CListLabelElementUI *pListLabelElement = (CListLabelElementUI*)CONTROLFACTORY()->GetControl( _T("ComboItem") );
+            CDuiString strtmp = _T("");
+            strtmp.Format(_T("预案%d"),i+1);
+            pListLabelElement->SetText(strtmp);
+            pListLabelElement->SetnTag(i);
+            pComboSave->Add(pListLabelElement);
+        }
     }
     return true;
 }
@@ -169,6 +172,13 @@ void CMatrixLogic::UpdateMatrixTip(const TTPCurMatrixInfo& tTPCurMatrixInfo, EmT
             }
             pInfoListContainer->SetFixedWidth(tTPCurMatrixInfo.m_tTPMatrixInInfo.m_byNum * NUM_MATRIX_WIDTH);
             pMatrixListHeadH->Add(pInfoListContainer);
+
+            //纵向滚动条填充
+            CListContainerElementUI *pListContainer = (CListContainerElementUI*)CONTROLFACTORY()->GetControl(_T("VScorllItem"));
+            if (pListContainer)
+            {
+                pMatrixListHeadH->Add(pListContainer);
+            }
         }
     }
     //纵向表头 输出
@@ -215,6 +225,12 @@ void CMatrixLogic::UpdateMatrixTip(const TTPCurMatrixInfo& tTPCurMatrixInfo, EmT
                 }
                 pMatrixListHeadV->Add(pListContainer);
             }
+        }
+        //纵向滚动条填充
+        CListContainerElementUI *pListContainerH = (CListContainerElementUI*)CONTROLFACTORY()->GetControl(_T("HScorllItem"));
+        if (pListContainerH)
+        {
+            pMatrixListHeadV->Add(pListContainerH);
         }
     }
     //列表内容
@@ -279,29 +295,33 @@ void CMatrixLogic::UpdateMatrixInfo(const TTPCurMatrixInfo& tTPCurMatrixInfo, Em
                         break;
                     }
                 }
-                CTouchListUI* pMatrixOutInfoList = (CTouchListUI*)ICncCommonOp::FindControl( m_pm, _T("MatrixInfoList"), pMatrixList->GetItemAt(iControlCol));
-                if (pMatrixOutInfoList)
+                CListContainerElementUI* pMatrixListParent = (CListContainerElementUI*)pMatrixList->GetItemAt(iControlCol);
+                if (pMatrixListParent)
                 {
-                    //找到对应输入端口号
-                    int iControlRow = -1;
-                    for (int iRow = 0 ; iRow < tTPCurMatrixInfo.m_tTPMatrixInInfo.m_byNum ; iRow++ )
+                    CTouchListUI* pMatrixOutInfoList = (CTouchListUI*)ICncCommonOp::FindControl( m_pm, _T("MatrixInfoList"), pMatrixListParent);
+                    if (pMatrixOutInfoList)
                     {
-                        if (iin == tTPCurMatrixInfo.m_tTPMatrixInInfo.m_atTPAVChannelInfo[iRow].m_dwChannelNo)
+                        //找到对应输入端口号
+                        int iControlRow = -1;
+                        for (int iRow = 0 ; iRow < tTPCurMatrixInfo.m_tTPMatrixInInfo.m_byNum ; iRow++ )
                         {
-                            iControlRow = iRow;
-                            break;
+                            if (iin == tTPCurMatrixInfo.m_tTPMatrixInInfo.m_atTPAVChannelInfo[iRow].m_dwChannelNo)
+                            {
+                                iControlRow = iRow;
+                                break;
+                            }
                         }
-                    }
-                    CCheckBoxUI* pStateCheck = (CCheckBoxUI*)ICncCommonOp::FindControl( m_pm, _T("OptIsUseful"), pMatrixOutInfoList->GetItemAt(iControlRow));
-                    if (pStateCheck)
-                    {
-                        if (emTouchList == emOperation)
+                        CCheckBoxUI* pStateCheck = (CCheckBoxUI*)ICncCommonOp::FindControl( m_pm, _T("OptIsUseful"), pMatrixOutInfoList->GetItemAt(iControlRow));
+                        if (pStateCheck)
                         {
-                            pStateCheck->SetCheck(true);
-                        }
-                        else
-                        {
-                            pStateCheck->SetCheckNoMsg(true);
+                            if (emTouchList == emOperation)
+                            {
+                                pStateCheck->SetCheck(true);
+                            }
+                            else
+                            {
+                                pStateCheck->SetCheckNoMsg(true);
+                            }
                         }
                     }
                 }
@@ -377,12 +397,32 @@ bool CMatrixLogic::OnSelPreplanSelectChange(TNotifyUI& msg)
     memcpy( atTPMatrixSceneInfo , ComInterface->GetMatrixScneInfo(), sizeof(TTPMatrixSceneInfo) * TP_MATRIX_SCENENUM_MAX );
     if (dwIndex < TP_MATRIX_SCENENUM_MAX)
     {
-        TTPCurMatrixInfo tTPCurMatrixInfo;
-        ComInterface->GetCurMatrixInfo(tTPCurMatrixInfo);
-        memcpy(tTPCurMatrixInfo.m_achMatrixInOutRelation, atTPMatrixSceneInfo[dwIndex].m_achMatrixInOutRelation, sizeof(s32) * MT_MAX_MATRIX_CHANNEL_LEN );
-        UpdateMatrixTip(tTPCurMatrixInfo, emManager);
-        UpdateMatrixInfo(tTPCurMatrixInfo, emManager);
+        if (atTPMatrixSceneInfo[dwIndex].bUsed)
+        {
+            m_pm->DoCase(_T("caseSelectUsedPrePlan"));
+
+            TTPCurMatrixInfo tTPCurMatrixInfo;
+            ComInterface->GetCurMatrixInfo(tTPCurMatrixInfo);
+            memcpy(tTPCurMatrixInfo.m_achMatrixInOutRelation, atTPMatrixSceneInfo[dwIndex].m_achMatrixInOutRelation, sizeof(s32) * MT_MAX_MATRIX_CHANNEL_LEN );
+            UpdateMatrixTip(tTPCurMatrixInfo, emManager);
+            UpdateMatrixInfo(tTPCurMatrixInfo, emManager);
+        }
+        else
+        {
+            m_pm->DoCase(_T("caseSelectUsedPrePlan"));
+
+            TTPCurMatrixInfo tTPCurMatrixInfo;
+            ComInterface->GetCurMatrixInfo(tTPCurMatrixInfo);
+            memset(tTPCurMatrixInfo.m_achMatrixInOutRelation, -1, sizeof(s32) * MT_MAX_MATRIX_CHANNEL_LEN );
+            UpdateMatrixTip(tTPCurMatrixInfo, emManager);
+            UpdateMatrixInfo(tTPCurMatrixInfo, emManager);
+        }
     }
+    else
+    {
+        m_pm->DoCase(_T("caseSelectNULLPrePlan"));
+    }
+    return NO_ERROR;
 }
 
 bool CMatrixLogic::OnPreplanSaveChange(TNotifyUI& msg)
@@ -442,6 +482,7 @@ bool CMatrixLogic::OnBtnUIReName( TNotifyUI& msg )
     CComboUI* pComboEx = (CComboUI*)ICncCommonOp::FindControl( m_pm, _T("ComboReNamePreplanNo") );
     if (pComboEx)
     {
+        pComboEx->RemoveAll();
         for (int i = 0 ; i < TP_MATRIX_SCENENUM_MAX ; i++ )
         {
             if (atMatrixSceneInfo[i].bUsed == FALSE)
@@ -538,7 +579,21 @@ bool CMatrixLogic::OnBtnSaveUISave( TNotifyUI& msg )
     s8 achName[TP_MATRIX_SCENENAME_LEN + 1] = {0};
     memcpy(achName,CT2A(strName),sizeof(CT2A(strName)));
 
-    ComInterface->SaveMatrixScenceCmd(dwIndex,achName);
+    //判断编号是否已保存
+    TTPMatrixSceneInfo  atMatrixSceneInfo[TP_MATRIX_SCENENUM_MAX];
+    memcpy( atMatrixSceneInfo , ComInterface->GetMatrixScneInfo(), sizeof(TTPMatrixSceneInfo) * TP_MATRIX_SCENENUM_MAX );
+    if (dwIndex < TP_MATRIX_SCENENUM_MAX)
+    {
+        if (atMatrixSceneInfo[dwIndex].bUsed)
+        {
+            int nResult = ShowMessageBox( _T("当前预案已存在，是否覆盖！"), true );
+            if ( IDOK != nResult )
+            {
+                return false;
+            }
+        }
+        ComInterface->SaveMatrixScenceCmd(dwIndex,achName);
+    }
 	return true;
 }
 
@@ -575,14 +630,6 @@ bool CMatrixLogic::OnDisconnect(WPARAM wParam, LPARAM lParam, bool& bHandle)
 {
     m_pm->DoCase(_T("caseShowMatrix"));
     return true;
-}
-
-bool CMatrixLogic::OnCnsInfoNotify( WPARAM wParam, LPARAM lParam, bool& bHandle )
-{
-    TTPCnsInfo tLocalCnsInfo;
-    ComInterface->GetLocalCnsInfo( tLocalCnsInfo );
-    ICncCommonOp::SetControlText((CA2T)tLocalCnsInfo.m_achRoomName,m_pm,_T("ConfRoomName"));
-    return NO_ERROR;
 }
 
 bool CMatrixLogic::OnMatrixConFigNotify(WPARAM wParam, LPARAM lParam, bool& bHandle)
@@ -630,25 +677,60 @@ bool CMatrixLogic::OnMatrixSceneInfoNotify(WPARAM wParam, LPARAM lParam, bool& b
     CComboUI* pComboEx = (CComboUI*)ICncCommonOp::FindControl( m_pm, _T("ComboSelPreplanNo") );
     if (pComboEx)
     {
-        pComboEx->RemoveAll();
+        int nFriseUsed = -1;
         for (int i = 0 ; i < TP_MATRIX_SCENENUM_MAX ; i++ )
         {
-            if (atMatrixSceneInfo[i].bUsed == FALSE)
+            CListLabelElementUI *pListLabelElement = (CListLabelElementUI*)pComboEx->GetItemAt(i);
+            if (pListLabelElement)
             {
-                continue;
+                CDuiString strtmp = _T("");
+                if (atMatrixSceneInfo[i].bUsed == FALSE)
+                {
+                    strtmp.Format(_T("预案%d:空"),i+1);
+                }
+                else
+                {
+                    if (nFriseUsed == -1)
+                    {
+                        nFriseUsed = i;
+                    }
+                    strtmp.Format(_T("预案%d:%s"),i+1,CA2T(atMatrixSceneInfo[i].achSceneName));
+                }
+                pListLabelElement->SetText(strtmp);
+                pListLabelElement->SetnTag(i);
             }
-            CListLabelElementUI *pListLabelElement = (CListLabelElementUI*)CONTROLFACTORY()->GetControl( _T("ComboItem") );
-            CDuiString strtmp = _T("");
-            strtmp.Format(_T("预案%d:%s"),i+1,CA2T(atMatrixSceneInfo[i].achSceneName));
-            pListLabelElement->SetText(strtmp);
-            pListLabelElement->SetnTag(i);
-            pComboEx->Add(pListLabelElement);
         }
-        if (pComboEx->GetCount() > 0)
+        if (pComboEx->GetCurSel() != -1)
         {
-            pComboEx->SelectItem(0);
+            TNotifyUI msg;
+            OnSelPreplanSelectChange(msg);
+        }
+        else
+        {
+            if (pComboEx->GetCount() > nFriseUsed && nFriseUsed != -1)
+            {
+                pComboEx->SelectItem(nFriseUsed);
+            }
+            else
+            {
+                pComboEx->SelectItem(0);
+            }
         }
     }
+
+    //校验匹配
+    TTPCurMatrixInfo tTPCurMatrixManageInfo;
+    ComInterface->GetCurMatrixInfo(tTPCurMatrixManageInfo);
+    CDuiString strName = _T("");
+    for (int i = 0 ; i < TP_MATRIX_SCENENUM_MAX ; i++ )
+    {
+        if (memcmp( tTPCurMatrixManageInfo.m_achMatrixInOutRelation , atMatrixSceneInfo[i].m_achMatrixInOutRelation , sizeof(s32) * MT_MAX_MATRIX_CHANNEL_LEN) == 0)
+        {
+            strName.Format(_T("预案%d:%s"),i+1,CA2T(atMatrixSceneInfo[i].achSceneName));
+            break;
+        }
+    }
+    ICncCommonOp::SetControlText(strName,m_pm,_T("ConfRoomName"));
     return true;
 }
 
@@ -662,6 +744,19 @@ bool CMatrixLogic::OnCurMatrixInfoNotify(WPARAM wParam, LPARAM lParam, bool& bHa
         UpdateMatrixTip(tTPCurMatrixInfo, emOperation);
     }
     UpdateMatrixInfo(tTPCurMatrixInfo, emOperation);
+    //更新数据
+    TTPMatrixSceneInfo  atMatrixSceneInfo[TP_MATRIX_SCENENUM_MAX];
+    memcpy( atMatrixSceneInfo , ComInterface->GetMatrixScneInfo(), sizeof(TTPMatrixSceneInfo) * TP_MATRIX_SCENENUM_MAX );
+    CDuiString strName = _T("");
+    for (int i = 0 ; i < TP_MATRIX_SCENENUM_MAX ; i++ )
+    {
+        if (memcmp( tTPCurMatrixInfo.m_achMatrixInOutRelation , atMatrixSceneInfo[i].m_achMatrixInOutRelation , sizeof(s32) * MT_MAX_MATRIX_CHANNEL_LEN) == 0)
+        {
+            strName.Format(_T("预案%d:%s"),i+1,CA2T(atMatrixSceneInfo[i].achSceneName));
+            break;
+        }
+    }
+    ICncCommonOp::SetControlText(strName,m_pm,_T("ConfRoomName"));
     return true;
 }
 

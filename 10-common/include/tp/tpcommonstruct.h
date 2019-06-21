@@ -4108,12 +4108,22 @@ typedef struct tagTUCSipRegResult
 
 }TUCSipRegResult;
 
+//原本想用Uion的但是怕出问题,脚本运行时union没有被识别
+//IP地址
+typedef struct tagTTPIPAddress
+{
+    u32_ip      dwIPV4;                            //IPV4
+    s8          achIPV6[TP_IPV6_LEN + 1];          //IPV6
+    public:
+    tagTTPIPAddress(){ memset( this ,0 ,sizeof( tagTTPIPAddress ) );}
+}TTPIPAddress;
 
 //终端地址
 typedef struct tagTCnAddr
 {
 	EmTPAddrType	emType;							//地址类型
-	u32_ip			 dwIP;						//终端IP地址
+    EmProtocolVersion emProtocolVersion;    
+	TTPIPAddress	tIP;						//终端IP地址
 	u16          wPort;						//端口
 	s8			 achAlias[TP_MAX_H323ALIAS_LEN+1];		//(别名)
 	s8			 achE164[TP_MAX_H323ALIAS_LEN+1];		//(164号)
@@ -4177,7 +4187,9 @@ typedef struct tagTTPDialParam
 	TTpQtEncryptCfg tQtEncryptCfg;
 	u8 m_byNonStdHdrNum;	//非标sip包头个数
 	TTPSipNstHeader m_atNonStdHdr[TP_SIP_NONSTD_HEADER_NUM];	 //非标sip包头,KdNstd为sip协议栈内部标示,业务不需要填下来
-
+    ////////////////////////////////////////////////////////
+    //以下仅用于CNC主呼判断是否模板会议
+    BOOL        bModuleConf;        //是否是模板会议
 public:
 	tagTTPDialParam(){ memset( this ,0 ,sizeof( struct tagTTPDialParam ) );}
 }TTPDialParam,*PTTPDialParam;
@@ -5951,6 +5963,7 @@ typedef struct tagTTPMPAudioInfo
 	EmTPLoudspeakerVal   m_emLoudspeakerVal; //扬声器音量值（T2版本）
 	//维护工具上音频设置的音频输出增益 add by wangqichang
 	u8                   m_abyOutputGain[emEndMPCodec - 1];
+    BOOL                 m_bUISwitch_VoiceMotivation;//界面是否开启语音激励
 	//end
 
 	

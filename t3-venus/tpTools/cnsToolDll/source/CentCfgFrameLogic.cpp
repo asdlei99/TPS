@@ -231,6 +231,16 @@ void CCentCfgFrameLogic::SwitchCfgTabWnd( string strWnd )
 			return;
 		}	
 	}
+
+	if ( m_strCurWnd == g_strCentMatrix && strWnd != g_strCentMatrix )
+	{
+		bool bChange = CCentCfgMatrix::GetSingletonPtr()->IsMatrixChange();
+		if ( false == bChange )
+		{
+			UIDATAMGR_PTR->SetLstSelItem( m_strLstFunMenu, m_pWndTree, 3 );
+			return;
+		}	
+	}
 	
 	HideAllWnd();
 	UIFACTORYMGR_PTR->ShowWindow(strWnd);

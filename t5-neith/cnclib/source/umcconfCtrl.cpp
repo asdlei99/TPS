@@ -73,6 +73,9 @@ void CUmcConfCtrl::BuildEventsMap()
 	REG_PFUN( ev_Cn_UpdateConfTurnlist_Ind, CUmcConfCtrl::OnPollListInd );
 	REG_PFUN( ev_CnPollStatus_Nty,  CUmcConfCtrl::OnPollStatusNty ); 
 
+    //会议讨论
+    REG_PFUN( ev_CnSetAudioInfo_Ind,  CUmcConfCtrl::OnSetAudioInfoInd ); 
+
     //画面合成
     REG_PFUN( ev_Cn_RervesBrdVmp_Ind, CUmcConfCtrl::OnRervesBrdVmpInd );
     REG_PFUN( ev_Cn_SetBrdVmp_Ind, CUmcConfCtrl::OnSetBrdVmpInd );
@@ -1946,6 +1949,24 @@ const TTPSelViewNtfy CUmcConfCtrl::GetSelWatchStatus() const
 	return m_tTPSelViewNtfy;
 }
 
+void CUmcConfCtrl::OnSetAudioInfoInd( const CMessage &cMsg )
+{
+    CTpMsg cTpMsg(&cMsg);
+    TTPMPAudioInfo tAudioInfo= *(TTPMPAudioInfo*)(cTpMsg.GetBody());
+
+    BOOL bSuccess = *(BOOL*)( cTpMsg.GetBody() +  sizeof(TTPMPAudioInfo) );
+    if ( bSuccess )
+    {
+        PostEvent( UI_UMS_AUDEXCITATION_VISIBLE_IND, (WPARAM)tAudioInfo.m_bUISwitch_VoiceMotivation, NULL );
+
+    }
+
+    PrtMsg( ev_CnSetAudioInfo_Ind, emEventTypeCnsRecv, "AudioInfoInd:%d ,UISwitch_VoiceMotivation Showed:%d",
+        bSuccess, tAudioInfo.m_bUISwitch_VoiceMotivation);
+
+    return;
+}
+
 const TDiscussListOpr CUmcConfCtrl::GetDiscussList() const
 {
 	return m_tDiscussListOpr;
@@ -2351,7 +2372,7 @@ void CUmcConfCtrl::SetAllQuiet( const CMessage& cMsg )
 
 	TConfEpID  tConfEpInfo  = * reinterpret_cast<TConfEpID*>( kdvMsg.GetBody() ); 
 	BOOL32 bRe = * reinterpret_cast<BOOL32*>( kdvMsg.GetBody() + sizeof(TConfEpID) );
-	PrtMsg(ev_TppConfMute_Ind,emEventTypeCnsRecv,"ConfID=%d, CNSID=%d ,bQuiet=%d  ",
+	PrtMsg(ev_TppConfQuiet_Nty,emEventTypeCnsRecv,"ConfID=%d, CNSID=%d ,bQuiet=%d  ",
 		tConfEpInfo.m_wConfID, tConfEpInfo.m_wEpID,bRe ) ; 
 
 	if (tConfEpInfo.m_wEpID == TP_ALLEP_INDEX)
@@ -2372,7 +2393,7 @@ void CUmcConfCtrl::SetAllMute( const CMessage& cMsg )
 
 	TConfEpID  tConfEpInfo  = * reinterpret_cast<TConfEpID*>( kdvMsg.GetBody() ); 
 	BOOL32 bRe = * reinterpret_cast<BOOL32*>( kdvMsg.GetBody() + sizeof(TConfEpID) );
-	PrtMsg(ev_TppConfMute_Ind,emEventTypeCnsRecv,"ConfID=%d, CNSID=%d ,bMute=%d  ",
+	PrtMsg(ev_TppConfMute_Nty,emEventTypeCnsRecv,"ConfID=%d, CNSID=%d ,bMute=%d  ",
 		tConfEpInfo.m_wConfID, tConfEpInfo.m_wEpID,bRe ) ; 
 
 	if (tConfEpInfo.m_wEpID == TP_ALLEP_INDEX)

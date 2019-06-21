@@ -900,7 +900,8 @@ void CCncMsgDriver::MappingEventName()
     MAPPING_HELPER( ev_CnPosAllStatus_Nty, _T("ev_CnPosAllStatus_Nty"), 3 );
 
     MAPPING_HELPER( ev_TppDualRcvInterrupt_Nty, _T("ev_TppDualRcvInterrupt_Nty") );
-    
+
+    MAPPING_HELPER( ev_CnSetAudioInfo_Ind, _T("ev_CnSetAudioInfo_Ind") );
 
 	//Ë«Á÷
 	MAPPING_HELPER( ev_TppAddDualRcvAddr_Cmd, _T("ev_TppAddDualRcvAddr_Cmd") );

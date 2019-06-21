@@ -13,7 +13,24 @@
 		  <Button name="BtnUIApply" float="true" pos="1370,30,0,0" width="149" height="64" text="应  用" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
 		  <Button name="BtnUIDelete" float="true" pos="1540,30,0,0" width="149" height="64" text="删  除" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
 		  <Button name="BtnUICancel" float="true" pos="1710,30,0,0" width="149" height="64" text="取  消" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
-		  <Combo name="ComboSelPreplanNo" float="true" pos="250,125,0,0" padding="10,0,0,0" text="" align="center" width="600" height="64" dropboxsize="600,350" mosimgfolfer="res/public/edit" vscrollbar="true" hscrollbar="true" itemalign="center" itemfont="1" itemheight="64" align="center" font="1" textcolor="#CCD4DEEB"   dropboxInterspace="6" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FFFFFFFF" MosPopBoxBk="res\matrix\morecombo" itemtextpadding="0,10,0,10" inset="0,20,0,20" itemhottextcolor="#FF00FFFF" itemselectedbkcolor="" itemhotbkcolor="" />
+		  <Combo name="ComboSelPreplanNo" float="true" pos="250,125,0,0" padding="10,0,0,0" text="" align="center" width="600" height="64" dropboxsize="600,350" mosimgfolfer="res/public/edit" vscrollbar="true" hscrollbar="true" itemalign="center" itemfont="1" itemheight="64" align="center" font="1" textcolor="#CCD4DEEB"   dropboxInterspace="6" itemtextcolor="#FFFFFFFF" itemselectedtextcolor="#FFFFFFFF" MosPopBoxBk="res\matrix\morecombo" itemtextpadding="0,10,0,10" inset="0,20,0,20" itemhottextcolor="#FF00FFFF" itemselectedbkcolor="" itemhotbkcolor="" >
+			<ListLabelElement name="ComboItem" text="预案1:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案2:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案3:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案4:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案5:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案6:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案7:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案8:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案9:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案10:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案11:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案12:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案13:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案14:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案15:空" gdiplus="true" bkcolor="ff152131" height="64" />
+			<ListLabelElement name="ComboItem" text="预案16:空" gdiplus="true" bkcolor="ff152131" height="64" />
+		  </Combo>
 		</VerticalLayout>
 		<!--当前矩阵配置-->
 		<VerticalLayout name="MatrixCfgLayout" >
@@ -33,7 +50,7 @@
 		</VerticalLayout>
 		<!--矩阵预案预览-->
 		<VerticalLayout name="MatrixEditLayout" visible="false">
-		  <VerticalLayout float="true" pos="250,0,0,0" width="1445" height="780">
+		  <VerticalLayout name="MatrixEditListLayout" float="true" pos="250,0,0,0" width="1445" height="780">
 			<HorizontalLayout height="110">
 			    <VerticalLayout width="160" height="110" bkimage="res\matrix\tip.png">
 					<Label text="输出" float="true" pos="0,55,0,0" width="80" height="45" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true"/>
@@ -129,5 +146,18 @@
 		<ReNamePreplanLayout visible="true"/>
 	</Case>
 	  
+	<!--选中空预案-->
+	<Case name="caseSelectNULLPrePlan">			
+		<BtnUIReName enabled="false"/>
+		<BtnUIApply enabled="false"/>
+		<BtnUIDelete enabled="false"/>
+		<MatrixEditListLayout visible="false"/>
+	</Case>
+	<Case name="caseSelectUsedPrePlan">			
+		<BtnUIReName enabled="true"/>
+		<BtnUIApply enabled="true"/>
+		<BtnUIDelete enabled="true"/>
+		<MatrixEditListLayout visible="true"/>
+	</Case>
   </VerticalLayout>
 </PageMatrix>

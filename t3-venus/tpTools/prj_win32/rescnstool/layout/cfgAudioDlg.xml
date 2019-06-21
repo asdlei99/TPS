@@ -565,7 +565,33 @@
       <Scheme Name="SchmLeaveConf">
         <Property Name="WindowEnable" Value="true" />
       </Scheme>
-    </Window>  
+    </Window>
+	
+	<!-- line 7 ÌÖÂÛÓïÒô¼¤Àø -->
+	<Window Type="TransStatic" Name="StcAudioExcitation" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:40 y:250" />
+      <Property Name="WindowSize" Value="x:112 y:14" />
+      <Property Name="WindowCaption" Value="ÌÖÂÛÓïÒô¼¤Àø" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="FontSize" Value="9" />
+      <Property Name="Alignment" Value="0" />
+    </Window>
+
+    <Window Type="TransSwitchButton" Name="SwitchButtonOfAE" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:120 y:241" />
+      <Property Name="WindowSize" Value="x:107 y:32" />
+      <Property Name="Image" Value="AudioSwitch" />
+      <Property Name="WindowEnable" Value="True" />
+      <Property Name="WindowVisible" Value="True" />
+      <Property Name="SwitchState" Value="True" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioDlg::OnBtnAE" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
+    </Window>
     
 
     <Window Type="TransButton" Name="BtnDefault" Style="WS_CHILD|WS_CLIPSIBLINGS">

@@ -3,7 +3,7 @@
 
 #include "tpcommonxmltype.h"
 
-const char XmlLocalTypeVersion[] = "2019-6-5 16:7:29";
+const char XmlLocalTypeVersion[] = "2019-6-21 16:0:5";
 
 //Local Data struct type begin
 enum EmXDataLocalType

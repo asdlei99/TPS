@@ -39,6 +39,7 @@ APP_BEGIN_MSG_MAP(CAudMixLogic, CNotifyUIImpl)
 	USER_MSG(UI_UMS_REFRESH_CONFAUDMIX_LIST,RefreshAudMixList)
 	USER_MSG(UI_UMS_REFRESH_CONFCNS_LIST,OnRefreshCnsList)
 	USER_MSG(UI_UMS_AUDMIX_DISLISTOPR_IND,OnAudMixDisListOprInd)
+    USER_MSG(UI_UMS_AUDEXCITATION_VISIBLE_IND,OnAudExcitationVisibleInd)
 	USER_MSG(UI_UMS_AUDMIXVAC_IND,OnAudMixVacOprInd)
 	USER_MSG(UI_DISCONNECTED_CLEARDATA,OnDisconnect)
 	USER_MSG(UI_UMS_AUDMIXIND,OnStartAudMixInd)
@@ -1321,6 +1322,21 @@ bool CAudMixLogic::OnAudMixDisListOprInd( WPARAM wParam, LPARAM lParam, bool& bH
 	UpdateList();
 
 	return true;
+}
+
+bool CAudMixLogic::OnAudExcitationVisibleInd( WPARAM wParam, LPARAM lParam, bool& bHandle )
+{
+   BOOL bAESwitchVisible = (BOOL)wParam;
+    if ( bAESwitchVisible )
+    {
+        m_pm->DoCase(_T("caseAudExcitationVisible"));
+    }
+    else
+    {
+        m_pm->DoCase(_T("caseAudExcitationInVisible"));
+    }
+
+    return true;
 }
 
 bool CAudMixLogic::OnAudMixVacOprInd( WPARAM wParam, LPARAM lParam, bool& bHandle )

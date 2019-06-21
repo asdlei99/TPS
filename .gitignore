@@ -1,2 +1,15 @@
 *svn/
-*lib/
+
+*Debug/
+*Release/
+*.dsw
+*.ncb
+*.opt
+*positions
+*.plg
+
+*whiteboard/
+
+*common_linux/
+*producetest2/
+*TPadMainCtrlPlat/

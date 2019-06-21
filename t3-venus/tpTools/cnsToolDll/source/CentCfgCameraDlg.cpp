@@ -134,6 +134,8 @@ void CCentCfgCameraDlg::RegMsg()
 
 	REG_MSG_HANDLER( UI_CNSTOOL_DCCAMERA_SavePreSet_Nty, CCentCfgCameraDlg::OnDocCamSavePreSetNty, m_pThis, CCentCfgCameraDlg );
 	REG_MSG_HANDLER( UI_CNSTOOL_DCCAMERA_CallPreSet_Nty, CCentCfgCameraDlg::OnDocCamCallPreSetNty, m_pThis, CCentCfgCameraDlg );
+
+	REG_MSG_HANDLER( UI_SELECTCOMG_IND, CCentCfgCameraDlg::OnSelectComInd, m_pThis, CCentCfgCameraDlg );
 }
 
 void CCentCfgCameraDlg::UnRegFunc()
@@ -450,25 +452,26 @@ LRESULT CCentCfgCameraDlg::OnDocCamInfoNty( WPARAM wParam, LPARAM lParam )
 	}
 
 	//文档摄像机列表
-	map<u8, TCentreDCamCfg> mapDCamCfg;
-	LIBDATAMGRPTR->GetDCamStateMap(mapDCamCfg);
-	vector<CString> m_vecDocCamIndex;
-	m_vecDocCamIndex.clear();
-	map<u8, TCentreDCamCfg>::iterator itor = mapDCamCfg.begin();
-	for ( ; itor != mapDCamCfg.end() ; itor++ )
-	{
-		s8	    chDocIndex[5] = "";
-		itoa(itor->first,chDocIndex,10);
-		
-		m_vecDocCamIndex.push_back(chDocIndex);
-    }
+	UpDateDocComConfig();
+// 	map<u8, TCentreDCamCfg> mapDCamCfg;
+// 	LIBDATAMGRPTR->GetDCamStateMap(mapDCamCfg);
+// 	vector<CString> m_vecDocCamIndex;
+// 	m_vecDocCamIndex.clear();
+// 	map<u8, TCentreDCamCfg>::iterator itor = mapDCamCfg.begin();
+// 	for ( ; itor != mapDCamCfg.end() ; itor++ )
+// 	{
+// 		String strComName = "";
+// 		EmDocCamCom emDocCamCom = (EmDocCamCom)itor->first;
+// 		TranDoccamCom(strComName, emDocCamCom);
+// 		m_vecDocCamIndex.push_back(strComName.c_str());
+//     }
 	//更新文档摄像机索引
-	UIFACTORYMGR_PTR->SetComboListData( m_strDCamIndexBox, m_vecDocCamIndex, m_pWndTree ); 
-	string strDocCamIndex = "";
-	s8	    chDocIndex[5] = "";
-	itoa(m_byDCamSelIndex,chDocIndex,10);
-	strDocCamIndex= chDocIndex;
-	UIFACTORYMGR_PTR->SetComboText( m_strDCamIndexBox, strDocCamIndex, m_pWndTree );
+//	UIFACTORYMGR_PTR->SetComboListData( m_strDCamIndexBox, m_vecDocCamIndex, m_pWndTree ); 
+
+	String strComName = "";
+	EmDocCamCom emDocCamCom = (EmDocCamCom)m_byDCamSelIndex;
+	TranDoccamCom(strComName, emDocCamCom);
+	UIFACTORYMGR_PTR->SetComboText( m_strDCamIndexBox, strComName, m_pWndTree );
 	
 	String strState,strComboxText;
 	TCentreDCamCfg tDCamCfg;
@@ -564,16 +567,15 @@ LRESULT CCentCfgCameraDlg::OnDCamSelectedInd( WPARAM wParam, LPARAM lParam )
 	BOOL bIsOk = (BOOL)wParam;
     u8 byIndex = (u8)lParam;
 	
-	string strDocCamIndex = "";
-	s8	    chDocIndex[5] = "";
     if (bIsOk)
     {
         m_byDCamSelIndex = byIndex;
         OnDocCamInfoNty( 0, 0 );
     }
-	itoa(m_byDCamSelIndex,chDocIndex,10);
-	strDocCamIndex= chDocIndex;
-	UIFACTORYMGR_PTR->SetComboText( m_strDCamIndexBox, strDocCamIndex, m_pWndTree );
+	String strComName = "";
+	EmDocCamCom emDocCamCom = (EmDocCamCom)m_byDCamSelIndex;
+	TranDoccamCom(strComName, emDocCamCom);
+	UIFACTORYMGR_PTR->SetComboText( m_strDCamIndexBox, strComName, m_pWndTree );
     return NO_ERROR;
 }
 
@@ -839,18 +841,20 @@ bool CCentCfgCameraDlg::OnPanCamNumChange( const IArgs& args )
 
 bool CCentCfgCameraDlg::OnDocCamIndexChange( const IArgs& args )
 {
-	string strDocCamIndex = "";
-	s8	    chDocIndex[5] = "";
-	
+	String strDocCamIndex = "";
+	EmDocCamCom emDocCamCom = (EmDocCamCom)m_byDCamSelIndex;
 	UIFACTORYMGR_PTR->GetComboText( m_strDCamIndexBox, strDocCamIndex, m_pWndTree );
+	TranDoccamCom(strDocCamIndex, emDocCamCom);
 	
-	u8 byDocCamindex =(u8)atoi(strDocCamIndex.c_str());
+	u8 byDocCamindex = (u8)emDocCamCom;
 	u16 nRet = COMIFMGRPTR->SetDCamSelectIndex( byDocCamindex );
 	if ( nRet != NO_ERROR )
 	{
 		WARNMESSAGE( "文档摄像机请求失败" );
-		itoa(m_byDCamSelIndex,chDocIndex,10);
-		strDocCamIndex= chDocIndex;
+
+		strDocCamIndex = "";
+		emDocCamCom = (EmDocCamCom)m_byDCamSelIndex;
+		TranDoccamCom(strDocCamIndex, emDocCamCom);
 		
 		UIFACTORYMGR_PTR->SetComboText( m_strDCamIndexBox, strDocCamIndex, m_pWndTree );   
 	}
@@ -1103,6 +1107,40 @@ void CCentCfgCameraDlg::SetZoomCmd( CString str )
 	{
 		WARNMESSAGE( "zoom请求发送失败" );
 		SetZoomValue((float)m_tDCamInfo.tDCamCurPresetInfo.wZoom/100);
+	}
+}
+
+void CCentCfgCameraDlg::TranDoccamCom(String& strComName, EmDocCamCom& emDocCamCom)
+{
+	if (strComName.empty())
+	{
+		switch (emDocCamCom)
+		{
+		case emDOCCAM:
+			strComName = "DOCCAM";
+			break;
+		case emCom2:
+			strComName = "COM2";
+			break;
+		case emCom3:
+			strComName = "COM3";
+			break;
+		}
+	}
+	else
+	{
+		if (strComName == "DOCCAM")
+		{
+			emDocCamCom = emDOCCAM;
+		}
+		else if (strComName == "COM2")
+		{
+			emDocCamCom = emCom2;
+		}
+		else if (strComName == "COM3")
+		{
+			emDocCamCom = emCom3;
+		}
 	}
 }
 
@@ -2059,4 +2097,60 @@ EmDCamShutSpd CCentCfgCameraDlg::TransShutterTextToType( string strShutterText )
 	}
 
 	return emShut;
+}
+
+
+//串口
+LRESULT CCentCfgCameraDlg::OnSelectComInd(WPARAM wparam, LPARAM lparam)
+{
+	UpDateDocComConfig();
+	
+	return S_OK;
+}
+
+void CCentCfgCameraDlg::UpDateDocComConfig()
+{
+	EmComType* pComType = NULL;
+	LIBDATAMGRPTR->GetComType( &pComType );
+
+	EmComType emComType2 = *pComType;
+	EmComType emComType3 = *(pComType + 1);
+
+	UIFACTORYMGR_PTR->CleanComboListData( m_strDCamIndexBox, m_pWndTree ); 
+	//文档摄像机列表
+	map<u8, TCentreDCamCfg> mapDCamCfg;
+	LIBDATAMGRPTR->GetDCamStateMap(mapDCamCfg);
+	vector<CString> m_vecDocCamIndex;
+	m_vecDocCamIndex.clear();
+	map<u8, TCentreDCamCfg>::iterator itor = mapDCamCfg.begin();
+	for ( ; itor != mapDCamCfg.end() ; itor++ )
+	{
+		String strComName = "";
+		EmDocCamCom emDocCamCom = (EmDocCamCom)itor->first;
+		if ((emDocCamCom == emCom2 && emComType2 != emDCam) || (emDocCamCom == emCom3 && emComType3 != emDCam))
+		{
+			continue;
+		}
+		TranDoccamCom(strComName, emDocCamCom);
+		m_vecDocCamIndex.push_back(strComName.c_str());
+    }
+	//更新文档摄像机索引
+	UIFACTORYMGR_PTR->SetComboListData( m_strDCamIndexBox, m_vecDocCamIndex, m_pWndTree ); 
+	
+	String strComName = "";
+	EmDocCamCom emDocCamCom = (EmDocCamCom)m_byDCamSelIndex;
+	if ((emDocCamCom == emCom2 && emComType2 != emDCam) || (emDocCamCom == emCom3 && emComType3 != emDCam))
+	{
+		u16 nRet = COMIFMGRPTR->SetDCamSelectIndex( 0 );
+		if ( nRet != NO_ERROR )
+		{
+			WARNMESSAGE( "文档摄像机请求失败" );
+			m_byDCamSelIndex = -1;
+		}
+	}
+	else
+	{
+		TranDoccamCom(strComName, emDocCamCom);
+		UIFACTORYMGR_PTR->SetComboText( m_strDCamIndexBox, strComName, m_pWndTree );
+	}
 }

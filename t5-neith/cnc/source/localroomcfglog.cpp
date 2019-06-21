@@ -72,6 +72,7 @@ MSG_CREATEWINDOW(_T("RoomCtrlLayout"), OnCreate)
 	USER_MSG(UI_CNS_CNSINFO_NOTIFY,OnCnsInfoNotify)
 	USER_MSG(UI_CNS_MAINROOM_NOTIFY,OnMainRoomNotify) 
 
+    USER_MSG(WM_CNC_FL_FTPCONFSIGNPROGRESS,OnUploadLogoProgressFirstLogin)
 	USER_MSG(WM_CNC_FTPCONFSIGNPROGRESS,OnUploadLogoProgress)
 	USER_MSG(WM_CNC_FTPCONFBANNERPROGRESS,OnUploadBannerProgress)
 
@@ -824,6 +825,108 @@ bool CLocalRoomCfgLogic::OnBtnSaveBanner( TNotifyUI& msg )
 	}
 
 	return true;
+}
+
+bool CLocalRoomCfgLogic::OnUploadLogoProgressFirstLogin(WPARAM wParam, LPARAM lParam, bool& bHandle)
+{
+    EmFtpStatus emFileFtpStatus = static_cast<EmFtpStatus>(wParam);
+
+    switch( emFileFtpStatus )
+    {
+    case emFtpBegin:
+        {
+            //PrtMsg( 0, emEventTypeCmsWindow, _T("%s已经进入传输状态！"), m_vecLogoFile.at(0).c_str() );
+        }
+        break;
+    case emFtpTransfer:
+        {
+        }
+        break;
+    case emFtpEnd:
+        {
+            DWORD dwSuccess = static_cast<DWORD>(lParam);     //FTP接口0为成功  默认失败
+            m_cFtpLogo.EndFtpFile();	
+            if ( 0 == dwSuccess )
+            {
+                PrtMsg( 0, emEventTypeCmsWindow, "此时待传输文件个数：%d", m_vecLogoFile.size()-1 );
+                if ( m_vecLogoFile.size() >0 )
+                {	
+                    vector<String>::iterator itr = m_vecLogoFile.begin();
+                    m_vecLogoFile.erase(itr);
+                    if ( m_vecLogoFile.size() > 0 )
+                    {
+                        CString strFullPath = GetModuleFullPath() + TP_TEMPFILE_PATH;		
+                        if(!PathFileExists(strFullPath))
+                        {
+                            CreateDirectory(strFullPath, NULL);
+                        }
+                        if ( !UploadLogoCoreFirstLogin( CNSCONF_FILE_PATH, (String)strFullPath+m_vecLogoFile.at(0), m_vecLogoFile.at(0), FALSE) )
+                        {			
+                            m_vecLogoFile.clear();
+                            char ach[MAX_PATH];
+                            strcpy(ach,(CT2A)m_vecLogoFile.at(0).c_str());
+                            PrtMsg( 0, emEventTypeCmsWindow, "%s还没开始进行ftp传输便失败！", ach );
+                        }		
+                    }
+                    else
+                    {
+                        TTPLogoInfo tTPLogoInfo;
+                        ComInterface->GetLogoInfo( tTPLogoInfo );
+                        //全部传输完毕发送消息				
+                        for (int i = 0 ; i < 3 ; i++)
+                        {
+                            TTPShowLogo tLogoInfo;
+                            switch(i)
+                            {
+                            case 0:
+                                tLogoInfo = tTPLogoInfo.tFirsLogoInfo;
+                                break;
+                            case 1:
+                                tLogoInfo = tTPLogoInfo.tSecondLogoInfo;
+                                break;	
+                            case 2:
+                                tLogoInfo = tTPLogoInfo.tThirdLogoInfo;
+                            }
+
+                            if (tLogoInfo.bIsShowLogo == FALSE || tLogoInfo.achLogoName == "")
+                            {
+                                continue;
+                            }
+
+                            TTPLogo tTTPLogo;
+                            tTTPLogo.tLogoInfo = m_mapLogoInfo[i];
+                            tTTPLogo.byIndex = i;
+                            ComInterface->CnIsShowLogoCmd( tTTPLogo );	
+                        }
+                        PrtMsg( 0, emEventTypeCmsWindow, "图片上传完毕" );
+                    }
+
+                }
+            }
+            else
+            {
+                CString str(m_vecLogoFile.at(0).c_str());
+                char ach[MAX_PATH];
+                strcpy(ach,(CT2A)m_vecLogoFile.at(0).c_str());
+
+                LPTSTR pszMsg = NULL;
+                m_cFtpLogo.FormatFtpError( dwSuccess, &pszMsg );
+                PrtMsg( 0, emEventTypeCmsWindow, "上传logo文件失败：%s,错误原因：%d %s", ach, dwSuccess, pszMsg );
+                CString strError;
+                strError.Format(_T("上传logo文件失败"));
+                ShowPopMsg(strError);
+                //失败清空 防止不能再传
+                m_vecLogoFile.clear();
+                LocalFree( pszMsg );
+            }		
+        }
+        break;
+    default:
+        {
+        }
+        break;
+    }	
+    return true;
 }
 
 bool CLocalRoomCfgLogic::OnUploadLogoProgress(WPARAM wParam, LPARAM lParam, bool& bHandle)
@@ -2894,6 +2997,50 @@ BOOL CLocalRoomCfgLogic::SaveBitmapToFile(HBITMAP   hBitmap, CString szfilename)
 	return   true;
 }
 
+BOOL CLocalRoomCfgLogic::UploadLogoCoreFirstLogin( const String& strRemotePath, const String& strLocalFile, const String& strCheckFileName, BOOL bAutoEnd /*= TRUE */ )
+{
+    CString strIpAddr;
+
+    m_cFtpLogo.SethWnd( m_pm->GetPaintWindow() );
+    m_cFtpLogo.RegisterMsgHandle( WM_CNC_FL_FTPCONFSIGNPROGRESS );
+
+    u32 dwIp;
+    ComInterface->GetLoginIp(dwIp);		
+    struct in_addr addrIPAddr;
+    addrIPAddr.S_un.S_addr = htonl(dwIp);
+    strIpAddr = CA2T(inet_ntoa(addrIPAddr));
+
+    TTPFtpInfo tTPFtpInfo;
+    ComInterface->GetCnFtpInfo(tTPFtpInfo);
+    if (tTPFtpInfo.bOpen == FALSE)
+    {
+        ShowPopMsg(_T("FTP上传服务器未开启!"));
+        return FALSE;
+    }
+    BOOL32 bRet = m_cFtpLogo.SetServerParam( strIpAddr, CA2W(tTPFtpInfo.achUserName)/*_T("admin")*/, CA2W(tTPFtpInfo.achPassword)/*_T("kedacomTP")*/ );
+    if ( !bRet )
+    {
+        ShowPopMsg((_T("设置FTP上传服务器失败!")));
+        //失败清空 防止不能再传
+        m_vecLogoFile.clear();
+        return FALSE;
+    }
+
+    String strRemoteFilePath = strRemotePath;
+    strRemoteFilePath += strCheckFileName;
+    m_cFtpLogo.SetAutoEndFtpFile(bAutoEnd/*FALSE*/);
+
+    if ( !m_cFtpLogo.BeginUpload(  strRemoteFilePath.c_str(), strLocalFile.c_str(),FTP_TRANSFER_TYPE_BINARY, FTP_AGENT ) )
+    {
+        ShowPopMsg((_T("上传文件失败，参数错误")));
+        m_cFtpLogo.SetAutoEndFtpFile(TRUE);
+        //失败清空 防止不能再传
+        m_vecLogoFile.clear();
+        return FALSE;
+    }
+    return TRUE;
+}
+
 BOOL CLocalRoomCfgLogic::UploadLogoCore( const String& strRemotePath, const String& strLocalFile, const String& strCheckFileName, BOOL bAutoEnd /*= TRUE */ )
 {
 	CString strIpAddr;
@@ -3628,7 +3775,7 @@ bool CLocalRoomCfgLogic::OnSetCnFtpRsp(WPARAM wParam, LPARAM lParam, bool& bHand
     ComInterface->GetCnFtpInfo(tTPFtpInfo);
     if (tTPFtpInfo.bOpen == FALSE)
     {
-        if (m_bWaitFtpUpLogo || m_bWaitFtpUpbanner)
+        if (m_bWaitFtpUpLogo || m_bWaitFtpUpbanner || m_bWaitFtpUploadLogoImgForLogin)
         {
             m_bWaitFtpUpLogo = false;
             m_bWaitFtpUpbanner = false;
@@ -3891,7 +4038,7 @@ bool CLocalRoomCfgLogic::UploadLogoImg()
         }
     }
 
-    if( m_vecLogoFile.size() > 0 && !UploadLogoCore( CNSCONF_FILE_PATH, (String)strFullPath+m_vecLogoFile.at(0), m_vecLogoFile.at(0), FALSE) )
+    if( m_vecLogoFile.size() > 0 && !UploadLogoCoreFirstLogin( CNSCONF_FILE_PATH, (String)strFullPath+m_vecLogoFile.at(0), m_vecLogoFile.at(0), FALSE) )
     {
         char ach[MAX_PATH];
         strcpy(ach,(CT2A)m_vecLogoFile.at(0).c_str());

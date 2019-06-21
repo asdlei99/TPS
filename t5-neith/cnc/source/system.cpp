@@ -13,6 +13,7 @@ const String g_stcStrLoginDlg = _T("LoginDlg");
 const String g_strMainMenuDlg = _T("MainMenu");
 const String g_strAddrbookDlg = _T("AddrBookDlg");
 const String g_strInviteCnsDlg = _T("InviteCnsDlg");
+const String g_strTemporaryCallDlg = _T("TemporaryCallDlg");
 const String g_strConfTempDlg = _T("ConfTempDlg");
 const String g_strConfCtrlDlg = _T("ConfCtrlDlg");
 const String g_strRoomControlDlg = _T("RoomControlDlg");

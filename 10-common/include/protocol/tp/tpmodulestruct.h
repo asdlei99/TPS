@@ -406,7 +406,12 @@ enum EmPAConfMsgType
 		emPAConf_EpVidFeccInfo_Update,//TConfEpVidFeccList 
 
 		emPAGetTempPwdCmd,        ///< TPAConfGetTempPwdReq 
-		emPAGetTempPwdInd         ///< 
+		emPAGetTempPwdInd,        ///< 
+
+		emPACNS_UMS_Vac_Cmd,		///< TPAUmsVacInfo
+		emPA_UMS_CNS_VacCmd_Ind,
+		emPA_UMS_CNS_VacInfo_Notify
+
 };
 
 typedef struct tagMdlCallCapTP

@@ -148,6 +148,9 @@ public:
 
 	//路由配置
 	virtual void GetRouteInfoData( vector<TRouteCfg> &vecTRouteCfg )const;
+
+	//串口配置
+	virtual EmComType* GetComType();
 protected:
 	virtual void OnTimeOut(u16 wEvent); 
     virtual void DispEvent(const CMessage &cMsg);
@@ -296,4 +299,7 @@ private:
 	vector<TRouteCfg>	m_vecTRouteCfg;		//路由配置列表
 
 	TTpMic10Info     m_tTpMic10Info;        //卡农10音频配置
+
+	//com2 com3 串口类型
+	EmComType m_aemComType[2];
 };

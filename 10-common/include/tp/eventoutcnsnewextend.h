@@ -405,6 +405,50 @@ _event(  ev_Cn_CentreDFScreenConfig_Nty  )
 _body( TCenDownOrFlipScreenInfo   , 1) 
 _ev_end
 
+/***********************<< 设置网络IPV6信息 >>********************** 
+*[消息体]
++TTPEthnetIPV6Info    CNS网络IPV6配置信息
+*[消息方向]
+*  cnc    -> cns
+*/
+_event( ev_CnCfgEthnetIPV6_Cmd )
+_body(TTPEthnetIPV6Info, 1 )
+_body(EmTpIpNameNatSyn, 1 )
+_ev_end
+
+/***********************<< 通知网络IPV6回应 >>********************** 
+*[消息体]
++TTPEthnetIPV6Info    CNS网络IPV6配置信息
+*[消息方向]
+*  cns    -> cnc
+*/
+_event(  ev_CnCfgEthnetIPV6_Ind )
+_body(TTPEthnetIPV6Info, 1 )
+_ev_end
+
+
+/***********************<< 设置IPV类型 >>********************** 
+*[消息体]
++EmProtocolVersion                 IPV类型
+*[消息方向]
+*  cnc    -> cns
+*/
+_event(  ev_CnCfgIPVtpye_Cmd )
+_body(EmProtocolVersion, 1 )
+_ev_end
+
+/***********************<< 设置IPV类型反馈 >>********************** 
+*[消息体]
++EmProtocolVersion                 IPV类型
++BOOL                              结果
+*[消息方向]
+*  cns    -> cnc
+*/
+_event(  ev_CnCfgIPVtpye_Ind )
+_body(EmProtocolVersion, 1 )
+_body(BOOL , 1)
+_ev_end
+
 #ifndef _MakeTpEventDescription_
 		_ev_segment_end( outercnsnewextend )
 };

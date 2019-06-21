@@ -380,7 +380,7 @@ u16 CCommonInterface::StartTemplateConf( const TTPAlias& tTemp )
 
 	tTPDialParam.tCallingAddr.emType = emTpAlias; 
 	tTPDialParam.tCallingAddr.wPort = CNS_SIP_STACK_LISTION_PORT; 
-
+    tTPDialParam.bModuleConf = TRUE;
 	u16 wRe  = m_pCnsConfCtrl->MakeCall( tTPDialParam ); 
 
 	return wRe;

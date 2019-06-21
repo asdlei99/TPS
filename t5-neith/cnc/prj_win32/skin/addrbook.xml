@@ -18,6 +18,7 @@
 	  <!-- <Button name="BtnAllSel" padding="20,28,0,0" width="149" height="64" text="全 选" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/> -->
 	  <Button name="BtnRefresh" padding="20,28,0,0" width="149" height="64" text="刷 新" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
 	  <Button name="BtnAddrConfig" padding="20,28,0,0" width="149" height="64" text="管 理" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
+	  <Button name="BtnTemporaryCall" padding="20,28,0,0" width="149" height="64" text="临时呼叫" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png"/>
 	  <Button name="BtnCnsIsSel" float="true" pos="1406,28,0,0" width="64" height="64" pushedimage="res/public/checkbox_select.png" normalimage="res/public/checkbox_normal.png" /> 
 	  <Text name="" float="true" pos="1480,45,0,0" width="112" height="28" text="已选会场" textcolor="#CCD4DEEB" font="1" align="left" gdiplus="true" />
 	  <Label name="labSelCount" text="" float="true" pos="1580,45,0,0" textcolor="#CCD4DEEB" font="1" width="100" height="28" align="left"  gdiplus="true" />
@@ -106,6 +107,28 @@
 	
 	<ChildLayout xmlfile="notice.xml" name="PageNotice" visible="false" float="true" pos="0,0,1920,1121"/>	
 
+	<!--临时呼叫-->
+	<VerticalLayout name="TemporaryCallLayout" bkimage="res/public/subpopbg.png" visible="false" float="true" pos="0,0,1920,1121">
+		<Label float="true" pos="951,205" width="17" height="545" bkimage="res/addrbook/line.png" font="1" textcolor="#CCD4DEEB" /> 
+		<HorizontalLayout />
+		<HorizontalLayout  name="EditNameLayout" padding="0,0,0,0" width="" height="64" align="center">
+			<Control />	
+			<Edit name="EditConfRoomName" tiptext="请输入别名" maxchar="32" bordercolor="" font="1" text="" menu="true" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" gdiplus="true" textcolor="#FED5DEEB" width="700" height="64" />
+			<Control />	
+		</HorizontalLayout>
+		<HorizontalLayout  name="EditIpLayout" padding="0,78,0,0"  width="" height="64" align="center"> 
+			<Control />	
+			<Edit name="EditIPV6IP" tiptext="请输入IP地址" maxchar="39" bordercolor="" font="1" text="" menu="true" textpadding="34,8,34,8" mosimgfolfer="res/public/edit" nativebkcolor="#FF1c3655" gdiplus="true" textcolor="#FED5DEEB" width="700" height="64" />
+			<Control />	
+		</HorizontalLayout>
+		<HorizontalLayout  name="" padding="0,78,0,0"  width="" height="128" >
+			<Control />	
+			<Button name="BtnAddrTemporaryCall"  width="128" height="128" normalimage="res\addrbook\btnAddrInvite.png" pushedimage="res\addrbook\btnAddrInvite_down.png"/>
+			<Control />	
+		</HorizontalLayout>
+		<HorizontalLayout />
+	</VerticalLayout>
+	
     </VerticalLayout>
 	
 	<!--其它-->

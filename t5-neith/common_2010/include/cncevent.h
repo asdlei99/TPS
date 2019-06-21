@@ -354,6 +354,13 @@ enum EmUiUmcMsg
 		/************************************************************************/ 
 	    ev_UIAudMixDisListOprInd,
 #define UI_UMS_AUDMIX_DISLISTOPR_IND ev_UIAudMixDisListOprInd
+        /************************************************************************/
+		 /**	讨论语音激励开关显隐反馈
+			wParam = BOOL
+			lparam = NULL*/
+		/************************************************************************/ 
+	    ev_UIAudExcitationVisibleInd,
+#define UI_UMS_AUDEXCITATION_VISIBLE_IND ev_UIAudExcitationVisibleInd
          /************************************************************************/
 		 /**	语音激励反馈
 			wParam = NULL
@@ -1624,6 +1631,13 @@ enum EmUiCnsMsg
 	ev_UiCncAudioMode2CallSvrNty,
 #define UI_CNC_AUDIO2CALLSVR_MODE_NTY  ev_UiCncAudioMode2CallSvrNty
 				
+    /************************************************************************/
+	/**  台标上传进度提醒(升级后第一次登录)
+	wParam =  进度值  
+	lparam = 0*/
+	/************************************************************************/	
+	em_CNC_FL_CONFSIGNPROGRESS,
+#define WM_CNC_FL_FTPCONFSIGNPROGRESS  em_CNC_FL_CONFSIGNPROGRESS		   
 	/************************************************************************/
 	/**  台标上传进度提醒
 	wParam =  进度值  

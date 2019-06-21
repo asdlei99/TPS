@@ -129,7 +129,7 @@ BOOL CTpToolsDlg::InitControl()
 		0, WS_CHILD|WS_CLIPSIBLINGS );
 	if( m_pComboWnd != NULL )
 	{
-		m_pComboWnd->SetIpStyle(TRUE);
+		m_pComboWnd->SetIpStyle(FALSE);
 		m_pComboWnd->SetImage("res\\Combobox");
 		m_pComboWnd->SetReadOnly(FALSE);
 		m_pComboWnd->MoveWindow(CRect( 31, 148, 296, 50 ));

@@ -565,3 +565,9 @@ u16 CCnclibDataMgr::GetMatrixConfig(TTPMatrixConfig &tTPMatrixConfig) const
 	tTPMatrixConfig = CNCSESSION_MGR_PTR->GetCenterCtrlIF()->GetMatrixConfig();
 	return NO_ERROR;
 }
+
+u16 CCnclibDataMgr::GetComType( EmComType** pemComType )const
+{
+	*pemComType = CNCSESSION_MGR_PTR->GetPortDiagCtrlIF()->GetComType();
+	return NO_ERROR;
+}

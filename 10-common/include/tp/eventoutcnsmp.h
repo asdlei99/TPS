@@ -453,6 +453,26 @@ _ev_end
  */
    _event( ev_tppCncMuteNty    )
    _ev_end
+
+   /***********************<< 设置编解码器总码率 >>******************** 
+ *[消息体]
+ * u16                         码率
+ *[消息方向]
+ *  cns   -> mt
+ */
+   _event( ev_tppSetTotalRate    )
+  _body ( u16    , 1    )
+   _ev_end
+     ///////////////////////////////////////
+  /***********************<< 多点会议会场语音激励命令 >>********************  
+ *[消息体]
+ * BOOL
+ *[消息方向]
+ *  cnc->cns
+ */
+  _event(  ev_tppVoiceMotivation_Cmd )
+  _body( BOOL, 1)
+  _ev_end
 #ifndef _MakeTpEventDescription_
    _ev_segment_end( outercnsmp )
 };

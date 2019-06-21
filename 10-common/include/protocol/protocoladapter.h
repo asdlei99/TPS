@@ -613,8 +613,12 @@ typedef struct tagPASipCfg
 		memset( m_abyProductId, 0, MAX_LEN_PRODUCT_ID );
 		memset( m_abyVersionId, 0, MAX_LEN_VERSION_ID );
 		m_tPaLocalIPv4.Clear();
+		m_tPaLocalIPv4.m_wPort = DEFAULT_SIP_CALLING_PORT;
+		m_tPaLocalIPv4.m_emType = PFC_TRANSPORT_TYPE_IP;
 		m_bIfUseIpv6 = FALSE;
 		m_tPaLocalIPv6.Clear();
+		m_tPaLocalIPv6.m_wPort = DEFAULT_SIP_CALLING_PORT;
+		m_tPaLocalIPv6.m_emType = PFC_TRANSPORT_TYPE_IPV6;
 	}
 	
 }TPASipCfg;

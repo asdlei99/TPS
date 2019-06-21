@@ -595,6 +595,7 @@
 			<Property Name="Image" Value="Edit" />
 			<Property Name="FontColor" Value="r:59 g:59 b:59" />
 			<Property Name="FontSize" Value="9" />
+			<Property Name="LimitLength" Value="39" />
 			<Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIPv6" />
 			<Scheme Name="SchmConf">
 				<Property Name="WindowEnable" Value="false" />
@@ -612,7 +613,7 @@
 			<Property Name="FontSize" Value="9" />
 		</Window>
 		
-		<Window Type="TransIPEdit" Name="IPv6CtrlSubLen" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
+		<Window Type="TransEdit" Name="IPv6CtrlSubLen" Style="WS_CHILD|WS_CLIPSIBLINGS|WS_TABSTOP">
 			<Property Name="WindowPos" Value="x:117 y:58" />
 			<Property Name="WindowSize" Value="x:400 y:42" />
 			<Property Name="WindowCaption" Value="" />
@@ -621,6 +622,7 @@
 			<Property Name="Image" Value="Edit" />
 			<Property Name="FontColor" Value="r:59 g:59 b:59" />
 			<Property Name="FontSize" Value="9" />
+			<Property Name="LimitLength" Value="3" />
 			<Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIPv6SubLen" />
 			<Scheme Name="SchmConf">
 				<Property Name="WindowEnable" Value="false" />
@@ -647,6 +649,7 @@
 			<Property Name="Image" Value="Edit" />
 			<Property Name="FontColor" Value="r:59 g:59 b:59" />
 			<Property Name="FontSize" Value="9" />
+			<Property Name="LimitLength" Value="39" />
 			<Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIPv6GateWay" />
 			<Scheme Name="SchmConf">
 				<Property Name="WindowEnable" Value="false" />
@@ -673,6 +676,7 @@
 			<Property Name="Image" Value="Edit" />
 			<Property Name="FontColor" Value="r:59 g:59 b:59" />
 			<Property Name="FontSize" Value="9" />
+			<Property Name="LimitLength" Value="39" />
 			<Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIPv6DNS1" />
 			<Scheme Name="SchmConf">
 				<Property Name="WindowEnable" Value="false" />
@@ -699,6 +703,7 @@
 			<Property Name="Image" Value="Edit" />
 			<Property Name="FontColor" Value="r:59 g:59 b:59" />
 			<Property Name="FontSize" Value="9" />
+			<Property Name="LimitLength" Value="39" />
 			<Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIPv6DNS2" />
 			<Scheme Name="SchmConf">
 				<Property Name="WindowEnable" Value="false" />

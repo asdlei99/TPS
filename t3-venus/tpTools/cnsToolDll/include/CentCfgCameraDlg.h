@@ -9,6 +9,13 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+enum EmDocCamCom
+{
+	emDOCCAM = 0,//文档
+	emCom2,//串口2
+	emCom3,//串口3
+};
+
 class CCentCfgCameraDlg  : public CLogicBase, public ISingleTon<CCentCfgCameraDlg> 
 {
 public:
@@ -143,6 +150,9 @@ public:
 	 LRESULT OnDocCamModelNty( WPARAM wParam, LPARAM lParam );
 
 	 LRESULT OnPanCamModelNty( WPARAM wParam, LPARAM lParam );
+
+	 //串口部分
+	 LRESULT OnSelectComInd( WPARAM wparam, LPARAM lparam );
 private:
 	/** 功能:  预置位1
 	*  @param[in] 
@@ -360,6 +370,10 @@ private:
 	 float StringToFloatTwo( CString str );
 
 	 void SetZoomCmd( CString str );
+
+	 void TranDoccamCom(String& strComName, EmDocCamCom& emDocCamCom);
+
+	 void UpDateDocComConfig();
 private:
 	 const string m_strPanSwitchBtn;						//全景摄像机开关
 	 const string m_strPancombobox;							//全景摄像机数量

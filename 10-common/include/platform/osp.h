@@ -166,6 +166,7 @@
 #include <arpa/inet.h>
 #include <termios.h>
 #include <signal.h>
+#include <netdb.h>
 #include "syslog.h"
 
 /* 5.0合并： 整合Android平台支持 */
@@ -690,6 +691,7 @@ typedef struct {
  * windows 要VS2010才能使用ipv6
 */
 typedef union tagOspNetAddr {
+    struct sockaddr         addr;
     struct sockaddr_in		v4addr;     //ipv4地址
     struct sockaddr_in6		v6addr;     //ipv6地址
     struct sockaddr_storage staddr;     //socket表示的地址
@@ -702,6 +704,41 @@ typedef union tagOspNetAddr {
     u8 raw_addr[128];
 } TOspNetAddr;
 #endif
+
+#if (defined(_MSC_VER) && (_MSC_VER > 1200)) || !defined(_MSC_VER)
+#define SOCKADDR_IN6          sockaddr_in6
+#define IN6_ADDR              in6_addr
+#endif
+
+#if (defined(_MSC_VER) && (_MSC_VER > 1200)) || !defined(_MSC_VER)
+//OSP_NET_FLAG系列
+//查询获得的地址适用于bind函数
+#define OSP_NET_AI_PASSIVE AI_PASSIVE
+#define OSP_NET_AI_V4MAPPED AI_V4MAPPED
+//同时查询v6和v4映射的v6地址
+#define OSP_NET_AI_ALL AI_ALL
+//只有在有对应地址配型配置到网络接口上才返回对应的网络地址
+#define OSP_NET_AI_ADDRCONFIG AI_ADDRCONFIG
+#endif
+#define OSP_NET_INET_ADDR_STR_LEN 16
+#define OSP_NET_INET6_ADDR_STR_LEN 46
+
+//OSP_NET_FAMILY系列
+#define OSP_NET_FAMILY_UNSPEC AF_UNSPEC
+#define OSP_NET_FAMILY_INET AF_INET
+#if (defined(_MSC_VER) && (_MSC_VER > 1200)) || !defined(_MSC_VER)
+#define OSP_NET_FAMILY_INET6 AF_INET6
+#endif
+
+//OSP_NET_SOCKTYPE系列
+#define OSP_NET_SOCKTYPE_DGRAM SOCK_DGRAM
+#define OSP_NET_SOCKTYPE_STREAM SOCK_STREAM
+
+//OSP_NET_PROTO系列
+#define OSP_NET_PROTO_IP IPPROTO_IP
+#define OSP_NET_PROTO_TCP IPPROTO_TCP
+#define OSP_NET_PROTO_UDP IPPROTO_UDP
+
 
 // 根据结点号，APP号和本地实例号构造全局实例ID
 inline u32  MAKEIID( u16 app, u16 ins = 0 , u8 = 0 )
@@ -995,6 +1032,7 @@ typedef struct {
 
 /* 5.0合并： 原行业特有接口，创建裸消息监听节点的回调 */
 typedef BOOL32 (*CB_FUNC_CREATE_RAW_NODE)(int nNodeId , u16 *pwAid, u32 dwAddr , u16 wPort);
+typedef BOOL32 (*CB_NET_FUNC_CREATE_RAW_NODE)(int nNodeId , u16 *pwAid, TOspNetAddr tAddr);
 
 /* 5.0合并： 原行业特有接口，设置app处理裸消息的回调 */
 typedef void (*CB_FUNC_RCV_RAW_MSG)(u32 dwContext, int nNodeId , const char *pchMsg , u32 dwLen );
@@ -1609,16 +1647,26 @@ API void OspRegCommand(const char *szName, void *pfFunc, const char *szUsage);
 API void OspNodeConnTest(u32 NodeId);
 
 /*=============================================================================
-函 数 名：OspNodeIpGet
-功    能：获得指定结点的Ip地址
-注    意：
-算法实现：
-全局变量：
-参    数：dwNodeId : [in] node id
+  函 数 名：OspNodeIpGet
+  功    能：获得指定结点的Ip地址
+  注    意：
+  算法实现：
+  全局变量：
+  参    数：dwNodeId : [in] node id
 
- 返 回 值：成功返回结点IP, 失败返回0.
+
+  返 回 值：成功返回结点IP(网络序), 失败返回0.
+  =============================================================================
+  函 数 名：OspNetNodeIpGet
+  功    能：获得指定结点的远端Ip地址(网络序)
+  注    意：
+  参    数：dwNodeId : [in] node id
+            TOspNetAddr *ptNetAddr : [out]存放地址信息的内存块(网络序)
+
+  返 回 值：成功返回OSP_OK, 失败返回错误码.
 =============================================================================*/
 API u32 OspNodeIpGet(u32 dwNodeId);
+API int OspNetNodeIpGet(u32 dwNodeId, TOspNetAddr *ptNetAddr);
 
 /*=============================================================================
   函 数 名：OspNodeLocalIpGet
@@ -1628,9 +1676,18 @@ API u32 OspNodeIpGet(u32 dwNodeId);
   全局变量：
   参    数：dwNodeId : [in] node id
 
-  返 回 值：成功返回结点IP, 失败返回0.
+  返 回 值：成功返回结点IP(网络序), 失败返回0.
+  =============================================================================
+  函 数 名：OspNetNodeLocalIpGet
+  功    能：获取节点的本地地址(网络序)
+  注    意：对于已经连接的tcp节点，在本地存在多个地址的情况下，需要知道对方实际连接的本地ip地址。
+  参    数：u32 dwNodeId : [in] node id
+            TOspNetAddr *ptNetAddr : [out]存放地址信息的内存块(网络序)
+
+  返 回 值：成功返回OSP_OK, 失败返回错误码.
   =============================================================================*/
 API u32 OspNodeLocalIpGet(u32 dwNodeId);
+API int OspNetNodeLocalIpGet(u32 dwNodeId, TOspNetAddr *ptNetAddr);
 
 /*====================================================================
 函数名： OspInstShow
@@ -2021,15 +2078,23 @@ BOOL32 bEnable : [in] enable or not
 API BOOL32 OspEnableBroadcastAck(u16, BOOL32);
 
 /*=============================================================================
-函 数 名：OspGetNodeAddr
-功    能：查找Osp结点地址（本端与远端IP+Port）。
-注    意：
-算法实现：
-全局变量：
-参    数：u32 dwNodeId : [in] 结点ID
-                    TOspNodeAddr* ptOspNodeAddr : [out] 结点地址
-返 回 值：FALSE - 查询成功
-                    TRUE - 查询失败
+  函 数 名：OspGetNodeAddr
+  功    能：查找Osp结点地址（本端与远端IP+Port）。
+  注    意：
+  算法实现：
+  全局变量：
+  参    数：u32 dwNodeId : [in] 结点ID
+            TOspNodeAddr* ptOspNodeAddr : [out] 结点地址
+  返 回 值：FALSE - 查询成功
+            TRUE - 查询失败
+  =============================================================================
+  函 数 名：OspNetGetNodeAddr
+  功    能：查找Osp结点地址（本端与远端IP+Port）(网络序)。
+  注    意：
+  参    数：u32 dwNodeId : [in] 结点ID
+            TOspNetNodeAddr *ptOspNetNodeAddr : [out] 结点地址信息(网络序)
+  返 回 值：成功返回OSP_OK
+            失败返回OSP_ERROR
 -------------------------------------------------------------------------------
 修改纪录：
 日      期  版本  修改人  修改内容
@@ -2042,6 +2107,12 @@ typedef struct {
 	u16 m_wPeerPort;//主机序
 } TOspNodeAddr;
 API BOOL32 OspGetNodeAddr( u32 dwNodeId , TOspNodeAddr *ptOspNodeAddr );
+
+typedef struct {
+	TOspNetAddr m_tLocalAddr;//网络序
+	TOspNetAddr m_tPeerAddr;//网络序
+} TOspNetNodeAddr;
+API int OspNetGetNodeAddr(u32 dwNodeId, TOspNetNodeAddr *ptOspNetNodeAddr);
 
 #if defined(_MSC_VER) || defined(_LINUX_)
 
@@ -2067,6 +2138,7 @@ API BOOL32 OspGetNodeAddr( u32 dwNodeId , TOspNodeAddr *ptOspNodeAddr );
 
 #define MAX_SOCK5PROXY_AUTHEN_NUM   (u8)0xff
 #define MAX_SOCK5PROXY_NAME_PASS_LENGTH (u8)64
+
 typedef struct {
 	u32 m_dwProxyIP;
 	u16 m_wProxyPort;
@@ -2076,22 +2148,44 @@ typedef struct {
 	s8 m_achPassword[MAX_SOCK5PROXY_NAME_PASS_LENGTH + 1];
 } TOspSock5Proxy;
 
+typedef struct {
+	TOspNetAddr m_tProxyAddr; //网络序
+	u8 m_byAuthenNum;
+	u8 m_abyAuthenMethod[MAX_SOCK5PROXY_AUTHEN_NUM];
+	s8 m_achUseName[MAX_SOCK5PROXY_NAME_PASS_LENGTH + 1];
+	s8 m_achPassword[MAX_SOCK5PROXY_NAME_PASS_LENGTH + 1];
+} TOspNetSock5Proxy;
+
 /*=============================================================================
-函 数 名：OspConnectTcpNodeThroughSock5Proxy
-功    能：TCP穿越sock5代理连接服务端（与OspConnectTcpNode功能相同，上层不需要调用OspConnectToSock5Proxy与代理建链）
-注    意：
-算法实现：
-全局变量：
-参    数：ptOspSock5Proxy : [in] 代理服务器信息结构;
-          dwServerIP : [in] 服务器IP
-          wServerPort : [in] 服务器端口
-          wHb: [in] 断链检测周期(秒)
-          byHbNum: [in] byHbNum次未到连接检测应答后认为链路已断开
-          dwTimeoutMs : [in] 操作超时时间
-          pdwLocalIP: [in,out] 本TCP链接使用的本地IP
-返 回 值：失败返回INVALID_NODE；
-          成功返回一个动态分配的结点号, 此后用户可借此与服务结点通信
-          上层主动断链需调用OspDisconnectTcpNode，所有与无代理时均无区别
+  函 数 名：OspConnectTcpNodeThroughSock5Proxy
+  功    能：TCP穿越sock5代理连接服务端（与OspConnectTcpNode功能相同，上层不需要调用OspConnectToSock5Proxy与代理建链）
+  注    意：
+  算法实现：
+  全局变量：
+  参    数：ptOspSock5Proxy : [in] 代理服务器信息结构;
+            dwServerIP : [in] 服务器IP
+            wServerPort : [in] 服务器端口
+            wHb: [in] 断链检测周期(秒)
+            byHbNum: [in] byHbNum次未到连接检测应答后认为链路已断开
+            dwTimeoutMs : [in] 操作超时时间
+            pdwLocalIP: [in,out] 本TCP链接使用的本地IP
+  返 回 值：失败返回INVALID_NODE；
+            成功返回一个动态分配的结点号, 此后用户可借此与服务结点通信
+            上层主动断链需调用OspDisconnectTcpNode，所有与无代理时均无区别
+  =============================================================================
+  函 数 名：OspNetConnectTcpNodeThroughSock5Proxy
+  功    能：TCP穿越sock5代理连接服务端（与OspConnectTcpNode功能相同
+           上层不需要调用OspConnectToSock5Proxy与代理建链）
+  注    意：
+  参    数：TOspNetSock5Proxy *ptOspNetSock5Proxy : [in] 代理服务器信息结构;
+            TOspNetAddr tSvrAddr : [in] 服务器地址信息
+            wHb: [in] 断链检测周期(秒)
+            byHbNum: [in] byHbNum次未到连接检测应答后认为链路已断开
+            dwTimeoutMs : [in] 操作超时时间
+            TOspNetAddr *ptLclAddr: [in,out] 本TCP链接使用的本地地址信息
+  返 回 值：失败返回INVALID_NODE；
+            成功返回一个动态分配的结点号, 此后用户可借此与服务结点通信
+            上层主动断链需调用OspDisconnectTcpNode，所有与无代理时均无区别
 -------------------------------------------------------------------------------
  修改纪录：
  日      期  版本  修改人  修改内容
@@ -2099,40 +2193,64 @@ typedef struct {
 =============================================================================*/
 API int OspConnectTcpNodeThroughSock5Proxy( TOspSock5Proxy *ptOspSock5Proxy , u32 dwServerIP, u16 wServerPort,
 		u16 wHb = 10, u8 byHbNum = 3 , u32 dwTimeoutMs = 0 , u32 *pdwLocalIP = NULL, u8 bySocksAuthVerion = SOCK5_PROXY_VERSION );
+API int OspNetConnectTcpNodeThroughSock5Proxy( TOspNetSock5Proxy *ptOspNetSock5Proxy, TOspNetAddr tSvrAddr,
+		u16 wHb = 10, u8 byHbNum = 3 , u32 dwTimeoutMs = 0 , TOspNetAddr *ptLclAddr = NULL, u8 bySocksAuthVerion = SOCK5_PROXY_VERSION );
 
 /*=============================================================================
-函 数 名：OspConnectToSock5Proxy
-功    能：与sock5代理服务器建立TCP链路（UDP穿越sock5代理必须先建立一条TCP链路）
-注    意：
-算法实现：
-全局变量：
-参    数：ptOspSock5Proxy : [in] 代理服务器信息结构
-          dwTimeoutMs : [in] 操作超时时间
-返 回 值：失败返回INVALID_SOCKET；
-          成功返回与代理通信的TCP Socket，可进一步调用OspUdpAssociateThroughSock5Proxy建立UDP Associate；
-          可复用，需要上层维护本TCP连接，链路段无效时，Udp Associate也应视为无效，
-          主动断链请调用OspDisconnectFromSock5Proxy；
+  函 数 名：OspConnectToSock5Proxy
+  功    能：与sock5代理服务器建立TCP链路（UDP穿越sock5代理必须先建立一条TCP链路）
+  注    意：
+  算法实现：
+  全局变量：
+  参    数：ptOspSock5Proxy : [in] 代理服务器信息结构
+            dwTimeoutMs : [in] 操作超时时间
+  返 回 值：失败返回INVALID_SOCKET；
+            成功返回与代理通信的TCP Socket，可进一步调用OspUdpAssociateThroughSock5Proxy建立UDP Associate；
+            可复用，需要上层维护本TCP连接，链路段无效时，Udp Associate也应视为无效，
+            主动断链请调用OspDisconnectFromSock5Proxy;
+  =============================================================================
+  函 数 名：OspNetConnectToSock5Proxy
+  功    能：与sock5代理服务器建立TCP链路（UDP穿越sock5代理必须先建立一条TCP链路）
+  注    意：
+  参    数：TOspSock5Proxy *ptOspNetSock5Proxy : [in] 代理服务器信息结构
+            u32 dwTimeoutMs : [in] 操作超时时间
+  返 回 值：失败返回INVALID_SOCKET；
+            成功返回与代理通信的TCP Socket
+            可进一步调用OspConnectTcpNodeThroughSock5Proxy建立UDP Associate；
+            可复用，需要上层维护本TCP连接，链路段无效时，Udp Associate也应视为无效，
+            主动断链请调用OspDisconnectFromSock5Proxy；
 -------------------------------------------------------------------------------
  修改纪录：
  日      期  版本  修改人  修改内容
  2006/08/21  4.0   王小月
 =============================================================================*/
 API SOCKHANDLE OspConnectToSock5Proxy( TOspSock5Proxy *ptOspSock5Proxy , u32 dwTimeoutMs = 0 , u8 bySocksAuthVerion = SOCK5_PROXY_VERSION);
+API SOCKHANDLE OspNetConnectToSock5Proxy(TOspNetSock5Proxy *ptOspNetSock5Proxy , u32 dwTimeoutMs = 0 , u8 bySocksAuthVerion = SOCK5_PROXY_VERSION);
 
 /*=============================================================================
-函 数 名：OspUdpAssociateThroughSock5Proxy
-功    能：UDP穿越sock5代理
-注    意：
-算法实现：
-全局变量：
-参    数：hSocket : [in] OspConnectToSock5Proxy返回的socket(可复用);
-          dwLocalIP : [in] 本地收发socket IP，以便代理服务器限制数据穿越（网络序）
-          wLocaPort : [in] 本地收发socket 端口，以便代理服务器限制数据穿越（主机序）
-          pdwProxyMapIP : [out] 代理服务器映射IP（网络序）
-          pwProxyMapPort : [out] 代理服务器映射端口（主机序）
-          dwTimeoutMs : [in] 操作超时时间
-返 回 值：失败返回FALSE；
-          成功返回TRUE
+  函 数 名：OspUdpAssociateThroughSock5Proxy
+  功    能：UDP穿越sock5代理
+  注    意：
+  算法实现：
+  全局变量：
+  参    数：hSocket : [in] OspConnectToSock5Proxy返回的socket(可复用);
+            dwLocalIP : [in] 本地收发socket IP，以便代理服务器限制数据穿越（网络序）
+            wLocaPort : [in] 本地收发socket 端口，以便代理服务器限制数据穿越（主机序）
+            pdwProxyMapIP : [out] 代理服务器映射IP（网络序）
+            pwProxyMapPort : [out] 代理服务器映射端口（主机序）
+            dwTimeoutMs : [in] 操作超时时间
+  返 回 值：失败返回FALSE；
+            成功返回TRUE
+  =============================================================================
+  函 数 名：OspUdpAssociateThroughSock5Proxy
+  功    能：UDP穿越sock5代理
+  注    意：**端口信息全部变为网络序
+  参    数：SOCKHANDLE hSocket : [in] OspConnectToSock5Proxy返回的socket(可复用);
+            TOspNetAddr tLocalAddr: [in] 本地收发socket地址信息，以便代理服务器限制数据穿越（网络序）
+            TOspNetAddr *ptProxyMapInfo : [out] 代理服务器映射的地址信息（网络序）
+            dwTimeoutMs : [in] 操作超时时间
+  返 回 值：失败返回FALSE；
+            成功返回TRUE
 -------------------------------------------------------------------------------
  修改纪录：
  日      期  版本  修改人  修改内容
@@ -2140,6 +2258,8 @@ API SOCKHANDLE OspConnectToSock5Proxy( TOspSock5Proxy *ptOspSock5Proxy , u32 dwT
 =============================================================================*/
 API BOOL32 OspUdpAssociateThroughSock5Proxy( SOCKHANDLE hSocket , u32 dwLocalIP, u16 wLocalPort ,
 		u32 *pdwProxyMapIP, u16 *pwProxyMapPort , u32 dwTimeoutMs = 0 );
+API BOOL32 OspNetUdpAssociateThroughSock5Proxy(SOCKHANDLE hSocket, TOspNetAddr tLocalAddr,
+		TOspNetAddr *ptProxyMapInfo, u32 dwTimeoutMs);
 
 /*=============================================================================
 函 数 名：OspDisConnectFromSock5Proxy
@@ -2156,51 +2276,74 @@ API BOOL32 OspUdpAssociateThroughSock5Proxy( SOCKHANDLE hSocket , u32 dwLocalIP,
  2006/08/21  4.0   王小月
 =============================================================================*/
 API BOOL32 OspDisConnectFromSock5Proxy( SOCKHANDLE hSocket );
+API BOOL32 OspNetDisConnectFromSock5Proxy( SOCKHANDLE hSocket );
+
 
 #endif
 
 /* 5.0合并： 原行业osp特有接口， 创建一个raw消息osp server */
 /*=============================================================================
-函 数 名：OspCreateTcpNode
-功    能：创建一个TCP节点。这以后，这个节点可以被连接。请使用6682作为port参数。
-注    意：
-算法实现：
-全局变量：
-参    数：u32 dwAddr : [in] reserved
-u16 wPort : [in] which port to use
-bTcpNodeReuse:[in]创建的node退出后端口是否能立即重用或被其他程序马上占用
-返 回 值：int - If no error occurs, CreateTcpNode returns a descriptor
-referencing the new socket. Otherwise, a value of
-INVALID_SOCKET is returned.
--------------------------------------------------------------------------------
-修改纪录：
-日      期  版本  修改人  修改内容
-2002/05/23  1.0
+  函 数 名：OspCreateTcpNode
+  功    能：创建一个TCP节点。这以后，这个节点可以被连接。请使用6682作为port参数。
+  注    意：
+  算法实现：
+  全局变量：
+  参    数：u32 dwAddr : [in] reserved
+            u16 wPort : [in] which port to use
+             bTcpNodeReuse:[in]创建的node退出后端口是否能立即重用或被其他程序马上占用
+  返 回 值：int - If no error occurs, CreateTcpNode returns a descriptor
+                  referencing the new socket. Otherwise, a value of
+                  INVALID_SOCKET is returned.
+  =============================================================================
+  函 数 名：OspNetCreateTcpNode
+  功    能：创建一个TCP节点。这以后，这个节点可以被连接
+  注    意：
+  参    数：TOspNetAddr tLclAddr : [in]需绑定的本地地址信息
+            bTcpNodeReuse: [in]创建的node退出后端口是否能立即重用或被其他程序马上占用
+            CB_NET_FUNC_CREATE_RAW_NODE : [in]裸消息的监听回调
+  返 回 值：创建成功返回描述符, 失败返回INVALID_SOCKET
 =============================================================================*/
 API int OspCreateTcpNode(u32 dwAddr, u16 wPort, BOOL32 bTcpNodeReuse = FALSE , CB_FUNC_CREATE_RAW_NODE cb_setappid = NULL);
+API int OspNetCreateTcpNode(TOspNetAddr tLclAddr, int bTcpNodeReuse = FALSE, CB_NET_FUNC_CREATE_RAW_NODE cb_net_setappid = NULL);
 
 /*=============================================================================
-函 数 名：OspConnectTcpNode
-功    能：在地址uIpv4Addr和端口uTcpPort上连接服务结点, 并设置断链检测参数.
-注    意：
-算法实现：
-全局变量：g_Osp
-参    数：uIpv4Addr : [in] 服务结点的IP地址,
-wTcpPort : [in] 服务结点的侦听端口号,
-wHb: [in] 断链检测周期(秒),
-byHbNum: [in] byHbNum次未到连接检测应答后认为链路已断开,
-dwTimeOutMs: [in] 如果在dwTimeOutMs毫秒内连接不成功, 返回出错. 缺省值0,
-表示取connect超时的缺省时间(75s).  该参数目前仅在VxWorks下有效.
-pdwLocalIP: [out] 当前连接所用的IP地址
+  函 数 名：OspConnectTcpNode
+  功    能：在地址uIpv4Addr和端口uTcpPort上连接服务结点, 并设置断链检测参数.
+  注    意：
+  算法实现：
+  全局变量：g_Osp
+  参    数：uIpv4Addr : [in] 服务结点的IP地址,
+  wTcpPort : [in] 服务结点的侦听端口号,
+  wHb: [in] 断链检测周期(秒),
+  byHbNum: [in] byHbNum次未到连接检测应答后认为链路已断开,
+  dwTimeOutMs: [in] 如果在dwTimeOutMs毫秒内连接不成功, 返回出错. 缺省值0,
+  表示取connect超时的缺省时间(75s).  该参数目前仅在VxWorks下有效.
 
- 返 回 值：成功返回一个动态分配的结点号, 此后用户可借此与服务结点通信.
- 失败返回INVALID_NODE.
+  pdwLocalIP: [out] 当前连接所用的IP地址
+
+  返 回 值：成功返回一个动态分配的结点号, 此后用户可借此与服务结点通信.
+            失败返回INVALID_NODE.
+  =============================================================================
+  函 数 名：OspNetConnectTcpNode
+  功    能：在地址tRmtAddr上连接服务结点, 并设置断链检测参数.
+  注    意：
+  参    数：TOspNetAddr tRmtAddr : [in]
+            u16 wHb : [in] 断链检测周期(秒),
+            u8 byHbNum: [in] byHbNum次未到连接检测应答后认为链路已断开,
+            u32 dwTimeOutMs: [in] 如果在dwTimeOutMs毫秒内连接不成功, 返回出错. 缺省值0,
+                              表示取connect超时的缺省时间(75s).
+                              **该参数目前仅在VxWorks下有效.
+            TOspNetAddr *ptLclAddr: [out] 当前连接所用的IP地址
+
+  返 回 值：成功返回一个动态分配的结点号, 此后用户可借此与服务结点通信.
+            失败返回INVALID_NODE.
  -------------------------------------------------------------------------------
  修改纪录：
  日      期  版本  修改人  修改内容
  2003/03/12  2.0
 =============================================================================*/
 API int OspConnectTcpNode(u32 dwIpv4Addr, u16 wTcpPort, u16 wHb = 10, u8 byHbNum = 3, u32 dwTimeoutMs = 0, u32 *pdwLocalIP = NULL , u16 wAid = 0);
+API int OspNetConnectTcpNode(TOspNetAddr tRmtAddr, u16 wHb = 10, u8 byHbNum = 3, u32 dwTimeoutMs = 0, TOspNetAddr *ptLclAddr = NULL , u16 wAid = 0);
 
 /* 5.0合并： 原企业osp特有接口 */
 /*=============================================================================
@@ -2221,10 +2364,33 @@ API int OspConnectTcpNode(u32 dwIpv4Addr, u16 wTcpPort, u16 wHb = 10, u8 byHbNum
   如果绑定端口最小值和最大值都为0，表示随机选择端口，不绑定
 
   返 回 值：成功返回一个动态分配的结点号, 此后用户可借此与服务结点通信.
-  失败返回INVALID_NODE.
+            失败返回INVALID_NODE.
+  =============================================================================
+  函 数 OspConnectTcpNodeEx
+  功    能：在地址uIpv4Addr和端口uTcpPort上连接服务结点, 并设置断链检测参数.
+            本地端口绑定范围（wMinPort~wMaxPort）
+  注    意：
+  算法实现：
+  全局变量：g_Osp
+  参    数：
+            TOspNetAddr tRmtAddr : [in]
+            u16 uHb: [in] 断链检测周期(秒),
+            u8 uHbNum: [in] uHbNum次未后到连接检测应答后认为链路已断开.
+            u32 dwTimeOutMs: [in] 如果在dwTimeOutMs毫秒内连接不成功, 返回出错. 缺省值0,
+                                  表示取connect超时的缺省时间(75s).
+                                  **该参数目前仅在VxWorks下有效.
+            TOspNetAddr *ptLclAddr: [out] 当前连接所用的IP地址
+            u16 wMinPort:[in] 指定本地绑定端口范围的最小值
+            u16 wMaxPort:[in] 指定本地绑定端口范围的最大值
+                              如果绑定端口最小值和最大值都为0，表示随机选择端口，不绑定
+
+  返 回 值：成功返回一个动态分配的结点号, 此后用户可借此与服务结点通信.
+            失败返回INVALID_NODE.
   =============================================================================*/
 API int OspConnectTcpNodeEx(u32 dwIpv4Addr, u16 wTcpPort, u16 wHb, u8 byHbNum,
 							u32 dwTimeOutMs, u32 *pdwLocalIP, u16 wMinPort, u16 wMaxPort, u16 wAid = 0, BOOL32 bBindLocalIP = FALSE);
+API int OspNetConnectTcpNodeEx(TOspNetAddr tRmtAddr, u16 wHb, u8 byHbNum,
+							u32 dwTimeOutMs, TOspNetAddr *ptLclAddr, u16 wMinPort, u16 wMaxPort, u16 wAid = 0, BOOL32 bBindLocalIP = FALSE);
 
 /*=============================================================================
 函 数 名：OspSetHBParam
@@ -2417,20 +2583,28 @@ pbyPrior -- (out)优先级.
 API BOOL32 OspGetAppPriority(u16 wAppId, u8 *pbyPrior);
 
 /*=============================================================================
-函 数 名：OspIsLocalHost
-功    能：判断是否是本机IP，如OspIsLocalHost( inet_addr( "127.0.0.1" ) );
-注    意：如果是在Windows下使用本函数，必须先调用OspInit，或者WSAStartup。
-本函数效率较低，不要重复调用。
-算法实现：
-全局变量：
-参    数：u32 dwIP : [in] 需要判断的IP
-返 回 值：BOOL32    是否为本机IP
+  函 数 名：OspIsLocalHost
+  功    能：判断是否是本机IP，如OspIsLocalHost( inet_addr( "127.0.0.1" ) );
+  注    意：如果是在Windows下使用本函数，必须先调用OspInit，或者WSAStartup。
+  本函数效率较低，不要重复调用。
+  算法实现：
+  全局变量：
+  参    数：u32 dwIP : [in] 需要判断的IP
+  返 回 值：BOOL32    是否为本机IP
+  =============================================================================
+  函 数 名：OspNetIsLocalHost
+  功    能：判断是否是本机IP
+  注    意：如果是在Windows下使用本函数，必须先调用OspInit，或者WSAStartup。
+  本函数效率较低，不要重复调用。
+  参    数：TOspNetAddr tAddr : [in] 需要判断的地址信息
+  返 回 值：BOOL32    是否为本机IP
 -------------------------------------------------------------------------------
 修改记录：
 日      期  版本  修改人  修改内容
 2002/05/23  1.0
 =============================================================================*/
-API BOOL32 OspIsLocalHost( u32 dwIP );
+API BOOL32 OspIsLocalHost(u32 dwIP);
+API BOOL32 OspNetIsLocalHost(TOspNetAddr tAddr);
 
 /*=============================================================================
 函 数 名：OspPost
@@ -3434,17 +3608,43 @@ API void OspFreeMem(void *token);
 API void OspSetPriRealTime();
 
 /*=============================================================================
-函 数 名：OspAddrListGet
-功    能：获取本机地址表内容
-注    意：如果是在Windows下使用本函数，必须先调用OspInit，或者WSAStartup。
-本函数效率较低，不要重复调用。
-算法实现：
-全局变量：
-参    数： u32   adwIP[] : [in/out]用户申请的用于地址表内容的数组的首地址
-u16   wNum : [in]用户申请的数组的大小
-返 回 值： 返回本机地址表中地址个数，错误时返回0
+  函 数 名：OspAddrListGet
+  功    能：获取本机地址表内容
+  注    意：如果是在Windows下使用本函数，必须先调用OspInit，或者WSAStartup。
+  本函数效率较低，不要重复调用。
+  算法实现：
+  全局变量：
+  参    数： u32   adwIP[] : [in/out]用户申请的用于地址表内容的数组的首地址
+  u16   wNum : [in]用户申请的数组的大小
+  返 回 值： 返回本机地址表中地址个数，错误时返回0
 =============================================================================*/
 API u16  OspAddrListGet(u32 adwIPList[], u16 wNum);
+
+/*=============================================================================
+  结 构 体：TOspNetAddrInfo
+  字    段：
+            m_nFlags     参考 OSP_NET_FLAG_XXX 定义
+            m_nFamily    参考 OSP_NET_FAMILY_XXX 定义
+            m_nSocktype  参考 OSP_NET_SOCKTYPE_XXX定义
+            m_nProtocol  参考 OSP_NET_PROTO_XXX定义
+=============================================================================*/
+typedef struct {
+	int m_nFlags;
+	int m_nFamily;
+	int m_nSocktype;
+	int m_nProtocol;
+	TOspNetAddr m_tAddr;
+} TOspNetAddrInfo;
+/*=============================================================================
+  函 数 名：OspNetAddrListGet
+  功    能：如果是在Windows下使用本函数，必须先调用OspInit，或者WSAStartup。
+            本函数效率较低，不要重复调用?
+  注    意：
+  参    数：TOspNetAddrInfo atAddrInfoList[] : [in/out]用户申请的用于地址表内容的数组的首地址
+            u16  *wNum : [in/out]用户申请的数组的大小, 函数返回时修改为数组实际使用的个数
+  返 回 值：成功返回OSP_OK，错误时返回对应错误码
+=============================================================================*/
+API u16 OspNetAddrListGet(TOspNetAddrInfo atAddrInfoList[], u16 *wNum);
 
 /* 5.0合并： 原企业osp特有接口 */
 /*=============================================================================
@@ -3480,40 +3680,94 @@ API s32 OspPton(s32 af, const char *src, void *dst);
 =============================================================================*/
 API const char *OspNtop(s32 af, const void *src, char *dst, u32 size);
 
+
 #if (defined(_MSC_VER) && (_MSC_VER > 1200)) || !defined(_MSC_VER)
 
+
+/*=============================================================================
+ 函 数 名：OSP_IS_VALID_LOCAL_ADDR
+ 功    能：判断netaddr是否是本地地址
+ 注    意：
+ 算法实现：
+ 全局变量：
+ 参    数：netaddr: TOspNetAddr * 类型
+ 返 回 值：TRUE/FALSE
+=============================================================================*/
 #define OSP_IS_VALID_LOCAL_ADDR(netaddr)   \
     ((netaddr) &&   \
     (((netaddr)->v4addr.sin_family == AF_INET && (netaddr)->v4addr.sin_port) || \
     ((netaddr)->v6addr.sin6_family == AF_INET6 && (netaddr)->v6addr.sin6_port)))
 
+/*=============================================================================
+ 函 数 名：OSP_IS_VALID_REMOTE_ADDR
+ 功    能：判断netaddr是否是本地地址
+ 注    意：
+ 算法实现：
+ 全局变量：
+ 参    数：netaddr: TOspNetAddr * 类型
+ 返 回 值：TRUE/FALSE
+=============================================================================*/
 #define OSP_IS_VALID_REMOTE_ADDR(netaddr)    \
     ((netaddr) &&   \
     (((netaddr)->v4addr.sin_family == AF_INET &&    \
         (netaddr)->v4addr.sin_addr.s_addr && (netaddr)->v4addr.sin_port) || \
     ((netaddr)->v6addr.sin6_family == AF_INET6 &&   \
+      0 != memcmp(&(netaddr)->v6addr.sin6_addr, &in6addr_any, sizeof(in6addr_any)) && \
         (netaddr)->v6addr.sin6_port)))
 
 /*=============================================================================
  函 数 名：OSP_SET_NETADDR_ADDR
  功    能：IPV4网络字节序地址设置到TNetAddr结构中
- 注    意：只能是IPV4网络序的地址暂时
+ 注    意：只能是IPV4网络序的地址, 不支持IPV6
  算法实现：
  全局变量：
- 参    数：netaddr: TOspNetAddr结构体
-           type: AF_INET(ipv4) 或者 AF_INET6(ipv6)
-           address: u32网络序地址
+ 参    数：netaddr: TOspNetAddr *类型
+           type: u16 类型, 取值 OSP_NET_FAMILY_INET (ipv4) 或者 OSP_NET_FAMILY_INET6 (ipv6)
+                 主机序
+           address: u32类型变量, 网络序地址, 仅支持ipv4
  返 回 值：
 =============================================================================*/
 #define OSP_SET_NETADDR_ADDR(netaddr, type, address)    \
+		do {	\
+		if (!(netaddr)) break; \
+			switch(type) {	  \
+			case AF_INET:	\
+				(netaddr)->v4addr.sin_family = (type);		\
+				(netaddr)->v4addr.sin_addr.s_addr = (address);	 \
+				break;		\
+			case AF_INET6:	\
+				(netaddr)->v6addr.sin6_family = AF_UNSPEC; 	\
+				break;	\
+			default:	\
+				break;	\
+			}	\
+		} while(0)
+
+
+/*=============================================================================
+ 函 数 名：OSP_NET_SET_NETADDR_ADDR
+ 功    能：网络字节序地址设置到TNetAddr结构中
+ 注    意：
+ 算法实现：
+ 全局变量：
+ 参    数：netaddr: TOspNetAddr * 类型
+           type: u16 类型, 取值 OSP_NET_FAMILY_INET (ipv4) 或者 OSP_NET_FAMILY_INET6 (ipv6)
+                 主机序
+           address: 当 type 为 OSP_NET_FAMILY_INET(ipv4) 时, u32 类型, 网络序地址
+                    当 type 为 OSP_NET_FAMILY_INET6(ipv6) 时, IN6_ADDR 类型, 网络序地址
+ 返 回 值：
+=============================================================================*/
+#define OSP_NET_SET_NETADDR_ADDR(netaddr, type, address)    \
     do {    \
+    if (!(netaddr)) break; \
         switch(type) {    \
         case AF_INET:   \
             (netaddr)->v4addr.sin_family = (type);      \
-            (netaddr)->v4addr.sin_addr.s_addr = (address);   \
+            memcpy(&(netaddr)->v4addr.sin_addr, &(address), sizeof((netaddr)->v4addr.sin_addr)); \
             break;      \
         case AF_INET6:  \
             (netaddr)->v6addr.sin6_family = (type);     \
+            memcpy(&(netaddr)->v6addr.sin6_addr, &(address), sizeof((netaddr)->v6addr.sin6_addr));\
             break;  \
         default:    \
             break;  \
@@ -3522,26 +3776,30 @@ API const char *OspNtop(s32 af, const void *src, char *dst, u32 size);
 
 /*=============================================================================
  函 数 名：OSP_GET_NETADDR_ADDR
- 功	  能：获取TNetAddr结构体中的网络字节序地址到address,
+ 功   能： 获取TNetAddr结构体中的网络字节序地址到address,
            获取TNetAddr结构体中的type到type
- 注	  意：
+ 注   意：
  算法实现：
  全局变量：
- 参    数：netaddr: TOspNetAddr结构体
-           type: 存放类型的指针
-           address: 存放地址的指针
+ 参    数：netaddr: TOspNetAddr * 类型
+           type: u16 *类型, 主机序
+           address: 当 type 为 OSP_NET_FAMILY_INET(ipv4) 时, u32 *类型, 网络序地址
+                    当 type 为 OSP_NET_FAMILY_INET6(ipv6) 时, IN6_ADDR *类型, 网络序地址
 
  返 回 值：
 =============================================================================*/
 #define OSP_GET_NETADDR_ADDR(netaddr, type, address)    \
 	do {	\
+		if (!(netaddr) || !(type) || !(address)) \
+			break; \
 		switch((netaddr)->staddr.ss_family) {	  \
 		case AF_INET:	\
 			*(type) = (netaddr)->v4addr.sin_family;		\
-			*(address) = (netaddr)->v4addr.sin_addr.s_addr;	 \
+			*((u32 *)address) = (netaddr)->v4addr.sin_addr.s_addr;	 \
 			break;		\
 		case AF_INET6:	\
 			*(type) = (netaddr)->v6addr.sin6_family; 	\
+			memcpy((address), &(netaddr)->v6addr.sin6_addr, sizeof((netaddr)->v6addr.sin6_addr));\
 			break;	\
 		default:	\
 			break;	\
@@ -3549,19 +3807,38 @@ API const char *OspNtop(s32 af, const void *src, char *dst, u32 size);
 	} while(0)
 
 /*=============================================================================
+ 函 数 名：OSP_NET_GET_NETADDR_ADDR
+ 功   能：获取TNetAddr结构体中的网络字节序地址到address,
+           获取TNetAddr结构体中的type到type
+ 注   意：
+ 算法实现：
+ 全局变量：
+ 参    数：netaddr: TOspNetAddr * 类型
+           type: u16 *类型, 主机序
+           address: 当 type 为 OSP_NET_FAMILY_INET(ipv4) 时, u32 * 类型, 网络序地址
+                    当 type 为 OSP_NET_FAMILY_INET6(ipv6) 时, IN6_ADDR * 类型, 网络序地址
+
+ 返 回 值：
+=============================================================================*/
+#define OSP_NET_GET_NETADDR_ADDR(netaddr, type, address)    \
+	OSP_GET_NETADDR_ADDR(netaddr, type, address)
+
+/*=============================================================================
   函 数 名：OSP_SET_NETADDR_ADDR_STR
   功    能：将地址字符串设置到netaddr结构中
   注    意：
   算法实现：
   全局变量：
-  参    数：netaddr: TOspNetAddr结构体
-		   type: AF_INET(ipv4) 或者 AF_INET6(ipv6)
-		   address: 地址字符串指针
+  参    数：netaddr: TOspNetAddr * 类型
+           type: u16 类型, 取值 OSP_NET_FAMILY_INET (ipv4) 或者 OSP_NET_FAMILY_INET6 (ipv6)
+                 主机序
+           address: char * 类型(NUL结尾), 地址字符串指针
 
  返 回 值：
 =============================================================================*/
 #define OSP_SET_NETADDR_ADDR_STR(netaddr, type, address)    \
     do {    \
+    if (!(netaddr)) break; \
         switch(type) {      \
         case AF_INET:       \
             (netaddr)->v4addr.sin_family = (type);      \
@@ -3589,25 +3866,27 @@ API const char *OspNtop(s32 af, const void *src, char *dst, u32 size);
   注    意：
   算法实现：
   全局变量：
-  参    数：netaddr: TOspNetAddr结构体
-		   type: 存放类型的指针
-		   address: 地址字符串指针
-		   size: address地址的长度
+  参    数：netaddr: TOspNetAddr * 类型
+             type: u16 * 类型, 主机序
+             address: char * 类型, 长度由size指定
+             size: u32 类型 或者常量, 指明address缓存块长度, 主机序
 
  返 回 值：
 =============================================================================*/
 #define OSP_GET_NETADDR_ADDR_STR(netaddr, type, address, size)    \
 	do {	\
+		if (!(netaddr)) break; \
+		s32 __osp_temp_family = (netaddr)->staddr.ss_family; \
 		if (type)    \
-		    *(type) = (netaddr)->staddr.ss_family;		\
+		    *(type) = __osp_temp_family;		\
 		switch((netaddr)->staddr.ss_family) {		\
 		case AF_INET:		\
 			if (address)	\
-				OspNtop((s32)(*(type)), &((netaddr)->v4addr.sin_addr.s_addr), address, size);\
+				OspNtop(__osp_temp_family, &((netaddr)->v4addr.sin_addr.s_addr), address, size);\
 			break;		\
 		case AF_INET6:	\
 			if (address)	\
-				OspNtop((s32)(*(type)), &((netaddr)->v6addr.sin6_addr.s6_addr), address, size);  \
+				OspNtop(__osp_temp_family, &((netaddr)->v6addr.sin6_addr.s6_addr), address, size);  \
 			break;	\
 		default:	\
 			break;	\
@@ -3620,14 +3899,16 @@ API const char *OspNtop(s32 af, const void *src, char *dst, u32 size);
   注    意：
   算法实现：
   全局变量：
-  参    数：netaddr: TOspNetAddr结构体
-		   type: AF_INET(ipv4) 或者 AF_INET6(ipv6)
-            port:主机序端口号
+  参    数：netaddr: TOspNetAddr * 类型
+           type: u16 类型, 取值 OSP_NET_FAMILY_INET (ipv4) / OSP_NET_FAMILY_INET6 (ipv6)
+                 主机序
+           port: u16 或者 常量, 主机序
 
  返 回 值：
 =============================================================================*/
 #define OSP_SET_NETADDR_PORT(netaddr, type, port)    \
     do {    \
+        if (!(netaddr)) break; \
         switch(type) {    \
         case AF_INET:   \
             (netaddr)->v4addr.sin_family = (type);      \
@@ -3643,20 +3924,38 @@ API const char *OspNtop(s32 af, const void *src, char *dst, u32 size);
     } while(0)
 
 /*=============================================================================
-  函 数 名：OSP_GET_NETADDR_PORT
-  功    能：获取TNetAddr结构体中端口号到port
-		   获取TNetAddr结构体中的type到type
+  函 数 名：OSP_NET_SET_NETADDR_PORT
+  功    能：提供主机序端口号设置到TNetAddr 中
   注    意：
   算法实现：
   全局变量：
-  参    数：netaddr: TOspNetAddr结构体
-		   type: 存放类型的指针
-		   port: 存放主机序端口号的指针
+  参    数：netaddr: TOspNetAddr * 类型
+           type: u16 类型, 取值 OSP_NET_FAMILY_INET (ipv4) 或者 OSP_NET_FAMILY_INET6 (ipv6)
+                 主机序
+           port: u16 或者 常量, 主机序
+
+ 返 回 值：
+=============================================================================*/
+#define OSP_NET_SET_NETADDR_PORT(netaddr, type, port)    \
+	OSP_SET_NETADDR_PORT(netaddr, type, port)
+
+
+/*=============================================================================
+  函 数 名：OSP_GET_NETADDR_PORT
+  功    能：获取TNetAddr结构体中端口号到port
+            获取TNetAddr结构体中的type到type
+  注    意：
+  算法实现：
+  全局变量：
+  参    数：netaddr: TOspNetAddr * 类型
+            type: u16 * 类型, 主机序
+            port: u16 * 类型, 主机序
 
  返 回 值：
 =============================================================================*/
 #define OSP_GET_NETADDR_PORT(netaddr, type, port)    \
 	do {	\
+		if (!(netaddr)) break; \
 		if (type)    \
 		    *(type) = (netaddr)->staddr.ss_family;    \
 		switch((netaddr)->staddr.ss_family) {	  \
@@ -3673,7 +3972,427 @@ API const char *OspNtop(s32 af, const void *src, char *dst, u32 size);
 		}	\
 	} while(0)
 
-#endif
+/*=============================================================================
+  函 数 名：OSP_NET_GET_NETADDR_PORT
+  功    能：获取TNetAddr结构体中端口号到port
+            获取TNetAddr结构体中的type到type
+  注    意：
+  算法实现：
+  全局变量：
+  参    数：netaddr: TOspNetAddr * 类型
+            type: u16 * 类型, 主机序
+            port: u16 * 类型, 主机序
+
+ 返 回 值：
+=============================================================================*/
+#define OSP_NET_GET_NETADDR_PORT(netaddr, type, port)    \
+	OSP_GET_NETADDR_PORT(netaddr, type, port)
+
+
+/*=============================================================================
+ 函 数 名：OSP_IS_ADDR_V4MAPPEDV6
+ 功    能： 判断addr中的地址是否为v4映射的v6地址
+ 注    意： 如果给v4地址, 将返回FALSE
+
+ 参    数：TOspNetAddr * addr:[in] 地址结构体
+
+ 返 回 值：地址类型为V6并且是V4映射后的V6地址返回TRUE,
+           其余情况返回FALSE
+=============================================================================*/
+#define OSP_IS_ADDR_V4MAPPEDV6(addr) \
+	( (addr) && (addr)->v6addr.sin6_family == AF_INET6 && \
+	  ((u32 *)&((addr)->v6addr.sin6_addr))[0] == 0 &&\
+	  ((u32 *)&((addr)->v6addr.sin6_addr))[1] == 0 && \
+	  ((u32 *)&((addr)->v6addr.sin6_addr))[2] == htonl (0xffff) )
+
+
+/*=============================================================================
+ 函 数 名：OSP_MAP_V4ADDR_TO_V6ADDR
+ 功    能： 将V4的地址映射为V6地址
+ 注    意： 
+
+ 参    数：TOspNetAddr *addrv4 :[in] TOspNetAddr *类型, 需要转换的源地址
+           TOspNetAddr *addrv6 :[out] TOspNetAddr *类型, 转换后存放的位置
+           status : int 类型, 标识转换是否成功, 成功status将是OSP_OK, 否则返回OSP_ERROR
+=============================================================================*/
+#define OSP_MAP_V4ADDR_TO_V6ADDR(addrv4, addrv6, status) \
+	do { \
+		if (!(addrv4) || !(addrv6) || (addrv4)->v4addr.sin_family != AF_INET) \
+		{ \
+			status = OSP_ERROR; \
+			break; \
+		} \
+		TOspNetAddr __osp_temp_netaddr; \
+		memset(&__osp_temp_netaddr, 0, sizeof(__osp_temp_netaddr)); \
+		__osp_temp_netaddr.v6addr.sin6_family = AF_INET6; \
+		__osp_temp_netaddr.v6addr.sin6_port = (addrv4)->v4addr.sin_port; \
+		((u32 *)(&__osp_temp_netaddr.v6addr.sin6_addr))[2] = htonl (0xffff); \
+		((u32 *)(&__osp_temp_netaddr.v6addr.sin6_addr))[3] = (addrv4)->v4addr.sin_addr.s_addr; \
+		memcpy(addrv6, &__osp_temp_netaddr, sizeof(__osp_temp_netaddr)); \
+		status = OSP_OK; \
+		break; \
+	} while(0)
+
+/*=============================================================================
+ 函 数 名：OSP_MAP_V6ADDR_TO_V4ADDR
+ 功    能： 从V4映射的V6地址里获取并设置V4地址
+ 注    意：
+
+ 参    数：TOspNetAddr * addrv6: [in] 需要转换的源地址
+           TOspNetAddr * addrv4: [out] 转换后存放的位置
+           int status: [out] 标识转换是否成功, 成功status将是OSP_OK, 否则返回OSP_ERROR
+=============================================================================*/
+#define OSP_MAP_V6ADDR_TO_V4ADDR(addrv6, addrv4, status) \
+	do { \
+		if (!(addrv4) || !(addrv6) || (addrv6)->v6addr.sin6_family != AF_INET6 || !OSP_IS_ADDR_V4MAPPEDV6(addrv6)) \
+		{ \
+			status = OSP_ERROR; \
+			break; \
+		} \
+		TOspNetAddr __osp_temp_netaddr; \
+		memset(&__osp_temp_netaddr, 0, sizeof(__osp_temp_netaddr)); \
+		__osp_temp_netaddr.v4addr.sin_family = AF_INET; \
+		__osp_temp_netaddr.v4addr.sin_port = (addrv6)->v6addr.sin6_port; \
+		__osp_temp_netaddr.v4addr.sin_addr.s_addr = ((u32 *)(&(addrv6)->v6addr.sin6_addr))[3]; \
+		memcpy(addrv4, &__osp_temp_netaddr, sizeof(__osp_temp_netaddr)); \
+		status = OSP_OK; \
+		break; \
+	} while(0)
+
+#else // below doesn't support ipv6 branch
+
+/*=============================================================================
+ 函 数 名：OSP_IS_VALID_LOCAL_ADDR
+ 功    能：判断netaddr是否是本地地址
+ 注    意：
+ 算法实现：
+ 全局变量：
+ 参    数：netaddr: TOspNetAddr * 类型
+ 返 回 值：TRUE/FALSE
+=============================================================================*/
+#define OSP_IS_VALID_LOCAL_ADDR(netaddr)   \
+    ((netaddr) &&   \
+    ((netaddr)->v4addr.sin_family == AF_INET && (netaddr)->v4addr.sin_port))
+
+
+/*=============================================================================
+ 函 数 名：OSP_IS_VALID_REMOTE_ADDR
+ 功    能：判断netaddr是否是本地地址
+ 注    意：
+ 算法实现：
+ 全局变量：
+ 参    数：netaddr: TOspNetAddr * 类型
+ 返 回 值：TRUE/FALSE
+=============================================================================*/
+#define OSP_IS_VALID_REMOTE_ADDR(netaddr)    \
+    ((netaddr) &&   \
+    (((netaddr)->v4addr.sin_family == AF_INET &&    \
+        (netaddr)->v4addr.sin_addr.s_addr && (netaddr)->v4addr.sin_port)))
+
+/*=============================================================================
+ 函 数 名：OSP_SET_NETADDR_ADDR
+ 功    能：IPV4网络字节序地址设置到TNetAddr结构中
+ 注    意：只能是IPV4网络序的地址, 不支持IPV6
+ 算法实现：
+ 全局变量：
+ 参    数：netaddr: TOspNetAddr *类型
+           type: u16 类型, 取值 OSP_NET_FAMILY_INET (ipv4)
+                 主机序
+           address: u32类型变量, 网络序地址, 仅支持ipv4
+ 返 回 值：
+=============================================================================*/
+#define OSP_SET_NETADDR_ADDR(netaddr, type, address)    \
+    do {    \
+    if (!(netaddr)) break; \
+        switch(type) {    \
+        case AF_INET:   \
+            (netaddr)->v4addr.sin_family = (type);      \
+            (netaddr)->v4addr.sin_addr.s_addr = (address);   \
+            break;      \
+        default:    \
+            (netaddr)->v4addr.sin_family = AF_UNSPEC;      \
+            break;  \
+        }   \
+    } while(0)
+
+/*=============================================================================
+ 函 数 名：OSP_NET_SET_NETADDR_ADDR
+ 功    能：网络字节序地址设置到TNetAddr结构中
+ 注    意：
+ 算法实现：
+ 全局变量：
+ 参    数：netaddr: TOspNetAddr * 类型
+           type: u16 类型, 取值 OSP_NET_FAMILY_INET (ipv4)
+                 主机序
+           address: 当 type 为 OSP_NET_FAMILY_INET(ipv4) 时, u32 类型, 网络序地址
+ 返 回 值：
+=============================================================================*/
+#define OSP_NET_SET_NETADDR_ADDR(netaddr, type, address)    \
+    do {    \
+    if (!(netaddr)) break; \
+        switch(type) {    \
+        case AF_INET:   \
+            (netaddr)->v4addr.sin_family = (type);      \
+            memcpy(&(netaddr)->v4addr.sin_addr, &(address), sizeof((netaddr)->v4addr.sin_addr)); \
+            break;      \
+        default:    \
+            (netaddr)->v4addr.sin_family = AF_UNSPEC;      \
+            memset(&(netaddr)->v4addr.sin_addr, 0XFF, sizeof((netaddr)->v4addr.sin_addr)); \
+            break;  \
+        }   \
+    } while(0)
+
+/*=============================================================================
+ 函 数 名：OSP_GET_NETADDR_ADDR
+ 功   能： 获取TNetAddr结构体中的网络字节序地址到address,
+           获取TNetAddr结构体中的type到type
+ 注   意：
+ 算法实现：
+ 全局变量：
+ 参    数：netaddr: TOspNetAddr * 类型
+           type: u16 *类型, 主机序
+           address: 当 type 为 OSP_NET_FAMILY_INET(ipv4) 时, u32 *类型, 网络序地址
+
+ 返 回 值：
+=============================================================================*/
+#define OSP_GET_NETADDR_ADDR(netaddr, type, address)    \
+	do {	\
+		if (!(netaddr) || !(type) || !(address)) \
+			break; \
+		switch((netaddr)->v4addr.sin_family) {	  \
+		case AF_INET:	\
+			*(type) = (netaddr)->v4addr.sin_family;		\
+			*((u32 *)address) = (netaddr)->v4addr.sin_addr.s_addr;	 \
+			break;		\
+		default:	\
+			break;	\
+		}	\
+	} while(0)
+
+/*=============================================================================
+ 函 数 名：OSP_NET_GET_NETADDR_ADDR
+ 功   能：获取TNetAddr结构体中的网络字节序地址到address,
+           获取TNetAddr结构体中的type到type
+ 注   意：
+ 算法实现：
+ 全局变量：
+ 参    数：netaddr: TOspNetAddr * 类型
+           type: u16 *类型, 主机序
+           address: 当 type 为 OSP_NET_FAMILY_INET(ipv4) 时, u32 * 类型, 网络序地址
+
+ 返 回 值：
+=============================================================================*/
+#define OSP_NET_GET_NETADDR_ADDR(netaddr, type, address)    \
+	OSP_GET_NETADDR_ADDR(netaddr, type, address)
+
+/*=============================================================================
+  函 数 名：OSP_SET_NETADDR_ADDR_STR
+  功    能：将地址字符串设置到netaddr结构中
+  注    意：
+  算法实现：
+  全局变量：
+  参    数：netaddr: TOspNetAddr * 类型
+           type: u16 类型, 取值 OSP_NET_FAMILY_INET (ipv4)
+                 主机序
+           address: char * 类型(NUL结尾), 地址字符串指针
+
+ 返 回 值：
+=============================================================================*/
+#define OSP_SET_NETADDR_ADDR_STR(netaddr, type, address)    \
+    do {    \
+    if (!(netaddr)) break; \
+        switch(type) {      \
+        case AF_INET:       \
+            (netaddr)->v4addr.sin_family = (type);      \
+            if (address)    \
+                OspPton(type, address, &((netaddr)->v4addr.sin_addr.s_addr));\
+            else        \
+                (netaddr)->v4addr.sin_addr.s_addr = INADDR_ANY;    \
+            break;      \
+        default:    \
+            break;  \
+        }   \
+    } while(0)
+
+/*=============================================================================
+  函 数 名：OSP_GET_NETADDR_ADDR_STR
+  功    能：获取TNetAddr结构体中的地址字符串到address,
+            获取TNetAddr结构体中的type到type
+  注    意：
+  算法实现：
+  全局变量：
+  参    数：netaddr: TOspNetAddr * 类型
+             type: u16 * 类型, 主机序
+             address: char * 类型, 长度由size指定
+             size: u32 类型 或者常量, 指明address缓存块长度, 主机序
+
+ 返 回 值：
+=============================================================================*/
+#define OSP_GET_NETADDR_ADDR_STR(netaddr, type, address, size)    \
+	do {	\
+		if (!(netaddr)) break; \
+		s32 __osp_temp_family = (netaddr)->staddr.ss_family; \
+		if (type)    \
+		    *(type) = __osp_temp_family;		\
+		switch((netaddr)->staddr.ss_family) {		\
+		case AF_INET:		\
+			if (address)	\
+				OspNtop(__osp_temp_family, &((netaddr)->v4addr.sin_addr.s_addr), address, size);\
+			break;	\
+		default:	\
+			(netaddr)->v4addr.sin_family = AF_UNSPEC; \
+			break;	\
+		}	\
+	} while(0)
+
+/*=============================================================================
+  函 数 名：OSP_SET_NETADDR_PORT
+  功    能：提供主机序端口号设置到TNetAddr 中
+  注    意：
+  算法实现：
+  全局变量：
+  参    数：netaddr: TOspNetAddr * 类型
+           type: u16 类型, 取值 OSP_NET_FAMILY_INET (ipv4)
+                 主机序
+           port: u16 或者 常量, 主机序
+
+ 返 回 值：
+=============================================================================*/
+#define OSP_SET_NETADDR_PORT(netaddr, type, port)    \
+    do {    \
+        if (!(netaddr)) break; \
+        switch(type) {    \
+        case AF_INET:   \
+            (netaddr)->v4addr.sin_family = (type);      \
+            (netaddr)->v4addr.sin_port = htons(port);   \
+            break;      \
+        default:    \
+            break;  \
+        }   \
+    } while(0)
+
+/*=============================================================================
+  函 数 名：OSP_NET_SET_NETADDR_PORT
+  功    能：提供主机序端口号设置到TNetAddr 中
+  注    意：
+  算法实现：
+  全局变量：
+  参    数：netaddr: TOspNetAddr * 类型
+           type: u16 类型, 取值 OSP_NET_FAMILY_INET (ipv4)
+                 主机序
+           port: u16 或者 常量, 主机序
+
+ 返 回 值：
+=============================================================================*/
+#define OSP_NET_SET_NETADDR_PORT(netaddr, type, port)    \
+	OSP_SET_NETADDR_PORT(netaddr, type, port)
+
+/*=============================================================================
+  函 数 名：OSP_GET_NETADDR_PORT
+  功    能：获取TNetAddr结构体中端口号到port
+            获取TNetAddr结构体中的type到type
+  注    意：
+  算法实现：
+  全局变量：
+  参    数：netaddr: TOspNetAddr * 类型
+            type: u16 * 类型, 主机序
+            port: u16 * 类型, 主机序
+
+ 返 回 值：
+=============================================================================*/
+#define OSP_GET_NETADDR_PORT(netaddr, type, port)    \
+	do {	\
+		if (!(netaddr)) break; \
+		if (type)    \
+		    *(type) = (netaddr)->v4addr.ss_family;    \
+		switch((netaddr)->v4addr.ss_family) {	  \
+		case AF_INET:	\
+			if (port)   \
+			    *(port) = ntohs((netaddr)->v4addr.sin_port);	\
+			break;	\
+		default:	\
+			break;	\
+		}	\
+	} while(0)
+
+/*=============================================================================
+  函 数 名：OSP_NET_GET_NETADDR_PORT
+  功    能：获取TNetAddr结构体中端口号到port
+            获取TNetAddr结构体中的type到type
+  注    意：
+  算法实现：
+  全局变量：
+  参    数：netaddr: TOspNetAddr * 类型
+            type: u16 * 类型, 主机序
+            port: u16 * 类型, 主机序
+
+ 返 回 值：
+=============================================================================*/
+#define OSP_NET_GET_NETADDR_PORT(netaddr, type, port)    \
+	OSP_GET_NETADDR_PORT(netaddr, type, port)
+
+/*=============================================================================
+ 函 数 名：OSP_IS_ADDR_V4MAPPEDV6
+ 功	  能： 判断addr中的地址是否为v4映射的v6地址
+ 注	  意： 如果给v4地址, 将返回FALSE
+
+ 参    数：TOspNetAddr * addr: 地址结构体
+
+ 返 回 值：地址类型为V6并且是V4映射后的V6地址返回TRUE,
+           其余情况返回FALSE
+=============================================================================*/
+#define OSP_IS_ADDR_V4MAPPEDV6(addr) FALSE
+
+/*=============================================================================
+ 函 数 名：OSP_MAP_V4ADDR_TO_V6ADDR
+ 功	  能： 将V4的地址映射为V6地址
+ 注	  意： 
+
+ 参    数：TOspNetAddr *addrv4 : TOspNetAddr *类型, 需要转换的源地址
+           TOspNetAddr *addrv6 : TOspNetAddr *类型, 转换后存放的位置
+           status : int 类型, 标识转换是否成功, 成功status将是OSP_OK, 否则返回OSP_ERROR
+=============================================================================*/
+#define OSP_MAP_V4ADDR_TO_V6ADDR(addrv4, addrv6, status) \
+	do { \
+		status = OSP_ERROR; \
+		break; \
+	} while(0)
+
+/*=============================================================================
+ 函 数 名：OSP_MAP_V6ADDR_TO_V4ADDR
+ 功	  能： 从V4映射的V6地址里获取并设置V4地址
+ 注	  意： 
+
+ 参    数：TOspNetAddr * addrv6: [in] 需要转换的源地址
+           TOspNetAddr * addrv4: [out] 转换后存放的位置
+           int status: [out] 标识转换是否成功, 成功status将是OSP_OK, 否则返回OSP_ERROR
+=============================================================================*/
+#define OSP_MAP_V6ADDR_TO_V4ADDR(addrv6, addrv4, status) \
+	do { \
+		status = OSP_ERROR; \
+		break; \
+	} while(0)
+#endif //(defined(_MSC_VER) && (_MSC_VER > 1200)) || !defined(_MSC_VER)
+
+/*=============================================================================
+函 数 名：OspNetGetAddrInfo
+功    能：
+注    意：如果是在Windows下使用本函数，必须先调用OspInit，或者WSAStartup。
+算法实现：
+全局变量：
+参    数：char *szNodeName : [in]用于查询的名字, 可以是数字"0.0.0.0"或者"::"类型的,
+                               也可以是一个域名"baidu.com", 可以传NULL
+          char *szService  : [in]用于查询的端口信息, 可以是数字字符串"80"
+                               或者服务名"http", 可以传NULL
+          TOspNetAddrInfo *ptHints : [in]用于过滤查询结果, 详细参考TOspNetAddrInfo定义
+          TOspNetAddrInfo atAddrs[] : [out]用于存储查询结果, 数组大小由后面的参数指定
+          int *pnNum       : [in/out]传入数组大小, 返回实际使用的数量
+返 回 值： OSP_OK，错误时返回对应错误码
+=============================================================================*/
+API int OspNetGetAddrInfo(char *szNodeName, char *szService, TOspNetAddrInfo *ptHints,
+						TOspNetAddrInfo atAddrs[], int *pnNum);
+
+
 
 //系统限制参数
 #define OSP_ETHERNET_ADAPTER_MAX_IP 16          /*每个接口上最大地址个数*/
@@ -3703,6 +4422,22 @@ typedef struct {
 	TOSPEthernetAdapterInfo atEthernetAdapter[OSP_ETHERNET_ADAPTER_MAX_NUM];/*网卡信息*/
 } TOSPEthernetAdapterInfoAll;
 
+/* 单个网卡信息 */
+typedef struct {
+	u32 nId;                                        /*网卡号*/
+	u32 nState;                                     /*网卡状态*/
+	u8  achName[OSP_ETHERNET_ADAPTER_NAME_LENGTH];      /*网卡名*/
+	u8  achDescription[OSP_ETHERNET_ADAPTER_NAME_LENGTH];   /*网卡信息描述*/
+	u8  achMacAddr[OSP_ETHERNET_ADAPTER_MAC_LENGTH];        /*网卡物理地址*/
+	u32 nIpNum;                                     /*地址数量*/
+	TOspNetAddr addrInfo[OSP_ETHERNET_ADAPTER_MAX_IP];              /*地址*/
+} TOspNetAdapterInfo;
+
+/* 多个网卡信息 */
+typedef struct {
+	u32 nNum;                                                       /*网卡数量*/
+	TOspNetAdapterInfo atEthernetAdapter[OSP_ETHERNET_ADAPTER_MAX_NUM];/*网卡信息*/
+} TOspNetAdapterInfoAll;
 
 /*=============================================================================
 函 数 名：OspGetEthernetAdapterInfoAll
@@ -3713,8 +4448,18 @@ typedef struct {
 全局变量：
 参    数：TEthernetAdapterInfoAll 多网卡信息结构，参考数据结构的定义
 返 回 值： TRUE/ FALSE 成功/失败
+
+函 数 名：OspGetNetAdapterInfoAll
+功    能：获取本系统所有以太网网卡信息
+注    意：如果是在Windows下使用本函数，必须先调用OspInit，或者WSAStartup。
+          本函数效率较低，不要重复调用。
+参    数：TOspNetAdapterInfoAll * ptNetAdapterInfoAll : [in/out] 多网卡信息结构
+                                                                 参考数据结构的定义
+返 回 值： TRUE/ FALSE 成功/失败
 =============================================================================*/
 API BOOL32 OspGetEthernetAdapterInfoAll(TOSPEthernetAdapterInfoAll *ptEthernetAdapterInfoAll);
+API BOOL32 OspNetGetNetAdapterInfoAll(TOspNetAdapterInfoAll *ptNetAdapterInfoAll);
+
 
 /*=============================================================================
 函 数 名：OspGetEthernetAdapterInfo
@@ -3726,13 +4471,18 @@ API BOOL32 OspGetEthernetAdapterInfoAll(TOSPEthernetAdapterInfoAll *ptEthernetAd
 参    数：nEthAdapterId 网卡编号0-ETHERNET_ADAPTER_MAX_NUM，最多支持16个网卡
             TEthernetAdapterInfo 单网卡信息结构
 返 回 值：TRUE/FALSE  成功/失败
+
+函 数 名：OspGetEthernetAdapterInfo
+功    能：根据网卡号获取网卡信息
+注    意：如果是在Windows下使用本函数，必须先调用OspInit，或者WSAStartup。
+          本函数效率较低，不要重复调用。
+参    数：u32 nAdapterId : [in] 网卡编号0-ETHERNET_ADAPTER_MAX_NUM
+                                             最多支持16个网卡
+          TOspNetAdapterInfo *ptNetAdapterInfo : [in/out]单网卡信息结构
+返 回 值：TRUE/FALSE  成功/失败
 =============================================================================*/
 API BOOL32 OspGetEthernetAdapterInfo(u32 nEthAdapterId, TOSPEthernetAdapterInfo *ptEthernetAdapterInfo);
-
-
-
-
-
+API BOOL32 OspNetGetNetAdapterInfo(u32 nAdapterId, TOspNetAdapterInfo *ptNetAdapterInfo);
 
 /*=============================================================================
 函 数 名：OspSetMemCheck

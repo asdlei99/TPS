@@ -726,7 +726,7 @@ public:
 	* \param[in]        ptFeccCap        :fecc cap
 	* \return           BOOL32, TRUE/FALSE
 	*/
-	static BOOL32   ChangeSrtpKey(HMDLCALL hCall , HMDLAPPCALL hAppCall, TMdlCallCap *ptMainCap, TDualCapList *ptDualCap,TBfcpCapSet *ptBfcpCap, TFeccCapbility *ptFeccCap);
+	static BOOL32   SipModuleSendReinvite(HMDLCALL hCall , HMDLAPPCALL hAppCall, TMdlCallCap *ptMainCap, TDualCapList *ptDualCap,TBfcpCapSet *ptBfcpCap, TFeccCapbility *ptFeccCap);
 
 	/**
 	* \brief            use to Answer change srtp key after call connect
@@ -738,7 +738,7 @@ public:
 	* \param[in]        ptFeccCap        :fecc cap
 	* \return           BOOL32, TRUE/FALSE
 	*/
-	static BOOL32   AnswerChangeSrtpKey(HMDLCALL hCall , HMDLAPPCALL hAppCall, TMdlCallCap *ptMainCap, TDualCapList *ptDualCap,TBfcpCapSet *ptBfcpCap, TFeccCapbility *ptFeccCap);
+	static BOOL32   SipModuleAnswerReinvite(HMDLCALL hCall , HMDLAPPCALL hAppCall, TMdlCallCap *ptMainCap, TDualCapList *ptDualCap,TBfcpCapSet *ptBfcpCap, TFeccCapbility *ptFeccCap);
 
 	/**
 	* \brief            sip register

@@ -8,7 +8,7 @@
 	<Button name="btnListRight" float="true" pos="1639,247,0,0" width="104" height="104" align="center" normalimage="res/roomctrl/rignt.png" pushedimage="res/roomctrl/rignt_down.png" />
 	</HorizontalLayout>
 	
-	<Label text="开启语音激励" float="true" pos="241,765,0,0" width="293" height="66" textcolor="#CCD5DEEB" font="0" align="left" textpadding="0,15,0,0"/>
+	<Label name="LabAudioExcitation" text="开启语音激励" float="true" pos="241,765,0,0" width="293" height="66" textcolor="#CCD5DEEB" font="0" align="left" textpadding="0,15,0,0"/>
 	<CheckBox name="CheckAudioExcitation" float="true" pos="541,765,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
 	<Label text="创建快捷操作" float="true" pos="241,864,0,0" width="293" height="66" textcolor="#CCD5DEEB" font="0" align="left" textpadding="0,15,0,0"/>
 	<CheckBox name="CheckConfDiscussShortCut" float="true" pos="541,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
@@ -37,7 +37,16 @@
 	<Case name="caseSpeaker">	
 		<btnSpeaker visible="true"/>
 		<ctlSpeaker visible="true"/>
+	</Case>
+	<Case name="caseAudExcitationVisible">	
+		<LabAudioExcitation visible="true"/>
+		<CheckAudioExcitation visible="true"/>
 	</Case>	
+	<Case name="caseAudExcitationInVisible">	
+		<LabAudioExcitation visible="false"/>
+		<CheckAudioExcitation visible="false"/>
+	</Case>	
+	
 	<ChildLayout xmlfile="conflistpage.xml" name="PageDiscSelConfList" float="true" pos="0,0,1920,1121" visible="false"/>
 	
   </VerticalLayout>

@@ -45,6 +45,7 @@ extern const String g_stcStrLoginDlg;
 extern const String g_strMainMenuDlg;
 extern const String g_strAddrbookDlg;
 extern const String g_strInviteCnsDlg;
+extern const String g_strTemporaryCallDlg;
 extern const String g_strConfTempDlg;
 extern const String g_strConfCtrlDlg;
 extern const String g_strRoomControlDlg;

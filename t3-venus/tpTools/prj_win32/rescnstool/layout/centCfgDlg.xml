@@ -596,6 +596,7 @@
 		<Property Name="Image" Value="Edit" />
 		<Property Name="FontColor" Value="r:59 g:59 b:59" />
 		<Property Name="FontSize" Value="9" />
+		<Property Name="LimitLength" Value="16" />
 		<!--Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIp" /-->
 		<Scheme Name="SchmConf">
 			<Property Name="WindowEnable" Value="false" />
@@ -713,6 +714,7 @@
 		<Property Name="Image" Value="Edit" />
 		<Property Name="FontColor" Value="r:59 g:59 b:59" />
 		<Property Name="FontSize" Value="9" />
+		<Property Name="LimitLength" Value="16" />
 		<!--Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIp" /-->
 		<Scheme Name="SchmConf">
 			<Property Name="WindowEnable" Value="false" />
@@ -830,6 +832,7 @@
 		<Property Name="Image" Value="Edit" />
 		<Property Name="FontColor" Value="r:59 g:59 b:59" />
 		<Property Name="FontSize" Value="9" />
+		<Property Name="LimitLength" Value="16" />
 		<!--Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIp" /-->
 		<Scheme Name="SchmConf">
 			<Property Name="WindowEnable" Value="false" />
@@ -947,6 +950,7 @@
 		<Property Name="Image" Value="Edit" />
 		<Property Name="FontColor" Value="r:59 g:59 b:59" />
 		<Property Name="FontSize" Value="9" />
+		<Property Name="LimitLength" Value="16" />
 		<!--Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIp" /-->
 		<Scheme Name="SchmConf">
 			<Property Name="WindowEnable" Value="false" />
@@ -1064,6 +1068,7 @@
 		<Property Name="Image" Value="Edit" />
 		<Property Name="FontColor" Value="r:59 g:59 b:59" />
 		<Property Name="FontSize" Value="9" />
+		<Property Name="LimitLength" Value="16" />
 		<!--Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIp" /-->
 		<Scheme Name="SchmConf">
 			<Property Name="WindowEnable" Value="false" />
@@ -1145,6 +1150,21 @@
 			<Property Name="WindowVisible" Value="true" />
 		</Scheme>
 		
+    </Window>
+	
+	<Window Type="TransButton" Name="BtnDefault" Style="WS_CHILD|WS_CLIPSIBLINGS">
+      <Property Name="WindowPos" Value="x:391 y:452" />
+      <Property Name="WindowSize" Value="x:86 y:38" />
+      <Property Name="WindowCaption" Value="»Ö¸´Ä¬ÈÏ" />
+      <Property Name="WindowVisible" Value="true" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioDlg::OnBtnDefault" />
+      <Property Name="Image" Value="btnDefault" />
+      <Scheme Name="SchmInConf">
+        <Property Name="WindowEnable" Value="false" />
+      </Scheme>
+      <Scheme Name="SchmLeaveConf">
+        <Property Name="WindowEnable" Value="true" />
+      </Scheme>
     </Window>
 	
 	<Window Type="TransButton" Name="BtnSave" Style="WS_CHILD|WS_CLIPSIBLINGS">

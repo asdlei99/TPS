@@ -125,6 +125,8 @@
 		<row><td>Files25</td><td>{B5D0EF1B-0527-473A-B00F-145ACD21F156}</td><td>MATRIX</td><td>0</td><td/><td>tip.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files26</td><td>{CB3A2555-810F-4E08-8E29-29F59E70686D}</td><td>SCROLL</td><td>0</td><td/><td>hscroll_normal_top.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files27</td><td>{BA3BE077-D3F8-4BBE-B32A-92F1513CDA1E}</td><td>VIDEOMIX</td><td>8</td><td/><td>imgselord.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Files28</td><td>{365C5AA1-84D1-455A-B162-00D58C666073}</td><td>ADDRBOOK</td><td>0</td><td/><td>line.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Files29</td><td>{4377C53D-22E0-4F0C-AF10-F341F1901A0C}</td><td>CONFCTRL</td><td>0</td><td/><td>speakseat_select.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files3</td><td>{C718ABCC-F0D6-4312-A1F9-C8966A43D479}</td><td>SKIN</td><td>0</td><td/><td>contentreq.xml</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files4</td><td>{4996332A-2BBA-479A-8C4B-B0716077DC22}</td><td>MAINMENU</td><td>0</td><td/><td>tvwallon.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Files5</td><td>{B8371675-B72E-42E3-9B15-00E1F68A628E}</td><td>LIST</td><td>0</td><td/><td>imgstudio.png</td><td>51729</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -275,6 +277,8 @@
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files25</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files26</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files27</td></row>
+		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files28</td></row>
+		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files29</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files3</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files4</td></row>
 		<row><td>{7567D82C-1654-4E84-BA6A-D525F92F475D}</td><td>Files5</td></row>
@@ -623,6 +627,7 @@
 		<row><td>imgquiet.png</td><td>Files3</td><td>imgQuiet.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\list\imgQuiet.png</td><td>1</td><td>list</td></row>
 		<row><td>imgroomctrl.png</td><td>Files3</td><td>imgRoomCtrl.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\title\imgRoomCtrl.png</td><td>1</td><td>title</td></row>
 		<row><td>imgscreencutline.png</td><td>Files3</td><td>imgScreenCutline.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\cnsmanage\imgScreenCutline.png</td><td>1</td><td>cnsmanage</td></row>
+		<row><td>imgseatexcitation.png</td><td>Files29</td><td>imgSeatExcitation.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CONFCTRL_FILES&gt;\imgSeatExcitation.png</td><td>1</td><td/></row>
 		<row><td>imgselcns.png</td><td>Files3</td><td>imgSelCns.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\confctrl\videomix\imgSelCns.png</td><td>1</td><td>videomix</td></row>
 		<row><td>imgselfset.png</td><td>Files3</td><td>imgSelfSet.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\title\imgSelfSet.png</td><td>1</td><td>title</td></row>
 		<row><td>imgselord.png</td><td>Files27</td><td>imgSelOrd.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_VIDEOMIX_FILES&gt;\imgSelOrd.png</td><td>1</td><td/></row>
@@ -652,6 +657,7 @@
 		<row><td>left.png</td><td>Files3</td><td>left.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\roomctrl\left.png</td><td>1</td><td>roomctrl</td></row>
 		<row><td>left_down.png</td><td>Files3</td><td>left_down.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\roomctrl\left_down.png</td><td>1</td><td>roomctrl</td></row>
 		<row><td>letterindex.png</td><td>Files3</td><td>letterIndex.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\list\letterIndex.png</td><td>1</td><td>list</td></row>
+		<row><td>line.png</td><td>Files28</td><td>line.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_ADDRBOOK_FILES&gt;\line.png</td><td>1</td><td/></row>
 		<row><td>listset.png</td><td>Files3</td><td>ListSet.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\mainmenu\ListSet.png</td><td>1</td><td>mainmenu</td></row>
 		<row><td>littlecircle.png</td><td>Files3</td><td>littlecircle.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\public\littlecircle.png</td><td>1</td><td>public</td></row>
 		<row><td>localroomcfg.xml</td><td>Files3</td><td>localroomcfg.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\localroomcfg.xml</td><td>1</td><td/></row>
@@ -818,6 +824,8 @@
 		<row><td>slider_bg.png</td><td>Files3</td><td>slider_bg.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\public\slider_bg.png</td><td>1</td><td>public</td></row>
 		<row><td>slider_handler.png</td><td>Files3</td><td>slider_handler.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\public\slider_handler.png</td><td>1</td><td>public</td></row>
 		<row><td>speaker.png</td><td>Files3</td><td>speaker.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\roomctrl\speaker.png</td><td>1</td><td>roomctrl</td></row>
+		<row><td>speakseat_normal.png</td><td>Files29</td><td>speakseat_normal.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CONFCTRL_FILES&gt;\speakseat_normal.png</td><td>1</td><td/></row>
+		<row><td>speakseat_select.png</td><td>Files29</td><td>speakseat_select.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_CONFCTRL_FILES&gt;\speakseat_select.png</td><td>1</td><td/></row>
 		<row><td>speakseatoff.png</td><td>Files3</td><td>speakseatoff.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\cnsmanage\speakseatoff.png</td><td>1</td><td>cnsmanage</td></row>
 		<row><td>speakseaton.png</td><td>Files3</td><td>speakseaton.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\res\cnsmanage\speakseaton.png</td><td>1</td><td>cnsmanage</td></row>
 		<row><td>srcselwatch.xml</td><td>Files3</td><td>srcselwatch.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PATH_TO_SKIN_FILES&gt;\srcselwatch.xml</td><td>1</td><td/></row>
@@ -960,6 +968,8 @@
 		<row><td>Files25</td><td/><td/><td>_95F56BF1_F685_4868_A521_5527E18727B4_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files26</td><td/><td/><td>_A34589B2_82B1_4EE8_9EC2_FC2266270AFF_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files27</td><td/><td/><td>_AC67EAD6_E7C7_4652_BF50_F2AA8B54F67C_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Files28</td><td/><td/><td>_FF0593EB_8FB0_4A8D_85E8_E6ABEFAD9643_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Files29</td><td/><td/><td>_A21E9821_7492_4D32_9D36_6C7900711954_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files3</td><td/><td/><td>_98F1F710_6157_49CD_8299_BADC4FE4F1F5_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files4</td><td/><td/><td>_C446599C_7574_41F6_876A_D6734FDCE0C2_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Files5</td><td/><td/><td>_EAF03D90_820F_4DA1_962E_871ED0A6B74E_FILTER</td><td/><td/><td/><td/></row>
@@ -1223,8 +1233,10 @@
 		<row><td>ISProductFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectDataFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectFolder</td><td/><td/><td>1</td></row>
+		<row><td>PATH_TO_ADDRBOOK_FILES</td><td>..\setup files\skin\res\addrbook</td><td/><td>2</td></row>
 		<row><td>PATH_TO_CNSMANAGE_FILES</td><td>..\setup files\skin\res\cnsmanage</td><td/><td>2</td></row>
 		<row><td>PATH_TO_CNSMANAGE_FILES1</td><td>..\setup files\skin\res\cnsmanage</td><td/><td>2</td></row>
+		<row><td>PATH_TO_CONFCTRL_FILES</td><td>..\setup files\skin\res\confctrl</td><td/><td>2</td></row>
 		<row><td>PATH_TO_CONFPOLL_FILES</td><td>..\setup files\skin\res\confctrl\confpoll</td><td/><td>2</td></row>
 		<row><td>PATH_TO_CONFPOLL_FILES1</td><td>..\setup files\skin\res\confctrl\confpoll</td><td/><td>2</td></row>
 		<row><td>PATH_TO_DLL_FILES</td><td>..\setup files</td><td/><td>2</td></row>

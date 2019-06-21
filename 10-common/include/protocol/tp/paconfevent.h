@@ -806,6 +806,18 @@ enum EnumPAConfEvent
 	_pabody ( TPAConfGetTempPwdNtfy  ,1)
 	_paev_end
 
+	_paevent( ev_PACNS_UMS_Vac_Cmd )
+	_pabody ( TPAUmsVacInfo  ,1)
+	_paev_end
+
+	_paevent( ev_PA_UMS_CNS_VacCmd_Ind )
+	_pabody ( TPAUmsVacInfo  ,1)
+	_paev_end
+
+	_paevent( ev_PA_UMS_CNS_VacInfo_Notify )
+	_pabody ( TPAUmsVacInfo  ,1)
+	_paev_end
+
 #ifndef _PA_EventDescription_
 	_paev_segment_end( paconfevent )
 };

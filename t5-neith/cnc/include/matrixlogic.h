@@ -129,8 +129,6 @@ protected:
 
     //断链
     bool OnDisconnect(WPARAM wParam, LPARAM lParam, bool& bHandle);
-    //会场信息通知
-    bool OnCnsInfoNotify(WPARAM wParam, LPARAM lParam, bool& bHandle);
     //矩阵配置更新
     bool OnMatrixConFigNotify(WPARAM wParam, LPARAM lParam, bool& bHandle);
     //矩阵预案信息通知

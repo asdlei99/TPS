@@ -523,27 +523,27 @@
 				<Label name="" float="true" pos="1492,180,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
 			</VerticalLayout>
 			<HorizontalLayout name="SrceensourceLayout" float="true"  pos="316,260,0,0" width="1288" height="402" >
-				<VerticalLayout name=""  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
+				<VerticalLayout name="SrceensourceLayout1"  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
 					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
 					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组1" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
 				</VerticalLayout>
 			  	<Control />
-				<VerticalLayout name=""  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
+				<VerticalLayout name="SrceensourceLayout2"  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
 					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
 					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组2" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
 				</VerticalLayout>
 				<Control />
-				<VerticalLayout name=""  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
+				<VerticalLayout name="SrceensourceLayout3"  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
 					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
 					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组3" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
 				</VerticalLayout>
 				<Control />
-				<VerticalLayout name=""  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" > 
+				<VerticalLayout name="SrceensourceLayout4"  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" > 
 					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
 					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组4" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
 				</VerticalLayout>
 				<Control />
-				<VerticalLayout name=""  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
+				<VerticalLayout name="SrceensourceLayout5"  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
 					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
 					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组5" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
 				</VerticalLayout>
@@ -566,13 +566,48 @@
 			<Label name="" float="true" pos="300,804,0,0" width="64" height="64" text="全选" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
 			<CheckBox name="OptIsControlAll" float="true" pos="368,804,0,0" width="64" height="64" tag="0" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
 		
+			<Case name="caseCheckSelect1">
+				<SrceensourceLayout1 bkimage="res\roomctrl\VedioSource_select.png"/>
+			</Case>
+			<Case name="caseCheckNotSelect1">
+				<SrceensourceLayout1 bkimage="res\roomctrl\VedioSource_normal.png"/>
+			</Case>
+			<Case name="caseCheckSelect2">
+				<SrceensourceLayout2 bkimage="res\roomctrl\VedioSource_select.png"/>
+			</Case>
+			<Case name="caseCheckNotSelect2">
+				<SrceensourceLayout2 bkimage="res\roomctrl\VedioSource_normal.png"/>
+			</Case>
+			<Case name="caseCheckSelect3">
+				<SrceensourceLayout3 bkimage="res\roomctrl\VedioSource_select.png"/>
+			</Case>
+			<Case name="caseCheckNotSelect3">
+				<SrceensourceLayout3 bkimage="res\roomctrl\VedioSource_normal.png"/>
+			</Case>
+			<Case name="caseCheckSelect4">
+				<SrceensourceLayout4 bkimage="res\roomctrl\VedioSource_select.png"/>
+			</Case>
+			<Case name="caseCheckNotSelect4">
+				<SrceensourceLayout4 bkimage="res\roomctrl\VedioSource_normal.png"/>
+			</Case>
+			<Case name="caseCheckSelect5">
+				<SrceensourceLayout5 bkimage="res\roomctrl\VedioSource_select.png"/>
+			</Case>
+			<Case name="caseCheckNotSelect5">
+				<SrceensourceLayout5 bkimage="res\roomctrl\VedioSource_normal.png"/>
+			</Case>
 			<Case name="caseCheckSelectAll">		
 				<OptIsControl1 selected="true"/>
 				<OptIsControl2 selected="true"/>
 				<OptIsControl3 selected="true"/>
 				<OptIsControl4 selected="true"/>	
 				<OptIsControl5 selected="true"/>
-				<OptIsControlAll selected="true"/>					
+				<OptIsControlAll selected="true"/>
+				<SrceensourceLayout1 bkimage="res\roomctrl\VedioSource_select.png"/>
+				<SrceensourceLayout2 bkimage="res\roomctrl\VedioSource_select.png"/>
+				<SrceensourceLayout3 bkimage="res\roomctrl\VedioSource_select.png"/>
+				<SrceensourceLayout4 bkimage="res\roomctrl\VedioSource_select.png"/>
+				<SrceensourceLayout5 bkimage="res\roomctrl\VedioSource_select.png"/>
 			</Case>
 			<Case name="caseCheckSelectNone">		
 				<OptIsControl1 selected="false"/>
@@ -581,6 +616,11 @@
 				<OptIsControl4 selected="false"/>	
 				<OptIsControl5 selected="false"/>
 				<OptIsControlAll selected="false"/>
+				<SrceensourceLayout1 bkimage="res\roomctrl\VedioSource_normal.png"/>
+				<SrceensourceLayout2 bkimage="res\roomctrl\VedioSource_normal.png"/>
+				<SrceensourceLayout3 bkimage="res\roomctrl\VedioSource_normal.png"/>
+				<SrceensourceLayout4 bkimage="res\roomctrl\VedioSource_normal.png"/>
+				<SrceensourceLayout5 bkimage="res\roomctrl\VedioSource_normal.png"/>
 			</Case>
 			
 			<Case name="caseIsLiftSrceen">		

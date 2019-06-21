@@ -17,6 +17,7 @@ enum EmCNSCNDSEVENT
  *[消息方向]	cndsnodepool	--> cnmediadsinst
  *
  */_event(  ev_cn_media_dscreate )
+  _body( EmMediaDateType, 1)
 	_body( TTPCnDsData,		1 )
    _ev_end
 

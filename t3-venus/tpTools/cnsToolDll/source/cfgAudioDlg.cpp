@@ -74,6 +74,7 @@ void CCfgAudioDlg::RegCBFun()
 	REG_GOBAL_MEMBER_FUNC( "CCfgAudioDlg::OnBtnMAEC",CCfgAudioDlg::OnBtnMAEC, pThis, CCfgAudioDlg );
 	REG_GOBAL_MEMBER_FUNC( "CCfgAudioDlg::OnBtnAGC",CCfgAudioDlg::OnBtnAGC, pThis, CCfgAudioDlg );
 	REG_GOBAL_MEMBER_FUNC( "CCfgAudioDlg::OnBtnMANS",CCfgAudioDlg::OnBtnMANS, pThis, CCfgAudioDlg );
+    REG_GOBAL_MEMBER_FUNC( "CCfgAudioDlg::OnBtnAE",CCfgAudioDlg::OnBtnAE, pThis, CCfgAudioDlg );
 
 	REG_GOBAL_MEMBER_FUNC( "CCfgAudioDlg::OnSelMixSound", CCfgAudioDlg::OnSelMixSound, pThis, CCfgAudioDlg );
 	REG_GOBAL_MEMBER_FUNC( "CCfgAudioDlg::OnBtnAUX2", CCfgAudioDlg::OnBtnAUX2, pThis, CCfgAudioDlg );
@@ -427,6 +428,18 @@ bool CCfgAudioDlg::OnBtnMANS(const IArgs & arg )
 	return true;
 }
 
+bool CCfgAudioDlg::OnBtnAE(const IArgs & arg )
+{
+    bool bAESwitch = false;
+    UIFACTORYMGR_PTR->GetSwitchState( "CfgAudioDlg/SwitchButtonOfAE", bAESwitch, m_pWndTree );
+    bool bChange = false;
+    if ( (BOOL)bAESwitch != m_tOldAudioSetInfo.m_bUISwitch_VoiceMotivation )
+    {
+        bChange = true;
+    }
+    CheckData("CfgAudioDlg/SwitchButtonOfAE",bChange);
+    return true;
+}
 
 HRESULT CCfgAudioDlg::OnUpdateAudioNty( WPARAM wparam, LPARAM lparam )
 {
@@ -810,6 +823,7 @@ void CCfgAudioDlg::InitCtrlEnable()
 
 	UIFACTORYMGR_PTR->SetSwitchState( "CfgAudioDlg/SwitchButtonOfMAEC", FALSE, m_pWndTree);
 	UIFACTORYMGR_PTR->SetSwitchState( "CfgAudioDlg/SwitchButtonOfAGC", FALSE, m_pWndTree);
+    UIFACTORYMGR_PTR->SetSwitchState( "CfgAudioDlg/SwitchButtonOfAE", FALSE, m_pWndTree);
 }
 
 bool CCfgAudioDlg::UpdateGroup( TTPMPAudioInfo& tAudioInfo )
@@ -849,6 +863,8 @@ bool CCfgAudioDlg::UpdateGroup( TTPMPAudioInfo& tAudioInfo )
 	UIFACTORYMGR_PTR->SetSwitchState( "CfgAudioDlg/SwitchButtonOfMAEC", tAudioInfo.m_bIsAECEnable, m_pWndTree);
 	UIFACTORYMGR_PTR->SetSwitchState( "CfgAudioDlg/SwitchButtonOfMANS", tAudioInfo.m_bIsANSEnable, m_pWndTree);
 
+    //ÌÖÂÛÓïÒô¼¤Àø ÏÔÒþ¿ª¹Ø
+    UIFACTORYMGR_PTR->SetSwitchState( "CfgAudioDlg/SwitchButtonOfAE", tAudioInfo.m_bUISwitch_VoiceMotivation, m_pWndTree);
 	return true;
 }
 
@@ -861,6 +877,7 @@ void CCfgAudioDlg::SetDefaultAudioInfo()
 	m_tOldAudioSetInfo.m_bIsAGCEnable = FALSE;
 	m_tOldAudioSetInfo.m_bIsAECEnable = TRUE;
 	m_tOldAudioSetInfo.m_bIsANSEnable = FALSE;
+    m_tOldAudioSetInfo.m_bUISwitch_VoiceMotivation = FALSE;
 }
 
 void CCfgAudioDlg::SetDefaultMixType()
@@ -906,6 +923,10 @@ void CCfgAudioDlg::SaveGroup( )
 	bool bMANSSwitch = false;										
 	UIFACTORYMGR_PTR->GetSwitchState( "CfgAudioDlg/SwitchButtonOfMANS", bMANSSwitch, m_pWndTree );
 	m_atAudioSetInfo.m_bIsANSEnable = bMANSSwitch;
+
+    bool bAESwitch = false;
+    UIFACTORYMGR_PTR->GetSwitchState( "CfgAudioDlg/SwitchButtonOfAE", bAESwitch, m_pWndTree );
+	m_atAudioSetInfo.m_bUISwitch_VoiceMotivation = bAESwitch;
 
 	s32  nCheckState1;
 	UIFACTORYMGR_PTR->GetCheckState( m_strMixPort1, nCheckState1, m_pWndTree );

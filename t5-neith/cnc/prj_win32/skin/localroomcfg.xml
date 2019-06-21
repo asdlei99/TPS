@@ -126,16 +126,16 @@
 				<VerticalLayout name="IPv4HorLayout">
 					<HorizontalLayout name="">
 						<Label name="" text="IP地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
-						<Edit name="edtIP" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
+						<Edit name="edtIP" text="" float="true" pos="290,0,0,0" height="64" width="612" maxchar="15" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
 						<Label name="lbIP" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
 					</HorizontalLayout>
 					<HorizontalLayout name="">
-						<Label name="" text="子网掩码" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+						<Label name="" text="子网掩码" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64" maxchar="15" textpadding="0,5,0,0" align="left"  gdiplus="true" />
 						<Edit name="edtSubnetMask" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
 						<Label name="lbSubnetMask" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
 					</HorizontalLayout>
 					<HorizontalLayout name="">
-						<Label name="" text="默认网关" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left"  gdiplus="true" />
+						<Label name="" text="默认网关" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64" maxchar="15" textpadding="0,5,0,0" align="left"  gdiplus="true" />
 						<Edit name="edtGateWay" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
 						<Label name="lbGateWay" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
 					</HorizontalLayout>
@@ -143,27 +143,27 @@
 				
 				<VerticalLayout name="IPv6HorLayout" visible="false">
 					<HorizontalLayout name="">
-						<Label name="" text="IPv6地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+						<Label name="" text="IPv6地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64" maxchar="39" textpadding="0,5,0,0" align="left" gdiplus="true" />
 						<Edit name="edtIPv6Address" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
 						<Label name="lbIPv6Address" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
 					</HorizontalLayout>
 					<HorizontalLayout name="">
-						<Label name="" text="子网关前缀长度" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+						<Label name="" text="子网关前缀长度" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64" maxchar="3" textpadding="0,5,0,0" align="left" gdiplus="true" />
 						<Edit name="edtSubNetLength" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
 						<Label name="lbSubNetLength" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
 					</HorizontalLayout>
 					<HorizontalLayout name="">
-						<Label name="" text="网关地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+						<Label name="" text="网关地址" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64" maxchar="39" textpadding="0,5,0,0" align="left" gdiplus="true" />
 						<Edit name="edtGateWayIp" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
 						<Label name="lbGateWayIp" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
 					</HorizontalLayout>
 					<HorizontalLayout name="">
-						<Label name="" text="DNS1" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+						<Label name="" text="DNS1" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64" maxchar="39" textpadding="0,5,0,0" align="left" gdiplus="true" />
 						<Edit name="edtDNS1Ip" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
 						<Label name="lbDNS1Ip" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
 					</HorizontalLayout>
 					<HorizontalLayout name="">
-						<Label name="" text="DNS2" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64"  textpadding="0,5,0,0" align="left" gdiplus="true" />
+						<Label name="" text="DNS2" float="true" pos="41,0,0,0" textcolor="#FED5DEEB" font="1" width="200" height="64" maxchar="39" textpadding="0,5,0,0" align="left" gdiplus="true" />
 						<Edit name="edtDNS2Ip" text="" float="true" pos="290,0,0,0" height="64" width="612" textcolor="#FED5DEEB" font="1" visible="false" textpadding="34,8,34,8" normalimage="res\public\edit612_normal.png" focusedimage="res\public\edit612_select.png" nativebkcolor="#FF1c3655"/>
 						<Label name="lbDNS2Ip" text="" float="true" pos="290,0,600,64" textcolor="#FED5DEEB" font="1" align="center" gdiplus="true" />
 					</HorizontalLayout>

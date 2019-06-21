@@ -720,8 +720,8 @@ void CCncCenterCtrl::OnDCamStateNty(const CMessage& cMsg)
         m_mapDCamCfg.insert(pair<u8, TCentreDCamCfg>( byIndex, tDCamCfg));
     }
 
-    PrtMsg( ev_cns_centreDCamStateNty, emEventTypeCnsRecv, "ByIndex : %d, EmDCamPower: %d, EmDCamRecallNum: %d bDCamUsed:%d",
-        byIndex, tDCamCfg.emDCamPowerMode, tDCamCfg.emDCamRecallNum, tDCamCfg.bDCamUsed);
+    PrtMsg( ev_cns_centreDCamStateNty, emEventTypeCnsRecv, "ByIndex : %d, bDCamUsed : %d, EmDCamPower: %d, EmDCamRecallNum: %d bDCamUsed:%d",
+        byIndex, tDCamCfg.bDCamUsed, tDCamCfg.emDCamPowerMode, tDCamCfg.emDCamRecallNum, tDCamCfg.bDCamUsed);
 
     PostEvent( UI_CNS_DCAMSTATE_NTY );
 }
@@ -1471,9 +1471,6 @@ void CCncCenterCtrl::OnSelectComInd( const CMessage& cMsg )
 EmComType* CCncCenterCtrl::GetComType()
 {
     return m_aemComType;
-}
-}
-
 }
 
 u16 CCncCenterCtrl::SelectDFScreen( u8 bySrceenControl )

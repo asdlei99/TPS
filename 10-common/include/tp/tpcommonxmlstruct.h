@@ -7,10 +7,10 @@
 #include "tpcommonstruct.h"
 #include "tpcommonxmltype.h"
 
-const char XmlTpStructVersion[] = "2019-6-5 16:7:26";
+const char XmlTpStructVersion[] = "2019-6-21 16:0:1";
 
-#define XML_TP_TYPE_NUM      329
-#define XML_TP_STRUCT_NUM    446
+#define XML_TP_TYPE_NUM      331
+#define XML_TP_STRUCT_NUM    447
 
 #define ENUMTYPE( type )\
 	const TXDATAINFO type##membertable[] = {#type,emx_##type,"enum",4,1,0,0,(char*)#type};
@@ -353,6 +353,8 @@ ENUMTYPE(EmComType);
 ENUMTYPE(EmComConfigType);
 ENUMTYPE(EmAddrCode);
 ENUMTYPE(EmCommandType);
+ENUMTYPE(EmMediaDateType);
+ENUMTYPE(EmProtocolVersion);
 
 TXDATAINFO* g_tTpEnumData[]={
 	(TXDATAINFO*)EmTPDevRegUpdateSermembertable,
@@ -684,6 +686,8 @@ TXDATAINFO* g_tTpEnumData[]={
 	(TXDATAINFO*)EmComConfigTypemembertable,
 	(TXDATAINFO*)EmAddrCodemembertable,
 	(TXDATAINFO*)EmCommandTypemembertable,
+	(TXDATAINFO*)EmMediaDateTypemembertable,
+	(TXDATAINFO*)EmProtocolVersionmembertable,
 	(TXDATAINFO*)NULL
 };
 
@@ -2544,10 +2548,17 @@ TYPESTRUCT_BEGIN( TUCSipRegResult )
     TYPESTRUCT_MEMBER( TUCSipRegResult, s32, m_nAliasNum )
 TYPESTRUCT_END(  TUCSipRegResult )
 
+//TTPIPAddress
+TYPESTRUCT_BEGIN( TTPIPAddress )
+    TYPESTRUCT_MEMBER( TTPIPAddress, u32_ip, dwIPV4 )
+    TYPESTRUCT_MEMBER( TTPIPAddress, s8, achIPV6 )
+TYPESTRUCT_END(  TTPIPAddress )
+
 //TCnAddr
 TYPESTRUCT_BEGIN( TCnAddr )
     TYPESTRUCT_MEMBER( TCnAddr, EmTPAddrType, emType )
-    TYPESTRUCT_MEMBER( TCnAddr, u32_ip, dwIP )
+    TYPESTRUCT_MEMBER( TCnAddr, EmProtocolVersion, emProtocolVersion )
+    TYPESTRUCT_MEMBER( TCnAddr, TTPIPAddress, tIP )
     TYPESTRUCT_MEMBER( TCnAddr, u16, wPort )
     TYPESTRUCT_MEMBER( TCnAddr, s8, achAlias )
     TYPESTRUCT_MEMBER( TCnAddr, s8, achE164 )
@@ -2592,6 +2603,7 @@ TYPESTRUCT_BEGIN( TTPDialParam )
     TYPESTRUCT_MEMBER( TTPDialParam, TTpQtEncryptCfg, tQtEncryptCfg )
     TYPESTRUCT_MEMBER( TTPDialParam, u8, m_byNonStdHdrNum )
     TYPESTRUCT_MEMBER( TTPDialParam, TTPSipNstHeader, m_atNonStdHdr )
+    TYPESTRUCT_MEMBER( TTPDialParam, BOOL, bModuleConf )
 TYPESTRUCT_END(  TTPDialParam )
 
 //TTPEthnetInfo
@@ -3402,6 +3414,7 @@ TYPESTRUCT_BEGIN( TTPMPAudioInfo )
     TYPESTRUCT_MEMBER( TTPMPAudioInfo, u8, m_byOutputVolume )
     TYPESTRUCT_MEMBER( TTPMPAudioInfo, EmTPLoudspeakerVal, m_emLoudspeakerVal )
     TYPESTRUCT_MEMBER( TTPMPAudioInfo, u8, m_abyOutputGain )
+    TYPESTRUCT_MEMBER( TTPMPAudioInfo, BOOL, m_bUISwitch_VoiceMotivation )
 TYPESTRUCT_END(  TTPMPAudioInfo )
 
 //TTPVideoDisplayFrm
@@ -4838,6 +4851,7 @@ TXDATAINFO* g_tTpStructData[]={
 	(TXDATAINFO*)TTPSipPackmembertable,
 	(TXDATAINFO*)TTPAddrNtyUsermembertable,
 	(TXDATAINFO*)TUCSipRegResultmembertable,
+	(TXDATAINFO*)TTPIPAddressmembertable,
 	(TXDATAINFO*)TCnAddrmembertable,
 	(TXDATAINFO*)TTPSipNstHeadermembertable,
 	(TXDATAINFO*)TTPDialParammembertable,
@@ -8706,6 +8720,18 @@ const TXENUMINFO enumEmCommandTypeDescript[]={
 	{ (char*)NULL, (int)-1 }
 };
 
+const TXENUMINFO enumEmMediaDateTypeDescript[]={
+	{ "emMediaDateType_RTP", (int)emMediaDateType_RTP },
+	{ "emMediaDateType_RTCP", (int)emMediaDateType_RTCP },
+	{ (char*)NULL, (int)-1 }
+};
+
+const TXENUMINFO enumEmProtocolVersionDescript[]={
+	{ "emIPV4", (int)emIPV4 },
+	{ "emIPV6", (int)emIPV6 },
+	{ (char*)NULL, (int)-1 }
+};
+
 //Ã¶¾ÙÃèÊö×Ö·û´®±í
 TXENUMINFO* enumTpXDescript[]={
 	(TXENUMINFO*)enumEmTPDevRegUpdateSerDescript, 
@@ -9037,6 +9063,8 @@ TXENUMINFO* enumTpXDescript[]={
 	(TXENUMINFO*)enumEmComConfigTypeDescript, 
 	(TXENUMINFO*)enumEmAddrCodeDescript, 
 	(TXENUMINFO*)enumEmCommandTypeDescript, 
+	(TXENUMINFO*)enumEmMediaDateTypeDescript, 
+	(TXENUMINFO*)enumEmProtocolVersionDescript, 
 	(TXENUMINFO*)NULL
 };
 

@@ -433,6 +433,9 @@ protected:
 	//终端会场入会请求
 	void OnJoinConfReq( const CMessage &cMsg );
 
+    //会议讨论
+    void OnSetAudioInfoInd( const CMessage &cMsg );
+
     //电视墙通知
     void OnHduPlanNty( const CMessage& cMsg );
 

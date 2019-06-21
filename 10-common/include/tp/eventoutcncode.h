@@ -548,7 +548,7 @@ _ev_end
   *[消息方向
   *   cn  = > cnmpctrl 
   */_event ( ev_tppCfgSetMTUCmd )
-   _body( s32          ,1 )
+   _body( u16          ,1 )
    _ev_end
 
    /***********************<< 配置音质优先命令 >>************************	

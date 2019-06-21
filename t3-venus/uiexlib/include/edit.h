@@ -177,6 +177,11 @@ public:
 	void GetAddress( DWORD& dwIp );
 	
 	CString GetIpStr( DWORD dwIPAddr);
+
+	void SetIPV6Type(BOOL bIsIpv6Type);
+	
+private:
+	BOOL m_bisIPV6Type;
 };
 
 

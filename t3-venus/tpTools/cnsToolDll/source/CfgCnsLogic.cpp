@@ -113,6 +113,30 @@ bool CCfgCnsLogic::InitWnd( const IArgs & arg )
 	UIFACTORYMGR_PTR->SetCheckState( m_strBtnNetBackUp, 1, m_pWndTree );
 	UIFACTORYMGR_PTR->LoadScheme( "SchmNetBackup", m_pWndTree );
 	
+
+	//IPV6ÊäÈë¿ò
+	CTransparentIpEdit* pEditIPV6Addr = (CTransparentIpEdit*)UIFACTORYMGR_PTR->GetWindowPtr( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlAddress", m_pWndTree );
+	if ( NULL != pEditIPV6Addr )
+	{
+		pEditIPV6Addr->SetIPV6Type(TRUE);
+	}
+	CTransparentIpEdit* pEditIPV6GateWay = (CTransparentIpEdit*)UIFACTORYMGR_PTR->GetWindowPtr( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlGateWay", m_pWndTree );
+	if ( NULL != pEditIPV6GateWay )
+	{
+		pEditIPV6GateWay->SetIPV6Type(TRUE);
+	}
+	CTransparentIpEdit* pEditIPV6DNS1 = (CTransparentIpEdit*)UIFACTORYMGR_PTR->GetWindowPtr( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS1", m_pWndTree );
+	if ( NULL != pEditIPV6DNS1 )
+	{
+		pEditIPV6DNS1->SetIPV6Type(TRUE);
+	}
+	CTransparentIpEdit* pEditIPV6DNS2 = (CTransparentIpEdit*)UIFACTORYMGR_PTR->GetWindowPtr( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS2", m_pWndTree );
+	if ( NULL != pEditIPV6DNS2 )
+	{
+		pEditIPV6DNS2->SetIPV6Type(TRUE);
+	}
+
+	
 	m_pWnd = UIFACTORYMGR_PTR->GetWindowPtr( g_strCfgCnsDlg );
 	if ( NULL != m_pWnd )
 	{

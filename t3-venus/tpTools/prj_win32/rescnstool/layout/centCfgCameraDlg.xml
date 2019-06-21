@@ -179,7 +179,7 @@
     </Window>
 
     <Window Type="TransSwitchButton" Name="DocCameraSwitch" Style="WS_CHILD|WS_CLIPSIBLINGS">
-      <Property Name="WindowPos" Value="x:131 y:103" />
+      <Property Name="WindowPos" Value="x:131 y:140" />
       <Property Name="WindowSize" Value="x:107 y:32" />
       <Property Name="Image" Value="ExistSwitch" />
       <Property Name="WindowEnable" Value="True" />
@@ -193,25 +193,25 @@
         <Property Name="SwitchState" Value="false" />
       </Scheme>
       <Scheme Name="SchmPanCamExist">
-        <Property Name="WindowPos" Value="x:131 y:103" />
+        <Property Name="WindowPos" Value="x:131 y:140" />
       </Scheme>
       <Scheme Name="SchmPanCamNotExist">
-        <Property Name="WindowPos" Value="x:131 y:64" />
+        <Property Name="WindowPos" Value="x:131 y:100" />
       </Scheme>
     </Window>
 
     <Window Type="TransStatic" Name="StcDocCameraMod" Style="WS_CHILD|WS_CLIPSIBLINGS">
-      <Property Name="WindowPos" Value="x:254 y:114" />
+      <Property Name="WindowPos" Value="x:254 y:150" />
       <Property Name="WindowSize" Value="x:98 y:14" />
       <Property Name="WindowCaption" Value="摄像机型号 ：" />
       <Property Name="WindowVisible" Value="True" />
       <Property Name="FontSize" Value="9" />
       <Property Name="Alignment" Value="0" />
       <Scheme Name="SchmPanCamExist">
-        <Property Name="WindowPos" Value="x:254 y:114" />
+        <Property Name="WindowPos" Value="x:254 y:150" />
       </Scheme>
       <Scheme Name="SchmPanCamNotExist">
-        <Property Name="WindowPos" Value="x:254 y:72" />
+        <Property Name="WindowPos" Value="x:254 y:108" />
       </Scheme>
       <Scheme Name="SchmDocCamExist">
         <Property Name="WindowVisible" Value="true" />
@@ -222,7 +222,7 @@
     </Window>
 
     <Window Type="TransCheckButton" Name="CheckBtnIPC822" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
-      <Property Name="WindowPos" Value="x:340 y:110" />
+      <Property Name="WindowPos" Value="x:340 y:146" />
       <Property Name="WindowSize" Value="x:20 y:20" />
       <Property Name="WindowCaption" Value="" />
       <Property Name="WindowVisible" Value="true" />
@@ -237,10 +237,10 @@
         <Property Name="CButtonCheckState" Value="0" />
       </Scheme>
       <Scheme Name="SchmPanCamExist">
-        <Property Name="WindowPos" Value="x:340 y:110" />
+        <Property Name="WindowPos" Value="x:340 y:146" />
       </Scheme>
       <Scheme Name="SchmPanCamNotExist">
-        <Property Name="WindowPos" Value="x:340 y:68" />
+        <Property Name="WindowPos" Value="x:340 y:104" />
       </Scheme>
       <Scheme Name="SchmDocCamExist">
         <Property Name="WindowVisible" Value="true" />
@@ -251,16 +251,16 @@
     </Window>
 
     <Window Type="TransStatic" Name="StcIPC822" Style="WS_CHILD|WS_CLIPSIBLINGS">
-      <Property Name="WindowPos" Value="x:371 y:114" />
+      <Property Name="WindowPos" Value="x:371 y:150" />
       <Property Name="WindowSize" Value="x:160 y:14" />
       <Property Name="WindowCaption" Value="IPC822" />
       <Property Name="WindowVisible" Value="True" />
       <Property Name="FontSize" Value="9" />
       <Scheme Name="SchmPanCamExist">
-        <Property Name="WindowPos" Value="x:371 y:114" />
+        <Property Name="WindowPos" Value="x:371 y:150" />
       </Scheme>
       <Scheme Name="SchmPanCamNotExist">
-        <Property Name="WindowPos" Value="x:371 y:72" />
+        <Property Name="WindowPos" Value="x:371 y:108" />
       </Scheme>
       <Scheme Name="SchmDocCamExist">
         <Property Name="WindowVisible" Value="true" />
@@ -271,7 +271,7 @@
     </Window>
 
     <Window Type="TransCheckButton" Name="CheckBtnPRS200" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTOCHECKBOX">
-      <Property Name="WindowPos" Value="x:448 y:110" />
+      <Property Name="WindowPos" Value="x:448 y:146" />
       <Property Name="WindowSize" Value="x:20 y:20" />
       <Property Name="WindowCaption" Value="" />
       <Property Name="WindowVisible" Value="true" />
@@ -285,10 +285,10 @@
         <Property Name="CButtonCheckState" Value="1" />
       </Scheme>
       <Scheme Name="SchmPanCamExist">
-        <Property Name="WindowPos" Value="x:448 y:110" />
+        <Property Name="WindowPos" Value="x:448 y:146" />
       </Scheme>
       <Scheme Name="SchmPanCamNotExist">
-        <Property Name="WindowPos" Value="x:448 y:68" />
+        <Property Name="WindowPos" Value="x:448 y:104" />
       </Scheme>
       <Scheme Name="SchmDocCamExist">
         <Property Name="WindowVisible" Value="true" />
@@ -299,17 +299,17 @@
     </Window>
 
     <Window Type="TransStatic" Name="StcPRS200" Style="WS_CHILD|WS_CLIPSIBLINGS">
-      <Property Name="WindowPos" Value="x:479 y:114" />
+      <Property Name="WindowPos" Value="x:479 y:150" />
       <Property Name="WindowSize" Value="x:160 y:14" />
       <Property Name="WindowCaption" Value="PRS200" />
       <Property Name="WindowVisible" Value="True" />
       <Property Name="FontSize" Value="9" />
       <Property Name="Alignment" Value="0" />
       <Scheme Name="SchmPanCamExist">
-        <Property Name="WindowPos" Value="x:479 y:114" />
+        <Property Name="WindowPos" Value="x:479 y:150" />
       </Scheme>
       <Scheme Name="SchmPanCamNotExist">
-        <Property Name="WindowPos" Value="x:479 y:72" />
+        <Property Name="WindowPos" Value="x:479 y:108" />
       </Scheme>
       <Scheme Name="SchmDocCamExist">
         <Property Name="WindowVisible" Value="true" />
@@ -320,17 +320,17 @@
     </Window>
     
 	<Window Type="TransStatic" Name="StcIndexOfDCamera" Style="WS_CHILD|WS_CLIPSIBLINGS">
-      <Property Name="WindowPos" Value="x:550 y:114" />
+      <Property Name="WindowPos" Value="x:136 y:114" />
       <Property Name="WindowSize" Value="x:160 y:14" />
-      <Property Name="WindowCaption" Value="摄像机序号 ：" />
+      <Property Name="WindowCaption" Value="串口 ：" />
       <Property Name="WindowVisible" Value="True" />
       <Property Name="FontSize" Value="9" />
       <Property Name="Alignment" Value="0" />
       <Scheme Name="SchmPanCamExist">
-        <Property Name="WindowPos" Value="x:550 y:114" />
+        <Property Name="WindowPos" Value="x:136 y:114" />
       </Scheme>
       <Scheme Name="SchmPanCamNotExist">
-        <Property Name="WindowPos" Value="x:550 y:72" />
+        <Property Name="WindowPos" Value="x:136 y:72" />
       </Scheme>
       <!--Scheme Name="SchmDocCamExist">
         <Property Name="WindowVisible" Value="true" />
@@ -341,8 +341,8 @@
     </Window>
 
     <Window Type="TransComboBox" Name="DCamIndexCombobox" Style="WS_CHILD|WS_CLIPSIBLINGS">
-      <Property Name="WindowPos" Value="x:630 y:105" />
-      <Property Name="WindowSize" Value="x:90 y:32" />
+      <Property Name="WindowPos" Value="x:291 y:104" />
+      <Property Name="WindowSize" Value="x:220 y:32" />
       <Property Name="WindowVisible" Value="True" />
       <Property Name="IsIPStyle" Value="False" />
       <Property Name="TransparentComboBoxListBkColor" Value="r:243 g:245 b:248" />
@@ -355,10 +355,10 @@
       <Property Name="ReadOnly" Value="True" />
       <Event Type="WM_CLICK_COMBOLIST" Value="CCentCfgCameraDlg::OnDocCamIndexChange" />
       <Scheme Name="SchmPanCamExist">
-        <Property Name="WindowPos" Value="x:630 y:105" />
+        <Property Name="WindowPos" Value="x:291 y:104" />
       </Scheme>
       <Scheme Name="SchmPanCamNotExist">
-        <Property Name="WindowPos" Value="x:630 y:63" />
+        <Property Name="WindowPos" Value="x:291 y:64" />
       </Scheme>
       <!--Scheme Name="SchmDocCamExist">
         <Property Name="WindowVisible" Value="true" />
@@ -370,8 +370,8 @@
 	
     <!--文档摄像机-->
     <Window Type="TransparentDlg" Name="DocCameraDlg" Style="WS_CHILD" ExStyle="">
-      <Property Name="WindowPos" Value="x:7 y:150" />
-      <Property Name="WindowSize" Value="x:716 y:344" />
+      <Property Name="WindowPos" Value="x:7 y:180" />
+      <Property Name="WindowSize" Value="x:716 y:320" />
       <Property Name="WindowVisible" Value="true" />
       <Property Name="Image" Value="DocCamerabg.png" />
       <Property Name="FontColor" Value="r:15 g:79 b:81" />
@@ -383,10 +383,10 @@
         <Property Name="WindowVisible" Value="false" />
       </Scheme>
       <Scheme Name="SchmPanCamExist">
-        <Property Name="WindowPos" Value="x:7 y:150" />
+        <Property Name="WindowPos" Value="x:7 y:180" />
       </Scheme>
       <Scheme Name="SchmPanCamNotExist">
-        <Property Name="WindowPos" Value="x:7 y:111" />
+        <Property Name="WindowPos" Value="x:7 y:140" />
       </Scheme>
       
       <Window Type="TransStatic" Name="StcOnCall" Style="WS_CHILD|WS_CLIPSIBLINGS">
@@ -447,16 +447,16 @@
         <Property Name="FontSize" Value="9" />
         <Property Name="Alignment" Value="0" />
       </Window>
-<!--视眼-->
+<!--视野-->
       <Window Type="TransStatic" Name="StcLineVisualField" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:32 y:71" />
+        <Property Name="WindowPos" Value="x:32 y:67" />
         <Property Name="WindowSize" Value="x:3 y:15" />
         <Property Name="WindowCaption" Value="" />
         <Property Name="WindowVisible" Value="True" />
         <Property Name="Image" Value="Camera\line.png" />
       </Window>
       <Window Type="TransStatic" Name="StcVisualField" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:38 y:72" />
+        <Property Name="WindowPos" Value="x:38 y:68" />
         <Property Name="WindowSize" Value="x:200 y:14" />
         <Property Name="WindowCaption" Value="视野" />
         <Property Name="WindowVisible" Value="True" />
@@ -466,7 +466,7 @@
       </Window>
 
       <Window Type="TransButton" Name="BtnZoomPlus" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
-        <Property Name="WindowPos" Value="x:101 y:63" />
+        <Property Name="WindowPos" Value="x:101 y:59" />
         <Property Name="WindowSize" Value="x:68 y:32" />
         <Property Name="WindowCaption" Value="" />
         <Property Name="TransparentBtnUseTimer" Value="True" />
@@ -482,7 +482,7 @@
         </Scheme>
       </Window>
       <Window Type="TransButton" Name="BtnZoomSub" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
-        <Property Name="WindowPos" Value="x:186 y:63" />
+        <Property Name="WindowPos" Value="x:186 y:59" />
         <Property Name="WindowSize" Value="x:68 y:32" />
         <Property Name="WindowCaption" Value="" />
         <Property Name="Image" Value="Camera\BtnZoomSub" />
@@ -499,7 +499,7 @@
       </Window>
 
       <Window Type="TransEdit" Name="EdtZoom" Style="WS_CHILD|ES_WANTRETURN|ES_MULTILINE">
-        <Property Name="WindowPos" Value="x:271 y:63" />
+        <Property Name="WindowPos" Value="x:271 y:59" />
         <Property Name="WindowSize" Value="x:68 y:32" />
         <Property Name="WindowCaption" Value="" />
         <Property Name="Image" Value="CfgNetMng\OptDlg\Edit" />
@@ -519,14 +519,14 @@
       </Window>
 <!--焦距-->
       <Window Type="TransStatic" Name="StcLineFocus" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:32 y:118" />
+        <Property Name="WindowPos" Value="x:32 y:110" />
         <Property Name="WindowSize" Value="x:3 y:15" />
         <Property Name="WindowCaption" Value="" />
         <Property Name="WindowVisible" Value="True" />
         <Property Name="Image" Value="Camera\line.png" />
       </Window>
       <Window Type="TransStatic" Name="StcFocus" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:38 y:119" />
+        <Property Name="WindowPos" Value="x:38 y:111" />
         <Property Name="WindowSize" Value="x:200 y:14" />
         <Property Name="WindowCaption" Value="聚焦" />
         <Property Name="WindowVisible" Value="True" />
@@ -536,7 +536,7 @@
       </Window>
 
       <Window Type="CTransparentSwitchButton" Name="BtnSwitchAutoFocus" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:101 y:110" />
+        <Property Name="WindowPos" Value="x:101 y:102" />
         <Property Name="WindowSize" Value="x:68 y:32" />
         <Property Name="WindowCaption" Value="" />
         <Property Name="Image" Value="Camera\btnAFSwitch" />
@@ -577,7 +577,7 @@
       </Window>-->
 
       <Window Type="CTransparentSwitchButton" Name="BtnSwitchManualFocus" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:186 y:110" />
+        <Property Name="WindowPos" Value="x:186 y:102" />
         <Property Name="WindowSize" Value="x:68 y:32" />
         <Property Name="WindowCaption" Value="" />
         <Property Name="Image" Value="Camera\BtnSwitchManual" />
@@ -618,7 +618,7 @@
       </Window>-->
       
       <Window Type="TransButton" Name="BtnFocusNear" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
-        <Property Name="WindowPos" Value="x:271 y:110" />
+        <Property Name="WindowPos" Value="x:271 y:102" />
         <Property Name="WindowSize" Value="x:68 y:32" />
         <Property Name="WindowCaption" Value="" />
         <Property Name="Image" Value="Camera\BtnFocusNear" />
@@ -642,7 +642,7 @@
       </Window>
 
       <Window Type="TransButton" Name="BtnFocusFar" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
-        <Property Name="WindowPos" Value="x:356 y:110" />
+        <Property Name="WindowPos" Value="x:356 y:102" />
         <Property Name="WindowSize" Value="x:68 y:32" />
         <Property Name="WindowCaption" Value="" />
         <Property Name="Image" Value="BtnPullAway" />
@@ -665,16 +665,16 @@
         </Scheme>
       </Window>
 
-      <!--曝光-->
+<!--曝光-->
       <Window Type="TransStatic" Name="StcLineExposure" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:32 y:165" />
+        <Property Name="WindowPos" Value="x:32 y:153" />
         <Property Name="WindowSize" Value="x:3 y:15" />
         <Property Name="WindowCaption" Value="" />
         <Property Name="WindowVisible" Value="True" />
         <Property Name="Image" Value="Camera\line.png" />
       </Window>
       <Window Type="TransStatic" Name="StcExposure" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:38 y:166" />
+        <Property Name="WindowPos" Value="x:38 y:154" />
         <Property Name="WindowSize" Value="x:200 y:14" />
         <Property Name="WindowCaption" Value="曝光" />
         <Property Name="WindowVisible" Value="True" />
@@ -683,7 +683,7 @@
         <Property Name="FontStyle" Value="1" />
       </Window>
       <Window Type="CTransparentSwitchButton" Name="BtnSwitchAutoExposure" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:101 y:157" />
+        <Property Name="WindowPos" Value="x:101 y:145" />
         <Property Name="WindowSize" Value="x:107 y:32" />
         <Property Name="WindowCaption" Value="" />
         <Property Name="Image" Value="btnAutoSwitch" />
@@ -699,7 +699,7 @@
       </Window>
 
       <Window Type="TransStatic" Name="StcAperture" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:221 y:166" />
+        <Property Name="WindowPos" Value="x:221 y:154" />
         <Property Name="WindowSize" Value="x:200 y:14" />
         <Property Name="WindowCaption" Value="光圈：" />
         <Property Name="WindowVisible" Value="True" />
@@ -707,7 +707,7 @@
         <Property Name="FontSize" Value="9" />
       </Window>
       <Window Type="TransComboBox" Name="ComboboxAperture" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:258 y:157" />
+        <Property Name="WindowPos" Value="x:258 y:145" />
         <Property Name="WindowSize" Value="x:97 y:32" />
         <Property Name="WindowVisible" Value="True" />
         <Property Name="IsIPStyle" Value="False" />
@@ -730,7 +730,7 @@
       </Window>
 
       <Window Type="TransStatic" Name="StcShut" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:359 y:166" />
+        <Property Name="WindowPos" Value="x:359 y:154" />
         <Property Name="WindowSize" Value="x:200 y:14" />
         <Property Name="WindowCaption" Value="快门：" />
         <Property Name="WindowVisible" Value="True" />
@@ -739,7 +739,7 @@
       </Window>
       
       <Window Type="TransComboBox" Name="ComboboxShut" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:396 y:157" />
+        <Property Name="WindowPos" Value="x:396 y:145" />
         <Property Name="WindowSize" Value="x:97 y:32" />
         <Property Name="WindowVisible" Value="True" />
         <Property Name="IsIPStyle" Value="False" />
@@ -762,7 +762,7 @@
       </Window>
 
       <Window Type="TransStatic" Name="StcExposureGain" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:497 y:166" />
+        <Property Name="WindowPos" Value="x:497 y:154" />
         <Property Name="WindowSize" Value="x:200 y:14" />
         <Property Name="WindowCaption" Value="增益：" />
         <Property Name="WindowVisible" Value="True" />
@@ -771,7 +771,7 @@
       </Window>
       
       <Window Type="TransComboBox" Name="ComboboxExposureGain" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:534 y:157" />
+        <Property Name="WindowPos" Value="x:534 y:145" />
         <Property Name="WindowSize" Value="x:97 y:32" />
         <Property Name="WindowVisible" Value="True" />
         <Property Name="IsIPStyle" Value="False" />
@@ -792,16 +792,16 @@
           <Property Name="WindowEnable" Value="true" />
         </Scheme>
       </Window>
-
+<!--白平衡-->
       <Window Type="TransStatic" Name="StcLineWB" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:32 y:212" />
+        <Property Name="WindowPos" Value="x:32 y:196" />
         <Property Name="WindowSize" Value="x:3 y:15" />
         <Property Name="WindowCaption" Value="" />
         <Property Name="WindowVisible" Value="True" />
         <Property Name="Image" Value="Camera\line.png" />
       </Window>
       <Window Type="TransStatic" Name="StcWB" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:38 y:213" />
+        <Property Name="WindowPos" Value="x:38 y:197" />
         <Property Name="WindowSize" Value="x:200 y:14" />
         <Property Name="WindowCaption" Value="白平衡" />
         <Property Name="WindowVisible" Value="True" />
@@ -811,7 +811,7 @@
       </Window>
 
       <Window Type="CTransparentSwitchButton" Name="BtnSwitchWB" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:101 y:203" />
+        <Property Name="WindowPos" Value="x:101 y:187" />
         <Property Name="WindowSize" Value="x:107 y:32" />
         <Property Name="WindowCaption" Value="" />
         <Property Name="Image" Value="btnAutoSwitch" />
@@ -827,7 +827,7 @@
       </Window>
 
       <Window Type="TransStatic" Name="StcRGain" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:106 y:252" />
+        <Property Name="WindowPos" Value="x:106 y:232" />
         <Property Name="WindowSize" Value="x:200 y:14" />
         <Property Name="WindowCaption" Value="R Gain：" />
         <Property Name="WindowVisible" Value="True" />
@@ -835,7 +835,7 @@
         <Property Name="FontSize" Value="9" />
       </Window>
       <Window Type="CTransparentSliderWnd" Name="SliderRGain" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:166 y:250" />
+        <Property Name="WindowPos" Value="x:166 y:230" />
         <Property Name="WindowSize" Value="x:124 y:20" />
         <Property Name="WindowVisible" Value="True" />
         <Property Name="Image" Value="Camera/slider" />
@@ -855,7 +855,7 @@
       </Window>
       
       <Window Type="TransEdit" Name="EditRGain" Style="WS_CHILD|WS_TABSTOP|ES_NUMBER">
-        <Property Name="WindowPos" Value="x:305 y:243" />
+        <Property Name="WindowPos" Value="x:305 y:223" />
         <Property Name="WindowSize" Value="x:54 y:32" />
         <Property Name="WindowCaption" Value="0" />
         <Property Name="Image" Value="CfgNetMng\OptDlg\Edit" />
@@ -878,7 +878,7 @@
       </Window>
 
       <Window Type="TransStatic" Name="StcBGain" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:372 y:252" />
+        <Property Name="WindowPos" Value="x:372 y:232" />
         <Property Name="WindowSize" Value="x:200 y:14" />
         <Property Name="WindowCaption" Value="B Gain：" />
         <Property Name="WindowVisible" Value="True" />
@@ -886,7 +886,7 @@
         <Property Name="FontSize" Value="9" />
       </Window>
       <Window Type="CTransparentSliderWnd" Name="SliderBGain" Style="WS_CHILD|WS_CLIPSIBLINGS">
-        <Property Name="WindowPos" Value="x:432 y:250" />
+        <Property Name="WindowPos" Value="x:432 y:230" />
         <Property Name="WindowSize" Value="x:124 y:20" />
         <Property Name="WindowVisible" Value="True" />
         <Property Name="Image" Value="Camera/slider" />
@@ -905,7 +905,7 @@
       </Window>
       
       <Window Type="TransEdit" Name="EditBGain" Style="WS_CHILD|WS_TABSTOP|ES_NUMBER">
-        <Property Name="WindowPos" Value="x:571 y:243" />
+        <Property Name="WindowPos" Value="x:571 y:233" />
         <Property Name="WindowSize" Value="x:54 y:32" />
         <Property Name="WindowCaption" Value="0" />
         <Property Name="Image" Value="CfgNetMng\OptDlg\Edit" />
@@ -928,7 +928,7 @@
       </Window>
 
       <Window Type="TransButton" Name="BtnCallPreset" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
-        <Property Name="WindowPos" Value="x:483 y:293" />
+        <Property Name="WindowPos" Value="x:483 y:269" />
         <Property Name="WindowSize" Value="x:86 y:38" />
         <Property Name="WindowCaption" Value="调用预置位" />
         <Property Name="Image" Value="Camera\BtnPreset\btnCallPreset" />
@@ -937,7 +937,7 @@
       </Window>
 
       <Window Type="TransButton" Name="BtnSavePerset" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_PUSHBUTTON">
-        <Property Name="WindowPos" Value="x:588 y:293" />
+        <Property Name="WindowPos" Value="x:588 y:269" />
         <Property Name="WindowSize" Value="x:86 y:38" />
         <Property Name="WindowCaption" Value="保存预置位" />
         <Property Name="Image" Value="Camera\BtnPreset\btnSavePreset" />

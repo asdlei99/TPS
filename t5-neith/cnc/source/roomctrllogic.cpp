@@ -425,7 +425,10 @@ bool CRoomCtrlLogic::OnCheckSrceenControl(TNotifyUI& msg)
     {
         return false;
     }
+
+    CDuiString strCaseTemp = _T("");
     int nCheckBoxTag = pCheckBox->GetnTag();
+
     if ( nCheckBoxTag == 0 )//点击全选
     {
         if (pCheckBox->GetCheck())//选中 全部勾选
@@ -446,11 +449,16 @@ bool CRoomCtrlLogic::OnCheckSrceenControl(TNotifyUI& msg)
         if (pCheckBox->GetCheck())
         {
             m_bySrceenControl |= adwTagArray[nCheckBoxTag -1];
+            strCaseTemp.Format(_T("caseCheckSelect%d"), nCheckBoxTag);
+            m_pm->DoCase(strCaseTemp);
         }
         else
         {
             m_bySrceenControl &= ~adwTagArray[nCheckBoxTag -1];
+            strCaseTemp.Format(_T("caseCheckNotSelect%d"), nCheckBoxTag);
+            m_pm->DoCase(strCaseTemp);
         }
+
         //全选按钮状态
         CCheckBoxUI* pCheckBoxAll = (CCheckBoxUI*)ICncCommonOp::FindControl(m_pm,_T("OptIsControlAll"));
         if (pCheckBoxAll == NULL)
@@ -471,6 +479,7 @@ bool CRoomCtrlLogic::OnCheckSrceenControl(TNotifyUI& msg)
             pCheckBoxAll->SetCheckNoMsg(false);
         }
     }
+
 
     if (m_bySrceenControl != 0x1F && m_bySrceenControl != 0)
     {

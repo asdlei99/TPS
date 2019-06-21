@@ -4,7 +4,7 @@
 #include "msgmgr.h"
 #include "xmlengine.h"
 
-const char XmlTpTypeVersion[] = "2019-6-5 16:7:26";
+const char XmlTpTypeVersion[] = "2019-6-21 16:0:1";
 
 // Tp Data struct type begin
 enum EmXDataTpType
@@ -339,6 +339,8 @@ enum EmXDataTpType
 	emx_EmComConfigType,
 	emx_EmAddrCode,
 	emx_EmCommandType,
+	emx_EmMediaDateType,
+	emx_EmProtocolVersion,
 _placeholder_emxEnumTptypeEnd, //Tp枚举类型数据结束 
  _placeholder_emxStructTypeBegin = emxStructTypeBegin, //Tp数据结构类型数据开始
 	emx_TTPFTPFileInfo,
@@ -531,6 +533,7 @@ _placeholder_emxEnumTptypeEnd, //Tp枚举类型数据结束
 	emx_TTPSipPack,
 	emx_TTPAddrNtyUser,
 	emx_TUCSipRegResult,
+	emx_TTPIPAddress,
 	emx_TCnAddr,
 	emx_TTPSipNstHeader,
 	emx_TTPDialParam,

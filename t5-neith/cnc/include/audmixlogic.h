@@ -60,6 +60,8 @@ protected:
 	bool OnStartAudMixInd( WPARAM wParam, LPARAM lParam, bool& bHandle );
 	//添加或删除会议讨论回应
 	bool OnAudMixDisListOprInd( WPARAM wParam, LPARAM lParam, bool& bHandle );
+    //语音激励开关显隐
+    bool OnAudExcitationVisibleInd( WPARAM wParam, LPARAM lParam, bool& bHandle );
 	//语音激励回应
 	bool OnAudMixVacOprInd( WPARAM wParam, LPARAM lParam, bool& bHandle );
 	//切换发言人回应nty

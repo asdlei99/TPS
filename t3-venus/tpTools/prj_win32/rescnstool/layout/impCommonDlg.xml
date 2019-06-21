@@ -8,7 +8,7 @@
 		<Property Name="WindowVisible" Value="true" />
 		<Property Name="Image" Value="optbk.png" />
 		<Property Name="WindowCaption" Value="上传（导入）通用弹出界面" />
-		<Property Name="MoveStatus" Value="false" />	
+		<Property Name="MoveStatus" Value="true" />	
     <Event Type="WM_CNSTOOL_UPLODEPROGRESS" Value="CImpCommonDlgLogic::OnUploadProgress" />		
 		
 	    <Window Type="TransStatic" Name="StcImpCommonCap" Style="WS_CHILD|WS_CLIPSIBLINGS">

@@ -65,6 +65,12 @@ protected:
 	*/
     bool OnBtnAddrConfig(TNotifyUI& msg);
 
+    /** 点击临时呼叫
+	*  @param[in] 消息
+	*  @return 
+	*/
+    bool OnBtnTemporaryCall(TNotifyUI& msg);
+
     /**	 
 	* 功能:  点击地址簿回到主路径
 	* @return   
@@ -120,6 +126,12 @@ protected:
 	* @return   
 	*/
     bool OnBtnAddrInviteOther( TNotifyUI& msg );
+
+    /**	 
+	* 功能:  临时呼叫
+	* @return   
+	*/
+    bool OnBtnAddrTemporaryCall( TNotifyUI& msg );
 
     /**	 
 	* 功能:  Edit激活弹出软键盘

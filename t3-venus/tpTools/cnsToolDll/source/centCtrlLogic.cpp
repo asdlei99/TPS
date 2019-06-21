@@ -1208,6 +1208,32 @@ LRESULT CCentCfgMatrix::OnMatrixConfigNty( WPARAM wParam, LPARAM lParam )
 	return S_OK;
 }
 
+bool CCentCfgMatrix::IsMatrixChange()
+{
+	s32 n = m_vctWndName.size();
+	if ( n > 0 )
+	{
+		return SaveMsgBox();
+	}
+	return true;
+}
+
+bool CCentCfgMatrix::SaveMsgBox()
+{
+	IArgs args("");
+	MSGBOX_RET nMsgBoxRet = MSGBOX_CANCEL;
+	MSG_BOX( nMsgBoxRet, "配置项已修改，是否保存配置？" );	
+	if ( MSGBOX_OK == nMsgBoxRet )
+	{
+		return OnBtnSave(args);		 
+	}
+	else
+	{	
+		OnBtnCancel(args);
+	}
+	return true;
+}
+
 //升降屏
 CCentCfgSrceen::CCentCfgSrceen()
 {

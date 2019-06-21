@@ -77,6 +77,7 @@ APP_BEGIN_MSG_MAP(CConfCtrlLogic, CNotifyUIImpl)
 	USER_MSG(UI_CNS_DUAL_STATE_NOTIFY,OnCnsDualNty)
 	USER_MSG( UI_CNS_CONFSTATE_NOTIFY, OnConfStateNty )
 	USER_MSG( UI_UMS_REFRESH_CONFCNS_LIST, OnRefreshCnsLstNotify )
+    USER_MSG(UI_CNS_ALLMUTE_ALLQUITE_NOTIFY, OnRefreshCnsLstNotify)
 
 	USER_MSG(UI_CNC_SHOW_SHORTCUTDLG_NTY,OnSetTabShow)
 	USER_MSG(UI_CNC_SHORTCUTCHECK_NTY,OnSetShortCheck)
@@ -1965,13 +1966,24 @@ bool CConfCtrlLogic::OnCheckPTPVoiceArouse( TNotifyUI& msg )
 		{
 			ShowMessageBox(_T("开启失败"));
 			pCheckBox->SetCheckNoMsg(false);
+            bIsSet = false;
 		}
 	}
 	else
 	{
 		ShowMessageBox(_T("不在会议中，不能开启"));
 		pCheckBox->SetCheckNoMsg(false);
+        bIsSet = false;
 	}
+
+    if ( bIsSet )
+    {
+        m_pm->DoCase(_T("caseSeatOneSpk"));
+    }
+    else
+    {
+        m_pm->DoCase(_T("caseSeatNoneSpk"));
+    }
 
 	return true;
 }

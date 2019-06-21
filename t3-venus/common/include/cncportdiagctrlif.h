@@ -178,6 +178,10 @@ public:
 	//添加和删除路由
 	virtual u16  RouteMngAddCmd( const TRouteCfg& tRouteCfg ) = 0;
 	virtual u16  RouteMngDelCmd( const TRouteCfg& tRouteCfg ) = 0;
+
+	//串口配置
+	//串口配置
+	virtual EmComType* GetComType() = 0;
 };
 
 #endif 

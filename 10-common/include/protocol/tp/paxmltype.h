@@ -192,6 +192,7 @@ enum EmPAXDataType
 	empax_TPAConfVidFeccInfo,
 	empax_TPAConfGetTempPwdReq,
 	empax_TPAConfGetTempPwdNtfy,
+	empax_TPAUmsVacInfo,
 empaxDataTypeEnd = 500 //类型定义结束
 };
 //	Data struct type end

@@ -2401,7 +2401,6 @@ typedef struct tagTPAUmsAudMixInfo
 	u16			m_wConfId;
 	TPAUmsAudMixList		m_tMixList;
 	u32		m_dwMode;  // 枚举协议间用u32传递，业务侧保持统一定义即可
-	BOOL32		m_bVacOn; 
 
 	tagTPAUmsAudMixInfo()
 	{
@@ -2413,7 +2412,6 @@ typedef struct tagTPAUmsAudMixInfo
 		m_wConfId = TP_INVALID_INDEX;
 		m_tMixList.Clear();
 		m_dwMode = 0;
-		m_bVacOn = 0;
 	}
 
 }TPAUmsAudMixInfo;
@@ -2916,6 +2914,27 @@ typedef struct tagTPAConfVidFeccInfo
 		return *this;
 	}
 }TPAConfVidFeccInfo;
+
+typedef struct tagTPAUmsVacInfo
+{
+	u16			m_wConfId;
+	BOOL32		m_bVacOn;
+	u32			m_dwReserve;	///<   保留字段
+	u32			m_dwReserve1;	///<   保留字段
+	u32			m_dwRet;		///<   协议使用u32 传输，业务强转
+	tagTPAUmsVacInfo()
+	{
+		Clear();
+	}
+	void Clear()
+	{
+		m_wConfId = TP_INVALID_INDEX;
+		m_bVacOn  = FALSE;
+		m_dwRet   = 0;   
+		m_dwReserve  = 0;
+		m_dwReserve1 = 0;
+	}
+}TPAUmsVacInfo;
 
 typedef struct tagTPAConfGetTempPwdReq
 {		

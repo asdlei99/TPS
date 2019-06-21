@@ -358,7 +358,18 @@ bool CMainFrameLogic::OnBtnBack( TNotifyUI& msg )
             
             strCurWnd = g_strAddrbookDlg;
 		}
-
+        if ( strCurWnd == g_strTemporaryCallDlg )//邀请临时会场
+        {
+            CPaintManagerUI* pm = CAddrBookLogic::GetSingletonPtr()->GetPaintManagerUI();
+            if (pm)
+            {
+                CMainFrameLogic::GetSingletonPtr()->SetTitle(_T("地址簿"));
+                CMainFrameLogic::GetSingletonPtr()->SetTitlePic(_T("res/title/imgAddrbook.png"));
+                UIDATAMGR->SetCurShowWndName( g_strAddrbookDlg );
+                ICncCommonOp::ShowControl( false, pm, _T("TemporaryCallLayout") );
+            }
+            return false;
+        }
         if ( strCurWnd == g_strAddrEditDlg )
         {
             String strAddrWnd = UIDATAMGR->GetCurAddrWndName();
@@ -459,6 +470,19 @@ bool CMainFrameLogic::OnBtnExit( TNotifyUI& msg )
 			{
 				strCurWnd = g_strAddrbookDlg;
 			}
+            if (strCurWnd == g_strTemporaryCallDlg)
+            {
+                CPaintManagerUI* pm = CAddrBookLogic::GetSingletonPtr()->GetPaintManagerUI();
+                if (pm)
+                {
+                    CMainFrameLogic::GetSingletonPtr()->SetTitle(_T("地址簿"));
+                    CMainFrameLogic::GetSingletonPtr()->SetTitlePic(_T("res/title/imgAddrbook.png"));
+                    UIDATAMGR->SetCurShowWndName( g_strAddrbookDlg );
+                    ICncCommonOp::ShowControl( false, pm, _T("TemporaryCallLayout") );
+                }
+
+                strCurWnd = g_strAddrbookDlg;
+            }
 			SetTitleTab( false );
 
             if ( strCurWnd == g_strAddrEditDlg )//地址簿管理界面时退出，同时关闭地址簿界面

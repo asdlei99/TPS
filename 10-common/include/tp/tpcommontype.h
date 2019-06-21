@@ -4082,4 +4082,14 @@ enum EmCommandType
 	emScrrenDown,
 	emScrrenStop,
 };
+enum EmMediaDateType
+{
+	emMediaDateType_RTP = 0,
+	emMediaDateType_RTCP,
+};
+enum EmProtocolVersion
+{
+	emIPV4 = 0,
+	emIPV6,
+};
 #endif // _h_tpcommontype_h__

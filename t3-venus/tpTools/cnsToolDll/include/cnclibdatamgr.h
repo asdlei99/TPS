@@ -503,6 +503,8 @@ public:
 	u16 GetDCamStateMap( map<u8, TCentreDCamCfg> &mapDCamCfg ) const;
 	
 	u16 GetDCamState( TCentreDCamCfg &tCentreDCamCfg, u8 byIndex ) const;
+
+	u16 GetComType( EmComType** pemComType )const;
 protected:
     virtual BOOL PreCreateWindow( CREATESTRUCT& cs );
     virtual LRESULT DefWindowProc(UINT message, WPARAM wParam, LPARAM lParam); 

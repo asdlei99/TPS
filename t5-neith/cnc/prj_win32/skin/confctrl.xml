@@ -25,7 +25,7 @@
         <Option name="confpoll" text="会议轮询" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
         <Option name="audmix" text="会议讨论" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
         <Option name="confdual" text="双流" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
-        <Option name="mixmotive" text="语音激励" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
+        <Option name="mixmotive" text="坐席激励" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
         <Option name="pip" text="画中画" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
 		<Option name="tvwall" text="电视墙" padding="2,23,0,0" width="231" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />		
         <Option name="FeccCam" text="摄像机远摇" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
@@ -83,13 +83,64 @@
 		<Label text="创建快捷操作" float="true" pos="751,864,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
 		<CheckBox name="CheckDualShotCut" float="true" pos="1044,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
 	  </VerticalLayout>
-	  <!--语音激励 -->
+	  <!--坐席激励 -->
 	  <VerticalLayout name="voicearouselayout">
-		<Label name="" float="true" pos="748,170,0,0" width="424" height="424" bkimage="res/confctrl/imgMixMotive.png"/>	
+		<!--Label name="" float="true" pos="748,170,0,0" width="424" height="424" bkimage="res/confctrl/imgMixMotive.png"/>	
 		<Label text="开启语音激励" float="true" pos="751,765,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
 		<CheckBox name="CheckVoiceArouse" float="true" pos="1044,765,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
 		<Label text="创建快捷操作" float="true" pos="751,864,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
-		<CheckBox name="CheckVSShortCut" float="true" pos="1044,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
+		<CheckBox name="CheckVSShortCut" float="true" pos="1044,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" /-->
+		<HorizontalLayout>
+			<Label name="" float="true" pos="106,50,0,0" width="555" height="376" bkimage="res/confctrl/imgSeatExcitation.png"/>
+			<Label name="" float="true" pos="683,50,0,0" width="555" height="376" bkimage="res/confctrl/imgSeatExcitation.png"/>
+			<Label name="" float="true" pos="1260,50,0,0" width="555" height="376" bkimage="res/confctrl/imgSeatExcitation.png"/>
+		</HorizontalLayout>
+		<!-- 发言坐席 -->
+		<HorizontalLayout height="140" >
+			<Control />
+			<VerticalLayout name="SpeakSeat1Layout" width="435" height="140" >
+				<Button name="btnSpeakSeat1" width="435" height="81" normalimage="res/confctrl/speakseat_normal.png" enabled="false"/>
+				<Control height="24" />
+				<Label name="LabSpeakSeat1" width="435" height="24" text="发言坐席" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" align="center" />
+				<Control />
+			</VerticalLayout>
+			<Control width="182" />
+			<VerticalLayout name="SpeakSeat2Layout" width="435" height="140" >
+				<Button name="btnSpeakSeat2" width="435" height="81" normalimage="res/confctrl/speakseat_normal.png" enabled="false"/>
+				<Control height="24" />
+				<Label name="LabSpeakSeat2" width="435" height="24" text="发言坐席" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" align="center" />
+				<Control />
+			</VerticalLayout>
+			<Control width="182" />
+			<VerticalLayout name="SpeakSeat3Layout" width="435" height="140" >
+				<Button name="btnSpeakSeat3" width="435" height="81" normalimage="res/confctrl/speakseat_normal.png" enabled="false"/>
+				<Control height="24" />
+				<Label name="LabSpeakSeat3" width="435" height="24" text="发言坐席" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" align="center" />
+				<Control />
+			</VerticalLayout>
+			<Control />
+		</HorizontalLayout>
+		<HorizontalLayout height="303" >
+			<Label text="开启坐席激励" float="true" pos="751,118,0,0" width="293" height="66" textcolor="#CCD5DEEB" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+			<CheckBox name="CheckVoiceArouse" float="true" pos="1044,118,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+		</HorizontalLayout>
+		<Case name="caseSeatOneSpk">
+			<!--btnSpeakSeat1 normalimage="res/cnsmanage/speakseaton.png" enabled="false"/--> 
+			<btnSpeakSeat2 normalimage="res/confctrl/speakseat_select.png" enabled="false"/>
+			<LabSpeakSeat2 textcolor="#FFFFFFFF"/>
+			<!--btnSpeakSeat3 normalimage="res/cnsmanage/speakseaton.png" enabled="false"/--> 
+		</Case>
+		<Case name="caseSeatNoneSpk">	
+			<!--btnSpeakSeat1 normalimage="res/cnsmanage/speakseatoff.png" enabled="true"/--> 
+			<btnSpeakSeat2 normalimage="res/confctrl/speakseat_normal.png" enabled="false"/>
+			<LabSpeakSeat2 textcolor="#FF92A7C2"/>
+			<!--btnSpeakSeat3 normalimage="res/cnsmanage/speakseatoff.png" enabled="true"/--> 
+		</Case>
+		<Case name="caseSeatNoConf">	
+			<btnSpeakSeat1 normalimage="res/confctrl/speakseat_normal.png" enabled="false"/> 
+			<btnSpeakSeat2 normalimage="res/confctrl/speakseat_normal.png" enabled="false"/> 
+			<btnSpeakSeat3 normalimage="res/confctrl/speakseat_normal.png" enabled="false"/> 
+		</Case>	
 	  </VerticalLayout>
 	  <!--画中画 -->
 	  <VerticalLayout name="piplayout">  		

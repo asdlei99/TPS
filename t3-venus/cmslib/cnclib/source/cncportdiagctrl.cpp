@@ -7,6 +7,8 @@ CCncPortDiagCtrl::CCncPortDiagCtrl(CCnsSession &cSession)
 	m_bWhiteNoise[0]= FALSE;
 	m_bWhiteNoise[1]= FALSE;
 	m_bWhiteNoise[2]= FALSE;
+	m_aemComType[0]= emDFScreen;
+	m_aemComType[1]= emDFScreen;
 	m_pSession = &cSession;
 	BuildEventsMap();
 }
@@ -1293,9 +1295,9 @@ u16 CCncPortDiagCtrl::SetAudioInfoCmd( const TTPMPAudioInfo* ptAudioPortInfo )
 	
 	u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
 	
-	PrtMsg( ev_CnSetAudioInfo_Cmd, emEventTypecnstoolSend, "AudioInfoSetCmd ,增益1:%d, 增益2:%d, 增益3:%d,MAEC:%d,AGC:%d" ,
+	PrtMsg( ev_CnSetAudioInfo_Cmd, emEventTypecnstoolSend, "AudioInfoSetCmd ,增益1:%d, 增益2:%d, 增益3:%d,MAEC:%d,AGC:%d,讨论语音激励:%d",
 		ptAudioPortInfo->m_abyOutputGain[0],ptAudioPortInfo->m_abyOutputGain[1],ptAudioPortInfo->m_abyOutputGain[2],
-		ptAudioPortInfo->m_bIsAECEnable,ptAudioPortInfo->m_bIsAGCEnable);	
+		ptAudioPortInfo->m_bIsAECEnable,ptAudioPortInfo->m_bIsAGCEnable,ptAudioPortInfo->m_bUISwitch_VoiceMotivation);	
 	return wRet;
 }
 
@@ -1341,9 +1343,9 @@ void CCncPortDiagCtrl::OnAudioInfoInd(const CMessage& cMsg)
 		m_tAudioSetInfo = tAudioInfo;
 	}
 	
-	PrtMsg( ev_CnSetAudioInfo_Ind, emEventTypecnstoolRecv, "AudioInfoInd:%d ,增益1:%d, 增益2:%d, 增益3:%d,MAEC:%d,AGC:%d",bSuccess ,
+	PrtMsg( ev_CnSetAudioInfo_Ind, emEventTypecnstoolRecv, "AudioInfoInd:%d ,增益1:%d, 增益2:%d, 增益3:%d,MAEC:%d,AGC:%d,讨论语音激励:%d",bSuccess ,
 		tAudioInfo.m_abyOutputGain[0],tAudioInfo.m_abyOutputGain[1],tAudioInfo.m_abyOutputGain[2],
-		tAudioInfo.m_bIsAECEnable,tAudioInfo.m_bIsAGCEnable);
+		tAudioInfo.m_bIsAECEnable,tAudioInfo.m_bIsAGCEnable,tAudioInfo.m_bUISwitch_VoiceMotivation);
 	PostEvent( UI_CNSTOOL_MSG_Audio_NTY, 0, (LPARAM)&bSuccess );
 }
 
@@ -2018,7 +2020,8 @@ void CCncPortDiagCtrl::OnSelectComNty( const CMessage& cMsg )
 	CTpMsg cTpMsg(&cMsg);
 	EmComType emComType2 = *(EmComType*)( cTpMsg.GetBody());
 	EmComType emComType3 = *(EmComType*)( cTpMsg.GetBody() + sizeof(EmComType));
-	
+	m_aemComType[0]= emComType2;
+	m_aemComType[1]= emComType3;
 	PrtMsg( ev_Cn_SelectCom_Nty, emEventTypecnstoolRecv, "emComType2:%d emComType3:%d", emComType2, emComType3 );
 	
 	PostEvent( UI_SELECTCOMG_IND, emComType2, emComType3 );
@@ -2035,6 +2038,8 @@ void CCncPortDiagCtrl::OnSelectComInd( const CMessage& cMsg )
 
 	if (bSuccess)
 	{
+		m_aemComType[0]= emComType2;
+		m_aemComType[1]= emComType3;
 		PostEvent( UI_SELECTCOMG_IND, emComType2, emComType3 );
 	}
 	else
@@ -2043,4 +2048,7 @@ void CCncPortDiagCtrl::OnSelectComInd( const CMessage& cMsg )
 	}
 }
 
-
+EmComType* CCncPortDiagCtrl::GetComType()
+{
+	return m_aemComType;
+}

@@ -127,6 +127,8 @@ private:
 
 	bool OnBtnMANS(const IArgs & arg );
 
+    bool OnBtnAE(const IArgs & arg );
+
 	/**功能:  监听输出：本地、远端混音、本地和远端混音输出
 	*  @param[in] 
 	*  @return  

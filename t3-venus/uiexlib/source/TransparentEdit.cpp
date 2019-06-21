@@ -1052,7 +1052,7 @@ LRESULT CTransparentEdit::DefWindowProc(UINT message, WPARAM wParam, LPARAM lPar
 
 
 
-CTransparentIpEdit::CTransparentIpEdit()
+CTransparentIpEdit::CTransparentIpEdit():m_bisIPV6Type(FALSE)
 {
 	//ModifyStyle(0, ES_NUMBER);
 }
@@ -1113,6 +1113,10 @@ CString CTransparentIpEdit::GetIpStr( DWORD dwIPAddr)
     return strIP;
 }
 
+void CTransparentIpEdit::SetIPV6Type(BOOL bIsIpv6Type)
+{
+	m_bisIPV6Type = bIsIpv6Type;
+}
 
 void CTransparentIpEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
 {
@@ -1121,180 +1125,359 @@ void CTransparentIpEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
     {      
         return;
     }
-
-	if (nChar == VK_BACK) 
+	//输入时判断格式
+	if (m_bisIPV6Type)
 	{
-		CEdit::OnChar(nChar, nRepCnt, nFlags);
-	}
-	else if ( (nChar >= '0' && nChar <= '9') || nChar == '.' )
-	{
-		int nStartSel, nEndSel;
-		GetSel( nStartSel, nEndSel );
-		if ( nStartSel != nEndSel )
+		if (nChar == VK_BACK) 
 		{
 			CEdit::OnChar(nChar, nRepCnt, nFlags);
-			return;
 		}
-
-		DWORD dwPos = GetSel() & 0xFFFF;	//获取鼠标当前位置
-		int len;	
-		CString str,tmpS;	//s:编辑框原来的字串加上刚输入的字符；tmpS：用于后面获得原来的字串中“.”的数目
-		GetWindowText( str );
-		GetWindowText( tmpS );
-		len = str.GetLength();
-		str.Insert( dwPos, nChar );
-		//str += nChar;	//加上刚输入的字符
-		if( dwPos==0 && nChar==46 )	//不允许在第一位输入点
-			return;
-		int count = -1;	
-		int i = -1;	 
-		int j = -1;
-		BOOL bDot=TRUE;  //是否可以再输入. （即“.”的数目大于3个）
- 		
-		do	//获取“.”的数量
+		else if ( (nChar >= '0' && nChar <= '9') || (nChar >= 'a' && nChar <= 'f') || (nChar >= 'A' && nChar <= 'F') || nChar == ':' )
 		{
-			count++;
-			i = tmpS.Find( 46, i+1 );
-		}while( i != -1 );
-		if( count >= 3 )
-		{
-			bDot=FALSE;
-		}
-
-		if ( dwPos == len )
-		{	
-			if( len > 0 && tmpS.GetAt(len-1) == 46 && nChar==46 )//如果最后一个字符是"."
+			int nStartSel, nEndSel;
+			GetSel( nStartSel, nEndSel );
+			if ( nStartSel != nEndSel )
 			{
+				CEdit::OnChar(nChar, nRepCnt, nFlags);
 				return;
 			}
 			
-			i = str.ReverseFind(46);	//获取最后一个“.”的位置
-			if( !bDot )//如果不允许输入点
+			DWORD dwPos = GetSel() & 0xFFFF;	//获取鼠标当前位置
+			int len;	
+			CString str,tmpS;	//s:编辑框原来的字串加上刚输入的字符；tmpS：用于后面获得原来的字串中“:”的数目
+			GetWindowText( str );
+			GetWindowText( tmpS );
+			len = str.GetLength();
+			str.Insert( dwPos, nChar );
+			//str += nChar;	//加上刚输入的字符
+			if( dwPos==0 && nChar==':' )	//不允许在第一位输入:
+				return;
+			int count = -1;	
+			int i = -1;	 
+			int j = -1;
+			BOOL bDot=TRUE;  //是否可以再输入: （即“:”的数目大于3个）
+			
+			do	//获取“:”的数量
+			{
+				count++;
+				i = tmpS.Find( ":", i+1 );
+			}while( i != -1 );
+			if( count >= 7 )
+			{
+				bDot=FALSE;
+			}
+			
+			if ( dwPos == len )
+			{	
+				if( len > 0 && tmpS.GetAt(len-1) == ':' && nChar==':' )//如果最后一个字符是":"
+				{
+					return;
+				}
+				
+				i = str.ReverseFind(':');	//获取最后一个“:”的位置
+				if( !bDot )//如果不允许输入:
+				{
+					if ( nChar==':' )
+					{
+						return;
+					}
+					if ( len - i > 4 )
+					{
+						return;
+					}			
+				}
+				else
+				{
+					if ( len - i > 4 && nChar != ':' )
+					{
+						tmpS += ':';
+						SetWindowText( tmpS );
+						
+						SetSel( dwPos+1, dwPos+1, FALSE );
+					}
+				}
+				CEdit::OnChar(nChar, nRepCnt, nFlags);		
+				if( len - i == 4 && len!=4 )	//用字串长度减去最后一个“:”的位置，等于4则在后面加多一个点
+				{
+					BOOL bChange = FALSE;
+//					CString strRight = str.Right(4);
+// 					int nRight = atoi(strRight);
+// 					if ( nRight > 255 )
+// 					{
+// 						strRight = "255";
+// 						str = str.Left( len - 2 ) + strRight;
+// 						bChange = TRUE;
+// 					}
+					
+					if( !bDot )	//判断能否再输入点
+					{
+						if ( bChange )
+						{
+							SetWindowText( str );
+							
+							SetSel( dwPos+1, dwPos+1, FALSE );
+						}					
+						return;
+					}
+					str += ':';
+					SetWindowText( str );
+					
+					SetSel( dwPos+2, dwPos+2, FALSE );	//将鼠标移至相应位置
+				}
+			}
+			else
+			{
+				if ( nChar==':' )
+				{
+					if ( !bDot )
+					{
+						return;
+					}
+					// 				if( tmpS.GetAt(dwPos -1) == 46 || tmpS.GetAt(dwPos) == 46 )
+					// 				{
+					// 					return;
+					// 				}
+					CEdit::OnChar(nChar, nRepCnt, nFlags);
+				}
+				else
+				{
+// 					i = -1;
+// 					j = 0;
+// 					CString astr[4];
+					
+// 					if ( count == 0 )
+// 					{
+// 						int nTemp = atoi( str );
+// 						if ( nTemp > 255 )
+// 						{
+// 							str = "255.";
+// 							SetWindowText( str );
+// 							
+// 							SetSel( 4, 4, FALSE );
+// 							return;
+// 						}
+// 					}
+					
+// 					for ( int k = 0; k <= count; k++ )
+// 					{					
+// 						if ( k == count )
+// 						{
+// 							astr[k] = str.Right( len - i );
+// 						}
+// 						else
+// 						{
+// 							i = str.Find( 46, i+1 ); 
+// 							astr[k] = str.Mid( j, i - j );
+// 						}
+// 						int nTemp = atoi( astr[k] ); 
+// 						int nAstrLen = strlen(astr[k]);
+// 						if ( nTemp > 255 )
+// 						{
+// 							astr[k] = "255";
+// 						}
+// 						else
+// 						{
+// 							if ( nAstrLen > 3 )
+// 							{
+// 								return;
+// 							}
+// 						}
+// 						
+// 						j = i + 1;
+// 					}
+					
+// 					str = "";
+// 					for ( k = 0; k <= count; k++  )
+// 					{
+// 						str += astr[k];
+// 						if ( k != count )
+// 						{
+// 							str += '.';
+// 						}
+// 					}
+// 					SetWindowText( str );	
+// 					SetSel( dwPos+1, dwPos+1, FALSE );				
+				}
+			}
+		}	
+		m_emStatus = emStatusSetFocus;
+	}
+	else
+	{
+		if (nChar == VK_BACK) 
+		{
+			CEdit::OnChar(nChar, nRepCnt, nFlags);
+		}
+		else if ( (nChar >= '0' && nChar <= '9') || nChar == '.' )
+		{
+			int nStartSel, nEndSel;
+			GetSel( nStartSel, nEndSel );
+			if ( nStartSel != nEndSel )
+			{
+				CEdit::OnChar(nChar, nRepCnt, nFlags);
+				return;
+			}
+			
+			DWORD dwPos = GetSel() & 0xFFFF;	//获取鼠标当前位置
+			int len;	
+			CString str,tmpS;	//s:编辑框原来的字串加上刚输入的字符；tmpS：用于后面获得原来的字串中“.”的数目
+			GetWindowText( str );
+			GetWindowText( tmpS );
+			len = str.GetLength();
+			str.Insert( dwPos, nChar );
+			//str += nChar;	//加上刚输入的字符
+			if( dwPos==0 && nChar==46 )	//不允许在第一位输入点
+				return;
+			int count = -1;	
+			int i = -1;	 
+			int j = -1;
+			BOOL bDot=TRUE;  //是否可以再输入. （即“.”的数目大于3个）
+			
+			do	//获取“.”的数量
+			{
+				count++;
+				i = tmpS.Find( 46, i+1 );
+			}while( i != -1 );
+			if( count >= 3 )
+			{
+				bDot=FALSE;
+			}
+			
+			if ( dwPos == len )
+			{	
+				if( len > 0 && tmpS.GetAt(len-1) == 46 && nChar==46 )//如果最后一个字符是"."
+				{
+					return;
+				}
+				
+				i = str.ReverseFind(46);	//获取最后一个“.”的位置
+				if( !bDot )//如果不允许输入点
+				{
+					if ( nChar==46 )
+					{
+						return;
+					}
+					if ( len - i > 3 )
+					{
+						return;
+					}			
+				}
+				else
+				{
+					if ( len - i > 3 && nChar != 46 )
+					{
+						tmpS += 46;
+						SetWindowText( tmpS );
+						
+						SetSel( dwPos+1, dwPos+1, FALSE );
+					}
+				}
+				CEdit::OnChar(nChar, nRepCnt, nFlags);		
+				if( len - i == 3 && len!=3 )	//用字串长度减去最后一个“.”的位置，等于3则在后面加多一个点
+				{
+					BOOL bChange = FALSE;
+					CString strRight = str.Right(3);
+					int nRight = atoi(strRight);
+					if ( nRight > 255 )
+					{
+						strRight = "255";
+						str = str.Left( len - 2 ) + strRight;
+						bChange = TRUE;
+					}
+					
+					if( !bDot )	//判断能否再输入点
+					{
+						if ( bChange )
+						{
+							SetWindowText( str );
+							
+							SetSel( dwPos+1, dwPos+1, FALSE );
+						}					
+						return;
+					}
+					str += 46;
+					SetWindowText( str );
+					
+					SetSel( dwPos+2, dwPos+2, FALSE );	//将鼠标移至相应位置
+				}
+			}
+			else
 			{
 				if ( nChar==46 )
 				{
-					return;
-				}
-				if ( len - i > 3 )
-				{
-					return;
-				}			
-			}
-			else
-			{
-				if ( len - i > 3 && nChar != 46 )
-				{
-					tmpS += 46;
-					SetWindowText( tmpS );
-
-					SetSel( dwPos+1, dwPos+1, FALSE );
-				}
-			}
-			CEdit::OnChar(nChar, nRepCnt, nFlags);		
-			if( len - i == 3 && len!=3 )	//用字串长度减去最后一个“.”的位置，等于3则在后面加多一个点
-			{
-				BOOL bChange = FALSE;
-				CString strRight = str.Right(3);
-				int nRight = atoi(strRight);
-				if ( nRight > 255 )
-				{
-					strRight = "255";
-					str = str.Left( len - 2 ) + strRight;
-					bChange = TRUE;
-				}
-
-				if( !bDot )	//判断能否再输入点
-				{
-					if ( bChange )
+					if ( !bDot )
 					{
-						SetWindowText( str );
-
-						SetSel( dwPos+1, dwPos+1, FALSE );
-					}					
-					return;
-				}
-				str += 46;
-				SetWindowText( str );
-
-				SetSel( dwPos+2, dwPos+2, FALSE );	//将鼠标移至相应位置
-			}
-		}
-		else
-		{
-			if ( nChar==46 )
-			{
-				if ( !bDot )
-				{
-					return;
-				}
-// 				if( tmpS.GetAt(dwPos -1) == 46 || tmpS.GetAt(dwPos) == 46 )
-// 				{
-// 					return;
-// 				}
-				CEdit::OnChar(nChar, nRepCnt, nFlags);
-			}
-			else
-			{
-				i = -1;
-				j = 0;
-				CString astr[4];
-				
-				if ( count == 0 )
-				{
-					int nTemp = atoi( str );
-					if ( nTemp > 255 )
-					{
-						str = "255.";
-						SetWindowText( str );
-
-						SetSel( 4, 4, FALSE );
- 						return;
+						return;
 					}
+					// 				if( tmpS.GetAt(dwPos -1) == 46 || tmpS.GetAt(dwPos) == 46 )
+					// 				{
+					// 					return;
+					// 				}
+					CEdit::OnChar(nChar, nRepCnt, nFlags);
 				}
-
-				for ( int k = 0; k <= count; k++ )
-				{					
-					if ( k == count )
+				else
+				{
+					i = -1;
+					j = 0;
+					CString astr[4];
+					
+					if ( count == 0 )
 					{
-						astr[k] = str.Right( len - i );
-					}
-					else
-					{
-						i = str.Find( 46, i+1 ); 
-						astr[k] = str.Mid( j, i - j );
-					}
-					int nTemp = atoi( astr[k] ); 
-					int nAstrLen = strlen(astr[k]);
-					if ( nTemp > 255 )
-					{
-						astr[k] = "255";
-					}
-					else
-					{
-						if ( nAstrLen > 3 )
+						int nTemp = atoi( str );
+						if ( nTemp > 255 )
 						{
+							str = "255.";
+							SetWindowText( str );
+							
+							SetSel( 4, 4, FALSE );
 							return;
 						}
 					}
-
-					j = i + 1;
-				}
-				
-				str = "";
-				for ( k = 0; k <= count; k++  )
-				{
-					str += astr[k];
-					if ( k != count )
-					{
-						str += '.';
+					
+					for ( int k = 0; k <= count; k++ )
+					{					
+						if ( k == count )
+						{
+							astr[k] = str.Right( len - i );
+						}
+						else
+						{
+							i = str.Find( 46, i+1 ); 
+							astr[k] = str.Mid( j, i - j );
+						}
+						int nTemp = atoi( astr[k] ); 
+						int nAstrLen = strlen(astr[k]);
+						if ( nTemp > 255 )
+						{
+							astr[k] = "255";
+						}
+						else
+						{
+							if ( nAstrLen > 3 )
+							{
+								return;
+							}
+						}
+						
+						j = i + 1;
 					}
+					
+					str = "";
+					for ( k = 0; k <= count; k++  )
+					{
+						str += astr[k];
+						if ( k != count )
+						{
+							str += '.';
+						}
+					}
+					SetWindowText( str );	
+					SetSel( dwPos+1, dwPos+1, FALSE );				
 				}
-				SetWindowText( str );	
-				SetSel( dwPos+1, dwPos+1, FALSE );				
 			}
-		}
-	}	
-	m_emStatus = emStatusSetFocus;
+		}	
+		m_emStatus = emStatusSetFocus;
+	}
 }
 
 CSize CTransparentEdit::GetImageSize()

@@ -489,4 +489,10 @@
 	</ListContainerElement>
   </MatrixListHeaderItem>
   
+  <VScorllItem><!--纵向滚动条填充-->
+    <ListContainerElement width="11" />
+  </VScorllItem>
+  <HScorllItem><!--横向滚动条填充-->
+    <ListContainerElement height="11" />
+  </HScorllItem>
 </subcontrol>

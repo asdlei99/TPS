@@ -34,6 +34,7 @@ APP_BEGIN_MSG_MAP(CAddrBookLogic, CNotifyUIImpl)
     MSG_CLICK(_T("BtnInviteCns"), OnBtnInviteCns)   
     MSG_CLICK(_T("BtnCnsIsSel"), OnBtnCnsIsSel)
     MSG_CLICK(_T("BtnAddrConfig"), OnBtnAddrConfig)   
+    MSG_CLICK(_T("BtnTemporaryCall"), OnBtnTemporaryCall)   
 
     MSG_CLICK(_T("BtnAddrMainPath"), OnBtnAddrMainPath)
     MSG_CLICK(_T("BtnGroupPath1"), OnBtnGroupPath1)
@@ -44,6 +45,8 @@ APP_BEGIN_MSG_MAP(CAddrBookLogic, CNotifyUIImpl)
     MSG_EDITCHANGE(_T("EdtSearch"), OnSearchEditChange)
 
     MSG_CLICK(_T("BtnAddrInviteOther"), OnBtnAddrInviteOther)  
+
+    MSG_CLICK(_T("BtnAddrTemporaryCall"), OnBtnAddrTemporaryCall)   
 	
 	USER_MSG( UI_CNS_ADDRBOOK_CHANGED, UpdateLocalAddrBook )
     USER_MSG( UI_CNS_REFRESH_GLOBAL_ADDRBOOK, OnUpdateGlobalAddrBook )
@@ -1111,32 +1114,14 @@ bool CAddrBookLogic::OnBtnInviteCns(TNotifyUI& msg)
                 TTpCallAddr tCallAddr;
                 tCallAddr.m_tAlias.SetAlias( tp_Alias_h323, tCnsInfo.m_achRoomName );
                 tCallAddr.m_tE164.SetAlias( tp_Alias_e164, tCnsInfo.m_achE164 );
-//                 switch (tCnsInfo.byTerType)
-//                 {
-//                 case 1://监控终端
-//                 case 2://普通终端
-//                     tCallAddr.m_emTpConfProtocol = emTpH323;
-//                     break;
-//                 default://网呈终端 和 其它
-//                     tCallAddr.m_emTpConfProtocol = emTpSIP;
-//                     break;
-//                 }
+                tCallAddr.m_emTpConfProtocol = emTpSIP;
                 tAddrList.Add( tCallAddr );
 
                 TCnAddr tCnAddr;
                 tCnAddr.emType = emTpAlias;
                 strncpy( tCnAddr.achAlias, tCnsInfo.m_achRoomName, TP_MAX_H323ALIAS_LEN+1 );
                 strncpy( tCnAddr.achE164, tCnsInfo.m_achE164, TP_MAX_H323ALIAS_LEN+1 );
-//                 switch (tCnsInfo.byTerType)
-//                 {
-//                 case 1://监控终端
-//                 case 2://普通终端
-//                     tCnAddr.emTpConfProtocol = emTpH323;
-//                     break;
-//                 default://网呈终端 和 其它
-//                     tCnAddr.emTpConfProtocol = emTpSIP;
-//                     break;
-//                 }
+                tCnAddr.emTpConfProtocol = emTpSIP;
                 tCnAddrList.push_back( tCnAddr );
             }
         }
@@ -1195,16 +1180,7 @@ bool CAddrBookLogic::OnBtnInviteCns(TNotifyUI& msg)
             tCnAddr.emType = emTpAlias;
             strncpy( tCnAddr.achAlias, tCnsInfo.m_achRoomName, TP_MAX_H323ALIAS_LEN+1 );
             strncpy( tCnAddr.achE164, tCnsInfo.m_achE164, TP_MAX_H323ALIAS_LEN+1 );
-//             switch (tCnsInfo.byTerType)
-//             {
-//             case 1://监控终端
-//             case 2://普通终端
-//                 tCnAddr.emTpConfProtocol = emTpH323;
-//                 break;
-//             default://网呈终端 和 其它
-//                 tCnAddr.emTpConfProtocol = emTpSIP;
-//                 break;
-//             }
+            tCnAddr.emTpConfProtocol = emTpSIP;
             tCnAddrList.push_back( tCnAddr );
         }
 
@@ -1798,7 +1774,47 @@ bool CAddrBookLogic::OnBtnAddrInviteOther( TNotifyUI& msg )
     return true;
 }
 
+bool CAddrBookLogic::OnBtnAddrTemporaryCall( TNotifyUI& msg )
+{
+    tstring strAddrName = ICncCommonOp::GetControlText( m_pm, _T("EditConfRoomName") );  
+    tstring strAddrIp = ICncCommonOp::GetControlText( m_pm, _T("EditIPV6IP") );
 
+    if ( strAddrName.empty() && strAddrIp.empty() )
+    {
+        ShowMessageBox( _T("会场名称和IP不能全为空") );
+        return false;
+    }
+
+    if ( !strAddrName.empty() )
+    {
+        if ( UIDATAMGR->IsAllE164Number( strAddrName ) )
+        {
+            ShowMessageBox( _T("会场名称不能全为数字及*,号") );
+            return false;
+        }
+        if ( !UIDATAMGR->IsValidTPStr( strAddrName ) )
+        {   
+            CString str; 
+            str.Format( _T("会场名称不可以包含空格及括号中的任意字符 [ %s ]"), INVALID_ALIAS_FOR_SHOW );
+            ShowMessageBox( str );
+            return false;
+        }
+    }
+
+    if( !strAddrIp.empty() )
+    {
+        if ( !UIDATAMGR->IsValidIpV6(CT2A(strAddrIp.c_str())) )
+        {
+            ShowMessageBox((_T("IP地址非法")),false);
+            return false;
+        }
+    } 
+
+    //清空填入信息
+    ICncCommonOp::SetControlText(_T(""), m_pm, _T("EditConfRoomName") );  
+    ICncCommonOp::SetControlText(_T(""), m_pm, _T("EditIPV6IP") );
+    return true;
+}
 
 bool CAddrBookLogic::OnBtnNoticeBack(TNotifyUI& msg)
 {
@@ -2023,6 +2039,7 @@ bool CAddrBookLogic::OnDisconnect(WPARAM wParam, LPARAM lParam, bool& bHandle)
     m_SelGroup.SetNull();
     m_pm->DoCase( _T("caseAddrMainPath") );
     ICncCommonOp::ShowControl( false, m_pm, _T("PageNotice") );
+    ICncCommonOp::ShowControl( false, m_pm, _T("TemporaryCallLayout") ); 
     ICncCommonOp::SetControlText( _T("正在呼叫.."), m_pm, _T("LabelTip") );
     ICncCommonOp::SetControlText( _T(""), m_pm, _T("EdtSearch") );
     ICncCommonOp::EnableControl(true,m_pm,_T("BtnRefresh"));
@@ -2168,6 +2185,18 @@ bool CAddrBookLogic::OnBtnAddrConfig(TNotifyUI& msg)
     //刷新
     CAddrEditLogic::GetSingletonPtr()->UpdateTouchlist();
 
+    return true;
+}
+
+bool CAddrBookLogic::OnBtnTemporaryCall(TNotifyUI& msg)
+{
+
+    CMainFrameLogic::GetSingletonPtr()->SetTitle(_T("临时呼叫"));
+    CMainFrameLogic::GetSingletonPtr()->SetTitlePic(_T("res/title/imgInvite.png"));
+
+    ICncCommonOp::ShowControl( true, m_pm, _T("TemporaryCallLayout") ); 
+
+    UIDATAMGR->SetCurShowWndName( g_strTemporaryCallDlg );
     return true;
 }
 
