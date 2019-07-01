@@ -175,6 +175,12 @@ public:
 	virtual u16 SetFtpInfoRsq( const TTPFtpInfo &tTPFtpInfo ) = 0;
 	
 	virtual u16 SetTelInfoRsp( const TTPTelnetInfo &tTPTelnetInfo) = 0;
+
+	//IPV6
+	virtual u16 SetIpv6Cfg( TTPEthnetIPV6Info tTPEthnetIPV6Info, EmTpIpNameNatSyn emTpIpNameNatSyn) = 0;
+	virtual const TTPEthnetIPV6Info GetIpv6Cfg() = 0;
+	virtual u16 SetIpvType( EmProtocolVersion emProtocolVer ) = 0;
+	virtual const EmProtocolVersion GetIpvType() = 0;
 };
 
 #endif

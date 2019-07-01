@@ -173,7 +173,43 @@ const s8* CCommonInterface::GetMainCnsName()
 	return m_pCnsConfigCtrl->GetMainCnsName();
 }
 
+//IPV6
+u16 CCommonInterface::SetIpv6Cfg( TTPEthnetIPV6Info tTPEthnetIPV6Info, EmTpIpNameNatSyn emTpIpNameNatSyn)
+{
+	if ( NULL == m_pCnsConfigCtrl )
+	{
+		return NULL;
+	}
+	return m_pCnsConfigCtrl->SetIpv6Cfg( tTPEthnetIPV6Info, emTpIpNameNatSyn);
+}
 
+u16 CCommonInterface::SetIpvType( EmProtocolVersion emProtocolVer )
+{
+	if ( NULL == m_pCnsConfigCtrl )
+	{
+		return NULL;
+	}
+	return m_pCnsConfigCtrl->SetIpvType( emProtocolVer );
+}
+
+const u16 CCommonInterface::GetIpv6Cfg( TTPEthnetIPV6Info& tTPEthnetIPV6Info )
+{
+	if ( NULL == m_pCnsConfigCtrl )
+	{
+		return ERR_CMS;
+	}
+	tTPEthnetIPV6Info = m_pCnsConfigCtrl->GetIpv6Cfg();
+	return NO_ERROR;
+}
+
+const EmProtocolVersion CCommonInterface::GetIpvType()
+{
+	if ( NULL == m_pCnsConfigCtrl )
+	{
+		return NULL;
+	}
+	return m_pCnsConfigCtrl->GetIpvType();
+}
  
 
 BOOL32 CCommonInterface::IsCnsInConf( s8* achRoomName )  

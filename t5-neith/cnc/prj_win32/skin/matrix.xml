@@ -81,8 +81,8 @@
 		  <Control />
 		  <HorizontalLayout height="93" padding="0,0,0,0">
 			  <Control />
-			  <Button name="BtnSaveUICancel" width="149" height="64" text="取消" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
 			  <Button name="BtnSaveUISave" padding="20,0,0,0" width="149" height="64" text="保存" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
+			  <Button name="BtnSaveUICancel" width="149" height="64" text="取消" font="1" textcolor="#CCD4DEEB" normalimage="res\public\twoletterbtn_normal.png" pushedimage="res\public\twoletterbtn_down.png" />
 			  <Control />
 		  </HorizontalLayout>
 		  <Control height="100"/>

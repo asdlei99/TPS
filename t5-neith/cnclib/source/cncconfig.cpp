@@ -37,6 +37,10 @@ void CCncConfig::BuildEventsMap()
     REG_PFUN( ev_CnsGKReg_Ret, CCncConfig::OnRegGkRsp );
     REG_PFUN( ev_CnsGKReg_Nty, CCncConfig::OnRegGkNty );
 
+    //IPV6
+    REG_PFUN( ev_CnCfgEthnetIPV6_Ind, CCncConfig::OnCfgEthnetIPV6Ind );
+    REG_PFUN( ev_CnCfgIPVtpye_Ind, CCncConfig::OnIPVtpyeInd );
+
 	REG_PFUN( ev_tppNatReg_Nty, CCncConfig::OnRegNatNty);
 	//»­Ãæ²Ã¼ô
 	REG_PFUN( ev_TppSetVidCutLine_Ind, CCncConfig::OnVidCurLineInd);
@@ -1727,4 +1731,73 @@ void CCncConfig::OnFirstLoginAfterUpdateNty(const CMessage& cMsg)
     PrtMsg( ev_Cn_CNCFirstLogin_Nty, emEventTypeCnsRecv, _T("first login after update."));
 
     PostEvent( UI_FIRSTLOGINAFTERUPDATE_NTY );
+}
+
+//IPV6ÅäÖÃ
+u16 CCncConfig::SetIpv6Cfg( TTPEthnetIPV6Info tTPEthnetIPV6Info, EmTpIpNameNatSyn emTpIpNameNatSyn)
+{
+    CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr();
+    pcTpMsg->SetUserData( m_pSession->GetInst() );
+    pcTpMsg->SetEvent( ev_CnCfgEthnetIPV6_Cmd );
+    pcTpMsg->SetBody( &tTPEthnetIPV6Info, sizeof(TTPEthnetIPV6Info) );
+    pcTpMsg->CatBody( &emTpIpNameNatSyn, sizeof(EmTpIpNameNatSyn) );
+
+    u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
+    PrtMsg( ev_CnCfgEthnetIPV6_Cmd, emEventTypeCnsSend, "IP:%s, SubLen:%d, GateWay:%s, DNS1:%s, DNS2:%s, emTpIpNameNatSyn : %d" ,
+        tTPEthnetIPV6Info.m_achIP,tTPEthnetIPV6Info.m_dwPrefix,tTPEthnetIPV6Info.m_achGateWay,tTPEthnetIPV6Info.m_achDns1,tTPEthnetIPV6Info.m_achDns2, emTpIpNameNatSyn);
+
+    return wRet;
+}
+
+void CCncConfig::OnCfgEthnetIPV6Ind(const CMessage& cMsg)
+{
+    CTpMsg cTpMsg(&cMsg);	
+
+    TTPEthnetIPV6Info tTPEthnetIPV6Info = *(TTPEthnetIPV6Info*)(cTpMsg.GetBody());
+
+    m_tTPEthnetIPV6Info = tTPEthnetIPV6Info;
+
+    PostEvent( UI_CNS_IPV6CFG_NOTIFY );
+
+    PrtMsg( ev_CnCfgEthnetIPV6_Ind, emEventTypeCnsRecv, "IP:%s, SubLen:%d, GateWay:%s, DNS1:%s, DNS2:%s.",
+        tTPEthnetIPV6Info.m_achIP,tTPEthnetIPV6Info.m_dwPrefix,tTPEthnetIPV6Info.m_achGateWay,tTPEthnetIPV6Info.m_achDns1,tTPEthnetIPV6Info.m_achDns2);
+}
+
+const TTPEthnetIPV6Info CCncConfig::GetIpv6Cfg()
+{
+    return m_tTPEthnetIPV6Info;
+}
+
+u16 CCncConfig::SetIpvType( EmProtocolVersion emProtocolVer )
+{
+    CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr();
+    pcTpMsg->SetUserData( m_pSession->GetInst() );
+    pcTpMsg->SetEvent( ev_CnCfgIPVtpye_Cmd );
+    pcTpMsg->SetBody( &emProtocolVer, sizeof(EmProtocolVersion) );
+
+    u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
+    PrtMsg( ev_CnCfgIPVtpye_Cmd, emEventTypeCnsSend, "ProtocolVer : %d" , emProtocolVer);
+
+    return wRet;
+}
+
+void CCncConfig::OnIPVtpyeInd(const CMessage& cMsg)
+{
+    CTpMsg cTpMsg(&cMsg);	
+
+    EmProtocolVersion emProtocolVer = *(EmProtocolVersion*)(cTpMsg.GetBody());
+    BOOL bSuccess = *(BOOL*)(cTpMsg.GetBody() + sizeof(EmProtocolVersion));
+
+    if (bSuccess)
+    {
+        m_emProtocolVersion = emProtocolVer;
+    }
+    PostEvent( UI_CNS_IPVTYPE_NOTIFY );
+
+    PrtMsg( ev_CnCfgIPVtpye_Ind, emEventTypeCnsRecv, "Protocol: %d, Success: %d", emProtocolVer, bSuccess );
+}
+
+const EmProtocolVersion CCncConfig::GetIpvType()
+{
+    return m_emProtocolVersion;
 }

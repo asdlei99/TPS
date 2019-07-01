@@ -33,6 +33,15 @@ public:
 	 */
 	virtual  const TTPGKCfg& GetGkCfg() const ;
 
+	//设置IPV6配置
+	virtual u16 SetIpv6Cfg( TTPEthnetIPV6Info tTPEthnetIPV6Info, EmTpIpNameNatSyn emTpIpNameNatSyn);
+	//后去IPV6配置
+	virtual const TTPEthnetIPV6Info GetIpv6Cfg();
+	//设置网络类型
+	virtual u16 SetIpvType( EmProtocolVersion emProtocolVer );
+	//获取网络类型
+	virtual const EmProtocolVersion GetIpvType();
+
 
 	/** 功能   更新CNS信息
 	 *  @param[in] tInfo CNS信息  byIndex 消息来自哪里(0为cnc 1为维护工具)
@@ -92,6 +101,9 @@ protected:
 	void OnRegSipNty(const CMessage& cMsg);	
 	void OnEthnetInfoInd(const CMessage& cMsg);
 	void OnMainCnsInd(const CMessage& cMsg);
+	//Ipv6 配置
+	void OnCfgEthnetIPV6Ind(const CMessage& cMsg);
+	void OnIPVtpyeInd(const CMessage& cMsg);
 	//void OnCnsOnlineNty(const CMessage& cMsg);
 	void OnCnsOfflineNty(const CMessage& cMsg);
     void OnSysTimeRsp(const CMessage& cMsg);
@@ -125,6 +137,9 @@ private:
 	TCenDevSleepInfo    m_tCenDevSleepInfo;  //系统待机信息
 	TTPNatCfg			m_tNATCfg;			 //NAT信息
 	TTPVgaMixInfo       m_tVgaMixInfo;       //演示源输出接口信息
+
+	EmProtocolVersion   m_emProtocolVersion; //IPV类型
+	TTPEthnetIPV6Info	m_tTPEthnetIPV6Info; //IPV6配置
 };
 
 #endif // !defined(AFX_CNCCONFIG_H__40492EAF_0B43_4101_A0B9_FDD4C21B1D4A__INCLUDED_)

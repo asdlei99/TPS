@@ -30,7 +30,7 @@
 
 /// Debugging function 
 PROTO_EXTERN_API void kdvdatanetver();         ///< Show the version of thie module
-PROTO_EXTERN_API void kdvdatanetlog(u8 level); ///< Be use to control the log level
+PROTO_EXTERN_API void h224log(u8 level); ///< Be use to control the log level
 PROTO_EXTERN_API void printrtppacklen();       ///< To print the rtp pack length
 PROTO_EXTERN_API void kdvdatanetinfo();        ///< The information about send session and recv session
 PROTO_EXTERN_API void kdvdatanethelp();        ///< The help information

@@ -1076,7 +1076,7 @@ bool CCentCfgMatrix::OnChangedMatrixModel( const IArgs & arg )
 bool CCentCfgMatrix::OnChangedMatrixServer( const IArgs & arg )
 {
 	in_addr tAddr;
-	tAddr.S_un.S_addr = m_tTPMatrixConfig.m_tMatrixAddr.GetIP();
+	tAddr.S_un.S_addr = m_tTPMatrixConfig.m_tMatrixAddr.GetIP().dwIPV4;
 	String strOldIP = inet_ntoa(tAddr);
 	if ( "0.0.0.0" == strOldIP )
 	{
@@ -1143,7 +1143,9 @@ bool CCentCfgMatrix::OnBtnSave( const IArgs & arg )
 		UIFACTORYMGR_PTR->SetFocus( "CentCfgMatrixDlg/MatrixServerEdit", m_pWndTree );
 		return false;
 	}
-	tTPMatrixConfig.m_tMatrixAddr.SetIP(htonl(valServerIP.dwIP));
+	tagTTPIPAddress tIP;
+	tIP.dwIPV4 = htonl(valServerIP.dwIP);
+	tTPMatrixConfig.m_tMatrixAddr.SetIP(tIP);
 	//¾ØÕóÅäÖÃ½çÃæ
 	bool bSwitch = false;
 	UIFACTORYMGR_PTR->GetSwitchState("CentCfgMatrixDlg/MatrixSwitchButton",bSwitch,m_pWndTree);
@@ -1198,7 +1200,7 @@ LRESULT CCentCfgMatrix::OnMatrixConfigNty( WPARAM wParam, LPARAM lParam )
 	UIFACTORYMGR_PTR->SetComboText( "CentCfgMatrixDlg/ComboboxInMatrixModel", strMatrixModel, m_pWndTree );
 	//¾ØÕó·þÎñÆ÷µØÖ·
 	Value_IpEditData valIp;
-	valIp.dwIP = ntohl(m_tTPMatrixConfig.m_tMatrixAddr.GetIP());
+	valIp.dwIP = ntohl(m_tTPMatrixConfig.m_tMatrixAddr.GetIP().dwIPV4);
 	UIFACTORYMGR_PTR->SetPropertyValue( valIp, "CentCfgMatrixDlg/MatrixServerEdit", m_pWndTree ); 
 	//¾ØÕóÅäÖÃ½çÃæ
 	UIFACTORYMGR_PTR->SetSwitchState("CentCfgMatrixDlg/MatrixSwitchButton",m_tTPMatrixConfig.m_bOpenUI,m_pWndTree);

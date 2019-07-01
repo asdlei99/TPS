@@ -232,6 +232,8 @@ class H323Module
 {
 	
 public:
+	//Set H460 configuration
+	static BOOL32 H323ModuleSetH460Config(BOOL32 bSupportH460, BOOL32 bMediaTraversalServer, BOOL32 bSupportTransMultiMedia);	
 	/**H323 module init function*/
 	static BOOL32 H323ModuleInit( TH323Cfg &tCfg );
 	/**H323 module start recv*/

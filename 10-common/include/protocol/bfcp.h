@@ -207,7 +207,7 @@ PROTO_API BOOL32 bfcp_server_delete_chair(u32 dwConfId, u16 wFloorId);
 * \param[in]        dwConfId   :the conference id
 * \return           BOOL32, TRUE/FALSE
 */
-PROTO_API BOOL32 bfcp_server_add_client_information(void *pAppPoint, TBfcpSock_Addr *ptAddress, u32 dwConfId);
+PROTO_API BOOL32 bfcp_server_add_client_information(void *pAppPoint, TBfcpSock_Addr *ptAddress, u32 dwConfId, u32 dwUserId);
 
 /**
 * \brief            bfcp server update a client information
@@ -223,7 +223,7 @@ PROTO_API BOOL32 bfcp_server_update_client_information(void *pAppPoint, TBfcpSoc
 * \param[in]        dwConfId   :the conference id
 * \return           BOOL32, TRUE/FALSE
 */
-PROTO_API BOOL32 bfcp_server_delete_client_information(void *pAppPoint, u32 dwConfId);
+PROTO_API BOOL32 bfcp_server_delete_client_information(void *pAppPoint, u32 dwConfId, u32 dwUserId);
 
 PROTO_API BOOL32 bfcp_server_change_max_conference_number(u16 wNumber);
 PROTO_API BOOL32 bfcp_server_change_granted_floor_number(u32 dwConfId, u16 wFloorId, u16 wLimitGrantedFloor);
@@ -241,7 +241,7 @@ PROTO_API void RegBfcpFunLinux();
 * \return           void.
 */
 PROTO_EXTERN_API void bfcphelp();
-PROTO_EXTERN_API void bfcplogon(s32 nLevel);
+PROTO_EXTERN_API void bfcplog(s32 nLevel);
 PROTO_EXTERN_API void bfcplogoff();
 PROTO_EXTERN_API void bfcpver();
 PROTO_EXTERN_API void bfcpcltshow();

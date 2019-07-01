@@ -264,7 +264,7 @@ bool CVideoLogic::OnStartRsp(WPARAM wParam, LPARAM lParam, bool& bHandle)
     {
         TTPCnMediaTransPort tMediaTranAddr = ComInterface->GetAudioTransAddr();
         m_cDecoder.SetAudioBackParam( tMediaTranAddr.m_tBackRtcpPort.GetPort(), 
-                                          tMediaTranAddr.m_tBackRtcpPort.GetIP() );  
+                                          tMediaTranAddr.m_tBackRtcpPort.GetIP().dwIPV4 );  
        
     }
         
@@ -308,7 +308,7 @@ bool CVideoLogic::OnStartRsp(WPARAM wParam, LPARAM lParam, bool& bHandle)
 			WINDOW_MGR_PTR->ShowWindow(g_strVideoDlg.c_str());
 			TTPCnMediaTransPort tMediaTranAddr = ComInterface->GetVedioTransAddr();
 			m_cDecoder.SetVideoBackParam( tMediaTranAddr.m_tBackRtcpPort.GetPort(), 
-				tMediaTranAddr.m_tBackRtcpPort.GetIP() ); 
+				tMediaTranAddr.m_tBackRtcpPort.GetIP().dwIPV4 ); 
 			
 			Window *pVideo = WINDOW_MGR_PTR->GetWindow(g_strVideoDlg.c_str());
 			
@@ -435,11 +435,11 @@ void CVideoLogic::InitParam()
 	u16 wVedioPort = GetIdlePort( dwLocalIP,RTP_LOCALVIDEO_PORT, RTP_LOCALVIDEO_PORT + 100 );
 	u16 wAudioPort = GetIdlePort( dwLocalIP,wVedioPort +2 , RTP_LOCALVIDEO_PORT + 200 );
 
-	m_tVedioIpTransAddr.m_tRtpPort.m_dwIP = htonl(dwLocalIP);
+	m_tVedioIpTransAddr.m_tRtpPort.m_tIP.dwIPV4 = htonl(dwLocalIP);
 	m_tVedioIpTransAddr.m_tRtpPort.m_wPort =  wVedioPort  ;
 
 
-	m_tAudioIpTransAddr.m_tRtpPort.m_dwIP = htonl(dwLocalIP);
+	m_tAudioIpTransAddr.m_tRtpPort.m_tIP.dwIPV4 = htonl(dwLocalIP);
 	m_tAudioIpTransAddr.m_tRtpPort.m_wPort = wAudioPort ;
 
 	//设置监控信息接受的端口和Ip地址

@@ -357,7 +357,8 @@ bool CAddrBookLogic::OnBtnAddrCall(TNotifyUI& msg)
 			    TCnAddr tCnAddr;
 			    strncpy( tCnAddr.achAlias, tAddrInfo.achEntryName, sizeof(tAddrInfo.achEntryName) );
 			    strncpy( tCnAddr.achE164, tAddrInfo.achE164, sizeof(tAddrInfo.achE164) );
-                tCnAddr.dwIP = dwIp;
+                tCnAddr.emProtocolVersion = emIPV4;
+                tCnAddr.tIP.dwIPV4 = dwIp;
                 //tCnAddr.bCallByIPAndAlias = tAddrInfo.bMonitorTer;
 				tCnAddr.bCallByIPAndAlias = (1 == tAddrInfo.byTerType);
                 switch (tAddrInfo.byTerType)
@@ -430,7 +431,8 @@ bool CAddrBookLogic::OnBtnAddrCall(TNotifyUI& msg)
                     tCnAddr.emType = emTpE164Num;
                     strncpy( tCnAddr.achAlias, tAddrInfo.achEntryName, TP_MAX_H323ALIAS_LEN+1 );
                     strncpy( tCnAddr.achE164, tAddrInfo.achE164, TP_MAX_H323ALIAS_LEN+1 );
-                    tCnAddr.dwIP = dwIp;
+                    tCnAddr.emProtocolVersion = emIPV4;
+                    tCnAddr.tIP.dwIPV4 = dwIp;
                     //tCnAddr.bCallByIPAndAlias = tAddrInfo.bMonitorTer;
 					tCnAddr.bCallByIPAndAlias = (1 == tAddrInfo.byTerType);
                     switch (tAddrInfo.byTerType)
@@ -574,7 +576,8 @@ bool CAddrBookLogic::OnBtnAddrCall(TNotifyUI& msg)
                     tCnAddr.emType = emTpE164Num;
                     strncpy( tCnAddr.achAlias, tAddrInfo.achEntryName, TP_MAX_H323ALIAS_LEN+1 );
                     strncpy( tCnAddr.achE164, tAddrInfo.achE164, TP_MAX_H323ALIAS_LEN+1 );
-                    tCnAddr.dwIP = dwIp;
+                    tCnAddr.emProtocolVersion = emIPV4;
+                    tCnAddr.tIP.dwIPV4 = dwIp;
                     //tCnAddr.bCallByIPAndAlias = tAddrInfo.bMonitorTer;
 					tCnAddr.bCallByIPAndAlias = (1 == tAddrInfo.byTerType);
                     tCnAddrList.push_back( tCnAddr );
@@ -611,7 +614,8 @@ bool CAddrBookLogic::OnBtnAddrCall(TNotifyUI& msg)
                     tCnAddr.emType = emTpAlias;
                     strncpy( tCnAddr.achAlias, tAddrInfo.achEntryName, TP_MAX_H323ALIAS_LEN+1 );
                     strncpy( tCnAddr.achE164, tAddrInfo.achE164, TP_MAX_H323ALIAS_LEN+1 );
-                    tCnAddr.dwIP = dwIp;
+                    tCnAddr.emProtocolVersion = emIPV4;
+                    tCnAddr.tIP.dwIPV4 = dwIp;
                     //tCnAddr.bCallByIPAndAlias = tAddrInfo.bMonitorTer;
 					tCnAddr.bCallByIPAndAlias = (1 == tAddrInfo.byTerType);
                     switch (tAddrInfo.byTerType)
@@ -1148,7 +1152,8 @@ bool CAddrBookLogic::OnBtnInviteCns(TNotifyUI& msg)
                 tCnAddr.emType = emTpAlias;
                 strncpy( tCnAddr.achAlias, tAddrInfo.achEntryName, TP_MAX_ALIAS_LEN_CNC+1 );
                 strncpy( tCnAddr.achE164, tAddrInfo.achE164, TP_MAX_ALIAS_LEN_CNC+1 );
-                tCnAddr.dwIP = dwIp;
+                tCnAddr.emProtocolVersion = emIPV4;
+                tCnAddr.tIP.dwIPV4 = dwIp;
                 //tCnAddr.bCallByIPAndAlias = tAddrInfo.bMonitorTer;
 				tCnAddr.bCallByIPAndAlias = (1 == tAddrInfo.byTerType);
                 switch (tAddrInfo.byTerType)
@@ -1225,7 +1230,8 @@ bool CAddrBookLogic::OnBtnInviteCns(TNotifyUI& msg)
                     tCnAddr.emType = emTpE164Num;
                     strncpy( tCnAddr.achAlias, tItem.tAddrInfo.achEntryName, TP_MAX_H323ALIAS_LEN+1 );
                     strncpy( tCnAddr.achE164, tItem.tAddrInfo.achE164, TP_MAX_H323ALIAS_LEN+1 );
-                    tCnAddr.dwIP = dwIp;
+                    tCnAddr.emProtocolVersion = emIPV4;
+                    tCnAddr.tIP.dwIPV4 = dwIp;
                     //tCnAddr.bCallByIPAndAlias = tItem.tAddrInfo.bMonitorTer;
 					tCnAddr.bCallByIPAndAlias = (1 == tItem.tAddrInfo.byTerType);
                     switch (tItem.tAddrInfo.byTerType)
@@ -1272,7 +1278,8 @@ bool CAddrBookLogic::OnBtnInviteCns(TNotifyUI& msg)
                     tCnAddr.emType = emTpAlias;
                     strncpy( tCnAddr.achAlias, tItem.tAddrInfo.achEntryName, TP_MAX_H323ALIAS_LEN+1 );
                     strncpy( tCnAddr.achE164, tItem.tAddrInfo.achE164, TP_MAX_H323ALIAS_LEN+1 );
-                    tCnAddr.dwIP = dwIp;
+                    tCnAddr.emProtocolVersion = emIPV4;
+                    tCnAddr.tIP.dwIPV4 = dwIp;
                     //tCnAddr.bCallByIPAndAlias = tItem.tAddrInfo.bMonitorTer;
 					tCnAddr.bCallByIPAndAlias = (1 == tItem.tAddrInfo.byTerType);
                     switch (tItem.tAddrInfo.byTerType)
@@ -1717,7 +1724,8 @@ bool CAddrBookLogic::OnBtnAddrInviteOther( TNotifyUI& msg )
                 tCnAddr.emType = emTpE164Num;
                 strncpy( tCnAddr.achAlias, CT2A(strAddrName.c_str()), TP_MAX_H323ALIAS_LEN+1 );
                 strncpy( tCnAddr.achE164, CT2A(strAddrE164.c_str()), TP_MAX_H323ALIAS_LEN+1 );
-                tCnAddr.dwIP = dwIp;
+                tCnAddr.emProtocolVersion = emIPV4;
+                tCnAddr.tIP.dwIPV4 = dwIp;
                 tCnAddr.emTpConfProtocol = emProtocol;
                 tCnAddrList.push_back( tCnAddr );
             }
@@ -1726,7 +1734,8 @@ bool CAddrBookLogic::OnBtnAddrInviteOther( TNotifyUI& msg )
                 tCnAddr.emType = emTpAlias;
                 strncpy( tCnAddr.achAlias, CT2A(strAddrName.c_str()), TP_MAX_H323ALIAS_LEN+1 );
                 strncpy( tCnAddr.achE164, CT2A(strAddrE164.c_str()), TP_MAX_H323ALIAS_LEN+1 );
-                tCnAddr.dwIP = dwIp;
+                tCnAddr.emProtocolVersion = emIPV4;
+                tCnAddr.tIP.dwIPV4 = dwIp;
                 tCnAddr.emTpConfProtocol = emProtocol;
                 tCnAddrList.push_back( tCnAddr );
             }

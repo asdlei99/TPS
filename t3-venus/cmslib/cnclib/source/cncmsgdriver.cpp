@@ -782,6 +782,11 @@ void CCncMsgDriver::MappingEventName()
 	MAPPING_HELPER( ev_CnCfgEthnet_Ind, _T("ev_CnCfgEthnet_Ind") );
 	MAPPING_HELPER( ev_CnSetMainRoom_Cmd, _T("ev_CnSetMainRoom_Cmd") );
 	MAPPING_HELPER( ev_CnSetMainRoom_Ind, _T("ev_CnSetMainRoom_Ind") );
+	//IPv6
+	MAPPING_HELPER( ev_CnCfgEthnetIPV6_Cmd, _T("ev_CnCfgEthnetIPV6_Cmd") );
+	MAPPING_HELPER( ev_CnCfgEthnetIPV6_Ind, _T("ev_CnCfgEthnetIPV6_Ind") );
+	MAPPING_HELPER( ev_CnCfgIPVtpye_Cmd, _T("ev_CnCfgIPVtpye_Cmd") );
+	MAPPING_HELPER( ev_CnCfgIPVtpye_Ind, _T("ev_CnCfgIPVtpye_Ind") );
 	//NAT≈‰÷√
 	MAPPING_HELPER( ev_tppNatReg_Nty, _T("ev_tppNatReg_Nty"));
 	MAPPING_HELPER( ev_tppNatReg_Cmd, _T("ev_tppNatReg_Cmd"));

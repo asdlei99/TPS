@@ -244,6 +244,9 @@ public:
      //判断是否同一网段
 	 int IsSameNetworkSegment(char *szIPAdress, char *szIPAdresss1, char *szMask);
 
+	 //是否是正确的IPV6
+	 bool IsValidIpV6( CString szPWStr );
+
 private:
 	
 

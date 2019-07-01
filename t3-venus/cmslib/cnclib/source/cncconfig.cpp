@@ -14,6 +14,8 @@ CCncConfig::CCncConfig(CCnsSession &cSession) : CCncConfigIF(),m_tGkCfg()
 
 	memset( m_achMainRoom, 0, sizeof(m_achMainRoom) );
 
+	m_emProtocolVersion = emIPV4;
+
 	BuildEventsMap();
 }
 
@@ -26,6 +28,11 @@ void CCncConfig::BuildEventsMap()
 {
     REG_PFUN( ev_CnCfgCnsInfo_Ind, CCncConfig::OnCnsInfoNty );
     REG_PFUN( ev_CnCfgEthnet_Ind, CCncConfig::OnEthnetInfoInd );
+	//IPV6≈‰÷√
+	REG_PFUN( ev_CnCfgEthnetIPV6_Ind, CCncConfig::OnCfgEthnetIPV6Ind );
+	REG_PFUN( ev_CnCfgIPVtpye_Ind, CCncConfig::OnIPVtpyeInd );
+
+
     REG_PFUN( ev_tppRegisterRs_Req, CCncConfig::OnRegSipNty );
     REG_PFUN( ev_tpRegisterResult_Nty, CCncConfig::OnRegResultNty );
     REG_PFUN( ev_CnSetMainRoom_Ind, CCncConfig::OnMainCnsInd );
@@ -351,6 +358,75 @@ void CCncConfig::OnEthnetInfoInd( const CMessage& cMsg )
 	PrtMsg( ev_CnCfgEthnet_Ind, emEventTypeCnsRecv, "TTPEthnetInfo: Ip: %s, Inst: %d", inet_ntoa(tAddr), uInst );
 }
 
+//IPV6
+u16 CCncConfig::SetIpv6Cfg( TTPEthnetIPV6Info tTPEthnetIPV6Info, EmTpIpNameNatSyn emTpIpNameNatSyn)
+{
+	CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr();
+	pcTpMsg->SetUserData( m_pSession->GetInst() );
+	pcTpMsg->SetEvent( ev_CnCfgEthnetIPV6_Cmd );
+	pcTpMsg->SetBody( &tTPEthnetIPV6Info, sizeof(TTPEthnetIPV6Info) );
+	pcTpMsg->CatBody( &emTpIpNameNatSyn, sizeof(EmTpIpNameNatSyn) );
+	
+	u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
+	PrtMsg( ev_CnCfgEthnetIPV6_Cmd, emEventTypeCnsSend, "IP:%s, SubLen:%d, GateWay:%s, DNS1:%s, DNS2:%s, emTpIpNameNatSyn : %d" , 
+		tTPEthnetIPV6Info.m_achIP,tTPEthnetIPV6Info.m_dwPrefix,tTPEthnetIPV6Info.m_achGateWay,tTPEthnetIPV6Info.m_achDns1,tTPEthnetIPV6Info.m_achDns2,emTpIpNameNatSyn);
+	
+	return wRet;
+}
+
+void CCncConfig::OnCfgEthnetIPV6Ind(const CMessage& cMsg)
+{
+	CTpMsg cTpMsg(&cMsg);	
+	
+    TTPEthnetIPV6Info tTPEthnetIPV6Info = *(TTPEthnetIPV6Info*)(cTpMsg.GetBody());
+
+	m_tTPEthnetIPV6Info = tTPEthnetIPV6Info;
+
+	PostEvent( UI_CNS_IPV6CFG_NOTIFY );
+	
+	PrtMsg( ev_CnCfgEthnetIPV6_Ind, emEventTypeCnsRecv, "IP:%s, SubLen:%d, GateWay:%s, DNS1:%s, DNS2:%s.",
+			tTPEthnetIPV6Info.m_achIP,tTPEthnetIPV6Info.m_dwPrefix,tTPEthnetIPV6Info.m_achGateWay,tTPEthnetIPV6Info.m_achDns1,tTPEthnetIPV6Info.m_achDns2);
+}
+
+const TTPEthnetIPV6Info CCncConfig::GetIpv6Cfg()
+{
+	return m_tTPEthnetIPV6Info;
+}
+
+u16 CCncConfig::SetIpvType( EmProtocolVersion emProtocolVer )
+{
+	CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr();
+	pcTpMsg->SetUserData( m_pSession->GetInst() );
+	pcTpMsg->SetEvent( ev_CnCfgIPVtpye_Cmd );
+	pcTpMsg->SetBody( &emProtocolVer, sizeof(EmProtocolVersion) );
+	
+	u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
+	PrtMsg( ev_CnCfgIPVtpye_Cmd, emEventTypeCnsSend, "ProtocolVer : %d" , emProtocolVer);
+	
+	return wRet;
+}
+
+void CCncConfig::OnIPVtpyeInd(const CMessage& cMsg)
+{
+	CTpMsg cTpMsg(&cMsg);	
+	
+    EmProtocolVersion emProtocolVer = *(EmProtocolVersion*)(cTpMsg.GetBody());
+	BOOL bSuccess = *(BOOL*)(cTpMsg.GetBody() + sizeof(EmProtocolVersion));
+	
+	if (bSuccess)
+	{
+		m_emProtocolVersion = emProtocolVer;
+	}
+	PostEvent( UI_CNS_IPVTYPE_NOTIFY );
+
+	PrtMsg( ev_CnCfgIPVtpye_Ind, emEventTypeCnsRecv, "Protocol: %d, Success: %d", emProtocolVer, bSuccess );
+}
+
+const EmProtocolVersion CCncConfig::GetIpvType()
+{
+	return m_emProtocolVersion;
+}
+
 void CCncConfig::OnSetCfgWEthnetNty(const CMessage &cMsg)
 {
 	CTpMsg cTpMsg(&cMsg);
@@ -457,6 +533,7 @@ void CCncConfig::OnLinkBreak(const CMessage& cMsg)
 	memset( &m_tVgaMixInfo, 0, sizeof(m_tVgaMixInfo) );
 	m_vctCnsList.clear();
     m_tDualSrcInfo.Clear();
+	m_emProtocolVersion = emIPV4;
     PrtMsg( OSP_DISCONNECT, emEventTypeCnsRecv,"[CCncConfig::OnLinkBreak]«Âø’≈‰÷√–≈œ¢" );
 }
 

@@ -354,8 +354,7 @@ BOOL CCnsSession::IsConnectedCns()
   日  期		版本		修改人		走读人    修改内容
   2011/04/28    1.0		    肖楚然                  创建
 ===========================================================================*/
-u16 CCnsSession::ConnectCns(u32 dwIP, u32 dwPort, char* strUser, 
-							 char* strPwd, BOOL32 bConnect /* = TRUE */)
+u16 CCnsSession::ConnectCns(u32 dwIP, u32 dwPort, char* strUser, char* strPwd, BOOL32 bConnect /* = TRUE */)
 {
     // 建立TCP连接
     if( IsConnectedCns() )
@@ -430,6 +429,72 @@ u16 CCnsSession::ConnectCns(u32 dwIP, u32 dwPort, char* strUser,
 	PrtMsg( ev_CnLogin_Req, emEventTypeCnsSend, "userName:%s pswd:%s", m_cUser.GetName(), m_cUser.GetPassword() );
 
 	return wRet;
+}
+
+u16 CCnsSession::ConnectCns(TOspNetAddr tRmtAddr, char* strUser, char* strPwd, BOOL32 bConnect /* = TRUE */)
+{
+    // 建立TCP连接
+    if( IsConnectedCns() )
+    { 
+        //如何已经登录了该IP，则直接返回，否则断开重连
+        if ( memcmp(&tRmtAddr,&m_tRmtAddr,sizeof(TOspNetAddr)) == 0 )
+        {
+            return ERR_CNC_ACTIVE_CONNECT;
+        }
+        else
+        {
+            DisconnectCns();
+            return ERR_CNC_ACTIVE_CONNECT;
+        }
+
+    }
+
+    //ClearDisp();
+    // 重构消息分发表
+    //BuildEventsMap();
+
+    //建立Osp的TCP连接,得到本地机器的IP地址
+    u32 dwCnNodeId = 0;
+    if ( bConnect )
+    {
+        dwCnNodeId = OspNetConnectTcpNode( tRmtAddr, 10 , 3, 5000 );
+        //保留登陆Cns的ip
+        m_tRmtAddr = tRmtAddr;
+        if( dwCnNodeId == INVALID_NODE )
+        {
+            return ERR_CNC_TCPCONNECT;
+        }		
+    }
+    else
+    {
+        dwCnNodeId = 0;
+    }
+
+    g_CncApp.SetNodeId( dwCnNodeId );
+    g_AddrBookApp.SetNodeId( dwCnNodeId );
+    //设置在node连接中断时需通知的appid和InstId
+    ::OspNodeDiscCBReg( dwCnNodeId, /*AID_CNC2CNS_APP*/GetAppID(), 1);
+
+    m_cUser.Empty();
+
+    m_cUser.SetName(strUser);
+    m_cUser.SetPassword(strPwd);
+
+    // 向CNS发送登录请求
+    memset( g_abyTemp,0, sizeof( g_abyTemp ));
+    ZeroMemory(&m_cMsg, sizeof(CMessage));
+    m_cMsg.event = ev_CnLogin_Req;
+    m_cMsg.length = sizeof(CLoginRequest);
+    memcpy( g_abyTemp, &m_cUser, sizeof(CLoginRequest) );
+    m_cMsg.content = g_abyTemp;
+
+    u16 awEvent[1];
+    awEvent[0] = ev_CnLogin_Rsp;
+    u16 wRet = PostCommand(this, awEvent, 1, TYPE_CMESSAGE, 3000);
+
+    PrtMsg( ev_CnLogin_Req, emEventTypeCnsSend, "userName:%s pswd:%s", m_cUser.GetName(), m_cUser.GetPassword() );
+
+    return wRet;
 }
 
 /*===========================================================================

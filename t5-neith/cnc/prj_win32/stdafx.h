@@ -53,4 +53,9 @@
 #endif
 #endif
 
+//#define LOGIN
+#ifndef LOGIN
+#define CHAIR
+#define INCONF
+#endif
 

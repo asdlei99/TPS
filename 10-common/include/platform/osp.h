@@ -1743,6 +1743,34 @@ API void OspInstDump(u16 aid, u16 InstId, u32 param);
 ====================================================================*/
 API void OspNodeShow(void);
 
+#ifdef _LINUX_
+#define OSP_RESOURCE_LIMIT_NOFILE RLIMIT_NOFILE
+#endif
+
+/*====================================================================
+ 函 数 名：OspGetRlimit
+ 功    能：获取系统资源
+ 参    数：nResource: s32 类型, 参考 OSP_RESOURCE_LIMIT 系列宏
+           cur: u32 *类型, 需要设置的资源当前值
+           nMax: u32 *类型, 需要设置的资源最大值
+ 返 回 值：TRUE 成功; FALSE 失败
+
+====================================================================*/
+API BOOL32 OspGetRlimit(s32 nResource, u32 *pdwCur, u32 *pdwMax);
+
+/*====================================================================
+ 函 数 名：OspSetRlimit
+ 功    能：设置系统资源
+ 参    数：nResource: s32 类型, 参考 OSP_RESOURCE_LIMIT 系列宏
+           cur: u32 类型, 资源当前值
+           nMax: u32 类型, 资源最大值
+ 返 回 值：TRUE 成功; FALSE 失败
+ 示    例:
+           1. 设置文件描述符上限, OspSetRlimit(OSP_RESOURCE_LIMIT_NOFILE, 512, 512)
+               将文件描述符当前值设置为512, 最大值设置为512, 最大值不能小于当前值
+====================================================================*/
+API BOOL32 OspSetRlimit(s32 nResource, const u32 dwCur, const u32 dwMax);
+
 /*=============================================================================
 函 数 名：OspAppShow
 功    能：显示App的状态信息

@@ -781,6 +781,13 @@ void CCncMsgDriver::MappingEventName()
 	MAPPING_HELPER( ev_CnCfgEthnet_Ind, _T("ev_CnCfgEthnet_Ind") );
 	MAPPING_HELPER( ev_CnSetMainRoom_Cmd, _T("ev_CnSetMainRoom_Cmd") );
 	MAPPING_HELPER( ev_CnSetMainRoom_Ind, _T("ev_CnSetMainRoom_Ind") );
+
+    //IPv6
+    MAPPING_HELPER( ev_CnCfgEthnetIPV6_Cmd, _T("ev_CnCfgEthnetIPV6_Cmd") );
+    MAPPING_HELPER( ev_CnCfgEthnetIPV6_Ind, _T("ev_CnCfgEthnetIPV6_Ind") );
+    MAPPING_HELPER( ev_CnCfgIPVtpye_Cmd, _T("ev_CnCfgIPVtpye_Cmd") );
+    MAPPING_HELPER( ev_CnCfgIPVtpye_Ind, _T("ev_CnCfgIPVtpye_Ind") );
+
 	//NAT配置
 	MAPPING_HELPER( ev_tppNatReg_Nty, _T("ev_tppNatReg_Nty"));
 	MAPPING_HELPER( ev_tppNatReg_Cmd, _T("ev_tppNatReg_Cmd"));
@@ -1453,7 +1460,7 @@ void CCncMsgDriver::MappingEventName()
     MAPPING_HELPER( ev_tppSuperadminClear_Cmd, _T("ev_tppSuperadminClear_Cmd") );
 
     //升级后第一次登录
-    MAPPING_HELPER( ev_Cn_CNCFirstLogin_Nty, _T("ev_tppSuperadmin_Nty") );
+    MAPPING_HELPER( ev_Cn_CNCFirstLogin_Nty, _T("ev_Cn_CNCFirstLogin_Nty") );
 
     //矩阵
     MAPPING_HELPER( ev_CnMatrixConfigInfo_Nty, _T("ev_CnMatrixConfigInfo_Nty") );

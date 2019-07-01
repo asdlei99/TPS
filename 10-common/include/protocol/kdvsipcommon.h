@@ -276,6 +276,7 @@ typedef struct tagTlsCfg
 	TCertCfg m_atCertCfg[MAX_CERTICATE_NUM];    ///< cert config array
 	u16      m_wLocalTlsPort;		            ///< ±¾µØtlsÕìÌý¶Ë¿Ú,defult£º5061
 	s8       m_achDevId[MAX_QT_ID_LEN];         ///< devid for qt tls
+	u32      m_dwTlsTimeOut;                    ///< tls time out,millisecond.if it is 0 means no timeout mechanism
     /**
     * \brief            tagTlsCfg Constructor
     * \return           void.
@@ -297,6 +298,7 @@ typedef struct tagTlsCfg
 		cbDestroyQTSession     = NULL;
 		cbGetQTKey             = NULL;
 		m_wLocalTlsPort        = 5061;
+		m_dwTlsTimeOut         = 0;
 	}
 	
 	/**

@@ -331,6 +331,15 @@ public:
 	 */
     virtual const TTpQtEncryptCfg& GetQTEncrypt() const = 0;
 
+    //设置IPV6配置
+    virtual u16 SetIpv6Cfg( TTPEthnetIPV6Info tTPEthnetIPV6Info, EmTpIpNameNatSyn emTpIpNameNatSyn) = 0;
+    //获取IPV6配置
+    virtual const TTPEthnetIPV6Info GetIpv6Cfg() = 0;
+    //设置IPV6类型
+    virtual u16 SetIpvType( EmProtocolVersion emProtocolVer ) = 0;
+    //获取IPV6类型
+    virtual const EmProtocolVersion GetIpvType() = 0;
+
 	/**
     * 功能:	 	        时间同步请求
  	* @param [in]       

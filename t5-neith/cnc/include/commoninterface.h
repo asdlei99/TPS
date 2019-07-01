@@ -32,6 +32,7 @@ public:
 	* @return u16 成功返回0;失败返回非0错误码 
 	*/
 	u16 Connect( u32 dwIp, u16 nPort, LPCTSTR pStrUserName, LPCTSTR pStrPswd ); 
+    u16 Connect( LPSTR pcIpv6, u16 nPort, LPCTSTR pStrUserName, LPCTSTR pStrPswd ); 
 
 	u16 RebootCns();
 
@@ -329,8 +330,8 @@ public:
 	* @return  true:开启，false：关闭  
 	*/
 	BOOL32 IsLocalCnsDual() const;
-	//点对点会议语音激励状态
-	BOOL32 IsLocalPTPVoiceArouse() const;
+	//点对点会议坐席激励状态
+	BOOL32 IsLocalPTPSeatArouse() const;
 
 	/** 
 	* 功能  开启/停止轮询
@@ -488,7 +489,7 @@ public:
     * @remarks 	 */
 	u16 AuxMixVacOpr( const TConfAuxMixVacOpr tConfAuxMixVacOpr);
 	/** 
-	* 功能:  单独控制语音激励
+	* 功能:  单独控制坐席激励
     * @param [in	是否开启	 
     * @return	成功返回0,失败返回非0错误码
     * @remarks 	 */
@@ -831,6 +832,15 @@ public:
     u16 GetSuperadmninInfo(TTpSuperUser& tTpSuperUser);
     //超级管理员解锁所有用户
     u16 UnlockAllUser();
+
+    //设置IPV6配置
+    u16 SetIpv6Cfg( TTPEthnetIPV6Info tTPEthnetIPV6Info, EmTpIpNameNatSyn emTpIpNameNatSyn);
+    //获取IPV6配置
+    u16 GetIpv6Cfg( TTPEthnetIPV6Info& tTPEthnetIPV6Info );
+    //设置IPV6类型
+    u16 SetIpvType( EmProtocolVersion emProtocolVer );
+    //获取IPV6类型
+    const EmProtocolVersion GetIpvType();
 
 	//-----地址簿相关-------------  
 /** @defgroup  地址簿相关

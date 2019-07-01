@@ -1169,10 +1169,10 @@ void CTransparentIpEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 			
 			if ( dwPos == len )
 			{	
-				if( len > 0 && tmpS.GetAt(len-1) == ':' && nChar==':' )//如果最后一个字符是":"
-				{
-					return;
-				}
+// 				if( len > 0 && tmpS.GetAt(len-1) == ':' && nChar==':' )//如果最后一个字符是":"
+// 				{
+// 					return;
+// 				}
 				
 				i = str.ReverseFind(':');	//获取最后一个“:”的位置
 				if( !bDot )//如果不允许输入:

@@ -498,56 +498,83 @@
 		</VerticalLayout>
 		<!--升降屏-->
 		<VerticalLayout>
-			<VerticalLayout name="LiftSrceen" inset="0,0,0,0">  
-				<Label name="" float="true" pos="146,162,0,0" width="270" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;0,0,270,1&apos;" align="center" />
-				<Label name="" float="true" pos="448,162,0,0" width="234" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;412,0,692,1&apos;" align="center" />
-				<Label name="" float="true" pos="714,162,0,0" width="234" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;844,0,1110,1&apos;" align="center" />
-				<Label name="" float="true" pos="980,162,0,0" width="234" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;844,0,1110,1&apos;" align="center" />
-				<Label name="" float="true" pos="1246,162,0,0" width="234" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1250,0,1530,1&apos;" align="center" />
-				<Label name="" float="true" pos="1512,162,0,0" width="270" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1660,0,1920,1&apos;" align="center" />
-				<HorizontalLayout name="LiftScreenBtnLayout" float="true" pos="396,130,0,0" width="1128" height="64" >
-					<CheckBox name="OptIsControl1" width="64" height="64" tag="1" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
-					<Control />
-					<CheckBox name="OptIsControl2" width="64" height="64" tag="2" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
-					<Control />
-					<CheckBox name="OptIsControl3" width="64" height="64" tag="3" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
-					<Control />
-					<CheckBox name="OptIsControl4" width="64" height="64" tag="4" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
-					<Control />
-					<CheckBox name="OptIsControl5" width="64" height="64" tag="5" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
-				</HorizontalLayout>
-				<Label name="" float="true" pos="428,180,0,0"  width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
-				<Label name="" float="true" pos="694,180,0,0"  width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
-				<Label name="" float="true" pos="960,180,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
-				<Label name="" float="true" pos="1226,180,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
-				<Label name="" float="true" pos="1492,180,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
-			</VerticalLayout>
-			<HorizontalLayout name="SrceensourceLayout" float="true"  pos="316,260,0,0" width="1288" height="402" >
-				<VerticalLayout name="SrceensourceLayout1"  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
-					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
-					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组1" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+			<!--- horLine --->
+			<HorizontalLayout name="horLine1" float="true" pos="0,152,0,0" width="1920" height="1" visible="true">  
+				<Label name="" width="937" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;0,0,264,1&apos;" />
+				<Label name="" float="true" pos="982,0,0,0" width="938" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1656,0,1920,1&apos;" />
+			</HorizontalLayout>
+			<HorizontalLayout name="horLine2" float="true" pos="0,152,0,0" width="1920" height="1" visible="false">  
+				<Label name="" width="814" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;0,0,264,1&apos;" />
+				<Label name="" float="true" pos="858,0,0,0" width="203" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;404,0,680,1&apos;" />
+				<Label name="" float="true" pos="1105,0,0,0" width="815" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1656,0,1920,1&apos;" />
+			</HorizontalLayout>
+			<HorizontalLayout name="horLine3" float="true" pos="0,152,0,0" width="1920" height="1" visible="false">  
+				<Label name="" width="691" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;0,0,264,1&apos;" />
+				<Label name="" float="true" pos="736,0,0,0" width="203" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;404,0,680,1&apos;" />
+				<Label name="" float="true" pos="982,0,0,0" width="204" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1240,0,1520,1&apos;" />
+				<Label name="" float="true" pos="1228,0,0,0" width="690" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1656,0,1920,1&apos;" />
+			</HorizontalLayout>
+			<HorizontalLayout name="horLine4" float="true" pos="0,152,0,0" width="1920" height="1" visible="false">  
+				<Label name="" width="568" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;0,0,264,1&apos;" />
+				<Label name="" float="true" pos="612,0,0,0" width="203" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;404,0,680,1&apos;" />
+				<Label name="" float="true" pos="859,0,0,0" width="203" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;822,0,1098,1&apos;" />
+				<Label name="" float="true" pos="1105,0,0,0" width="204" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1240,0,1520,1&apos;" />
+				<Label name="" float="true" pos="1351,0,0,0" width="569" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1656,0,1920,1&apos;" />
+			</HorizontalLayout>
+			<HorizontalLayout name="horLine5" float="true" pos="0,152,0,0" width="1920" height="1" visible="false">  
+				<Label name="" width="444" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;0,0,264,1&apos;" />
+				<Label name="" float="true" pos="489,0,0,0" width="203" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;404,0,680,1&apos;" />
+				<Label name="" float="true" pos="736,0,0,0" width="203" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;822,0,1098,1&apos;" />
+				<Label name="" float="true" pos="982,0,0,0" width="203" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;822,0,1098,1&apos;" />
+				<Label name="" float="true" pos="1228,0,0,0" width="204" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1240,0,1520,1&apos;" />
+				<Label name="" float="true" pos="1474,0,0,0" width="446" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1656,0,1920,1&apos;" />
+			</HorizontalLayout>
+			<!--- SrceenSource --->
+			<HorizontalLayout name="SrceensourceLayout" float="true" pos="0,120,0,0" width="1920" height="536" >
+				<VerticalLayout />
+				<VerticalLayout name="SrceenLayout1" width="247" visible="false" >
+					<CheckBox name="OptIsControl1" float="true" pos="92,0,0,0" width="64" height="64" tag="1" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
+					<Label name="" float="true" pos="124,52,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
+					<VerticalLayout name="SrceensourceLayout1" float="true" pos="12,134,0,0" inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >
+						<Label name="" float="true" pos="40,103,0,0" width="142" height="142" bkcolor="" bkimage="res/roomctrl/fitscreen.png"/>
+						<Label name="" float="true" pos="0,274,0,0" width="222" height="40" text="组1" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+					</VerticalLayout>
 				</VerticalLayout>
-			  	<Control />
-				<VerticalLayout name="SrceensourceLayout2"  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
-					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
-					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组2" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+				<VerticalLayout name="SrceenLayout2" width="247" visible="false" >
+					<CheckBox name="OptIsControl2" float="true" pos="92,0,0,0" width="64" height="64" tag="2" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
+					<Label name="" float="true" pos="124,52,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
+					<VerticalLayout name="SrceensourceLayout2" float="true" pos="12,134,0,0" inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >
+						<Label name="" float="true" pos="40,103,0,0" width="142" height="142" bkcolor="" bkimage="res/roomctrl/fitscreen.png"/>
+						<Label name="" float="true" pos="0,274,0,0" width="222" height="40" text="组2" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+					</VerticalLayout>
 				</VerticalLayout>
-				<Control />
-				<VerticalLayout name="SrceensourceLayout3"  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
-					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
-					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组3" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+				<VerticalLayout name="SrceenLayout3" width="247" visible="false" >
+					<CheckBox name="OptIsControl3" float="true" pos="92,0,0,0" width="64" height="64" tag="3" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
+					<Label name="" float="true" pos="124,52,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
+					<VerticalLayout name="SrceensourceLayout3" float="true" pos="12,134,0,0" inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >
+						<Label name="" float="true" pos="40,103,0,0" width="142" height="142" bkcolor="" bkimage="res/roomctrl/fitscreen.png"/>
+						<Label name="" float="true" pos="0,274,0,0" width="222" height="40" text="组3" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+					</VerticalLayout>
 				</VerticalLayout>
-				<Control />
-				<VerticalLayout name="SrceensourceLayout4"  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" > 
-					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
-					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组4" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+				<VerticalLayout name="SrceenLayout4" width="247" visible="false" >
+					<CheckBox name="OptIsControl4" float="true" pos="92,0,0,0" width="64" height="64" tag="4" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
+					<Label name="" float="true" pos="124,52,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
+					<VerticalLayout name="SrceensourceLayout4" float="true" pos="12,134,0,0" inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >
+						<Label name="" float="true" pos="40,103,0,0" width="142" height="142" bkcolor="" bkimage="res/roomctrl/fitscreen.png"/>
+						<Label name="" float="true" pos="0,274,0,0" width="222" height="40" text="组4" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+					</VerticalLayout>
 				</VerticalLayout>
-				<Control />
-				<VerticalLayout name="SrceensourceLayout5"  inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >  
-					<Label name="" float="true" pos="40,103,0,0"  width="142" height="142" bkcolor=""  bkimage="res/roomctrl/fitscreen.png"/>
-					<Label name="" float="true" pos="0,274,0,0"  width="222" height="40" text="组5" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+				<VerticalLayout name="SrceenLayout5" width="247" visible="true" >
+					<CheckBox name="OptIsControl5" float="true" pos="92,0,0,0" width="64" height="64" tag="5" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
+					<Label name="" float="true" pos="124,52,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
+					<VerticalLayout name="SrceensourceLayout5" float="true" pos="12,134,0,0" inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >
+						<Label name="" float="true" pos="40,103,0,0" width="142" height="142" bkcolor="" bkimage="res/roomctrl/fitscreen.png"/>
+						<Label name="" float="true" pos="0,274,0,0" width="222" height="40" text="组5" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+					</VerticalLayout>
 				</VerticalLayout>
-			</HorizontalLayout>	
+				<VerticalLayout />
+			</HorizontalLayout>
+			<!--- Control --->
 			<VerticalLayout float="true"  pos="399,734,0,0" width="1122" height="204" >
 				<Label name="" float="true" pos="0,0,0,0"  width="1" height="82" bkcolor="ff8baecc" />
 				<Label name="" float="true" pos="0,122,0,0"  width="1" height="82" bkcolor="ff8baecc" />

@@ -7,7 +7,7 @@
 #include "tpcommonstruct.h"
 #include "tpcommonxmltype.h"
 
-const char XmlTpStructVersion[] = "2019-6-21 16:0:1";
+const char XmlTpStructVersion[] = "2019-6-26 18:13:45";
 
 #define XML_TP_TYPE_NUM      331
 #define XML_TP_STRUCT_NUM    447
@@ -1923,9 +1923,16 @@ TYPESTRUCT_BEGIN( TLoginRet )
     TYPESTRUCT_MEMBER( TLoginRet, u8, m_byLockNumber )
 TYPESTRUCT_END(  TLoginRet )
 
+//TTPIPAddress
+TYPESTRUCT_BEGIN( TTPIPAddress )
+    TYPESTRUCT_MEMBER( TTPIPAddress, u32_ip, dwIPV4 )
+    TYPESTRUCT_MEMBER( TTPIPAddress, s8, achIPV6 )
+TYPESTRUCT_END(  TTPIPAddress )
+
 //TTPTransAddr
 TYPESTRUCT_BEGIN( TTPTransAddr )
-    TYPESTRUCT_MEMBER( TTPTransAddr, u32_ip, m_dwIP )
+    TYPESTRUCT_MEMBER( TTPTransAddr, EmProtocolVersion, m_emProtocolVersion )
+    TYPESTRUCT_MEMBER( TTPTransAddr, TTPIPAddress, m_tIP )
     TYPESTRUCT_MEMBER( TTPTransAddr, u16, m_wPort )
 TYPESTRUCT_END(  TTPTransAddr )
 
@@ -2547,12 +2554,6 @@ TYPESTRUCT_BEGIN( TUCSipRegResult )
     TYPESTRUCT_MEMBER( TUCSipRegResult, TTPAlias, m_atTPAlias )
     TYPESTRUCT_MEMBER( TUCSipRegResult, s32, m_nAliasNum )
 TYPESTRUCT_END(  TUCSipRegResult )
-
-//TTPIPAddress
-TYPESTRUCT_BEGIN( TTPIPAddress )
-    TYPESTRUCT_MEMBER( TTPIPAddress, u32_ip, dwIPV4 )
-    TYPESTRUCT_MEMBER( TTPIPAddress, s8, achIPV6 )
-TYPESTRUCT_END(  TTPIPAddress )
 
 //TCnAddr
 TYPESTRUCT_BEGIN( TCnAddr )
@@ -3611,6 +3612,7 @@ TYPESTRUCT_BEGIN( TTPCnDsData )
     TYPESTRUCT_MEMBER( TTPCnDsData, TTPTransAddr, m_tRcvFromAddr )
     TYPESTRUCT_MEMBER( TTPCnDsData, TTPTransAddr, m_tSndToAddr )
     TYPESTRUCT_MEMBER( TTPCnDsData, TTPTransAddr, m_tMapedAddr )
+    TYPESTRUCT_MEMBER( TTPCnDsData, u32, dwType )
 TYPESTRUCT_END(  TTPCnDsData )
 
 //TTPCnNetBufPara
@@ -4786,6 +4788,7 @@ TXDATAINFO* g_tTpStructData[]={
 	(TXDATAINFO*)TMtRecParammembertable,
 	(TXDATAINFO*)TMtCnsParammembertable,
 	(TXDATAINFO*)TLoginRetmembertable,
+	(TXDATAINFO*)TTPIPAddressmembertable,
 	(TXDATAINFO*)TTPTransAddrmembertable,
 	(TXDATAINFO*)TTPNamemembertable,
 	(TXDATAINFO*)TTPAliasmembertable,
@@ -4851,7 +4854,6 @@ TXDATAINFO* g_tTpStructData[]={
 	(TXDATAINFO*)TTPSipPackmembertable,
 	(TXDATAINFO*)TTPAddrNtyUsermembertable,
 	(TXDATAINFO*)TUCSipRegResultmembertable,
-	(TXDATAINFO*)TTPIPAddressmembertable,
 	(TXDATAINFO*)TCnAddrmembertable,
 	(TXDATAINFO*)TTPSipNstHeadermembertable,
 	(TXDATAINFO*)TTPDialParammembertable,

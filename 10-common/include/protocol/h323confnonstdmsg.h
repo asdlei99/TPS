@@ -827,6 +827,7 @@ enum H245CtrlNonStandardMsgType
     h_ctrl_SpeakerChanSwithNtf              = 1330, //主屏切换通知
 
 	h_ctrl_terAuthMsg               		= 1500, /**<终端认证消息*/
+	h_ctrl_terQTMsg                         = 1501, //量通非标消息，目前只用于查询devid和回复
 		
 	h_ctrl_nonstandard_general				= 2000,		/**<Jacky Wei: a general nonstandard event id for KDV v5.0*/
 	h_ctrl_nonstandardend					= 2001,

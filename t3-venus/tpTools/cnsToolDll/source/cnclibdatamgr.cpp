@@ -571,3 +571,15 @@ u16 CCnclibDataMgr::GetComType( EmComType** pemComType )const
 	*pemComType = CNCSESSION_MGR_PTR->GetPortDiagCtrlIF()->GetComType();
 	return NO_ERROR;
 }
+
+//IPV6
+u16 CCnclibDataMgr::GetIpvType(EmProtocolVersion& emProtocolVersion) const
+{
+	emProtocolVersion = CNCSESSION_MGR_PTR->GetConfigIF()->GetIpvType();
+	return NO_ERROR;
+}
+u16 CCnclibDataMgr::GetIpv6Cfg(TTPEthnetIPV6Info& tTPEthnetIPV6Info) const
+{
+	tTPEthnetIPV6Info = CNCSESSION_MGR_PTR->GetConfigIF()->GetIpv6Cfg();
+	return NO_ERROR;
+}

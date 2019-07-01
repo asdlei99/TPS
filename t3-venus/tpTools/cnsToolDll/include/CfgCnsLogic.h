@@ -174,6 +174,10 @@ private:
 	*/		
 	LRESULT OnUpgradeCnsNty( WPARAM wParam, LPARAM lParam );
 
+	//IPV6
+	LRESULT OnSetIpvTypeNty( WPARAM wParam, LPARAM lParam );
+	LRESULT OnSetIpv6CfgNty( WPARAM wParam, LPARAM lParam );
+
 	/** 功能:  保存会场名称和E164号部分
 	*  @param[in] 
 	*  @return 
@@ -195,6 +199,9 @@ private:
 	bool SaveNAT( EmTpIpNameNatSyn emTpIpType );
 
 	bool SaveDoubleNet( EmTpIpNameNatSyn emTpIpType );
+	//保存IPV6配置
+	bool SaveIPv6Cfg(EmTpIpNameNatSyn emTPSynTypeForIPv6);
+
 	/** 功能:  保存网络配置	
 	*  @param[in] 
 	*  @return 
@@ -303,6 +310,12 @@ private:
 
 	//Ipv4 Ipv6 切换
 	bool OnSelNetStyle( const IArgs& args );
+	//Ipv6 输入改变
+	bool OnChangedCnsIPv6( const IArgs& args );
+	bool OnChangedCnsIPv6SubLen( const IArgs& args );
+	bool OnChangedCnsIPv6GateWay( const IArgs& args );
+	bool OnChangedCnsIPv6DNS1( const IArgs& args );
+	bool OnChangedCnsIPv6DNS2( const IArgs& args );
 							
 	/** 功能:  设置NAT地址
 	*  @param[in] 
@@ -330,6 +343,9 @@ private:
 	//设置双网口数据
 	void SetWEthnetInfo();
 
+	//IPV6数据
+	void SetIpv6CfgInfo();
+
 	/** 功能:  收到会议状态的信息
 	*  @param[in] 
 	*  @return 
@@ -347,6 +363,7 @@ private:
 	bool CheckNet( bool &bChange );
 	bool CheckDoubleNet(bool &bChange);
 	bool CheckNAt( bool &bChange);
+	bool CheckIpv6( bool &bChange);
 private:
 	EmFtpStatus m_emFileFtpStatus;
 	CFtpCtrl m_cFtp;

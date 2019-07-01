@@ -23,6 +23,7 @@ APP_BEGIN_MSG_MAP(CConfCtrlLogic, CNotifyUIImpl)
 	MSG_SELECTCHANGE(_T("confdual"), OnTabConfDual)
 	MSG_SELECTCHANGE(_T("mixmotive"), OnTabMixMotive)
 	MSG_SELECTCHANGE(_T("pip"), OnTabPIP)
+    MSG_SELECTCHANGE(_T("seatmotive"), OnTabSeatMotive)
 	MSG_SELECTCHANGE(_T("tvwall"), OnTabTVWall)
 	MSG_SELECTCHANGE(_T("FeccCam"), OnTabFeccCam)
 
@@ -59,10 +60,11 @@ APP_BEGIN_MSG_MAP(CConfCtrlLogic, CNotifyUIImpl)
 
 	MSG_SELECTCHANGE(_T("CheckCnsDual"), OnCheckLocalCnsDual)
 	MSG_SELECTCHANGE(_T("CheckDualShotCut"), OnCheckDualShotCut)
-	MSG_SELECTCHANGE(_T("CheckVoiceArouse"), OnCheckPTPVoiceArouse)//点对点语音激励
+	//MSG_SELECTCHANGE(_T("CheckVoiceArouse"), OnCheckPTPVoiceArouse)//点对点语音激励
 	MSG_SELECTCHANGE(_T("CheckVSShortCut"), OnCheckVSShortCut)
 	MSG_SELECTCHANGE(_T("CheckPIP"), OnCheckPIP)
 	MSG_SELECTCHANGE(_T("CheckPIPShortCut"), OnCheckPIPShortCut)
+    MSG_SELECTCHANGE(_T("CheckSeatArouse"), OnCheckPTPSeatArouse)//点对点坐席激励
 
     USER_MSG(UI_UMS_SET_MUTE_CNS_RSP,OnSetMuteCnsRsp)
     USER_MSG(UI_UMS_SET_QUIET_CNS_RSP,OnSetQuietCnsRsp)
@@ -96,7 +98,7 @@ APP_BEGIN_MSG_MAP(CConfCtrlLogic, CNotifyUIImpl)
 	//呼叫不在线会场回应
 	USER_MSG(UI_UMS_INVITE_CNS_RSP,OnCallOffCnsInd) 
 
-	//单独控制语音激励开关回应
+	//单独控制坐席激励开关回应
 	USER_MSG( UI_CNS_CNAUXMIX_IND, OnCnAuxInd )
 	//主席设置 防止先收到会议状态时还没收到主席
 	USER_MSG( UI_CNS_CHAIRCONFINFO_NTY, OnConfStateNty )
@@ -193,11 +195,16 @@ bool CConfCtrlLogic::OnDisconnect( WPARAM wParam, LPARAM lParam, bool& bHandle )
 	{
 		pCheckPIP->SetCheckNoMsg(false);
 	}
-	pCheckPIP = (CCheckBoxUI*)ICncCommonOp::FindControl(m_pm,_T("CheckVoiceArouse"));
+	/*pCheckPIP = (CCheckBoxUI*)ICncCommonOp::FindControl(m_pm,_T("CheckVoiceArouse"));
 	if ( pCheckPIP )
 	{
 		pCheckPIP->SetCheckNoMsg(false);
-	}
+	}*/
+    pCheckPIP = (CCheckBoxUI*)ICncCommonOp::FindControl(m_pm,_T("CheckSeatArouse"));
+    if ( pCheckPIP )
+    {
+        pCheckPIP->SetCheckNoMsg(false);
+    }
 
 	if (g_nDualWaiting != 0)
 	{
@@ -270,6 +277,11 @@ bool CConfCtrlLogic::OnInit(TNotifyUI& msg)
 	
 	UpdateCnsList();
 	UpdateShowList();
+#ifdef INCONF
+    bool bHandle = true;
+    OnConfStateNty(NULL, NULL, bHandle);
+#else
+#endif
 	return true;
 }
 
@@ -419,6 +431,22 @@ bool CConfCtrlLogic::OnTabPIP(TNotifyUI& msg)
         NOTIFY_MSG( UI_CNC_HIDE_TVWALLCHILDDLG_NTY, NULL, NULL );
     }
 	return true;
+}
+
+bool CConfCtrlLogic::OnTabSeatMotive(TNotifyUI& msg)
+{
+    CSlideTabLayoutUI *pControl = (CSlideTabLayoutUI*)ICncCommonOp::FindControl( m_pm, strConfCtrlSlideTab.c_str() );
+    if (pControl)
+    {
+        pControl->SelectItem(emTabID_SeatMotive);
+    }
+
+    String strCurWnd = UIDATAMGR->GetCurShowWndName();
+    if ( strCurWnd == g_stcStrTvWallChildDlg )
+    {
+        NOTIFY_MSG( UI_CNC_HIDE_TVWALLCHILDDLG_NTY, NULL, NULL );
+    }
+    return true;
 }
 
 bool CConfCtrlLogic::OnTabTVWall(TNotifyUI& msg)
@@ -1270,10 +1298,10 @@ bool CConfCtrlLogic::OnConfStateNty(WPARAM wParam, LPARAM lParam, bool& bHandle)
 				m_pm->DoCase(_T("caseP2PConfCtrl"));
 			}
 			
-			COptionUI *pMV = (COptionUI*)ICncCommonOp::FindControl( m_pm, _T("mixmotive") );
+			COptionUI *pSeatMV = (COptionUI*)ICncCommonOp::FindControl( m_pm, _T("seatmotive") );
 			COptionUI *pPip = (COptionUI*)ICncCommonOp::FindControl( m_pm, _T("pip") );
 			COptionUI *pDual = (COptionUI*)ICncCommonOp::FindControl( m_pm, _T("confdual") );
-			if (pMV && pMV->IsSelected() || pPip&&pPip->IsSelected() || pDual&&pDual->IsSelected())
+			if (pSeatMV && pSeatMV->IsSelected() || pPip&&pPip->IsSelected() || pDual&&pDual->IsSelected())
 			{
 				return true;
 			}
@@ -1936,7 +1964,7 @@ bool CConfCtrlLogic::OnSetShortCheck( WPARAM wParam, LPARAM lParam, bool& bHandl
 	return true;
 }
 
-bool CConfCtrlLogic::OnCheckPTPVoiceArouse( TNotifyUI& msg )
+bool CConfCtrlLogic::OnCheckPTPSeatArouse( TNotifyUI& msg )
 {
 	CCheckBoxUI* pCheckBox = (CCheckBoxUI*)msg.pSender;
 	if ( !pCheckBox )
@@ -1950,7 +1978,7 @@ bool CConfCtrlLogic::OnCheckPTPVoiceArouse( TNotifyUI& msg )
 		bIsSet = true;
 	}
 
-	BOOL bIs = ComInterface->IsLocalPTPVoiceArouse();
+	BOOL bIs = ComInterface->IsLocalPTPSeatArouse();
 	if (bIs == bIsSet)
 	{
 		return true;
@@ -2004,10 +2032,10 @@ bool CConfCtrlLogic::OnCnAuxInd( WPARAM wParam, LPARAM lParam, bool& bHandle )
 		}
 	}
 
-	CCheckBoxUI* pCheck = (CCheckBoxUI*)ICncCommonOp::FindControl(m_pm,_T("CheckVoiceArouse"));
+	CCheckBoxUI* pCheck = (CCheckBoxUI*)ICncCommonOp::FindControl(m_pm,_T("CheckSeatArouse"));
 	if (pCheck)
 	{
-		pCheck->SetCheckNoMsg(ComInterface->IsLocalPTPVoiceArouse());
+		pCheck->SetCheckNoMsg(ComInterface->IsLocalPTPSeatArouse());
 	}
 
 	return true;

@@ -167,7 +167,7 @@ BOOL32 CUIDataMgr::IsValidIpV6(LPCSTR lptrIPStr)
             return 0;
         }
     }
-    return (nCheckColon == 7) || (nCheckColon == 2);
+    return (nCheckColon == 7) || (nEllipsis != 0);
 }
 
 bool CUIDataMgr::IsAllE164Number( String strText )

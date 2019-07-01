@@ -334,7 +334,9 @@ bool CMainMenuLogic::OnBtnConfTemp( TNotifyUI& msg )
 
 bool CMainMenuLogic::OnBtnRoomCtrl( TNotifyUI& msg )
 {
-    WINDOW_MGR_PTR->ShowWindow( g_strRoomControlDlg.c_str(), false );
+#ifdef INCONF
+    WINDOW_MGR_PTR->ShowWindow( g_strRoomControlDlg.c_str(), true );
+#endif
 	WINDOW_MGR_PTR->ShowWindowFromLeftToRight( g_strRoomControlDlg.c_str() );
 
 	CMainFrameLogic::GetSingletonPtr()->SetTitle(_T("会场管理"));
@@ -347,6 +349,9 @@ bool CMainMenuLogic::OnBtnRoomCtrl( TNotifyUI& msg )
 
 bool CMainMenuLogic::OnBtnConfCtrl( TNotifyUI& msg )
 {
+#ifdef INCONF
+    WINDOW_MGR_PTR->ShowWindow( g_strConfCtrlDlg.c_str(), true );
+#endif
 	WINDOW_MGR_PTR->ShowWindowFromLeftToRight( g_strConfCtrlDlg.c_str() );
 
 	CMainFrameLogic::GetSingletonPtr()->SetTitle(_T("会议管理"));
@@ -789,7 +794,7 @@ void CMainMenuLogic::UpdateShortCutLst()
 					continue;
 				}
 
-				if (ComInterface->IsLocalPTPVoiceArouse())
+				if (ComInterface->IsLocalPTPSeatArouse())
 				{
 					strName = _T("关闭语音激励");
 					strPic = _T("res\\mainmenu\\VoiceActOn.png");				
@@ -1525,7 +1530,7 @@ bool CMainMenuLogic::OnBtnShortCutState( TNotifyUI& msg )
 				ShowMessageBox(_T("不在会议中，不可进行此操作"),false);
 				break;
 			}
-			bIsSet = ComInterface->IsLocalPTPVoiceArouse();
+			bIsSet = ComInterface->IsLocalPTPSeatArouse();
 			wRe =  ComInterface->SetCnAuxMix( !bIsSet );
 		}
 		break;
@@ -1603,7 +1608,7 @@ bool CMainMenuLogic::OnCnPTPAuxInd( WPARAM wParam, LPARAM lParam, bool& bHandle 
 	}
 	CString strName = _T("");
 	CString strPic = _T("");
-	if (ComInterface->IsLocalPTPVoiceArouse())
+	if (ComInterface->IsLocalPTPSeatArouse())
 	{
 		strName = _T("关闭语音激励");
 		strPic = _T("res\\mainmenu\\VoiceActOn.png");				

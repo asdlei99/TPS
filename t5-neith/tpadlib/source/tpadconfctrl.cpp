@@ -346,7 +346,7 @@ u16 CTpadConfCtrl::StartDualCodeStream( const TTPCnMediaTransPort  &tVideoTransA
 	u16 wRet = m_pTpadSession->PostMsg(TYPE_TPMSG);
 
 	in_addr tAddr;
-	tAddr.S_un.S_addr = tVideoTransAddr.m_tRtpPort.m_dwIP;
+	tAddr.S_un.S_addr = tVideoTransAddr.m_tRtpPort.m_tIP.dwIPV4;
 
 	PrtMsg( ev_TppAddDualRcvAddr_Cmd, emEventTypeCnsSend, "VideoAddr: %s, Port: %d", inet_ntoa(tAddr), tVideoTransAddr.m_tRtpPort.m_wPort );
 	return wRet;

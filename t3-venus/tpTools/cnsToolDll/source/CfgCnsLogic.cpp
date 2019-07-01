@@ -67,6 +67,9 @@ void CCfgCnsLogic::RegMsg()
 	REG_MSG_HANDLER( UI_CNS_CFGWETHNET_RSP, CCfgCnsLogic::OnSetCfgWEthnetRsp, pThis, CCfgCnsLogic );
 	REG_MSG_HANDLER( UI_CNS_CFGWETHNET_NTY, CCfgCnsLogic::OnSetCfgWEthnetNty, pThis, CCfgCnsLogic );
 	REG_MSG_HANDLER( UI_CNS_CFGETHSTATE_NTY, CCfgCnsLogic::OnSetCfgEthnetStateNty, pThis, CCfgCnsLogic );
+	//IPV6
+	REG_MSG_HANDLER( UI_CNS_IPVTYPE_NOTIFY, CCfgCnsLogic::OnSetIpvTypeNty, pThis, CCfgCnsLogic );
+	REG_MSG_HANDLER( UI_CNS_IPV6CFG_NOTIFY, CCfgCnsLogic::OnSetIpv6CfgNty, pThis, CCfgCnsLogic );
 }
 
 void CCfgCnsLogic::RegCBFun()
@@ -96,6 +99,11 @@ void CCfgCnsLogic::RegCBFun()
 	REG_GOBAL_MEMBER_FUNC( "CCfgCnsLogic::OnChangedNATIp", CCfgCnsLogic::OnChangedNATIp, pThis, CCfgCnsLogic );
 	REG_GOBAL_MEMBER_FUNC( "CCfgCnsLogic::OnSelNetInterfaceStyle", CCfgCnsLogic::OnSelNetInterfaceStyle, pThis, CCfgCnsLogic );
 	REG_GOBAL_MEMBER_FUNC( "CCfgCnsLogic::OnSelNetStyle", CCfgCnsLogic::OnSelNetStyle, pThis, CCfgCnsLogic );
+	REG_GOBAL_MEMBER_FUNC( "CCfgCnsLogic::OnChangedCnsIPv6", CCfgCnsLogic::OnChangedCnsIPv6, pThis, CCfgCnsLogic );
+	REG_GOBAL_MEMBER_FUNC( "CCfgCnsLogic::OnChangedCnsIPv6SubLen", CCfgCnsLogic::OnChangedCnsIPv6SubLen, pThis, CCfgCnsLogic );
+	REG_GOBAL_MEMBER_FUNC( "CCfgCnsLogic::OnChangedCnsIPv6GateWay", CCfgCnsLogic::OnChangedCnsIPv6GateWay, pThis, CCfgCnsLogic );
+	REG_GOBAL_MEMBER_FUNC( "CCfgCnsLogic::OnChangedCnsIPv6DNS1", CCfgCnsLogic::OnChangedCnsIPv6DNS1, pThis, CCfgCnsLogic );
+	REG_GOBAL_MEMBER_FUNC( "CCfgCnsLogic::OnChangedCnsIPv6DNS2", CCfgCnsLogic::OnChangedCnsIPv6DNS2, pThis, CCfgCnsLogic );
 }
 
 void CCfgCnsLogic::UnRegFunc()
@@ -182,6 +190,7 @@ bool CCfgCnsLogic::OnBtnSave( const IArgs& args )
 		SetCnsInfoData();
 		SetEthnetCfgData();
 		SetWEthnetInfo();
+		SetIpv6CfgInfo();
 		m_vctWndName.clear();
 		UpBtnState();
 		OnConfStateNty(0,0);
@@ -192,6 +201,7 @@ bool CCfgCnsLogic::OnBtnSave( const IArgs& args )
 	bool bNetChange = false;
 	bool bDoubleNet = false;
 	bool bNATChange = false;
+	bool bIpv6Change = false;
 
 	bool bSucceed = true;
 	bSucceed = CheckNameAndE164(bNameChange);
@@ -205,6 +215,11 @@ bool CCfgCnsLogic::OnBtnSave( const IArgs& args )
 		return false;
 	}
 	bSucceed = CheckNAt(bNATChange);
+	if (false == bSucceed)
+	{
+		return false;
+	}
+	bSucceed = CheckIpv6(bIpv6Change);
 	if (false == bSucceed)
 	{
 		return false;
@@ -230,6 +245,28 @@ bool CCfgCnsLogic::OnBtnSave( const IArgs& args )
 	else if (bNameChange||bNetChange||bNATChange == true )
 	{
 		emTPSynType = emSynInvalid;
+	}
+
+	EmTpIpNameNatSyn emTPSynTypeForIPv6 = emSynInvalid;
+	if ( bNameChange&&bIpv6Change&&bNATChange == true )
+	{
+		emTPSynTypeForIPv6 = emTpAll;
+	}
+	else if ( bNameChange&&bIpv6Change == true )
+	{
+		emTPSynTypeForIPv6 = emTpIpAndName;
+	}
+	else if ( bNameChange&&bNATChange == true )
+	{
+		emTPSynTypeForIPv6 = emTpNameAndNat;
+	}
+	else if ( bIpv6Change&&bNATChange == true )
+	{
+		emTPSynTypeForIPv6 = emTpIpAndNat;
+	}
+	else if (bNameChange||bIpv6Change||bNATChange == true )
+	{
+		emTPSynTypeForIPv6 = emSynInvalid;
 	}
 
 	if ( bNameChange == true )
@@ -286,7 +323,35 @@ bool CCfgCnsLogic::OnBtnSave( const IArgs& args )
 			return false;
 		}		
 	}
+
+	//IPV type
+	EmProtocolVersion emCurProtocolVer = emIPV4;
+	LIBDATAMGRPTR->GetIpvType(emCurProtocolVer);
+	int nCheckIpv6 = 0;
+	UIFACTORYMGR_PTR->GetCheckState( m_strBtnNetIPv6, nCheckIpv6, m_pWndTree );
 	
+	EmProtocolVersion emProtocolVer = (nCheckIpv6 == 0 ? emIPV4 : emIPV6);
+
+	if (emProtocolVer != emCurProtocolVer)
+	{
+		u16 wRet = COMIFMGRPTR->SetIpvType(emProtocolVer);
+		if( wRet != NO_ERROR )
+		{
+			WARNMESSAGE("保存IP类型错误");
+			return false;
+		}
+	}
+
+	bSucceed = CheckIpv6( bNetChange);
+	if (false == bSucceed)
+	{
+		return false;
+	}
+	if ( SaveIPv6Cfg(emTPSynTypeForIPv6) == false )
+	{
+		return false;
+	}
+
 	m_vctWndName.clear();
 	UpBtnState();
 	return true;
@@ -299,6 +364,7 @@ bool CCfgCnsLogic::OnBtnCancel( const IArgs& args )
 	SetWEthnetInfo();
 	SetNATData();
 	SetEthnetSwitchtype();
+	SetIpv6CfgInfo();
 	m_vctWndName.clear();
 	UpBtnState();
 
@@ -690,6 +756,116 @@ bool CCfgCnsLogic::CheckDoubleNet(bool &bChange)
 	return true;
 }
 
+bool CCfgCnsLogic::CheckIpv6(bool &bChange)
+{
+	String strAddrCaption;
+    UIFACTORYMGR_PTR->GetCaption("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlAddress", strAddrCaption, m_pWndTree); 
+	String strSubLenCaption;
+    UIFACTORYMGR_PTR->GetCaption("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlSubLen", strSubLenCaption, m_pWndTree);
+	String strGateWayCaption;
+    UIFACTORYMGR_PTR->GetCaption("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlGateWay", strGateWayCaption, m_pWndTree);
+	String strDNS1Caption;
+    UIFACTORYMGR_PTR->GetCaption("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS1", strDNS1Caption, m_pWndTree);
+	String strDNS2Caption;
+    UIFACTORYMGR_PTR->GetCaption("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS2", strDNS2Caption, m_pWndTree); 	
+	
+	TTPEthnetIPV6Info tTPEthnetIPV6Info;
+    LIBDATAMGRPTR->GetIpv6Cfg( tTPEthnetIPV6Info );
+	//是否发生变化
+	if ( strcmp(tTPEthnetIPV6Info.m_achIP, strAddrCaption.c_str()) != 0 ||
+		 strcmp(tTPEthnetIPV6Info.m_achGateWay, strGateWayCaption.c_str()) != 0 || 
+		 strcmp(tTPEthnetIPV6Info.m_achDns1, strDNS1Caption.c_str()) != 0 || 
+		 strcmp(tTPEthnetIPV6Info.m_achDns2, strDNS2Caption.c_str()) != 0 || 
+         tTPEthnetIPV6Info.m_dwPrefix != atoi(strSubLenCaption.c_str()))
+	{
+		//校验IP
+		if ( strAddrCaption.empty() )
+		{  
+			MSG_BOX_OK( "CNS IPV6地址不能为空" );
+			FocusWindow("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlAddress");
+			return false;
+		}	
+		else
+		{
+			if (UIDATAMGR_PTR->IsValidIpV6(strAddrCaption.c_str()) == false)
+			{
+				MSG_BOX_OK( "CNS IPV6地址非法" );
+				FocusWindow("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlAddress");
+				return false;
+			}
+		}
+		//校验网关
+		if ( strGateWayCaption.empty() )
+		{  
+			MSG_BOX_OK( "CNS 网关不能为空" );
+			FocusWindow("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlGateWay");
+			return false;
+		}	
+		else
+		{
+			if (UIDATAMGR_PTR->IsValidIpV6(strGateWayCaption.c_str()) == false)
+			{
+				MSG_BOX_OK( "CNS 网关非法" );
+				FocusWindow("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlGateWay");
+				return false;
+			}
+		}
+		//校验DNS1
+		if ( strDNS1Caption.empty() )
+		{  
+			MSG_BOX_OK( "CNS DNS1不能为空" );
+			FocusWindow("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS1");
+			return false;
+		}	
+		else
+		{
+			if (UIDATAMGR_PTR->IsValidIpV6(strDNS1Caption.c_str()) == false)
+			{
+				MSG_BOX_OK( "CNS DNS1非法" );
+				FocusWindow("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS1");
+				return false;
+			}
+		}
+		//校验DNS2
+		if ( strDNS2Caption.empty() )
+		{  
+			MSG_BOX_OK( "CNS DNS2不能为空" );
+			FocusWindow("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS2");
+			return false;
+		}	
+		else
+		{
+			if (UIDATAMGR_PTR->IsValidIpV6(strDNS2Caption.c_str()) == false)
+			{
+				MSG_BOX_OK( "CNS DNS2非法" );
+				FocusWindow("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS2");
+				return false;
+			}
+		}
+		//校验子网前缀长度
+		if ( strSubLenCaption.empty() )
+		{  
+			MSG_BOX_OK( "CNS 子网前缀长度不能为空" );
+			FocusWindow("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlSubLen");
+			return false;
+		}	
+		else
+		{
+			u32 dwSublen = atoi(strSubLenCaption.c_str());
+			if (dwSublen < 0 || dwSublen > 128)
+			{
+				MSG_BOX_OK( "CNS 子网前缀长度非法" );
+				FocusWindow("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlSubLen");
+				return false;
+			}
+		}
+
+		bChange = true;
+	}
+
+	return true;
+}
+
 /*---------------------------------------------------------------------
 * 函数名称：SaveNet
 * 功    能：保存网络配置
@@ -885,17 +1061,26 @@ LRESULT CCfgCnsLogic::OnSetCfgEthnetStateNty(WPARAM wParam, LPARAM lParam)
 	EmEthState  emEthState = *(EmEthState*)(wParam);
 	m_emEthState = emEthState;
 
+	EmProtocolVersion emProtocolVer = emIPV4;
+	LIBDATAMGRPTR->GetIpvType(emProtocolVer);
+
 	if( emEthState == em_BackMode )
 	{
 		UIFACTORYMGR_PTR->SetCheckState( m_strBtnNetBackUp, 1, m_pWndTree );
 		UIFACTORYMGR_PTR->SetCheckState( m_strBtnDoubleNet, 0, m_pWndTree );
-		UIFACTORYMGR_PTR->LoadScheme( "SchmNetBackup", m_pWndTree );
+		if (emProtocolVer == emIPV4)
+		{
+			UIFACTORYMGR_PTR->LoadScheme( "SchmNetBackup", m_pWndTree );
+		}
 	}
 	else
 	{
 		UIFACTORYMGR_PTR->SetCheckState( m_strBtnNetBackUp, 0, m_pWndTree );
 		UIFACTORYMGR_PTR->SetCheckState( m_strBtnDoubleNet, 1, m_pWndTree );
-		UIFACTORYMGR_PTR->LoadScheme( "SchmDoubleNet", m_pWndTree );
+		if (emProtocolVer == emIPV4)
+		{
+			UIFACTORYMGR_PTR->LoadScheme( "SchmDoubleNet", m_pWndTree );
+		}
 	}
 
 	return S_OK;
@@ -1044,6 +1229,40 @@ bool CCfgCnsLogic::SaveDoubleNet(EmTpIpNameNatSyn emTpIpType)
 	return true;
 }
 
+bool CCfgCnsLogic::SaveIPv6Cfg(EmTpIpNameNatSyn emTPSynTypeForIPv6)
+{
+	if ( m_pWndTree == NULL)
+	{
+		return S_FALSE;
+	}
+	String strAddrCaption;
+    UIFACTORYMGR_PTR->GetCaption("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlAddress", strAddrCaption, m_pWndTree); 
+	String strSubLenCaption;
+    UIFACTORYMGR_PTR->GetCaption("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlSubLen", strSubLenCaption, m_pWndTree);
+	String strGateWayCaption;
+    UIFACTORYMGR_PTR->GetCaption("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlGateWay", strGateWayCaption, m_pWndTree);
+	String strDNS1Caption;
+    UIFACTORYMGR_PTR->GetCaption("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS1", strDNS1Caption, m_pWndTree);
+	String strDNS2Caption;
+    UIFACTORYMGR_PTR->GetCaption("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS2", strDNS2Caption, m_pWndTree); 	
+
+	TTPEthnetIPV6Info tTPEthnetIPV6Info;
+	strncpy( tTPEthnetIPV6Info.m_achIP, strAddrCaption.c_str(), TP_IPV6_LEN + 1 );
+	tTPEthnetIPV6Info.m_dwPrefix = atoi(strSubLenCaption.c_str());
+	strncpy( tTPEthnetIPV6Info.m_achGateWay, strGateWayCaption.c_str(), TP_IPV6_LEN + 1 );
+	strncpy( tTPEthnetIPV6Info.m_achDns1, strDNS1Caption.c_str(), TP_IPV6_LEN + 1 );
+    strncpy( tTPEthnetIPV6Info.m_achDns2, strDNS2Caption.c_str(), TP_IPV6_LEN + 1 );
+	
+	u16 wRet = COMIFMGRPTR->SetIpv6Cfg( tTPEthnetIPV6Info, emTPSynTypeForIPv6 );
+	if( wRet != NO_ERROR )
+	{
+		WARNMESSAGE("保存IPV6配置请求发送失败");
+		return false;
+	}
+
+	return true;
+}
+
 LRESULT CCfgCnsLogic::OnUpdateCnsInfoNty( WPARAM wParam, LPARAM lParam )
 {
 /*	if ( m_vctWndName.size() > 0 )
@@ -1181,6 +1400,59 @@ LRESULT CCfgCnsLogic::OnUpgradeCnsNty( WPARAM wParam, LPARAM lParam )
 			}
 		}
 	}
+	return S_OK;
+}
+
+LRESULT CCfgCnsLogic::OnSetIpvTypeNty( WPARAM wParam, LPARAM lParam )
+{
+	EmProtocolVersion emProtocolVer = emIPV4;
+	LIBDATAMGRPTR->GetIpvType(emProtocolVer);
+	switch (emProtocolVer)
+	{
+	default:
+	case emIPV4:
+		UIFACTORYMGR_PTR->SetCheckState(m_strBtnNetIPv4, 1, m_pWndTree);
+		UIFACTORYMGR_PTR->SetCheckState(m_strBtnNetIPv6, 0, m_pWndTree);
+		UIFACTORYMGR_PTR->LoadScheme( "NetIPV4", m_pWndTree );
+		if( m_emEthState == em_BackMode )
+		{
+			UIFACTORYMGR_PTR->SetCheckState( m_strBtnNetBackUp, 1, m_pWndTree );
+			UIFACTORYMGR_PTR->SetCheckState( m_strBtnDoubleNet, 0, m_pWndTree );
+			UIFACTORYMGR_PTR->LoadScheme( "SchmNetBackup", m_pWndTree );
+		}
+		else
+		{
+			UIFACTORYMGR_PTR->SetCheckState( m_strBtnNetBackUp, 0, m_pWndTree );
+			UIFACTORYMGR_PTR->SetCheckState( m_strBtnDoubleNet, 1, m_pWndTree );
+			UIFACTORYMGR_PTR->LoadScheme( "SchmDoubleNet", m_pWndTree );
+		}
+		break;
+	case emIPV6:
+		UIFACTORYMGR_PTR->SetCheckState(m_strBtnNetIPv4, 0, m_pWndTree);
+		UIFACTORYMGR_PTR->SetCheckState(m_strBtnNetIPv6, 1, m_pWndTree);
+		UIFACTORYMGR_PTR->LoadScheme( "NetIPV6", m_pWndTree );
+		break;
+	}
+	return S_OK;
+}
+LRESULT CCfgCnsLogic::OnSetIpv6CfgNty( WPARAM wParam, LPARAM lParam )
+{
+	TTPEthnetIPV6Info tTPEthnetIPV6Info;
+	LIBDATAMGRPTR->GetIpv6Cfg(tTPEthnetIPV6Info);
+
+    UIFACTORYMGR_PTR->SetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlAddress", tTPEthnetIPV6Info.m_achIP, m_pWndTree ); 
+
+	char chData[3];
+	memset( chData, 0, 3 );
+	itoa( tTPEthnetIPV6Info.m_dwPrefix , chData, 10 );
+	UIFACTORYMGR_PTR->SetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlSubLen", chData, m_pWndTree ); 
+
+	UIFACTORYMGR_PTR->SetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlGateWay", tTPEthnetIPV6Info.m_achGateWay, m_pWndTree ); 
+
+	UIFACTORYMGR_PTR->SetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS1", tTPEthnetIPV6Info.m_achDns1, m_pWndTree ); 
+
+	UIFACTORYMGR_PTR->SetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS2", tTPEthnetIPV6Info.m_achDns2, m_pWndTree ); 
+	
 	return S_OK;
 }
 
@@ -1602,6 +1874,7 @@ bool CCfgCnsLogic::OnSelNetInterfaceStyle(const IArgs& args)
 
 bool CCfgCnsLogic::OnSelNetStyle( const IArgs& args )
 {
+	EmProtocolVersion emProtocolVer = emIPV4;
 	int nCheckIpv6 = 0;
 	UIFACTORYMGR_PTR->GetCheckState( m_strBtnNetIPv6, nCheckIpv6, m_pWndTree );
 	if (nCheckIpv6 == 0)
@@ -1623,8 +1896,129 @@ bool CCfgCnsLogic::OnSelNetStyle( const IArgs& args )
 	}
 	else
 	{
+		emProtocolVer = emIPV6;
 		UIFACTORYMGR_PTR->LoadScheme( "NetIPV6", m_pWndTree );
 	}
+
+	EmProtocolVersion emCurProtocolVer = emIPV4;
+	LIBDATAMGRPTR->GetIpvType(emCurProtocolVer);
+	bool bChange = false;
+	if( emCurProtocolVer != emProtocolVer )
+	{
+		bChange = true;
+	}
+	
+	CheckData( "IPRadioBtnSwitch", bChange );
+
+	return true;
+}
+
+bool CCfgCnsLogic::OnChangedCnsIPv6( const IArgs& args )
+{
+	if (m_pWndTree == NULL)
+	{
+		return false;
+	}	
+	TTPEthnetIPV6Info tTPEthnetIPV6Info;
+	LIBDATAMGRPTR->GetIpv6Cfg(tTPEthnetIPV6Info);
+	
+	bool bChange = false;
+	String strCaption;
+	UIFACTORYMGR_PTR->GetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlAddress", strCaption, m_pWndTree);
+	
+	if ( strCaption != tTPEthnetIPV6Info.m_achIP )
+	{
+		bChange = true;
+	}
+	
+	CheckData("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlAddress",bChange);
+	return true;
+}
+
+bool CCfgCnsLogic::OnChangedCnsIPv6SubLen( const IArgs& args )
+{
+	if (m_pWndTree == NULL)
+	{
+		return false;
+	}	
+	TTPEthnetIPV6Info tTPEthnetIPV6Info;
+	LIBDATAMGRPTR->GetIpv6Cfg(tTPEthnetIPV6Info);
+	
+	bool bChange = false;
+	String strCaption;
+	UIFACTORYMGR_PTR->GetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlSubLen", strCaption, m_pWndTree);
+	if ( atoi(strCaption.c_str()) != tTPEthnetIPV6Info.m_dwPrefix )
+	{
+		bChange = true;
+	}
+	
+	CheckData("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlSubLen",bChange);
+	return true;
+}
+
+bool CCfgCnsLogic::OnChangedCnsIPv6GateWay( const IArgs& args )
+{
+	if (m_pWndTree == NULL)
+	{
+		return false;
+	}	
+	TTPEthnetIPV6Info tTPEthnetIPV6Info;
+	LIBDATAMGRPTR->GetIpv6Cfg(tTPEthnetIPV6Info);
+	
+	bool bChange = false;
+	String strCaption;
+	UIFACTORYMGR_PTR->GetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlGateWay", strCaption, m_pWndTree);
+	
+	if ( strCaption != tTPEthnetIPV6Info.m_achGateWay )
+	{
+		bChange = true;
+	}
+	
+	CheckData("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlGateWay",bChange);
+	return true;
+}
+
+bool CCfgCnsLogic::OnChangedCnsIPv6DNS1( const IArgs& args )
+{
+	if (m_pWndTree == NULL)
+	{
+		return false;
+	}	
+	TTPEthnetIPV6Info tTPEthnetIPV6Info;
+	LIBDATAMGRPTR->GetIpv6Cfg(tTPEthnetIPV6Info);
+	
+	bool bChange = false;
+	String strCaption;
+	UIFACTORYMGR_PTR->GetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS1", strCaption, m_pWndTree);
+	
+	if ( strCaption != tTPEthnetIPV6Info.m_achDns1 )
+	{
+		bChange = true;
+	}
+	
+	CheckData("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS1",bChange);
+	return true;
+}
+
+bool CCfgCnsLogic::OnChangedCnsIPv6DNS2( const IArgs& args )
+{
+	if (m_pWndTree == NULL)
+	{
+		return false;
+	}	
+	TTPEthnetIPV6Info tTPEthnetIPV6Info;
+	LIBDATAMGRPTR->GetIpv6Cfg(tTPEthnetIPV6Info);
+	
+	bool bChange = false;
+	String strCaption;
+	UIFACTORYMGR_PTR->GetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS2", strCaption, m_pWndTree);
+	
+	if ( strCaption != tTPEthnetIPV6Info.m_achDns2 )
+	{
+		bChange = true;
+	}
+	
+	CheckData("CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS2",bChange);
 	return true;
 }
 
@@ -1694,17 +2088,40 @@ void CCfgCnsLogic::SetEthnetCfgData()
 
 void CCfgCnsLogic::SetEthnetSwitchtype()
 {
+	EmProtocolVersion emProtocolVer = emIPV4;
+	LIBDATAMGRPTR->GetIpvType(emProtocolVer);
+	switch (emProtocolVer)
+	{
+	default:
+	case emIPV4:
+		UIFACTORYMGR_PTR->SetCheckState(m_strBtnNetIPv4, 1, m_pWndTree);
+		UIFACTORYMGR_PTR->SetCheckState(m_strBtnNetIPv6, 0, m_pWndTree);
+		UIFACTORYMGR_PTR->LoadScheme( "NetIPV4", m_pWndTree );
+		break;
+	case emIPV6:
+		UIFACTORYMGR_PTR->SetCheckState(m_strBtnNetIPv4, 0, m_pWndTree);
+		UIFACTORYMGR_PTR->SetCheckState(m_strBtnNetIPv6, 1, m_pWndTree);
+		UIFACTORYMGR_PTR->LoadScheme( "NetIPV6", m_pWndTree );
+		break;
+	}
+	
 	if( m_emEthState == em_BackMode )
 	{
 		UIFACTORYMGR_PTR->SetCheckState( m_strBtnNetBackUp, 1, m_pWndTree );
 		UIFACTORYMGR_PTR->SetCheckState( m_strBtnDoubleNet, 0, m_pWndTree );
-		UIFACTORYMGR_PTR->LoadScheme( "SchmNetBackup", m_pWndTree );
+		if (emProtocolVer == emIPV4)
+		{
+			UIFACTORYMGR_PTR->LoadScheme( "SchmNetBackup", m_pWndTree );
+		}
 	}
 	else
 	{
 		UIFACTORYMGR_PTR->SetCheckState( m_strBtnNetBackUp, 0, m_pWndTree );
 		UIFACTORYMGR_PTR->SetCheckState( m_strBtnDoubleNet, 1, m_pWndTree );
-		UIFACTORYMGR_PTR->LoadScheme( "SchmDoubleNet", m_pWndTree );
+		if (emProtocolVer == emIPV4)
+		{
+			UIFACTORYMGR_PTR->LoadScheme( "SchmDoubleNet", m_pWndTree );
+		}
 	}
 }
 
@@ -1734,6 +2151,30 @@ void CCfgCnsLogic::SetWEthnetInfo()
 	valIp.dwIP = ntohl(m_tTPWEthnetInfo.atTPEthnetInfo[1].dwGateWay);
 	UIFACTORYMGR_PTR->SetPropertyValue( valIp, m_strEdtGateWayLan2, m_pWndTree );
 
+}
+
+void CCfgCnsLogic::SetIpv6CfgInfo()
+{
+	if ( m_pWndTree == NULL )
+	{
+		return;
+	}
+
+	TTPEthnetIPV6Info tTPEthnetIPV6Info;
+	LIBDATAMGRPTR->GetIpv6Cfg(tTPEthnetIPV6Info);
+	
+    UIFACTORYMGR_PTR->SetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlAddress", tTPEthnetIPV6Info.m_achIP, m_pWndTree ); 
+	
+	char chData[3];
+	memset( chData, 0, 3 );
+	itoa( tTPEthnetIPV6Info.m_dwPrefix , chData, 10 );
+	UIFACTORYMGR_PTR->SetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlSubLen", chData, m_pWndTree ); 
+	
+	UIFACTORYMGR_PTR->SetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlGateWay", tTPEthnetIPV6Info.m_achGateWay, m_pWndTree ); 
+	
+	UIFACTORYMGR_PTR->SetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS1", tTPEthnetIPV6Info.m_achDns1, m_pWndTree ); 
+	
+	UIFACTORYMGR_PTR->SetCaption( "CfgCnsDlg/IPV6InterfaceCfgDlg/IPv6CtrlDNS2", tTPEthnetIPV6Info.m_achDns2, m_pWndTree ); 
 }
 
 bool CCfgCnsLogic::OnUploadProgress( const IArgs & arg )

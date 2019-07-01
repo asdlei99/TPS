@@ -146,6 +146,12 @@
       <Property Name="WindowCaption" Value="网口选择：" />
       <Property Name="WindowVisible" Value="true" />
       <Property Name="FontSize" Value="9" />
+	  <Scheme Name="NetIPV4">
+		<Property Name="WindowVisible" Value="true" />
+	  </Scheme>
+	  <Scheme Name="NetIPV6">
+		<Property Name="WindowVisible" Value="false" />
+	  </Scheme>
     </Window>
 	
 	</Window>
@@ -165,10 +171,10 @@
 		<Property Name="WindowEnable" Value="true" />
 	  </Scheme>
 	  <Scheme Name="NetIPV4">
-		<Property Name="WindowEnable" Value="true" />
+		<Property Name="WindowVisible" Value="true" />
 	  </Scheme>
 	  <Scheme Name="NetIPV6">
-		<Property Name="WindowEnable" Value="false" />
+		<Property Name="WindowVisible" Value="false" />
 	  </Scheme>
     </Window>
 		 
@@ -178,6 +184,12 @@
       <Property Name="WindowCaption" Value="网口备份" />
       <Property Name="WindowVisible" Value="true" />
       <Property Name="FontSize" Value="9" />
+	  <Scheme Name="NetIPV4">
+		<Property Name="WindowVisible" Value="true" />
+	  </Scheme>
+	  <Scheme Name="NetIPV6">
+		<Property Name="WindowVisible" Value="false" />
+	  </Scheme>
     </Window> 
     
      <Window Type="TransCheckButton" Name="AudioGroup2" Style="WS_CHILD|WS_CLIPSIBLINGS|BS_AUTORADIOBUTTON">
@@ -195,10 +207,10 @@
 		<Property Name="WindowEnable" Value="true" />
 	  </Scheme>
 	  <Scheme Name="NetIPV4">
-		<Property Name="WindowEnable" Value="true" />
+		<Property Name="WindowVisible" Value="true" />
 	  </Scheme>
 	  <Scheme Name="NetIPV6">
-		<Property Name="WindowEnable" Value="false" />
+		<Property Name="WindowVisible" Value="false" />
 	  </Scheme>
     </Window>
 		 
@@ -208,6 +220,12 @@
       <Property Name="WindowCaption" Value="双网口" />
       <Property Name="WindowVisible" Value="true" />
       <Property Name="FontSize" Value="9" />
+	  <Scheme Name="NetIPV4">
+		<Property Name="WindowVisible" Value="true" />
+	  </Scheme>
+	  <Scheme Name="NetIPV6">
+		<Property Name="WindowVisible" Value="false" />
+	  </Scheme>
     </Window>
 
 	<!--Auto Manual-->
@@ -689,7 +707,7 @@
 		<Window Type="TransStatic" Name="IPv6StcDNS2" Style="WS_CHILD|WS_CLIPSIBLINGS">
 		    <Property Name="WindowPos" Value="x:29 y:198" />
 			<Property Name="WindowSize" Value="x:100 y:14" />
-			<Property Name="WindowCaption" Value="DNS1：" />
+			<Property Name="WindowCaption" Value="DNS2：" />
 			<Property Name="WindowVisible" Value="true" />
 			<Property Name="FontSize" Value="9" />
 		</Window>

@@ -759,3 +759,40 @@ u16 CCommonInterface::SetQtEncryptCfg( const TTpQtEncryptCfg& tQtEncrypt)
 
 	 return NO_ERROR;
  }
+
+u16 CCommonInterface::SetIpv6Cfg( TTPEthnetIPV6Info tTPEthnetIPV6Info, EmTpIpNameNatSyn emTpIpNameNatSyn)
+{
+    if ( NULL == m_pCnsConfigCtrl )
+    {
+        return ERR_CMS;
+    }
+    return m_pCnsConfigCtrl->SetIpv6Cfg( tTPEthnetIPV6Info, emTpIpNameNatSyn );
+}
+
+u16 CCommonInterface::GetIpv6Cfg(TTPEthnetIPV6Info& tTPEthnetIPV6Info)
+{
+    if ( NULL == m_pCnsConfigCtrl )
+    {
+        return ERR_CMS;
+    }
+    tTPEthnetIPV6Info = m_pCnsConfigCtrl->GetIpv6Cfg();
+    return NO_ERROR;
+}
+
+u16 CCommonInterface::SetIpvType( EmProtocolVersion emProtocolVer )
+{
+    if ( NULL == m_pCnsConfigCtrl )
+    {
+        return ERR_CMS;
+    }
+    return m_pCnsConfigCtrl->SetIpvType( emProtocolVer );
+}
+
+const EmProtocolVersion CCommonInterface::GetIpvType()
+{
+    if ( NULL == m_pCnsConfigCtrl )
+    {
+        return emIPV4;
+    }
+    return m_pCnsConfigCtrl->GetIpvType();
+}

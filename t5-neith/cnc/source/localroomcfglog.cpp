@@ -72,6 +72,10 @@ MSG_CREATEWINDOW(_T("RoomCtrlLayout"), OnCreate)
 	USER_MSG(UI_CNS_CNSINFO_NOTIFY,OnCnsInfoNotify)
 	USER_MSG(UI_CNS_MAINROOM_NOTIFY,OnMainRoomNotify) 
 
+    //IPV6
+    USER_MSG( UI_CNS_IPVTYPE_NOTIFY, OnSetIpvTypeNty)
+    USER_MSG( UI_CNS_IPV6CFG_NOTIFY, OnSetIpv6CfgNty)
+
     USER_MSG(WM_CNC_FL_FTPCONFSIGNPROGRESS,OnUploadLogoProgressFirstLogin)
 	USER_MSG(WM_CNC_FTPCONFSIGNPROGRESS,OnUploadLogoProgress)
 	USER_MSG(WM_CNC_FTPCONFBANNERPROGRESS,OnUploadBannerProgress)
@@ -1333,6 +1337,47 @@ bool CLocalRoomCfgLogic::UpdateNatInfo( WPARAM wParam, LPARAM lParam, bool& bHan
 	return NO_ERROR;
 }
 
+bool CLocalRoomCfgLogic::OnSetIpvTypeNty(WPARAM wParam, LPARAM lParam, bool& bHandle)
+{
+    EmProtocolVersion emProtocolVer = ComInterface->GetIpvType();
+
+    switch (emProtocolVer)
+    {
+    default:
+    case emIPV4:
+        ICncCommonOp::OptionSelect(true,m_pm,_T("opSetIPv4"));
+        break;
+    case emIPV6:
+        ICncCommonOp::OptionSelect(true,m_pm,_T("opSetIPv6"));
+        break;
+    }
+    return true;
+}
+bool CLocalRoomCfgLogic::OnSetIpv6CfgNty(WPARAM wParam, LPARAM lParam, bool& bHandle)
+{
+    TTPEthnetIPV6Info tTPEthnetIPV6Info;
+    ComInterface->GetIpv6Cfg(tTPEthnetIPV6Info);
+
+    //IPV6地址
+    ICncCommonOp::SetControlText(CA2T(tTPEthnetIPV6Info.m_achIP), m_pm, _T("edtIPv6Address"));
+    ICncCommonOp::SetControlText(CA2T(tTPEthnetIPV6Info.m_achIP), m_pm, _T("lbIPv6Address"));
+    //IPV6子网前缀长度
+    CDuiString strIPV6SunLen = _T("");
+    strIPV6SunLen.Format(_T("%d"),tTPEthnetIPV6Info.m_dwPrefix);
+    ICncCommonOp::SetControlText(strIPV6SunLen, m_pm, _T("edtSubNetLength"));
+    ICncCommonOp::SetControlText(strIPV6SunLen, m_pm, _T("lbSubNetLength"));
+    //IPV6网关
+    ICncCommonOp::SetControlText(CA2T(tTPEthnetIPV6Info.m_achGateWay), m_pm, _T("edtGateWayIp"));
+    ICncCommonOp::SetControlText(CA2T(tTPEthnetIPV6Info.m_achGateWay), m_pm, _T("lbGateWayIp"));
+    //IPV6DNS1
+    ICncCommonOp::SetControlText(CA2T(tTPEthnetIPV6Info.m_achDns1), m_pm, _T("edtDNS1Ip"));
+    ICncCommonOp::SetControlText(CA2T(tTPEthnetIPV6Info.m_achDns1), m_pm, _T("lbDNS1Ip"));
+    //IPV6DNS2
+    ICncCommonOp::SetControlText(CA2T(tTPEthnetIPV6Info.m_achDns2), m_pm, _T("edtDNS2Ip"));
+    ICncCommonOp::SetControlText(CA2T(tTPEthnetIPV6Info.m_achDns2), m_pm, _T("lbDNS2Ip"));
+    return true;
+}
+
 bool CLocalRoomCfgLogic::OnCnsInfoNotify( WPARAM wParam, LPARAM lParam, bool& bHandle )
 {
 	EmTPCNSInfoRst emRst = (EmTPCNSInfoRst)lParam;
@@ -1468,6 +1513,12 @@ bool CLocalRoomCfgLogic::OnBtnSave( TNotifyUI& msg )
 	{
 		return false;
 	}
+    EmIsValid bIsIPV6 = IsIPV6Changed();
+    if (bIsIPV6 == emSaveInValid)
+    {
+        return false;
+    }
+
 
 	EmTpIpNameNatSyn em = emSynInvalid;
 
@@ -1607,6 +1658,67 @@ bool CLocalRoomCfgLogic::OnBtnSave( TNotifyUI& msg )
     {
         bool bIs = false;
         UpdateEthnetInfo( 0 ,0, bIs );
+    }
+
+    //IPV type
+    EmIsValid bEmIsIpType = IsIpTypeChanged();
+    if (bEmIsIpType == emSaveValid)
+    {
+        EmProtocolVersion emCurProtocolVer = ComInterface->GetIpvType();
+        CCheckBoxUI *pCheckIpvType = (CCheckBoxUI*)ICncCommonOp::FindControl( m_pm, _T("opSetIPv6") );
+        if (pCheckIpvType)
+        {
+            EmProtocolVersion emProtocolVer = (pCheckIpvType->IsSelected() == false ? emIPV4 : emIPV6);
+            if (emProtocolVer != emCurProtocolVer)
+            {
+                u16 wRet = ComInterface->SetIpvType(emProtocolVer);
+                if( wRet != NO_ERROR )
+                {
+                    ShowPopMsg( _T("保存IP地址类型发送失败") );
+                    return false;
+                }
+            }
+        }
+    }
+    //IPV6
+    EmTpIpNameNatSyn emForIpv6 = emSynInvalid;
+    if (bIsConfInfo==emSaveValid && bIsNat==emSaveValid && bIsIPV6==emSaveValid)
+    {
+        emForIpv6 = emTpAll;
+    }
+    else if (bIsConfInfo==emSaveValid && bIsNat==emSaveValid && bIsIPV6!=emSaveValid)
+    {
+        emForIpv6 = emTpNameAndNat;
+    }
+    else if (bIsConfInfo==emSaveValid && bIsNat!=emSaveValid && bIsIPV6==emSaveValid)
+    {
+        emForIpv6 = emTpIpAndName;
+    }
+    else if (bIsConfInfo!=emSaveValid && bIsNat==emSaveValid && bIsIPV6==emSaveValid)
+    {
+        emForIpv6 = emTpIpAndNat;
+    }
+    if (bIsIPV6==emSaveValid)
+    {
+        String strIpv6Addr = ICncCommonOp::GetControlText( m_pm,_T("edtIPv6Address") );   
+        String strIpv6SubLen = ICncCommonOp::GetControlText( m_pm, _T("edtSubNetLength") );
+        String strIpv6GateWay = ICncCommonOp::GetControlText( m_pm, _T("edtGateWayIp") );
+        String strIpv6DNS1 = ICncCommonOp::GetControlText( m_pm, _T("edtDNS1Ip") );
+        String strIpv6Dns2 = ICncCommonOp::GetControlText( m_pm, _T("edtDNS2Ip") );
+        TTPEthnetIPV6Info tTPEthnetIPV6Info;
+        strncpy( tTPEthnetIPV6Info.m_achIP, CT2A(strIpv6Addr.c_str()), TP_IPV6_LEN + 1 );
+        tTPEthnetIPV6Info.m_dwPrefix = atoi(CT2A(strIpv6SubLen.c_str()));
+        strncpy( tTPEthnetIPV6Info.m_achGateWay, CT2A(strIpv6GateWay.c_str()), TP_IPV6_LEN + 1 );
+        strncpy( tTPEthnetIPV6Info.m_achDns1, CT2A(strIpv6DNS1.c_str()), TP_IPV6_LEN + 1 );
+        strncpy( tTPEthnetIPV6Info.m_achDns2, CT2A(strIpv6Dns2.c_str()), TP_IPV6_LEN + 1 );
+
+        u16 wRet = NO_ERROR;
+        wRet = ComInterface->SetIpv6Cfg( tTPEthnetIPV6Info, emForIpv6 );
+        if (wRet != NO_ERROR)
+        {
+            ShowPopMsg( _T("保存会场请求发送失败") );
+            return false;
+        }
     }
 
 	m_bIsFix = false;
@@ -2599,6 +2711,103 @@ EmIsValid CLocalRoomCfgLogic::IsVidCutLineChanged()
 		}
 	}
 	return emSaveNochange;
+}
+
+EmIsValid CLocalRoomCfgLogic::IsIpTypeChanged()
+{
+    EmProtocolVersion emIpType = ComInterface->GetIpvType();
+
+    CCheckBoxUI *pCheckIsIPV6 = (CCheckBoxUI*)ICncCommonOp::FindControl( m_pm, _T("opSetIPv6") );
+    if (pCheckIsIPV6)
+    {
+        EmProtocolVersion emUIIpType = pCheckIsIPV6->GetCheck() ? emIPV6 : emIPV4;
+
+        if ( emIpType != emUIIpType)
+        {
+            return emSaveValid;
+        }
+    }
+    return emSaveNochange;
+}
+
+EmIsValid CLocalRoomCfgLogic::IsIPV6Changed()
+{
+    CEditUI *pEdtIp = (CEditUI*)ICncCommonOp::FindControl( m_pm, _T("edtIPv6Address") );
+    CEditUI *pEdtSubnetlen = (CEditUI*)ICncCommonOp::FindControl( m_pm, _T("edtSubnetMask") );
+    CEditUI *pEdtGateWay = (CEditUI*)ICncCommonOp::FindControl( m_pm, _T("edtGateWay") );
+    CEditUI *pEdtDNS1 = (CEditUI*)ICncCommonOp::FindControl( m_pm, _T("edtGateWay") );
+    CEditUI *pEdtDNS2 = (CEditUI*)ICncCommonOp::FindControl( m_pm, _T("edtGateWay") );
+
+    CString strIp;
+    CString strSunLen;
+    CString strGateWay;
+    CString strDNS1;
+    CString strDNS2;
+
+    if (pEdtIp && pEdtSubnetlen && pEdtGateWay && pEdtDNS1 && pEdtDNS2)
+    {		
+
+        strIp = pEdtIp->GetText();
+        strSunLen = pEdtSubnetlen->GetText();
+        strGateWay = pEdtGateWay->GetText();
+        strDNS1 = pEdtDNS1->GetText();
+        strDNS2 = pEdtDNS2->GetText();
+
+        if (strIp.IsEmpty() && strSunLen.IsEmpty() && strGateWay.IsEmpty() && strDNS1.IsEmpty() && strDNS2.IsEmpty())
+        {
+            return emSaveInValid;
+        }
+
+        TTPEthnetIPV6Info tTPEthnetIPV6Info;
+        ComInterface->GetIpv6Cfg( tTPEthnetIPV6Info );
+
+        if(!UIDATAMGR->IsValidIpV6((CT2A(strIp))) )
+        {
+            ShowMessageBox((_T("CNS IPV6地址非法")),false);
+            pEdtIp->SetFocusX();
+            return emSaveInValid;
+        }
+
+        if(!UIDATAMGR->IsValidIpV6((CT2A(strGateWay))) )
+        {
+            ShowMessageBox((_T("CNS 网关地址非法")),false);
+            pEdtGateWay->SetFocusX();
+            return emSaveInValid;
+        }
+
+        if(!UIDATAMGR->IsValidIpV6((CT2A(strDNS1))) )
+        {
+            ShowMessageBox((_T("CNS DNS1地址非法")),false);
+            pEdtDNS1->SetFocusX();
+            return emSaveInValid;
+        }
+
+        if(!UIDATAMGR->IsValidIpV6((CT2A(strDNS2))) )
+        {
+            ShowMessageBox((_T("CNS DNS2地址非法")),false);
+            pEdtDNS2->SetFocusX();
+            return emSaveInValid;
+        }
+
+        u32 dwSubLen = atoi(CT2A(strSunLen));
+        if (dwSubLen < 0 || dwSubLen > 128)
+        {
+            ShowMessageBox((_T("CNS 子网前缀长度非法")),false);
+            pEdtSubnetlen->SetFocusX();
+            return emSaveInValid;
+        }
+
+        //校验数据
+        if ( strcmp(tTPEthnetIPV6Info.m_achIP, CT2A(strIp)) != 0 ||
+             strcmp(tTPEthnetIPV6Info.m_achGateWay, CT2A(strGateWay)) != 0 || 
+             strcmp(tTPEthnetIPV6Info.m_achDns1, CT2A(strDNS1)) != 0 || 
+             strcmp(tTPEthnetIPV6Info.m_achDns2, CT2A(strDNS2)) != 0 || 
+             tTPEthnetIPV6Info.m_dwPrefix != dwSubLen)
+        {
+            return emSaveValid;
+        }
+    }
+    return emSaveNochange;
 }
 
 bool CLocalRoomCfgLogic::OnScreenLogoItemClick( TNotifyUI& msg )

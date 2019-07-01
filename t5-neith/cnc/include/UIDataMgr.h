@@ -151,7 +151,11 @@ public:
 	* @return 成功返回TRUE,失败返回FALSE
 	* @remarks 
 	*/
+#ifdef INCONF
+    EMLocalCnsState GetLocalCnsState( ){ return emLocalCnsInConf ;}
+#else
     EMLocalCnsState GetLocalCnsState( ){ return m_emLocalCnsState ;}
+#endif
 
 
     /**

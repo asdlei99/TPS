@@ -22,7 +22,7 @@ CCncConfCtrl::CCncConfCtrl(CCnsSession &cSession) : CCncConfCtrlIF(),
 	m_bySpeakSeat = 0;
     m_bDual = FALSE;
 	m_bLocalPIP = FALSE;
-	m_bPTPVoiceArouse = FALSE;
+	m_bPTPSeatArouse = FALSE;
 	m_bInAudMix = FALSE;
 
 	BuildEventsMap();
@@ -94,7 +94,7 @@ void CCncConfCtrl::BuildEventsMap()
 	REG_PFUN( ev_tppSetShowDual_Ind, CCncConfCtrl::OnSpareDualSetInd );
 	REG_PFUN( ev_tppSetShowDual_Nty, CCncConfCtrl::OnSpareDualSetNty );	
 
-	//单独控制语音激励消息回复
+	//单独控制坐席激励消息回复
 	REG_PFUN( ev_CnMixIsUsed_Ind, CCncConfCtrl::OnCnAuxMixInd );	
 	//会议点名
 	REG_PFUN( evConfRollCallUpdate_Nty, CCncConfCtrl::OnStartRollNty );
@@ -580,9 +580,9 @@ BOOL CCncConfCtrl::IsLocalCnsDual() const
 	return m_bDual;
 }
 
-BOOL CCncConfCtrl::IsLocalPTPVoiceArouse() const
+BOOL CCncConfCtrl::IsLocalPTPSeatArouse() const
 {
-	return m_bPTPVoiceArouse;
+	return m_bPTPSeatArouse;
 }
  
 u16 CCncConfCtrl::StartDualCodeStream( const TTPCnMediaTransPort &tVideoTransAddr, const TTPCnMediaTransPort &tAudioTransAddr ) const
@@ -597,9 +597,9 @@ u16 CCncConfCtrl::StartDualCodeStream( const TTPCnMediaTransPort &tVideoTransAdd
     u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
     
     in_addr tAddr;
-    tAddr.S_un.S_addr = tVideoTransAddr.m_tRtpPort.m_dwIP;
+    tAddr.S_un.S_addr = tVideoTransAddr.m_tRtpPort.m_tIP.dwIPV4;
     in_addr tAudioAddr;
-    tAudioAddr.S_un.S_addr = tAudioTransAddr.m_tRtpPort.m_dwIP;
+    tAudioAddr.S_un.S_addr = tAudioTransAddr.m_tRtpPort.m_tIP.dwIPV4;
 
     PrtMsg( ev_TppAddDualRcvAddr_Cmd, emEventTypeCnsSend, "VideoAddr: %s, Port: %d, AudioAddr: %s, Port: %d", inet_ntoa(tAddr), tVideoTransAddr.m_tRtpPort.m_wPort
         ,inet_ntoa(tAudioAddr), tAudioTransAddr.m_tRtpPort.m_wPort );
@@ -1330,7 +1330,7 @@ void CCncConfCtrl::OnLinkBreak(const CMessage& cMsg)
 	m_bySpeakSeat = 0;
 	m_vctScreenInfo.clear();
 	m_bLocalPIP = FALSE;
-	m_bPTPVoiceArouse = FALSE;
+	m_bPTPSeatArouse = FALSE;
 	m_bInAudMix = FALSE;
 
     m_bRecvDual = FALSE ;
@@ -1530,7 +1530,7 @@ void CCncConfCtrl::OnCnAuxMixInd( const CMessage& cMsg )
 	BOOL bIsSuccess = *reinterpret_cast<BOOL *>( cTpMsg.GetBody() + sizeof(BOOL) );
 	if (bIsSuccess)
 	{
-		m_bPTPVoiceArouse = bIsMix;
+		m_bPTPSeatArouse = bIsMix;
 	}
 
 	PrtMsg( ev_CnMixIsUsed_Ind, emEventTypeCnsRecv, _T( "IsCnMix:%d IsSuccess:%d"),bIsMix, bIsSuccess );

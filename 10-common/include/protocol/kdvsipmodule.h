@@ -1005,7 +1005,6 @@ PROTO_EXTERN_API void setsiplogcallid(u16 wCallId);
 * \param[in]        nLevel             :log level
 * \return           void.
 */
-PROTO_EXTERN_API void sipmodulelogon(s32 nModule, s32 nLevel);
 PROTO_EXTERN_API void sipmlog(s32 nModule, s32 nLevel = 0);
 
 /**

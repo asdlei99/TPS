@@ -814,6 +814,18 @@ u16 CCnclibCommonIF::SetDFScreenGroupCmd(u32 dwGroupNum, TCenDownOrFlipScreenCfg
     return re;
 }
 
+//IPV6
+u16 CCnclibCommonIF::SetIpvType( const EmProtocolVersion& emProtocolVer)
+{
+	u16 re = CNCSESSION_MGR_PTR->GetConfigIF()->SetIpvType(emProtocolVer);
+	return re;
+}
+u16 CCnclibCommonIF::SetIpv6Cfg( const TTPEthnetIPV6Info& tTPEthnetIPV6Info, const EmTpIpNameNatSyn& emTpIpNameNatSyn)
+{
+	u16 re = CNCSESSION_MGR_PTR->GetConfigIF()->SetIpv6Cfg(tTPEthnetIPV6Info, emTpIpNameNatSyn);
+	return re;
+}
+
 
 
 

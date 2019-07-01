@@ -295,9 +295,9 @@ u16 CCncConfCtrl::StartDualCodeStream( const TTPCnMediaTransPort &tVideoTransAdd
     u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
     
     in_addr tAddr;
-    tAddr.S_un.S_addr = tVideoTransAddr.m_tRtpPort.m_dwIP;
+    tAddr.S_un.S_addr = tVideoTransAddr.m_tRtpPort.m_tIP.dwIPV4;
     in_addr tAudioAddr;
-    tAudioAddr.S_un.S_addr = tAudioTransAddr.m_tRtpPort.m_dwIP;
+    tAudioAddr.S_un.S_addr = tAudioTransAddr.m_tRtpPort.m_tIP.dwIPV4;
 
     PrtMsg( ev_TppAddDualRcvAddr_Cmd, emEventTypeCnsSend, "VideoAddr: %s, Port: %d, AudioAddr: %s, Port: %d", inet_ntoa(tAddr), tVideoTransAddr.m_tRtpPort.m_wPort
         ,inet_ntoa(tAudioAddr), tAudioTransAddr.m_tRtpPort.m_wPort );

@@ -21,14 +21,37 @@ TTPCnsConfStatus CCommonInterface::GetLocalCnsConfState() const
     {
         return tConfStatus;
     }
-
-    return m_pCnsConfCtrl->GetCnsConfStatus();
+#ifdef INCONF
+    TTPCnsConfStatus tTTPCnsConfStatus;
+    tTTPCnsConfStatus.emState = em_CALL_CONNECTED;
+    tTTPCnsConfStatus.m_emCallType = emCallType_Conf;
+    tTTPCnsConfStatus.m_bMixMotive = true;
+    tTTPCnsConfStatus.m_emConfProtocal = emTpH320;
+    tTTPCnsConfStatus.m_emTPEncryptType = emTPEncryptTypeNone;
+    return tTTPCnsConfStatus;
+#else
+    return m_pCnsConfCtrl->GetCnsConfStatus();    
+#endif
 }
 
 
 BOOL32 CCommonInterface::IsInConf( TCMSConf *pConf/* = NULL*/ )
 {   
-	BOOL32 bIn = FALSE;
+#ifdef INCONF
+    BOOL32 bIn = TRUE;
+    if ( pConf != NULL )
+    {
+        pConf->m_emConfType = emCallType_Conf;
+        pConf->m_bStartAudmix = true;
+        pConf->m_bVacOn = true;
+        strncpy(pConf->m_achConfName, "meeting",TP_MAX_ALIAS_LEN);
+
+        //pConf->m_emConfType = emCallType_Conf; emCallType_P2P
+    }
+    return bIn;
+#else
+    BOOL32 bIn = FALSE;    
+#endif
 
 	TTPCnsConfStatus status = GetLocalCnsConfState() ;
 	if ( status.emState == em_CALL_CONNECTED )
@@ -71,14 +94,14 @@ BOOL CCommonInterface::IsLocalCnsDual() const
 	return  m_pCnsConfCtrl->IsLocalCnsDual();
 }
 
-BOOL CCommonInterface::IsLocalPTPVoiceArouse() const
+BOOL CCommonInterface::IsLocalPTPSeatArouse() const
 {
 	if( NULL == m_pCnsConfCtrl )
 	{
 		return ERR_CMS;
 	}
 
-	return m_pCnsConfCtrl->IsLocalPTPVoiceArouse();
+	return m_pCnsConfCtrl->IsLocalPTPSeatArouse();
 }
 
 //ÇëÇóÂëÁ÷
@@ -436,7 +459,8 @@ u16 CCommonInterface::StartInstantConf( const vector<TCnAddr>& tCnsList )
 
 	TTPCallSerInfo tCallSerInfo;
 	GetCallServerInfo( tCallSerInfo );
-	tTPDialParam.tCalledAddr.dwIP = tCallSerInfo.dwCallServiceIP;
+    tTPDialParam.tCalledAddr.emProtocolVersion = emIPV4;
+	tTPDialParam.tCalledAddr.tIP.dwIPV4 = tCallSerInfo.dwCallServiceIP;
     
     tTPDialParam.tCallingAddr.emType = emTpAlias; 
     tTPDialParam.tCallingAddr.wPort = CNS_SIP_STACK_LISTION_PORT ; 
@@ -790,6 +814,13 @@ BOOL32 CCommonInterface::IsLocalCnsChairMan()
 		return FALSE;
 	}
 
+#ifndef LOGIN
+#ifdef CHAIR
+    return TRUE;
+#else
+    return FALSE;
+#endif
+#endif
 
 	TTPCnsInfo tCnsInfo;
 	GetLocalCnsInfo(tCnsInfo);  

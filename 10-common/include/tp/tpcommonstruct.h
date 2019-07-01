@@ -2086,57 +2086,78 @@ public:
 }TLoginRet;
 
 
+//原本想用Uion的但是怕出问题,因脚本运行时union没有被识别
+//IP地址
+typedef struct tagTTPIPAddress
+{
+    u32_ip      dwIPV4;                            //IPV4
+    s8          achIPV6[TP_IPV6_LEN + 1];          //IPV6
+    public:
+    tagTTPIPAddress(){ memset( this ,0 ,sizeof( tagTTPIPAddress ) );}
+}TTPIPAddress;
+
 typedef struct tagTTPTransAddr
 {
 public:
-	u32_ip	m_dwIP;		//网络序
-	u16 m_wPort;	//主机序
+    EmProtocolVersion m_emProtocolVersion;
+    TTPIPAddress    m_tIP;      //网络序
+    u16 m_wPort;    //主机序
 
 public:
-	tagTTPTransAddr()
-		:m_dwIP(0)
-		,m_wPort(0)
-	{
-	}
+    tagTTPTransAddr()
+    {
+        { 
+            memset( this ,0 ,sizeof( tagTTPTransAddr ) );
+            m_emProtocolVersion = emIPV4;
+        }
+    }
 
-	u32 GetIP()	{ return m_dwIP; }
-	u16 GetPort()	{ return m_wPort; }	
+    tagTTPIPAddress GetIP() { return m_tIP; }
+    u16 GetPort()   { return m_wPort; } 
+    EmProtocolVersion GetProtocolVersion()   { return m_emProtocolVersion; }
+    
+    void SetIP(tagTTPIPAddress tIP)
+    {
+        m_tIP = tIP;
+    }
+    void SetAddr(tagTTPIPAddress tIP, u16 wPort, EmProtocolVersion emProtocolVersion)
+    {
+        m_tIP = tIP;
+        m_wPort = wPort;
+        m_emProtocolVersion = emProtocolVersion;
+    }
+    void Clear()
+    {
+        m_wPort = 0;
+        memset( &m_tIP, 0, sizeof(m_tIP));
+        m_emProtocolVersion = emIPV4;
+    }
+    tagTTPTransAddr& operator = (const tagTTPTransAddr& tRhs)
+    {
+        if (this == &tRhs)
+        {
+            return *this;
+        }
+        this->m_tIP = tRhs.m_tIP;
+        this->m_wPort = tRhs.m_wPort;
+        this->m_emProtocolVersion = tRhs.m_emProtocolVersion;
+        return *this;
+    }
+    
+    BOOL operator == (const tagTTPTransAddr& tRhs)
+    {
+        if ( ((this->m_tIP.dwIPV4 == tRhs.m_tIP.dwIPV4
+            &&this->m_emProtocolVersion == emIPV4) 
+            ||( 0 == strcmp(this->m_tIP.achIPV6, tRhs.m_tIP.achIPV6)
+            &&this->m_emProtocolVersion == emIPV6))
+            &&this->m_wPort == tRhs.m_wPort 
+            &&this->m_emProtocolVersion == tRhs.m_emProtocolVersion)
+        {
+            return TRUE;
+        }
+        return FALSE;
+    }
 
-	
-	void SetIP(u32 dwIP)
-	{
-		m_dwIP = dwIP;
-	}
-	void SetAddr(u32 dwIP, u16 wPort)
-	{
-		m_dwIP = dwIP;
-		m_wPort = wPort;
-	}
-	void Clear()
-	{
-		m_wPort = 0;
-		m_dwIP = 0;
-	}
-	tagTTPTransAddr& operator = (const tagTTPTransAddr& tRhs)
-	{
-		if (this == &tRhs)
-		{
-			return *this;
-		}
-		this->m_dwIP = tRhs.m_dwIP;
-		this->m_wPort = tRhs.m_wPort;
-		return *this;
-	}
-
-	BOOL operator == (const tagTTPTransAddr& tRhs)
-	{
-		if ( this->m_dwIP == tRhs.m_dwIP
-			&&this->m_wPort == tRhs.m_wPort )
-		{
-			return TRUE;
-		}
-		return FALSE;
-	}
 }TTPTransAddr, *PTTPTransAddr;
 
 
@@ -2371,54 +2392,53 @@ public:
 	}
 	
 }TTpQtEncryptKey,*PTTpQtEncryptKey;
-
 typedef struct tagTTPMediaTransAddr
 {
-	TTPTransAddr m_tRtpAddr;
-	TTPTransAddr m_tRtcpAddr;	
-	TTPTransAddr m_tBackRtcpAddr;
-	tagTTPMediaTransAddr()
-	{
-	}
+    TTPTransAddr m_tRtpAddr;
+    TTPTransAddr m_tRtcpAddr;   
+    TTPTransAddr m_tBackRtcpAddr;
+    tagTTPMediaTransAddr()
+    {
+    }
 
-	tagTTPMediaTransAddr(tagTTPMediaTransAddr& tAddr)
-	{
-		m_tRtpAddr = tAddr.m_tRtpAddr;
-		m_tRtcpAddr = tAddr.m_tRtcpAddr;
-		m_tBackRtcpAddr = tAddr.m_tBackRtcpAddr;
-	}
+    tagTTPMediaTransAddr(tagTTPMediaTransAddr& tAddr)
+    {
+        m_tRtpAddr = tAddr.m_tRtpAddr;
+        m_tRtcpAddr = tAddr.m_tRtcpAddr;
+        m_tBackRtcpAddr = tAddr.m_tBackRtcpAddr;
+    }
 
-	tagTTPMediaTransAddr& operator=(const tagTTPMediaTransAddr& tAddr)
-	{
-		if (this != &tAddr)
-		{
-			m_tRtpAddr = tAddr.m_tRtpAddr;
-			m_tRtcpAddr = tAddr.m_tRtcpAddr;
-			m_tBackRtcpAddr = tAddr.m_tBackRtcpAddr;
-		}
+    tagTTPMediaTransAddr& operator=(const tagTTPMediaTransAddr& tAddr)
+    {
+        if (this != &tAddr)
+        {
+            m_tRtpAddr = tAddr.m_tRtpAddr;
+            m_tRtcpAddr = tAddr.m_tRtcpAddr;
+            m_tBackRtcpAddr = tAddr.m_tBackRtcpAddr;
+        }
 
-		return *this;
-	}
+        return *this;
+    }
 
-	bool operator==(const tagTTPMediaTransAddr& tAddr)
-	{
-		return	m_tRtpAddr == tAddr.m_tRtpAddr &&
-				m_tRtcpAddr == tAddr.m_tRtcpAddr &&
-				m_tBackRtcpAddr == tAddr.m_tBackRtcpAddr;
-	}
+    bool operator==(const tagTTPMediaTransAddr& tAddr)
+    {
+        return  m_tRtpAddr == tAddr.m_tRtpAddr &&
+                m_tRtcpAddr == tAddr.m_tRtcpAddr &&
+                m_tBackRtcpAddr == tAddr.m_tBackRtcpAddr;
+    }
 
-	void Clear()
-	{
-		m_tRtpAddr.Clear();
-		m_tRtcpAddr.Clear();
-		m_tBackRtcpAddr.Clear();
-	}
-	void SetIP(u32 dwIP)
-	{
-		m_tRtpAddr.SetIP(dwIP);
-		m_tRtcpAddr.SetIP(dwIP);
-		m_tBackRtcpAddr.SetIP(dwIP);
-	}
+    void Clear()
+    {
+        m_tRtpAddr.Clear();
+        m_tRtcpAddr.Clear();
+        m_tBackRtcpAddr.Clear();
+    }
+    void SetIP(tagTTPIPAddress dwIP)
+    {
+        m_tRtpAddr.SetIP(dwIP);
+        m_tRtcpAddr.SetIP(dwIP);
+        m_tBackRtcpAddr.SetIP(dwIP);
+    }
 
 
 }TTPMediaTransAddr;
@@ -4108,21 +4128,11 @@ typedef struct tagTUCSipRegResult
 
 }TUCSipRegResult;
 
-//原本想用Uion的但是怕出问题,脚本运行时union没有被识别
-//IP地址
-typedef struct tagTTPIPAddress
-{
-    u32_ip      dwIPV4;                            //IPV4
-    s8          achIPV6[TP_IPV6_LEN + 1];          //IPV6
-    public:
-    tagTTPIPAddress(){ memset( this ,0 ,sizeof( tagTTPIPAddress ) );}
-}TTPIPAddress;
-
 //终端地址
 typedef struct tagTCnAddr
 {
 	EmTPAddrType	emType;							//地址类型
-    EmProtocolVersion emProtocolVersion;    
+	EmProtocolVersion emProtocolVersion;    
 	TTPIPAddress	tIP;						//终端IP地址
 	u16          wPort;						//端口
 	s8			 achAlias[TP_MAX_H323ALIAS_LEN+1];		//(别名)
@@ -6314,6 +6324,7 @@ typedef struct tagTTPCnDsData
 	TTPTransAddr m_tRcvFromAddr;
 	TTPTransAddr m_tSndToAddr;
 	TTPTransAddr m_tMapedAddr;
+	u32 dwType;
 
 	void clear()
 	{
@@ -6332,19 +6343,19 @@ typedef struct tagTTPCnDsData
 		this->m_tRcvFromAddr = tRhs.m_tRcvFromAddr;
 		this->m_tSndToAddr = tRhs.m_tSndToAddr;
 		this->m_tMapedAddr = tRhs.m_tMapedAddr;
+		this->dwType = tRhs.dwType;
 		return *this;
 	}
-	BOOL operator == (const tagTTPCnDsData& tRhs)
-	{
-		if ( this->m_tSndToAddr.m_dwIP == tRhs.m_tSndToAddr.m_dwIP
-			&&this->m_tRcvFromAddr.m_dwIP == tRhs.m_tRcvFromAddr.m_dwIP
-			&&this->m_tSndToAddr.m_wPort == tRhs.m_tSndToAddr.m_wPort
-			&&this->m_tRcvFromAddr.m_wPort == tRhs.m_tRcvFromAddr.m_wPort)
-		{
-			return TRUE;
-		}
-		return FALSE;
-	}
+    BOOL operator == (const tagTTPCnDsData& tRhs)
+    {
+        if ( this->m_tSndToAddr == tRhs.m_tSndToAddr
+            &&this->m_tRcvFromAddr == tRhs.m_tRcvFromAddr
+            )
+        {
+            return TRUE;
+        }
+        return FALSE;
+    }
 }TTPCnDsData;
 
 typedef struct tagTTPCnNetBufPara

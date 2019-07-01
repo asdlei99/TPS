@@ -530,3 +530,48 @@ int CUIDataMgr::IsSameNetworkSegment(char *szIPAdress, char *szIPAdresss1, char 
         return -1;  
 	}
 }  
+
+bool CUIDataMgr::IsValidIpV6(CString lptrIPStr)
+{
+    int nCheckChar = 0;
+    int nCheckColon = 0;
+    int nEllipsis = 0;
+    s32 nLen = strlen( lptrIPStr );    //  字符串长度
+    for ( s32 nCount = 0 ; nCount < nLen ; ++nCount )
+    {
+        if ((lptrIPStr[nCount] >= '0') && (lptrIPStr[nCount] <= '9'))
+        {
+            nCheckChar = 0;
+        }
+        else if ((lptrIPStr[nCount] >= 'a') && (lptrIPStr[nCount] <= 'f'))
+        {
+            nCheckChar = 0;
+        }
+        else if ((lptrIPStr[nCount] >= 'A') && (lptrIPStr[nCount] <= 'F'))
+        {
+            nCheckChar = 0;
+        }
+        else if (lptrIPStr[nCount] == ':')
+        {
+            nCheckColon++;
+            nCheckChar++;
+            if (nCheckChar > 2)//连续三个冒号
+            {
+                return false;
+            }
+            else if (nCheckChar == 2)
+            {
+                nEllipsis++;
+                if (nEllipsis > 1)//超过一次的省略
+                {
+                    return false;
+                }
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+    return (nCheckColon == 7) || (nEllipsis != 0);
+}

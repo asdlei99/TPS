@@ -33,7 +33,7 @@
 * \param[in]        hHandle   :sdp handle for stack
 * \return           BOOL32, TRUE/FALSE
 */
-PROTO_API BOOL32 kdvsdp_create_sdp(CSipCapSet *pcCap, TSdpHandle hHandle);
+PROTO_API BOOL32 kdvsdp_create_sdp(CSipCapSet *pcCap, TSdpHandle hHandle, BOOL32 bUseStdH265);
 
 /**
 * \brief            获取sdp能力（将协议栈sdp能力转换为CSipCapSet对象)
@@ -41,7 +41,7 @@ PROTO_API BOOL32 kdvsdp_create_sdp(CSipCapSet *pcCap, TSdpHandle hHandle);
 * \param[in]        pcCap     :the capset set from module
 * \return           BOOL32, TRUE/FALSE
 */
-PROTO_API BOOL32 kdvsdp_build_capset(TSdpHandle hHandle, CSipCapSet *pcCap);
+PROTO_API BOOL32 kdvsdp_build_capset(TSdpHandle hHandle, CSipCapSet *pcCap, BOOL32 &bUseStdH265);
 
 /**
 * \brief            sdp interface register to pfc for linux

@@ -209,7 +209,7 @@ public:
 	virtual u16 CancelSelTVSView( u8 byScreenID );
 
 	/** 
-	* 功能  单独控制语音激励
+	* 功能  单独控制坐席激励
     * @param [in]  BOOL bIsAudMix 是否开启
 	* @return  
 	* @remarks 
@@ -289,11 +289,11 @@ public: //获取lib中缓存信息
     virtual BOOL IsLocalCnsDual() const;
 	
 	/** 
-	* 功能  点对点会议语音激励
-	* @return  BOOL  是否点对点会议语音激励
+	* 功能  点对点会议坐席激励
+	* @return  BOOL  是否点对点会议坐席激励
 	* @remarks 
 	*/
-    virtual BOOL IsLocalPTPVoiceArouse() const;
+    virtual BOOL IsLocalPTPSeatArouse() const;
 
     virtual TTPCnMediaTransPort GetVedioTransAddr() const { return m_tVideoTranAddr ;}
     virtual TTPCnMediaTransPort GetAudioTransAddr() const { return m_tAudioTranAddr ;}
@@ -454,7 +454,7 @@ private:
 	vector<TScreenInfo>  m_vctScreenInfo;
 	vector<TTPNMServerCfg> m_vecTTPNMServerCfg;		//网管服务器信息
     BOOL32           m_bLocalPIP;	//是否开启画中画
-	BOOL32           m_bPTPVoiceArouse;//是否开启点对点语音激励
+	BOOL32           m_bPTPSeatArouse;//是否开启点对点坐席激励
 	TTpConfRollCallInfo   m_tTpConfRollCallInfo;//点名状态
 	TTpRollCallPresentStateMsg   m_tTpRollCallPresentStateMsg;//点名与会状态
 	TTpAudMixInfo   m_tTpAudMixInfo;//混音状态

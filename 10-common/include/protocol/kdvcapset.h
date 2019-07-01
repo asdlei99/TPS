@@ -399,7 +399,7 @@ public:
 		m_byVersion   = 1;
 		m_wMaxBitrate = 510;                    ///< kbps
 		m_wMinBitrate = 6;
-		m_dwSampleRate= 8000;
+		m_dwSampleRate= 48000;
 	}
     
 	/// interfaces of convert the member's order
@@ -850,26 +850,26 @@ public:
 	/// Refer document: T-REC-H.265-201304-I: Annex A
     enum emH265Profile
     {
-        emProfileMain,
+        emProfileMain = 1,
         emProfileMain10,
         emProfileMainStill,
     };
 
 	enum emH265Level
 	{
-		emLevel10,
-		emLevel20,
-		emLevel21,
-		emLevel30,
-		emLevel31,
-		emLevel40,
-		emLevel41,
-		emLevel50,
-		emLevel51,
-		emLevel52,
-		emLevel60,
-		emLevel61,
-		emLevel62,
+		emLevel10 = 30,///<   1.0  1.0*30
+		emLevel20 = 60,///<   2.0  2.0*30
+		emLevel21 = 63,///<   2.1  2.1*30
+		emLevel30 = 90,
+		emLevel31 = 93,
+		emLevel40 = 120,
+		emLevel41 = 123,
+		emLevel50 = 150,
+		emLevel51 = 153,
+		emLevel52 = 156,
+		emLevel60 = 180,
+		emLevel61 = 183,
+		emLevel62 = 186,
 	};
 
 	enum emH265Tier
@@ -3215,16 +3215,6 @@ public:
 	*/
 	s32  GetSipDualMediaLabel();
 
-	/**
-	* \brief            set the private member of m_bOldH265Way
-	* \param[in]        bOldH265Way          :is old H265 way
-	*/
-	void SetIsOldH265Way(BOOL32 bOldH265Way);
-	/**
-	* \brief            get the private member of m_bOldH265Way
-	* \return           BOOL32, TRUE/FALSE
-	*/
-	BOOL32  GetIsOldH265Way();
 private:
 	
 	CAudVidCapSet		m_cMainCapset;   ///< Main Stream	
@@ -3244,7 +3234,6 @@ private:
 	EmVendorProductId   m_emPeerVendorId;               ///< peer vendor id
 	s32                 m_nDualMediaLabel;              ///< dual media label
 	
-	BOOL32              m_bOldH265Way;                  ///< for mark the old h265 wrong way
 };
 
 class PROTO_API CSipAudioAlterCap 

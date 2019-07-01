@@ -188,6 +188,8 @@ u16 CCommonInterface::Connect( u32 dwIp, u16 nPort, LPCTSTR pStrUserName, LPCTST
 		return ERR_CMS;
 	} 
 
+    m_tLoginInfo.emIPver = emIPV4;//IPV4µÇÂ¼
+
 	m_tLoginInfo.dwIp = dwIp;
 	m_tLoginInfo.nPort = nPort;
 // 	sprintf_s( m_tLoginInfo.achName, sizeof(m_tLoginInfo.achName), CT2A(pStrUserName) );
@@ -200,6 +202,31 @@ u16 CCommonInterface::Connect( u32 dwIp, u16 nPort, LPCTSTR pStrUserName, LPCTST
 	AfxBeginThread( ThreadConnectCns , NULL );
 
 	return NO_ERROR;
+}
+
+u16 CCommonInterface::Connect( LPSTR pcIpv6, u16 nPort, LPCTSTR pStrUserName, LPCTSTR pStrPswd )
+{
+    if( NULL == m_pCnsSession )
+    {
+        return ERR_CMS;
+    } 
+
+    m_tLoginInfo.emIPver = emIPV6;//IPV6µÇÂ¼
+
+    m_tLoginInfo.tRmtAddr.v6addr.sin6_family = AF_INET6;
+    m_tLoginInfo.tRmtAddr.v6addr.sin6_port = nPort;
+    if ( OspPton(AF_INET6, pcIpv6, &m_tLoginInfo.tRmtAddr.v6addr.sin6_addr) < 0 )
+    {
+        return ERR_CMS;  
+    }  
+
+    strncpy(m_tLoginInfo.achName, CT2A(pStrUserName), sizeof(m_tLoginInfo.achName));
+    strncpy(m_tLoginInfo.achPswd, CT2A(pStrPswd), sizeof(m_tLoginInfo.achPswd));
+
+    //Á¬½Ócns
+    AfxBeginThread( ThreadConnectCns , NULL );
+
+    return NO_ERROR;
 }
 
 u16 CCommonInterface::RebootCns()
@@ -217,8 +244,16 @@ u16 CCommonInterface::LinkCns()
 	u16 re =  ERR_CMS;
 	if ( m_pCnsSession != NULL )
 	{
-		re = m_pCnsSession->ConnectCns( m_tLoginInfo.dwIp,  m_tLoginInfo.nPort,
-			m_tLoginInfo.achName, m_tLoginInfo.achPswd );
+        if (m_tLoginInfo.emIPver == emIPV6)
+        {
+            re = m_pCnsSession->ConnectCns( m_tLoginInfo.tRmtAddr,
+                m_tLoginInfo.achName, m_tLoginInfo.achPswd );
+        }
+        else
+        {
+            re = m_pCnsSession->ConnectCns( m_tLoginInfo.dwIp,  m_tLoginInfo.nPort,
+                m_tLoginInfo.achName, m_tLoginInfo.achPswd );
+        }
 	}
 	return re;
 }

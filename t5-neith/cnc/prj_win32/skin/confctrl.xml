@@ -25,8 +25,9 @@
         <Option name="confpoll" text="会议轮询" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
         <Option name="audmix" text="会议讨论" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
         <Option name="confdual" text="双流" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0" selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
-        <Option name="mixmotive" text="坐席激励" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
+        <Option name="mixmotive" text="语音激励" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
         <Option name="pip" text="画中画" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
+		<Option name="seatmotive" text="坐席激励" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
 		<Option name="tvwall" text="电视墙" padding="2,23,0,0" width="231" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />		
         <Option name="FeccCam" text="摄像机远摇" padding="2,23,0,0" width="244" height="70" textcolor="#FF92A7C2" selectedtextcolor="#FFFFFFFF" font="0"  selectedimage="res/public/tabbkg_down.png" group="confcontrol" align="center" />
 	</HorizontalLayout>
@@ -83,13 +84,24 @@
 		<Label text="创建快捷操作" float="true" pos="751,864,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
 		<CheckBox name="CheckDualShotCut" float="true" pos="1044,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
 	  </VerticalLayout>
-	  <!--坐席激励 -->
+	  <!--语音激励 -->
 	  <VerticalLayout name="voicearouselayout">
-		<!--Label name="" float="true" pos="748,170,0,0" width="424" height="424" bkimage="res/confctrl/imgMixMotive.png"/>	
+		<Label name="" float="true" pos="748,170,0,0" width="424" height="424" bkimage="res/confctrl/imgMixMotive.png"/>	
 		<Label text="开启语音激励" float="true" pos="751,765,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
 		<CheckBox name="CheckVoiceArouse" float="true" pos="1044,765,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
 		<Label text="创建快捷操作" float="true" pos="751,864,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
-		<CheckBox name="CheckVSShortCut" float="true" pos="1044,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" /-->
+		<CheckBox name="CheckVSShortCut" float="true" pos="1044,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+	  </VerticalLayout>
+	  <!--画中画 -->
+	  <VerticalLayout name="piplayout">  		
+		<Label name="" float="true" pos="748,170,0,0" width="424" height="424" bkimage="res/confctrl/imgPIP.png"/>	
+		<Label text="开启画中画" float="true" pos="751,765,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+		<CheckBox name="CheckPIP" float="true" pos="1044,765,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+		<Label text="创建快捷操作" float="true" pos="751,864,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
+		<CheckBox name="CheckPIPShortCut" float="true" pos="1044,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
+	  </VerticalLayout>
+	  <!--坐席激励 -->
+	  <VerticalLayout name="seatarouselayout">
 		<HorizontalLayout>
 			<Label name="" float="true" pos="106,50,0,0" width="555" height="376" bkimage="res/confctrl/imgSeatExcitation.png"/>
 			<Label name="" float="true" pos="683,50,0,0" width="555" height="376" bkimage="res/confctrl/imgSeatExcitation.png"/>
@@ -122,7 +134,7 @@
 		</HorizontalLayout>
 		<HorizontalLayout height="303" >
 			<Label text="开启坐席激励" float="true" pos="751,118,0,0" width="293" height="66" textcolor="#CCD5DEEB" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
-			<CheckBox name="CheckVoiceArouse" float="true" pos="1044,118,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
+			<CheckBox name="CheckSeatArouse" float="true" pos="1044,118,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
 		</HorizontalLayout>
 		<Case name="caseSeatOneSpk">
 			<!--btnSpeakSeat1 normalimage="res/cnsmanage/speakseaton.png" enabled="false"/--> 
@@ -142,14 +154,6 @@
 			<btnSpeakSeat3 normalimage="res/confctrl/speakseat_normal.png" enabled="false"/> 
 		</Case>	
 	  </VerticalLayout>
-	  <!--画中画 -->
-	  <VerticalLayout name="piplayout">  		
-		<Label name="" float="true" pos="748,170,0,0" width="424" height="424" bkimage="res/confctrl/imgPIP.png"/>	
-		<Label text="开启画中画" float="true" pos="751,765,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
-		<CheckBox name="CheckPIP" float="true" pos="1044,765,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />
-		<Label text="创建快捷操作" float="true" pos="751,864,0,0" width="293" height="66" textcolor="#FFFFFFFF" disabledtextcolor="#FFA7A6AA" font="0" align="left" textpadding="0,15,0,0"/>
-		<CheckBox name="CheckPIPShortCut" float="true" pos="1044,864,0,0" width="124" height="66" normalimage="res/public/switchbtn_off.png" selectedimage="res/public/switchbtn_on.png" />	
-	  </VerticalLayout>
 	  <!--电视墙-->
 	  <VerticalLayout name="tvwalllayout">
       <ChildLayout xmlfile="tvwall.xml" name="PageTvWall"/>
@@ -166,6 +170,7 @@
 			<btnGoRight visible="true"/>
 			<mixmotive visible="false"/>
 			<pip visible="false"/>
+			<seatmotive visible="false"/>
 			<tvwall visible="false"/>
 			
 			<FeccCam visible="false"/>
@@ -182,10 +187,12 @@
 			<btnGoRight visible="true"/>
 			<mixmotive visible="false"/>
 			<pip visible="false"/>
+			<seatmotive visible="false"/>
 			<tvwall visible="false"/>
 			<confcns visible="true"/>
 			<confroll visible="true"/>
 			<confMix visible="true"/>
+			<vidmix visible="true"/>
 			
 			<FeccCam visible="false"/>
 		</Case>
@@ -194,10 +201,12 @@
 			<btnGoRight visible="false"/>
 			<mixmotive visible="true"/>
 			<pip visible="true"/>
+			<seatmotive visible="true"/>
 			<tvwall visible="true"/>
 			<confcns visible="false"/>
 			<confroll visible="false"/>
 			<confMix visible="false"/>
+			<vidmix visible="false"/>
 			
 			<FeccCam visible="false"/>
 		</Case>
@@ -208,8 +217,9 @@
 			<vidmix visible="false"/>
 			<confpoll visible="false"/>
 			<audmix visible="false"/>
-			<mixmotive visible="true"/>
+			<mixmotive visible="false"/>
 			<pip visible="true"/>
+			<seatmotive visible="true"/>
 			<tvwall visible="false"/>
 			
 			<FeccCam visible="false"/>
@@ -223,7 +233,7 @@
 			<BtnSetMute enabled="false"/>
 			<BtnHungupCns enabled="false"/>
 		</Case>
-		<Case name="caseP2PConfCtrl">	<!--点对点会议只显示双流、语音激励、画中画-->
+		<Case name="caseP2PConfCtrl">	<!--点对点会议只显示双流、坐席激励、画中画-->
 			<confcns visible="false"/>
 			<confroll visible="false"/>
 			<confMix visible="false"/>
@@ -233,14 +243,15 @@
 			
 			<FeccCam visible="false"/>
 			
-			<mixmotive visible="true"/>
+			<mixmotive visible="false"/>
 			<pip visible="true"/>
+			<seatmotive visible="true"/>
 			<tvwall visible="false"/>
 			<btnGoLeft visible="false"/>
 			<btnGoRight visible="false"/>
 		</Case>
 		
-		<Case name="caseP2P323ConfCtrl">	<!--323点对点会议只显示双流、语音激励、画中画，附加摄像机远摇Tab-->
+		<Case name="caseP2P323ConfCtrl">	<!--323点对点会议只显示双流、坐席激励、画中画，附加摄像机远摇Tab-->
 			<confcns visible="false"/>
 			<confroll visible="false"/>
 			<confMix visible="false"/>
@@ -250,8 +261,9 @@
 			
 			<FeccCam visible="true"/>
 			
-			<mixmotive visible="true"/>
+			<mixmotive visible="false"/>
 			<pip visible="true"/>
+			<seatmotive visible="true"/>
 			<tvwall visible="false"/>
 			<btnGoLeft visible="false"/>
 			<btnGoRight visible="false"/>

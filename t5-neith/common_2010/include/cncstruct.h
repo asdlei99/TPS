@@ -632,6 +632,8 @@ typedef struct tagLoginInfo
 	u16     nPort;
 	s8      achName[TP_MAX_ALIAS_LEN_CNC+1];
 	s8      achPswd[TP_MAX_ALIAS_LEN_CNC+1];
+    TOspNetAddr         tRmtAddr;   //IPV6µÿ÷∑
+    EmProtocolVersion   emIPver;    //IP¿‡–Õ
 
 	tagLoginInfo()
 	{

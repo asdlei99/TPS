@@ -256,6 +256,15 @@ public:
     virtual const TTpSuperUser& GetSuperadmninInfo() const;
     virtual u16 UnlockAllUser();
 
+    //设置IPV6配置
+    virtual u16 SetIpv6Cfg( TTPEthnetIPV6Info tTPEthnetIPV6Info, EmTpIpNameNatSyn emTpIpNameNatSyn);
+    //获取IPV6配置
+    virtual const TTPEthnetIPV6Info GetIpv6Cfg();
+    //设置IPV6类型
+    virtual u16 SetIpvType( EmProtocolVersion emProtocolVer );
+    //获取IPV6类型
+    virtual const EmProtocolVersion GetIpvType();
+
 protected:
     virtual void OnTimeOut(u16 wEvent); 
     virtual void DispEvent(const CMessage &cMsg);
@@ -283,6 +292,10 @@ protected:
     void OnVgaInfoNty(const CMessage& cMsg);
     void OnConfVgaInfoNty(const CMessage& cMsg);
 	void OnVidCurLineInd(const CMessage& cMsg);
+
+    //Ipv6配置
+    void OnCfgEthnetIPV6Ind(const CMessage& cMsg);
+    void OnIPVtpyeInd(const CMessage& cMsg);
 
 	/**
     * 功能:	  添加网管通知
@@ -399,6 +412,9 @@ private:
 
     //GK注册相关
     TUCSipRegResult m_tUCSipRegResult;
+
+    EmProtocolVersion   m_emProtocolVersion; //IPV类型
+    TTPEthnetIPV6Info	m_tTPEthnetIPV6Info; //IPV6配置
 };
 
 #endif // !defined(AFX_CNCCONFIG_H__40492EAF_0B43_4101_A0B9_FDD4C21B1D4A__INCLUDED_)

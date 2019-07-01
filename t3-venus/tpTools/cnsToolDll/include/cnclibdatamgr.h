@@ -505,6 +505,10 @@ public:
 	u16 GetDCamState( TCentreDCamCfg &tCentreDCamCfg, u8 byIndex ) const;
 
 	u16 GetComType( EmComType** pemComType )const;
+
+	//IPV6
+	u16 GetIpvType(EmProtocolVersion& emProtocolVersion) const;
+	u16 GetIpv6Cfg(TTPEthnetIPV6Info& tTPEthnetIPV6Info) const;
 protected:
     virtual BOOL PreCreateWindow( CREATESTRUCT& cs );
     virtual LRESULT DefWindowProc(UINT message, WPARAM wParam, LPARAM lParam); 

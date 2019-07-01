@@ -132,5 +132,7 @@ BOOL mtWdGuardIsOpened(void);
 s32 mtSetVidOffsetParam( u32 dwInterface, s32 dwHoff, s32 dwVoff );
 void MtmpStartInstallSemphore();
 void MtmpStartUninstallSemphore();
-
+void TransAddressFromTpToOsp( const TTPTransAddr &tTPTransAddr, TOspNetAddr &tOspNetAddr);
+void TransAddressFromOspToTp( const TOspNetAddr &tOspNetAddr, TTPTransAddr &tTPTransAddr);
+void PrintOspNetAddr( const TOspNetAddr tOspNetAddr);
 #endif/*!_MT_SYS_API_H_*/

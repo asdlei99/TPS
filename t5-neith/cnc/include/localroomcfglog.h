@@ -214,6 +214,10 @@ protected:
 	*/	
 	bool OnVidCutLineInd(WPARAM wParam, LPARAM lParam, bool& bHandle);
 
+    //IPV6
+    bool OnSetIpvTypeNty(WPARAM wParam, LPARAM lParam, bool& bHandle);
+    bool OnSetIpv6CfgNty(WPARAM wParam, LPARAM lParam, bool& bHandle);
+
 	bool OnOpLT(TNotifyUI& msg);
 	bool OnOpMT(TNotifyUI& msg);
 	bool OnOpRT(TNotifyUI& msg);
@@ -279,6 +283,19 @@ protected:
 	*  @return 
 	*/
 	EmIsValid IsVidCutLineChanged();//add by wangkui 2016-8-31
+
+    /** 是否修改了IP类型
+	*  @param[in] 
+	*  @node 
+	*  @return 
+	*/
+	EmIsValid IsIpTypeChanged();
+    /** 是否修改了IPV6
+	*  @param[in] 
+	*  @node 
+	*  @return 
+	*/
+	EmIsValid IsIPV6Changed();
 	/**	 
 	* 功能: 制作显示文字的图片
 	* @param    const LPCTSTR strCharacters     [in]     文字内容

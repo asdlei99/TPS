@@ -16,6 +16,7 @@ enum EmConfCtrlTabID
 	emTabID_ConfDual,
 	emTabID_MixMotive,
 	emTabID_PIP,
+    emTabID_SeatMotive,
 	emTabID_TvWall,
 };
 
@@ -95,6 +96,11 @@ protected:
 	*  @return 
 	*/	
 	bool OnTabPIP(TNotifyUI& msg);
+    /** 坐席激励Tab
+	*  @param[in] 
+	*  @return 
+	*/	
+	bool OnTabSeatMotive(TNotifyUI& msg);
 	/** 电视墙Tab
 	*  @param[in] 
 	*  @return 
@@ -179,8 +185,8 @@ protected:
 
     void UpdateCnsItem( u16 wEpId );
 
-	//点击本地语音激励Checkbox dyy 2015-4-30 
-	bool OnCheckPTPVoiceArouse(TNotifyUI& msg);
+	//点击本地坐席激励Checkbox dyy 2015-4-30 
+	bool OnCheckPTPSeatArouse(TNotifyUI& msg);
 	//语音激励快捷方式 
 	bool OnCheckVSShortCut(TNotifyUI& msg);
 	//点击双流Checkbox  
@@ -251,7 +257,7 @@ protected:
 	bool OnItemSelViewNty( WPARAM wParam, LPARAM lParam, bool& bHandle );
 	//呼叫不在线会场回应
 	bool OnCallOffCnsInd( WPARAM wParam, LPARAM lParam, bool& bHandle );
-	//单独控制语音激励开关回应
+	//单独控制坐席激励开关回应
 	bool OnCnAuxInd(WPARAM wParam, LPARAM lParam, bool& bHandle);
 	//双流开关nty
 	bool OnCnsDualNty( WPARAM wParam, LPARAM lParam, bool& bHandle );

@@ -6,7 +6,7 @@
 	
     <VerticalLayout float="true" pos="641,193,0,0" width="637" height="706" bkimage="res/logindlg/loginFrame.png" >  
 		<Edit text="" float="true" gdiplus="true" pos="0,0,0,0" width="0" height="0" />
-		<Edit nativebkcolor="#FF1c3655" name="EdIp"  text=""  float="true" maxchar="15" font="1" gdiplus="true" pos="85,63,0,0" width="468" height="63" textpadding="84,16,34,16" mosimgfolfer="res/public/edit" textcolor="#FFD4DEEB" bordersize="0" />
+		<Edit nativebkcolor="#FF1c3655" name="EdIp"  text=""  float="true" maxchar="39" font="1" gdiplus="true" pos="85,63,0,0" width="468" height="63" textpadding="84,16,34,16" mosimgfolfer="res/public/edit" textcolor="#FFD4DEEB" bordersize="0" />
 		<Label float="true" pos="114,79,0,0" width="33" height="33"  bkimage="res/logindlg/icon_ip.png" />
 		<Label float="true" pos="160,78,0,0" width="1" height="35" bkcolor="#FFD4DEEB" />
 		<Edit nativebkcolor="#FF1c3655" name="EdUserName" text=""  float="true" maxchar="31" font="1" pos="85,170,0,0" width="468" height="63" textpadding="84,16,34,16" mosimgfolfer="res/public/edit" textcolor="#FFD4DEEB" bordersize="0"/>

@@ -576,6 +576,9 @@ public:
 	u16 SetMatrixConfig( TTPMatrixConfig tTPMatrixConfig );
 	//´®¿Ú
 	u16 SetSelectComCmd( const EmComType& emComType2, const EmComType& emComType3 );
+	//IPV6
+	u16 SetIpvType( const EmProtocolVersion& emProtocolVer);
+	u16 SetIpv6Cfg( const TTPEthnetIPV6Info& tTPEthnetIPV6Info, const EmTpIpNameNatSyn& emTpIpNameNatSyn);
     //Éý½µÆÁ
     u16 SetDFScreenConfigCmd(EmComConfigType emComConfigType, TSerialCfg tSerialCfg);
     u16 SetDFScreenGroupCmd(u32 dwGroupNum, TCenDownOrFlipScreenCfg* ptScreenCfg);

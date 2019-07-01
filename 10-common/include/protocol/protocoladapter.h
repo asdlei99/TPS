@@ -790,6 +790,10 @@ BOOL PA_MCStopConference( HMDLAPPCONFID hAppConfId );
 ======================================================================*/
 BOOL PA_SetKD323Type( BOOL32 bIsTypeKD323 );
 
+//h460≈‰÷√
+BOOL PA_SetH460Config(BOOL32 bSupportH460, BOOL32 bMediaTraversalServer, BOOL32 bSupportTransMultiMedia);
+
+
 /// -------------------------------------------------
 ///    Regist API
 /// -----------------------------------------------*/

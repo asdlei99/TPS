@@ -48,8 +48,13 @@ public:
 
 	virtual void SetUseAddrbook( BOOL bUse ){ m_bUseAdddr = bUse; }
 
-	virtual u16 ConnectCns(u32 dwIP, u32 dwPort, LPSTR strUser,
+	virtual u16 ConnectCns(u32 dwIP, u32 dwPort, 
+        LPSTR strUser,
         LPSTR strPwd, BOOL32 bConnect = TRUE);
+    virtual u16 ConnectCns(TOspNetAddr tRmtAddr,
+        LPSTR strUser,
+        LPSTR strPwd, BOOL32 bConnect = TRUE);
+
     virtual u16 DisconnectCns();
 	virtual BOOL IsConnectedCns();
 
@@ -120,6 +125,8 @@ private:
 	BOOL32 m_bInitOsp;
 	u32    m_dwLocalIP;	  //本地ip
 	u32	   m_dwCnsIp;	  //连接的CNS的IP
+
+    TOspNetAddr m_tRmtAddr;//连接的cnsIPV6
      
 	// 各个功能类接口类
 	CCncAddrbookIF *m_pAddrBookIF;

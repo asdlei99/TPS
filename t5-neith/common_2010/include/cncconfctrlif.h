@@ -227,7 +227,7 @@ public:  //请求
 	*/
 	virtual u16 CancelSelTVSView( u8 byScreenID ) = 0 ;
 	/** 
-	* 功能  单独控制语音激励
+	* 功能  单独控制坐席激励
     * @param [in]  BOOL bIsAudMix 是否开启
 	* @return  
 	* @remarks 
@@ -306,7 +306,7 @@ public:  //获取结果
 
 	virtual BOOL IsLocalCnsDual() const = 0;
 
-	virtual BOOL IsLocalPTPVoiceArouse() const = 0;
+	virtual BOOL IsLocalPTPSeatArouse() const = 0;
 };
 
 #endif

@@ -45,6 +45,9 @@ extern "C" {
 
 /*Max NAT Address Num*/
 #define STATIC_NAT_NUM                10
+
+/*Max DMZ Address Num*/
+#define MULTI_DMZ_NUM                20
 /************************************************************************
  * RV_H323_TRANSPORT_ADDRESS
  * H.323 Protocol Stack support for the TransportAddress type declared

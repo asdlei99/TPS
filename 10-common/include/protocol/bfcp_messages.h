@@ -197,6 +197,7 @@ typedef struct tagClientSocket
 	TBfcpSock_Addr m_tSockAddr;
 	s32 m_nTransPort;
 	u32 m_dwConfId;
+	u32 m_dwUserId;
 	
 	void Clear()
 	{
@@ -206,7 +207,8 @@ typedef struct tagClientSocket
 		m_tTlsClientFd = INVALID_SOCKET;
 		m_tUdp6ClientFd = INVALID_SOCKET;
 		m_tSockAddr.clear();
-		m_dwConfId = 0;
+		m_dwConfId = 0;		
+		m_dwUserId = 0;
 		m_nTransPort = BFCP_OVER_UDP;
 	}
 	tagClientSocket()

@@ -697,6 +697,20 @@ enum EmUiCnsMsg
 	ev_UICnsEthnetInfoNotify,
 #define	UI_CNS_ETHNETINFO_NOTIFY       ev_UICnsEthnetInfoNotify
 
+	/**	网络类型通知
+		wParam = 0
+		lparam = 0*/
+	/************************************************************************/
+	ev_UICnsIPVTypeNotify,
+#define	UI_CNS_IPVTYPE_NOTIFY       ev_UICnsIPVTypeNotify
+
+	/**	IPV6配置通知
+		wParam = 0
+		lparam = 0*/
+	/************************************************************************/
+	ev_UICnsIPV6CfgNotify,
+#define	UI_CNS_IPV6CFG_NOTIFY       ev_UICnsIPV6CfgNotify
+
 	/**	双网口网络信息通知
 		wParam = 0
 		lparam = 0*/

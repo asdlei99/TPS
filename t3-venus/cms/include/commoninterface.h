@@ -608,6 +608,12 @@ public:
 	*/
 	void ClearCnsScreenInfo();
 
+	//IPV6
+	u16 SetIpv6Cfg( TTPEthnetIPV6Info tTPEthnetIPV6Info, EmTpIpNameNatSyn emTpIpNameNatSyn);
+	u16 SetIpvType( EmProtocolVersion emProtocolVer );
+	const EmProtocolVersion GetIpvType();
+	const TTPEthnetIPV6Info GetIpv6Cfg();
+
 /** @}*/ 
 	
 //----电视墙相关--------------

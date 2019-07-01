@@ -2469,6 +2469,14 @@ typedef struct __cmNATPairsAddr
 	cmTransportAddress		StaticNATAddress;   //Static NAT Address
 }cmNATPairsAddr;
 
+//add by Sai 20190619 for Multi DMZ for NU
+typedef struct __cmDMZAddress
+{
+	RvBool                  bSupportMultiDMZ;
+	RvInt32                 nCount;
+	cmTransportAddress		tDMZAddress[MULTI_DMZ_NUM];		//Local Address For RAS
+}cmDMZAddress;
+
 //add by daiqing 20100720 for 460
 typedef struct __cmStackConfig
 {
@@ -2478,6 +2486,7 @@ typedef struct __cmStackConfig
 	RvBool					bKeda323;
 	RvBool                  bSupportStaticNAT;
 	cmReasonType			emH225FacilityReasonType;
+	//cmDMZAddress			tDMZAddr;
 }cmStackConfig;
 
 extern cmStackConfig g_tNATAddress;
@@ -2495,6 +2504,9 @@ void RVCALLCONV cmSetStackConfig(IN cmStackConfig *ptStackConfig);
 /*end*/
 RVAPI
 int RVCALLCONV cmCallQ931Connect(IN HCALL hsCall, IN cmTransportAddress* remote);
+
+// RVAPI
+// void RVCALLCONV cmSetMultiDMZAddr(IN cmStackConfig *ptStackConfig);
 //end
 
 //add by yj for 460server
