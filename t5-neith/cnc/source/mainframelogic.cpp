@@ -113,11 +113,11 @@ bool CMainFrameLogic::OnInit( TNotifyUI& msg )
 		//¶ÁiniÎÄ¼þ ÅäÖÃ
 		int wAuto=0;
 		wAuto = GetPrivateProfileInt(_T("LoginInfo"),_T("AutoLogin"), 0,strIniPath);
-		TCHAR tchIP[16] = {0};
+		TCHAR tchIP[40] = {0};
 		TCHAR tchUserName[MAX_NAME_LEN]={0};
 		TCHAR tchPassWord[MAX_NAME_LEN]={0};
 
-		GetPrivateProfileString(_T("LoginInfo"),_T("IP"),_T(""), tchIP, 16, strIniPath);
+		GetPrivateProfileString(_T("LoginInfo"),_T("IP"),_T(""), tchIP, 40, strIniPath);
 		GetPrivateProfileString(_T("LoginInfo"),_T("UserName"),_T(""), tchUserName, MAX_NAME_LEN-1, strIniPath);
 		GetPrivateProfileString(_T("LoginInfo"), _T("PassWord"),_T(""), tchPassWord, MAX_NAME_LEN-1, strIniPath);
 
@@ -723,7 +723,7 @@ bool CMainFrameLogic::OnConnectRsp( WPARAM wParam, LPARAM lParam, bool& bHandle 
 	CString strIniPath = GetIniFilePath();
 
     CString cstrIp = strIP.c_str();
-    UIDATAMGR->GetClearIP(cstrIp);
+    //UIDATAMGR->GetClearIP(cstrIp);
 	WritePrivateProfileString(_T("LoginInfo"),_T("IP"),cstrIp,strIniPath);
 	WritePrivateProfileString(_T("LoginInfo"),_T("UserName"),strUser.c_str(),strIniPath);
 	

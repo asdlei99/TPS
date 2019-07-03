@@ -86,11 +86,25 @@ bool Value_ItemTPad::SetData( IItemList* pList )
 		}
 		if ( CTextItem * pTextItem = dynamic_cast<CTextItem*>(pItem)  )
 		{
-			in_addr tAddr;
-			tAddr.S_un.S_addr = m_ptTPadList->m_adwTPadIP[j];
-			String strDualIp;
-			strDualIp = inet_ntoa(tAddr);
-			pTextItem->SetText( strDualIp );
+// 			in_addr tAddr;
+// 			tAddr.S_un.S_addr = m_ptTPadList->m_adwTPadIP[j];
+// 			String strDualIp;
+// 			strDualIp = inet_ntoa(tAddr);
+// 			pTextItem->SetText( strDualIp );
+
+			if (m_ptTPadList->m_atTPadIP[j].GetProtocolVersion() == emIPV6)
+			{
+	 			pTextItem->SetText( m_ptTPadList->m_atTPadIP[j].GetIP().achIPV6 );
+			}
+			else
+			{
+				in_addr tAddr;
+				tAddr.S_un.S_addr = m_ptTPadList->m_atTPadIP[j].GetIP().dwIPV4;
+				String strDualIp;
+				strDualIp = inet_ntoa(tAddr);
+				pTextItem->SetText( strDualIp );
+			}
+
 		}
 		
 		IItemList *pNew = pList->AddItem( j, pItem, emGroup );  //添加 一个条目  

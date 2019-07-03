@@ -890,13 +890,22 @@ void CCnsSession::OnCnsOnlineNty(const CMessage& cMsg)
 //被抢断
 void CCnsSession::OnLoginByOtherNotify(const CMessage& cMsg)
 {
-	u32 dwIP = *reinterpret_cast<u32*>( cMsg.content );
+	//u32 dwIP = *reinterpret_cast<u32*>( cMsg.content );
+    TTPTransAddr tTPTransAddr = *reinterpret_cast<TTPTransAddr*>( cMsg.content );
 
-	in_addr tAddr;
-	tAddr.S_un.S_addr = dwIP ;   
-	PrtMsg( ev_CNSLoginByOther_Notify, emEventTypeCnsRecv, "抢登通知(抢占方 IP:  %s ；dwIP=%d )", inet_ntoa(tAddr), dwIP );
+    if (tTPTransAddr.GetProtocolVersion() == emIPV6)
+    {
+        PrtMsg( ev_CNSLoginByOther_Notify, emEventTypeCnsRecv, "抢登通知(抢占方 IP:  %s )", tTPTransAddr.GetIP().achIPV6 );
+    }
+    else
+    {
+        in_addr tAddr;
+        tAddr.S_un.S_addr = tTPTransAddr.GetIP().dwIPV4 ;   
+        PrtMsg( ev_CNSLoginByOther_Notify, emEventTypeCnsRecv, "抢登通知(抢占方 IP:  %s ；dwIP=%d )", inet_ntoa(tAddr), tTPTransAddr.GetIP().dwIPV4 );
+    }
 	
-	PostEvent( UI_UMS_GRAB_LOGIN_NOTIFY, (WPARAM)dwIP );
+	
+	PostEvent( UI_UMS_GRAB_LOGIN_NOTIFY );
 }	
 
 

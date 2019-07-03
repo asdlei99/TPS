@@ -111,6 +111,7 @@ public:
     * @return u16 成功返回0;失败返回非0错误码 
     */
 	u16 Connect( u32 dwIp, u16 nPort, LPCTSTR pStrUserName, LPCTSTR pStrPswd ); 
+    u16 Connect( LPSTR pcIpv6, u16 nPort, LPCTSTR pStrUserName, LPCTSTR pStrPswd );
 
     /**
     * 功能:	断开与CNS的连接

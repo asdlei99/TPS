@@ -93,14 +93,23 @@ bool CLoginLogic::OnBtnLogin( TNotifyUI& msg )
 	}
     CString strIPTmp = strIP;
 	//if(!UIDATAMGR->IsValidIpV4(pEdtIp))
-    if( !CCallAddr::IsValidIpV4(CT2A(strIPTmp)) )
+    EmProtocolVersion emIpType = emIPV4;
+    if ( CCallAddr::IsValidIpV4(CT2A(strIPTmp)) )
+    {
+        emIpType = emIPV4;
+        UIDATAMGR->GetClearIP(strIP);
+        dwIp = ntohl( inet_addr( CT2A(strIP) ) );
+    }
+    else if( UIDATAMGR->IsValidIpV6(CT2A(strIPTmp)) )
+    {
+        emIpType = emIPV6;
+    }
+    else
 	{
 		ShowMessageBox((_T("服务器地址非法")),false);
 		pEdtIp->SetFocusX();
 		return false;
 	}
-    UIDATAMGR->GetClearIP(strIP);
-    dwIp = ntohl( inet_addr( CT2A(strIP) ) );
 
 	CEditUI* pEdUserName = (CEditUI*)ITPadCommonOp::FindControl(m_pm,_T("EdUserName"));
 	String strUserName = _T("");
@@ -132,7 +141,15 @@ bool CLoginLogic::OnBtnLogin( TNotifyUI& msg )
 
     ComInterface->SetAutoLogin( FALSE );
 
-	u16 uRe = ComInterface->Connect( dwIp, CONNETCT_CNS_PORT, strUserName.c_str(), strPassword.c_str() );
+	u16 uRe = NO_ERROR;
+    if (emIpType == emIPV6)
+    {
+        uRe = ComInterface->Connect( CT2A(strIP), CONNETCT_CNS_PORT, strUserName.c_str(), strPassword.c_str() );
+    }
+    else
+    {
+        uRe = ComInterface->Connect( dwIp, CONNETCT_CNS_PORT, strUserName.c_str(), strPassword.c_str() );
+    }
 	if ( uRe != NO_ERROR )
 	{  
         ITPadCommonOp::EnableControl( true, m_pm, _T("BtnLogin") );

@@ -90,7 +90,13 @@ protected:
 	*  @return 
 	*  @remarks   
 	*/
-	HRESULT OnGrabLoginNty( WPARAM wparam, LPARAM lparam ); 
+	HRESULT OnCNSGrabLoginNty( WPARAM wparam, LPARAM lparam ); 
+	/** 功能:  抢断登录通知
+	*  @param[in] 
+	*  @return 
+	*  @remarks   
+	*/
+	HRESULT OnUMSGrabLoginNty( WPARAM wparam, LPARAM lparam ); 
 	
 	/** 功能:  对方在抓包，登陆失败
 	*  @param[in] 

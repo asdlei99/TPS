@@ -851,6 +851,15 @@ PROTO_API void KdvSetCallApplicationHandle(HCALL hsCall, void* haCall);
 PROTO_EXTERN_API void kdvSetLocalIsUTF8(BOOL32 bIsUtf8);
 
 /**
+	* \brief            Debug H323 interface
+	* \param[in]        bCap		: Cap reject or not
+	* \param[in]        bMsd		: Msd reject or not
+	* \param[in]        bChan		: Chan reject or not
+	* \return           None
+*/
+PROTO_EXTERN_API void h323debug(BOOL32 bCap,BOOL32 bMsd,BOOL32 bChan);
+
+/**
 	* \brief            support non-standard stack
 	* \param[in]        bIsKDV323		: support or not
 	* \retval           success		: act_ok

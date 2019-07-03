@@ -105,7 +105,8 @@ public:
 	BOOL LoginSuccess();
 	BOOL LoginFails(CString strErrorText);
 	BOOL LoginTimeOut();
-	BOOL LoginGrab(u32 dwIP);
+	BOOL LoginCNSGrab(LPARAM lparam);
+	BOOL LoginUMSGrab(u32 dwIP);
 	BOOL LoginRefuse(u32 dwIP);
 	BOOL LoginLogoff();
 	BOOL LoginBreak();

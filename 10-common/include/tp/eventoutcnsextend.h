@@ -107,10 +107,10 @@ enum EmCNSEXTENDEVENT
 
   /***********************<<用户在其它地方登录  >>********************	
   *[消息方向]	CNS	-->  CNC
-  *
+  * 结构体中的端口号无用,界面只需要知道IP类型，以及IP
   */
   _event(  ev_CNSLoginByOther_Notify )
-  _body(u32_ip, 1)
+  _body( TTPTransAddr, 1)
 _ev_end	
 
   

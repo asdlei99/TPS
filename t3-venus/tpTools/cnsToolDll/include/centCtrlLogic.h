@@ -426,6 +426,9 @@ public:
      //取消
 	 bool OnBtnCancel( const IArgs & arg );
 
+     //升降屏配置信息
+     LRESULT OnCentreDFScreenConfigNty( WPARAM wParam, LPARAM lParam );
+
 private:
 	int m_nGroupNum;//当前有多少组数
     TCenDownOrFlipScreenInfo m_tCenDownOrFlipScreenInfo;//升降屏配置信息

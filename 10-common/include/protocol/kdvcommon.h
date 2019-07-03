@@ -268,7 +268,7 @@ enum CtrlResult
 	ctrl_denied			///< denied
 };
 
-/// Product vendor ID
+/// Product vendor ID(the value is same as EmModuleVendorID(modulecallstruct.h))
 enum EmVendorProductId
 {
 	emMicrosoftNetmeeting	= 1,

@@ -5369,7 +5369,8 @@ public:
 //TPad列表信息
 typedef struct tagTTPTPadList
 {
-	u32_ip m_adwTPadIP[TPAD_MAX_NUM];
+	//u32_ip m_adwTPadIP[TPAD_MAX_NUM];
+    TTPTransAddr m_atTPadIP[TPAD_MAX_NUM];
 	u8  m_byTPadNum;
 	u8  m_byUserId[TPAD_MAX_NUM];
 	u32 m_dwTPadNode[TPAD_MAX_NUM];

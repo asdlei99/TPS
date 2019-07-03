@@ -2022,7 +2022,10 @@ enum EmTVInputSelect
 		emTVCVBS1,
 		emTVCVBS2,
 		emTVComputer,
-		emTVVGA
+		emTVVGA,
+		emTVAV,
+		emTVS_VIDEO,
+		emDVI
 };
 
 //文档摄像头白平衡模式 

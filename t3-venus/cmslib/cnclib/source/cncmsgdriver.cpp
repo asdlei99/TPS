@@ -1422,10 +1422,12 @@ void CCncMsgDriver::MappingEventName()
 	MAPPING_HELPER( ev_CnSetMatrixConfig_Ind, _T("ev_CnSetMatrixConfig_Ind") );
 
 	//´®¿Ú
+	MAPPING_HELPER( ev_Cn_SelectCom_Nty, _T("ev_Cn_SelectCom_Nty") );
 	MAPPING_HELPER( ev_Cn_SelectCom_Cmd, _T("ev_Cn_SelectCom_Cmd") );
 	MAPPING_HELPER( ev_Cn_SelectCom_Ind, _T("ev_Cn_SelectCom_Ind") );
 
     //Éý½µÆÁ
+    MAPPING_HELPER( ev_Cn_CentreDFScreenConfig_Nty, _T("ev_Cn_CentreDFScreenConfig_Nty") );
     MAPPING_HELPER( ev_Cn_CentreModifyDFScreenConfig_Cmd, _T("ev_Cn_CentreModifyDFScreenConfig_Cmd") );
     MAPPING_HELPER( ev_Cn_CentreModifyDFScreenConfig_Ind, _T("ev_Cn_CentreModifyDFScreenConfig_Ind") );
     MAPPING_HELPER( ev_Cn_CentreModifyDFScreenGroup_Cmd, _T("ev_Cn_CentreModifyDFScreenGroup_Cmd") );

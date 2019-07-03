@@ -86,6 +86,7 @@ void CCncCenterCtrl::BuildEventsMap()
 	REG_PFUN( ev_CnMatrixConfigInfo_Nty,CCncCenterCtrl::OnMatrixConfigNty);
 	REG_PFUN( ev_CnSetMatrixConfig_Ind,CCncCenterCtrl::OnSetMatrixConfigInd);
     //Éý½µÆÁ
+    REG_PFUN( ev_Cn_CentreDFScreenConfig_Nty,CCncCenterCtrl::OnCentreDFScreenConfigNty);
     REG_PFUN( ev_Cn_CentreModifyDFScreenConfig_Ind,CCncCenterCtrl::OnSetDFScreenConfigInd);
     REG_PFUN( ev_Cn_CentreModifyDFScreenGroup_Ind,CCncCenterCtrl::OnSetDFScreenGroupInd);
 
@@ -1654,7 +1655,17 @@ const TTPMatrixConfig& CCncCenterCtrl::GetMatrixConfig() const
 }
 
 //Éý½µÆÁ
-u16 CCncCenterCtrl::SetDFScreenConfigCmd( EmComConfigType emComConfigType, TSerialCfg tSerialCfg ) const
+void CCncCenterCtrl::OnCentreDFScreenConfigNty( const CMessage& cMsg )
+{
+    CTpMsg cTpMsg(&cMsg);
+    m_tCenDownOrFlipScreenInfo = *(TCenDownOrFlipScreenInfo*)( cTpMsg.GetBody() );
+
+    PrtMsg( ev_Cn_CentreDFScreenConfig_Nty, emEventTypecnstoolRecv,"CentreDFScreen config notify.");
+
+	PostEvent( UI_CENTREDFSCREENCONFIG_NTY );
+}
+
+u16 CCncCenterCtrl::SetCentreDFScreenConfigCmd( EmComConfigType emComConfigType, TSerialCfg tSerialCfg ) const
 {
     CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr();  
     pcTpMsg->SetUserData( m_pSession->GetInst() );
@@ -1681,7 +1692,7 @@ void CCncCenterCtrl::OnSetDFScreenConfigInd( const CMessage& cMsg )
     PostEvent( UI_MODIFYDFSCREENCONFIG_IND, bSuccess);
 }
 
-u16 CCncCenterCtrl::SetDFScreenGroupCmd( u32 dwGroupNum, TCenDownOrFlipScreenCfg** pptScreenCfg ) const
+u16 CCncCenterCtrl::SetCentreDFScreenGroupCmd( u32 dwGroupNum, TCenDownOrFlipScreenCfg** pptScreenCfg ) const
 {
     CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr();  
     pcTpMsg->SetUserData( m_pSession->GetInst() );
@@ -1711,6 +1722,11 @@ void CCncCenterCtrl::OnSetDFScreenGroupInd( const CMessage& cMsg )
     PrtMsg( ev_Cn_CentreModifyDFScreenGroup_Ind, emEventTypecnstoolRecv,"Success=%d.", bSuccess);
     
     PostEvent( UI_MODIFYDFSCREENGROUP_IND, bSuccess);
+}
+
+const TCenDownOrFlipScreenInfo& CCncCenterCtrl::GetCentreDFScreenConfig() const
+{
+    return m_tCenDownOrFlipScreenInfo;
 }
 
 

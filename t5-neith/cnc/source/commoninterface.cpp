@@ -214,11 +214,13 @@ u16 CCommonInterface::Connect( LPSTR pcIpv6, u16 nPort, LPCTSTR pStrUserName, LP
     m_tLoginInfo.emIPver = emIPV6;//IPV6µÇÂ¼
 
     m_tLoginInfo.tRmtAddr.v6addr.sin6_family = AF_INET6;
-    m_tLoginInfo.tRmtAddr.v6addr.sin6_port = nPort;
-    if ( OspPton(AF_INET6, pcIpv6, &m_tLoginInfo.tRmtAddr.v6addr.sin6_addr) < 0 )
-    {
-        return ERR_CMS;  
-    }  
+    m_tLoginInfo.tRmtAddr.v6addr.sin6_port = htons(nPort);
+//     if ( OspPton(AF_INET6, pcIpv6, &m_tLoginInfo.tRmtAddr.v6addr.sin6_addr) < 0 )
+//     {
+//         return ERR_CMS;  
+//     }  
+
+    OSP_SET_NETADDR_ADDR_STR(&m_tLoginInfo.tRmtAddr, OSP_NET_FAMILY_INET6, pcIpv6);
 
     strncpy(m_tLoginInfo.achName, CT2A(pStrUserName), sizeof(m_tLoginInfo.achName));
     strncpy(m_tLoginInfo.achPswd, CT2A(pStrPswd), sizeof(m_tLoginInfo.achPswd));

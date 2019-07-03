@@ -135,4 +135,10 @@ void MtmpStartUninstallSemphore();
 void TransAddressFromTpToOsp( const TTPTransAddr &tTPTransAddr, TOspNetAddr &tOspNetAddr);
 void TransAddressFromOspToTp( const TOspNetAddr &tOspNetAddr, TTPTransAddr &tTPTransAddr);
 void PrintOspNetAddr( const TOspNetAddr tOspNetAddr);
+BOOL OspNetAddrCmp( const TOspNetAddr tOspNetAddr, const TOspNetAddr tOspNetAddr_2);
+BOOL OspNetAddrIsValid( const TOspNetAddr tOspNetAddr);
+void cnPrintOspNetAddr( const TOspNetAddr tOspNetAddr);
+BOOL OspNetAddrCmpPort( const TOspNetAddr tOspNetAddr, const TOspNetAddr tOspNetAddr_2);
+BOOL OspNetAddrCmpIsZore( const TOspNetAddr tOspNetAddr);
+
 #endif/*!_MT_SYS_API_H_*/

@@ -509,6 +509,8 @@ public:
 	//IPV6
 	u16 GetIpvType(EmProtocolVersion& emProtocolVersion) const;
 	u16 GetIpv6Cfg(TTPEthnetIPV6Info& tTPEthnetIPV6Info) const;
+    //Éý½µÆÁ
+    u16 GetCentreDFScreenConfig(TCenDownOrFlipScreenInfo &tCentreDFScreenInfo) const;
 protected:
     virtual BOOL PreCreateWindow( CREATESTRUCT& cs );
     virtual LRESULT DefWindowProc(UINT message, WPARAM wParam, LPARAM lParam); 

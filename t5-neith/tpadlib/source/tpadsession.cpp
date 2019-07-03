@@ -194,6 +194,67 @@ u16 CTPadSession::ConnectCns(u32 dwIP, u32 dwPort, LPSTR strUser,
 	return wRet;
 }
 
+u16 CTPadSession::ConnectCns(TOspNetAddr tRmtAddr, LPSTR strUser, 
+    LPSTR strPwd, s8* achVersion, BOOL32 bConnect /*= TRUE*/)
+{
+    // 建立TCP连接
+    if( IsConnectedCns() )
+    { 
+        //如何已经登录了该IP，则直接返回，否则断开重连
+        if ( memcmp(&tRmtAddr,&m_tRmtAddr,sizeof(TOspNetAddr)) == 0 )
+        {
+            return ERR_TPAD_ACTIVE_CONNECT;
+        }
+        else
+        {
+            DisconnectCns();
+            return ERR_TPAD_ACTIVE_CONNECT;
+        }      
+    }
+
+    //建立Osp的TCP连接,得到本地机器的IP地址
+    u32 dwCnNodeId = 0;
+    if ( bConnect )
+    {
+        dwCnNodeId = OspNetConnectTcpNode( tRmtAddr, 10 , 3, 5000 );
+        //保留登陆Cns的ip
+        m_tRmtAddr = tRmtAddr;
+        if( dwCnNodeId == INVALID_NODE )
+        {
+            return ERR_TPAD_TCPCONNECT;
+        }		
+    }
+
+    SetNodeId( dwCnNodeId );
+    //设置在node连接中断时需通知的appid和InstId
+    ::OspNodeDiscCBReg( dwCnNodeId, GetAppId(), 1 );
+
+    m_cUser.Empty();
+    m_cUser.SetName((s8*)(LPCTSTR)strUser);
+    m_cUser.SetPassword((s8*)(LPCTSTR)strPwd);
+
+    TTPTPadLoginRequest tLoginRequest;
+    tLoginRequest.cLoginRequest = m_cUser;
+    memcpy( tLoginRequest.achTPadVersion, achVersion, MAX_DEVICEVER_LEN );
+
+    // 向CNS发送登录请求
+    u8 abyTemp[sizeof(TTPTPadLoginRequest) + 1] = {0};
+    ZeroMemory(&m_cMsg, sizeof(CMessage));
+    m_cMsg.event = ev_CnLogin_Req;
+    m_cMsg.length = sizeof(TTPTPadLoginRequest);
+    memcpy( abyTemp, &tLoginRequest, sizeof(TTPTPadLoginRequest) );
+
+    m_cMsg.content = abyTemp;
+
+    u16 awEvent[1];
+    awEvent[0] = ev_CnLogin_Rsp;
+    u16 wRet = PostCommand(this, awEvent, 1, TYPE_CMESSAGE, 3000);
+
+    PrtMsg( ev_CnLogin_Req,emEventTypeCnsSend, "UserName=%s, Version=%s", m_cUser.GetName(), achVersion );
+
+    return wRet;
+}
+
 
 BOOL CTPadSession::IsConnectedCns()
 {
@@ -293,13 +354,21 @@ void CTPadSession::NotifyLoginUser()
 //被抢断
 void CTPadSession::OnLoginByOtherNotify(const CMessage& cMsg)
 {
-    u32 dwIP = *reinterpret_cast<u32*>( cMsg.content );
+    //u32 dwIP = *reinterpret_cast<u32*>( cMsg.content );
+    TTPTransAddr tTPTransAddr = *reinterpret_cast<TTPTransAddr*>( cMsg.content );
+
+    if (tTPTransAddr.GetProtocolVersion() == emIPV6)
+    {
+        PrtMsg( ev_CNSLoginByOther_Notify, emEventTypeCnsRecv, "抢登通知(抢占方 IP:  %s )", tTPTransAddr.GetIP().achIPV6 );
+    }
+    else
+    {
+        in_addr tAddr;
+        tAddr.S_un.S_addr = tTPTransAddr.GetIP().dwIPV4 ;   
+        PrtMsg( ev_CNSLoginByOther_Notify, emEventTypeCnsRecv, "抢登通知(抢占方IP: %s)", inet_ntoa(tAddr) );
+    }
     
-    in_addr tAddr;
-    tAddr.S_un.S_addr = dwIP ;   
-    PrtMsg( ev_CNSLoginByOther_Notify, emEventTypeCnsRecv, "抢登通知(抢占方IP: %s)", inet_ntoa(tAddr) );
-    
-    PostEvent( UI_UMS_GRAB_LOGIN_NOTIFY, (WPARAM)dwIP );
+    PostEvent( UI_UMS_GRAB_LOGIN_NOTIFY );
 }
 
 

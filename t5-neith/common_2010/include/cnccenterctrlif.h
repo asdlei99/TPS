@@ -235,9 +235,9 @@ public:
     //´®¿Ú
     virtual EmComType* GetComType() = 0;
 
-
     //Éý½µÆÁ
-    virtual u16 SelectDFScreen( u8 bySrceenControl ) = 0;
-    virtual u16 SetDFScreenCommand(EmCommandType emCommand) = 0;
+    virtual u16 SelectCentreDFScreenCmd( u8 bySrceenControl ) = 0;
+    virtual u16 SetCentreDFScreenCmd(EmCommandType emCommand) = 0;
+    virtual TCenDownOrFlipScreenInfo GetCenDownOrFlipScreenInfo() = 0;
 };
 #endif

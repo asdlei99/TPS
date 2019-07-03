@@ -583,3 +583,10 @@ u16 CCnclibDataMgr::GetIpv6Cfg(TTPEthnetIPV6Info& tTPEthnetIPV6Info) const
 	tTPEthnetIPV6Info = CNCSESSION_MGR_PTR->GetConfigIF()->GetIpv6Cfg();
 	return NO_ERROR;
 }
+
+//Éý½µÆÁ
+u16 CCnclibDataMgr::GetCentreDFScreenConfig(TCenDownOrFlipScreenInfo &tCentreDFScreenInfo) const
+{
+    tCentreDFScreenInfo = CNCSESSION_MGR_PTR->GetCenterCtrlIF()->GetCentreDFScreenConfig();
+    return NO_ERROR;
+}

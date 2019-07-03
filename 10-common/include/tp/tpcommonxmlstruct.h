@@ -7,7 +7,7 @@
 #include "tpcommonstruct.h"
 #include "tpcommonxmltype.h"
 
-const char XmlTpStructVersion[] = "2019-6-26 18:13:45";
+const char XmlTpStructVersion[] = "2019-7-12 16:20:58";
 
 #define XML_TP_TYPE_NUM      331
 #define XML_TP_STRUCT_NUM    447
@@ -3113,7 +3113,7 @@ TYPESTRUCT_END(  TTPSysInfo )
 
 //TTPTPadList
 TYPESTRUCT_BEGIN( TTPTPadList )
-    TYPESTRUCT_MEMBER( TTPTPadList, u32_ip, m_adwTPadIP )
+    TYPESTRUCT_MEMBER( TTPTPadList, TTPTransAddr, m_atTPadIP )
     TYPESTRUCT_MEMBER( TTPTPadList, u8, m_byTPadNum )
     TYPESTRUCT_MEMBER( TTPTPadList, u8, m_byUserId )
     TYPESTRUCT_MEMBER( TTPTPadList, u32, m_dwTPadNode )
@@ -6884,6 +6884,9 @@ const TXENUMINFO enumEmTVInputSelectDescript[]={
 	{ "emTVCVBS2", (int)emTVCVBS2 },
 	{ "emTVComputer", (int)emTVComputer },
 	{ "emTVVGA", (int)emTVVGA },
+	{ "emTVAV", (int)emTVAV },
+	{ "emTVS_VIDEO", (int)emTVS_VIDEO },
+	{ "emDVI", (int)emDVI },
 	{ (char*)NULL, (int)-1 }
 };
 

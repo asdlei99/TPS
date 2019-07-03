@@ -258,7 +258,8 @@ public:
 	virtual u16 SetMatrixConfig( TTPMatrixConfig tTPMatrixConfig ) const = 0;
 
     //Éý½µÆÁÏà¹Ø
-    virtual u16 SetDFScreenConfigCmd(EmComConfigType emComConfigType, TSerialCfg tSerialCfg) const = 0;
-    virtual u16 SetDFScreenGroupCmd(u32 dwGroupNum, TCenDownOrFlipScreenCfg** pptScreenCfg) const = 0;
+    virtual const TCenDownOrFlipScreenInfo& GetCentreDFScreenConfig() const = 0;
+    virtual u16 SetCentreDFScreenConfigCmd(EmComConfigType emComConfigType, TSerialCfg tSerialCfg) const = 0;
+    virtual u16 SetCentreDFScreenGroupCmd(u32 dwGroupNum, TCenDownOrFlipScreenCfg** pptScreenCfg) const = 0;
 };
 #endif

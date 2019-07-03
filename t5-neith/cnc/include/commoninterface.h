@@ -216,6 +216,7 @@ public:
 	*  @return  
 	*/
 	u16 StartP2PConf( TCnAddr& tCnAddr );
+    u16 StartIpv6P2PConf( TCnAddr& tCnAddr );
 
     u16 HungupPtpConf();
 
@@ -1502,10 +1503,10 @@ public:
     //串口配置
     EmComType* GetComType();
 
-    /* ---- 升降屏 ---- */
-	//升降屏排数选择
-	u16 SelectDFScreen( u8 bySrceenControl );
-    u16 SetDFScreenCommand(EmCommandType emCommand);
+	//升降屏
+	u16 SelectCentreDFScreen( u8 bySrceenControl );
+    u16 SetCentreDFScreenCmd(EmCommandType emCommand);
+    u16 GetCenDownOrFlipScreenInfo(TCenDownOrFlipScreenInfo &tCenDownOrFlipScreenInfo);
 
 	  /**
     * 功能:	断开与UMS和CNS的连接

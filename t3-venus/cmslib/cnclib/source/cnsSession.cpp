@@ -864,13 +864,20 @@ void CCnsSession::OnCnsOnlineNty(const CMessage& cMsg)
 //被抢断
 void CCnsSession::OnLoginByOtherNotify(const CMessage& cMsg)
 {
-	u32 dwIP = *reinterpret_cast<u32*>( cMsg.content );
-
-	in_addr tAddr;
-	tAddr.S_un.S_addr = dwIP ;   
-	PrtMsg( ev_CNSLoginByOther_Notify, emEventTypeCnsRecv, "抢登通知(抢占方 IP:  %s ；dwIP=%d )", inet_ntoa(tAddr), dwIP );
+	TTPTransAddr tTPTransAddr = *reinterpret_cast<TTPTransAddr*>( cMsg.content );
 	
-	PostEvent( UI_UMS_GRAB_LOGIN_NOTIFY, (WPARAM)dwIP );
+    if (tTPTransAddr.GetProtocolVersion() == emIPV6)
+    {
+        PrtMsg( ev_CNSLoginByOther_Notify, emEventTypeCnsRecv, "抢登通知(抢占方 IP:  %s )", tTPTransAddr.GetIP().achIPV6 );
+		PostEvent( UI_CNS_GRAB_LOGIN_NOTIFY, (LPARAM)tTPTransAddr.GetIP().achIPV6 );
+    }
+    else
+    {
+        in_addr tAddr;
+        tAddr.S_un.S_addr = tTPTransAddr.GetIP().dwIPV4 ;   
+        PrtMsg( ev_CNSLoginByOther_Notify, emEventTypeCnsRecv, "抢登通知(抢占方 IP:  %s ;dwIP=%d )", inet_ntoa(tAddr), tTPTransAddr.GetIP().dwIPV4 );
+		PostEvent( UI_UMS_GRAB_LOGIN_NOTIFY, (LPARAM)tTPTransAddr.GetIP().dwIPV4 );
+    }
 }	
 
 
@@ -988,12 +995,20 @@ void CCnsSession::OnNewConfCallReq( const CMessage& cMsg )
 
 void CCnsSession::OnCnsRefuseLoginNty(const CMessage& cMsg)
 {
-	u32 dwIP = *reinterpret_cast<u32*>( cMsg.content );
+	//u32 dwIP = *reinterpret_cast<u32*>( cMsg.content );
+	TTPTransAddr tTPTransAddr = *reinterpret_cast<TTPTransAddr*>( cMsg.content );
 	
-	in_addr tAddr;
-	tAddr.S_un.S_addr = dwIP ;   
-	PrtMsg( ev_TppRefuseLogin_Nty, emEventTypeCnsRecv, "抢登失败通知(使用方 IP:  %s ；dwIP=%d )", inet_ntoa(tAddr), dwIP );
+	if (tTPTransAddr.GetProtocolVersion() == emIPV6 )
+	{
+		PrtMsg( ev_TppRefuseLogin_Nty, emEventTypeCnsRecv, "抢登失败通知(使用方 IP:  %s )", tTPTransAddr.GetIP().achIPV6 );
+	}
+	else
+	{
+		in_addr tAddr;
+		tAddr.S_un.S_addr = tTPTransAddr.GetIP().dwIPV4 ;   
+		PrtMsg( ev_TppRefuseLogin_Nty, emEventTypeCnsRecv, "抢登失败通知(使用方 IP:  %s ；dwIP=%d )", inet_ntoa(tAddr), tTPTransAddr.GetIP().dwIPV4 );
+	}
 	
-	PostEvent( UI_CNS_REFUSE_LOGIN_NOTIFY, (WPARAM)dwIP );
+	PostEvent( UI_CNS_REFUSE_LOGIN_NOTIFY );
 }
 

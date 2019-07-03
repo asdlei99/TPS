@@ -899,6 +899,10 @@ bool CLocalRoomCfgLogic::OnUploadLogoProgressFirstLogin(WPARAM wParam, LPARAM lP
 
                             TTPLogo tTTPLogo;
                             tTTPLogo.tLogoInfo = m_mapLogoInfo[i];
+                            if (tTTPLogo.tLogoInfo.emSize == emMid)
+                            {
+                                tTTPLogo.tLogoInfo.emSize = emBig;
+                            }
                             tTTPLogo.byIndex = i;
                             ComInterface->CnIsShowLogoCmd( tTTPLogo );	
                         }
@@ -3840,16 +3844,17 @@ void CLocalRoomCfgLogic::GetLogoStyle( TTPShowLogo tTPShowLogo, FontStyle &fontS
 
 	switch(tTPShowLogo.emSize)
 	{
+    default:
 	case emBig:
 		w1080Size = 50;
 		w720Size = 42;
 		w4CIF = 34;
 		break;
-	case emMid:
-		w1080Size = 60;
-		w720Size = 40;
-		w4CIF = 32;
-		break;
+// 	case emMid:
+// 		w1080Size = 60;
+// 		w720Size = 40;
+// 		w4CIF = 32;
+// 		break;
 	case emlittle:
 		w1080Size = 42;
 		w720Size = 34;

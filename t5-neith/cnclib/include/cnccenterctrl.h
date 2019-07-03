@@ -203,8 +203,10 @@ public:
     virtual EmComType* GetComType();
 
     //升降屏
-    virtual u16 SelectDFScreen( u8 bySrceenControl );
-    virtual u16 SetDFScreenCommand(EmCommandType emCommand);
+    virtual u16 SelectCentreDFScreenCmd( u8 bySrceenControl );
+    virtual u16 SetCentreDFScreenCmd(EmCommandType emCommand);
+
+    virtual TCenDownOrFlipScreenInfo GetCenDownOrFlipScreenInfo();
 
 protected:
     virtual void OnTimeOut(u16 wEvent); 
@@ -284,10 +286,9 @@ protected:
     void OnSelectComNty( const CMessage& cMsg );
     void OnSelectComInd( const CMessage& cMsg );
 
-
-
     //升降屏
-    void OnDFScreenCommandInd(const CMessage& cMsg);
+    void OnCentreDFScreenConfigNty(const CMessage& cMsg);
+    void OnCentreDFScreenCommandInd(const CMessage& cMsg);
 
 private:
 	CCnsSession				*m_pSession;
@@ -312,6 +313,9 @@ private:
     TTPMatrixSceneInfo  m_atTPMatrixSceneInfo[TP_MATRIX_SCENENUM_MAX];      //矩阵预案
     TTPCurMatrixInfo    m_tTPCurMatrixInfo;                                 //当前操作矩阵预案
     BOOL                m_bIsMatrixOnline;                                  //矩阵是否在线
+
+    //升降屏
+    TCenDownOrFlipScreenInfo m_tCenDownOrFlipScreenInfo;                    //升降屏配置信息
 
     //com2 com3 串口类型
     EmComType m_aemComType[2];

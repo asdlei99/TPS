@@ -499,7 +499,7 @@ LRESULT CTpToolsDlg::OnLoginResult( WPARAM wParam, LPARAM lParam )
 		break;
 	case em_LOGIN_GRAP:
 		{
-			LoginGrab(lParam);
+			LoginUMSGrab(lParam);
 		}
 		break;
 	case em_LOGIN_REFUSE:
@@ -510,6 +510,11 @@ LRESULT CTpToolsDlg::OnLoginResult( WPARAM wParam, LPARAM lParam )
 	case em_LOGIN_BREAK:
 		{
 			LoginBreak();
+		}
+		break;
+	case em_LOGIN_CNSGRAP:
+		{
+			LoginCNSGrab(lParam);
 		}
 		break;
 	default: 
@@ -624,7 +629,7 @@ BOOL CTpToolsDlg::LoginFails(CString strErrorText)
 	return TRUE;
 }
 
-BOOL CTpToolsDlg::LoginGrab(u32 dwIP)
+BOOL CTpToolsDlg::LoginUMSGrab(u32 dwIP)
 {
 	CString strIP;
 	struct in_addr addrIPAddr;
@@ -633,6 +638,23 @@ BOOL CTpToolsDlg::LoginGrab(u32 dwIP)
 	
 	CString strIpAddr;
 	strIpAddr.Format( "您已经被[%s]强制下线，该账户已在另一个地方登录", strIP );
+	ShowWarningText( strIpAddr );
+	
+	if ( !this->IsWindowVisible() )
+	{
+		this->ShowWindow(SW_RESTORE);
+	}
+	
+	return 0L;
+}
+
+BOOL CTpToolsDlg::LoginCNSGrab(LPARAM lparam)
+{
+	s8 achIPV6[41] = {0};
+	memcpy(achIPV6, (s8*)lparam, 41);
+
+	CString strIpAddr;
+	strIpAddr.Format( "您已经被[%s]强制下线，该账户已在另一个地方登录", achIPV6 );
 	ShowWarningText( strIpAddr );
 	
 	if ( !this->IsWindowVisible() )

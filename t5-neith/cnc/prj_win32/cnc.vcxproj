@@ -61,7 +61,6 @@
       <IgnoreSpecificDefaultLibraries>mfco42d.lib;mfc42d.lib;mfcs42d.lib;nafxcwd.lib;libcmtd.lib;LIBCD.lib;LIBCMT.lib;LIBC.lib;strmbasd.lib;dxguid.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <AdditionalDependencies>
       </AdditionalDependencies>
-      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>

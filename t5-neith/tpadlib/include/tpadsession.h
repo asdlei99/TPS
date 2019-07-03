@@ -44,6 +44,9 @@ public:
     ===========================================================================*/
 	virtual u16 ConnectCns(u32 dwIP, u32 dwPort, LPSTR strUser,
 		LPSTR strPwd, s8* achVersion, BOOL32 bConnect = TRUE);
+    //重载 用于IPV6登录
+    virtual u16 ConnectCns(TOspNetAddr tRmtAddr, LPSTR strUser,
+        LPSTR strPwd, s8* achVersion, BOOL32 bConnect = TRUE);
 
     virtual u16 DisconnectCns();
 	virtual BOOL IsConnectedCns();
@@ -159,6 +162,7 @@ private:
     u32    m_dwLocalIP;   //本地ip
 	CLoginRequest   m_cUser; //连接时登录的用户	
 	TTPTPadVerInfo m_tVerInfo;//升级版本信息
+    TOspNetAddr m_tRmtAddr;//连接的cnsIPV6
 
 	// 各个功能类接口类
 	CTpadConfCtrlIF *m_pConfCtrlIF;

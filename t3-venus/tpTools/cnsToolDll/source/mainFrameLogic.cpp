@@ -102,7 +102,8 @@ void CMainFrameLogic::RegMsg()
 	CMainFrameLogic *m_pThis =  GetSingletonPtr();
 	REG_MSG_HANDLER( UI_CNS_CONNECTED, CMainFrameLogic::OnConnectRsp, m_pThis, CMainFrameLogic );
 	REG_MSG_HANDLER( UI_CNS_DISCONNECTED, CMainFrameLogic::OnDisConnect, m_pThis, CMainFrameLogic );
-	REG_MSG_HANDLER( UI_UMS_GRAB_LOGIN_NOTIFY, CMainFrameLogic::OnGrabLoginNty, m_pThis, CMainFrameLogic );
+	REG_MSG_HANDLER( UI_CNS_GRAB_LOGIN_NOTIFY, CMainFrameLogic::OnCNSGrabLoginNty, m_pThis, CMainFrameLogic );
+	REG_MSG_HANDLER( UI_UMS_GRAB_LOGIN_NOTIFY, CMainFrameLogic::OnUMSGrabLoginNty, m_pThis, CMainFrameLogic );
 	REG_MSG_HANDLER( UI_CNS_LOGIN_TIMEOUT, CMainFrameLogic::OnLoginTimeOut, m_pThis, CMainFrameLogic );
 	REG_MSG_HANDLER( UI_CNS_REFUSE_LOGIN_NOTIFY, CMainFrameLogic::OnLoginRefuseNty, m_pThis, CMainFrameLogic );
 }
@@ -446,7 +447,16 @@ bool CMainFrameLogic::OnClickAddrBook( const IArgs& args )
 	return true;
 }
 
-HRESULT CMainFrameLogic::OnGrabLoginNty( WPARAM wparam, LPARAM lparam )
+HRESULT CMainFrameLogic::OnCNSGrabLoginNty( WPARAM wparam, LPARAM lparam )
+{
+	COMIFMGRPTR->DisConnect();
+	UIFACTORYMGR_PTR->HideAllWindow();
+	LOGICMGR_PTR->DestroyLogic();
+	UIDATAMGR_PTR->NotifyOuterWnd( WM_TPTOOL_LOGINRESULT , em_LOGIN_CNSGRAP, (LPARAM)wparam );
+	return S_OK;
+}
+
+HRESULT CMainFrameLogic::OnUMSGrabLoginNty( WPARAM wparam, LPARAM lparam )
 {
 // 	u32 dwIP = (u32)wparam;
 //     in_addr tAddr;

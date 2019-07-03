@@ -115,7 +115,6 @@ bool CLoginLogic::OnBtnLogin( TNotifyUI& msg )
 	}
 #else
     NOTIFY_MSG( UI_CNS_CONNECTED, TRUE, NO_ERROR );
-    //NOTIFY_MSG( UI_CNS_CONFSTATE_NOTIFY, NULL, NULL );
 #endif
 
 	return true;

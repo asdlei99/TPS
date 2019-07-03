@@ -445,22 +445,33 @@ u16 CCommonInterface::ApplyMatrixScenceCmd( s32 dwIndex )
     return m_pCenterCtrl->ApplyMatrixScenceCmd( dwIndex );
 }
 
-u16 CCommonInterface::SelectDFScreen( u8 bySrceenControl )
+u16 CCommonInterface::SelectCentreDFScreen( u8 bySrceenControl )
 {
     if ( NULL == m_pCenterCtrl )
     {
         return NULL;
     }
 
-    return m_pCenterCtrl->SelectDFScreen( bySrceenControl );
+    return m_pCenterCtrl->SelectCentreDFScreenCmd( bySrceenControl );
 }
 
-u16 CCommonInterface::SetDFScreenCommand(EmCommandType emCommand)
+u16 CCommonInterface::SetCentreDFScreenCmd(EmCommandType emCommand)
 {
     if ( NULL == m_pCenterCtrl )
     {
         return NULL;
     }
 
-    return m_pCenterCtrl->SetDFScreenCommand( emCommand );
+    return m_pCenterCtrl->SetCentreDFScreenCmd( emCommand );
+}
+
+u16 CCommonInterface::GetCenDownOrFlipScreenInfo(TCenDownOrFlipScreenInfo &tCenDownOrFlipScreenInfo)
+{
+    if ( NULL == m_pCenterCtrl )
+    {
+        return NULL;
+    }
+
+    tCenDownOrFlipScreenInfo = m_pCenterCtrl->GetCenDownOrFlipScreenInfo();
+    return NO_ERROR;
 }

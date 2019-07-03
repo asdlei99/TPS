@@ -87,10 +87,9 @@ void CCncCenterCtrl::BuildEventsMap()
     REG_PFUN( ev_Cn_SelectCom_Nty, CCncCenterCtrl::OnSelectComNty);
     REG_PFUN( ev_Cn_SelectCom_Ind, CCncCenterCtrl::OnSelectComInd);
 
-
-
     //Éý½µÆÁ
-    REG_PFUN( ev_Cn_CentreDFScreenCommand_Ind, CCncCenterCtrl::OnDFScreenCommandInd);
+    REG_PFUN( ev_Cn_CentreDFScreenConfig_Nty, CCncCenterCtrl::OnCentreDFScreenConfigNty);
+    REG_PFUN( ev_Cn_CentreDFScreenCommand_Ind, CCncCenterCtrl::OnCentreDFScreenCommandInd);
 
 	//¶ÏÁ´Í¨Öª
 	REG_PFUN( OSP_DISCONNECT, CCncCenterCtrl::OnLinkBreak );
@@ -120,6 +119,8 @@ void CCncCenterCtrl::OnLinkBreak(const CMessage& cMsg)
 	m_vecTCentreCurName.clear();
 	m_vecTCentreACCfg.clear();
     m_mapDCamCfg.clear();
+
+    memset( &m_tCenDownOrFlipScreenInfo, 0, sizeof(m_tCenDownOrFlipScreenInfo) );
 	
     PrtMsg( OSP_DISCONNECT, emEventTypecnstoolRecv,"[CCncCenterCtrl::OnLinkBreak]Çå¿ÕÅäÖÃÐÅÏ¢" );
 }
@@ -1473,7 +1474,18 @@ EmComType* CCncCenterCtrl::GetComType()
     return m_aemComType;
 }
 
-u16 CCncCenterCtrl::SelectDFScreen( u8 bySrceenControl )
+void CCncCenterCtrl::OnCentreDFScreenConfigNty(const CMessage& cMsg)
+{
+    CTpMsg cTpMsg(&cMsg);
+    TCenDownOrFlipScreenInfo tCenDownOrFlipScreenInfo = *(TCenDownOrFlipScreenInfo*)(  cTpMsg.GetBody() );
+
+    PrtMsg( ev_Cn_CentreDFScreenConfig_Nty, emEventTypeCnsRecv, "EmComConfigType:%d dwGroupNum:%d",
+        tCenDownOrFlipScreenInfo.emDeviceType, tCenDownOrFlipScreenInfo.dwGroupNum);
+
+    PostEvent( UI_CNC_CENTREDFSCREENCONFIG_NTY );
+}
+
+u16 CCncCenterCtrl::SelectCentreDFScreenCmd( u8 bySrceenControl )
 {
     CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr(); 
     pcTpMsg->SetUserData( m_pSession->GetInst() );
@@ -1493,7 +1505,7 @@ u16 CCncCenterCtrl::SelectDFScreen( u8 bySrceenControl )
     return wRet;
 }
 
-u16 CCncCenterCtrl::SetDFScreenCommand( EmCommandType emCommand )
+u16 CCncCenterCtrl::SetCentreDFScreenCmd( EmCommandType emCommand )
 {
     CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr(); 
     pcTpMsg->SetUserData( m_pSession->GetInst() );
@@ -1506,15 +1518,19 @@ u16 CCncCenterCtrl::SetDFScreenCommand( EmCommandType emCommand )
     return wRet;
 }
 
-void CCncCenterCtrl::OnDFScreenCommandInd(const CMessage& cMsg)
+void CCncCenterCtrl::OnCentreDFScreenCommandInd(const CMessage& cMsg)
 {
     CTpMsg cTpMsg(&cMsg);
-    //EmComConfigType
-    //TSerialCfg
+    //EmCommandType
     //BOOL
-    BOOL bSuccess = *(BOOL*)(cTpMsg.GetBody() + sizeof(EmComConfigType) + sizeof(TSerialCfg));
+    BOOL bSuccess = *(BOOL*)(cTpMsg.GetBody() + sizeof(EmCommandType));
 
     PrtMsg( ev_Cn_CentreDFScreenCommand_Ind, emEventTypeCnsRecv, "Success£º%d", bSuccess);
 
-    //PostEvent( UI_DELETEMATRIXSCENE_IND ,bSuccess, dwIndex);
+    PostEvent( UI_CNC_CENTREDFSCREENCMD_IND ,bSuccess);
+}
+
+TCenDownOrFlipScreenInfo CCncCenterCtrl::GetCenDownOrFlipScreenInfo()
+{
+    return m_tCenDownOrFlipScreenInfo;
 }

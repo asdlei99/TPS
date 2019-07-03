@@ -1260,6 +1260,7 @@ void CCentCfgSrceen::RegCBFun()
 void CCentCfgSrceen::RegMsg()
 {
 	CCentCfgSrceen *pThis =  GetSingletonPtr();
+    REG_MSG_HANDLER( UI_CENTREDFSCREENCONFIG_NTY, CCentCfgSrceen::OnCentreDFScreenConfigNty, pThis, CCentCfgSrceen );
 }
 
 void CCentCfgSrceen::UnRegFunc()
@@ -1464,4 +1465,120 @@ bool CCentCfgSrceen::OnBtnCancel( const IArgs & arg )
 {
     //
     return true;
+}
+
+LRESULT CCentCfgSrceen::OnCentreDFScreenConfigNty( WPARAM wParam, LPARAM lParam )
+{
+    memset(&m_tCenDownOrFlipScreenInfo,0,sizeof(TCenDownOrFlipScreenInfo));
+    LIBDATAMGRPTR->GetCentreDFScreenConfig(m_tCenDownOrFlipScreenInfo);
+    
+    //设备类型
+    String strDeviceType("");
+    switch(m_tCenDownOrFlipScreenInfo.emDeviceType)
+    {
+    case emDefault:
+        strDeviceType = "宣德升降屏";
+        break;
+    case emXuanDeDFScreen:
+        strDeviceType = "宣德翻转屏";
+        break;
+    default:
+        break;
+    }
+    UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInSrceenType", strDeviceType, m_pWndTree );
+    //波特率
+    CString strBaudRate("");
+    strBaudRate.Format("%d", m_tCenDownOrFlipScreenInfo.tSerialCfg.dwBaudRate);
+    UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInBaudRate", strBaudRate.GetBuffer(0), m_pWndTree );
+    //数据位
+    CString strByteSize("");
+    strByteSize.Format("%d", m_tCenDownOrFlipScreenInfo.tSerialCfg.byByteSize);
+    UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInDataBits", strByteSize.GetBuffer(0), m_pWndTree );
+    //校验位
+    String strCheck("");
+    switch(m_tCenDownOrFlipScreenInfo.tSerialCfg.emCheck)
+    {
+    case emNoCheck:
+        strCheck = "none";
+        break;
+    case emOddCheck:
+        strCheck = "odd";
+        break;
+    case emEvenCheck:
+        strCheck = "even";
+        break;
+    default:
+        break;
+    }
+    UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInCheckBits", strCheck, m_pWndTree );
+    //停止位
+    String strStopBits("");
+    switch(m_tCenDownOrFlipScreenInfo.tSerialCfg.emStopBits)
+    {
+    case em1StopBit:
+        strStopBits = "1";
+        break;
+    case em1HalfStopBits:
+        strStopBits = "1.5";
+        break;
+    case em2StopBits:
+        strStopBits = "2";
+        break;
+    default:
+        break;
+    }
+    UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInStopBits", strStopBits, m_pWndTree );
+    //分组数
+    CString strGroupNum("");
+    if (m_tCenDownOrFlipScreenInfo.dwGroupNum > 0
+        && m_tCenDownOrFlipScreenInfo.dwGroupNum <= MAX_CENTREDFSCREEN_GROUP_NUM)
+    {
+        strGroupNum.Format("0%d", m_tCenDownOrFlipScreenInfo.dwGroupNum);
+        UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInGroupCount", strGroupNum.GetBuffer(0), m_pWndTree );
+        switch ((EmGroupNum)m_tCenDownOrFlipScreenInfo.dwGroupNum)
+        {
+        case emOneGroup:
+            UIFACTORYMGR_PTR->LoadScheme( "SchmOneGroup", m_pWndTree );
+            break;
+        case emTweGroup:
+            UIFACTORYMGR_PTR->LoadScheme( "SchmTweGroup", m_pWndTree );
+            break;
+        case emThreeGroup:
+            UIFACTORYMGR_PTR->LoadScheme( "SchmThreeGroup", m_pWndTree );
+            break;
+        case emFourGroup:
+            UIFACTORYMGR_PTR->LoadScheme( "SchmFourGroup", m_pWndTree );
+            break;
+        case emFiveGroup:
+            UIFACTORYMGR_PTR->LoadScheme( "SchmFiveGroup", m_pWndTree );
+            break;
+        default:
+            break;
+        }
+
+        CString strGroupNameEdit("");
+        CString strStcAddrCode("");
+        for (int i = 1; i <= m_tCenDownOrFlipScreenInfo.dwGroupNum; i++)
+        {
+            strGroupNameEdit.Format("CentCfgSrceenDlg/GroupNameEdit%d", i);
+            strStcAddrCode.Format("CentCfgSrceenDlg/StcAddrCode%d", i);
+            //UIFACTORYMGR_PTR->SetPropertyValue( valIp, m_tCenDownOrFlipScreenInfo[i-1]., m_pWndTree );
+            //UIFACTORYMGR_PTR->SetPropertyValue( valIp, m_tCenDownOrFlipScreenInfo[i-1]., m_pWndTree );
+        }
+    }
+    else
+    {
+        //UIFACTORYMGR_PTR->SetPropertyValue( valIp, "CentCfgSrceenDlg/MatrixServerEdit", m_pWndTree );
+    }
+    
+    //组1
+    //组2
+    //组3
+    //组4
+    //组5
+
+
+    m_vctWndName.clear();
+    UpBtnState();
+    return S_OK;
 }

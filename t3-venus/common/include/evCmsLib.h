@@ -51,7 +51,13 @@ enum EmUiUmcMsg
 #define UI_UMS_DISCONNECTED	 ev_UIUmsDisconnected
 
 
-
+		/************************************************************************/
+		/**该账户已经在另一个地方登录
+		wParam = u32_IP
+		lparam = 0*/
+		/************************************************************************/
+		ev_UICnsGrabLoginNotify,
+#define UI_CNS_GRAB_LOGIN_NOTIFY	 ev_UICnsGrabLoginNotify
         /************************************************************************/
 		/**该账户已经在另一个地方登录
 		wParam = u32_IP
@@ -3170,7 +3176,7 @@ enum EmUiCnstoolMsg
 	/************************************************************************/
 	ev_UItppRouteInfoNty,
 #define UI_ROUTEINFO_Nty  ev_UItppRouteInfoNty
-
+    
 	/**  路由添加通知
 	wParam =  0
 	lparam = 0*/
@@ -3199,13 +3205,18 @@ enum EmUiCnstoolMsg
 	ev_UISelectComInd,
 #define UI_SELECTCOMG_IND  ev_UISelectComInd
 
+    /**  升降屏配置通知反馈 
+	wParam =  0
+	lparam = 0*/
+	/************************************************************************/
+	ev_UICentreDFScreenConfigNty,
+#define UI_CENTREDFSCREENCONFIG_NTY  ev_UICentreDFScreenConfigNty
     /**  修改升降屏参数配置反馈 
 	wParam =  0
 	lparam = 0*/
 	/************************************************************************/
 	ev_UIModifyDFScreenConfigInd,
 #define UI_MODIFYDFSCREENCONFIG_IND  ev_UIModifyDFScreenConfigInd
-
     /**  修改升级旋转屏组信息反馈
 	wParam =  0
 	lparam = 0*/

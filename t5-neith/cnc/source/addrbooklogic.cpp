@@ -1819,6 +1819,19 @@ bool CAddrBookLogic::OnBtnAddrTemporaryCall( TNotifyUI& msg )
         }
     } 
 
+    TCnAddr tCnAddr;
+    //strcpy( tCnAddr.achAlias, CT2A(strAddrName.c_str()) );
+    tCnAddr.bCallByIPAndAlias = FALSE;
+    tCnAddr.emProtocolVersion = emIPV6;
+    strcpy( tCnAddr.tIP.achIPV6, CT2A(strAddrIp.c_str()) );
+    u16 wRe = ComInterface->StartIpv6P2PConf( tCnAddr );
+    if ( wRe == NO_ERROR )
+    {  
+        ICncCommonOp::ShowControl( true, m_pm, _T("PageNotice") );  
+        UIDATAMGR->setLocalCnsState( emLocalCnsCalling );
+        g_nCallingP2PHandle = SetTimer( NULL, 0, 35000, CP2PConfTimer); //都改为35s
+    }
+
     //清空填入信息
     ICncCommonOp::SetControlText(_T(""), m_pm, _T("EditConfRoomName") );  
     ICncCommonOp::SetControlText(_T(""), m_pm, _T("EditIPV6IP") );

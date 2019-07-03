@@ -38,6 +38,10 @@ public:
 	virtual u16 ConnectCns(u32 dwIP, u32 dwPort,
 		LPSTR strUser,LPSTR strPwd,
         s8* achVersion, BOOL32 bConnect = TRUE) = 0;
+    //重载 用于IPV6登录
+    virtual u16 ConnectCns(TOspNetAddr tRmtAddr,
+        LPSTR strUser,LPSTR strPwd,
+        s8* achVersion, BOOL32 bConnect = TRUE) = 0;
 
 	/** 功能  断开CNS连接 
 	 *  @return 成功返回0,失败返回非0错误码

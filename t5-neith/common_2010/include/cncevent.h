@@ -1936,6 +1936,22 @@ enum EmUiCnsMsg
 	ev_CnSetMicPowerRsp,
 #define UI_CNC_CNSETMICPOWER_RSP  ev_CnSetMicPowerRsp
 
+    /************************************************************************/
+	/**  升降屏配置信息通知
+	wParam = bShow
+	lparam = bSuccess 
+	/************************************************************************/
+	ev_CentreDFScreenConfigNty,
+#define UI_CNC_CENTREDFSCREENCONFIG_NTY  ev_CentreDFScreenConfigNty
+
+    /************************************************************************/
+	/**  操作升降屏反馈通知
+	wParam = bShow
+	lparam = bSuccess 
+	/************************************************************************/
+	ev_CentreDFScreenCmdInd,
+#define UI_CNC_CENTREDFSCREENCMD_IND  ev_CentreDFScreenCmdInd
+
 	/************************************************************************/
 	/**  TPad向cnc通知断链
 	wParam =  0

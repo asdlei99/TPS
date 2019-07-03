@@ -2061,6 +2061,27 @@ public:
 	}
 }TCapSetInfo;
 
+///  channel keeplive info
+typedef struct tagTKeepAliveAddress
+{
+	PFC_IPADDR	m_tKeepAliveNet;
+	u16			m_wKeepAlivePayload;
+	u32			m_dwKeepAliveInterval;
+
+	tagTKeepAliveAddress()
+	{
+		Clear();
+	}
+
+	void Clear()
+	{
+		m_tKeepAliveNet.Clear();
+		m_wKeepAlivePayload = 0;
+		m_dwKeepAliveInterval = 0;
+	}
+
+}TKeepAliveAddress,*PTKeepAliveAddress;
+
 /// TCapSet channel information
 typedef struct tagTCapSetChanInfo
 {
@@ -2077,6 +2098,7 @@ typedef struct tagTCapSetChanInfo
 
 	TMdlRtcpFeedbackParam   m_tRtcpFbParam;  ///< rtcp feedback mode
 	BOOL32 m_bRtcpMux;    ///< is use rtcp_mux
+	TKeepAliveAddress m_tKeepAliveAddr;
 public:
     tagTCapSetChanInfo()
 	{
@@ -2088,6 +2110,7 @@ public:
 		m_tLocalRtpAddr.Clear();
 		m_tPeerRtcpAddr.Clear();
 		m_tPeerRtpAddr.Clear();
+		m_tKeepAliveAddr.Clear();
 		m_byMediaCount = 0;
 		for ( s32 i =0; i < MAX_MEDIA_CAP_NUM; i++ )
 		{

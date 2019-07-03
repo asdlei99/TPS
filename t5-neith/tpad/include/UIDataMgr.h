@@ -98,7 +98,8 @@ public:
 	*/
 	BOOL  HZPYMatchList( const CString strTextInput,  const CString strTextSrc );
 
-
+    //s是否是正确的IPV6
+    BOOL32 IsValidIpV6( LPCSTR lptrIPStr );
 	//是否是正确的164
 	bool IsAllE164Number( String strText );
 	//是否是正确的TP

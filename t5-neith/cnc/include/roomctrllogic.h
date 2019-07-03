@@ -246,6 +246,10 @@ protected:
 	bool OnCnSetMicPowerRsp(WPARAM wParam, LPARAM lParam, bool& bHandle);
 	void UpdateMicStyle();
 	void UpdateMicState();
+    //升降屏相关
+    bool OnCentreDFScreenConfigNty(WPARAM wParam, LPARAM lParam, bool& bHandle);
+    bool OnCentreDFScreenCmdInd(WPARAM wParam, LPARAM lParam, bool& bHandle);
+
 	APP_DECLARE_MSG_MAP()
 
 private:
@@ -275,5 +279,6 @@ private:
 	BOOL             m_byMicStyle[TP_MIC_NUM];//麦克风状态
 	BOOL             m_byMicState[TP_MIC_NUM];//麦克风状态
 
-    u8               m_bySrceenControl;//标记升降屏控制的标号
+    u8               m_byScreenControl;       //升降屏：标记升降屏控制的标号
+    u8               m_byAllScreenCtrlSel;    //升降屏：有效屏幕全选（有效屏幕数由tptools配置）
 };

@@ -499,29 +499,29 @@
 		<!--升降屏-->
 		<VerticalLayout>
 			<!--- horLine --->
-			<HorizontalLayout name="horLine1" float="true" pos="0,152,0,0" width="1920" height="1" visible="true">  
+			<HorizontalLayout name="HorLineStyle1" float="true" pos="0,152,0,0" width="1920" height="1" visible="false">  
 				<Label name="" width="937" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;0,0,264,1&apos;" />
 				<Label name="" float="true" pos="982,0,0,0" width="938" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1656,0,1920,1&apos;" />
 			</HorizontalLayout>
-			<HorizontalLayout name="horLine2" float="true" pos="0,152,0,0" width="1920" height="1" visible="false">  
+			<HorizontalLayout name="HorLineStyle2" float="true" pos="0,152,0,0" width="1920" height="1" visible="false">  
 				<Label name="" width="814" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;0,0,264,1&apos;" />
 				<Label name="" float="true" pos="858,0,0,0" width="203" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;404,0,680,1&apos;" />
 				<Label name="" float="true" pos="1105,0,0,0" width="815" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1656,0,1920,1&apos;" />
 			</HorizontalLayout>
-			<HorizontalLayout name="horLine3" float="true" pos="0,152,0,0" width="1920" height="1" visible="false">  
+			<HorizontalLayout name="HorLineStyle3" float="true" pos="0,152,0,0" width="1920" height="1" visible="false">  
 				<Label name="" width="691" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;0,0,264,1&apos;" />
 				<Label name="" float="true" pos="736,0,0,0" width="203" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;404,0,680,1&apos;" />
 				<Label name="" float="true" pos="982,0,0,0" width="204" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1240,0,1520,1&apos;" />
 				<Label name="" float="true" pos="1228,0,0,0" width="690" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1656,0,1920,1&apos;" />
 			</HorizontalLayout>
-			<HorizontalLayout name="horLine4" float="true" pos="0,152,0,0" width="1920" height="1" visible="false">  
+			<HorizontalLayout name="HorLineStyle4" float="true" pos="0,152,0,0" width="1920" height="1" visible="false">  
 				<Label name="" width="568" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;0,0,264,1&apos;" />
 				<Label name="" float="true" pos="612,0,0,0" width="203" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;404,0,680,1&apos;" />
 				<Label name="" float="true" pos="859,0,0,0" width="203" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;822,0,1098,1&apos;" />
 				<Label name="" float="true" pos="1105,0,0,0" width="204" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1240,0,1520,1&apos;" />
 				<Label name="" float="true" pos="1351,0,0,0" width="569" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;1656,0,1920,1&apos;" />
 			</HorizontalLayout>
-			<HorizontalLayout name="horLine5" float="true" pos="0,152,0,0" width="1920" height="1" visible="false">  
+			<HorizontalLayout name="HorLineStyle5" float="true" pos="0,152,0,0" width="1920" height="1" visible="false">  
 				<Label name="" width="444" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;0,0,264,1&apos;" />
 				<Label name="" float="true" pos="489,0,0,0" width="203" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;404,0,680,1&apos;" />
 				<Label name="" float="true" pos="736,0,0,0" width="203" height="1" bkimage="file=&apos;res/roomctrl/horLine.png&apos; source=&apos;822,0,1098,1&apos;" />
@@ -537,7 +537,7 @@
 					<Label name="" float="true" pos="124,52,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
 					<VerticalLayout name="SrceensourceLayout1" float="true" pos="12,134,0,0" inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >
 						<Label name="" float="true" pos="40,103,0,0" width="142" height="142" bkcolor="" bkimage="res/roomctrl/fitscreen.png"/>
-						<Label name="" float="true" pos="0,274,0,0" width="222" height="40" text="组1" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+						<Label name="LabGroup1" float="true" pos="0,274,0,0" width="222" height="40" text="组1" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
 					</VerticalLayout>
 				</VerticalLayout>
 				<VerticalLayout name="SrceenLayout2" width="247" visible="false" >
@@ -545,7 +545,7 @@
 					<Label name="" float="true" pos="124,52,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
 					<VerticalLayout name="SrceensourceLayout2" float="true" pos="12,134,0,0" inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >
 						<Label name="" float="true" pos="40,103,0,0" width="142" height="142" bkcolor="" bkimage="res/roomctrl/fitscreen.png"/>
-						<Label name="" float="true" pos="0,274,0,0" width="222" height="40" text="组2" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+						<Label name="LabGroup2" float="true" pos="0,274,0,0" width="222" height="40" text="组2" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
 					</VerticalLayout>
 				</VerticalLayout>
 				<VerticalLayout name="SrceenLayout3" width="247" visible="false" >
@@ -553,7 +553,7 @@
 					<Label name="" float="true" pos="124,52,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
 					<VerticalLayout name="SrceensourceLayout3" float="true" pos="12,134,0,0" inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >
 						<Label name="" float="true" pos="40,103,0,0" width="142" height="142" bkcolor="" bkimage="res/roomctrl/fitscreen.png"/>
-						<Label name="" float="true" pos="0,274,0,0" width="222" height="40" text="组3" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+						<Label name="LabGroup3" float="true" pos="0,274,0,0" width="222" height="40" text="组3" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
 					</VerticalLayout>
 				</VerticalLayout>
 				<VerticalLayout name="SrceenLayout4" width="247" visible="false" >
@@ -561,15 +561,15 @@
 					<Label name="" float="true" pos="124,52,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
 					<VerticalLayout name="SrceensourceLayout4" float="true" pos="12,134,0,0" inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >
 						<Label name="" float="true" pos="40,103,0,0" width="142" height="142" bkcolor="" bkimage="res/roomctrl/fitscreen.png"/>
-						<Label name="" float="true" pos="0,274,0,0" width="222" height="40" text="组4" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+						<Label name="LabGroup4" float="true" pos="0,274,0,0" width="222" height="40" text="组4" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
 					</VerticalLayout>
 				</VerticalLayout>
-				<VerticalLayout name="SrceenLayout5" width="247" visible="true" >
+				<VerticalLayout name="SrceenLayout5" width="247" visible="false" >
 					<CheckBox name="OptIsControl5" float="true" pos="92,0,0,0" width="64" height="64" tag="5" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
 					<Label name="" float="true" pos="124,52,0,0" width="1" height="80" bkcolor=""  bkimage="res/roomctrl/verLineScreen.png"/>
 					<VerticalLayout name="SrceensourceLayout5" float="true" pos="12,134,0,0" inset="0,0,0,0" bkimage="res\roomctrl\VedioSource_normal.png" width="222" height="402" >
 						<Label name="" float="true" pos="40,103,0,0" width="142" height="142" bkcolor="" bkimage="res/roomctrl/fitscreen.png"/>
-						<Label name="" float="true" pos="0,274,0,0" width="222" height="40" text="组5" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
+						<Label name="LabGroup5" float="true" pos="0,274,0,0" width="222" height="40" text="组5" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
 					</VerticalLayout>
 				</VerticalLayout>
 				<VerticalLayout />
@@ -592,7 +592,20 @@
 			</VerticalLayout>	
 			<Label name="" float="true" pos="300,804,0,0" width="64" height="64" text="全选" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
 			<CheckBox name="OptIsControlAll" float="true" pos="368,804,0,0" width="64" height="64" tag="0" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
-		
+			
+			<Case name="caseScreenIni">		<!-- 升降屏初始化 -->
+				<OptIsControl1 selectednomsg="false"/>
+				<OptIsControl2 selectednomsg="false"/>
+				<OptIsControl3 selectednomsg="false"/>
+				<OptIsControl4 selectednomsg="false"/>	
+				<OptIsControl5 selectednomsg="false"/>
+				<OptIsControlAll selectednomsg="false"/>
+				<SrceensourceLayout1 bkimage="res\roomctrl\VedioSource_normal.png"/>
+				<SrceensourceLayout2 bkimage="res\roomctrl\VedioSource_normal.png"/>
+				<SrceensourceLayout3 bkimage="res\roomctrl\VedioSource_normal.png"/>
+				<SrceensourceLayout4 bkimage="res\roomctrl\VedioSource_normal.png"/>
+				<SrceensourceLayout5 bkimage="res\roomctrl\VedioSource_normal.png"/>
+			</Case>
 			<Case name="caseCheckSelect1">
 				<SrceensourceLayout1 bkimage="res\roomctrl\VedioSource_select.png"/>
 			</Case>
@@ -623,26 +636,24 @@
 			<Case name="caseCheckNotSelect5">
 				<SrceensourceLayout5 bkimage="res\roomctrl\VedioSource_normal.png"/>
 			</Case>
-			<Case name="caseCheckSelectAll">		
-				<OptIsControl1 selected="true"/>
-				<OptIsControl2 selected="true"/>
-				<OptIsControl3 selected="true"/>
-				<OptIsControl4 selected="true"/>	
-				<OptIsControl5 selected="true"/>
-				<OptIsControlAll selected="true"/>
+			<Case name="caseCheckSelectAll">		<!-- 升降屏全选 -->	
+				<OptIsControl1 selectednomsg="true"/>
+				<OptIsControl2 selectednomsg="true"/>
+				<OptIsControl3 selectednomsg="true"/>
+				<OptIsControl4 selectednomsg="true"/>	
+				<OptIsControl5 selectednomsg="true"/>
 				<SrceensourceLayout1 bkimage="res\roomctrl\VedioSource_select.png"/>
 				<SrceensourceLayout2 bkimage="res\roomctrl\VedioSource_select.png"/>
 				<SrceensourceLayout3 bkimage="res\roomctrl\VedioSource_select.png"/>
 				<SrceensourceLayout4 bkimage="res\roomctrl\VedioSource_select.png"/>
 				<SrceensourceLayout5 bkimage="res\roomctrl\VedioSource_select.png"/>
 			</Case>
-			<Case name="caseCheckSelectNone">		
-				<OptIsControl1 selected="false"/>
-				<OptIsControl2 selected="false"/>
-				<OptIsControl3 selected="false"/>
-				<OptIsControl4 selected="false"/>	
-				<OptIsControl5 selected="false"/>
-				<OptIsControlAll selected="false"/>
+			<Case name="caseCheckSelectNone">		<!-- 升降屏选择为空 -->	
+				<OptIsControl1 selectednomsg="false"/>
+				<OptIsControl2 selectednomsg="false"/>
+				<OptIsControl3 selectednomsg="false"/>
+				<OptIsControl4 selectednomsg="false"/>	
+				<OptIsControl5 selectednomsg="false"/>
 				<SrceensourceLayout1 bkimage="res\roomctrl\VedioSource_normal.png"/>
 				<SrceensourceLayout2 bkimage="res\roomctrl\VedioSource_normal.png"/>
 				<SrceensourceLayout3 bkimage="res\roomctrl\VedioSource_normal.png"/>
@@ -650,7 +661,7 @@
 				<SrceensourceLayout5 bkimage="res\roomctrl\VedioSource_normal.png"/>
 			</Case>
 			
-			<Case name="caseIsLiftSrceen">		
+			<Case name="caseIsLiftSrceen">		<!-- 升降屏 -->
 				<BtnLiftSrceenUp visible="true"/>
 				<BtnLiftSrceenDown visible="true"/>
 				<BtnLiftSrceenStop visible="true"/>
@@ -658,7 +669,7 @@
 				<BtnFlipSrceenClose visible="false"/>
 				<BtnFlipSrceenStop visible="false"/>					
 			</Case>
-			<Case name="caseIsFlipSrceen">		
+			<Case name="caseIsFlipSrceen">		<!-- 翻转屏 -->
 				<BtnLiftSrceenUp visible="false"/>
 				<BtnLiftSrceenDown visible="false"/>
 				<BtnLiftSrceenStop visible="false"/>

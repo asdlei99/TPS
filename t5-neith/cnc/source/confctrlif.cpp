@@ -577,6 +577,49 @@ u16 CCommonInterface::StartP2PConf( TCnAddr& tCnAddr )
 	return re;
 }
 
+u16 CCommonInterface::StartIpv6P2PConf( TCnAddr& tCnAddr )
+{
+    if ( ComInterface->GetWBConfState() )
+    {
+        CString strMsg = _T("开启新的会议后将自动结束当前的数据会议，是否继续？");
+
+        int nResult = ShowMessageBox(strMsg,true);
+        if ( IDOK != nResult )
+        {
+            return ERR_CMS;
+        }
+
+    }
+
+    if( NULL == m_pCnsConfCtrl )
+    {
+        return ERR_CMS;
+    }
+
+    TTPDialParam tTPDialParam;
+
+    tTPDialParam.tCalledAddr = tCnAddr;
+
+    tTPDialParam.emProtocol = emTpSIP;
+    tTPDialParam.emCallType = emTpInvite;
+
+    //呼点对点会议
+    tTPDialParam.m_emEndpointType = emTPEndpointTypeCNS;
+
+    //tTPDialParam.tCalledAddr.emType = emTpAlias; 
+    //strncpy( (char*)tTPDialParam.tCalledAddr.achAlias, (char*)achIp, TP_MAX_H323ALIAS_LEN ); 
+    tTPDialParam.tCalledAddr.wPort = TP_UMS_SIP_LISTIEN_PORT;
+    tTPDialParam.tCalledAddr.emType = emTpIP6Addr;
+
+    tTPDialParam.tCallingAddr.emProtocolVersion = emIPV6;
+    tTPDialParam.tCallingAddr.emType = emTpIP6Addr; 
+    tTPDialParam.tCallingAddr.wPort = CNS_SIP_STACK_LISTION_PORT; 
+
+    u16 re  = m_pCnsConfCtrl->MakeCall( tTPDialParam );
+
+    return re;
+}
+
 
 u16 CCommonInterface::HungupPtpConf(  )
 {

@@ -70,6 +70,34 @@ u16 CCommonInterface::Connect( u32 dwIp, u16 nPort, LPCTSTR pStrUserName, LPCTST
 	return NO_ERROR;
 }
 
+u16 CCommonInterface::Connect( LPSTR pcIpv6, u16 nPort, LPCTSTR pStrUserName, LPCTSTR pStrPswd )
+{
+    if( NULL == m_pTPadSession )
+    {
+        return ERR_CMS;
+    } 
+
+    m_tLoginInfo.emIPver = emIPV6;//IPV6µÇÂ¼
+
+    m_tLoginInfo.tRmtAddr.v6addr.sin6_family = AF_INET6;
+    m_tLoginInfo.tRmtAddr.v6addr.sin6_port = htons(nPort);
+    //     if ( OspPton(AF_INET6, pcIpv6, &m_tLoginInfo.tRmtAddr.v6addr.sin6_addr) < 0 )
+    //     {
+    //         return ERR_CMS;  
+    //     }  
+
+    OSP_SET_NETADDR_ADDR_STR(&m_tLoginInfo.tRmtAddr, OSP_NET_FAMILY_INET6, pcIpv6);
+
+    strncpy(m_tLoginInfo.achName, CT2A(pStrUserName), sizeof(m_tLoginInfo.achName));
+    strncpy(m_tLoginInfo.achPswd, CT2A(pStrPswd), sizeof(m_tLoginInfo.achPswd));
+
+    //Á¬½Ócns
+    AfxBeginThread( ThreadConnectCns , NULL );
+
+    return NO_ERROR;
+}
+
+
 
 u16 CCommonInterface::LinkCns()
 {
@@ -78,9 +106,16 @@ u16 CCommonInterface::LinkCns()
 	{
 		s8 achVersion[MAX_DEVICEVER_LEN] = {0};
 		GetTPadVersion( achVersion );
-
-		re = m_pTPadSession->ConnectCns( m_tLoginInfo.dwIp,  m_tLoginInfo.nPort,
-			m_tLoginInfo.achName, m_tLoginInfo.achPswd, achVersion );
+        if (m_tLoginInfo.emIPver == emIPV6)
+        {
+            re = m_pTPadSession->ConnectCns( m_tLoginInfo.tRmtAddr,
+                m_tLoginInfo.achName, m_tLoginInfo.achPswd, achVersion );
+        }
+        else
+        {
+		    re = m_pTPadSession->ConnectCns( m_tLoginInfo.dwIp,  m_tLoginInfo.nPort,
+			    m_tLoginInfo.achName, m_tLoginInfo.achPswd, achVersion );
+        }
 	}
 	return re;
 }
