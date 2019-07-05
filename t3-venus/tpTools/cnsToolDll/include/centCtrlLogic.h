@@ -411,27 +411,54 @@ public:
 	*  @return 
 	*  @remarks  在读取xml文件时候调用,根据里面的内容初始化窗口
 	*/	
-	 virtual bool InitWnd( const IArgs & arg ); 
-	 /** 功能:  清理窗口
-	 *  @param[in] 
-	 *  @return 
-	 *  @remarks  在窗口关闭的时候调用,清空窗口数据
-	 */
-	 virtual void Clear() ;
+	virtual bool InitWnd( const IArgs & arg ); 
+	/** 功能:  清理窗口
+	*  @param[in] 
+	*  @return 
+	*  @remarks  在窗口关闭的时候调用,清空窗口数据
+	*/
+	virtual void Clear() ;
+private:
+    //修改设备类型
+    bool OnChangedSrceenType( const IArgs & arg );
+    //修改波特率
+    bool OnChangedBaudRate( const IArgs & arg );
+    //修改数据位
+    bool OnChangedDataBits( const IArgs & arg );
+    //修改校验位
+    bool OnChangedCheckBits( const IArgs & arg );
+    //修改停止位
+    bool OnChangedStopBits( const IArgs & arg );
+    //修改分组数
+	bool OnChangedGroupCount( const IArgs & arg );
+    //修改组名
+    bool OnChangedGroupName1( const IArgs & arg );
+    bool OnChangedGroupName2( const IArgs & arg );
+    bool OnChangedGroupName3( const IArgs & arg );
+    bool OnChangedGroupName4( const IArgs & arg );
+    bool OnChangedGroupName5( const IArgs & arg );
+    //修改地址码
+    bool OnChangedAddrCode1( const IArgs & arg );
+    bool OnChangedAddrCode2( const IArgs & arg );
+    bool OnChangedAddrCode3( const IArgs & arg );
+    bool OnChangedAddrCode4( const IArgs & arg );
+    bool OnChangedAddrCode5( const IArgs & arg );
+    //保存
+    bool OnBtnSave( const IArgs & arg ); 
+    //取消
+	bool OnBtnCancel( const IArgs & arg );
 
-	 //点击切换组数
-	 bool OnChangedGroupCount( const IArgs & arg );
-     //保存
-     bool OnBtnSave( const IArgs & arg ); 
-     //取消
-	 bool OnBtnCancel( const IArgs & arg );
+    //升降屏配置信息
+    LRESULT OnCenDFScreenConfigNty( WPARAM wParam, LPARAM lParam );
+    LRESULT OnModifyDFScreenSerCfgInd( WPARAM wParam, LPARAM lParam );
+    LRESULT OnModifyDFScreenGroupInd( WPARAM wParam, LPARAM lParam );
 
-     //升降屏配置信息
-     LRESULT OnCentreDFScreenConfigNty( WPARAM wParam, LPARAM lParam );
+    bool IsCenDFScreenSerChange( EmComConfigType emDevieceType, TSerialCfg & tSerialCfg );
+    bool IsCenDFScreenGrpChange( u32 dwGrpNum, TCenDownOrFlipScreenCfg* ptCenDFScreenCfg );
 
 private:
-	int m_nGroupNum;//当前有多少组数
-    TCenDownOrFlipScreenInfo m_tCenDownOrFlipScreenInfo;//升降屏配置信息
+	//int m_nGroupNum;//当前有多少组数
+    TCenDownOrFlipScreenInfo m_tCenDFScreenInfo;//升降屏配置信息
 };
 
 #endif // !defined(AFX_CENTCTRLLOGIC_H__777D44E7_A11A_4507_AA4E_F26B05745548__INCLUDED_)

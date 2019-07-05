@@ -329,6 +329,16 @@ typedef BOOL32 (PROTO_CALLBACK* CBSipRoundTripTimeOut)(HMDLCALL hCall, HMDLAPPCA
 */
 typedef BOOL32 (PROTO_CALLBACK* CBSipPeeripNotify)(HMDLCALL hCall, HMDLAPPCALL hAppCall,const u8 *pbyBuf, const s32 nLen);
 
+/**
+* \brief            main video recv channel callback In advance
+* \param[in]        hCall             :lower call handle
+* \param[in]        hAppCall          :upper call info
+* \param[in]        pTVideoInfo       :main video info
+* \param[in]        nSize             :channel connected size
+* \return           BOOL32, TRUE/FALSE
+*/
+typedef BOOL32 (PROTO_CALLBACK* CBChannelInAdvance)( HMDLCALL hCall, HMDLAPPCALL hAppCall, TChanConnectedInfo *pTVideoInfo,s32 nSize);
+
 /// call back  function
 typedef struct tagCallCBFunction
 {
@@ -351,7 +361,7 @@ typedef struct tagCallCBFunction
 	CBSipRoundTripTimeOut  m_cbRoundTripTimeOut;    ///< round trip time out callback
 	CBSipReinviteRecive    m_cbReciveReinvite;      ///< receive reinvite callback
 	CBSipPeeripNotify      m_cbPeeripNotify;		///< receive peerip callback
-
+	CBChannelInAdvance     m_cbChannelInAdvance;    ///< main video in advance callback
 	/**
     * \brief            tagCallCBFunction init
     * \return           void.
@@ -377,6 +387,7 @@ typedef struct tagCallCBFunction
 		m_cbRoundTripTimeOut    = NULL;
 		m_cbReciveReinvite      = NULL;
 		m_cbPeeripNotify        = NULL;
+		m_cbChannelInAdvance    = NULL;
 	}
 
 	/**

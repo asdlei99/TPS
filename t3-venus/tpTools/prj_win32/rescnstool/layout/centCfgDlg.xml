@@ -444,6 +444,7 @@
         <Property Name="DropListHeight" Value="212" />
         <Property Name="ComboShowIcon" Value="False" />
         <Property Name="ReadOnly" Value="True" />
+		<Event Type="WM_CLICK_COMBOLIST" Value="CCentCfgSrceen::OnChangedSrceenType" />
     </Window>
 	
 	<Window Type="TransStatic" Name="StcBaudRate" Style="WS_CHILD|WS_CLIPSIBLINGS">
@@ -467,6 +468,7 @@
         <Property Name="DropListHeight" Value="212" />
         <Property Name="ComboShowIcon" Value="False" />
         <Property Name="ReadOnly" Value="True" />
+		<Event Type="WM_CLICK_COMBOLIST" Value="CCentCfgSrceen::OnChangedBaudRate" />
     </Window>
 	
 	<Window Type="TransStatic" Name="StcDataBits" Style="WS_CHILD|WS_CLIPSIBLINGS">
@@ -490,6 +492,7 @@
         <Property Name="DropListHeight" Value="212" />
         <Property Name="ComboShowIcon" Value="False" />
         <Property Name="ReadOnly" Value="True" />
+		<Event Type="WM_CLICK_COMBOLIST" Value="CCentCfgSrceen::OnChangedDataBits" />
     </Window>
 	
 	<Window Type="TransStatic" Name="StcCheckBits" Style="WS_CHILD|WS_CLIPSIBLINGS">
@@ -513,6 +516,7 @@
         <Property Name="DropListHeight" Value="212" />
         <Property Name="ComboShowIcon" Value="False" />
         <Property Name="ReadOnly" Value="True" />
+		<Event Type="WM_CLICK_COMBOLIST" Value="CCentCfgSrceen::OnChangedCheckBits" />
     </Window>
 	
 	<Window Type="TransStatic" Name="StcStopBits" Style="WS_CHILD|WS_CLIPSIBLINGS">
@@ -536,6 +540,7 @@
         <Property Name="DropListHeight" Value="212" />
         <Property Name="ComboShowIcon" Value="False" />
         <Property Name="ReadOnly" Value="True" />
+		<Event Type="WM_CLICK_COMBOLIST" Value="CCentCfgSrceen::OnChangedStopBits" />
     </Window>
 	
 	<Window Type="TransStatic" Name="StcGroupCount" Style="WS_CHILD|WS_CLIPSIBLINGS">
@@ -597,7 +602,7 @@
 		<Property Name="FontColor" Value="r:59 g:59 b:59" />
 		<Property Name="FontSize" Value="9" />
 		<Property Name="LimitLength" Value="16" />
-		<!--Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIp" /-->
+		<Event Type="WM_EDIT_CHANGED" Value="CCentCfgSrceen::OnChangedGroupName1" />
 		<Scheme Name="SchmConf">
 			<Property Name="WindowEnable" Value="false" />
 		</Scheme>
@@ -661,6 +666,7 @@
         <Property Name="DropListHeight" Value="212" />
         <Property Name="ComboShowIcon" Value="False" />
         <Property Name="ReadOnly" Value="True" />
+		<Event Type="WM_CLICK_COMBOLIST" Value="CCentCfgSrceen::OnChangedAddrCode1" />
 		
 		<Scheme Name="SchmOneGroup">
 			<Property Name="WindowVisible" Value="true" />
@@ -715,7 +721,7 @@
 		<Property Name="FontColor" Value="r:59 g:59 b:59" />
 		<Property Name="FontSize" Value="9" />
 		<Property Name="LimitLength" Value="16" />
-		<!--Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIp" /-->
+		<Event Type="WM_EDIT_CHANGED" Value="CCentCfgSrceen::OnChangedGroupName2" />
 		<Scheme Name="SchmConf">
 			<Property Name="WindowEnable" Value="false" />
 		</Scheme>
@@ -779,6 +785,7 @@
         <Property Name="DropListHeight" Value="212" />
         <Property Name="ComboShowIcon" Value="False" />
         <Property Name="ReadOnly" Value="True" />
+		<Event Type="WM_CLICK_COMBOLIST" Value="CCentCfgSrceen::OnChangedAddrCode2" />
 		
 		<Scheme Name="SchmOneGroup">
 			<Property Name="WindowVisible" Value="false" />
@@ -833,7 +840,7 @@
 		<Property Name="FontColor" Value="r:59 g:59 b:59" />
 		<Property Name="FontSize" Value="9" />
 		<Property Name="LimitLength" Value="16" />
-		<!--Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIp" /-->
+		<Event Type="WM_EDIT_CHANGED" Value="CCentCfgSrceen::OnChangedGroupName3" />
 		<Scheme Name="SchmConf">
 			<Property Name="WindowEnable" Value="false" />
 		</Scheme>
@@ -897,6 +904,7 @@
         <Property Name="DropListHeight" Value="212" />
         <Property Name="ComboShowIcon" Value="False" />
         <Property Name="ReadOnly" Value="True" />
+		<Event Type="WM_CLICK_COMBOLIST" Value="CCentCfgSrceen::OnChangedAddrCode3" />
 		
 		<Scheme Name="SchmOneGroup">
 			<Property Name="WindowVisible" Value="false" />
@@ -951,7 +959,7 @@
 		<Property Name="FontColor" Value="r:59 g:59 b:59" />
 		<Property Name="FontSize" Value="9" />
 		<Property Name="LimitLength" Value="16" />
-		<!--Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIp" /-->
+		<Event Type="WM_EDIT_CHANGED" Value="CCentCfgSrceen::OnChangedGroupName4" />
 		<Scheme Name="SchmConf">
 			<Property Name="WindowEnable" Value="false" />
 		</Scheme>
@@ -1015,6 +1023,7 @@
         <Property Name="DropListHeight" Value="212" />
         <Property Name="ComboShowIcon" Value="False" />
         <Property Name="ReadOnly" Value="True" />
+		<Event Type="WM_CLICK_COMBOLIST" Value="CCentCfgSrceen::OnChangedAddrCode4" />
 		
 		<Scheme Name="SchmOneGroup">
 			<Property Name="WindowVisible" Value="false" />
@@ -1069,7 +1078,7 @@
 		<Property Name="FontColor" Value="r:59 g:59 b:59" />
 		<Property Name="FontSize" Value="9" />
 		<Property Name="LimitLength" Value="16" />
-		<!--Event Type="WM_EDIT_CHANGED" Value="CCfgCnsLogic::OnChangedCnsIp" /-->
+		<Event Type="WM_EDIT_CHANGED" Value="CCentCfgSrceen::OnChangedGroupName5" />
 		<Scheme Name="SchmConf">
 			<Property Name="WindowEnable" Value="false" />
 		</Scheme>
@@ -1133,6 +1142,7 @@
         <Property Name="DropListHeight" Value="212" />
         <Property Name="ComboShowIcon" Value="False" />
         <Property Name="ReadOnly" Value="True" />
+		<Event Type="WM_CLICK_COMBOLIST" Value="CCentCfgSrceen::OnChangedAddrCode5" />
 		
 		<Scheme Name="SchmOneGroup">
 			<Property Name="WindowVisible" Value="false" />

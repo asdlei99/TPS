@@ -177,7 +177,7 @@ typedef struct PROTO_API tagPFC_IPADDR
 	void Clear()
 	{
 		MEMSET_CAST(this, 0, sizeof(tagPFC_IPADDR) );
-		//m_emType = PFC_TRANSPORT_TYPE_IP;
+		m_emType = PFC_TRANSPORT_TYPE_IP;
 	}
 
 	tagPFC_IPADDR()

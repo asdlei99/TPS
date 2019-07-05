@@ -8,6 +8,7 @@
 #include "confctrllogic.h"
 #include "cnsmanagelogic.h"
 #include "confmixlogic.h"
+#include "addrbooklogic.h"
 
 #define  MAINMENU_INITHEIGHT   279   //mainmenu初始高度
 
@@ -299,6 +300,12 @@ bool CMainMenuLogic::OnBtnAddrBook(TNotifyUI& msg)
 
 	CMainFrameLogic::GetSingletonPtr()->SetTitle(_T("地址簿"));
 	CMainFrameLogic::GetSingletonPtr()->SetTitlePic(_T("res/title/imgAddrbook.png"));
+
+    CPaintManagerUI* pm = CAddrBookLogic::GetSingletonPtr()->GetPaintManagerUI();
+    if (pm)
+    {
+        ICncCommonOp::ShowControl( false, pm, _T("TemporaryCallLayout") );
+    }
 
 	WINDOW_MGR_PTR->DoCase( g_stcStrMainFrameDlg.c_str(),_T("caseShowSubPage"));
 	UIDATAMGR->SetCurShowWndName( g_strAddrbookDlg );

@@ -306,7 +306,7 @@ enum EmModuleH264NALMode
 enum EmModuleH265ProfileMask
 {
 	//emModuleH265ProfileGeneral = 1,
-	emModuleH265ProfileMain		,
+	emModuleH265ProfileMain = 1,
 	emModuleH265ProfileMain10	,
 	emModuleH265ProfileMainStill,
 };
