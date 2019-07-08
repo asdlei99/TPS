@@ -1166,8 +1166,8 @@
       <Property Name="WindowPos" Value="x:391 y:452" />
       <Property Name="WindowSize" Value="x:86 y:38" />
       <Property Name="WindowCaption" Value="»Ö¸´Ä¬ÈÏ" />
-      <Property Name="WindowVisible" Value="true" />
-      <Event Type="WM_BUTTON_CLICK" Value="CCfgAudioDlg::OnBtnDefault" />
+      <Property Name="WindowVisible" Value="false" />
+      <Event Type="WM_BUTTON_CLICK" Value="CCentCfgSrceen::OnBtnDefault" />
       <Property Name="Image" Value="btnDefault" />
       <Scheme Name="SchmInConf">
         <Property Name="WindowEnable" Value="false" />

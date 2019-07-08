@@ -5,6 +5,19 @@ CCncCenterCtrl::CCncCenterCtrl(CCnsSession &cSession):CCncCenterCtrlIF()
 {
 	m_pSession = &cSession;
 	BuildEventsMap();
+
+    m_tCenDFScreenInfo.emDeviceType = emDefault;
+    m_tCenDFScreenInfo.tSerialCfg.dwBaudRate = 9600;
+    m_tCenDFScreenInfo.tSerialCfg.byByteSize = 7;
+    m_tCenDFScreenInfo.tSerialCfg.emCheck = emOddCheck;
+    m_tCenDFScreenInfo.tSerialCfg.emStopBits = em1HalfStopBits;
+    m_tCenDFScreenInfo.dwGroupNum = 3;
+    strcpy( m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[0].achGroupName, "ื้1");
+    m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[0].emAddrCode = emAddrCode_01;
+    strcpy( m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[1].achGroupName, "ื้2");
+    m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[1].emAddrCode = emAddrCode_02;
+    strcpy( m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[2].achGroupName, "ื้3");
+    m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[2].emAddrCode = emAddrCode_03;
 }
 
 CCncCenterCtrl::~CCncCenterCtrl()

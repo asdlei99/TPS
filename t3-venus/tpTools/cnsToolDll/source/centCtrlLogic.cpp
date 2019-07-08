@@ -1493,6 +1493,19 @@ bool CCentCfgSrceen::OnChangedGroupCount( const IArgs & arg )
 	default:
 		break;
 	}
+
+    //clear hide group data
+    string strGroupNameEdit = "CentCfgSrceenDlg/GroupNameEdit";
+    string strAddrCodeEdit = "CentCfgSrceenDlg/ComboboxInAddrCode";
+    s8 achGroupNum[4];
+    for (u32 dwIndex = emNum + 1; dwIndex < MAX_CENTREDFSCREEN_GROUP_NUM; dwIndex++)
+    {
+        memset(achGroupNum, 0, sizeof(u8)*4);
+        itoa(dwIndex, achGroupNum, 10);
+        UIFACTORYMGR_PTR->SetCaption( strGroupNameEdit + achGroupNum, "", m_pWndTree );
+        UIFACTORYMGR_PTR->SetComboText( strAddrCodeEdit + achGroupNum, "", m_pWndTree );
+    }
+
 	bool bChange = false;
 	if (emNum != m_tCenDFScreenInfo.dwGroupNum)
 	{
@@ -1735,7 +1748,7 @@ bool CCentCfgSrceen::IsCenDFScreenGrpChange(u32 dwGrpNum, TCenDownOrFlipScreenCf
 
 bool CCentCfgSrceen::OnBtnCancel( const IArgs & arg )
 {
-    //
+    OnCenDFScreenConfigNty(0, 0);
     return true;
 }
 
@@ -1759,13 +1772,13 @@ LRESULT CCentCfgSrceen::OnCenDFScreenConfigNty( WPARAM wParam, LPARAM lParam )
     }
     UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInSrceenType", strDeviceType, m_pWndTree );
     //波特率
-    CString strBaudRate("");
-    strBaudRate.Format("%d", m_tCenDFScreenInfo.tSerialCfg.dwBaudRate);
-    UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInBaudRate", (LPCTSTR)strBaudRate, m_pWndTree );
+    s8 achBaudRate[8] = {0};
+    itoa(m_tCenDFScreenInfo.tSerialCfg.dwBaudRate, achBaudRate, 10);
+    UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInBaudRate", achBaudRate, m_pWndTree );
     //数据位
-    CString strByteSize("");
-    strByteSize.Format("%d", m_tCenDFScreenInfo.tSerialCfg.byByteSize);
-    UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInDataBits", (LPCTSTR)strByteSize, m_pWndTree );
+    s8 achByteSize[4] = {0};
+    itoa(m_tCenDFScreenInfo.tSerialCfg.byByteSize, achByteSize, 10);
+    UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInDataBits", achByteSize, m_pWndTree );
     //校验位
     String strCheck("");
     switch(m_tCenDFScreenInfo.tSerialCfg.emCheck)
@@ -1801,7 +1814,7 @@ LRESULT CCentCfgSrceen::OnCenDFScreenConfigNty( WPARAM wParam, LPARAM lParam )
     }
     UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInStopBits", strStopBits, m_pWndTree );
     //分组数
-    CString strGroupNum("");
+    s8 achGroupNum[4] = {0};
     if (m_tCenDFScreenInfo.dwGroupNum > 0)
     {
         switch ((EmGroupNum)m_tCenDFScreenInfo.dwGroupNum)
@@ -1822,28 +1835,25 @@ LRESULT CCentCfgSrceen::OnCenDFScreenConfigNty( WPARAM wParam, LPARAM lParam )
             UIFACTORYMGR_PTR->LoadScheme( "SchmFiveGroup", m_pWndTree );
             break;
         default:
-            {
-                //打印
-                return S_FALSE;
-            }
+            break;
         }
-        strGroupNum.Format("0%d", m_tCenDFScreenInfo.dwGroupNum);
-        UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInGroupCount", (LPCTSTR)strGroupNum, m_pWndTree );
+        itoa(m_tCenDFScreenInfo.dwGroupNum, achGroupNum, 10);
+        UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInGroupCount", achGroupNum, m_pWndTree );
 
         //组名称 地址码
         CString strGroupNameEdit("");
         CString strComboboxInAddrCode("");
-        for (int i = 1; i <= MAX_CENTREDFSCREEN_GROUP_NUM; i++)
+        for (int i = 0; i < MAX_CENTREDFSCREEN_GROUP_NUM; i++)
         {
-            if (m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[i-1].emAddrCode != 0)
-            {
-                strGroupNameEdit.Format("CentCfgSrceenDlg/GroupNameEdit%d", i);
-                strComboboxInAddrCode.Format("CentCfgSrceenDlg/ComboboxInAddrCode%d", i);
+            strGroupNameEdit.Format("CentCfgSrceenDlg/GroupNameEdit%d", i+1);
+            strComboboxInAddrCode.Format("CentCfgSrceenDlg/ComboboxInAddrCode%d", i+1);
 
+            if (i < m_tCenDFScreenInfo.dwGroupNum)
+            {
                 UIFACTORYMGR_PTR->SetCaption( (LPCTSTR)strGroupNameEdit,
-                    m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[i-1].achGroupName, m_pWndTree );
+                    m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[i].achGroupName, m_pWndTree );
                 string strAddrCode("");
-                switch(m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[i-1].emAddrCode)
+                switch (m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[i].emAddrCode)
                 {
                 case emAddrCode_01:
                     strAddrCode = "01";
@@ -1860,9 +1870,17 @@ LRESULT CCentCfgSrceen::OnCenDFScreenConfigNty( WPARAM wParam, LPARAM lParam )
                 case emAddrCode_05:
                     strAddrCode = "05";
                     break;
+                default:
+                    break;
                 }
                 UIFACTORYMGR_PTR->SetComboText( (LPCTSTR)strComboboxInAddrCode, strAddrCode, m_pWndTree );
             }
+            else
+            {
+                UIFACTORYMGR_PTR->SetCaption( (LPCTSTR)strGroupNameEdit, "", m_pWndTree );
+                UIFACTORYMGR_PTR->SetComboText( (LPCTSTR)strComboboxInAddrCode, "", m_pWndTree );
+            }
+            
         }
     }
     else
