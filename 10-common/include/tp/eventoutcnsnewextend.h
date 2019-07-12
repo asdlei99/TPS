@@ -255,7 +255,7 @@ _ev_end
  *[消息方向]
  *  cns <- cnc
 */
-_event(  ev_cns_centreSelectDFScreen_Cmd  )
+_event(  ev_cns_SelectDFScreen_Cmd  )
 _body( BOOL   , MAX_CENTREDFSCREEN_GROUP_NUM ) 
 _ev_end
 
@@ -265,7 +265,7 @@ _ev_end
  *[消息方向]
  *  cndevice <- cnc
 */
-_event(  ev_Cn_CentreDFScreenCommand_Cmd  )
+_event(  ev_Cn_DFScreenCommand_Cmd  )
 _body( EmCommandType   , 1 ) 
 _ev_end
 
@@ -276,7 +276,7 @@ _ev_end
  *[消息方向]
  *  cndevice <- cnc
 */
-_event(  ev_Cn_CentreDFScreenCommand_Ind  )
+_event(  ev_Cn_DFScreenCommand_Ind  )
 _body( EmCommandType   , 1 ) 
 _body( BOOL  ,  1)
 _ev_end
@@ -288,7 +288,7 @@ _ev_end
  *[消息方向]
  *  cndevice <- tptool
 */
-_event(  ev_Cn_CentreModifyDFScreenConfig_Cmd  )
+_event(  ev_Cn_ModifyDFScreenCfg_Cmd  )
 _body( EmComConfigType   , 1 ) 
 _body( TSerialCfg , 1 )
 _ev_end
@@ -301,7 +301,7 @@ _ev_end
  *[消息方向]
  *  cndevice -> tptool
 */
-_event(  ev_Cn_CentreModifyDFScreenConfig_Ind  )
+_event(  ev_Cn_ModifyDFScreenCfg_Ind  )
 _body( EmComConfigType   , 1 ) 
 _body( TSerialCfg , 1 )
 _body( BOOL , 1 )
@@ -314,7 +314,7 @@ _ev_end
  *[消息方向]
  *  cndevice <- tptool
 */
-_event(  ev_Cn_CentreModifyDFScreenGroup_Cmd  )
+_event(  ev_Cn_ModifyDFScreenGroup_Cmd  )
 _body( u32   , 1 ) 
 _body( TCenDownOrFlipScreenCfg , MAX_CENTREDFSCREEN_GROUP_NUM )
 _ev_end
@@ -327,7 +327,7 @@ _ev_end
  *[消息方向]
  *  cndevice -> tptool CNC
 */
-_event(  ev_Cn_CentreModifyDFScreenGroup_Ind  )
+_event(  ev_Cn_ModifyDFScreenGroup_Ind  )
 _body( u32   , 1 ) 
 _body( TCenDownOrFlipScreenCfg , MAX_CENTREDFSCREEN_GROUP_NUM )
 _body( BOOL , 1)
@@ -447,6 +447,28 @@ _ev_end
 _event(  ev_CnCfgIPVtpye_Ind )
 _body(EmProtocolVersion, 1 )
 _body(BOOL , 1)
+_ev_end
+
+  /***********************<< 升降屏排数选择 >>******************** 
+ *[消息体]
+ * BOOL                              标识那几排被启用了       
+ * BOOL                              结果  
+ *[消息方向]
+ *  cns <- cnc
+*/
+_event(  ev_cns_SelectDFScreen_Ind  )
+_body( BOOL   , MAX_CENTREDFSCREEN_GROUP_NUM ) 
+_body( BOOL , 1 )
+_ev_end
+
+  /***********************<< 升降屏排数通知 >>******************** 
+ *[消息体]
+ * BOOL                              标识那几排被启用了       
+ *[消息方向]
+ *  cns -> cnc
+*/
+_event(  ev_cns_SelectDFScreen_Nty  )
+_body( BOOL   , MAX_CENTREDFSCREEN_GROUP_NUM ) 
 _ev_end
 
 #ifndef _MakeTpEventDescription_

@@ -1486,9 +1486,12 @@ void CCncMsgDriver::MappingEventName()
 
     //Éý½µÆÁ
     MAPPING_HELPER( ev_Cn_CentreDFScreenConfig_Nty, _T("ev_Cn_CentreDFScreenConfig_Nty") );
-    MAPPING_HELPER( ev_cns_centreSelectDFScreen_Cmd, _T("ev_cns_centreSelectDFScreen_Cmd") );
-    MAPPING_HELPER( ev_Cn_CentreDFScreenCommand_Cmd, _T("ev_Cn_CentreDFScreenCommand_Cmd") );
-    MAPPING_HELPER( ev_Cn_CentreDFScreenCommand_Ind, _T("ev_Cn_CentreDFScreenCommand_Ind") );
+    MAPPING_HELPER( ev_cns_SelectDFScreen_Nty, _T("ev_cns_SelectDFScreen_Nty") );
+    MAPPING_HELPER( ev_cns_SelectDFScreen_Cmd, _T("ev_cns_SelectDFScreen_Cmd") );
+    MAPPING_HELPER( ev_Cn_DFScreenCommand_Cmd, _T("ev_Cn_DFScreenCommand_Cmd") );
+    MAPPING_HELPER( ev_Cn_DFScreenCommand_Ind, _T("ev_Cn_DFScreenCommand_Ind") );
+    MAPPING_HELPER( ev_cns_SelectDFScreen_Ind, _T("ev_cns_SelectDFScreen_Ind") );
+    MAPPING_HELPER( ev_Cn_ModifyDFScreenGroup_Ind, _T("ev_Cn_ModifyDFScreenGroup_Ind") );
 }
 
 void CCncMsgDriver::SetInsID( u16 wDstInsID )

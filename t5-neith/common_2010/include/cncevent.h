@@ -1945,6 +1945,30 @@ enum EmUiCnsMsg
 #define UI_CNC_CENTREDFSCREENCONFIG_NTY  ev_CentreDFScreenConfigNty
 
     /************************************************************************/
+	/**  升降屏排数选择通知
+	wParam = bShow
+	lparam = bSuccess 
+	/************************************************************************/
+	ev_CentreSelectDFScreenNty,
+#define UI_CNC_CENTRESELECTDFSCREEN_NTY  ev_CentreSelectDFScreenNty
+
+    /************************************************************************/
+	/**  修改升降屏组信息反馈
+	wParam = bShow
+	lparam = bSuccess 
+	/************************************************************************/
+	ev_CentreModifyDFScreenGroupInd,
+#define UI_CNC_CENTREMODIFYDFSCREENGROUP_IND  ev_CentreModifyDFScreenGroupInd
+
+    /************************************************************************/
+	/**  升降屏排数选择反馈
+	wParam = bShow
+	lparam = bSuccess 
+	/************************************************************************/
+	ev_SelectDFScreenInd,
+#define UI_CNC_SELECTDFSCREEN_IND  ev_SelectDFScreenInd
+
+    /************************************************************************/
 	/**  操作升降屏反馈通知
 	wParam = bShow
 	lparam = bSuccess 

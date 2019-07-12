@@ -418,6 +418,9 @@ public:
 	*  @remarks  在窗口关闭的时候调用,清空窗口数据
 	*/
 	virtual void Clear() ;
+
+    bool IsDFScreenCfgChange();
+    bool SaveMsgBox();
 private:
     //修改设备类型
     bool OnChangedSrceenType( const IArgs & arg );
@@ -453,11 +456,13 @@ private:
     LRESULT OnModifyDFScreenSerCfgInd( WPARAM wParam, LPARAM lParam );
     LRESULT OnModifyDFScreenGroupInd( WPARAM wParam, LPARAM lParam );
 
+    bool IsAddrCodeUsed(String strIndex, String strAddrCode);
     bool IsCenDFScreenSerChange( EmComConfigType emDevieceType, TSerialCfg & tSerialCfg );
     bool IsCenDFScreenGrpChange( u32 dwGrpNum, TCenDownOrFlipScreenCfg* ptCenDFScreenCfg );
 
 private:
 	//int m_nGroupNum;//当前有多少组数
+    map<u16, String> m_mapAddrCode;//当前选中的地址码
     TCenDownOrFlipScreenInfo m_tCenDFScreenInfo;//升降屏配置信息
 };
 

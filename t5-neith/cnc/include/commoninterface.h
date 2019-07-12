@@ -1507,6 +1507,7 @@ public:
 	u16 SelectCentreDFScreen( u8 bySrceenControl );
     u16 SetCentreDFScreenCmd(EmCommandType emCommand);
     u16 GetCenDownOrFlipScreenInfo(TCenDownOrFlipScreenInfo &tCenDownOrFlipScreenInfo);
+    BOOL* GetCenSelectDFScreen();
 
 	  /**
     * 功能:	断开与UMS和CNS的连接

@@ -241,6 +241,16 @@ void CCentCfgFrameLogic::SwitchCfgTabWnd( string strWnd )
 			return;
 		}	
 	}
+
+    if ( m_strCurWnd == g_strCentSrceen && strWnd != g_strCentSrceen )
+    {
+        bool bChange = CCentCfgSrceen::GetSingletonPtr()->IsDFScreenCfgChange();
+        if ( false == bChange )
+        {
+            UIDATAMGR_PTR->SetLstSelItem( m_strLstFunMenu, m_pWndTree, 3 );
+            return;
+		}
+    }
 	
 	HideAllWnd();
 	UIFACTORYMGR_PTR->ShowWindow(strWnd);

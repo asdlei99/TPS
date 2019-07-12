@@ -7,7 +7,7 @@
 #include "tpcommonstruct.h"
 #include "tpcommonxmltype.h"
 
-const char XmlTpStructVersion[] = "2019-7-12 16:20:58";
+const char XmlTpStructVersion[] = "2019-7-10 13:15:3";
 
 #define XML_TP_TYPE_NUM      331
 #define XML_TP_STRUCT_NUM    447

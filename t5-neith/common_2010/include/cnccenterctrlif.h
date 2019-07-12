@@ -239,5 +239,6 @@ public:
     virtual u16 SelectCentreDFScreenCmd( u8 bySrceenControl ) = 0;
     virtual u16 SetCentreDFScreenCmd(EmCommandType emCommand) = 0;
     virtual TCenDownOrFlipScreenInfo GetCenDownOrFlipScreenInfo() = 0;
+    virtual BOOL* GetCenSelectDFScreen() = 0;
 };
 #endif

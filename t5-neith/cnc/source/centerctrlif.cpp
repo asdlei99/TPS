@@ -475,3 +475,13 @@ u16 CCommonInterface::GetCenDownOrFlipScreenInfo(TCenDownOrFlipScreenInfo &tCenD
     tCenDownOrFlipScreenInfo = m_pCenterCtrl->GetCenDownOrFlipScreenInfo();
     return NO_ERROR;
 }
+
+BOOL* CCommonInterface::GetCenSelectDFScreen()
+{
+    if ( NULL == m_pCenterCtrl )
+    {
+        return NULL;
+    }
+
+    return m_pCenterCtrl->GetCenSelectDFScreen();
+}

@@ -1498,12 +1498,30 @@ bool CCentCfgSrceen::OnChangedGroupCount( const IArgs & arg )
     string strGroupNameEdit = "CentCfgSrceenDlg/GroupNameEdit";
     string strAddrCodeEdit = "CentCfgSrceenDlg/ComboboxInAddrCode";
     s8 achGroupNum[4];
-    for (u32 dwIndex = emNum + 1; dwIndex < MAX_CENTREDFSCREEN_GROUP_NUM; dwIndex++)
+    for (u32 dwIndex = emNum + 1; dwIndex <= MAX_CENTREDFSCREEN_GROUP_NUM; dwIndex++)
     {
-        memset(achGroupNum, 0, sizeof(u8)*4);
+        memset(achGroupNum, 0, sizeof(s8)*4);
         itoa(dwIndex, achGroupNum, 10);
         UIFACTORYMGR_PTR->SetCaption( strGroupNameEdit + achGroupNum, "", m_pWndTree );
         UIFACTORYMGR_PTR->SetComboText( strAddrCodeEdit + achGroupNum, "", m_pWndTree );
+
+        map<u16, String>::iterator itrName = m_mapAddrCode.find(dwIndex);
+        if (itrName != m_mapAddrCode.end())
+        {
+            m_mapAddrCode.erase(itrName);
+        }
+
+        if (dwIndex <= m_tCenDFScreenInfo.dwGroupNum)
+        {
+            CheckData(strGroupNameEdit + achGroupNum, true);
+            CheckData(strAddrCodeEdit + achGroupNum, true);
+        }
+        else
+        {
+            CheckData(strGroupNameEdit + achGroupNum, false);
+            CheckData(strAddrCodeEdit + achGroupNum, false);
+        }
+        
     }
 
 	bool bChange = false;
@@ -1519,102 +1537,162 @@ bool CCentCfgSrceen::OnChangedGroupCount( const IArgs & arg )
 bool CCentCfgSrceen::OnChangedGroupName1( const IArgs & arg )
 {
     String strCaption;
-    UIFACTORYMGR_PTR->GetCaption( "CentCfgMatrixDlg/GroupNameEdit1", strCaption, m_pWndTree);
+    UIFACTORYMGR_PTR->GetCaption( "CentCfgSrceenDlg/GroupNameEdit1", strCaption, m_pWndTree);
     
     bool bChange = false;
-    if( strcmp(strCaption.c_str() , m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[0].achGroupName) != 0 )
+    if ( strcmp(strCaption.c_str() , m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[0].achGroupName) != 0 )
     {
         bChange = true;
     }
     
-    CheckData( "CentCfgMatrixDlg/GroupNameEdit1", bChange );
+    CheckData( "CentCfgSrceenDlg/GroupNameEdit1", bChange );
 	return true;
 }
 
 bool CCentCfgSrceen::OnChangedGroupName2( const IArgs & arg )
 {
     String strCaption;
-    UIFACTORYMGR_PTR->GetCaption( "CentCfgMatrixDlg/GroupNameEdit2", strCaption, m_pWndTree);
+    UIFACTORYMGR_PTR->GetCaption( "CentCfgSrceenDlg/GroupNameEdit2", strCaption, m_pWndTree);
     
     bool bChange = false;
-    if( strcmp(strCaption.c_str() , m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[1].achGroupName) != 0 )
+    if ( strcmp(strCaption.c_str() , m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[1].achGroupName) != 0 )
     {
         bChange = true;
     }
     
-    CheckData( "CentCfgMatrixDlg/GroupNameEdit2", bChange );
+    CheckData( "CentCfgSrceenDlg/GroupNameEdit2", bChange );
 	return true;
 }
 bool CCentCfgSrceen::OnChangedGroupName3( const IArgs & arg )
 {
     String strCaption;
-    UIFACTORYMGR_PTR->GetCaption( "CentCfgMatrixDlg/GroupNameEdit3", strCaption, m_pWndTree);
+    UIFACTORYMGR_PTR->GetCaption( "CentCfgSrceenDlg/GroupNameEdit3", strCaption, m_pWndTree);
     
     bool bChange = false;
-    if( strcmp(strCaption.c_str() , m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[2].achGroupName) != 0 )
+    if ( strcmp(strCaption.c_str() , m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[2].achGroupName) != 0 )
     {
         bChange = true;
     }
     
-    CheckData( "CentCfgMatrixDlg/GroupNameEdit3", bChange );
+    CheckData( "CentCfgSrceenDlg/GroupNameEdit3", bChange );
 	return true;
 }
 bool CCentCfgSrceen::OnChangedGroupName4( const IArgs & arg )
 {
     String strCaption;
-    UIFACTORYMGR_PTR->GetCaption( "CentCfgMatrixDlg/GroupNameEdit4", strCaption, m_pWndTree);
+    UIFACTORYMGR_PTR->GetCaption( "CentCfgSrceenDlg/GroupNameEdit4", strCaption, m_pWndTree);
     
     bool bChange = false;
-    if( strcmp(strCaption.c_str() , m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[3].achGroupName) != 0 )
+    if ( strcmp(strCaption.c_str() , m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[3].achGroupName) != 0 )
     {
         bChange = true;
     }
     
-    CheckData( "CentCfgMatrixDlg/GroupNameEdit4", bChange );
+    CheckData( "CentCfgSrceenDlg/GroupNameEdit4", bChange );
 	return true;
 }
 bool CCentCfgSrceen::OnChangedGroupName5( const IArgs & arg )
 {
     String strCaption;
-    UIFACTORYMGR_PTR->GetCaption( "CentCfgMatrixDlg/GroupNameEdit5", strCaption, m_pWndTree);
+    UIFACTORYMGR_PTR->GetCaption( "CentCfgSrceenDlg/GroupNameEdit5", strCaption, m_pWndTree);
     
     bool bChange = false;
-    if( strcmp(strCaption.c_str() , m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[4].achGroupName) != 0 )
+    if ( strcmp(strCaption.c_str() , m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[4].achGroupName) != 0 )
     {
         bChange = true;
     }
     
-    CheckData( "CentCfgMatrixDlg/GroupNameEdit5", bChange );
+    CheckData( "CentCfgSrceenDlg/GroupNameEdit5", bChange );
 	return true;
 }
 bool CCentCfgSrceen::OnChangedAddrCode1( const IArgs & arg )
 {
-    String strCaption;
-    UIFACTORYMGR_PTR->GetCaption( "CentCfgMatrixDlg/ComboboxInAddrCode1", strCaption, m_pWndTree);
-    
+    String strComboText;
+    UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInAddrCode1", strComboText, m_pWndTree);
+    if ( !IsAddrCodeUsed("1", strComboText) )
+    {
+        return false;
+    }
+
     bool bChange = false;
-    //if( strcmp(strCaption.c_str() , m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[0].emAddrCode) != 0 )
+    if ( atoi(strComboText.c_str()) != m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[0].emAddrCode + 1 )
     {
         bChange = true;
     }
     
-    CheckData( "CentCfgMatrixDlg/ComboboxInAddrCode1", bChange );
+    CheckData( "CentCfgSrceenDlg/ComboboxInAddrCode1", bChange );
     return true;
 }
 bool CCentCfgSrceen::OnChangedAddrCode2( const IArgs & arg )
 {
+    String strComboText;
+    UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInAddrCode2", strComboText, m_pWndTree);
+    if ( !IsAddrCodeUsed("2", strComboText) )
+    {
+        return false;
+    }
+
+    bool bChange = false;
+    if ( atoi(strComboText.c_str()) != m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[1].emAddrCode + 1 )
+    {
+        bChange = true;
+    }
+
+    CheckData( "CentCfgSrceenDlg/ComboboxInAddrCode2", bChange );
     return true;
 }
 bool CCentCfgSrceen::OnChangedAddrCode3( const IArgs & arg )
 {
+    String strComboText;
+    UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInAddrCode3", strComboText, m_pWndTree);
+    if ( !IsAddrCodeUsed("3", strComboText) )
+    {
+        return false;
+    }
+
+    bool bChange = false;
+    if ( atoi(strComboText.c_str()) != m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[2].emAddrCode + 1 )
+    {
+        bChange = true;
+    }
+
+    CheckData( "CentCfgSrceenDlg/ComboboxInAddrCode3", bChange );
     return true;
 }
 bool CCentCfgSrceen::OnChangedAddrCode4( const IArgs & arg )
 {
+    String strComboText;
+    UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInAddrCode4", strComboText, m_pWndTree);
+    if ( !IsAddrCodeUsed("4", strComboText) )
+    {
+        return false;
+    }
+
+    bool bChange = false;
+    if ( atoi(strComboText.c_str()) != m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[3].emAddrCode + 1 )
+    {
+        bChange = true;
+    }
+
+    CheckData( "CentCfgSrceenDlg/ComboboxInAddrCode4", bChange );
     return true;
 }
 bool CCentCfgSrceen::OnChangedAddrCode5( const IArgs & arg )
 {
+    String strComboText;
+    UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInAddrCode5", strComboText, m_pWndTree);
+    if ( !IsAddrCodeUsed("5", strComboText) )
+    {
+        return false;
+    }
+
+    bool bChange = false;
+    if ( atoi(strComboText.c_str()) != m_tCenDFScreenInfo.tCenDownOrFlipScreenCfg[4].emAddrCode + 1 )
+    {
+        bChange = true;
+    }
+    
+    CheckData( "CentCfgSrceenDlg/ComboboxInAddrCode5", bChange );
     return true;
 }
 
@@ -1660,8 +1738,18 @@ bool CCentCfgSrceen::OnBtnSave( const IArgs & arg )
     //停止位
     String strStopBits = "";
     UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInStopBits", strStopBits, m_pWndTree);
-    EmStopBits emStopBits = (EmStopBits)atoi(strStopBits.c_str());
-    tCenDFScreenInfo.tSerialCfg.emStopBits = emStopBits;
+    if (strStopBits == "1")
+    {
+         tCenDFScreenInfo.tSerialCfg.emStopBits = em1StopBit;
+    }
+    else if (strStopBits == "1.5")
+    {
+        tCenDFScreenInfo.tSerialCfg.emStopBits = em1HalfStopBits;
+    }
+    else
+    {
+        tCenDFScreenInfo.tSerialCfg.emStopBits = em2StopBits;
+    }
     //分组数
     String strGroupCount = "";
     UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInGroupCount", strGroupCount, m_pWndTree);
@@ -1672,7 +1760,7 @@ bool CCentCfgSrceen::OnBtnSave( const IArgs & arg )
     {
         string strGroupNameEdit = "CentCfgSrceenDlg/GroupNameEdit";
         string strAddrCodeEdit = "CentCfgSrceenDlg/ComboboxInAddrCode";
-        s8 byGroupNum[4];
+        s8 byGroupNum[4] = {0};
         for (u32 dwIndex = 0; dwIndex < dwGroupCount; dwIndex++)
         {
             //组名称
@@ -1685,6 +1773,11 @@ bool CCentCfgSrceen::OnBtnSave( const IArgs & arg )
             //地址码
             String strAddrCode = "";
             UIFACTORYMGR_PTR->GetComboText( strAddrCodeEdit+byGroupNum, strAddrCode, m_pWndTree);
+            if (strAddrCode == "")
+            {
+                MSG_BOX_OK("地址码不能为空，请选择");
+                return false;
+            }
             EmAddrCode emAddrCode = (EmAddrCode)( atoi(strAddrCode.c_str()) - 1 );
             tCenDFScreenInfo.tCenDownOrFlipScreenCfg[dwIndex].emAddrCode = emAddrCode;
         }
@@ -1703,13 +1796,35 @@ bool CCentCfgSrceen::OnBtnSave( const IArgs & arg )
         CheckData( "CentCfgSrceenDlg/StcGroupCount", true );
         COMIFMGRPTR->SetDFScreenGroupCmd(tCenDFScreenInfo.dwGroupNum, tCenDFScreenInfo.tCenDownOrFlipScreenCfg);
     }
-
-    if (!bSerRet && !bGrpRet)
-    {
-        m_vctWndName.clear();
-        UpBtnState();
-    }
     
+    return true;
+}
+
+bool CCentCfgSrceen::IsAddrCodeUsed(String strIndex, String strAddrCode)
+{
+    u32 dwIndex = atoi(strIndex.c_str());
+    map<u16, String>::iterator itrName = m_mapAddrCode.begin();
+    while (itrName != m_mapAddrCode.end())
+    {
+        if ( (*itrName).first != dwIndex && (*itrName).second == strAddrCode)
+        {
+            MSG_BOX_OK( "地址码不能重复，请重新选择" );
+            map<u16, String>::iterator itr = m_mapAddrCode.find(dwIndex);
+            if ( itr != m_mapAddrCode.end())
+            {
+                UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInAddrCode" + strIndex, m_mapAddrCode[dwIndex], m_pWndTree);
+            }
+            else
+            {
+                UIFACTORYMGR_PTR->SetComboText( "CentCfgSrceenDlg/ComboboxInAddrCode" + strIndex, "", m_pWndTree);
+            }
+
+            return false;
+        }
+        itrName++;
+    }
+
+    m_mapAddrCode[dwIndex] = strAddrCode;
     return true;
 }
 
@@ -1843,10 +1958,12 @@ LRESULT CCentCfgSrceen::OnCenDFScreenConfigNty( WPARAM wParam, LPARAM lParam )
         //组名称 地址码
         CString strGroupNameEdit("");
         CString strComboboxInAddrCode("");
+        u32 dwIndex = 0;
         for (int i = 0; i < MAX_CENTREDFSCREEN_GROUP_NUM; i++)
         {
-            strGroupNameEdit.Format("CentCfgSrceenDlg/GroupNameEdit%d", i+1);
-            strComboboxInAddrCode.Format("CentCfgSrceenDlg/ComboboxInAddrCode%d", i+1);
+            dwIndex = i + 1;
+            strGroupNameEdit.Format("CentCfgSrceenDlg/GroupNameEdit%d", dwIndex);
+            strComboboxInAddrCode.Format("CentCfgSrceenDlg/ComboboxInAddrCode%d", dwIndex);
 
             if (i < m_tCenDFScreenInfo.dwGroupNum)
             {
@@ -1874,6 +1991,7 @@ LRESULT CCentCfgSrceen::OnCenDFScreenConfigNty( WPARAM wParam, LPARAM lParam )
                     break;
                 }
                 UIFACTORYMGR_PTR->SetComboText( (LPCTSTR)strComboboxInAddrCode, strAddrCode, m_pWndTree );
+                m_mapAddrCode[dwIndex] = strAddrCode;
             }
             else
             {
@@ -1898,7 +2016,7 @@ LRESULT CCentCfgSrceen::OnModifyDFScreenSerCfgInd( WPARAM wParam, LPARAM lParam 
     BOOL bSuccess = (BOOL)wParam;
     if (!bSuccess)
     {
-        //show msg
+        MSG_BOX_OK("修改升降屏参数配置失败");
         return S_FALSE;
     }
 
@@ -1922,7 +2040,7 @@ LRESULT CCentCfgSrceen::OnModifyDFScreenGroupInd( WPARAM wParam, LPARAM lParam )
     BOOL bSuccess = (BOOL)wParam;
     if (!bSuccess)
     {
-        //show msg
+        MSG_BOX_OK("修改升降屏组信息失败");
         return S_FALSE;
     }
 
@@ -1939,4 +2057,30 @@ LRESULT CCentCfgSrceen::OnModifyDFScreenGroupInd( WPARAM wParam, LPARAM lParam )
     m_vctWndName.clear();
     UpBtnState();
     return S_OK;
+}
+
+bool CCentCfgSrceen::IsDFScreenCfgChange()
+{
+    s32 n = m_vctWndName.size();
+    if ( n > 0 )
+    {
+        return SaveMsgBox();
+    }
+    return true;
+}
+
+bool CCentCfgSrceen::SaveMsgBox()
+{
+    IArgs args("");
+    MSGBOX_RET nMsgBoxRet = MSGBOX_CANCEL;
+    MSG_BOX( nMsgBoxRet, "配置项已修改，是否保存配置？" );	
+    if ( MSGBOX_OK == nMsgBoxRet )
+    {
+        return OnBtnSave(args);		 
+    }
+    else
+    {	
+        OnBtnCancel(args);
+    }
+    return true;
 }

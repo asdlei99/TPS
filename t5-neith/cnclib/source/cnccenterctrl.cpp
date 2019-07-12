@@ -89,7 +89,10 @@ void CCncCenterCtrl::BuildEventsMap()
 
     //…˝Ωµ∆¡
     REG_PFUN( ev_Cn_CentreDFScreenConfig_Nty, CCncCenterCtrl::OnCentreDFScreenConfigNty);
-    REG_PFUN( ev_Cn_CentreDFScreenCommand_Ind, CCncCenterCtrl::OnCentreDFScreenCommandInd);
+    REG_PFUN( ev_cns_SelectDFScreen_Nty, CCncCenterCtrl::OnSelectDFScreenNty);
+    REG_PFUN( ev_Cn_ModifyDFScreenGroup_Ind, CCncCenterCtrl::OnCentreModifydDFScreenGroupInd );
+    REG_PFUN( ev_Cn_DFScreenCommand_Ind, CCncCenterCtrl::OnCentreDFScreenCommandInd);
+    REG_PFUN( ev_cns_SelectDFScreen_Ind, CCncCenterCtrl::OnSelectDFScreenInd );
 
 	//∂œ¡¥Õ®÷™
 	REG_PFUN( OSP_DISCONNECT, CCncCenterCtrl::OnLinkBreak );
@@ -121,6 +124,7 @@ void CCncCenterCtrl::OnLinkBreak(const CMessage& cMsg)
     m_mapDCamCfg.clear();
 
     memset( &m_tCenDownOrFlipScreenInfo, 0, sizeof(m_tCenDownOrFlipScreenInfo) );
+    memset( m_abSelectDFScreen, 0, sizeof(m_abSelectDFScreen));
 	
     PrtMsg( OSP_DISCONNECT, emEventTypecnstoolRecv,"[CCncCenterCtrl::OnLinkBreak]«Âø’≈‰÷√–≈œ¢" );
 }
@@ -1477,12 +1481,43 @@ EmComType* CCncCenterCtrl::GetComType()
 void CCncCenterCtrl::OnCentreDFScreenConfigNty(const CMessage& cMsg)
 {
     CTpMsg cTpMsg(&cMsg);
-    TCenDownOrFlipScreenInfo tCenDownOrFlipScreenInfo = *(TCenDownOrFlipScreenInfo*)(  cTpMsg.GetBody() );
+    m_tCenDownOrFlipScreenInfo = *(TCenDownOrFlipScreenInfo*)(  cTpMsg.GetBody() );
 
     PrtMsg( ev_Cn_CentreDFScreenConfig_Nty, emEventTypeCnsRecv, "EmComConfigType:%d dwGroupNum:%d",
-        tCenDownOrFlipScreenInfo.emDeviceType, tCenDownOrFlipScreenInfo.dwGroupNum);
+        m_tCenDownOrFlipScreenInfo.emDeviceType, m_tCenDownOrFlipScreenInfo.dwGroupNum);
 
     PostEvent( UI_CNC_CENTREDFSCREENCONFIG_NTY );
+}
+
+void CCncCenterCtrl::OnSelectDFScreenNty(const CMessage& cMsg)
+{
+    CTpMsg cTpMsg(&cMsg);
+    BOOL *ptSelectDFScreen = reinterpret_cast<BOOL*>( cTpMsg.GetBody());
+    memcpy(m_abSelectDFScreen, ptSelectDFScreen, sizeof(BOOL)*MAX_CENTREDFSCREEN_GROUP_NUM);
+
+    PrtMsg( ev_cns_SelectDFScreen_Nty, emEventTypeCnsRecv, "SelectDFScreen:<%d, %d, %d, %d, %d>",
+        m_abSelectDFScreen[0], m_abSelectDFScreen[1], m_abSelectDFScreen[2], m_abSelectDFScreen[3], m_abSelectDFScreen[4] );
+
+    PostEvent( UI_CNC_CENTRESELECTDFSCREEN_NTY );
+}
+
+void CCncCenterCtrl::OnCentreModifydDFScreenGroupInd(const CMessage& cMsg)
+{
+    CTpMsg cTpMsg(&cMsg);
+
+    u32 dwGroupNum = *(u32*)(  cTpMsg.GetBody() );
+    TCenDownOrFlipScreenCfg *ptScreenCfg = reinterpret_cast<TCenDownOrFlipScreenCfg *>( cTpMsg.GetBody() + sizeof(u32) );
+    BOOL bSuccess = *(BOOL*)( cTpMsg.GetBody() + sizeof(u32) + sizeof(TCenDownOrFlipScreenCfg)*MAX_CENTREDFSCREEN_GROUP_NUM );
+    if (bSuccess)
+    {
+        m_tCenDownOrFlipScreenInfo.dwGroupNum = dwGroupNum;
+        memcpy(m_tCenDownOrFlipScreenInfo.tCenDownOrFlipScreenCfg, ptScreenCfg, sizeof(TCenDownOrFlipScreenCfg)*MAX_CENTREDFSCREEN_GROUP_NUM);
+    }
+
+    PrtMsg( ev_Cn_ModifyDFScreenGroup_Ind, emEventTypeCnsRecv, "dwGroupNum:%d <%s, %d>",
+        dwGroupNum, m_tCenDownOrFlipScreenInfo.tCenDownOrFlipScreenCfg->achGroupName, m_tCenDownOrFlipScreenInfo.tCenDownOrFlipScreenCfg->emAddrCode+1);
+
+    PostEvent( UI_CNC_CENTREMODIFYDFSCREENGROUP_IND, bSuccess );
 }
 
 u16 CCncCenterCtrl::SelectCentreDFScreenCmd( u8 bySrceenControl )
@@ -1490,7 +1525,7 @@ u16 CCncCenterCtrl::SelectCentreDFScreenCmd( u8 bySrceenControl )
     CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr(); 
     pcTpMsg->SetUserData( m_pSession->GetInst() );
 
-    pcTpMsg->SetEvent( ev_cns_centreSelectDFScreen_Cmd );
+    pcTpMsg->SetEvent( ev_cns_SelectDFScreen_Cmd );
 
     BOOL bSelect[MAX_CENTREDFSCREEN_GROUP_NUM] = {0};
     for (u16 wIndex = 0; wIndex < MAX_CENTREDFSCREEN_GROUP_NUM; wIndex++)
@@ -1501,7 +1536,7 @@ u16 CCncCenterCtrl::SelectCentreDFScreenCmd( u8 bySrceenControl )
     pcTpMsg->SetBody( bSelect, sizeof(BOOL)*MAX_CENTREDFSCREEN_GROUP_NUM );
 
     u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
-    PrtMsg( ev_cns_centreSelectDFScreen_Cmd, emEventTypeCnsSend,"bySrceenControl : %d", bySrceenControl);
+    PrtMsg( ev_cns_SelectDFScreen_Cmd, emEventTypeCnsSend,"bySrceenControl : %d", bySrceenControl);
     return wRet;
 }
 
@@ -1510,11 +1545,11 @@ u16 CCncCenterCtrl::SetCentreDFScreenCmd( EmCommandType emCommand )
     CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr(); 
     pcTpMsg->SetUserData( m_pSession->GetInst() );
 
-    pcTpMsg->SetEvent( ev_Cn_CentreDFScreenCommand_Cmd );
+    pcTpMsg->SetEvent( ev_Cn_DFScreenCommand_Cmd );
     pcTpMsg->SetBody( &emCommand, sizeof(EmCommandType) );
 
     u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
-    PrtMsg( ev_Cn_CentreDFScreenCommand_Cmd, emEventTypeCnsSend,"EmCommandType : %d", emCommand);
+    PrtMsg( ev_Cn_DFScreenCommand_Cmd, emEventTypeCnsSend,"EmCommandType : %d", emCommand);
     return wRet;
 }
 
@@ -1525,12 +1560,30 @@ void CCncCenterCtrl::OnCentreDFScreenCommandInd(const CMessage& cMsg)
     //BOOL
     BOOL bSuccess = *(BOOL*)(cTpMsg.GetBody() + sizeof(EmCommandType));
 
-    PrtMsg( ev_Cn_CentreDFScreenCommand_Ind, emEventTypeCnsRecv, "Success£∫%d", bSuccess);
+    PrtMsg( ev_Cn_DFScreenCommand_Ind, emEventTypeCnsRecv, "Success: %d", bSuccess);
 
-    PostEvent( UI_CNC_CENTREDFSCREENCMD_IND ,bSuccess);
+    PostEvent( UI_CNC_CENTREDFSCREENCMD_IND, bSuccess);
+}
+
+void CCncCenterCtrl::OnSelectDFScreenInd(const CMessage& cMsg)
+{
+    CTpMsg cTpMsg(&cMsg);
+    BOOL *ptSelectDFScreen = reinterpret_cast<BOOL*>( cTpMsg.GetBody());
+    BOOL bSuccess = *(BOOL*)(cTpMsg.GetBody() + sizeof(BOOL)*MAX_CENTREDFSCREEN_GROUP_NUM);
+    memcpy(m_abSelectDFScreen, ptSelectDFScreen, sizeof(BOOL)*MAX_CENTREDFSCREEN_GROUP_NUM);
+
+    PrtMsg( ev_cns_SelectDFScreen_Ind, emEventTypeCnsRecv, "Success: %d,SelectDFScreen:<%d, %d, %d, %d, %d>",
+        bSuccess, m_abSelectDFScreen[0], m_abSelectDFScreen[1], m_abSelectDFScreen[2], m_abSelectDFScreen[3], m_abSelectDFScreen[4] );
+
+    PostEvent( UI_CNC_SELECTDFSCREEN_IND, bSuccess );
 }
 
 TCenDownOrFlipScreenInfo CCncCenterCtrl::GetCenDownOrFlipScreenInfo()
 {
     return m_tCenDownOrFlipScreenInfo;
+}
+
+BOOL* CCncCenterCtrl::GetCenSelectDFScreen()
+{
+    return m_abSelectDFScreen;
 }

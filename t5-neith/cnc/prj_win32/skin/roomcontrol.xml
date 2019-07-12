@@ -593,6 +593,13 @@
 			<Label name="" float="true" pos="300,804,0,0" width="64" height="64" text="全选" textcolor="#ffd5deeb" align="center" font="1" gdiplus="true" />
 			<CheckBox name="OptIsControlAll" float="true" pos="368,804,0,0" width="64" height="64" tag="0" normalimage= "res\public\checkbox_normal.png" selectedimage="res\public\checkbox_select.png" gdiplus="true" />
 			
+			<Case name="caseScreenGrpHide">		<!-- 升降屏组隐藏 -->
+				<SrceenLayout1 visible="false"/>
+				<SrceenLayout2 visible="false"/>
+				<SrceenLayout3 visible="false"/>
+				<SrceenLayout4 visible="false"/>
+				<SrceenLayout5 visible="false"/>
+			</Case>
 			<Case name="caseScreenIni">		<!-- 升降屏初始化 -->
 				<OptIsControl1 selectednomsg="false"/>
 				<OptIsControl2 selectednomsg="false"/>
@@ -607,33 +614,43 @@
 				<SrceensourceLayout5 bkimage="res\roomctrl\VedioSource_normal.png"/>
 			</Case>
 			<Case name="caseCheckSelect1">
+				<OptIsControl1 selectednomsg="true"/>
 				<SrceensourceLayout1 bkimage="res\roomctrl\VedioSource_select.png"/>
 			</Case>
 			<Case name="caseCheckNotSelect1">
+				<OptIsControl1 selectednomsg="false"/>
 				<SrceensourceLayout1 bkimage="res\roomctrl\VedioSource_normal.png"/>
 			</Case>
 			<Case name="caseCheckSelect2">
+				<OptIsControl2 selectednomsg="true"/>
 				<SrceensourceLayout2 bkimage="res\roomctrl\VedioSource_select.png"/>
 			</Case>
 			<Case name="caseCheckNotSelect2">
+				<OptIsControl2 selectednomsg="false"/>
 				<SrceensourceLayout2 bkimage="res\roomctrl\VedioSource_normal.png"/>
 			</Case>
 			<Case name="caseCheckSelect3">
+				<OptIsControl3 selectednomsg="true"/>
 				<SrceensourceLayout3 bkimage="res\roomctrl\VedioSource_select.png"/>
 			</Case>
 			<Case name="caseCheckNotSelect3">
+				<OptIsControl3 selectednomsg="false"/>
 				<SrceensourceLayout3 bkimage="res\roomctrl\VedioSource_normal.png"/>
 			</Case>
 			<Case name="caseCheckSelect4">
+				<OptIsControl4 selectednomsg="true"/>
 				<SrceensourceLayout4 bkimage="res\roomctrl\VedioSource_select.png"/>
 			</Case>
 			<Case name="caseCheckNotSelect4">
+				<OptIsControl4 selectednomsg="false"/>
 				<SrceensourceLayout4 bkimage="res\roomctrl\VedioSource_normal.png"/>
 			</Case>
 			<Case name="caseCheckSelect5">
+				<OptIsControl5 selectednomsg="true"/>
 				<SrceensourceLayout5 bkimage="res\roomctrl\VedioSource_select.png"/>
 			</Case>
 			<Case name="caseCheckNotSelect5">
+				<OptIsControl5 selectednomsg="false"/>
 				<SrceensourceLayout5 bkimage="res\roomctrl\VedioSource_normal.png"/>
 			</Case>
 			<Case name="caseCheckSelectAll">		<!-- 升降屏全选 -->	

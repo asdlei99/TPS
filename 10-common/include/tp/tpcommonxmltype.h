@@ -4,7 +4,7 @@
 #include "msgmgr.h"
 #include "xmlengine.h"
 
-const char XmlTpTypeVersion[] = "2019-7-12 16:20:58";
+const char XmlTpTypeVersion[] = "2019-7-10 13:15:3";
 
 // Tp Data struct type begin
 enum EmXDataTpType

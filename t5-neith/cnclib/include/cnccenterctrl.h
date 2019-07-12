@@ -207,6 +207,7 @@ public:
     virtual u16 SetCentreDFScreenCmd(EmCommandType emCommand);
 
     virtual TCenDownOrFlipScreenInfo GetCenDownOrFlipScreenInfo();
+    virtual BOOL* GetCenSelectDFScreen();
 
 protected:
     virtual void OnTimeOut(u16 wEvent); 
@@ -288,7 +289,10 @@ protected:
 
     //Éý½µÆÁ
     void OnCentreDFScreenConfigNty(const CMessage& cMsg);
+    void OnSelectDFScreenNty(const CMessage& cMsg);
+    void OnCentreModifydDFScreenGroupInd(const CMessage& cMsg);
     void OnCentreDFScreenCommandInd(const CMessage& cMsg);
+    void OnSelectDFScreenInd(const CMessage& cMsg);
 
 private:
 	CCnsSession				*m_pSession;
@@ -316,6 +320,7 @@ private:
 
     //Éý½µÆÁ
     TCenDownOrFlipScreenInfo m_tCenDownOrFlipScreenInfo;                    //Éý½µÆÁÅäÖÃÐÅÏ¢
+    BOOL m_abSelectDFScreen[MAX_CENTREDFSCREEN_GROUP_NUM];                    //Éý½µÆÁÅÅÊýÑ¡Ôñ×´Ì¬
 
     //com2 com3 ´®¿ÚÀàÐÍ
     EmComType m_aemComType[2];
