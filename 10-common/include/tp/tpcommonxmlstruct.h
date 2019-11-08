@@ -7,10 +7,10 @@
 #include "tpcommonstruct.h"
 #include "tpcommonxmltype.h"
 
-const char XmlTpStructVersion[] = "2019-7-10 13:15:3";
+const char XmlTpStructVersion[] = "2019-7-23 16:41:17";
 
-#define XML_TP_TYPE_NUM      331
-#define XML_TP_STRUCT_NUM    447
+#define XML_TP_TYPE_NUM      332
+#define XML_TP_STRUCT_NUM    448
 
 #define ENUMTYPE( type )\
 	const TXDATAINFO type##membertable[] = {#type,emx_##type,"enum",4,1,0,0,(char*)#type};
@@ -355,6 +355,7 @@ ENUMTYPE(EmAddrCode);
 ENUMTYPE(EmCommandType);
 ENUMTYPE(EmMediaDateType);
 ENUMTYPE(EmProtocolVersion);
+ENUMTYPE(EmUmsVacCmdRes);
 
 TXDATAINFO* g_tTpEnumData[]={
 	(TXDATAINFO*)EmTPDevRegUpdateSermembertable,
@@ -688,6 +689,7 @@ TXDATAINFO* g_tTpEnumData[]={
 	(TXDATAINFO*)EmCommandTypemembertable,
 	(TXDATAINFO*)EmMediaDateTypemembertable,
 	(TXDATAINFO*)EmProtocolVersionmembertable,
+	(TXDATAINFO*)EmUmsVacCmdResmembertable,
 	(TXDATAINFO*)NULL
 };
 
@@ -4661,6 +4663,15 @@ TYPESTRUCT_BEGIN( TTPCom2AndCom3State )
     TYPESTRUCT_MEMBER( TTPCom2AndCom3State, EmComType, m_emCom3Type )
 TYPESTRUCT_END(  TTPCom2AndCom3State )
 
+//TTPVacInfo
+TYPESTRUCT_BEGIN( TTPVacInfo )
+    TYPESTRUCT_MEMBER( TTPVacInfo, u16, m_wConfId )
+    TYPESTRUCT_MEMBER( TTPVacInfo, BOOL, m_bVoiceMotivation )
+    TYPESTRUCT_MEMBER( TTPVacInfo, u32, m_dwReserve )
+    TYPESTRUCT_MEMBER( TTPVacInfo, u32, m_dwReserve1 )
+    TYPESTRUCT_MEMBER( TTPVacInfo, EmUmsVacCmdRes, m_emRet )
+TYPESTRUCT_END(  TTPVacInfo )
+
 //通讯数据结构编码表
 TXDATAINFO* g_tTpStructData[]={
 	(TXDATAINFO*)TTPFTPFileInfomembertable,
@@ -5110,6 +5121,7 @@ TXDATAINFO* g_tTpStructData[]={
 	(TXDATAINFO*)TTPMatrixSceneInfomembertable,
 	(TXDATAINFO*)TTPEthnetIPV6Infomembertable,
 	(TXDATAINFO*)TTPCom2AndCom3Statemembertable,
+	(TXDATAINFO*)TTPVacInfomembertable,
 	(TXDATAINFO*)NULL
 };
 
@@ -8704,8 +8716,8 @@ const TXENUMINFO enumEmComTypeDescript[]={
 };
 
 const TXENUMINFO enumEmComConfigTypeDescript[]={
-	{ "emDefault", (int)emDefault },
-	{ "emXuanDeDFScreen", (int)emXuanDeDFScreen },
+	{ "emXuanDeUpScreen", (int)emXuanDeUpScreen },
+	{ "emXuanDeRollScreen", (int)emXuanDeRollScreen },
 	{ (char*)NULL, (int)-1 }
 };
 
@@ -8734,6 +8746,25 @@ const TXENUMINFO enumEmMediaDateTypeDescript[]={
 const TXENUMINFO enumEmProtocolVersionDescript[]={
 	{ "emIPV4", (int)emIPV4 },
 	{ "emIPV6", (int)emIPV6 },
+	{ (char*)NULL, (int)-1 }
+};
+
+const TXENUMINFO enumEmUmsVacCmdResDescript[]={
+	{ "ums_vac_res_sucess", (int)ums_vac_res_sucess },
+	{ "ums_vac_res_unauthorized", (int)ums_vac_res_unauthorized },
+	{ "ums_vac_res_dismode", (int)ums_vac_res_dismode },
+	{ "ums_vac_res_rollcallmode", (int)ums_vac_res_rollcallmode },
+	{ "ums_vac_res_customaudmixmmode", (int)ums_vac_res_customaudmixmmode },
+	{ "ums_vac_res_pollmode", (int)ums_vac_res_pollmode },
+	{ "ums_vac_res_nomix", (int)ums_vac_res_nomix },
+	{ "ums_vac_res_samemode", (int)ums_vac_res_samemode },
+	{ "ums_vac_res_mixopr_begin", (int)ums_vac_res_mixopr_begin },
+	{ "ums_vac_res_mixopr_getaudfail", (int)ums_vac_res_mixopr_getaudfail },
+	{ "ums_vac_res_mixopr_mixchanfull", (int)ums_vac_res_mixopr_mixchanfull },
+	{ "ums_vac_res_mixopr_novalidep", (int)ums_vac_res_mixopr_novalidep },
+	{ "ums_vac_res_mixopr_repeatadd", (int)ums_vac_res_mixopr_repeatadd },
+	{ "ums_vac_res_mixopr_del_notfind", (int)ums_vac_res_mixopr_del_notfind },
+	{ "ums_vac_res_unkown", (int)ums_vac_res_unkown },
 	{ (char*)NULL, (int)-1 }
 };
 
@@ -9070,6 +9101,7 @@ TXENUMINFO* enumTpXDescript[]={
 	(TXENUMINFO*)enumEmCommandTypeDescript, 
 	(TXENUMINFO*)enumEmMediaDateTypeDescript, 
 	(TXENUMINFO*)enumEmProtocolVersionDescript, 
+	(TXENUMINFO*)enumEmUmsVacCmdResDescript, 
 	(TXENUMINFO*)NULL
 };
 

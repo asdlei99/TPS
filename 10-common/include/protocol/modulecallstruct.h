@@ -62,12 +62,13 @@
 #define MODULE_VIDEO_DEFAULT_PAYLOADTYPE	0
 #define MODULE_REG_DEFAULT_TIMETOLIVE		60
 #define MODULE_CONF_MAX_TERMINALNO			192
-#define SEEN_BY_OTHERLIST_MASK_NUM 6
-#define TelephoneEventCap_ENCODING_LEN  128
-#define MAX_SIP_NONSTD_HEADER_NUM       10
-#define MAX_SDP_ATTR_NAME_LEN           50
-#define MAX_SDP_ATTR_VALUE_LEN          300
-#define MAX_MIX_EP_LIST_LEN                 64 ///< max mt count in list
+#define SEEN_BY_OTHERLIST_MASK_NUM			6
+#define TelephoneEventCap_ENCODING_LEN		128
+#define MAX_SIP_NONSTD_HEADER_NUM			10
+#define MAX_SDP_ATTR_NAME_LEN				50
+#define MAX_SDP_ATTR_VALUE_LEN				300
+#define MAX_MIX_EP_LIST_LEN                 64		///< max mt count in list
+#define MAX_RED_SECENC_NUM					3		///< max SecEncDynPayloadNum of redcap
 
 #define INVALID_ORDER        (-1)
 
@@ -145,6 +146,16 @@ enum emModuleProtocolType
 	emModuleTypeH323,
 	emModuleTypeSip,
 	emModuleTypeAll,
+};
+
+enum EmMdlReinvitestatus
+{
+	emMdlReinviteSndfailed,
+	emMdlReinviteSndsuccess,
+	emMdlAnswerReinvite,            /// answer 200
+	emMdlRejectReinvite,            /// answer 500
+	emMdlPeerRejectReinvite,        /// peer answer 500
+	emMdlReinviteconflict,          /// peer answer 491
 };
 
 /// 呼叫挂断原因
@@ -345,6 +356,7 @@ enum EmModuleAudioFormat
 	emModuleAMpegAACLDDual	= 13,
 	emModuleOPUS            = 14,
 	emModuleTelephoneEvent	= 15,
+	emModuleRED             = 16,
 	emModuleAEnd			= 20,	 
 };
 
@@ -427,7 +439,7 @@ enum EmModuleVideoResolution
 	emModuleVRes7680x4320       = 39,			///<  7680 4320  33 423 360  - - - - - -  - 
 	emModuleVRes8192x4096       = 40,			///<  8192 4096  33 554 432 - - - - - -  - 
 	emModuleVRes8192x4320       = 41,			///<  8192 4320  35 651 584 - - - - - -  - 
-	emModuleWCIF                = 42,           // 512*288
+	emModuleWCIF                = 42,           ///< 512*288
 	emModuleVResEnd ,
 };
 
@@ -1211,6 +1223,24 @@ public:
 	}
 };
 
+
+typedef struct tagTEncodeDescript
+{
+	EmModuleAudioFormat m_emFormat;			///< If the media format is less than 96, use the media format value,m_wDynamicPayload=0
+	u16					m_wDynamicPayload;
+	tagTEncodeDescript()
+	{
+		Clear();
+	}
+	void Clear()
+	{
+		m_emFormat = emModuleAEnd;
+		m_wDynamicPayload = 0;
+	}
+} TEncodeDescript;
+
+
+
 /// 音频描述项
 struct TAudioDescript
 {
@@ -1261,11 +1291,54 @@ public:
 	}
 };
 
+
+struct TRedEncode
+{
+	TEncodeDescript m_tPriEncode;							///< primary encoding
+	TEncodeDescript m_atSecEncode[MAX_RED_SECENC_NUM];		///< secondary encoding
+	u8	m_bySecEncodedNum;									///< the number of secondary encoding
+public: 
+	TRedEncode()
+	{
+		Clear();
+	}
+
+	void Clear()
+	{
+		m_bySecEncodedNum = 0;
+		m_tPriEncode.Clear();
+		for ( u8 i=0; i<MAX_RED_SECENC_NUM; i++ )
+		{
+			m_atSecEncode[i].Clear();
+		}
+	}
+};
+
+
+struct TRedDescript : public TAudioDescript
+{
+	TRedEncode tRedEncode;
+public: 
+	TRedDescript()
+	{
+		Clear();
+	}
+
+	void Clear()
+	{
+		tRedEncode.Clear();
+		TAudioDescript::Clear();
+	}
+};
+
+
+
 /// 音频能力表
 struct TAudioCapbilityList
 {
-	u8 m_byNum;
+	u8 m_byNum;								///< Number of capabilities in m_atItem
 	TAudioDescript m_atItem[emModuleAEnd];
+	TRedDescript m_tRed;
 
 	HMDLAPPCHANNEL m_hAppChan;
 	PFC_IPADDR m_tRtpAddr;
@@ -2037,6 +2110,7 @@ typedef struct tagTCapSetInfo
 	TVideoDescript      m_atItem;               ///< 视频能力
 	//EmModuleProfileMask m_emProfile;
 	u32 m_emProfile;
+	TRedEncode tRedEncode;
 
 public:
 	tagTCapSetInfo()
@@ -2058,6 +2132,7 @@ public:
 		MEMSET_CAST(m_abySpecificConfig, 0, sizeof(m_abySpecificConfig));
 		MEMSET_CAST(m_abyMuxConfig, 0, sizeof(m_abyMuxConfig));
 		m_bOldConfig = FALSE;
+		tRedEncode.Clear();
 	}
 }TCapSetInfo;
 
@@ -2198,6 +2273,7 @@ typedef struct tagRegistReq
 	u8     m_byNonStdHdrNum;
 	TSipNstHeader m_atNonStdHdr[MAX_SIP_NONSTD_HEADER_NUM];
 
+	BOOL32  m_bTps;
 public:
 	tagRegistReq()
 	{
@@ -2224,6 +2300,7 @@ public:
 		m_bPortReused  = FALSE;
 		m_emEndpointType = emModuleEndpointMT;
 		m_emTlsType      = emModuleTlsNone;
+		m_bTps           = FALSE;
 	}
 }TRegistReq;
 
@@ -2585,11 +2662,12 @@ enum emCallBy
 };
 
 /// 日志级别定义
-#define LOG_EXP			        (s32)0		///< 异常
-#define LOG_IMT			        (s32)1		///< 重要日志
-#define LOG_DEBUG		        (s32)2		///< 一级调试信息
-#define LOG_ALL                 (s32)3      ///< 所有调试信息 
-#define LOG_CONF                (s32)4      ///< 会议相关信息（会控、关键帧等） 
+#define LOG_OFF			        (s32)0		///< 关闭
+#define LOG_EXP			        (s32)1		///< 异常
+#define LOG_IMT			        (s32)2		///< 重要日志
+#define LOG_DEBUG		        (s32)3		///< 一级调试信息
+#define LOG_CONF                (s32)4      ///< 会议相关信息（会控、关键帧等）
+#define LOG_ALL                 (s32)5      ///< 所有调试信息 
 
 /// int类型ip转换成字符串
 #define IP2CHAR(ip)  ((u8 *)&(ip))[0], \

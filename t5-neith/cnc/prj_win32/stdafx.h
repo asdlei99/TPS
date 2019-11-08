@@ -53,7 +53,7 @@
 #endif
 #endif
 
-//#define LOGIN
+#define LOGIN
 #ifndef LOGIN
 #define CHAIR
 #define INCONF

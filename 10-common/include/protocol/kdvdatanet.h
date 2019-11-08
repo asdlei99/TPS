@@ -29,11 +29,11 @@
 
 
 /// Debugging function 
-PROTO_EXTERN_API void kdvdatanetver();         ///< Show the version of thie module
+PROTO_EXTERN_API void h224ver();         ///< Show the version of thie module
 PROTO_EXTERN_API void h224log(u8 level); ///< Be use to control the log level
-PROTO_EXTERN_API void printrtppacklen();       ///< To print the rtp pack length
-PROTO_EXTERN_API void kdvdatanetinfo();        ///< The information about send session and recv session
-PROTO_EXTERN_API void kdvdatanethelp();        ///< The help information
+PROTO_EXTERN_API void h224rtplen();       ///< To print the rtp pack length
+PROTO_EXTERN_API void h224info();        ///< The information about send session and recv session
+PROTO_EXTERN_API void h224help();        ///< The help information
 
 #define  MAXWATCHDATASOCKPORT  (u16)10599      ///< max watchsock port
 #define  MINWATCHDATASOCKPORT  (u16)10500      ///< min watchsock port

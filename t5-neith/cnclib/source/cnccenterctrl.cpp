@@ -88,10 +88,11 @@ void CCncCenterCtrl::BuildEventsMap()
     REG_PFUN( ev_Cn_SelectCom_Ind, CCncCenterCtrl::OnSelectComInd);
 
     //Éý½µÆÁ
-    REG_PFUN( ev_Cn_CentreDFScreenConfig_Nty, CCncCenterCtrl::OnCentreDFScreenConfigNty);
-    REG_PFUN( ev_cns_SelectDFScreen_Nty, CCncCenterCtrl::OnSelectDFScreenNty);
+    REG_PFUN( ev_Cn_CentreDFScreenConfig_Nty, CCncCenterCtrl::OnCentreDFScreenConfigNty );
+    REG_PFUN( ev_cns_SelectDFScreen_Nty, CCncCenterCtrl::OnSelectDFScreenNty );
+    REG_PFUN( ev_cns_ScreenType_Nty, CCncCenterCtrl::OnScreenTypeNty );
     REG_PFUN( ev_Cn_ModifyDFScreenGroup_Ind, CCncCenterCtrl::OnCentreModifydDFScreenGroupInd );
-    REG_PFUN( ev_Cn_DFScreenCommand_Ind, CCncCenterCtrl::OnCentreDFScreenCommandInd);
+    REG_PFUN( ev_Cn_DFScreenCommand_Ind, CCncCenterCtrl::OnCentreDFScreenCommandInd );
     REG_PFUN( ev_cns_SelectDFScreen_Ind, CCncCenterCtrl::OnSelectDFScreenInd );
 
 	//¶ÏÁ´Í¨Öª
@@ -1501,6 +1502,16 @@ void CCncCenterCtrl::OnSelectDFScreenNty(const CMessage& cMsg)
     PostEvent( UI_CNC_CENTRESELECTDFSCREEN_NTY );
 }
 
+void CCncCenterCtrl::OnScreenTypeNty(const CMessage& cMsg)
+{
+    CTpMsg cTpMsg(&cMsg);
+    EmComConfigType emScreenType = *(EmComConfigType*)( cTpMsg.GetBody());
+
+    PrtMsg( ev_cns_ScreenType_Nty, emEventTypeCnsRecv, "ScreenType: %d", emScreenType );
+
+    PostEvent( UI_CNC_CENTRESCREENTYPE_NTY, emScreenType );
+}
+
 void CCncCenterCtrl::OnCentreModifydDFScreenGroupInd(const CMessage& cMsg)
 {
     CTpMsg cTpMsg(&cMsg);
@@ -1530,13 +1541,17 @@ u16 CCncCenterCtrl::SelectCentreDFScreenCmd( u8 bySrceenControl )
     BOOL bSelect[MAX_CENTREDFSCREEN_GROUP_NUM] = {0};
     for (u16 wIndex = 0; wIndex < MAX_CENTREDFSCREEN_GROUP_NUM; wIndex++)
     {
-        bSelect[wIndex] = bySrceenControl & adwTagArray[wIndex];
+        if ( (bySrceenControl & adwTagArray[wIndex]) == adwTagArray[wIndex] )
+        {
+            bSelect[wIndex] = TRUE;
+        }
     }
 
     pcTpMsg->SetBody( bSelect, sizeof(BOOL)*MAX_CENTREDFSCREEN_GROUP_NUM );
 
     u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
-    PrtMsg( ev_cns_SelectDFScreen_Cmd, emEventTypeCnsSend,"bySrceenControl : %d", bySrceenControl);
+    PrtMsg( ev_cns_SelectDFScreen_Cmd, emEventTypeCnsSend,"bySrceenControl: %d <%d, %d, %d, %d, %d>",
+        bySrceenControl, bSelect[0], bSelect[1], bSelect[2], bSelect[3] ,bSelect[4]);
     return wRet;
 }
 
@@ -1570,7 +1585,10 @@ void CCncCenterCtrl::OnSelectDFScreenInd(const CMessage& cMsg)
     CTpMsg cTpMsg(&cMsg);
     BOOL *ptSelectDFScreen = reinterpret_cast<BOOL*>( cTpMsg.GetBody());
     BOOL bSuccess = *(BOOL*)(cTpMsg.GetBody() + sizeof(BOOL)*MAX_CENTREDFSCREEN_GROUP_NUM);
-    memcpy(m_abSelectDFScreen, ptSelectDFScreen, sizeof(BOOL)*MAX_CENTREDFSCREEN_GROUP_NUM);
+    if (bSuccess)
+    {
+        memcpy(m_abSelectDFScreen, ptSelectDFScreen, sizeof(BOOL)*MAX_CENTREDFSCREEN_GROUP_NUM);
+    }
 
     PrtMsg( ev_cns_SelectDFScreen_Ind, emEventTypeCnsRecv, "Success: %d,SelectDFScreen:<%d, %d, %d, %d, %d>",
         bSuccess, m_abSelectDFScreen[0], m_abSelectDFScreen[1], m_abSelectDFScreen[2], m_abSelectDFScreen[3], m_abSelectDFScreen[4] );

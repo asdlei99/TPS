@@ -205,7 +205,6 @@ typedef union tagOspNetAddr {
     (((netaddr)->v4addr.sin_family == AF_INET &&    \
         (netaddr)->v4addr.sin_addr.s_addr && (netaddr)->v4addr.sin_port) || \
     ((netaddr)->v6addr.sin6_family == AF_INET6 &&   \
-	memcmp(&(netaddr)->v6addr.sin6_addr, &in6addr_any, sizeof(in6addr_any)) && \
         (netaddr)->v6addr.sin6_port)))
 
 typedef struct tagNetSession {
@@ -256,6 +255,13 @@ typedef struct tagKdvSndStatistics {
 	u32 m_dwFrameNum;    //已发送的帧数
 	u32 m_dwFrameLoseNum;//由于缓冲满等原因造成的发送的丢帧数
 } TKdvSndStatistics;
+
+/*发送scoket信息*/
+typedef struct tagKdvSndSocketInfo {
+	BOOL32 m_bUseRawSocket;
+	u32    m_dwSrcIP;
+	u32    m_wPort;
+} TKdvSndSocketInfo;
 
 /*接收模块状态信息*/
 typedef struct tagKdvRcvStatus {
@@ -596,35 +602,37 @@ typedef enum {
 } TMnetQoeCBEvent;
 
 typedef struct {
-	u32 m_dwCreate;  //调用次数
-	u32 m_dwStart;   //调用次数
-	u32 m_dwReset;   //调用次数
+	u32 m_dwCreate;  //调用次数(累积)
+	u32 m_dwStart;   //调用次数(累积)
+	u32 m_dwReset;   //调用次数(累积)
 } TMnetQoeApi;
 
 typedef struct {
-	u32 m_dwFirstPacket;   //start接口后到收到第一个包时间
-	u32 m_dwFirstKeyframe; //收第一个关键帧用时
+	u32 m_dwFirstPacket;   //start接口后到收到第一个包时间(一次性)
+	u32 m_dwFirstKeyframe; //收第一个关键帧用时(一次性)
 } TMnetQoeLatency;
 
 typedef struct {
-	BOOL32 m_bBpsOverlimit;    //码率是否稳定
-	u32    m_dwBps;            //码率
-	BOOL32 m_bPpsStable;       //帧率是否稳定
-	u32    m_dwPps;            //帧率
+	BOOL32 m_bBpsOverlimit;    //码率是否稳定(实时)
+	u32    m_dwBps;            //码率(实时)
+	BOOL32 m_bPpsStable;       //包率是否稳定(实时)
+	u32    m_dwPps;            //包率(实时)
 } TMnetQoeThruput;
 
 typedef struct {
-	BOOL32 m_bReqFrequency;  //请求关键帧是否频繁
+	BOOL32 m_bReqFrequency;  //请求关键帧是否频繁(实时)
+	u32	m_bReqCount;	//上层请求关键帧次数(实时)
 } TMnetQoeKeyframe;
 
 typedef struct {
-	u32 m_dwFps;             //当前fps
-	u32 m_dwRebuffer;        //卡顿次数
-	u8 m_ucFractionLost;		//丢包百分比
+	u32 m_dwFps;             //当前fps (实时)
+	u32 m_dwRebuffer;        //卡顿次数(实时)
+	u8 m_ucFractionLost;		//丢包百分比(实时)
+	u32 m_dwLossCnt;		//丢包个数(实时)
 } TMnetQoeImpair;
 
 typedef struct {
-	u32 m_dwRtt;             //当前rtt
+	u32 m_dwRtt;             //当前rtt (实时)
 } TMnetQoeNetwork;
 
 typedef struct {
@@ -2084,12 +2092,13 @@ public:
 	 * 目的为使重传时不用广播
 	 *
 	 * 参数说明：
-	 * @param tRtpAddr    - 本地接收rtp对应的公网地址
+	 * @param dwRtpPublicIp    - 本地接收rtp对应的公网ip
+	 * @param wRtpPublicPort   - 本地接收rtp对应的公网port
 	 *
 	 * 返回值：
 	 * @return MEDIANET_NO_ERROR:表示成功 否则表示失败
 	 ********************************************************************/
-	virtual u16 SetRtpPublicAddr(TOspNetAddr tRtpAddr) = 0;
+	virtual u16 SetRtpPublicAddr(u32 dwRtpPublicIp, u16 wRtpPublicPort) = 0;
 
 	/********************************************************************
 	 * 函数名：SetMaxDelay

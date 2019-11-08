@@ -9222,4 +9222,15 @@ typedef struct tagTTPCom2AndCom3State
 public:
     tagTTPCom2AndCom3State(){ memset( this ,0 ,sizeof( tagTTPCom2AndCom3State ) );}
 }TTPCom2AndCom3State,*PTTPCom2AndCom3State;
+//语音激励消息
+typedef struct tagTTPVacInfo
+{
+    u16         m_wConfId;
+    BOOL        m_bVoiceMotivation;
+    u32         m_dwReserve;    ///<   保留字段
+    u32         m_dwReserve1;   ///<   保留字段
+    EmUmsVacCmdRes         m_emRet;        ///<  回复理由
+public:
+    tagTTPVacInfo(){ memset( this ,0 ,sizeof( tagTTPVacInfo ) );}
+}TTPVacInfo,*PTTPVacInfo;
 #endif // _h_tpcommonstruct_h__

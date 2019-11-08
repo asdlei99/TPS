@@ -6,10 +6,14 @@
 #include "kdvsipcommon.h"
 
 #define SIP_ADPT_AUDIO_DEFAUL_SAMPLERATE 8000       ///< sip audio default sample rate
+#define SIP_ADPT_AUDIO_OPUS_DEFAUL_SAMPLERATE 48000       ///< sip audio opus default sample rate
+#define SIP_ADPT_AUDIO_G7221_DEFAUL_SAMPLERATE 32000       ///< sip audio g7221 default sample rate
 #define SIP_ADPT_AUDIO_DEFAULT_PACKTIME 30          ///< sip audio default pack time
 #define SIP_ADPT_FECC_DEFAULT_BITRATE	64          ///< sip fecc default bitrate
 
-#define MAX_CAPTABLE_SIZE	(u16)64					///< max 64
+#define SIP_ADPT_VIDEO_DEFAUL_SAMPLERATE 90000       ///< sip video default sample rate
+
+#define MAX_CAPTABLE_SIZE	(u16)128					///< max 128 (in H245 standard document captable size should be 1~256 but now we only use 128)
 #define MAX_ALTCAP_NUM      MAX_CAPTABLE_SIZE		///< max 64
 #define MAX_SIMUCAP_NUM     (u16)16					///< max 16 (Codian为13)
 #define MAX_DESCAP_NUM      (u16)5					///< max 5 (抓包发现都是1，很少有2以上)
@@ -19,12 +23,21 @@
 #define MAX_AAC_CAP_NUM					2                       ///< MAX_AAC_CAP_NUM
 #define MAX_FLOOR_NUM					5                       ///< MAX_FLOOR_NUM
 #define MAX_MEDIA_NUM_PER_FLOOR			5                       ///< MAX_MEDIA_NUM_PER_FLOOR
+#define MAX_RED_SECENC_NUM				3						///< max SecEncDynPayloadNum
 
 #define SIP_MAX_AUDIO_STREAM_COUNT 4  ///< sip max audio stream audio
 #define SIP_MAX_VIDEO_STREAM_COUNT 4  ///< sip max video stream audio
 
 #define SIP_MAX_MEDIA_NUM (SIP_MAX_VIDEO_STREAM_COUNT*4 + SIP_MAX_AUDIO_STREAM_COUNT*4 +2)  ///< SIP_MAX_VIDEO_STREAM_COUNT + SIP_MAX_AUDIO_STREAM_COUNT + BFCP(1) + FECC(1) + DUAL AUDIO(1) + DUAL VIDEO(1)
 
+
+#define INVERT_16_BYTES(A)       ((((u16)(A) & 0x00ff) << 8) | \
+	(((u16)(A) & 0xff00) >> 8))
+
+#define INVERT_32_BYTES(A)       ((((u32)(A) & 0x000000ff) << 24) | \
+	(((u32)(A) & 0x0000ff00) << 8)  | \
+	(((u32)(A) & 0x00ff0000) >> 8)  | \
+	(((u32)(A) & 0xff000000) >> 24))
 
 /// guzh [9/25/2007] 前向纠错类型
 enum emFECType
@@ -302,14 +315,14 @@ public:
 	TKdvG7221Cap():TKdvAudioCap()
 	{
 		m_byBitRateType = emG7221Rate24;
-		m_dwSampleRate = 32000;
+		m_dwSampleRate = SIP_ADPT_AUDIO_G7221_DEFAUL_SAMPLERATE;
 	}
 	
 	void Clear()
 	{
 		TKdvAudioCap::Clear();
     	m_byBitRateType = emG7221Rate24;
-		m_dwSampleRate = 32000;
+		m_dwSampleRate = SIP_ADPT_AUDIO_G7221_DEFAUL_SAMPLERATE;
 	};
 	
     /// 设置rate
@@ -384,9 +397,9 @@ supported features are:
 /// the opus capbility
 struct PROTO_API TKdvOpusCap : public TKdvAudioCap
 {
-	u8              m_byVersion;       ///< version
-    u16             m_wMaxBitrate;     ///< maximum bit rate
-	u16             m_wMinBitrate;     ///< minimum bit rate
+	u8              m_byVersion;				///<   version
+	u16             m_wMaxPlaybackRate;		///<   a hint about the maximum output sampling rate that the receiver is capable of rendering in Hz.
+	u16             m_wSpropMaxCaptureRate;	///<   a hint about the maximum input sampling rate that the sender is likely to produce.
 
 public:
     TKdvOpusCap()
@@ -397,34 +410,33 @@ public:
     void Clear()
 	{
 		m_byVersion   = 1;
-		m_wMaxBitrate = 510;                    ///< kbps
-		m_wMinBitrate = 6;
-		m_dwSampleRate= 48000;
+		m_wMaxPlaybackRate = SIP_ADPT_AUDIO_OPUS_DEFAUL_SAMPLERATE;
+		m_wSpropMaxCaptureRate = SIP_ADPT_AUDIO_OPUS_DEFAUL_SAMPLERATE;
+		m_dwSampleRate = SIP_ADPT_AUDIO_OPUS_DEFAUL_SAMPLERATE;
 	}
     
 	/// interfaces of convert the member's order
     void host2net(BOOL32 bhton);
 
-	/// set/get maximum bit rate
-    void SetMaxBitrate(u16 wBitRate )
-    {
-        m_wMaxBitrate = wBitRate;
-    }	
-    u16 GetMaxBitrate() const
-    {
-        return m_wMaxBitrate;
-    }
-	
-	/// set/get minimum bit rate
-    void SetMinBitrate(u16 wBitrate) 
-    {
-        m_wMinBitrate = wBitrate;
-    }
-    u16 GetMinBitrate() const
-    {
-        return m_wMinBitrate;
-    }
-	
+
+	void SetMaxPlaybackRate( u16 wSampleRate )
+	{
+		m_wMaxPlaybackRate = wSampleRate;
+	}	
+	u16 GetMaxPlaybackRate()
+	{
+		return m_wMaxPlaybackRate;
+	}
+
+	void SetSpropMaxCaptureRate( u16 wSampleRate )
+	{
+		m_wSpropMaxCaptureRate = wSampleRate;
+	}	
+	u16 GetSpropMaxCaptureRate()
+	{
+		return m_wSpropMaxCaptureRate;
+	}
+
 	/// set/get version
     void SetVersion(u8 byVersion) 
     {
@@ -461,7 +473,7 @@ public:
 	void Clear()
 	{
 		memset(m_achEncoding,0,sizeof(m_achEncoding));
-		m_dwSampleRate = 8000;
+		m_dwSampleRate = SIP_ADPT_AUDIO_DEFAUL_SAMPLERATE;
 	}
     
 	/// set/get event encoding
@@ -479,6 +491,115 @@ public:
 	}
 
 }PACKED;
+
+///<  red use
+typedef struct tagKdvEncodeDescript
+{
+	PayloadType	m_emPayloadType;    ///< If the media format is less than 96, use the media format value,m_wDynamicPayload=0
+	u16			m_wDynamicPayload;
+	tagKdvEncodeDescript()
+	{
+		Clear();
+	}
+	void Clear()
+	{
+		m_emPayloadType = emAudioTypeEnd;
+		m_wDynamicPayload = 0;
+	}
+} TKdvEncodeDescript;
+
+///< Red capbility set
+struct PROTO_API TKdvRedCap : public TKdvAudioCap
+{
+	///< channel config
+	enum emRedChnlCfg                       
+	{
+		emChnlCust   = 0,
+		emChnl1      = 1,
+		emChnl2      = 2,
+		emChnl3      = 3,
+		emChnl4      = 4,
+		emChnl5      = 5,
+		emChnl5dot1  = 6,
+		emChnl7dot1  = 7
+	};
+	emRedChnlCfg	m_emChnlCfg;										///< channel config
+	u8				m_bySecEncodedNum;									///< the number of secondary encoding
+	TKdvEncodeDescript m_tPriEncode;									///< primary encoding;
+	TKdvEncodeDescript m_atSecEncode[MAX_RED_SECENC_NUM];				///< secondary encoding;
+
+public:
+	TKdvRedCap()
+	{
+		Clear();
+	}
+
+	void Clear()
+	{
+		m_emChnlCfg = emChnlCust;
+		m_tPriEncode.Clear();
+		for(u8 i=0;i<MAX_RED_SECENC_NUM;i++)
+		{
+			m_atSecEncode[i].Clear();
+		}
+		m_bySecEncodedNum = 0;
+		TKdvAudioCap::Clear();
+	}
+
+	/// set/get m_emChnlCfg
+	void SetChnl(emRedChnlCfg emChnl)
+	{
+		m_emChnlCfg = emChnl;
+	}
+	emRedChnlCfg GetChnl() const
+	{
+		return m_emChnlCfg;
+	}
+
+	/// set/get dynamic payload of primary encoding
+	void SetPriEncDynPayload(u16 wPriEncDynPayload)
+	{
+		m_tPriEncode.m_wDynamicPayload = wPriEncDynPayload;
+	}
+	u16 GetPriEncDynPayload() const
+	{
+		return m_tPriEncode.m_wDynamicPayload;
+	}
+
+	/// set/get PayloadType of primary encoding
+	void SetPriPayloadType(PayloadType emPriPayloadType)
+	{
+		m_tPriEncode.m_emPayloadType = emPriPayloadType;
+	}
+	PayloadType GetPriPayloadType() const
+	{
+		return m_tPriEncode.m_emPayloadType;
+	}
+
+	/// set/get dynamic payload of secondary encoding
+	void SetSecEncDynPayload(u16 wSecEncDynPayload, u8 byIndex)
+	{
+		m_atSecEncode[byIndex].m_wDynamicPayload = wSecEncDynPayload;
+	}
+	u16 GetSecEncDynPayload(u8 byIndex) const
+	{
+		return m_atSecEncode[byIndex].m_wDynamicPayload;
+	}
+
+	/// set/get PayloadType of secondary encoding
+	void SetSecPayloadType(PayloadType emSecPayloadType, u8 byIndex)
+	{
+		m_atSecEncode[byIndex].m_emPayloadType = emSecPayloadType;
+	}
+	PayloadType GetSecPayloadType(u8 byIndex) const
+	{
+		return m_atSecEncode[byIndex].m_emPayloadType;
+	}
+
+	void host2net(BOOL32 bhton);
+}PACKED;
+
+
 
 /// MPEG AAC capbility set
 struct PROTO_API TKdvAACCap : public TKdvAudioCap
@@ -629,6 +750,7 @@ public:
 
 	/// toolkit: Res enum to width*height
 	BOOL32	Res2WxH(emResolution emRes, u16 &wWidth, u16 &wHeight) const;
+
 }PACKED;
 
 
@@ -829,8 +951,8 @@ protected:
     u8		m_byProfile;
     u8		m_byLevel;
 	u8		m_byTier;
-	s32		m_nMaxLS;			///< Max LUMA picture size (samples): 
-	s32		m_nMaxLumaPS;		///< Max LUMA sample rate (samples/sec) 
+	s32		m_nMaxLS;			///< Max LUMA sample rate (samples/sec,w*h*pfs) ,should be defined m_nMaxLumaSR
+	s32		m_nMaxLumaPS;		///< Max LUMA picture size (samples,w*h): 
 	/// H.265 capability related variants
 	s32		m_nMaxDPB;			///< Max Decode Picture Buffer
 	s32		m_nMaxBR;			///< Max Bit Rate
@@ -959,6 +1081,13 @@ public:
 	BOOL32	operator == (const TKdvH265VideoCap& tH265VideoCap);
 
 	static BOOL32 GetH265LimitsByLevel(IN emH265Level emLevel, OUT s32 &nMaxLS, OUT s32 &nMxLumaPS);
+	
+	/// Judge Endian
+	BOOL32	IsLittleEndian();
+
+	///for little-endian sysytem，send only;
+	///for big-endian system,convert to byte order(actually,little-endian)
+	void    Convert2ByteOrder(BOOL32 bLittleEndian);
 }PACKED;
 
 /// the capbility struct of Data
@@ -2640,6 +2769,9 @@ private:
 	u8					m_byldNum;                         ///< aacld number
 	u8					m_abyldMediaToCap[emAVCapNum];     ///< av cap number
 
+	TKdvRedCap			m_tRed;			///< Red cap
+ 
+
 	// H.265 video capabilties
 	TKdvH265VideoCap	m_atH265Cap[MAX_H265CAP_NUM];      ///< H265 cap
 	u8					m_byH265CapNum;                    ///< H265 capset number
@@ -3370,6 +3502,8 @@ private:
 	TKdvAACCap			m_atAacld[MAX_AAC_CAP_NUM];        ///< aacld array
 	u8					m_byldNum;                         ///< aacld number
 	u8					m_abyldMediaToCap[emAudioCapNum];     ///< av cap number
+	TKdvRedCap			m_tRed;
+
 }PACKED;
 
 class PROTO_API CSipAVStreamCommon
@@ -4177,6 +4311,15 @@ PROTO_EXTERN_API u16	GetH239Type	( IN u16 wType );
 PROTO_EXTERN_API BOOL32	IsH239Type	( IN u16 wType );
 
 PROTO_API void RegProtocommonFunLinux(); ///< For register debug command of kdvprotocommon module
+
+
+s8* GetMediaName(PayloadType emPayLoadType);
+
+PayloadType GetPayloadByName(s8 *pStrName);
+
+emResolution GetResolutionByName(s8 *pStrName);
+
+s8* GetResolutionName(emResolution emResType);
 
 
 #endif

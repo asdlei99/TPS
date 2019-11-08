@@ -339,6 +339,9 @@ typedef BOOL32 (PROTO_CALLBACK* CBSipPeeripNotify)(HMDLCALL hCall, HMDLAPPCALL h
 */
 typedef BOOL32 (PROTO_CALLBACK* CBChannelInAdvance)( HMDLCALL hCall, HMDLAPPCALL hAppCall, TChanConnectedInfo *pTVideoInfo,s32 nSize);
 
+
+typedef BOOL32 (PROTO_CALLBACK* CBReInviteStatus)(HMDLCALL hCall, HMDLAPPCALL hAppCall,EmMdlReinvitestatus emstatus );
+
 /// call back  function
 typedef struct tagCallCBFunction
 {
@@ -362,6 +365,7 @@ typedef struct tagCallCBFunction
 	CBSipReinviteRecive    m_cbReciveReinvite;      ///< receive reinvite callback
 	CBSipPeeripNotify      m_cbPeeripNotify;		///< receive peerip callback
 	CBChannelInAdvance     m_cbChannelInAdvance;    ///< main video in advance callback
+	CBReInviteStatus       m_cbReInviteStatus;      ///< reinvite request/response callback
 	/**
     * \brief            tagCallCBFunction init
     * \return           void.
@@ -388,6 +392,7 @@ typedef struct tagCallCBFunction
 		m_cbReciveReinvite      = NULL;
 		m_cbPeeripNotify        = NULL;
 		m_cbChannelInAdvance    = NULL;
+		m_cbReInviteStatus      = NULL;
 	}
 
 	/**
@@ -485,13 +490,30 @@ typedef struct tagModuleTlsCfg
 	}
 }TModuleTlsCfg;
 
+typedef struct tagModuleLogCfg
+{
+	s8 m_achLogPath[LOG_LOGPATH_LENGTH];			///< pfc log path
+	u32 m_dwMaxSize;								//pfc log  size(KB)
+	u32 m_dwMaxfiles;								//pfc file number
+	void clear()
+	{
+		MEMSET_CAST(m_achLogPath,0, LOG_LOGPATH_LENGTH);
+		m_dwMaxSize = 0;
+		m_dwMaxfiles = 0;
+	}
+	tagModuleLogCfg()
+	{
+		clear();
+	}
+}TModuleLogCfg;
+
 /// Module Config for init stack
 typedef struct tagSipModuleCfg
 {
 	s32 m_nsipServiceAppId;                     ///< Service模块AppId
 	s32 m_nsipStackinAppId;                     ///< Stackin模块AppId
 	s32 m_nsipStackoutAppId;                    ///< Stackout模块AppId
-	
+
 	emModuleEndpointType m_emEndpointType;  	///< Endpoint类型 MT、CNS、UMS
 	u16 m_wTotalCallNum;	                    ///< 最大呼叫数
 	u16 m_wTotalRegNum;		                    ///< 最大注册个数
@@ -516,8 +538,6 @@ typedef struct tagSipModuleCfg
 
 	TSipTsxTimeout	m_tSipTsxTimeout;           ///< Transaction Timer超时设置
 
-	ALL_LOG_CALlBACK  m_fpModuleLogCB;          ///< add callback function for print
-
 	u16		m_wPortRangeStart;                  ///< tcp or tls port range must be assigned by business, or random allocation
 	u16		m_wPortRangeEnd;                    ///< tcp or tls port range must be assigned by business, or random allocation
 
@@ -526,7 +546,8 @@ typedef struct tagSipModuleCfg
 	///< if ipv6 Scopeid is 0,then ipv6 addr mut be global address
 	PFC_IPADDR m_tLocalAddr6;                   ///< local address of ipv6, port is default 5060
 	PFC_IPADDR m_tLocalAddr4;                   ///< local address of ipv4, port is default 
-
+	ALL_LOG_CALlBACK  m_fpLogCB;				///< add callback function for print
+	TModuleLogCfg m_tSipLog;                    ///< Let the business set the PfcOpenLogFile parameters
 	/**
     * \brief            tagSipModuleCfg Constructor
     * \return           void.
@@ -555,8 +576,6 @@ typedef struct tagSipModuleCfg
 		m_tCallCBFuntion.Clear();
 		m_tSipTsxTimeout.Clear();
 
-		m_fpModuleLogCB = NULL;
-
 		m_bUseTLS = FALSE;
 		m_tModuleTlsCfg.Clear();
 
@@ -572,6 +591,8 @@ typedef struct tagSipModuleCfg
 		m_tLocalAddr4.Clear();
 		m_tLocalAddr4.m_emType= PFC_TRANSPORT_TYPE_IP;
 		m_tLocalAddr4.m_wPort = SIP_DEFAULT_SERVER_PORT;
+		m_fpLogCB = NULL;
+		m_tSipLog.clear();
 	}
 	
 }TSipModuleCfg;
@@ -586,7 +607,7 @@ public:
 	 * \param[in]        tCfg  :module config
 	 * \return           BOOL32, TRUE/FALSE
 	 */
-	 static BOOL32 SipModuleInit( TSipModuleCfg &tCfg ); 
+	 static BOOL32 SipModuleInit( TSipModuleCfg &tCfg); 
 
 	 /**
 	 * \brief            sip module start recv
@@ -749,7 +770,7 @@ public:
 	* \param[in]        ptFeccCap        :fecc cap
 	* \return           BOOL32, TRUE/FALSE
 	*/
-	static BOOL32   SipModuleAnswerReinvite(HMDLCALL hCall , HMDLAPPCALL hAppCall, TMdlCallCap *ptMainCap, TDualCapList *ptDualCap,TBfcpCapSet *ptBfcpCap, TFeccCapbility *ptFeccCap);
+	static BOOL32   SipModuleAnswerReinvite(HMDLCALL hCall , HMDLAPPCALL hAppCall, TMdlCallCap *ptMainCap, TDualCapList *ptDualCap,TBfcpCapSet *ptBfcpCap, TFeccCapbility *ptFeccCap, EmMdlReinvitestatus emReason);
 
 	/**
 	* \brief            sip register
@@ -953,6 +974,15 @@ public:
 	*/
 	static BOOL32	SipModuleSendInfoOutCall	(TSipNonStdData tSipData, const s8* pchXML, u16 wBytes);
 
+	/**
+	* \brief            Tls qt get key result notify
+	* \param[in]        phSession       :qt session
+	* \param[in]        args            :ssock
+	* \param[in]        result          :0 is failed; >0 is success
+	* \return           status, pj_success is success.
+	*/
+	static BOOL32 SipModuleQtGetKeyResult(void *phSession, void* args, u32 result);
+
 private:
 	/**
 	* \brief            pfc post
@@ -981,7 +1011,7 @@ typedef struct tagTSipPrint
 	s8  m_achAlias[MAX_LEN_CALL_ALIAS + 1];  ///< log alias
 	u16 m_wCallId;                           ///< log call id 
 	emSIPPrintFlag m_emFlag;                 ///< print flag
-	EmSipLogFilter m_emLogFilter;            ///< log filter
+	EmLogFilter m_emLogFilter;            ///< log filter
 
 	/**
     * \brief            tagTSipPrint Constructor
@@ -990,26 +1020,26 @@ typedef struct tagTSipPrint
 	tagTSipPrint()
 	{
 		m_emSipModule	= emModuleService ;
-		m_nLevel		= 0;							 
+		m_nLevel		= LOG_OFF;					 
 		MEMSET_CAST(m_achAlias, 0, sizeof(m_achAlias));
 		m_wCallId		= 0;
 		m_emFlag		= emSIPPrintDefault;
-		m_emLogFilter	= emSipLogTelnet;
+		m_emLogFilter	= emLogNull;
 	}
 }TSipPrint;
 
 /**
-* \brief            set sip log alias
+* \brief            set module log alias
 * \param[in]        pAlias             :call alias
 * \return           void.
 */
-PROTO_EXTERN_API void setsiplogalias(s8 *pAlias); 
+PROTO_EXTERN_API void setmlogalias(s8 *pAlias); 
 /**
-* \brief            set sip log callid
+* \brief            set module log callid
 * \param[in]        wCallId            :call id
 * \return           void.
 */
-PROTO_EXTERN_API void setsiplogcallid(u16 wCallId);
+PROTO_EXTERN_API void setmlogcallid(u16 wCallId);
 /**
 * \brief            sip module log on
 * \param[in]        nModule            :log module
@@ -1019,16 +1049,11 @@ PROTO_EXTERN_API void setsiplogcallid(u16 wCallId);
 PROTO_EXTERN_API void sipmlog(s32 nModule, s32 nLevel = 0);
 
 /**
-* \brief            sip module log off
-* \return           void.
-*/
-PROTO_EXTERN_API void sipmodulelogoff();
-/**
 * \brief            sip module help
 * \return           void.
 */
-PROTO_EXTERN_API void sipmodulehelp();
-PROTO_EXTERN_API void kdvsipmodulehelp();
+PROTO_EXTERN_API void sipmhelp();
+//PROTO_EXTERN_API void kdvsipmodulehelp();
 
 /**
 * \brief            sip show call
@@ -1044,7 +1069,7 @@ PROTO_EXTERN_API void sipshowcallid(u16 wCallid);
 * \brief            show sip modulever
 * \return           void.
 */
-PROTO_EXTERN_API void sipmodulever();
+//PROTO_EXTERN_API void sipmodulever();
 PROTO_EXTERN_API void sipmver();
 
 /**
@@ -1056,7 +1081,7 @@ PROTO_EXTERN_API void sipshowreg();
 * \brief            sip module log to telnet or cmd
 * \return           void.
 */
-PROTO_EXTERN_API void sipmodulelogto(u8 byFilter);
+PROTO_EXTERN_API void sipmlogto(u8 byFilter);
 /**
 * \brief            uer register ip
 * \param[in]        bUseRegistarIP            :is use register ip
@@ -1068,12 +1093,7 @@ PROTO_EXTERN_API void useregistarip(BOOL32 bUseRegistarIP);
 * \param[in]        nType           :config type
 * \return           void.
 */
-PROTO_EXTERN_API void sipmoduleconfigon(s32 nType);
-/**
-* \brief            sip module config off
-* \return           void.
-*/
-PROTO_EXTERN_API void sipmoduleconfigoff();
+PROTO_EXTERN_API void sipmconfig(s32 nType);
 
 /**
 * \brief            sip module printf
@@ -1090,7 +1110,7 @@ void SipmdlPrintf( emModuleType emSipModule, s32 nLevel, s8 *pAlias, u16 wCallId
 * \brief            print sip module config
 * \return           void.
 */
-PROTO_EXTERN_API void sipmoduleconfig();
+PROTO_EXTERN_API void sipmconfigon();
 
 /**
 * @}

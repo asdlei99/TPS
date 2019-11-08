@@ -19,7 +19,6 @@
 #include "modulecallstruct.h"
 #include "cmH245GeneralDefs.h"
 
-
 extern BOOL32 g_bIsStackNull; 
 
 /**Callback function for new call incommong*/
@@ -177,8 +176,6 @@ typedef struct tagH323Cfg
 	s32 m_nh323StackinAppid;
 	s32 m_nh323StackoutAppid;
 
-	u32 m_dwh323StackIp;
-	u8  m_abyh323StackIp_ipv6[16];
 	PFC_IPADDR m_th323StackIp;
 
 	u16 m_wh225port;
@@ -206,9 +203,6 @@ typedef struct tagH323Cfg
 		m_nh323StackoutAppid = -1;
 
 		m_wh225port = 1720;
-		m_dwh323StackIp = 0;
-
-		memset(m_abyh323StackIp_ipv6 , 0 , sizeof(m_abyh323StackIp_ipv6) );
 
 		m_wTotalCallNum = 10;
 		m_wTotalRegNum = 10;
@@ -221,8 +215,9 @@ typedef struct tagH323Cfg
 		m_cbConfEvent = NULL;
 		m_cbOnlineList = NULL;
 		m_bOptimizeMem = TRUE;
-
+		
 		m_th323StackIp.Clear();
+		
 	}
 
 }TH323Cfg;
@@ -360,18 +355,15 @@ static emCallBy g_emCallBy = emModuleCallByNum;
 #define MODULE_PRINT_BUFFERSIZE  1024
 
 /**Debug Commomd*/
-PROTO_EXTERN_API void h323setlog( u8 byLevel );
-PROTO_EXTERN_API void h323mlog( u8 byLevel );
-PROTO_EXTERN_API void h323setcallbyname( s8* pchCallerAlias );
-PROTO_EXTERN_API void h323setcallbynum( u8 wCallNum );
-PROTO_EXTERN_API void h323setlogtype( u8 byModuel );
-PROTO_EXTERN_API void h323setcallby( u8 byCallBy );
-PROTO_EXTERN_API void h323help();
-PROTO_EXTERN_API void kdv323modulehelp();
-PROTO_EXTERN_API void h323showreg();
-PROTO_EXTERN_API void h323showcall( u8 i );
-PROTO_EXTERN_API void h323showconf();
-PROTO_EXTERN_API void h323ver();
+PROTO_EXTERN_API void h323msetlog( u8 byLevel );
+PROTO_EXTERN_API void h323mcallbyname( s8* pchCallerAlias );
+PROTO_EXTERN_API void h323mcallbynum( u8 wCallNum );
+PROTO_EXTERN_API void h323mtype( u8 byModuel );
+PROTO_EXTERN_API void h323mcallby( u8 byCallBy );
+PROTO_EXTERN_API void h323mhelp(); 
+PROTO_EXTERN_API void h323mshowreg();
+PROTO_EXTERN_API void h323mshowcall( u8 i );
+PROTO_EXTERN_API void h323mshowconf();
 PROTO_EXTERN_API void h323mver();
 
 void ModulePrintf( emModuleType ModuleType, u16 byLogLevel, s8* pchCallerAlias, HAPPCALL byCallNum, const char* pFormat, ... );

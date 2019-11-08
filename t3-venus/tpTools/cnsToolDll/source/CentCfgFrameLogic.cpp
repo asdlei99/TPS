@@ -247,7 +247,7 @@ void CCentCfgFrameLogic::SwitchCfgTabWnd( string strWnd )
         bool bChange = CCentCfgSrceen::GetSingletonPtr()->IsDFScreenCfgChange();
         if ( false == bChange )
         {
-            UIDATAMGR_PTR->SetLstSelItem( m_strLstFunMenu, m_pWndTree, 3 );
+            UIDATAMGR_PTR->SetLstSelItem( m_strLstFunMenu, m_pWndTree, 7 );
             return;
 		}
     }

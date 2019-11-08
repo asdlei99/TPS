@@ -652,7 +652,7 @@ typedef struct PROTO_API tagConfigs
 	emEndpointType  m_emTerminalType;						/**<终端类型如(emMt emMcu)*/
 	BOOL32			m_bRas_manualRAS;						/**<是否手动RAS操作*/
 	BOOL32			m_bRas_manualRegistration;				/**<是否手动RAS注册*/
-	PFC_IPADDR      m_tRas_DefaultGkIp;						/**<缺省gk地址*/
+	PFC_IPADDR      m_tRas_DefaultGkIp[MAX_MULTI_ADDR_NUM];	/**<缺省gk地址*/
 	u16				m_wRas_defaultlocalPort;				/**<缺省本地RAS端口*/
 	s8				m_achUsername[REG_NAME_LEN];			/**<注册帐号(E164)*/
 	s8				m_achPassword[REG_PWD_LEN];				/**<注册密钥*/
@@ -669,8 +669,7 @@ typedef struct PROTO_API tagConfigs
     s32             m_nPortFrom;                            /**<端口起始*/
     s32             m_nPortTo;                              /**<端口截止*/
 
-	//u32				m_dwStackIp;							/**<协议栈运行IP，网络序*/
-	PFC_IPADDR		m_tStackIp;							    /**<协议栈运行IP，Ipv4 and Ipv6 网络序*/
+	PFC_IPADDR		m_tStackIp[MAX_MULTI_ADDR_NUM];			/**<协议栈运行IP，Ipv4 and Ipv6 网络序*/
 
 	BOOL32		m_bOptimizeMem;								/**<stack模块初始化内存优化相关参数*/
 
@@ -679,6 +678,8 @@ typedef struct PROTO_API tagConfigs
     TMMCUINFO   m_tMmcuInfo;                                /**<给业务设置的初始化级联库相关信息以避免端口冲突*/
 
 	ALL_LOG_CALlBACK m_fpAllLogCallback;					/**<打印日志回调*/
+
+	s8         byMultiAddrNum;                              /**<Multi IpAddr Num*/
 	tagConfigs()
 	{
 		Clear();
@@ -822,13 +823,41 @@ typedef struct PROTO_API tagConfigs
     }
 
 	/**设置协议栈运行IP*/
-	void SetStackIP(PFC_IPADDR tIPAddr)
+	void SetStackIP( PFC_IPADDR &tIPAddr, u8 addrNo )
 	{
-		m_tStackIp = tIPAddr;
+		if ( addrNo < MAX_MULTI_ADDR_NUM)
+		{
+			m_tStackIp[addrNo] = tIPAddr;
+		}
 	}
-	PFC_IPADDR	GetStackIP()
+
+	/** 获取Stack IP地址*/
+	PFC_IPADDR GetStackIP( u8 addrNo )
 	{
-		return m_tStackIp;
+		if ( addrNo < MAX_MULTI_ADDR_NUM )
+		{
+			return m_tStackIp[addrNo];
+		}
+		return m_tStackIp[0];
+	}
+
+	/**设置协议栈运行 GK IP*/
+	void SetGkIP( PFC_IPADDR &tIPAddr, u8 addrNo )
+	{
+		if ( addrNo < MAX_MULTI_ADDR_NUM)
+		{
+			m_tRas_DefaultGkIp[addrNo] = tIPAddr;
+		}
+	}
+
+	/** 获取GK IP地址*/
+	PFC_IPADDR GetGkIP( u8 addrNo )
+	{
+		if ( addrNo < MAX_MULTI_ADDR_NUM )
+		{
+			return m_tRas_DefaultGkIp[addrNo];
+		}
+		return m_tRas_DefaultGkIp[0];
 	}
 
 	void SetOptimizeMem(BOOL32 bOptimizeMem) 

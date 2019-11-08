@@ -249,6 +249,8 @@ protected:
     //升降屏相关
     bool OnCentreDFScreenConfigNty(WPARAM wParam, LPARAM lParam, bool& bHandle);
     bool OnCentreSelectDFScreenNty(WPARAM wParam, LPARAM lParam, bool& bHandle);
+    bool OnCentreScreenTypeNty(WPARAM wParam, LPARAM lParam, bool& bHandle);
+    bool OnModifyDFScreenGroupInd(WPARAM wParam, LPARAM lParam, bool& bHandle);
     bool OnCentreDFScreenCmdInd(WPARAM wParam, LPARAM lParam, bool& bHandle);
     bool OnSelectDFScreenInd(WPARAM wParam, LPARAM lParam, bool& bHandle);
 
@@ -284,5 +286,4 @@ private:
     u32              m_dwGroupNum;            //升降屏组数
     u8               m_byScreenControl;       //升降屏：标记升降屏控制的标号
     u8               m_byAllScreenCtrlSel;    //升降屏：有效屏幕全选（有效屏幕数由tptools配置
-    BOOL             m_abSelectDFScreen[MAX_CENTREDFSCREEN_GROUP_NUM];      //升降屏：当前排数选择
 };

@@ -1938,43 +1938,67 @@ enum EmUiCnsMsg
 
     /************************************************************************/
 	/**  升降屏配置信息通知
-	wParam = bShow
-	lparam = bSuccess 
+	wParam = 0
+	lparam = 0
 	/************************************************************************/
 	ev_CentreDFScreenConfigNty,
 #define UI_CNC_CENTREDFSCREENCONFIG_NTY  ev_CentreDFScreenConfigNty
 
     /************************************************************************/
 	/**  升降屏排数选择通知
-	wParam = bShow
-	lparam = bSuccess 
+	wParam = 0
+	lparam = 0
 	/************************************************************************/
 	ev_CentreSelectDFScreenNty,
 #define UI_CNC_CENTRESELECTDFSCREEN_NTY  ev_CentreSelectDFScreenNty
 
     /************************************************************************/
+	/**  升降屏类型通知
+	wParam = emScreenType
+	lparam = 0
+	/************************************************************************/
+	ev_CentreScreenTypeNty,
+#define UI_CNC_CENTRESCREENTYPE_NTY  ev_CentreScreenTypeNty
+
+    /************************************************************************/
 	/**  修改升降屏组信息反馈
-	wParam = bShow
-	lparam = bSuccess 
+	wParam = bSuccess
+	lparam = 0
 	/************************************************************************/
 	ev_CentreModifyDFScreenGroupInd,
 #define UI_CNC_CENTREMODIFYDFSCREENGROUP_IND  ev_CentreModifyDFScreenGroupInd
 
     /************************************************************************/
 	/**  升降屏排数选择反馈
-	wParam = bShow
-	lparam = bSuccess 
+	wParam = bSuccess
+	lparam = 0
 	/************************************************************************/
 	ev_SelectDFScreenInd,
 #define UI_CNC_SELECTDFSCREEN_IND  ev_SelectDFScreenInd
 
     /************************************************************************/
 	/**  操作升降屏反馈通知
-	wParam = bShow
-	lparam = bSuccess 
+	wParam = bSuccess
+	lparam = 0 
 	/************************************************************************/
 	ev_CentreDFScreenCmdInd,
 #define UI_CNC_CENTREDFSCREENCMD_IND  ev_CentreDFScreenCmdInd
+
+    /************************************************************************/
+	/**  多点会议会场语音激励通知
+	wParam = wConfId
+	lparam = bVoiceMotivation
+	/************************************************************************/
+	ev_VoiceArouseNty,
+#define UI_CNC_VOICEAROUSE_NTY  ev_VoiceArouseNty
+
+    /************************************************************************/
+	/**  多点会议会场语音激励反馈
+	wParam = wConfId
+	lparam = bVoiceMotivation
+	/************************************************************************/
+	ev_VoiceArouseInd,
+#define UI_CNC_VOICEAROUSE_IND  ev_VoiceArouseInd
 
 	/************************************************************************/
 	/**  TPad向cnc通知断链

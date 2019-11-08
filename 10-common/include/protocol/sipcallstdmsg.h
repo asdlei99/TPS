@@ -40,6 +40,7 @@ enum EmSipCallMsgType
 	h_call_200OK			= 12,   ///< 200ok
 	h_call_callidnotify		= 13,   ///< callid notify
 	h_call_peeridnotify		= 14,   // add this for tps
+	h_call_reinvitefailed   = 15,
 };
 /// sip reg ctrl msg type
 enum EmSipRegCtrlMsgType

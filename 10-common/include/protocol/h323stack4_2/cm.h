@@ -20,6 +20,7 @@ changes.
 #include "pvaltree.h"
 #include "ci.h"
 #include "cmH245GeneralDefs.h"
+#include <string.h>
 
 //add by yj
 #define VER_RADSTACK  ( const char * )"h323stacklib 42.01.01.01.140508(CBB)"
@@ -2470,23 +2471,23 @@ typedef struct __cmNATPairsAddr
 }cmNATPairsAddr;
 
 //add by Sai 20190619 for Multi DMZ for NU
-typedef struct __cmDMZAddress
+typedef struct __cmGKAddress
 {
 	RvBool                  bSupportMultiDMZ;
 	RvInt32                 nCount;
-	cmTransportAddress		tDMZAddress[MULTI_DMZ_NUM];		//Local Address For RAS
-}cmDMZAddress;
+	cmTransportAddress		tLocalAddress[MULTI_DMZ_NUM];		//Local Address For RAS
+}cmGKAddress;
 
 //add by daiqing 20100720 for 460
 typedef struct __cmStackConfig
 {
-	cmNATPairsAddr		    NATPairsAddr[STATIC_NAT_NUM];
+	cmReasonType			emH225FacilityReasonType;
 	RvBool					Support460;
 	cmH460Config			th460Config;
 	RvBool					bKeda323;
 	RvBool                  bSupportStaticNAT;
-	cmReasonType			emH225FacilityReasonType;
-	//cmDMZAddress			tDMZAddr;
+	cmNATPairsAddr		    NATPairsAddr[STATIC_NAT_NUM];
+	//cmGKAddress			tGkListenAddr;
 }cmStackConfig;
 
 extern cmStackConfig g_tNATAddress;

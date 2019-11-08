@@ -32,6 +32,7 @@
 
 #define ANNEXQ_DYNAMIC_PT	(u16)100				//h.281动态载荷
 #define MAX_PRODUCTID_LEN	(u32)128				//最大productID、version长度
+#define MAX_PRODUCTIDTYPE_LEN	(u32)32				//字符串形式的对端型号长度
 #define MAX_FILE_PATH_LEN	256                     //文件载入路径最大长度
 
 #define MAX_CERTICATE_NUM	3						//Max number of certificates for TLS
@@ -140,6 +141,7 @@ enum  PayloadType
 	// 保持新老版本兼容
     emMpeg4			= 17,    
     emH262			= 18,
+	emRedundant		= 19,
 
     emTypeGeneric	= 48,   // 内部使用
     emAudioTypeEnd	= 49,
@@ -616,7 +618,66 @@ typedef struct PROTO_API tagTerminalLabel
 	}
 }TTERLABEL,*PTTERLABEL;
 
+
+
+
+#define LOG_MAXBUFFER_LENGTH	65536
+#define LOG_LOGPATH_LENGTH	256
+
+/*
+typedef struct tagTLogInfo
+{
+	FILE* pLogFile;								///< file descriptor, LogFile
+	FILE* pLogRecord;							///< file descriptor, used to record the current log number
+	s32 nCurFileNum;							///< Current log number
+	s32 nMaxFileNum;							///< Maximum log number
+	s8 achLogRecord[LOG_FILENAME_LENGTH];		///< name and storage path, used to record the current log number
+	s8 achLogName[LOG_FILENAME_LENGTH];			///< Log name and storage path
+	s32 nFileMaxSize;							///< the size of every logfile(M)
+
+	void Clear()
+	{
+		pLogFile = NULL;
+		pLogRecord = NULL;
+		nCurFileNum = 0;
+		nMaxFileNum = 50;
+		memset(achLogRecord, 0, LOG_FILENAME_LENGTH);
+		memset(achLogName, 0, LOG_FILENAME_LENGTH);
+		nFileMaxSize = 60;///< 60M
+	}
+
+	tagTLogInfo()
+	{
+		Clear();
+	}
+} TLogInfo;
+*/
+
 /// ------------------------------function--------------------------------------------
+/**
+* \brief             Set sipLog default info
+* \param[in]         ptLogInfo				:log information:pLogRecord,pLogFile,nMaxFileNum
+* \param[in]         pFilePath				:log storage path
+* \param[in]         pFilePath				:log name
+* \param[in]         nFileMaxNum			:maximum log number
+* \param[in]         nFlieMaxSize			:the size of every logfile(M)
+* \return            void
+*/
+//PROTO_API void SetSipLogInfo(TLogInfo* ptLogInfo, s8 *pFilePath, s8 *pLogName, s32 nFileMaxNum, s32 nFlieMaxSize);
+
+/**
+* \brief             Write log to file
+* \param[in]         pLogFile			:file descriptor, LogFile
+* \param[in]         pLogRecord			:file descriptor, used to record the current log number
+* \param[in]         nCurFileNum		:Current log number
+* \param[in]         nMaxFileNum		:Maximum log number
+* \param[in]         pchMcuLogRecord	:name and storage path, used to record the current log number
+* \param[in]         pchMcuLogName		:Log name and storage path
+* \param[in]         achBuf				:printf buf
+* \param[in]         dwLen				:buflen
+* \return            void
+*/
+//PROTO_API void WriteLogToFile(TLogInfo *ptLogInfo, s8* achBuf, u32 dwLen);
 
 /**
 * \brief             Get Product Name

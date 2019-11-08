@@ -187,6 +187,8 @@ protected:
 
 	//点击本地坐席激励Checkbox dyy 2015-4-30 
 	bool OnCheckPTPSeatArouse(TNotifyUI& msg);
+    //多点会议会场语音激励
+    bool OnCheckMultiVoiceArouse(TNotifyUI& msg);
 	//语音激励快捷方式 
 	bool OnCheckVSShortCut(TNotifyUI& msg);
 	//点击双流Checkbox  
@@ -288,6 +290,10 @@ protected:
 	*  @return 
 	*/
 	void UpdateVedioSourceList();
+
+    //控制多点会议语音激励开关通知、回应
+    bool OnVoiceArouseNty(WPARAM wParam, LPARAM lParam, bool& bHandle);
+    bool OnVoiceArouseInd(WPARAM wParam, LPARAM lParam, bool& bHandle);
 
 	APP_DECLARE_MSG_MAP()
 

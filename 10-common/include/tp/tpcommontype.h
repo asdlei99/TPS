@@ -4067,8 +4067,8 @@ enum EmComType
 };
 enum EmComConfigType
 {
-	emDefault = 0,									//默认
-	emXuanDeDFScreen,								//宣德升降旋转屏
+	emXuanDeUpScreen = 0,						    //宣德升降屏
+	emXuanDeRollScreen,								//宣德旋转屏
 };
 //地址码类型
 enum EmAddrCode
@@ -4095,4 +4095,25 @@ enum EmProtocolVersion
 	emIPV4 = 0,
 	emIPV6,
 };
+enum EmUmsVacCmdRes
+{
+	//所有均为Ind
+	ums_vac_res_sucess,              // 成功，以下均为错误类型
+	ums_vac_res_unauthorized,        // 没有权限，操作无效, 上级ums和主席才能操作
+	ums_vac_res_dismode,             // 讨论模式不允许开启激励
+	ums_vac_res_rollcallmode,        //点名模式不允许开启激励
+	ums_vac_res_customaudmixmmode,   //定制混音模式不允许开启激励
+	ums_vac_res_pollmode,            //轮询模式不允许开启激励
+	ums_vac_res_nomix,               //没有混音器
+	ums_vac_res_samemode,            //cmd 没有任何改变
+
+	ums_vac_res_mixopr_begin = 200,
+	ums_vac_res_mixopr_getaudfail,    // 上调会场音频失败 
+	ums_vac_res_mixopr_mixchanfull,   // 混音通道不足
+	ums_vac_res_mixopr_novalidep,     // 无有效混音会场
+	ums_vac_res_mixopr_repeatadd,    // 重复会场
+	ums_vac_res_mixopr_del_notfind,  // 要删除混音通道不在混音通道中
+
+	ums_vac_res_unkown = 300,       //未知错误
+}; 
 #endif // _h_tpcommontype_h__

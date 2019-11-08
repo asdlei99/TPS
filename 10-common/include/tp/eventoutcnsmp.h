@@ -466,13 +466,34 @@ _ev_end
      ///////////////////////////////////////
   /***********************<< 多点会议会场语音激励命令 >>********************  
  *[消息体]
- * BOOL
+ * TTPVacInfo                   是否开启语音激励
  *[消息方向]
  *  cnc->cns
  */
   _event(  ev_tppVoiceMotivation_Cmd )
+  _body( TTPVacInfo, 1)
+  _ev_end
+
+    /***********************<< 多点会议会场语音激励反馈 >>********************  
+ *[消息体]
+ * TTPVacInfo                   是否开启语音激励
+ *[消息方向]
+ *  cnc->cns
+ */
+  _event(  ev_tppVoiceMotivation_Ind )
+  _body( TTPVacInfo, 1)
+  _ev_end
+
+    /***********************<< 多点会议会场语音激励通知 >>********************  
+ *[消息体]
+ * BOOL                   是否开启语音激励
+ *[消息方向]
+ *  cnc->cns
+ */
+  _event(  ev_tppVoiceMotivation_Nty )
   _body( BOOL, 1)
   _ev_end
+
 #ifndef _MakeTpEventDescription_
    _ev_segment_end( outercnsmp )
 };

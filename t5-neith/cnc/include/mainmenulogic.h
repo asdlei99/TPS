@@ -120,8 +120,8 @@ protected:
 	 *  @return 
 	 */
 	bool OnCnsDualRsp(WPARAM wParam, LPARAM lParam, bool& bHandle);
-	//点对点语音激励响应
-	bool OnCnPTPAuxInd(WPARAM wParam, LPARAM lParam, bool& bHandle);
+	//多点会议语音激励响应
+	bool OnVoiceArouseInd(WPARAM wParam, LPARAM lParam, bool& bHandle);
 	//点名状态
 	bool OnRollStateNty(WPARAM wParam, LPARAM lParam, bool& bHandle);
 	//混音状态

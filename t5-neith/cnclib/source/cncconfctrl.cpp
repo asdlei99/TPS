@@ -21,6 +21,7 @@ CCncConfCtrl::CCncConfCtrl(CCnsSession &cSession) : CCncConfCtrlIF(),
 	m_byOutputVol = 0;
 	m_bySpeakSeat = 0;
     m_bDual = FALSE;
+    m_bVoiceArouse = FALSE;
 	m_bLocalPIP = FALSE;
 	m_bPTPSeatArouse = FALSE;
 	m_bInAudMix = FALSE;
@@ -117,6 +118,9 @@ void CCncConfCtrl::BuildEventsMap()
 	REG_PFUN( ev_CnSetMicPower_Rsp, CCncConfCtrl::OnCnSetMicPowerRsp);
 
     REG_PFUN( ev_CnGetTempPwd_Cmd, CCncConfCtrl::OnCnGetTempPwdCmd);
+    //语音激励
+    REG_PFUN( ev_tppVoiceMotivation_Nty, CCncConfCtrl::OnVoiceArouseNty );
+    REG_PFUN( ev_tppVoiceMotivation_Ind, CCncConfCtrl::OnVoiceArouseInd );
 }
 
 
@@ -1329,6 +1333,7 @@ void CCncConfCtrl::OnLinkBreak(const CMessage& cMsg)
 	m_byOutputVol = 0;
 	m_bySpeakSeat = 0;
 	m_vctScreenInfo.clear();
+    m_bVoiceArouse = FALSE;
 	m_bLocalPIP = FALSE;
 	m_bPTPSeatArouse = FALSE;
 	m_bInAudMix = FALSE;
@@ -1509,7 +1514,7 @@ void CCncConfCtrl::OnSpareDualSetInd( const CMessage& cMsg )
 	PostEvent( UI_CNS_SPAREDUAL_IND, emTpDualIdleReason, wScreenID );
 
 }
-//会议控制语音激励
+//会议控制坐席激励
 u16 CCncConfCtrl::SetCnAuxMix( BOOL bIsAudMix )
 {
 	CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr();
@@ -1535,4 +1540,48 @@ void CCncConfCtrl::OnCnAuxMixInd( const CMessage& cMsg )
 
 	PrtMsg( ev_CnMixIsUsed_Ind, emEventTypeCnsRecv, _T( "IsCnMix:%d IsSuccess:%d"),bIsMix, bIsSuccess );
 	PostEvent( UI_CNS_CNAUXMIX_IND, bIsMix, bIsSuccess );
+}
+
+//多点会议会场语音激励
+void CCncConfCtrl::OnVoiceArouseNty( const CMessage& cMsg )
+{
+    CTpMsg cTpMsg(&cMsg);
+    m_bVoiceArouse = *(BOOL*)( cTpMsg.GetBody() );
+
+    PrtMsg( ev_tppVoiceMotivation_Nty, emEventTypeCnsRecv, "VoiceArouseNty IsVoiceArouse:%d", m_bVoiceArouse );
+    PostEvent( UI_CNC_VOICEAROUSE_NTY );
+}
+
+u16 CCncConfCtrl::SetVoiceArouse( TTPVacInfo &tTPVacInfo )
+{
+    CTpMsg *pcTpMsg = m_pSession->GetKdvMsgPtr();
+    pcTpMsg->SetUserData( m_pSession->GetInst() );
+
+    pcTpMsg->SetEvent( ev_tppVoiceMotivation_Cmd ); 
+    pcTpMsg->SetBody( &tTPVacInfo, sizeof(TTPVacInfo) );
+
+    u16 wRet = m_pSession->PostMsg(TYPE_TPMSG);
+    PrtMsg( ev_tppVoiceMotivation_Cmd, emEventTypeCnsSend, "SetVoiceArouse ConfId:%d VoiceMotivation:%d",
+        tTPVacInfo.m_wConfId, tTPVacInfo.m_bVoiceMotivation );
+    return wRet;
+}
+
+void CCncConfCtrl::OnVoiceArouseInd( const CMessage& cMsg )
+{
+    CTpMsg cTpMsg(&cMsg);
+    TTPVacInfo tTPVacInfo = *(TTPVacInfo*)( cTpMsg.GetBody() );
+
+    if (tTPVacInfo.m_emRet == ums_vac_res_sucess)
+    {
+        m_bVoiceArouse = tTPVacInfo.m_bVoiceMotivation;
+    }
+
+    PrtMsg( ev_tppVoiceMotivation_Ind, emEventTypeCnsRecv, "VoiceArouseInd Result:%d VoiceMotivation:%d",
+        tTPVacInfo.m_emRet, tTPVacInfo.m_bVoiceMotivation );
+    PostEvent( UI_CNC_VOICEAROUSE_IND, tTPVacInfo.m_emRet, tTPVacInfo.m_bVoiceMotivation );
+}
+
+BOOL CCncConfCtrl::IsLocalMultiVoiceArouse() const
+{
+    return m_bVoiceArouse;
 }

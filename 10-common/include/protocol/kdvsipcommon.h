@@ -85,12 +85,13 @@
 #define MAX_SIP_ATTR_NAME_LEN 50       ///< max sip attribute name length
 #define MAX_SIP_ATTR_VALUE_LEN 300     ///< max sip attribute value length
 
-/// sip log filter
-enum EmSipLogFilter
+///< log filter
+enum EmLogFilter
 {
-	emSipLogTelnet = 0x01,                           ///< log telnet 
-	emSipLogStdout = 0x02,                           ///< log std out
-	emSipLogAll = emSipLogTelnet | emSipLogStdout,   ///< log all
+	emLogNull	= 0,								///< log null
+	emLogTelnet	= 0x01,								///< log telnet 
+	emLogStdout	= 0x02,								///< log std out
+	emLogAll		= emLogTelnet | emLogStdout,	///< log all
 };
 
 /// host address

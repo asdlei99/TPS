@@ -471,6 +471,16 @@ _event(  ev_cns_SelectDFScreen_Nty  )
 _body( BOOL   , MAX_CENTREDFSCREEN_GROUP_NUM ) 
 _ev_end
 
+  /***********************<< 控制类型变化 >>******************** 
+ *[消息体]
+ * EmComConfigType                   屏幕类型      
+ *[消息方向]
+ *  cns -> cnc
+*/
+_event(  ev_cns_ScreenType_Nty  )
+_body( EmComConfigType   , 1 ) 
+_ev_end
+
 #ifndef _MakeTpEventDescription_
 		_ev_segment_end( outercnsnewextend )
 };

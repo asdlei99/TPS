@@ -13,6 +13,11 @@
 #include "protocolcommonpublic.h"
 #include "kdvsipcommon.h"
 
+#define LOG_OFF (s32)0      //关闭
+#define LOG_EXP	(s32)1		//异常
+#define LOG_IMT	(s32)2		//重要日志
+#define LOG_DEBUG	(s32)3	//一级调试信息
+#define LOG_ALL	(s32)4      //所有调试信息 
 
 /* Primitives */
 #define FloorRequest		1
@@ -129,6 +134,8 @@
 
 #define BFCP_MAX_NONSTD_LEN			255
 
+#define BFCP_INVALID_USERID		0xffffffff
+
 #ifdef _ENABLE_BFCP_MUTEX_
 #define bfcp_mutex_init(a,b) PfcSemBCreate(a)
 #define bfcp_mutex_destroy(a) PfcSemDelete(a)
@@ -208,7 +215,7 @@ typedef struct tagClientSocket
 		m_tUdp6ClientFd = INVALID_SOCKET;
 		m_tSockAddr.clear();
 		m_dwConfId = 0;		
-		m_dwUserId = 0;
+		m_dwUserId = BFCP_INVALID_USERID;
 		m_nTransPort = BFCP_OVER_UDP;
 	}
 	tagClientSocket()
@@ -754,7 +761,7 @@ bfcp_nonstd *bfcp_parse_attribute_NONSTD(bfcp_message *message, bfcp_received_at
 bfcp_arguments *bfcp_error_code_prepare(unsigned long int conferenceID, unsigned short int userID, unsigned short int TransactionID, int code, char *error_info, bfcp_unknown_m_error_details *details);
 
 /* BFCP debug or printf */
-void BfcpPrintf(const s8 *pFormat, ...);
+void BfcpPrintf(s32 nLevel, const s8 *pFormat, ...);
 void bfcp_show_message(bfcp_arguments *arguments, int outgoing_msg);
 
 /* BFCP message callback function */

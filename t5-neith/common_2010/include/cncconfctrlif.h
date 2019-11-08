@@ -234,6 +234,14 @@ public:  //请求
 	*/
 	virtual u16 SetCnAuxMix( BOOL bIsAudMix ) = 0;
 
+    /** 
+	* 功能  开启语音激励
+    * @param [in]  TTPVacInfo tTPVacInfo 语音激励信息
+	* @return  
+	* @remarks 
+	*/
+	virtual u16 SetVoiceArouse( TTPVacInfo &tTPVacInfo ) = 0;
+
 public:  //获取结果
 
       /** 功能  获取CNS会议状态
@@ -307,6 +315,8 @@ public:  //获取结果
 	virtual BOOL IsLocalCnsDual() const = 0;
 
 	virtual BOOL IsLocalPTPSeatArouse() const = 0;
+
+    virtual BOOL IsLocalMultiVoiceArouse() const = 0;
 };
 
 #endif

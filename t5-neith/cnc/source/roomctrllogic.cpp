@@ -80,7 +80,8 @@ APP_BEGIN_MSG_MAP(CRoomCtrlLogic,CNotifyUIImpl)
     //升降屏相关
     USER_MSG(UI_CNC_CENTREDFSCREENCONFIG_NTY,OnCentreDFScreenConfigNty)
     USER_MSG(UI_CNC_CENTRESELECTDFSCREEN_NTY,OnCentreSelectDFScreenNty)
-    USER_MSG(UI_CNC_CENTREMODIFYDFSCREENGROUP_IND, OnCentreDFScreenConfigNty)
+    USER_MSG(UI_CNC_CENTRESCREENTYPE_NTY,OnCentreScreenTypeNty)
+    USER_MSG(UI_CNC_CENTREMODIFYDFSCREENGROUP_IND, OnModifyDFScreenGroupInd)
     USER_MSG(UI_CNC_CENTREDFSCREENCMD_IND,OnCentreDFScreenCmdInd)
     USER_MSG(UI_CNC_SELECTDFSCREEN_IND, OnSelectDFScreenInd)
 
@@ -159,7 +160,6 @@ bool CRoomCtrlLogic::OnInit( TNotifyUI& msg )
 	}
 
 	UpdateSourceName();
-    NOTIFY_MSG(UI_CNC_CENTREDFSCREENCONFIG_NTY, 0,0);
 	return true;
 }
 
@@ -173,9 +173,6 @@ bool CRoomCtrlLogic::OnDisconnect( WPARAM wParam, LPARAM lParam, bool& bHandle )
 
 	memset(m_byMicStyle, 0, TP_MIC_NUM*sizeof(BOOL));
 	memset(m_byMicState, 0, TP_MIC_NUM*sizeof(BOOL));
-
-    m_byScreenControl = 0;
-    m_byAllScreenCtrlSel = 0;
 
 	CCheckBoxUI* pCheck = (CCheckBoxUI*)ICncCommonOp::FindControl(m_pm,_T("CheckSlient")); 
 	if (pCheck)
@@ -490,37 +487,55 @@ bool CRoomCtrlLogic::OnCheckSrceenControl(TNotifyUI& msg)
 
 bool CRoomCtrlLogic::OnBtnLiftSrceenUp(TNotifyUI& msg)
 {
-    ComInterface->SetCentreDFScreenCmd( emScreenUP );
+    if (m_byScreenControl != 0)
+    {
+        ComInterface->SetCentreDFScreenCmd( emScreenUP );
+    }
     return true;
 }
 
 bool CRoomCtrlLogic::OnBtnLiftSrceenDown(TNotifyUI& msg)
 {
-    ComInterface->SetCentreDFScreenCmd( emScrrenDown );
+    if (m_byScreenControl != 0)
+    {
+        ComInterface->SetCentreDFScreenCmd( emScrrenDown );
+    }
     return true;
 }
 
 bool CRoomCtrlLogic::OnBtnLiftSrceenStop(TNotifyUI& msg)
 {
-    ComInterface->SetCentreDFScreenCmd( emScrrenStop );
+    if (m_byScreenControl != 0)
+    {
+        ComInterface->SetCentreDFScreenCmd( emScrrenStop );
+    }
     return true;
 }
 
 bool CRoomCtrlLogic::OnBtnFlipSrceenOpen(TNotifyUI& msg)
 {
-    ComInterface->SetCentreDFScreenCmd( emScreenUP );
+    if (m_byScreenControl != 0)
+    {
+        ComInterface->SetCentreDFScreenCmd( emScreenUP );
+    }
     return true;
 }
 
 bool CRoomCtrlLogic::OnBtnFlipSrceenClose(TNotifyUI& msg)
 {
-    ComInterface->SetCentreDFScreenCmd( emScrrenDown );
+    if (m_byScreenControl != 0)
+    {
+        ComInterface->SetCentreDFScreenCmd( emScrrenDown );
+    }
     return true;
 }
 
 bool CRoomCtrlLogic::OnBtnFlipSrceenStop(TNotifyUI& msg)
 {
-    ComInterface->SetCentreDFScreenCmd( emScrrenStop );
+    if (m_byScreenControl != 0)
+    {
+        ComInterface->SetCentreDFScreenCmd( emScrrenStop );
+    }
     return true;
 }
 
@@ -1295,27 +1310,14 @@ bool CRoomCtrlLogic::OnCentreDFScreenConfigNty(WPARAM wParam, LPARAM lParam, boo
 {
     TCenDownOrFlipScreenInfo tScreenInfo;
     ComInterface->GetCenDownOrFlipScreenInfo(tScreenInfo);
-#ifndef LOGIN
-    tScreenInfo.emDeviceType = emDefault;  //emXuanDeDFScreen
-    tScreenInfo.dwGroupNum = 4;
-    strcpy( tScreenInfo.tCenDownOrFlipScreenCfg[0].achGroupName, ("第五排会议桌") );
-    tScreenInfo.tCenDownOrFlipScreenCfg[0].emAddrCode = emAddrCode_05;
-    strcpy( tScreenInfo.tCenDownOrFlipScreenCfg[1].achGroupName, ("第四排会议桌") );
-    tScreenInfo.tCenDownOrFlipScreenCfg[1].emAddrCode = emAddrCode_04;
-    strcpy( tScreenInfo.tCenDownOrFlipScreenCfg[2].achGroupName, ("第三排会议桌") );
-    tScreenInfo.tCenDownOrFlipScreenCfg[2].emAddrCode = emAddrCode_03;
-    strcpy( tScreenInfo.tCenDownOrFlipScreenCfg[3].achGroupName, ("第二排会议桌") );
-    tScreenInfo.tCenDownOrFlipScreenCfg[3].emAddrCode = emAddrCode_02;
-    strcpy( tScreenInfo.tCenDownOrFlipScreenCfg[4].achGroupName, ("第一排会议桌") );
-    tScreenInfo.tCenDownOrFlipScreenCfg[4].emAddrCode = emAddrCode_01;
-#endif
     m_dwGroupNum = tScreenInfo.dwGroupNum;
+    m_byAllScreenCtrlSel = 0;
 
     //界面显示
     CDuiString strHorLineSyle = _T("");
     CDuiString strSrceenLayout = _T("");
     CDuiString strLabGroup = _T("");
-    u32 dwSerial = 0;  //标识指定控件序号
+    u32 dwSerial = 0;  //指定控件序号
     //m_pm->DoCase(_T("caseScreenGrpHide"));
     for (u32 dwIndex = 0; dwIndex < NUM_SRCEEN_COUNT; dwIndex++)
     {
@@ -1339,7 +1341,7 @@ bool CRoomCtrlLogic::OnCentreDFScreenConfigNty(WPARAM wParam, LPARAM lParam, boo
         {
             ICncCommonOp::ShowControl(TRUE, m_pm, strSrceenLayout);
             ICncCommonOp::SetControlText( (CA2T)tScreenInfo.tCenDownOrFlipScreenCfg[dwIndex].achGroupName, m_pm, strLabGroup );
-            m_byAllScreenCtrlSel |= dwIndex;
+            m_byAllScreenCtrlSel |= adwTagArray[dwIndex];
         }
         else
         {
@@ -1348,7 +1350,7 @@ bool CRoomCtrlLogic::OnCentreDFScreenConfigNty(WPARAM wParam, LPARAM lParam, boo
     }
 
     //选择屏幕操作类型
-    if (tScreenInfo.emDeviceType == emXuanDeDFScreen)
+    if (tScreenInfo.emDeviceType == emXuanDeRollScreen)
     {
         m_pm->DoCase(_T("caseIsFlipSrceen"));
         ICncCommonOp::SetControlText(_T("翻转屏控制"), m_pm, _T("Screen"));
@@ -1359,36 +1361,84 @@ bool CRoomCtrlLogic::OnCentreDFScreenConfigNty(WPARAM wParam, LPARAM lParam, boo
         ICncCommonOp::SetControlText(_T("升降屏控制"), m_pm, _T("Screen"));
     }
 
-    //升降旋转屏选择初始化
-    m_pm->DoCase(_T("caseScreenIni"));
-
-    return NO_ERROR;
+    return true;
 }
 
 bool CRoomCtrlLogic::OnCentreSelectDFScreenNty(WPARAM wParam, LPARAM lParam, bool& bHandle)
 {
-    memset(m_abSelectDFScreen, 0, sizeof(BOOL)*MAX_CENTREDFSCREEN_GROUP_NUM);
-    memcpy(m_abSelectDFScreen, ComInterface->GetCenSelectDFScreen(), sizeof(BOOL)*MAX_CENTREDFSCREEN_GROUP_NUM);
+    BOOL abSelectDFScreen[MAX_CENTREDFSCREEN_GROUP_NUM];
+    memset(abSelectDFScreen, 0, sizeof(BOOL)*MAX_CENTREDFSCREEN_GROUP_NUM);
+    memcpy(abSelectDFScreen, ComInterface->GetCenSelectDFScreen(), sizeof(BOOL)*MAX_CENTREDFSCREEN_GROUP_NUM);
     
     //当前升降屏排数勾选状态
     CDuiString strCaseTemp = _T("");
-    u32 dwSerial = 0;
+    u32 dwSerial = 0;  //case serial
     for (u32 dwIndex = 0; dwIndex < m_dwGroupNum; dwIndex++)
     {
         dwSerial = dwIndex + 1;
-        if ( m_abSelectDFScreen[dwIndex] )
+        if ( abSelectDFScreen[dwIndex] )
         {
+            m_byScreenControl |= adwTagArray[dwIndex];
             strCaseTemp.Format(_T("caseCheckSelect%d"), dwSerial);
             m_pm->DoCase(strCaseTemp);
         }
         else
         {
+            m_byScreenControl &= ~adwTagArray[dwIndex];
             strCaseTemp.Format(_T("caseCheckNotSelect%d"), dwSerial);
             m_pm->DoCase(strCaseTemp);
         }
     }
 
+    //全选按钮状态
+    CCheckBoxUI* pCheckBoxAll = (CCheckBoxUI*)ICncCommonOp::FindControl(m_pm,_T("OptIsControlAll"));
+    if (pCheckBoxAll == NULL)
+    {
+        return false;
+    }
+
+    if (m_byScreenControl == m_byAllScreenCtrlSel)
+    {
+        pCheckBoxAll->SetCheckNoMsg(true);
+    }
+    else
+    {
+        pCheckBoxAll->SetCheckNoMsg(false);
+    }
+
     return true;
+}
+
+bool CRoomCtrlLogic::OnCentreScreenTypeNty(WPARAM wParam, LPARAM lParam, bool& bHandle)
+{
+    EmComConfigType emScreenType = (EmComConfigType)wParam;
+
+    //选择屏幕操作类型
+    if (emScreenType == emXuanDeRollScreen)
+    {
+        m_pm->DoCase(_T("caseIsFlipSrceen"));
+        ICncCommonOp::SetControlText(_T("翻转屏控制"), m_pm, _T("Screen"));
+    }
+    else
+    {
+        m_pm->DoCase(_T("caseIsLiftSrceen"));
+        ICncCommonOp::SetControlText(_T("升降屏控制"), m_pm, _T("Screen"));
+    }
+
+    return true;
+}
+
+bool CRoomCtrlLogic::OnModifyDFScreenGroupInd(WPARAM wParam, LPARAM lParam, bool& bHandle)
+{
+    BOOL bSuccess = (BOOL)wParam;
+    if (!bSuccess)
+    {
+        ShowMessageBox( _T("修改升降旋转屏组信息失败") );
+        return false;
+    }
+    
+    OnCentreDFScreenConfigNty(wParam, lParam, bHandle);
+    return OnCentreSelectDFScreenNty(wParam, lParam, bHandle);
 }
 
 bool CRoomCtrlLogic::OnCentreDFScreenCmdInd(WPARAM wParam, LPARAM lParam, bool& bHandle)
@@ -1400,7 +1450,7 @@ bool CRoomCtrlLogic::OnCentreDFScreenCmdInd(WPARAM wParam, LPARAM lParam, bool& 
         return false;
     }
 
-    return NO_ERROR;
+    return true;
 }
 
 bool CRoomCtrlLogic::OnSelectDFScreenInd(WPARAM wParam, LPARAM lParam, bool& bHandle)
@@ -1413,7 +1463,7 @@ bool CRoomCtrlLogic::OnSelectDFScreenInd(WPARAM wParam, LPARAM lParam, bool& bHa
     }
 
     OnCentreSelectDFScreenNty(0, 0, bHandle);
-    return NO_ERROR;
+    return true;
 }
 
 void CRoomCtrlLogic::UpdateMicStyle()

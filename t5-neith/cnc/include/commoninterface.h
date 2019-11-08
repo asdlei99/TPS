@@ -639,6 +639,16 @@ public:
 	*/
 	u16 PlayHduReq( TTpHduPlayReq &tTvwInfo );
 
+    /** 
+	* 功能:  控制多点语音激励 
+    * @return
+    */
+	u16 SetVoiceArouse( TTPVacInfo &tTPVacInfo);
+
+    //多点会议语音激励状态
+    BOOL32 IsLocalMultiVoiceArouse() const;
+
+
 /** @}*/ 
 
 	 //-----系统配置相关设置-------------  

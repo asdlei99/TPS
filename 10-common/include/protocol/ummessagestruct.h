@@ -14,14 +14,19 @@ API void umver();
 class CLoginRequest
 {
 private:
+#ifndef KDVTYPE_LEGACY_H
 	char		m_achname[MAX_CHARLENGTH + 1]; ///< 用户名
 	char		m_achpassword[MAX_CHARLENGTH + 1];///< 密码
+#else
+    char		m_achname[MAX_CHARLENGTH]; ///< 用户名
+    char		m_achpassword[MAX_CHARLENGTH];///< 密码
+#endif
 	CMD5Encrypt m_cMd5;
 public:
 	CLoginRequest()
 	{
-		memset(m_achname,0,MAX_CHARLENGTH + 1 );
-		memset(m_achpassword,0,MAX_CHARLENGTH + 1 );
+		memset(m_achname,0,sizeof(m_achname) );
+		memset(m_achpassword,0,sizeof(m_achpassword) );
 	}
 	/// 设置和得到用户名
 	char* GetName()
@@ -34,8 +39,12 @@ public:
 		{
 			return;
 		}
-		memset(m_achname,0,MAX_CHARLENGTH + 1);
+		memset(m_achname,0,sizeof(m_achname));
+#ifndef KDVTYPE_LEGACY_H
 		int nlength = (strlen(pchbuf) >= MAX_CHARLENGTH ? MAX_CHARLENGTH: strlen(pchbuf));
+#else
+        int nlength = (strlen(pchbuf) >= MAX_CHARLENGTH-1 ? MAX_CHARLENGTH-1: strlen(pchbuf));
+#endif
 		memcpy(m_achname,pchbuf,nlength);
 		m_achname[nlength] = '\0';
 	};
@@ -49,18 +58,26 @@ public:
 	{
 		
 		m_cMd5.GetEncrypted(pchbuf,m_achpassword);
+#ifndef KDVTYPE_LEGACY_H
 		m_achpassword[MAX_CHARLENGTH]='\0';
+#else
+        m_achpassword[MAX_CHARLENGTH-1]='\0';
+#endif
 	}
 	/// 输入的密码已经加密了
 	void SetEncryptedPassword(char* pchbuf)
 	{
-		memcpy(m_achpassword,pchbuf,MAX_CHARLENGTH+1);
+		memcpy(m_achpassword,pchbuf,sizeof(m_achpassword));
+#ifndef KDVTYPE_LEGACY_H
 		m_achpassword[MAX_CHARLENGTH]='\0';
+#else
+        m_achpassword[MAX_CHARLENGTH-1]='\0';
+#endif
 	}
 	void Empty()
 	{
-		memset(m_achname,0,MAX_CHARLENGTH+1);
-		memset(m_achpassword,0,MAX_CHARLENGTH+1);
+		memset(m_achname,0,sizeof(m_achname));
+		memset(m_achpassword,0,sizeof(m_achpassword));
 	}
 }
 #if defined(_VXWORKS_) || defined(_LINUX_)
@@ -74,6 +91,7 @@ class PROTO_API CUserFullInfo
 public: // 方便计算成员大小 [pengguofeng 5/9/2013]
 	CMD5Encrypt m_cMd5;
 public:	
+#ifndef KDVTYPE_LEGACY_H
 	u32     m_dwGuid;	///< 每个名字唯一对应一个guid
 	char		m_achname[MAX_CHARLENGTH+1]; ///< 用户名
 	char		m_achpassword[MAX_CHARLENGTH+1];///< 密码
@@ -81,7 +99,13 @@ public:
 	char		m_achfullname[MAX_CHARLENGTH+1];///< 完整用户名
 	char		m_achdiscription[2*MAX_CHARLENGTH+1];///< 用户描述
     u64         m_dwExpiryDate;///< 密码失效时间
-	
+#else
+    char		m_achname[MAX_CHARLENGTH]; ///< 用户名
+    char		m_achpassword[MAX_CHARLENGTH];///< 密码
+    u8			m_byActor;///< 权限
+    char		m_achfullname[MAX_CHARLENGTH];///< 完整用户名
+    char		m_achdiscription[2*MAX_CHARLENGTH];///< 用户描述
+#endif
 public:
 	CUserFullInfo()
 	{
@@ -91,15 +115,19 @@ public:
 	/// 得到用户名
 	char* GetName()
 	{
+#ifndef KDVTYPE_LEGACY_H
 		m_achname[MAX_CHARLENGTH] = '\0';
+#else
+        m_achname[MAX_CHARLENGTH-1] = '\0';
+#endif
 		return m_achname;
 	}
 	/// 设置用户名
 	void  SetName(char* pchbuf)
 	{
 		if(pchbuf == NULL)return;
-		memset(m_achname,0,MAX_CHARLENGTH+1);
-		int nlength = (strlen(pchbuf) >= MAX_CHARLENGTH ? MAX_CHARLENGTH: strlen(pchbuf));
+		memset(m_achname,0,sizeof(m_achname));
+		int nlength = (strlen(pchbuf) >= sizeof(m_achname)-1 ? sizeof(m_achname)-1: strlen(pchbuf));
 		memcpy(m_achname,pchbuf,nlength);
 		m_achname[nlength] = '\0';
 	}
@@ -112,13 +140,21 @@ public:
 	void  SetPassword(char* pchbuf)
 	{
 		m_cMd5.GetEncrypted(pchbuf,m_achpassword);
+#ifndef KDVTYPE_LEGACY_H
 		m_achpassword[MAX_CHARLENGTH]='\0';
+#else
+        m_achpassword[MAX_CHARLENGTH-1]='\0';
+#endif
 	}
 	/// 已经加密的密码
 	void  SetEncryptedPassword(char* pchbuf)
 	{
-		memcpy(m_achpassword,pchbuf,MAX_CHARLENGTH+1);
+		memcpy(m_achpassword,pchbuf,sizeof(m_achpassword));
+#ifndef KDVTYPE_LEGACY_H
 		m_achpassword[MAX_CHARLENGTH]='\0';
+#else
+        m_achpassword[MAX_CHARLENGTH-1]='\0';
+#endif
 	}
 	/// 得到用户完整名
 	char* GetFullName()
@@ -129,8 +165,8 @@ public:
 	void SetFullName(char* pchbuf)
 	{
 		if(pchbuf == NULL)return;
-		memset(m_achfullname,0,MAX_CHARLENGTH+1);
-		int nlength = (strlen(pchbuf) >= MAX_CHARLENGTH ? MAX_CHARLENGTH: strlen(pchbuf));
+		memset(m_achfullname,0,sizeof(m_achfullname));
+		int nlength = (strlen(pchbuf) >= sizeof(m_achfullname)-1 ? sizeof(m_achfullname)-1: strlen(pchbuf));
 		memcpy(m_achfullname,pchbuf,nlength);
 		m_achfullname[nlength] = '\0';
 	}
@@ -144,8 +180,8 @@ public:
 	void SetDiscription(char* pchbuf)
 	{
 		if(pchbuf == NULL)return;
-		memset(m_achdiscription,0, 2*MAX_CHARLENGTH+1);
-		int nlength = (strlen(pchbuf) >= 2*MAX_CHARLENGTH ?  2*MAX_CHARLENGTH: strlen(pchbuf));
+		memset(m_achdiscription,0, sizeof(m_achdiscription));
+		int nlength = (strlen(pchbuf) >= sizeof(m_achdiscription)-1 ?  sizeof(m_achdiscription)-1: strlen(pchbuf));
 		memcpy(m_achdiscription,pchbuf,nlength);
 		m_achdiscription[nlength] = '\0';
 	}
@@ -193,12 +229,14 @@ public:
 		case 7:
 			byRet = sizeof(m_achdiscription);
 			break;
+#ifndef KDVTYPE_LEGACY_H
 		case 8:
 			byRet = sizeof(m_dwGuid);
 			break;
 		case 9:
 			byRet = sizeof(m_dwExpiryDate);
 			break;
+#endif
 		default:
 			break;
 		}
@@ -269,6 +307,7 @@ public:
 		m_byActor = UM_OPERATOR;
 	}	
 
+#ifndef KDVTYPE_LEGACY_H
     /// 设置密码过期时间
     void SetOutdate(u64 dwExpiryDate)
     {
@@ -280,7 +319,7 @@ public:
     {
         return m_dwExpiryDate;
     }
-
+#endif
 
 }
 #if defined(_VXWORKS_) || defined(_LINUX_)

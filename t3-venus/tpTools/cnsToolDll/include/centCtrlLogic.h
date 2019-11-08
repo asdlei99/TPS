@@ -461,7 +461,6 @@ private:
     bool IsCenDFScreenGrpChange( u32 dwGrpNum, TCenDownOrFlipScreenCfg* ptCenDFScreenCfg );
 
 private:
-	//int m_nGroupNum;//当前有多少组数
     map<u16, String> m_mapAddrCode;//当前选中的地址码
     TCenDownOrFlipScreenInfo m_tCenDFScreenInfo;//升降屏配置信息
 };

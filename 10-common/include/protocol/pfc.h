@@ -1197,7 +1197,7 @@ API void PfcTrcAllOff(void);
 * @param[in]    maxfiles : [in]文件数目限制
 * @return       BOOL32 - true 成功, false 失败
 */
-API BOOL32 PfcOpenLogFile(const char   *name, u32 maxsize_KB, u32 maxfiles);
+API BOOL32 PfcOpenLogFile(const char   *path, const char   *name, u32 maxsize_KB, u32 maxfiles);
 
 /**
 * @brief        PfcCloseLogFile

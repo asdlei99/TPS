@@ -27,12 +27,8 @@ CCnclibCommonIF* CCnclibCommonIF::GetComIF()
 
 UINT ThreadConnectCns(LPVOID lpParam)
 {   
-    u16 re= NO_ERROR;
 #if 0
-    SendMessage( LIBDATAMGRPTR->GetSafeHwnd() ,UI_CNS_CONNECTED, TRUE, NO_ERROR);
-    SendMessage(LIBDATAMGRPTR->GetSafeHwnd(), UI_CENTREDFSCREENCONFIG_NTY, 0, 0);
-    return NO_ERROR;
-#endif
+    u16 re= NO_ERROR;
     re = COMIFMGRPTR->LinkCns();
     if ( re != NO_ERROR )
     {   
@@ -52,7 +48,9 @@ UINT ThreadConnectCns(LPVOID lpParam)
 			}           
         }
 	}
-    
+#else
+    u16 re =  ERR_CNC_ACTIVE_CONNECT;
+#endif
     return re;
 } 
 

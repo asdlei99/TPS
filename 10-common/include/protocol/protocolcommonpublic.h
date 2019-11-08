@@ -18,6 +18,8 @@
 
 typedef void* MemId;  ///< private type definition for protocol components (for 64-bit support)
 
+#define MAX_MULTI_ADDR_NUM      (s8)2
+
 /// the macro of IN,OUT,INOUT
 #ifndef IN
 	#define IN
@@ -127,7 +129,7 @@ typedef enum
     PFC_TRANSPORT_TYPE_IP_STRICT_ROUTE,     ///< strict route
     PFC_TRANSPORT_TYPE_IP_LOOSE_ROUTE,      ///< loose route
     PFC_TRANSPORT_TYPE_NASP,                ///< NSAP
-    PFC_TRANSPORT_TYPE_IPV6                 ///< IPv6
+    PFC_TRANSPORT_TYPE_IPV6,                ///< IPv6
 } PFC_TRANSPORT_TYPE;
 
 /// distribution type

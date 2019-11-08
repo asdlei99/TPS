@@ -1428,10 +1428,10 @@ void CCncMsgDriver::MappingEventName()
 
     //Éý½µÆÁ
     MAPPING_HELPER( ev_Cn_CentreDFScreenConfig_Nty, _T("ev_Cn_CentreDFScreenConfig_Nty") );
-    MAPPING_HELPER( ev_Cn_ModifyDFScreenCfg_Cmd, _T("ev_Cn_CentreModifyDFScreenConfig_Cmd") );
+    MAPPING_HELPER( ev_Cn_ModifyDFScreenCfg_Cmd, _T("ev_Cn_ModifyDFScreenCfg_Cmd") );
     MAPPING_HELPER( ev_Cn_ModifyDFScreenCfg_Ind, _T("ev_Cn_ModifyDFScreenCfg_Ind") );
-    MAPPING_HELPER( ev_Cn_ModifyDFScreenGroup_Cmd, _T("ev_Cn_CentreModifyDFScreenGroup_Cmd") );
-    MAPPING_HELPER( ev_Cn_ModifyDFScreenGroup_Ind, _T("ev_Cn_CentreModifyDFScreenGroup_Ind") );
+    MAPPING_HELPER( ev_Cn_ModifyDFScreenGroup_Cmd, _T("ev_Cn_ModifyDFScreenGroup_Cmd") );
+    MAPPING_HELPER( ev_Cn_ModifyDFScreenGroup_Ind, _T("ev_Cn_ModifyDFScreenGroup_Ind") );
 
 }
 

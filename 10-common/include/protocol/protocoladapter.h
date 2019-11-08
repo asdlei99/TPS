@@ -224,8 +224,8 @@ typedef struct tagPAChannelCBFunction
 * \param[in]        hReg         :协议栈句柄
 * \param[in]        hAppReg      :应用层句柄
 * \param[in]        bRegistered  :是否注册成功
-* \param[in]        pAppendData  :如果注册成功，则pBuf = NULL(H323)/IsOverNat(SIP); 否则指向 EmPARegFailedReason
-* \param[in]        wAppendDataLen  :如果注册成功，则wLen = 0(H323)/BOOL32(SIP);    否则为 EmPARegFailedReason 的长度
+* \param[in]        pAppendData  :如果注册成功，则pBuf = NULL(H323)/IsOverNat+非标头个数+非标个数*长度(SIP); 否则指向 EmPARegFailedReason
+* \param[in]        wAppendDataLen  :如果注册成功，则wLen = 0(H323)/sizeof(BOOL32)+sizeof(u8)+NonStdHdrNum*sizeof(TSipNstHeader) (SIP);    否则为 EmPARegFailedReason 的长度
 * \return           TRUE:registed,FALSE:failed.
 */
 typedef BOOL (PACALLBACK* PACBRegResult)( 
@@ -233,6 +233,25 @@ typedef BOOL (PACALLBACK* PACBRegResult)(
 	HMDLREG          hReg, 
 	HMDLAPPREG       hAppReg,
 	BOOL32           bRegistered,
+	u8              *pbyAppendData,
+	u16              wAppendDataLen );
+
+/**
+* \brief            PACBUnRegResult,注销结果的回调函数
+* \note             
+* \param[in]        emPAType     :协议类型
+* \param[in]        hReg         :协议栈句柄
+* \param[in]        hAppReg      :应用层句柄
+* \param[in]        bRegistered  :是否注销成功
+* \param[in]        pAppendData  :如果注销成功，则pBuf = NULL(H323)/IsOverNat(SIP); 否则指向 EmPARegFailedReason
+* \param[in]        wAppendDataLen  :如果注销成功，则wLen = 0(H323)/BOOL32(SIP);    否则为 EmPARegFailedReason 的长度
+* \return           TRUE:unregisted,FALSE:failed.
+*/
+typedef BOOL (PACALLBACK* PACBUnRegResult)( 
+	EmPAConfProtocol emPAType,										 
+	HMDLREG          hReg, 
+	HMDLAPPREG       hAppReg,
+	BOOL32           bUnRegistered,
 	u8              *pbyAppendData,
 	u16              wAppendDataLen );
 
@@ -272,8 +291,8 @@ typedef BOOL (PACALLBACK* PACBGetRegInfoAckTP)(
 typedef struct tagPARegistCBFunction
 {
 	PACBRegResult        m_cbRegistResult;
- //	PACBUnRegResult      m_cbUnRegistResult;
 	PACBGetRegInfoAckTP  m_cbGetRegInfoAckTP;
+	PACBUnRegResult      m_cbUnRegistResult;
 	tagPARegistCBFunction()
 	{
 		memset( this , 0 , sizeof(tagPARegistCBFunction) );
@@ -623,14 +642,29 @@ typedef struct tagPASipCfg
 	
 }TPASipCfg;
 
+typedef struct tagPALogCfg
+{
+	s8 m_achLogPath[LOG_LOGPATH_LENGTH];			///< pfc log path
+	u32 m_dwMaxSize;								//pfc log  size(KB)
+	u32 m_dwMaxfiles;								//pfc file number
+	void clear()
+	{
+		MEMSET_CAST(m_achLogPath, 0, LOG_LOGPATH_LENGTH);
+		m_dwMaxSize = 0;
+		m_dwMaxfiles = 0;
+	}
+	tagPALogCfg()
+	{
+		clear();
+	}
+}TPALogCfg;
+
 /// config set of PA
 typedef struct tagPAConfig
 {
 	TPAH323Cfg m_tH323Config;
 	TPASipCfg  m_tSipConfig;
-
-	tagPAConfig(){ }
-
+	TPALogCfg m_tSipLog;   
 	void SetH323Config( TPAH323Cfg & tH323Config )
 	{
 		memcpy( &m_tH323Config , &tH323Config, sizeof(TPAH323Cfg));

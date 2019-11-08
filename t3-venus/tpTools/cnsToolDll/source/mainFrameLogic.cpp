@@ -595,16 +595,6 @@ void CMainFrameLogic::SwitchCfgTabWnd( string strWnd )
 		}	
 	}
 
-    if ( m_strCurWnd == g_strCentSrceen && strWnd != g_strCentSrceen )
-    {
-        bool bChange = CCentCfgSrceen::GetSingletonPtr()->IsDFScreenCfgChange();
-        if ( false == bChange )
-        {
-            UIDATAMGR_PTR->SetLstSelItem( m_strLstFunMenu, m_pWndTree, 3 );
-            return;
-        }	
-	}
-
 	if ( m_strCurWnd == g_strCentDisplayDlg && strWnd != g_strCentDisplayDlg )
 	{
 		bool bChange = CCentCfgDisplayDlg::GetSingletonPtr()->IsCentCfgDisplayChange();
@@ -613,6 +603,16 @@ void CMainFrameLogic::SwitchCfgTabWnd( string strWnd )
 			UIDATAMGR_PTR->SetLstSelItem( m_strLstFunMenu, m_pWndTree, 5 );
 			return;
 		}	
+	}
+
+    if ( m_strCurWnd == g_strCentSrceen && strWnd != g_strCentSrceen )
+    {
+        bool bChange = CCentCfgSrceen::GetSingletonPtr()->IsDFScreenCfgChange();
+        if ( false == bChange )
+        {
+            UIDATAMGR_PTR->SetLstSelItem( m_strLstFunMenu, m_pWndTree, 6 );
+            return;
+        }	
 	}
 	
 	if ( m_strCurWnd != g_strCfgFrame && strWnd == g_strCfgFrame )

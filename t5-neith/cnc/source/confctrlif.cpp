@@ -21,37 +21,14 @@ TTPCnsConfStatus CCommonInterface::GetLocalCnsConfState() const
     {
         return tConfStatus;
     }
-#ifdef INCONF
-    TTPCnsConfStatus tTTPCnsConfStatus;
-    tTTPCnsConfStatus.emState = em_CALL_CONNECTED;
-    tTTPCnsConfStatus.m_emCallType = emCallType_Conf;
-    tTTPCnsConfStatus.m_bMixMotive = true;
-    tTTPCnsConfStatus.m_emConfProtocal = emTpH320;
-    tTTPCnsConfStatus.m_emTPEncryptType = emTPEncryptTypeNone;
-    return tTTPCnsConfStatus;
-#else
-    return m_pCnsConfCtrl->GetCnsConfStatus();    
-#endif
+
+    return m_pCnsConfCtrl->GetCnsConfStatus();
 }
 
 
 BOOL32 CCommonInterface::IsInConf( TCMSConf *pConf/* = NULL*/ )
 {   
-#ifdef INCONF
-    BOOL32 bIn = TRUE;
-    if ( pConf != NULL )
-    {
-        pConf->m_emConfType = emCallType_Conf;
-        pConf->m_bStartAudmix = true;
-        pConf->m_bVacOn = true;
-        strncpy(pConf->m_achConfName, "meeting",TP_MAX_ALIAS_LEN);
-
-        //pConf->m_emConfType = emCallType_Conf; emCallType_P2P
-    }
-    return bIn;
-#else
-    BOOL32 bIn = FALSE;    
-#endif
+	BOOL32 bIn = FALSE;
 
 	TTPCnsConfStatus status = GetLocalCnsConfState() ;
 	if ( status.emState == em_CALL_CONNECTED )
@@ -857,13 +834,6 @@ BOOL32 CCommonInterface::IsLocalCnsChairMan()
 		return FALSE;
 	}
 
-#ifndef LOGIN
-#ifdef CHAIR
-    return TRUE;
-#else
-    return FALSE;
-#endif
-#endif
 
 	TTPCnsInfo tCnsInfo;
 	GetLocalCnsInfo(tCnsInfo);  
@@ -1371,4 +1341,24 @@ u16 CCommonInterface::PlayHduReq( TTpHduPlayReq &tTvwInfo )
 
 	u16 wRe = m_pUmsConfCtrl->PlayHduReq( tTvwInfo );
 	return wRe;
+}
+
+u16 CCommonInterface::SetVoiceArouse( TTPVacInfo &tTPVacInfo)
+{
+    if( NULL == m_pCnsConfCtrl )
+    {
+        return ERR_CMS;
+    }
+
+    return m_pCnsConfCtrl->SetVoiceArouse( tTPVacInfo );
+}
+
+BOOL CCommonInterface::IsLocalMultiVoiceArouse() const
+{
+    if( NULL == m_pCnsConfCtrl )
+    {
+        return ERR_CMS;
+    }
+
+    return m_pCnsConfCtrl->IsLocalMultiVoiceArouse();
 }

@@ -60,7 +60,7 @@ APP_BEGIN_MSG_MAP(CConfCtrlLogic, CNotifyUIImpl)
 
 	MSG_SELECTCHANGE(_T("CheckCnsDual"), OnCheckLocalCnsDual)
 	MSG_SELECTCHANGE(_T("CheckDualShotCut"), OnCheckDualShotCut)
-	//MSG_SELECTCHANGE(_T("CheckVoiceArouse"), OnCheckPTPVoiceArouse)//点对点语音激励
+	MSG_SELECTCHANGE(_T("CheckVoiceArouse"), OnCheckMultiVoiceArouse)//多点语音激励
 	MSG_SELECTCHANGE(_T("CheckVSShortCut"), OnCheckVSShortCut)
 	MSG_SELECTCHANGE(_T("CheckPIP"), OnCheckPIP)
 	MSG_SELECTCHANGE(_T("CheckPIPShortCut"), OnCheckPIPShortCut)
@@ -112,6 +112,10 @@ APP_BEGIN_MSG_MAP(CConfCtrlLogic, CNotifyUIImpl)
 	USER_MSG(UI_CNS_CONFVGAINFO_NOTIFY,OnVgaInfoNotify)
 	USER_MSG(UI_CNS_SELDUALPORT_IND,OnSelDualPortInd)    
 	USER_MSG(UI_CNS_SELDEFAULTDUALPORT_IND,OnSelDefaultDualPortInd)
+
+    //控制多点会议语音激励开关回应
+    USER_MSG( UI_CNC_VOICEAROUSE_NTY, OnVoiceArouseNty )
+    USER_MSG( UI_CNC_VOICEAROUSE_IND, OnVoiceArouseInd )
 
     USER_MSG(WM_DUI_EDITSETFOCUS, OnEditSetFocus)	
 APP_END_MSG_MAP()
@@ -195,11 +199,11 @@ bool CConfCtrlLogic::OnDisconnect( WPARAM wParam, LPARAM lParam, bool& bHandle )
 	{
 		pCheckPIP->SetCheckNoMsg(false);
 	}
-	/*pCheckPIP = (CCheckBoxUI*)ICncCommonOp::FindControl(m_pm,_T("CheckVoiceArouse"));
+	pCheckPIP = (CCheckBoxUI*)ICncCommonOp::FindControl(m_pm,_T("CheckVoiceArouse"));
 	if ( pCheckPIP )
 	{
 		pCheckPIP->SetCheckNoMsg(false);
-	}*/
+	}
     pCheckPIP = (CCheckBoxUI*)ICncCommonOp::FindControl(m_pm,_T("CheckSeatArouse"));
     if ( pCheckPIP )
     {
@@ -277,11 +281,6 @@ bool CConfCtrlLogic::OnInit(TNotifyUI& msg)
 	
 	UpdateCnsList();
 	UpdateShowList();
-#ifdef INCONF
-    bool bHandle = true;
-    OnConfStateNty(NULL, NULL, bHandle);
-#else
-#endif
 	return true;
 }
 
@@ -2024,11 +2023,11 @@ bool CConfCtrlLogic::OnCnAuxInd( WPARAM wParam, LPARAM lParam, bool& bHandle )
 	{
 		if (bIsMix)
 		{
-			ShowPopMsg(_T("开启语音激励失败"));
+			ShowPopMsg(_T("开启坐席激励失败"));
 		}
 		else
 		{
-			ShowPopMsg(_T("关闭语音激励失败"));
+			ShowPopMsg(_T("关闭坐席激励失败"));
 		}
 	}
 
@@ -2039,6 +2038,51 @@ bool CConfCtrlLogic::OnCnAuxInd( WPARAM wParam, LPARAM lParam, bool& bHandle )
 	}
 
 	return true;
+}
+
+bool CConfCtrlLogic::OnCheckMultiVoiceArouse( TNotifyUI& msg )
+{
+    CCheckBoxUI* pCheckBox = (CCheckBoxUI*)msg.pSender;
+    if ( !pCheckBox )
+    {
+        return false;
+    }
+
+    bool bIsSet = false;
+    if ( pCheckBox->GetCheck() )
+    {
+        bIsSet = true;
+    }
+
+    BOOL bIs = ComInterface->IsLocalMultiVoiceArouse();
+    if (bIs == bIsSet)
+    {
+        return true;
+    }
+
+    TCMSConf tConf;
+    BOOL32 bInConf = ComInterface->IsInConf( &tConf );
+
+    if ( bInConf )
+    {
+        TTPVacInfo tTPVacInfo;
+        tTPVacInfo.m_wConfId = tConf.m_tPollStat.m_wConfID;
+        tTPVacInfo.m_bVoiceMotivation = bIsSet;
+
+        u16 wRe =  ComInterface->SetVoiceArouse(tTPVacInfo);
+        if ( wRe != NO_ERROR )
+        {
+            ShowMessageBox(_T("开启失败"));
+            pCheckBox->SetCheckNoMsg(false);
+        }
+    }
+    else
+    {
+        ShowMessageBox(_T("不在会议中，不能开启"));
+        pCheckBox->SetCheckNoMsg(false);
+    }
+
+    return true;
 }
 
 bool CConfCtrlLogic::OnCheckVSShortCut( TNotifyUI& msg )
@@ -2975,4 +3019,85 @@ void CConfCtrlLogic::UpdateVedioSourceList()
 	}
 
 	pTileLayoutUI->SelectItem((int)m_tDualSrcInfo.emCurrentType,false);
+}
+
+bool CConfCtrlLogic::OnVoiceArouseNty(WPARAM wParam, LPARAM lParam, bool& bHandle)
+{
+    CCheckBoxUI* pCheck = (CCheckBoxUI*)ICncCommonOp::FindControl(m_pm,_T("CheckVoiceArouse"));
+    if (pCheck)
+    {
+        pCheck->SetCheckNoMsg(ComInterface->IsLocalMultiVoiceArouse());
+    }
+
+    return true;
+}
+
+bool CConfCtrlLogic::OnVoiceArouseInd(WPARAM wParam, LPARAM lParam, bool& bHandle)
+{
+    EmUmsVacCmdRes emVacRes = (EmUmsVacCmdRes)wParam;
+    BOOL bVoiceArouse = (BOOL)lParam;
+
+    if (emVacRes != ums_vac_res_sucess)
+    {
+        CString strMsg = _T("");
+        switch (emVacRes)
+        {
+        case ums_vac_res_unauthorized:
+            strMsg = _T("没有权限，操作无效");
+            break;
+        case ums_vac_res_dismode:
+            strMsg = _T("讨论模式不允许开启激励");
+            break;
+        case ums_vac_res_rollcallmode:
+            strMsg = _T("点名模式不允许开启激励");
+            break;
+        case ums_vac_res_customaudmixmmode:
+            strMsg = _T("定制混音模式不允许开启激励");
+            break;
+        case ums_vac_res_pollmode:
+            strMsg = _T("轮询模式不允许开启激励");
+            break;
+        case ums_vac_res_nomix:
+            strMsg = _T("没有混音器");
+            break;
+        case ums_vac_res_samemode:
+            strMsg = _T("cmd 没有任何改变");
+            break;
+        case ums_vac_res_mixopr_getaudfail:
+            strMsg = _T("上调会场音频失败");
+            break;
+        case ums_vac_res_mixopr_mixchanfull:
+            strMsg = _T("混音通道不足");
+            break;
+        case ums_vac_res_mixopr_novalidep:
+            strMsg = _T("无有效混音会场");
+            break;
+        case ums_vac_res_mixopr_repeatadd:
+            strMsg = _T("重复会场");
+            break;
+        case ums_vac_res_mixopr_del_notfind:
+            strMsg = _T("要删除混音通道不在混音通道中");
+            break;
+        default:
+            strMsg = _T("未知错误");
+            break;
+        }
+
+        if (bVoiceArouse)
+        {
+            ShowPopMsg(_T("开启语音激励失败：") + strMsg);
+        }
+        else
+        {
+            ShowPopMsg(_T("关闭语音激励失败：") + strMsg);
+        }
+    }
+
+    CCheckBoxUI* pCheck = (CCheckBoxUI*)ICncCommonOp::FindControl(m_pm,_T("CheckVoiceArouse"));
+    if (pCheck)
+    {
+        pCheck->SetCheckNoMsg(ComInterface->IsLocalMultiVoiceArouse());
+    }
+
+    return true;
 }

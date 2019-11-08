@@ -952,12 +952,16 @@ void CCncMsgDriver::MappingEventName()
 	MAPPING_HELPER( ev_TppConfAMixUpdate_Nty, _T("ev_TppConfAMixUpdate_Nty") );
 	MAPPING_HELPER( ev_TppAudMixDisListOpr_Cmd, _T("ev_TppAudMixDisListOpr_Cmd") );
     MAPPING_HELPER( ev_TppAudMixDisListOpr_Ind, _T("ev_TppAudMixDisListOpr_Ind") );
-	//语音激励
+	//坐席激励
 	MAPPING_HELPER( ev_Cn_ConfAMixVacSwitch_Ind, _T("ev_Cn_ConfAMixVacSwitch_Ind") );
 	MAPPING_HELPER( ev_Cn_ConfAMixVacSwitch_Cmd, _T("ev_Cn_ConfAMixVacSwitch_Cmd") );
-	//单独控制语音激励
+	//单独控制坐席激励
 	MAPPING_HELPER( ev_CnMixIsUsed_Cmd, _T("ev_CnMixIsUsed_Cmd") );
 	MAPPING_HELPER( ev_CnMixIsUsed_Ind, _T("ev_CnMixIsUsed_Ind") );
+    //多点语音激励
+    MAPPING_HELPER( ev_tppVoiceMotivation_Nty, _T("ev_tppVoiceMotivation_Nty") );
+    MAPPING_HELPER( ev_tppVoiceMotivation_Cmd, _T("ev_tppVoiceMotivation_Cmd") );
+    MAPPING_HELPER( ev_tppVoiceMotivation_Ind, _T("ev_tppVoiceMotivation_Ind") );
     //设置系统时间
     MAPPING_HELPER( ev_CnSetSysTime_Cmd, _T("ev_CnSetSysTime_Cmd") );
     MAPPING_HELPER( ev_CnGetSysTime_Req, _T("ev_CnGetSysTime_Req") );
@@ -1487,6 +1491,7 @@ void CCncMsgDriver::MappingEventName()
     //升降屏
     MAPPING_HELPER( ev_Cn_CentreDFScreenConfig_Nty, _T("ev_Cn_CentreDFScreenConfig_Nty") );
     MAPPING_HELPER( ev_cns_SelectDFScreen_Nty, _T("ev_cns_SelectDFScreen_Nty") );
+    MAPPING_HELPER( ev_cns_ScreenType_Nty, _T("ev_cns_ScreenType_Nty") );
     MAPPING_HELPER( ev_cns_SelectDFScreen_Cmd, _T("ev_cns_SelectDFScreen_Cmd") );
     MAPPING_HELPER( ev_Cn_DFScreenCommand_Cmd, _T("ev_Cn_DFScreenCommand_Cmd") );
     MAPPING_HELPER( ev_Cn_DFScreenCommand_Ind, _T("ev_Cn_DFScreenCommand_Ind") );

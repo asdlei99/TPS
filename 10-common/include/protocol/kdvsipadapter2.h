@@ -185,6 +185,14 @@ public:
 	*/
 	static BOOL32 sipadpt_send_info_without_call(const u8 *pbyBuf, u16 wLen);
 
+	/**
+	* \brief            sipadater get qtkey to ssl_do_handshake
+	* \param[in]        phSession    :qtparam
+	* \param[in]        args         :qtparam
+	* \param[in]        result       :qtkey result
+	*/
+	static BOOL32 sipadpt_qt_get_qtkey_result(void *phSession, void* args, u32 result);
+
 private:
 	/**
 	* \brief            sipadapter default congif
@@ -202,56 +210,46 @@ private:
 /**
 * \brief            sipadapter help
 */
-PROTO_EXTERN_API void sipadapterhelp();
+PROTO_EXTERN_API void sipahelp();
 
 /**
 * \brief            sipadapter version
 */
-PROTO_EXTERN_API void sipadapterver();
+PROTO_EXTERN_API void sipaver();
 
 /**
 * \brief            sipadapter log on
 * \param[in]        nType            :log type
 */
-PROTO_EXTERN_API void sipadapterlogon(s32 nType);
-
-/**
-* \brief            sipadapter log off
-*/
-PROTO_EXTERN_API void sipadapterlogoff();
+PROTO_EXTERN_API void sipalog(s32 nType, s32 nLevel);
 
 /**
 * \brief            print packet on
 * \param[in]        dwFlag            :0-off,1-on
 */
-PROTO_EXTERN_API void setsiptrace(u32 dwFlag = 0);
+PROTO_EXTERN_API void sipsettrace(u32 dwFlag = 0);
 
 /**
 * \brief            sip stack log on
 * \param[in]        nLevel            :log level
 */
-PROTO_EXTERN_API void sipstacklogon(s32 nLevel = 0);
-
-/**
-* \brief            sip stack log off
-*/
-PROTO_EXTERN_API void sipstacklogoff();
+PROTO_EXTERN_API void sipslog(s32 nLevel = 0);
 
 /**
 * \brief            show sip stack
 */
-PROTO_EXTERN_API void showsipstack();
+PROTO_EXTERN_API void showsconfig();
 
 /**
 * \brief            sip adapter log to
 * \param[in]        byFilter            :telnet or cmd
 */
-PROTO_EXTERN_API void sipadapterlogto(u8 byFilter);
+PROTO_EXTERN_API void sipalogto(u8 byFilter);
 /**
 * \brief            sip stack log to
 * \param[in]        byFilter            :telnet or cmd
 */
-PROTO_EXTERN_API void sipstacklogto(u8 byFilter);
+PROTO_EXTERN_API void sipslogto(u8 byFilter);
 /**
 * \brief            sip stack log to
 * \param[in]        nTimeout1            :T1
@@ -263,7 +261,7 @@ PROTO_EXTERN_API void siptsxtimeout(s32 nTimeout1, s32 nTimeout2, s32 nTimeout4,
 /**
 * \brief            sip adapter show call
 */
-PROTO_EXTERN_API void sipadaptershowcall();
+PROTO_EXTERN_API void sipshowacall();
 PROTO_EXTERN_API void sipshowtsx(BOOL32 bDetail);
 /**
 * \brief            sip adapter show tsx

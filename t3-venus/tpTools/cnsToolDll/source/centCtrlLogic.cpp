@@ -1366,10 +1366,10 @@ bool CCentCfgSrceen::OnChangedSrceenType( const IArgs & arg )
     String strCaption;
     UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInSrceenType", strCaption, m_pWndTree);
     
-    EmComConfigType emScreenType = emDefault;
+    EmComConfigType emScreenType = emXuanDeUpScreen;
     if (strCaption == "ÐûµÂ·­×ªÆÁ")
     {
-        emScreenType = emXuanDeDFScreen;
+        emScreenType = emXuanDeRollScreen;
     }
     
     bool bChange = false;
@@ -1704,11 +1704,11 @@ bool CCentCfgSrceen::OnBtnSave( const IArgs & arg )
     UIFACTORYMGR_PTR->GetComboText( "CentCfgSrceenDlg/ComboboxInSrceenType", strSrceenType, m_pWndTree);
     if (strSrceenType == "ÐûµÂÉý½µÆÁ")
     {
-        tCenDFScreenInfo.emDeviceType = emDefault;
+        tCenDFScreenInfo.emDeviceType = emXuanDeUpScreen;
     }
     else
     {
-        tCenDFScreenInfo.emDeviceType = emXuanDeDFScreen;
+        tCenDFScreenInfo.emDeviceType = emXuanDeRollScreen;
     }
     //²¨ÌØÂÊ
     String strBaudRate = "";
@@ -1876,10 +1876,10 @@ LRESULT CCentCfgSrceen::OnCenDFScreenConfigNty( WPARAM wParam, LPARAM lParam )
     String strDeviceType("");
     switch(m_tCenDFScreenInfo.emDeviceType)
     {
-    case emDefault:
+    case emXuanDeUpScreen:
         strDeviceType = "ÐûµÂÉý½µÆÁ";
         break;
-    case emXuanDeDFScreen:
+    case emXuanDeRollScreen:
         strDeviceType = "ÐûµÂ·­×ªÆÁ";
         break;
     default:

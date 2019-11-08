@@ -30,7 +30,11 @@
 #define UM_FILEHEAD						(const s8*)"kdvum"       ///<  文件头
 #define UM_VER							(u32)20130422              ///<  版本号
 #define MAX_FILEHEAD_LEN				32
+#ifndef KDVTYPE_LEGACY_H
 #define USERINFO_MEMBERNUM				(u8)10			///<  CUserFullInfo的成员个数 [pengguofeng 4/24/2013]
+#else
+#define USERINFO_MEMBERNUM				(u8)8
+#endif
 //////////////////////////////////////////////////////////////////////////
 
 /// 枚举定义
@@ -178,9 +182,10 @@ public:
 	void ReadFileAttr(FILE *fp);
 	void WriteFileAttr(FILE *fp);
 	void SkipUnknownType(FILE *fp);
-
+#ifndef KDVTYPE_LEGACY_H
 	u32 CreateNewUserGuid(); ///< 生成新的用户guid
 	void UpdateMaxGuid();
+#endif
 	/// message
 private:
 	void OnLigIn(CTiMessage* pcMsg);

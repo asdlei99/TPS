@@ -63,6 +63,23 @@ typedef struct tagSipTsxTimeout
 	}
 }TSipTsxTimeout;
 
+typedef struct tagAdapterLogCfg
+{
+	s8 m_achLogPath[LOG_LOGPATH_LENGTH];			///< pfc log path
+	u32 m_dwMaxSize;								//pfc log  size(KB)
+	u32 m_dwMaxfiles;								//pfc file number
+	tagAdapterLogCfg()
+	{
+		clear();
+	}
+	void clear()
+	{
+		MEMSET_CAST(m_achLogPath, 0, LOG_LOGPATH_LENGTH);
+		m_dwMaxSize = 0;
+		m_dwMaxfiles = 0;
+	}
+}TAdapterLogCfg;
+
 /// sipadpater config
 typedef struct tagSipAdapterCfg
 {
@@ -84,14 +101,15 @@ typedef struct tagSipAdapterCfg
 
 	BOOL32	m_bIsh460GW;			            ///< 默认值FALSE,5.0gk应设置此值为TRUE,则adapter中就不会有kdvdatanet的调用
 	TSipTsxTimeout m_tTsxTimeout;               ///< tsx time out struct
-	ALL_LOG_CALlBACK m_fpAdaptLogCB;            ///< adapter log calback
 
 	BOOL32	m_bUseTLS;                          ///< 是否启用TLS监听
 	TTlsCfg m_tTlsCfg;                          ///< tls config
 
 	BOOL32 m_bUseTLSDefConfig;	                ///< 是否启用TLS Default Config
-	BOOL32  m_bUseIpv6;   // is use ipv6
-	u32     m_dwLocalIP;            //本端地址.网络序
+	BOOL32  m_bUseIpv6;							///< is use ipv6
+	u32     m_dwLocalIP;						///< 本端地址.网络序
+	ALL_LOG_CALlBACK  m_fpLogCB;				///< add callback function for print
+	TAdapterLogCfg m_tSipLog;                   ///< Let the business set the PfcOpenLogFile parameters
 public:
 	/**
     * \brief            tagSipAdapterCfg Constructor
@@ -115,7 +133,6 @@ public:
 		m_wRegClientNum				= 2;
 		m_dwMaxSendReciveBufferSize = 20480;
 		m_bIsh460GW					= FALSE;
-		m_fpAdaptLogCB              = NULL;
 		m_bUseTLS                   = FALSE;
 		m_bUseTLSDefConfig          = FALSE;
 		m_bUseIpv6                = TRUE;
@@ -124,8 +141,12 @@ public:
 		m_tLocalAddrV4.m_emType     = PFC_TRANSPORT_TYPE_IP;
 		m_tLocalAddrV6.Clear();
 		m_tLocalAddrV6.m_emType     = PFC_TRANSPORT_TYPE_IPV6;
+		m_fpLogCB = NULL;
+		m_tSipLog.clear();
 	}
 }TSipAdapterCfg;
+
+
 
 /// stack init result
 typedef struct tagStackInitRes
@@ -536,7 +557,7 @@ typedef struct PROTO_API tagSipTransAddress
 	CallAddrType        m_emType;		///< 呼叫类型
 	PFC_IPADDR  	    m_tNetAddr;		///< IP呼叫时使用	
 	TAliasTransAddress	m_tAlias;		///< 别名呼叫使用
-	emProtocolType          m_emProtocolType;///<  Protocol Type
+	emProtocolType      m_emProtocolType;///<  Protocol Type
 
 	/**
     * \brief            tagSipTransAddress  Constructor
@@ -679,10 +700,6 @@ typedef struct PROTO_API tagTSipConfSpeechMixTP
 
 	void Clear()
 	{
-		m_mode = 0;
-		m_wNum = 0;
-		m_bVacOn = 0;
-		memset(m_awMixEp, 0, MAX_MIX_EP_LIST_LEN);
 		memset(this, 0, sizeof(tagTSipConfSpeechMixTP));
 	}
 
@@ -920,7 +937,7 @@ typedef struct tagRegisterInfo
 	s8                m_achDevId[MAX_QT_ID_LEN];   ///< max length of device id for qt tls
 	u8       m_byNonStdHdrNum;                          ///< max nonstandard header number
 	TSipHead m_atNonStdHdr[MAX_SIP_NONSTD_HEADER_NUM];  ///< nonstandard header
-
+	BOOL32            m_bAddTpAttr;                 /// istps 
 public:	
 	/**
     * \brief            tagRegisterInfo  Constructor

@@ -860,6 +860,13 @@ PROTO_EXTERN_API void kdvSetLocalIsUTF8(BOOL32 bIsUtf8);
 PROTO_EXTERN_API void h323debug(BOOL32 bCap,BOOL32 bMsd,BOOL32 bChan);
 
 /**
+	* \brief            Set H323 Tos Value(DSCP)
+	* \param[in]        nTos		: Tos Value
+	* \return           None
+*/
+PROTO_EXTERN_API void h323asettos(s32 nTos);
+
+/**
 	* \brief            support non-standard stack
 	* \param[in]        bIsKDV323		: support or not
 	* \retval           success		: act_ok

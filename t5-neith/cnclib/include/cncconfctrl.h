@@ -222,6 +222,14 @@ public:
 	* @remarks 
 	*/
 	virtual u16 SpareTimeScreenDualSet( u8 wID ,BOOL bIsShow );
+
+    /** 
+	* 功能  开启语音激励
+    * @param [in]  TTPVacInfo tTPVacInfo 语音激励信息
+	* @return  
+	* @remarks 
+	*/
+	virtual u16 SetVoiceArouse( TTPVacInfo &tTPVacInfo );
 	
 public: //获取lib中缓存信息
    /** 
@@ -294,6 +302,13 @@ public: //获取lib中缓存信息
 	* @remarks 
 	*/
     virtual BOOL IsLocalPTPSeatArouse() const;
+
+    /** 
+	* 功能  多点会议会场语音激励
+	* @return  BOOL  是否多点会议会场语音激励
+	* @remarks 
+	*/
+    virtual BOOL IsLocalMultiVoiceArouse() const;
 
     virtual TTPCnMediaTransPort GetVedioTransAddr() const { return m_tVideoTranAddr ;}
     virtual TTPCnMediaTransPort GetAudioTransAddr() const { return m_tAudioTranAddr ;}
@@ -403,7 +418,7 @@ protected:
 	//空闲双流设置
 	void OnSpareDualSetNty(const CMessage& cMsg);
 	void OnSpareDualSetInd(const CMessage& cMsg);
-	//单独语音激励回复
+	//单独坐席激励回复
 	void OnCnAuxMixInd(const CMessage& cMsg);
 	//开启点名回复
 	void OnStartRollNty(const CMessage& cMsg);
@@ -435,6 +450,11 @@ protected:
     //询问会议模板密码
     void OnCnGetTempPwdCmd(const CMessage& cMsg);
 
+    //多点会议会场语音激励通知
+    void OnVoiceArouseNty(const CMessage& cMsg);
+    //多点会议会场语音激励反馈
+    void OnVoiceArouseInd(const CMessage& cMsg);
+
 private:
 	CCnsSession      *m_pSession;
 
@@ -453,6 +473,7 @@ private:
     BOOL32           m_bRecvDual;
 	vector<TScreenInfo>  m_vctScreenInfo;
 	vector<TTPNMServerCfg> m_vecTTPNMServerCfg;		//网管服务器信息
+    BOOL32           m_bVoiceArouse;//是否开启语音激励
     BOOL32           m_bLocalPIP;	//是否开启画中画
 	BOOL32           m_bPTPSeatArouse;//是否开启点对点坐席激励
 	TTpConfRollCallInfo   m_tTpConfRollCallInfo;//点名状态
